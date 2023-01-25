@@ -1,0 +1,2 @@
+#!/bin/sh
+scrot $1 $HOME/Pictures/Screenshots/'%Y-%m-%d_%H:%M:%S.png' -e 'optipng $f'

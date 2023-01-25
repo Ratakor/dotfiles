@@ -1,0 +1,4 @@
+#!/bin/sh
+#acpi | awk '/0:/ { print $3" "$4 }' | sed s/,//g
+PATH="/sys/class/power_supply/BAT*"
+printf "$(/usr/bin/cat $PATH/status) $(/usr/bin/cat $PATH/capacity)%%\\n"

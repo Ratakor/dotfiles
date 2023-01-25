@@ -1,0 +1,6 @@
+calendar = /home/ratakor/.when/calendar
+editor = nvim
+monday_first = 1
+orthodox_easter = 1
+ampm = 0
+filter_accents_on_output = 0

@@ -1,0 +1,69 @@
+#!/bin/sh
+
+# doas not required for some system commands
+for command in mount umount sv pacman updatedb shutdown poweroff reboot ; do
+	alias $command="doas $command"
+done; unset command
+
+# bad memory
+alias calc='bc'
+alias 7zip='7z'
+alias p7zip='7z'
+alias calendar='when c'
+alias battery='db_battery'
+alias image='sxiv -a'
+alias yt='mpv --ytdl-format=22'
+alias audio='mpv --no-video'
+alias music='audio --loop-playlist'
+alias shuffle='music --shuffle'
+alias pdf='swallow zathura'
+alias md='glow'
+alias timer='termdown'
+alias video-dlp='yt-dlp -f "bv" -o "%(title)s [%(id)s].%(ext)s"'
+alias music-dlp='yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 -o "%(playlist_index)s - %(title)s [%(id)s].%(ext)s"'
+
+# misc
+#alias sudo='doas'
+alias v='nvim'
+alias vim='nvim'
+alias python='python3'
+alias p='pacman'
+alias :q='exit'
+alias :Q='exit'
+alias cs='cd'
+alias cdm='. cdmenu'
+alias 2048='swallow gnome-2048'
+
+# verbosity and stuff
+alias rm='rm -vI'
+alias rmdir='rmdir -v'
+alias cp='cp -riv'
+alias mv='mv -iv'
+alias mkdir='mkdir -pv'
+alias man='manpdf'
+alias trueman='/usr/bin/man'
+
+# colors
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+alias ip='ip --color=auto'
+
+# ls
+alias ls='exa --icons'
+alias sl='ls'
+alias la='ls -a'
+alias ll='ls -lah'
+alias tree='ls --tree'
+
+# git
+alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias gacp='git add . && git commit -a && git push'
+alias gs='git status'
+alias gp='git pull'
+
+# school
+alias TP='cd ~/Epita/S2/TP/epita-prepa-acdc-prog-102-p-03-2027-*'
+alias PT='TP'
+alias catchos='cd ~/Epita/S2/catchos'
+alias AFIT='cd ~/Epita/S1/AFIT'
+alias cours='cd ~/Epita/S2/Cours'

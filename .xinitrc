@@ -1,0 +1,17 @@
+#!/bin/sh
+# if connected to another monitor with DisplayPort, disable output of laptop screen
+# else start picom, picom takes too much gpu for my computer :(
+[ $(xrandr | awk '/DP-2/ {print $2}') = 'connected' ] && xrandr --output LVDS-1 --off || picom -b
+
+#xsetroot -solid "#282a36"
+#feh --bg-fill $HOME/Pictures/Wallpapers/ppwp.jpg
+feh --bg-fill $HOME/Pictures/Wallpapers/aiko.jpg
+
+xrandr --dpi 96
+setxkbmap fr us
+dwmblocks &
+xbanish &
+redshift &
+#xcompmgr &
+
+exec dwm
