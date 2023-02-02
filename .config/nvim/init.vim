@@ -8,7 +8,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'Mofiqul/dracula.nvim' " dracula theme
-"Plug 'ellisonleao/gruvbox.nvim' " gruvbox theme
 Plug 'mhinz/vim-startify' " start screen
 Plug 'bronson/vim-trailing-whitespace' " FixWhitespace
 Plug 'airblade/vim-gitgutter' " hud for git in vim
@@ -35,7 +34,8 @@ source ~/.config/nvim/basics.vim
 source ~/.config/nvim/coc.vim
 "source ~/.config/nvim/lspconfig.vim
 
-let g:vimspector_enable_mappings = 'HUMAN'
+" vimspector config
+"let g:vimspector_enable_mappings = 'HUMAN'
 
 " Open Telescope with <C-S>
 nnoremap <C-S> :Telescope find_files<CR>

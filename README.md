@@ -40,11 +40,11 @@
 
 #### Software used but not worth mentionning
 
-[yt-dlp](https://github.com/yt-dlp/yt-dlp), [tlp](https://linrunner.de/tlp), [redshift](https://github.com/jonls/redshift), [xbanish](https://github.com/jcs/xbanish), [vis](https://github.com/dpayne/cli-visualizer), [neofetch](https://github.com/dylanaraps/neofetch), [mesofetch](https://github.com/ratakor/mesofetch), [exa](https://github.com/ogham/exa), [doas](https://man.openbsd.org/doas), man-db, xdo, newsboat
+[yt-dlp](https://github.com/yt-dlp/yt-dlp), [tlp](https://linrunner.de/tlp), [redshift](https://github.com/jonls/redshift), [xbanish](https://github.com/jcs/xbanish), [cli-visualizer](https://github.com/dpayne/cli-visualizer), [neofetch](https://github.com/dylanaraps/neofetch), [mesofetch](https://github.com/ratakor/mesofetch), [exa](https://github.com/ogham/exa), [doas](https://man.openbsd.org/doas), man-db, xdo, newsboat, htop, oneko
 
 ## Scripts
 
-- cdmenu: cd + dmenu, slower but prettier
+- music: simple menu for selecting playlists
 - dirsize: print the size of current directory or of a directory
 - dmenu_websearch: websearch with dmenu
 - manpdf: can be used as a shortcut with dwm to find man pages with dmenu or as "replacement" of man to view man pages as pdf. Require swallow, zathura and man-db (do "doas mandb" to fetch man pages info)

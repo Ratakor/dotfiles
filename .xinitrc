@@ -5,13 +5,15 @@
 
 #xsetroot -solid "#282a36"
 #feh --bg-fill $HOME/Pictures/Wallpapers/ppwp.jpg
-feh --bg-fill $HOME/Pictures/Wallpapers/aiko.jpg
+#feh --bg-fill $HOME/Pictures/Wallpapers/aiko.jpg
+feh --bg-fill $HOME/Pictures/Calendar/$(date '+%B').png
 
 xrandr --dpi 96
 setxkbmap fr us
 dwmblocks &
 xbanish &
 redshift &
+oneko &
 #xcompmgr &
 
 exec dwm
