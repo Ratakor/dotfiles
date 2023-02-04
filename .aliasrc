@@ -23,7 +23,7 @@ alias music-dlp='yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 -o "%(pl
 alias paint='pinta'
 
 # misc
-#alias sudo='doas'
+alias sudo='doas'
 alias v='$EDITOR'
 alias vim='$EDITOR'
 alias python='python3'

@@ -1,4 +1,5 @@
 #!/bin/sh
+#require nopass for poweroff and reboot in doas.conf
 QUERY=$(printf 'no\npoweroff\nreboot' | dmenu -c -sb '#ff5555' -p 'Shutdown?')
 [ "$QUERY" = "poweroff" ] && doas poweroff
 [ "$QUERY" = "reboot" ] && doas reboot

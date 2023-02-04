@@ -3,11 +3,12 @@
 ![screenshot](Pictures/normal.png)
 
 ## Installation
-as if you just installed Parabola OpenRC, DO NOT TRY THIS if it's not a new install and you don't know what you're doing
+as if you just installed Parabola OpenRC, DO NOT TRY THIS if it's not a new install and you don't know what you're doing.
+It will install my config as well as all packages I use except cli-visualizer, joplin, oneko and ungoogled-chromium.
 
 	$ git clone https://github.com/ratakor/config.git
 	$ cd config
-	# make
+	$ make
 
 ## Softwares
 
@@ -21,7 +22,7 @@ as if you just installed Parabola OpenRC, DO NOT TRY THIS if it's not a new inst
 
 #### Command-line
 
-- Shell: [Zsh](https://github.com/zsh-users/zsh)
+- Shell: [zsh](https://github.com/zsh-users/zsh)
 - Terminal emulator: [st](https://st.suckless.org/)
 - Editor: [Neovim](https://github.com/neovim/neovim)
 
@@ -44,10 +45,11 @@ as if you just installed Parabola OpenRC, DO NOT TRY THIS if it's not a new inst
 - Screenshot tool: [scrot](https://github.com/resurrecting-open-source-projects/scrot)
 - Calendar: [when](https://github.com/bcrowell/when)
 - Notes: [Joplin](https://joplinapp.org/terminal)
+- RSS Reader: [Newsboat](https://newsboat.org/)
 
 #### Software used but not worth mentionning
 
-[yt-dlp](https://github.com/yt-dlp/yt-dlp), [tlp](https://linrunner.de/tlp), [redshift](https://github.com/jonls/redshift), [xbanish](https://github.com/jcs/xbanish), [cli-visualizer](https://github.com/dpayne/cli-visualizer), [neofetch](https://github.com/dylanaraps/neofetch), [mesofetch](https://github.com/ratakor/mesofetch), [exa](https://github.com/ogham/exa), [doas](https://man.openbsd.org/doas), man-db, xdo, newsboat, htop, oneko, sx, pinta
+[yt-dlp](https://github.com/yt-dlp/yt-dlp), [tlp](https://linrunner.de/tlp), [redshift](https://github.com/jonls/redshift), [xbanish](https://github.com/jcs/xbanish), [cli-visualizer](https://github.com/dpayne/cli-visualizer), [neofetch](https://github.com/dylanaraps/neofetch), [mesofetch](https://github.com/ratakor/mesofetch), [exa](https://github.com/ogham/exa), [opendoas](https://man.openbsd.org/doas), man-db, xdo, htop, oneko, sx, pinta
 
 ## Scripts
 
@@ -57,6 +59,7 @@ as if you just installed Parabola OpenRC, DO NOT TRY THIS if it's not a new inst
 - manpdf: can be used as a shortcut with dwm to find man pages with dmenu or as "replacement" of man to view man pages as pdf. Require swallow, zathura and man-db (do "doas mandb" to fetch man pages info)
 - off: simple dmenu interface for shutdown
 - swallow (stolen from [swindles](https://git.cbps.xyz/swindlesmccoop/not-just-dotfiles/src/branch/master/.local/bin/swallow)): incredibly useful, requires xdo
+- and other stuff :)
 
 ## TODO
 - setup neomutt for mail
