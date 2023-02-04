@@ -1,3 +1,13 @@
 [Default Applications]
-x-scheme-handler/https=ungoogled-chromium.desktop
-x-scheme-handler/http=ungoogled-chromium.desktop
+x-scheme-handler/mailto=mail.desktop;
+video/x-matroska=video.desktop
+text/x-shellscript=text.desktop;
+text/plain=text.desktop;
+application/postscript=pdf.desktop;
+application/pdf=pdf.desktop;
+image/png=img.desktop;
+image/jpeg=img.desktop;
+image/gif=img.desktop;
+inode/directory=file.desktop
+x-scheme-handler/https=browser.desktop
+x-scheme-handler/http=browser.desktop

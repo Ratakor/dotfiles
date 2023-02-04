@@ -4,9 +4,8 @@
 [ $(xrandr | awk '/DP-2/ {print $2}') = 'connected' ] && xrandr --output LVDS-1 --off || picom -b
 
 #xsetroot -solid "#282a36"
-#feh --bg-fill $HOME/Pictures/Wallpapers/ppwp.jpg
-#feh --bg-fill $HOME/Pictures/Wallpapers/aiko.jpg
-feh --bg-fill $HOME/Pictures/Calendar/$(date '+%B').png
+#feh --bg-fill $XDG_DATA_HOME/Wallpapers/aiko.jpg
+feh --bg-fill $XDG_DATA_HOME/Wallpapers/Calendar/$(date '+%B').png
 
 xrandr --dpi 96
 setxkbmap fr us

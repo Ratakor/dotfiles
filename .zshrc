@@ -13,7 +13,7 @@ setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
 # History in cache directory:
-HISTFILE=~/.histfile
+HISTFILE=$XDG_DATA_HOME/histfile
 HISTSIZE=10000000
 SAVEHIST=10000000
 
@@ -56,4 +56,4 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # opam configuration
-[[ ! -r /home/ratakor/.opam/opam-init/init.zsh ]] || source /home/ratakor/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

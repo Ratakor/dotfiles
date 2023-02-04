@@ -2,6 +2,13 @@
 
 ![screenshot](Pictures/normal.png)
 
+## Installation
+as if you just installed Parabola OpenRC, DO NOT TRY THIS if it's not a new install and you don't know what you're doing
+
+	$ git clone https://github.com/ratakor/config.git
+	$ cd config
+	# make
+
 ## Softwares
 
 #### Graphical environment
@@ -30,7 +37,7 @@
 #### Miscellaneous
 
 - Font: [agave Nerd Font Complete Mono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Agave)
-- File manager: [ranger](https://github.com/ranger/ranger)
+- File manager: [lf](https://github.com/gokcehan/lf)
 - Document viewer: [zathura](https://github.com/pwmt/zathura)
 - Video player: [mpv](https://github.com/mpv-player/mpv)
 - Image viewer: [sxiv](https://github.com/xyb3rt/sxiv)
@@ -40,7 +47,7 @@
 
 #### Software used but not worth mentionning
 
-[yt-dlp](https://github.com/yt-dlp/yt-dlp), [tlp](https://linrunner.de/tlp), [redshift](https://github.com/jonls/redshift), [xbanish](https://github.com/jcs/xbanish), [cli-visualizer](https://github.com/dpayne/cli-visualizer), [neofetch](https://github.com/dylanaraps/neofetch), [mesofetch](https://github.com/ratakor/mesofetch), [exa](https://github.com/ogham/exa), [doas](https://man.openbsd.org/doas), man-db, xdo, newsboat, htop, oneko
+[yt-dlp](https://github.com/yt-dlp/yt-dlp), [tlp](https://linrunner.de/tlp), [redshift](https://github.com/jonls/redshift), [xbanish](https://github.com/jcs/xbanish), [cli-visualizer](https://github.com/dpayne/cli-visualizer), [neofetch](https://github.com/dylanaraps/neofetch), [mesofetch](https://github.com/ratakor/mesofetch), [exa](https://github.com/ogham/exa), [doas](https://man.openbsd.org/doas), man-db, xdo, newsboat, htop, oneko, sx, pinta
 
 ## Scripts
 
@@ -51,31 +58,9 @@
 - off: simple dmenu interface for shutdown
 - swallow (stolen from [swindles](https://git.cbps.xyz/swindlesmccoop/not-just-dotfiles/src/branch/master/.local/bin/swallow)): incredibly useful, requires xdo
 
-## Installation
-as if you just installed Arch or Parabola, DO NOT TRY THIS if it's not a new install and you don't know what you're doing
-
-#### Dependencies
-
-pacman -Sy these
-- dwm : base-devel git xorg-xserver xorg-xinit libxinerama libx11 libxft webkit2gtk picom
-- neovim and joplin: nodejs npm
-- wallpaper: feh
-
-#### Cloning
-
-```
-$ git clone https://github.com/ratakor/config.git
-$ mv -i config/* $HOME
-$ rmdir config
-```
-
-#### Building and installing
-
-- dwm:
-```
-$ cd ~/.config/suckless/dwm
-# make clean install
-```
-repeat for st, dmenu, slock and dwmblocks
+## TODO
+- setup neomutt for mail
+- swap mpv to mpd + mpc + ncmcpp for music
+- add emoji support, for lf
 
 ![big_screen](Pictures/big_screen.png)
