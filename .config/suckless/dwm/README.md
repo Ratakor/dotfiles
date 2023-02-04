@@ -3,10 +3,11 @@
 ## patch added and changes iirc
 - quitprompt
 - alpha
-- fancybar (?) for showing all the windows in the bar
+- fancybar
 - dracula theme
 - fibonacci layout
 - super instead of alt
+- rainbow tab
 
 ---
 

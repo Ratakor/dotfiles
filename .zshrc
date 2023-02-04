@@ -4,6 +4,7 @@ when
 
 # Source aliases
 source $HOME/.aliasrc
+source $HOME/.paliasrc # Private aliases
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors

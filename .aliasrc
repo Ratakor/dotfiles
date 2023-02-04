@@ -62,10 +62,3 @@ alias gp='git pull'
 alias ga='git add'
 alias gac='git add . && git commit -a'
 alias gacp='git add . && git commit -a && git push'
-
-# school
-alias TP='cd ~/Epita/S2/TP/epita-prepa-acdc-prog-102-p-04-2027-*'
-alias PT='TP'
-alias catchos='cd ~/Epita/S2/catchos'
-alias AFIT='cd ~/Epita/S1/AFIT'
-alias cours='cd ~/Epita/S2/Cours'
