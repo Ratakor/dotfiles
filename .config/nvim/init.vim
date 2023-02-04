@@ -6,7 +6,6 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-
 Plug 'Mofiqul/dracula.nvim' " dracula theme
 Plug 'mhinz/vim-startify' " start screen
 Plug 'bronson/vim-trailing-whitespace' " FixWhitespace
@@ -26,13 +25,12 @@ Plug 'p00f/nvim-ts-rainbow' " funny brackets
 "Plug 'neovim/nvim-lspconfig'
 "Plug 'dense-analysis/ale'
 "Plug 'vim-syntastic/syntastic'
-
 call plug#end()
 
-source ~/.config/nvim/lua.vim
-source ~/.config/nvim/basics.vim
-source ~/.config/nvim/coc.vim
-"source ~/.config/nvim/lspconfig.vim
+source $XDG_CONFIG_HOME/nvim/lua.vim
+source $XDG_CONFIG_HOME/nvim/basics.vim
+source $XDG_CONFIG_HOME/nvim/coc.vim
+"source $XDG_CONFIG_HOME/nvim/lspconfig.vim
 
 " vimspector config
 "let g:vimspector_enable_mappings = 'HUMAN'
