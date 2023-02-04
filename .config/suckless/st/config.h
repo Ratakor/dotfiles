@@ -5,8 +5,11 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "agave Nerd Font Mono:pixelsize=14:antialias=true:autohint=true";
 /*static char *font = "Liberation Mono:pixelsize=23:antialias=true:autohint=true";*/
+static char *font = "agave Nerd Font Mono:pixelsize=14:antialias=true:autohint=true";
+/* Spare fonts */
+static char *font2[] = { "NotoEmoji:pixelsize=12:antialias=true:autohint=true" };
+
 static int borderpx = 5;
 
 /*
@@ -17,7 +20,7 @@ static int borderpx = 5;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/bin/zsh";
+static char *shell = "/bin/sh";
 char *utmp = NULL;
 /* scroll program: to enable use a string like "scroll" */
 char *scroll = NULL;

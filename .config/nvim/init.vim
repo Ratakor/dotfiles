@@ -27,9 +27,9 @@ Plug 'p00f/nvim-ts-rainbow' " funny brackets
 "Plug 'vim-syntastic/syntastic'
 call plug#end()
 
-source $XDG_CONFIG_HOME/nvim/lua.vim
-source $XDG_CONFIG_HOME/nvim/basics.vim
-source $XDG_CONFIG_HOME/nvim/coc.vim
+source ~/.config/nvim/lua.vim
+source ~/.config/nvim/basics.vim
+source ~/.config/nvim/coc.vim
 "source $XDG_CONFIG_HOME/nvim/lspconfig.vim
 
 " vimspector config
