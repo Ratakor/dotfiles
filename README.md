@@ -64,6 +64,6 @@ It will install my config as well as all packages I use except cli-visualizer, j
 ## TODO
 - setup neomutt for mail
 - swap mpv to mpd + mpc + ncmcpp for music
-- add emoji support, for lf
+- add more font and a config.font file
 
 ![big_screen](Pictures/big_screen.png)

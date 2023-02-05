@@ -104,7 +104,8 @@ static const Key keys[] = {
 	{ MODKEY,			     XK_minus,     			   spawn,          	SHCMD("pamixer -d 5; pkill -RTMIN+10 dwmblocks") },
 	/*{ MODKEY,				 XF86XK_AudioRaiseVolume,  spawn,			SHCMD("pamixer -i 5; pkill -RTMIN+10 dwmblocks") },
 	{ MODKEY,				 XF86XK_AudioLowerVolume,  spawn,			SHCMD("pamixer -d 5; pkill -RTMIN+10 dwmblocks") },*/
-	{ MODKEY,				 XK_m,					   spawn,			SHCMD("manpdf") },
+	{ MODKEY,				 XK_m,					   spawn,			SHCMD("st -e music") },
+	{ MODKEY|ShiftMask,		 XK_m,					   spawn,			SHCMD("manpdf") },
 	{ MODKEY,                XK_f,         			   togglefullscr,  	{0} },
 	{ MODKEY,                XK_b,         			   togglebar,      	{0} },
 	{ MODKEY,                XK_j,         			   focusstack,     	{.i = +1 } },

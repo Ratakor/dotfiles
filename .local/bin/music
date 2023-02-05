@@ -1,4 +1,5 @@
 #!/bin/sh
-[ -n "$1" ] && MUSIC="$1" || MUSIC="$HOME/Music/$(ls $HOME/Music | dmenu -c -p 'Play ')"
+MUSICDIR="$HOME/Music/"
+[ -n "$1" ] && MUSIC="$1" || MUSIC="$MUSICDIR$(ls $MUSICDIR | dmenu -c -p 'Play ')" &&
 [ $(printf 'no\nyes' | dmenu -c -p 'Shuffle?') = "yes" ]  && SHUFFLE='--shuffle'
-mpv --no-video --loop-playlist "$SHUFFLE" "$MUSIC" & vis
+[ "$MUSIC" != "$MUSICDIR" ] && mpv --no-video --loop-playlist "$SHUFFLE" "$MUSIC" & [ "$MUSIC" != "$MUSICDIR" ] && vis
