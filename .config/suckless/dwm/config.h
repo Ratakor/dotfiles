@@ -6,8 +6,10 @@
 /* appearance */ static const unsigned int borderpx  = 1;        /* border pixel of windows */ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-/*static const char *fonts[]          = { "monospace:size=10" };*/
-static const char *fonts[]          = { "agave Nerd Font Mono:size=10" }; //18
+static const char *fonts[]          = { 
+	"monospace:size=10", // 18
+	"Noto Emoji:size=8"
+};
 static const char normbgcolor[]			= "#282a36";
 static const char normbordercolor[]		= "#44475a";
 static const char normfgcolor[]			= "#f8f8f2";
@@ -29,7 +31,8 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+//static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
 
 static const char *tagsel[][2] = {
 	{ "#f8f8f2", "#6272a4" },
@@ -106,6 +109,8 @@ static const Key keys[] = {
 	{ MODKEY,				 XF86XK_AudioLowerVolume,  spawn,			SHCMD("pamixer -d 5; pkill -RTMIN+10 dwmblocks") },*/
 	{ MODKEY,				 XK_m,					   spawn,			SHCMD("st -e music") },
 	{ MODKEY|ShiftMask,		 XK_m,					   spawn,			SHCMD("manpdf") },
+	{ MODKEY,				 XK_u,					   spawn,			SHCMD("dmenuurl") },
+	{ MODKEY,				 XK_e,					   spawn,			SHCMD("dmenuemoji") },
 	{ MODKEY,                XK_f,         			   togglefullscr,  	{0} },
 	{ MODKEY,                XK_b,         			   togglebar,      	{0} },
 	{ MODKEY,                XK_j,         			   focusstack,     	{.i = +1 } },

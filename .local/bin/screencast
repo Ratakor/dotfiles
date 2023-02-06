@@ -1,4 +1,6 @@
 #!/bin/sh
+# script for screencast because obs is cringe
+# stolen from swindles, needs rework
 set -e
 
 printf "Title: "
@@ -8,15 +10,15 @@ read SNDDEV
 
 TITLE="$(echo $TITLE | sed 's/ /_/g')"
 DIRNAME="$TITLE-$(date '+%s')"
-mkdir -p "$HOME/videos/screencasts/$DIRNAME"
+mkdir -p "$HOME/Videos/screencasts/$DIRNAME"
 
-ffmpeg -loglevel fatal -video_size 1600x900 -framerate 30 -f x11grab -i :0.0 -c:v libx264 -preset veryfast "$HOME/videos/screencasts/$DIRNAME/video.mkv" & printf "Video recording started.\n"
-aucat -f snd/$SNDDEV -o "$HOME/videos/screencasts/$DIRNAME/audio.wav" > /dev/null & printf "Audio recording started.\n\n"
+ffmpeg -loglevel fatal -video_size 1600x900 -framerate 30 -f x11grab -i :0.0 -c:v libx264 -preset veryfast "$HOME/Videos/screencasts/$DIRNAME/video.mkv" & printf "Video recording started.\n"
+aucat -f snd/$SNDDEV -o "$HOME/Videos/screencasts/$DIRNAME/audio.wav" > /dev/null & printf "Audio recording started.\n\n"
 
 printf "Press enter to stop recording"
 read lol
 kill $(pgrep ffmpeg)
 kill $(pgrep aucat)
 
-cd "$HOME/videos/screencasts/$DIRNAME"
+cd "$HOME/Videos/screencasts/$DIRNAME"
 ffmpeg -loglevel fatal -i video.mkv -i audio.wav -c copy final.mkv

@@ -1,8 +1,14 @@
 #!/bin/sh
-URL="https://librex.ratakor.com/search.php?q="
+# websearch with dmenu
+# this need optimization or a rework
+
+#URL="https://librex.ratakor.com/search.php?q="
+#QUERY=$(printf ""| dmenu -p "Search:" -l 0)
+#[ -n "$QUERY" ] && xdg-open "${URL}${QUERY}&t=0" 2> /dev/null
+
+SEARCH_ENGINE="http://search.libredirect.invalid/?q="
 QUERY=$(printf ""| dmenu -p "Search:" -l 0)
-[ -n "$QUERY" ] && xdg-open "${URL}${QUERY}&t=0" 2> /dev/null
 
-#[ -n $(printf "$QUERY" | awk /https/) ] && xdg-open "${QUERY}" 2> /dev/null || \
-#	[ -n "$QUERY" ] && xdg-open "https://librex.ratakor.com/search.php?q=${QUERY}&t=0" 2> /dev/null
-
+[ -n $(printf "$QUERY" | awk /http/) ] && xdg-open "${QUERY}" 2> /dev/null
+[ -n "$QUERY" ] && [ -z $(printf "$QUERY" | awk /http/) ] &&
+	xdg-open "${SEARCH_ENGINE}${QUERY}" 2> /dev/null

@@ -1,0 +1,24 @@
+#!/bin/sh
+# Feed this script a link and it will give dmenu
+# some choice programs to use to open it.
+FEED="${1:-$(printf "%s" | dmenu -c -p 'Paste URL or file path')}"
+
+[ -z "$FEED" ] && exit
+
+case "$(printf "Copy URL\\nsxiv\\nPDF\\nbrowser\\nvim\\nmpv\\nmpv loop\\nyt-dlp\\nmusic-dlp" | dmenu -c -p "Open it with?")" in
+	"Copy URL") echo "$FEED" | xclip -selection clipboard ;;
+	mpv) setsid -f mpv -quiet "$FEED" >/dev/null 2>&1 ;;
+	"mpv loop") setsid -f mpv -quiet --loop "$FEED" >/dev/null 2>&1 ;;
+	#"mpv float") setsid -f "$TERMINAL" -e mpv --geometry=+0-0 --autofit=30%  --title="mpvfloat" "$FEED" >/dev/null 2>&1 ;;
+	"yt-dlp") yt-dlp -f "bv" -o "%(title)s [%(id)s].%(ext)s" "$FEED" >/dev/null 2>&1 ;;
+	"music-dlp") [ $(printf 'no\nyes' | dmenu -c -p 'Playlist?') = "yes" ] &&
+		NAME=$(printf '' | dmenu -c -p 'Name ') && mkdir -p "$HOME/Music/$NAME" &&
+		yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 -o "%(playlist_index)s - %(title)s [%(id)s].%(ext)s" -P "$HOME/Music/$NAME" "$FEED" >/dev/null 2>&1 ||
+		yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 -o "%(title)s [%(id)s].%(ext)s" -P "$HOME/Music" "$FEED" >/dev/null 2>&1 ;;
+	PDF) curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" && zathura "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
+	sxiv) curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" && sxiv -a "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
+	vim) curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" && setsid -f "$TERMINAL" -e "$EDITOR" "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
+	#setbg) curl -L "$FEED" > $XDG_CACHE_HOME/pic ; xwallpaper --zoom $XDG_CACHE_HOME/pic >/dev/null 2>&1 ;;
+	browser) setsid -f "$BROWSER" "$FEED" >/dev/null 2>&1 ;;
+	#lynx) lynx "$FEED" >/dev/null 2>&1 ;;
+esac

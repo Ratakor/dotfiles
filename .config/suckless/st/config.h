@@ -5,8 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-/*static char *font = "Liberation Mono:pixelsize=23:antialias=true:autohint=true";*/
-static char *font = "agave Nerd Font Mono:pixelsize=14:antialias=true:autohint=true";
+static char *font = "monospace:pixelsize=14:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = { "NotoEmoji:pixelsize=12:antialias=true:autohint=true" };
 

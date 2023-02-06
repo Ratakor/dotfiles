@@ -1,13 +1,14 @@
 #!/bin/zsh
 
 # Add ~/.local/bin to $PATH
+export PATH="$HOME/.local/bin/dwmblocks:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="st"
-export TERMINAL_PROG="st"
 export BROWSER="ungoogled-chromium"
+export ROOTCMD="doas"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
