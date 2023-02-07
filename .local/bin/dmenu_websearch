@@ -1,14 +1,19 @@
 #!/bin/sh
 # websearch with dmenu
-# this need optimization or a rework
 
-#URL="https://librex.ratakor.com/search.php?q="
+#SEARCH_ENGINE="https://librex.ratakor.com/search.php?q="
 #QUERY=$(printf ""| dmenu -p "Search:" -l 0)
-#[ -n "$QUERY" ] && xdg-open "${URL}${QUERY}&t=0" 2> /dev/null
+#[ -n "$QUERY" ] && "$BROWSER" "${SEARCH_ENGINE}${QUERY}&t=0" 2> /dev/null
 
-SEARCH_ENGINE="http://search.libredirect.invalid/?q="
+# Choose a random instance
+INSTANCES=$(curl "https://librex.ratakor.com/instances.json" | awk '/https/ { print $2 }' | sed 's/,//' | tr '\n' ' ' | sed 's/\"//g')
+NUM_INSTANCES=$(printf "$INSTANCES" | wc -w)
+RAND=$((RANDOM%$NUM_INSTANCES))
+i=0
+for val in $INSTANCES; do
+	[ "$i" = "$RAND" ] && SEARCH_ENGINE=$val
+	i=$((i+1))
+done
+
 QUERY=$(printf ""| dmenu -p "Search:" -l 0)
-
-[ -n $(printf "$QUERY" | awk /http/) ] && xdg-open "${QUERY}" 2> /dev/null
-[ -n "$QUERY" ] && [ -z $(printf "$QUERY" | awk /http/) ] &&
-	xdg-open "${SEARCH_ENGINE}${QUERY}" 2> /dev/null
+[ -n "$QUERY" ] && "$BROWSER" "${SEARCH_ENGINE}search.php?q=${QUERY}&t=0" 2> /dev/null

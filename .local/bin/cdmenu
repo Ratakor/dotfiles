@@ -1,6 +1,0 @@
-#!/bin/sh
-# useless dmenu script for cd, a lfcd would be better
-# remove --no-icons if you are using ls
-# use with "source cdmenu" or ". cdmenu" or "cdm" if aliased
-[ -n "$1" ] && DIR="$1" || DIR="$(ls --no-icons -d */ | dmenu -c -p 'cd ')"
-[ -d "$DIR" ] && cd "$DIR"

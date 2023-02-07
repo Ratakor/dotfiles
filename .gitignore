@@ -1,7 +1,9 @@
 .cfg/
-st
-dwmblocks
-dwm
-dmenu
-slock
 *.o
+.config/suckless/st/st
+.config/suckless/dwmblocks/dwmblocks
+.config/suckless/dwm/dwm
+.config/suckless/dmenu/dmenu
+.config/suckless/slock/slock
+.config/nvim/plugged/
+.config/nvim/autoload/

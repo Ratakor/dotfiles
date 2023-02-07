@@ -1,7 +1,7 @@
 lua << END
 require'lualine'.setup {
   options = {
-    theme = 'dracula-nvim', --'gruvbox',
+    theme = 'dracula-nvim',
   }
 }
 
@@ -9,7 +9,7 @@ require'nvim-web-devicons'.setup {}
 
 require'nvim-treesitter.configs'.setup {
 	ensure_installed = {
-		"c", "vim", "help", "bash", "c_sharp", "css", "html", "latex", "diff",
+		"c", "vim", "help", "bash", "lua", "css", "html", "latex", "diff",
 		"make",  "markdown", "ocaml", "python", "rust", "comment", "git_rebase",
 		"gitattributes", "gitignore", "gitcommit", "json"
 	},

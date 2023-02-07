@@ -1,11 +1,12 @@
 " Automatic vim-plug installation
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
+	echo "Downloading junegunn/vim-plug to manage plugins..."
+	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
+	autocmd VimEnter * PlugInstall
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 Plug 'Mofiqul/dracula.nvim' " dracula theme
 Plug 'mhinz/vim-startify' " start screen
 Plug 'bronson/vim-trailing-whitespace' " FixWhitespace
@@ -21,16 +22,31 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " syntax color
 Plug 'p00f/nvim-ts-rainbow' " funny brackets
 "Plug 'puremourning/vimspector' " Debugger
 
-"Plug 'OmniSharp/omnisharp-vim' " C# syntax
-"Plug 'neovim/nvim-lspconfig'
+"" C#
+"Plug 'OmniSharp/omnisharp-vim'
+"" Mappings, code-actions available flag and statusline integration
+"Plug 'nickspoons/vim-sharpenup'
+"" Linting/error highlighting
 "Plug 'dense-analysis/ale'
-"Plug 'vim-syntastic/syntastic'
+"" Vim FZF integration, used as OmniSharp selector
+"Plug 'junegunn/fzf'
+"Plug 'junegunn/fzf.vim'
+"" Autocompletion
+"Plug 'prabirshrestha/asyncomplete.vim'
+"" Colorscheme
+"Plug 'gruvbox-community/gruvbox'
+"" Statusline
+"Plug 'itchyny/lightline.vim'
+"Plug 'shinchu/lightline-gruvbox.vim'
+"Plug 'maximbaz/lightline-ale'
+"" Snippet support
+"Plug 'sirver/ultisnips'
 call plug#end()
 
-source ~/.config/nvim/lua.vim
-source ~/.config/nvim/basics.vim
-source ~/.config/nvim/coc.vim
-"source $XDG_CONFIG_HOME/nvim/lspconfig.vim
+source $XDG_CONFIG_HOME/nvim/basics.vim
+source $XDG_CONFIG_HOME/nvim/lua.vim
+source $XDG_CONFIG_HOME/nvim/coc.vim
+"autocmd FileType cs source $XDG_CONFIG_HOME/nvim/cs.vim
 
 " vimspector config
 "let g:vimspector_enable_mappings = 'HUMAN'
