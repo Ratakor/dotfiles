@@ -3,7 +3,7 @@
 ![screenshot](Pictures/normal.png)
 
 ## Installation
-as if you just installed Parabola OpenRC, DO NOT TRY THIS if it's not a new install and you don't know what you're doing.
+As if you just installed Parabola OpenRC, DO NOT TRY THIS if it's not a new install and you don't know what you're doing.
 It will install all my config, scripts and packages except joplin and ungoogled-chromium.
 
 	$ git clone https://github.com/ratakor/config.git
@@ -12,26 +12,26 @@ It will install all my config, scripts and packages except joplin and ungoogled-
 
 ## Softwares
 
-#### Graphical environment
+### Graphical environment
 
 - Window manager: [dwm](https://dwm.suckless.org)
 - Compositor: [picom](https://github.com/yshui/picom), use [xcompmgr](https://github.com/freedesktop/xcompmgr) if you experience performance issues
 - Bar: [dwmblocks](https://github.com/torrinfail/dwmblocks)
 - Terminal emulator: [st](https://st.suckless.org/)
-- Swiss Army knife and Program launcher: [dmenu](https://tools.suckless.org/dmenu)
+- Program launcher: [dmenu](https://tools.suckless.org/dmenu)
 - Screen locker: [slock](https://tools.suckless.org/slock)
 
-#### Fonts
+### Fonts
 - Serif font: [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif)
 - Sans-serif font: [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans)
-- Monospace font: [agave Nerd Font Complete Mono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Agave)
+- Monospace font: [Agave Nerd Font Mono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Agave)
 - Emoji font: [Noto Emoji](https://fonts.google.com/noto/specimen/Noto+Emoji)
 
-#### Miscellaneous
+### Miscellaneous
 
+- Web Browser: [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)
 - Shell: [zsh](https://github.com/zsh-users/zsh)
 - Editor: [Neovim](https://github.com/neovim/neovim)
-- Web Browser: [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)
 - File manager: [lf](https://github.com/gokcehan/lf)
 - Document viewer: [zathura](https://github.com/pwmt/zathura)
 - Video player: [mpv](https://github.com/mpv-player/mpv)
@@ -41,7 +41,7 @@ It will install all my config, scripts and packages except joplin and ungoogled-
 - Calendar: [when](https://github.com/bcrowell/when)
 - RSS Reader: [Newsboat](https://newsboat.org/)
 
-#### Software used but not worth mentionning
+### Software used but not worth mentionning
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp), [tlp](https://linrunner.de/tlp), [redshift](https://github.com/jonls/redshift), [xbanish](https://github.com/jcs/xbanish), [cli-visualizer](https://github.com/dpayne/cli-visualizer), [neofetch](https://github.com/dylanaraps/neofetch), [mesofetch](https://github.com/ratakor/mesofetch), [exa](https://github.com/ogham/exa), [opendoas](https://man.openbsd.org/doas), man-db, xdo, htop, oneko, sx, pinta
 

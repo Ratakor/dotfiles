@@ -1,0 +1,7 @@
+.cfg/
+st
+dwmblocks
+dwm
+dmenu
+slock
+*.o
