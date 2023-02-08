@@ -1,4 +1,8 @@
 .cfg/
+calendar
+.paliasrc
+paliasrc
+.zcompdump
 *.o
 .config/suckless/st/st
 .config/suckless/dwmblocks/dwmblocks

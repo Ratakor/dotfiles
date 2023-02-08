@@ -6,7 +6,7 @@
 #[ -n "$QUERY" ] && "$BROWSER" "${SEARCH_ENGINE}${QUERY}&t=0" 2> /dev/null
 
 # Choose a random instance
-INSTANCES=$(curl "https://librex.ratakor.com/instances.json" | awk '/https/ { print $2 }' | sed 's/,//' | tr '\n' ' ' | sed 's/\"//g')
+INSTANCES=$(curl -s "https://librex.ratakor.com/instances.json" | awk '/https/ { print $2 }' | sed 's/,//' | tr '\n' ' ' | sed 's/\"//g')
 NUM_INSTANCES=$(printf "$INSTANCES" | wc -w)
 RAND=$((RANDOM%$NUM_INSTANCES))
 i=0

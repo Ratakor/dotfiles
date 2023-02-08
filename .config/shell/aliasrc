@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # doas not required for some system commands
-for command in mount umount sv su pacman updatedb shutdown poweroff reboot ; do
+for command in mount umount sv pacman updatedb shutdown poweroff reboot ; do
 	alias $command="$ROOTCMD $command"
 done; unset command
 
@@ -26,8 +26,7 @@ alias paint="pinta"
 # misc
 alias v="$EDITOR"
 alias vim="$EDITOR"
-alias svim="$ROOTCMD $EDITOR"
-alias suvim="svim"
+alias suvi="$ROOTCMD $EDITOR"
 alias python="python3"
 alias p="pacman"
 alias :q="exit"
@@ -63,3 +62,13 @@ alias gp="git pull"
 alias ga="git add"
 alias gac="git add . && git commit -a"
 alias gacp="git add . && git commit -a && git push"
+
+# edit config files
+alias vimrc="v $XDG_CONFIG_HOME/nvim/init.vim"
+alias zshrc="v $XDG_CONFIG_HOME/shell/.zshrc"
+alias aliasrc="v $XDG_CONFIG_HOME/shell/aliasrc"
+alias paliasrc="v $XDG_CONFIG_HOME/shell/paliasrc"
+alias sxrc="v $XDG_CONFIG_HOME/sx/sxrc"
+alias packages="v $XDG_DATA_HOME/packages/packages"
+alias AUR="v $XDG_DATA_HOME/packages/packages.aur"
+alias aur="AUR"

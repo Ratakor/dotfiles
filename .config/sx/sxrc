@@ -5,7 +5,7 @@
 
 #xsetroot -solid "#282a36"
 #feh --bg-fill $XDG_DATA_HOME/Wallpapers/aiko.jpg
-feh --bg-fill $XDG_DATA_HOME/Wallpapers/Calendar/$(date '+%B').png
+feh --bg-fill $XDG_DATA_HOME/Wallpapers/OMORI/$(date '+%B').png
 
 xrandr --dpi 96
 setxkbmap fr us

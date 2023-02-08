@@ -17,12 +17,10 @@ packages:
 configs:
 	mkdir -p ${CONF}
 	cp -r .config/* ${CONF}/
-	cp .zshrc ${HOME}/
-	cp .zprofile ${HOME}/
-	cp .aliasrc ${HOME}/
 	mkdir -p ${PREFIX}/share/
 	cp -r .local/share/* ${PREFIX}/share/
-	ln -s ${CONF}/when ${HOME}/.when
+	ln -s ${CONF}/shell/zprofile ${HOME}/.zprofile
+	${ROOTCMD} patch /usr/bin/when ${CONF}/when/patch
 
 scripts:
 	mkdir -p ${PREFIX}/bin/

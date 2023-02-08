@@ -1,10 +1,6 @@
 [Desktop Entry]
-Version=1.0
-Encoding=UTF-8
-Name=Chromium
-Exec=/home/ratakor/.ungoogled-chromium/chrome-wrapper %U
-Terminal=false
-Icon=/home/ratakor/.ungoogled-chromium/product_logo_48.png
 Type=Application
-Categories=Application;Network;WebBrowser;
-MimeType=text/html;text/xml;application/xhtml_xml;
+Name=Chromium
+Exec=$XDG_DATA_HOME/ungoogled-chromium/chrome-wrapper %U
+#Terminal=false
+#MimeType=text/html;text/xml;application/xhtml_xml;

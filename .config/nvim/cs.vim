@@ -1,3 +1,4 @@
+" Set this to 1 to use ultisnips for snippet handling
 let s:using_snippets = 1
 
 " Settings: {{{

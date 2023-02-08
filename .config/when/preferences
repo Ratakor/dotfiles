@@ -1,5 +1,4 @@
-calendar = /home/ratakor/.when/calendar
-editor = nvim
+editor = $EDITOR
 monday_first = 1
 orthodox_easter = 1
 ampm = 0

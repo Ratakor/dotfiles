@@ -3,8 +3,8 @@ mesofetch
 when
 
 # Source aliases
-source $HOME/.aliasrc
-source $HOME/.paliasrc # Private aliases
+source $XDG_CONFIG_HOME/shell/aliasrc
+source $XDG_CONFIG_HOME/shell/paliasrc # Private aliases
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
@@ -56,4 +56,4 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # opam configuration
-[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+[[ ! -r $XDG_DATA_HOME/opam/opam-init/init.zsh ]] || source $XDG_DATA_HOME/opam/opam-init/init.zsh  > /dev/null 2> /dev/null

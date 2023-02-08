@@ -1,0 +1,11 @@
+--- /usr/bin/when	2022-11-12 11:46:31.000000000 +0100
++++ when	2023-02-08 11:59:29.947444807 +0100
+@@ -712,7 +712,7 @@
+   'language'=>'en',                 # user's language; this is normally overridden by $LANG environment var.
+   'past'=>-1,                       # how many days into the past the report extends
+   'future'=>14,                     # ...and how far into the future
+-  'calendar'=>'~/.when/calendar',   # where to find the calendar file
++  'calendar'=>"$ENV{XDG_CONFIG_HOME}/when/calendar",   # where to find the calendar file
+   'wrap'=>80,                       # 0 means don't wrap; otherwise, wrap display to this many columns
+   'wrap_auto'=>0,                   # Try to detect width of terminal automatically, if it's a TTY.
+   'wrap_max'=>-1,                   # If positive, sets a maximum with, overriding wrap_auto if necessary.

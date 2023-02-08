@@ -1,13 +1,19 @@
-lua << END
-require'lualine'.setup {
+lua << EOF
+require("dracula").setup {
+	show_end_of_buffer = true,
+	lualine_bg_color = "#44475a",
+	transparent_bg = true,
+}
+
+require("lualine").setup {
   options = {
-    theme = 'dracula-nvim',
+    theme = ("dracula-nvim"),
   }
 }
 
-require'nvim-web-devicons'.setup {}
+require("nvim-web-devicons").setup {}
 
-require'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup {
 	ensure_installed = {
 		"c", "vim", "help", "bash", "lua", "css", "html", "latex", "diff",
 		"make",  "markdown", "ocaml", "python", "rust", "comment", "git_rebase",
@@ -26,10 +32,4 @@ require'nvim-treesitter.configs'.setup {
 		extended_mode = false,
 	}
 }
-
-require'dracula'.setup {
-	show_end_of_buffer = true,
-	lualine_bg_color = "#44475a",
-	transparent_bg = true,
-}
-END
+EOF
