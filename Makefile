@@ -1,5 +1,6 @@
 PREFIX = ${HOME}/.local
 CONF = ${HOME}/.config
+GITSITE = "https://git.ratakor.com/"
 ROOTCMD = $(shell command -v doas || command -v sudo)
 
 all: packages configs scripts suckless mesofetch
@@ -27,14 +28,15 @@ scripts:
 	cp -r .local/bin/* ${PREFIX}/bin/
 
 suckless:
-	cd .config/suckless/dwm && ${ROOTCMD} make clean install
-	cd .config/suckless/dwmblocks && ${ROOTCMD} make clean install
-	cd .config/suckless/st && ${ROOTCMD} make clean install
-	cd .config/suckless/dmenu && ${ROOTCMD} make clean install
-	cd .config/suckless/slock && ${ROOTCMD} make clean install
+	git clone ${GITSITE}/dwm.git && cd dwm && ${ROOTCMD} make clean install
+	git clone ${GITSITE}/dwmblocks.git && cd dwmblocks && ${ROOTCMD} make clean install
+	git clone ${GITSITE}/st.git && cd st && ${ROOTCMD} make clean install
+	git clone ${GITSITE}/dmenu.git && cd dmenu && ${ROOTCMD} make clean install
+	git clone ${GITSITE}/slock.git && cd slock && ${ROOTCMD} make clean install
+	#rm -rf dwm dwmblocks st dmenu slock
 
 mesofetch:
-	git clone https://github.com/ratakor/mesofetch.git
+	git clone ${GITSITE}/mesofetch.git
 	cp mesofetch/example_config/small.h mesofetch/config.h
 	cd mesofetch && ${ROOTCMD} make install
 	mesofetch --recache

@@ -1,13 +1,8 @@
 .cfg/
 calendar
+palendar
 .paliasrc
 paliasrc
 .zcompdump
-*.o
-.config/suckless/st/st
-.config/suckless/dwmblocks/dwmblocks
-.config/suckless/dwm/dwm
-.config/suckless/dmenu/dmenu
-.config/suckless/slock/slock
 .config/nvim/plugged/
 .config/nvim/autoload/

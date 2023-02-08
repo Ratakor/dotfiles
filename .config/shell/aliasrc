@@ -41,8 +41,7 @@ alias rmdir="rmdir -v"
 alias cp="cp -riv"
 alias mv="mv -iv"
 alias mkdir="mkdir -pv"
-alias man="manpdf"
-alias trueman="/usr/bin/man"
+#alias man="manpdf"
 
 # colors
 alias grep="grep --color=auto"
