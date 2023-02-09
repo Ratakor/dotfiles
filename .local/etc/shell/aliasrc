@@ -63,7 +63,7 @@ alias gac="git add . && git commit -a"
 alias gacp="git add . && git commit -a && git push"
 
 # edit config files
-alias vimrc="v $XDG_CONFIG_HOME/nvim/init.vim"
+alias vimrc="cd $XDG_CONFIG_HOME/nvim"
 alias zshrc="v $XDG_CONFIG_HOME/shell/.zshrc"
 alias aliasrc="v $XDG_CONFIG_HOME/shell/aliasrc"
 alias paliasrc="v $XDG_CONFIG_HOME/shell/paliasrc"
@@ -71,3 +71,4 @@ alias sxrc="v $XDG_CONFIG_HOME/sx/sxrc"
 alias packages="v $XDG_DATA_HOME/packages/packages"
 alias AUR="v $XDG_DATA_HOME/packages/packages.aur"
 alias aur="AUR"
+alias config="cd $XDG_CONFIG_HOME"

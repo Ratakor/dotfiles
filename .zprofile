@@ -1,1 +1,1 @@
-/home/ratakor/.config/shell/zprofile
+.local/etc/shell/zprofile

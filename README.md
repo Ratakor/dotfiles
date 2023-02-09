@@ -1,10 +1,11 @@
 <h1 align="center">Ratakor's Parabola GNU/Linux-libre config</h1>
 
-![screenshot](Pictures/normal.png)
+![screenshot](pictures/normal.png)
 
 ## Installation
 As if you just installed Parabola OpenRC, DO NOT TRY THIS if it's not a new install and you don't know what you're doing.
 It will install all my config, scripts and packages except joplin and ungoogled-chromium.
+Also I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe) so be sure that PREFIX is setup the way you like.
 
 	$ git clone https://github.com/ratakor/config.git
 	$ cd config
@@ -51,4 +52,4 @@ It will install all my config, scripts and packages except joplin and ungoogled-
 - fix issue with colored unicode characters not appearing
 - add Ungoogled Chromium and VSCodium config (I don't use VSCodium yet)
 
-![big_screen](Pictures/big_screen.png)
+![big_screen](pictures/big_screen.png)

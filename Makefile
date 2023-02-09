@@ -1,6 +1,5 @@
 PREFIX = ${HOME}/.local
-CONF = ${HOME}/.config
-GITSITE = "https://git.ratakor.com/"
+GITSITE = "https://git.ratakor.com"
 ROOTCMD = $(shell command -v doas || command -v sudo)
 
 all: packages configs scripts suckless mesofetch
@@ -16,24 +15,23 @@ packages:
 	${ROOTCMD} mandb
 
 configs:
-	mkdir -p ${CONF}
-	cp -r .config/* ${CONF}/
+	mkdir -p ${PREFIX}/etc/
+	cp -r .local/etc/* ${PREFIX}/etc/
 	mkdir -p ${PREFIX}/share/
 	cp -r .local/share/* ${PREFIX}/share/
-	ln -s ${CONF}/shell/zprofile ${HOME}/.zprofile
-	${ROOTCMD} patch /usr/bin/when ${CONF}/when/patch
+	ln -s ${PREFIX}/etc/shell/zprofile ${HOME}/.zprofile
+	${ROOTCMD} patch /usr/bin/when ${PREFIX}/etc/when/patch
 
 scripts:
 	mkdir -p ${PREFIX}/bin/
 	cp -r .local/bin/* ${PREFIX}/bin/
 
 suckless:
-	git clone ${GITSITE}/dwm.git && cd dwm && ${ROOTCMD} make clean install
-	git clone ${GITSITE}/dwmblocks.git && cd dwmblocks && ${ROOTCMD} make clean install
-	git clone ${GITSITE}/st.git && cd st && ${ROOTCMD} make clean install
-	git clone ${GITSITE}/dmenu.git && cd dmenu && ${ROOTCMD} make clean install
-	git clone ${GITSITE}/slock.git && cd slock && ${ROOTCMD} make clean install
-	#rm -rf dwm dwmblocks st dmenu slock
+	git clone ${GITSITE}/dwm.git ${PREFIX}/share/dwm  && cd ${PREFIX}/share/dwm && ${ROOTCMD} make install
+	git clone ${GITSITE}/dwmblocks.git ${PREFIX}/share/dwmblocks && cd ${PREFIX}/share/dwmblocks && ${ROOTCMD} make install
+	git clone ${GITSITE}/st.git ${PREFIX}/share/st && cd ${PREFIX}/share/st && ${ROOTCMD} make install
+	git clone ${GITSITE}/dmenu.git ${PREFIX}/share/dmenu && cd ${PREFIX}/share/dmenu && ${ROOTCMD} make install
+	git clone ${GITSITE}/slock.git ${PREFIX}/share/slock && cd ${PREFIX}/share/slock && ${ROOTCMD} make install
 
 mesofetch:
 	git clone ${GITSITE}/mesofetch.git
