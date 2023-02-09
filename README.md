@@ -1,6 +1,6 @@
 <h1 align="center">Ratakor's Parabola GNU/Linux-libre config</h1>
 
-![screenshot](pictures/normal.png)
+![screenshot](/pictures/normal.png)
 
 ## Installation
 As if you just installed Parabola OpenRC, DO NOT TRY THIS if it's not a new install and you don't know what you're doing.
@@ -52,4 +52,4 @@ Also I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670
 - fix issue with colored unicode characters not appearing
 - add Ungoogled Chromium and VSCodium config (I don't use VSCodium yet)
 
-![big_screen](pictures/big_screen.png)
+![big_screen](/pictures/big_screen.png)
