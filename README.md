@@ -50,6 +50,7 @@ Also I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670
 - setup neomutt for mail
 - swap mpv to mpd + mpc + ncmcpp for music
 - fix issue with colored unicode characters not appearing
-- add Ungoogled Chromium and VSCodium config (I don't use VSCodium yet)
+- add Ungoogled Chromium config
+- change coc.nvim to LSP or something that don't use nodejs (same for Joplin that doesn't respect XDG as well)
 
 ![big_screen](/pictures/big_screen.png)

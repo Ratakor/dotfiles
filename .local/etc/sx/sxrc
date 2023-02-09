@@ -4,15 +4,15 @@
 [ $(xrandr | awk '/DP-2/ {print $2}') = 'connected' ] && xrandr --output LVDS-1 --off || picom -b
 
 #xsetroot -solid "#282a36"
-#feh --bg-fill $XDG_DATA_HOME/Wallpapers/aiko.jpg
-feh --bg-fill $XDG_DATA_HOME/Wallpapers/OMORI/$(date '+%B').png
+#feh --bg-fill --no-fehbg $XDG_DATA_HOME/Wallpapers/aiko.jpg
+feh --bg-fill --no-fehbg $XDG_DATA_HOME/Wallpapers/OMORI/$(date '+%B').png
 
 xrandr --dpi 96
 setxkbmap fr us
 dwmblocks &
 xbanish &
 redshift &
-oneko &
+#oneko &
 #xcompmgr &
 
 exec dwm

@@ -1,22 +1,30 @@
-base
+# base parabola
 libelogind
 udev-init-scripts
 linux-libre-hardened
 networkmanager-openrc
 elogind
-grub
 wpa_supplicant
-neovim
-zsh
-dhcpcd
 dbus-openrc
-doas
 archlinux-keyring
 parabola-keyring
+## base Artix
+#openrc
+#elogind-openrc
+#linux-hardened
+##linux-firmware
+#connman-openrc
+##connman-gtk
+# common arch packages
+base
 base-devel
+grub
+dhcpcd
+doas
 git
+neovim
+zsh
 nodejs
-npm
 openssh
 unzip
 rsync

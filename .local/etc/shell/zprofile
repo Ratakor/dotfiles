@@ -11,8 +11,8 @@ export BROWSER="ungoogled-chromium"
 export ROOTCMD="doas"
 
 # ~/ Clean-up:
-export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.local/etc"
+export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.local/var/cache"
 export XDG_STATE_HOME="$HOME/.local/var/state"
 export XDG_DESKTOP_DIR="$HOME"
@@ -23,6 +23,11 @@ export XDG_VIDEOS_DIR="$HOME/videos"
 export ZDOTDIR="$XDG_CONFIG_HOME/shell"
 export GOPATH="$XDG_DATA_HOME/go"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
+export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
+export OPAMROOT="$XDG_DATA_HOME/opam"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc" # soon useless
 
 # Start graphical server on user's current tty if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec sx

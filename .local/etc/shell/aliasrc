@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# doas not required for some system commands
+# $ROOTCMD not required for some system commands
 for command in mount umount sv pacman updatedb shutdown poweroff reboot ; do
 	alias $command="$ROOTCMD $command"
 done; unset command

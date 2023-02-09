@@ -1,6 +1,5 @@
 #!/bin/sh
 # simple music selector with dmenu
-MUSICDIR="$HOME/Music/"
-MUSIC="${1:-$MUSICDIR$(ls $MUSICDIR | dmenu -c -p 'Play ')}" &&
+MUSIC="${1:-$XDG_MUSIC_DIR/$(ls $XDG_MUSIC_DIR | dmenu -c -p 'Play ')}" &&
 [ -d "$MUSIC" ] && [ $(printf 'yes\nno' | dmenu -c -p 'Shuffle?') = "yes" ] && SHUFFLE='--shuffle'
-[ "$MUSIC" != "$MUSICDIR" ] && mpv --no-video --loop-playlist "$SHUFFLE" "$MUSIC" & [ "$MUSIC" != "$MUSICDIR" ] && vis
+[ "$MUSIC" != "$XDG_MUSIC_DIR/" ] && mpv --no-video --loop-playlist "$SHUFFLE" "$MUSIC" & [ "$MUSIC" != "$XDG_MUSIC_DIR/" ] && vis

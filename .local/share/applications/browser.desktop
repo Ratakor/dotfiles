@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Chromium
-Exec=$XDG_DATA_HOME/ungoogled-chromium/chrome-wrapper %U
+Name=Ungoogled Chromium
+Exec=ungoogled-chromium %U
 #Terminal=false
 #MimeType=text/html;text/xml;application/xhtml_xml;
