@@ -1,0 +1,51 @@
+<h1 align="center">Ratakor's Parabola GNU/Linux-libre config</h1>
+<p><img src="pictures/normal.png" alt="screenshot"></p>
+<h2>Installation</h2>
+<p>As if you just installed Parabola OpenRC, DO NOT TRY THIS if it's not a new install and you don't know what you're doing.
+It will install all my config, scripts and packages except joplin and ungoogled-chromium.
+Also I follow the <a href="https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe">.local convention</a> so be sure that PREFIX is setup the way you like.</p>
+<pre><code>$ git clone https://github.com/ratakor/config.git
+$ cd config
+$ make
+</code></pre>
+<h2>Softwares</h2>
+<h3>Graphical environment</h3>
+<ul>
+<li>Window manager: <a href="https://dwm.suckless.org">dwm</a></li>
+<li>Compositor: <a href="https://github.com/yshui/picom">picom</a>, use <a href="https://github.com/freedesktop/xcompmgr">xcompmgr</a> if you experience performance issues</li>
+<li>Bar: <a href="https://github.com/torrinfail/dwmblocks">dwmblocks</a></li>
+<li>Terminal emulator: <a href="https://st.suckless.org/">st</a></li>
+<li>Program launcher: <a href="https://tools.suckless.org/dmenu">dmenu</a></li>
+<li>Screen locker: <a href="https://tools.suckless.org/slock">slock</a></li>
+</ul>
+<h3>Fonts</h3>
+<ul>
+<li>Serif font: <a href="https://fonts.google.com/noto/specimen/Noto+Serif">Noto Serif</a></li>
+<li>Sans-serif font: <a href="https://fonts.google.com/noto/specimen/Noto+Sans">Noto Sans</a></li>
+<li>Monospace font: <a href="https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Agave">Agave Nerd Font Mono</a></li>
+<li>Emoji font: <a href="https://fonts.google.com/noto/specimen/Noto+Emoji">Noto Emoji</a></li>
+</ul>
+<h3>Miscellaneous</h3>
+<ul>
+<li>Web Browser: <a href="https://github.com/ungoogled-software/ungoogled-chromium">Ungoogled Chromium</a></li>
+<li>Shell: <a href="https://github.com/zsh-users/zsh">zsh</a></li>
+<li>Editor: <a href="https://github.com/neovim/neovim">Neovim</a></li>
+<li>File manager: <a href="https://github.com/gokcehan/lf">lf</a></li>
+<li>Document viewer: <a href="https://github.com/pwmt/zathura">zathura</a></li>
+<li>Video player: <a href="https://github.com/mpv-player/mpv">mpv</a></li>
+<li>Image viewer: <a href="https://github.com/xyb3rt/sxiv">sxiv</a></li>
+<li>Screenshot tool: <a href="https://github.com/resurrecting-open-source-projects/scrot">scrot</a></li>
+<li>Notes: <a href="https://joplinapp.org/terminal">Joplin</a></li>
+<li>Calendar: <a href="https://github.com/bcrowell/when">when</a></li>
+<li>RSS Reader: <a href="https://newsboat.org/">Newsboat</a></li>
+</ul>
+<h3>Software used but not worth mentionning</h3>
+<p><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a>, <a href="https://linrunner.de/tlp">tlp</a>, <a href="https://github.com/jonls/redshift">redshift</a>, <a href="https://github.com/jcs/xbanish">xbanish</a>, <a href="https://github.com/dpayne/cli-visualizer">cli-visualizer</a>, <a href="https://github.com/dylanaraps/neofetch">neofetch</a>, <a href="https://github.com/ratakor/mesofetch">mesofetch</a>, <a href="https://github.com/ogham/exa">exa</a>, <a href="https://man.openbsd.org/doas">opendoas</a>, man-db, xdo, htop, oneko, sx, pinta</p>
+<h2>TODO</h2>
+<ul>
+<li>setup neomutt for mail</li>
+<li>swap mpv to mpd + mpc + ncmcpp for music</li>
+<li>fix issue with colored unicode characters not appearing</li>
+<li>add Ungoogled Chromium and VSCodium config (I don't use VSCodium yet)</li>
+</ul>
+<p><img src="pictures/big_screen.png" alt="big_screen"></p>
