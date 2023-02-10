@@ -1,11 +1,12 @@
-<h1 align="center">Ratakor's Parabola GNU/Linux-libre config</h1>
+<h1 align="center">My dotfiles</h1>
 
 ![screenshot](/pictures/normal.png)
 
 ## Installation
-As if you just installed Parabola OpenRC, DO NOT TRY THIS if it's not a new install and you don't know what you're doing.
-It will install all my config, scripts and packages except joplin and ungoogled-chromium.
-Also I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe) so be sure that PREFIX is setup the way you like.
+It will install all my config, scripts and packages, for ungoogled-chromium on parabola you have to force remove your-freedom with `pacman -Rdd`.
+I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe) so be sure that PREFIX is setup the way you like.
+Also if you're not using Parabola OpenRC you will need to edit .local/share/packages/packages according to your distro.
+DO NOT TRY TO INSTALL if it's not a fresh install or that you don't know what you're doing.
 
 	$ git clone https://github.com/ratakor/config.git
 	$ cd config
@@ -48,9 +49,9 @@ Also I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670
 
 ## TODO
 - setup neomutt for mail
+- add Ungoogled Chromium config
 - swap mpv to mpd + mpc + ncmcpp for music
 - fix issue with colored unicode characters not appearing
-- add Ungoogled Chromium config
 - change coc.nvim to LSP or something that don't use nodejs (same for Joplin that doesn't respect XDG as well)
 
 ![big_screen](/pictures/big_screen.png)

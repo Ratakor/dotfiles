@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# $ROOTCMD not required for some system commands
-for command in mount umount sv pacman updatedb shutdown poweroff reboot ; do
+# ROOTCMD not required for some system commands
+for command in mount umount modprobe pacman shutdown poweroff reboot ; do
 	alias $command="$ROOTCMD $command"
 done; unset command
 
@@ -24,9 +24,11 @@ alias music-dlp="yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3 -o '%(pl
 alias paint="pinta"
 
 # misc
+alias make="make PREFIX=$HOME/.local"
 alias v="$EDITOR"
 alias vim="$EDITOR"
 alias suvi="$ROOTCMD $EDITOR"
+alias suvim="suvi"
 alias python="python3"
 alias p="pacman"
 alias :q="exit"
@@ -63,6 +65,7 @@ alias gac="git add . && git commit -a"
 alias gacp="git add . && git commit -a && git push"
 
 # edit config files
+alias config="cd $XDG_CONFIG_HOME"
 alias vimrc="cd $XDG_CONFIG_HOME/nvim"
 alias zshrc="v $XDG_CONFIG_HOME/shell/.zshrc"
 alias aliasrc="v $XDG_CONFIG_HOME/shell/aliasrc"
@@ -71,4 +74,3 @@ alias sxrc="v $XDG_CONFIG_HOME/sx/sxrc"
 alias packages="v $XDG_DATA_HOME/packages/packages"
 alias AUR="v $XDG_DATA_HOME/packages/packages.aur"
 alias aur="AUR"
-alias config="cd $XDG_CONFIG_HOME"
