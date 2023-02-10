@@ -1,25 +1,31 @@
-# base parabola
+# base parabola OpenRC
 libelogind
 udev-init-scripts
 linux-libre-hardened
 networkmanager-openrc
+dbus-openrc
 elogind
 wpa_supplicant
-dbus-openrc
 archlinux-keyring
 parabola-keyring
-## base Artix
+
+# base Artix
 #openrc
 #elogind-openrc
 #linux-hardened
 ##linux-firmware
-#connman-openrc
+#networkmanager-openrc
+##connman-openrc
 ##connman-gtk
+#cryptsetup
+#lvm2
+#lvm2-openrc
+
 # common arch packages
 base
 base-devel
 grub
-dhcpcd
+#dhcpcd
 doas
 git
 neovim

@@ -45,7 +45,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install or that you don't know what yo
 
 ### Software used but not worth mentionning
 
-[yt-dlp](https://github.com/yt-dlp/yt-dlp), [tlp](https://linrunner.de/tlp), [redshift](https://github.com/jonls/redshift), [xbanish](https://github.com/jcs/xbanish), [cli-visualizer](https://github.com/dpayne/cli-visualizer), [neofetch](https://github.com/dylanaraps/neofetch), [mesofetch](https://github.com/ratakor/mesofetch), [exa](https://github.com/ogham/exa), [opendoas](https://man.openbsd.org/doas), man-db, xdo, htop, oneko, sx, pinta
+[yt-dlp](https://github.com/yt-dlp/yt-dlp), [tlp](https://linrunner.de/tlp), [redshift](https://github.com/jonls/redshift), [xbanish](https://github.com/jcs/xbanish), [cli-visualizer](https://github.com/dpayne/cli-visualizer), [neofetch](https://github.com/dylanaraps/neofetch), [mesofetch](https://github.com/ratakor/mesofetch), [exa](https://github.com/ogham/exa), [opendoas](https://man.openbsd.org/doas), man-db, xdo, htop, sx, pinta
 
 ## TODO
 - setup neomutt for mail
