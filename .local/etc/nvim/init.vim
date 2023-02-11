@@ -7,7 +7,7 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 endif
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
-Plug 'Mofiqul/dracula.nvim' " dracula theme
+Plug 'Ratakor/dracula.nvim' " dracula theme
 Plug 'mhinz/vim-startify' " start screen
 Plug 'bronson/vim-trailing-whitespace' " FixWhitespace
 Plug 'airblade/vim-gitgutter' " hud for git in vim

@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # ROOTCMD not required for some system commands
-for command in mount umount modprobe pacman shutdown poweroff reboot ; do
+for command in mount umount cryptsetup modprobe pacman shutdown poweroff reboot ; do
 	alias $command="$ROOTCMD $command"
 done; unset command
 
 # bad memory
-alias calc="bc"
+alias calc="bc -ql"
 alias 7zip="7z"
 alias p7zip="7z"
 alias calendar="when c"
@@ -58,6 +58,7 @@ alias ll="ls -lah"
 alias tree="ls --tree"
 
 # git
+alias g="git"
 alias gs="git status"
 alias gp="git pull"
 alias ga="git add"

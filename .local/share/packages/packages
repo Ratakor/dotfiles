@@ -1,36 +1,25 @@
 # base parabola OpenRC
+archlinux-keyring
+parabola-keyring
+base
+base-devel
 libelogind
 udev-init-scripts
 linux-libre-hardened
 networkmanager-openrc
 dbus-openrc
 elogind
-wpa_supplicant
-archlinux-keyring
-parabola-keyring
-
-# base Artix
-#openrc
-#elogind-openrc
-#linux-hardened
-##linux-firmware
-#networkmanager-openrc
-##connman-openrc
-##connman-gtk
-#cryptsetup
-#lvm2
-#lvm2-openrc
-
-# common arch packages
-base
-base-devel
 grub
-#dhcpcd
-doas
-git
+lvm2-openrc
+cryptsetup-openrc
 neovim
 zsh
+doas
+git
+
+#packages
 nodejs
+#npm
 openssh
 unzip
 rsync
@@ -81,3 +70,4 @@ redshift
 pinta
 qbittorrent
 python-pynvim
+gnome-2048

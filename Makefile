@@ -6,10 +6,12 @@ all: packages configs scripts suckless mesofetch
 
 packages:
 	${ROOTCMD} pacman -Syu --noconfirm --needed $(shell grep -v '^#' .local/share/packages/packages)
+	[ -n "$(shell pacman -Q | grep your-freedom)" ] && ${ROOTCMD} pacman -Rdd your-freedom || echo "You already lost your freedom"
 	for package in $(shell grep -v '^#' .local/share/packages/packages.aur) ; do \
-		git clone "https://aur.archlinux.org/$$package.git" ; \
-		cd $$P && makepkg -si ; \
-		cd .. && rm -rf $$P ; \
+		rm -rf /tmp/$$package ; \
+		git clone "https://aur.archlinux.org/$$package.git" /tmp/$$package ; \
+		cd /tmp/$$package && makepkg -si ; \
+		cd ${HOME} && rm -rf /tmp/$$package ; \
 	done
 	${ROOTCMD} pacman -Rns $(shell pacman -Qqdt)
 	mkdir -p ${PREFIX}/bin
@@ -42,10 +44,10 @@ suckless:
 	cd ${PREFIX}/etc/slock && make PREFIX=${PREFIX} clean install
 
 mesofetch:
-	[ -d "/tmp/mesofetch" ] && rm -rf /tmp/mesofetch
+	rm -rf /tmp/mesofetch
 	git clone ${GITSITE}/mesofetch.git /tmp/mesofetch
 	cd /tmp/mesofetch && \
 	cp example_config/small.h config.h && \
 	make PREFIX=${PREFIX} install
 	rm -rf /tmp/mesofetch
-	mesofetch --recache
+	mesofetch --recache # this may fail but it's not an issue

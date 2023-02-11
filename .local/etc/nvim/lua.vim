@@ -1,9 +1,9 @@
 lua << EOF
-require("dracula").setup {
-	show_end_of_buffer = true,
-	lualine_bg_color = "#44475a",
-	transparent_bg = true,
-}
+--require("dracula").setup {
+--	show_end_of_buffer = true,
+--	lualine_bg_color = "#44475a",
+--	transparent_bg = true,
+--}
 
 require("lualine").setup {
   options = {
@@ -19,8 +19,6 @@ require("nvim-treesitter.configs").setup {
 		"make",  "markdown", "ocaml", "python", "rust", "comment", "git_rebase",
 		"gitattributes", "gitignore", "gitcommit", "json"
 	},
-
-	--auto_install = true,
 
 	highlight = {
 		enable = true,
