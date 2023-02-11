@@ -1,0 +1,10 @@
+#!/bin/sh
+# install package from AUR
+[ -z "$1" ] && printf "You must run this command with an argument\n" && exit
+[ -n "$(pacman -Qq | grep -x $1)" ] && printf "$1 is already installed\n" && exit
+
+rm -rf /tmp/$1
+git clone "https://aur.archlinux.org/$1.git" /tmp/$1
+cd /tmp/$1 && makepkg -si
+rm -rf /tmp/$1
+[ -n "$(pacman -Qqdt)" ] && $ROOTCMD pacman -Rns $(pacman -Qqdt)
