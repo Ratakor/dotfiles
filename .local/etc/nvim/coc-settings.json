@@ -6,12 +6,9 @@
 	    "filetypes": ["ocaml", "reason"]
 	  },
   },
-  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
+  "clangd.path": "$XDG_CONFIG_HOME/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
   "html.filetypes": [
   	"html",
-  	"handlebars",
-  	"htmldjango",
-  	"blade",
 	"xhtml"
   ]
 }

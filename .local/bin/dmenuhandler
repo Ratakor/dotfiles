@@ -19,7 +19,7 @@ case "$(printf "$FEED\\nbrowser\\nmpv\\nmpv audio\\nmpv loop\\nsxiv\\nPDF\\nvim\
 		NAME=$(printf '' | dmenu -c -p 'Name ') && mkdir -p "$XDG_MUSIC_DIR/$NAME" &&
 		setsid -f yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 -o "%(playlist_index)s - %(title)s [%(id)s].%(ext)s" -P "$XDG_MUSIC_DIR/$NAME" "$FEED" >/dev/null 2>&1 ||
 		setsid -f yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 -o "%(title)s [%(id)s].%(ext)s" -P $XDG_MUSIC_DIR "$FEED" >/dev/null 2>&1 ;;
-	setbg) curl -L "$FEED" > $XDG_CACHE_HOME/pic ; feh --no-fehbg --bg-fill $XDG_CACHE_HOME/pic >/dev/null 2>&1 ;;
+	setbg) curl -sL "$FEED" > $XDG_CACHE_HOME/pic ; feh --no-fehbg --bg-fill $XDG_CACHE_HOME/pic >/dev/null 2>&1 ;;
 	#"rssadd") rssadd "$FEED" >/dev/null 2>&1 ;;
 	#lynx) lynx "$FEED" >/dev/null 2>&1 ;;
 esac
