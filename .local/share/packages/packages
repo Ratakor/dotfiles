@@ -18,8 +18,9 @@ doas
 git
 
 #packages
+#texlive-most
+#pandoc-cli
 nodejs
-#npm
 openssh
 unzip
 rsync
@@ -32,13 +33,14 @@ alsa-utils
 pulseaudio-alsa
 pamixer
 github-cli
-texlive-most
-glow
 scrot
 optipng
 htop
 lf
 ueberzug
+bat
+atool
+odt2txt
 neofetch
 yt-dlp
 tlp-openrc
@@ -52,7 +54,6 @@ sx
 libx11
 libxft
 webkit2gtk
-xorg-xsetroot
 feh
 xclip
 xdo
@@ -63,8 +64,6 @@ zathura
 zathura-cb
 zathura-djvu
 zathura-pdf-mupdf
-keepassxc
-redshift
 keepassxc
 redshift
 pinta

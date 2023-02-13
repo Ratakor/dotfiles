@@ -38,16 +38,17 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Video player: [mpv](https://github.com/mpv-player/mpv)
 - Image viewer: [sxiv](https://github.com/xyb3rt/sxiv)
 - Screenshot tool: [scrot](https://github.com/resurrecting-open-source-projects/scrot)
-- Notes: [Joplin](https://joplinapp.org/terminal)
+- Notes: markdown files
 - Calendar: [when](https://github.com/bcrowell/when)
 - RSS Reader: [Newsboat](https://newsboat.org/)
 
 ### Software used but not worth mentionning
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp), [tlp](https://linrunner.de/tlp), [redshift](https://github.com/jonls/redshift), [xbanish](https://github.com/jcs/xbanish), [cli-visualizer](https://github.com/dpayne/cli-visualizer), [neofetch](https://github.com/dylanaraps/neofetch), [mesofetch](https://github.com/ratakor/mesofetch), [exa](https://github.com/ogham/exa), [opendoas](https://man.openbsd.org/doas), man-db, xdo, htop, sx, pinta
+See [packages](.local/share/packages) and [AUR](.local/share/packages.aur)
 
 ## TODO
 - setup neomutt for mail
 - add Ungoogled Chromium config
 - fix issue with colored unicode characters not appearing
-- change coc.nvim to LSP or something that don't use nodejs (same for Joplin that doesn't respect XDG as well)
+- change coc.nvim to LSP or something that don't use nodejs

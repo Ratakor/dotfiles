@@ -6,7 +6,7 @@ from pathlib import Path
 
 if len(argv) < 3:
     print("To use this script you need to supply 2 arguments.")
-    print("e.g. icsparser calendar.ics $XDG_CONFIG_HOME/when/calendar")
+    print("e.g.: icsparser calendar.ics $XDG_CONFIG_HOME/when/calendar")
     exit()
 
 TIMEZONE = 1 # as UTC+1

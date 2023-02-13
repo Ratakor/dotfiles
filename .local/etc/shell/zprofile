@@ -26,7 +26,6 @@ export GOPATH="$XDG_DATA_HOME/go"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export OPAMROOT="$XDG_DATA_HOME/opam"
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc" # soon useless
 export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 

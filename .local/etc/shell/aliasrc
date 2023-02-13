@@ -5,7 +5,7 @@ for command in mount umount fdisk cryptsetup modprobe pacman shutdown poweroff r
 	alias $command="$ROOTCMD $command"
 done; unset command
 
-# edit config files
+# edit config files and stuff
 alias cf="cd $XDG_CONFIG_HOME"
 alias cfv="cd $XDG_CONFIG_HOME/nvim"
 alias cfz="v $XDG_CONFIG_HOME/shell/.zshrc"
@@ -22,9 +22,11 @@ alias d="cd $XDG_DOWNLOAD_DIR"
 alias m="cd $XDG_MUSIC_DIR"
 alias pp="cd $XDG_PICTURES_DIR"
 alias vv="cd $XDG_VIDEOS_DIR"
+alias ww="cd $XDG_DATA_HOME/wallpapers"
 alias sc="cd $HOME/.local/bin"
+alias n="lf $HOME/notes"
 
-# misc
+# shorter name and misc
 alias v="$EDITOR"
 alias vim="$EDITOR"
 [ -x "$(command -v nvim)" ] && alias vimdiff="nvim -d"
@@ -40,20 +42,22 @@ alias p7zip="7z"
 alias calendar="when c"
 alias battery="db_battery"
 alias sxiv="sxiv -a"
-alias img="sxiv"
 alias yt="swallow mpv"
 #alias yt="mpv --ytdl-format=22 "
 alias audio="mpv --no-video --loop-playlist"
 alias shuffle="audio --shuffle"
+alias z="zathura"
 alias pdf="swallow zathura"
-alias md="glow"
 alias timer="termdown"
 alias video-dlp="yt-dlp -f 'bv' -o '%(title)s [%(id)s].%(ext)s'"
 alias music-dlp="yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3 -o '%(playlist_index)s - %(title)s [%(id)s].%(ext)s'"
 alias paint="pinta"
 alias python="python3"
+alias py="python"
 alias 2048="swallow gnome-2048"
 alias lf="lfub"
+alias nb="newsboat"
+alias cat="bat"
 
 # verbosity and stuff
 alias rm="rm -vI"
@@ -66,8 +70,9 @@ alias diff="diff --color=auto"
 alias ip="ip --color=auto"
 alias ls="exa --icons --group-directories-first"
 alias sl="ls"
+alias ll="ls -lh"
 alias la="ls -a"
-alias ll="ls -lah"
+alias l="ls -lah"
 alias tree="ls --tree"
 
 # git

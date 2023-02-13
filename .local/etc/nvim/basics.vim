@@ -14,12 +14,12 @@ colorscheme dracula
 
 " indentation
 set autoindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=4 " n of whitespace in \t
+set shiftwidth=4 " n of whitespace for indent
+set softtabstop=4 " n of whitespace to delete with backspace
+set expandtab " \t -> whitespaces
 set smarttab
-set softtabstop=4
-:filetype indent on
-:filetype plugin on
+"filetype plugin indent on
 
 " disable the mouse
 set mouse=

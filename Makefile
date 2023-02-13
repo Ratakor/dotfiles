@@ -12,8 +12,9 @@ packages:
 	done
 	mkdir -p ${PREFIX}/bin
 	-ln -s /usr/bin/chromium ${PREFIX}/bin/ungoogled-chromium
-	@-${ROOTCMD} patch -N -r - /usr/bin/when .local/etc/when/patch
-	${ROOTCMD} mandb &> /dev/null
+	-${ROOTCMD} patch -N -r - /usr/bin/when .local/etc/when/patch
+	${ROOTCMD} mandb &> /dev/null # This may take a few seconds
+	-chsh -s /bin/zsh # use your user password
 
 configs:
 	mkdir -p ${PREFIX}/etc
@@ -27,7 +28,8 @@ scripts:
 	cp -r .local/bin/* ${PREFIX}/bin/
 
 suckless:
-	mkdir -p ${PREFIX}/bin ${PREFIX}/etc
+	mkdir -p ${PREFIX}/bin/statusbar ${PREFIX}/etc
+	-cp .local/bin/statusbar/* ${PREFIX}/bin/statusbar/
 	[ -d "${PREFIX}/etc/dwm" ] && cd ${PREFIX}/etc/dwm && git pull || git clone ${GITSITE}dwm.git ${PREFIX}/etc/dwm
 	[ -d "${PREFIX}/etc/dwmblocks" ] && cd ${PREFIX}/etc/dwmblocks && git pull || git clone ${GITSITE}dwmblocks.git ${PREFIX}/etc/dwmblocks
 	[ -d "${PREFIX}/etc/st" ] && cd ${PREFIX}/etc/st && git pull || git clone ${GITSITE}st.git ${PREFIX}/etc/st
@@ -37,7 +39,7 @@ suckless:
 	cd ${PREFIX}/etc/dwmblocks && make PREFIX=${PREFIX} clean install
 	cd ${PREFIX}/etc/st && make PREFIX=${PREFIX} clean install
 	cd ${PREFIX}/etc/dmenu && make PREFIX=${PREFIX} clean install
-	cd ${PREFIX}/etc/slock && make PREFIX=${PREFIX} clean install
+	cd ${PREFIX}/etc/slock && ${ROOTCMD} make PREFIX=${PREFIX} clean install # slock need to be owned by root
 
 mesofetch:
 	rm -rf /tmp/mesofetch

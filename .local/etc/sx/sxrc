@@ -3,7 +3,6 @@
 # else start picom, picom takes too much gpu for my computer :(
 [ $(xrandr | awk '/DP-2/ {print $2}') = 'connected' ] && xrandr --output LVDS-1 --off || picom -b
 
-#xsetroot -solid "#282a36"
 #feh --bg-fill --no-fehbg $XDG_DATA_HOME/wallpapers/aiko.jpg
 feh --bg-fill --no-fehbg $XDG_DATA_HOME/wallpapers/OMORI/$(date '+%B').png
 
