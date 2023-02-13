@@ -19,8 +19,8 @@ set scrolloff 10
 set icons
 set period 1
 set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
-set cleaner '~/.config/lf/cleaner'
-set previewer '~/.config/lf/scope'
+set cleaner '~/.local/etc/lf/cleaner'
+set previewer '~/.local/etc/lf/scope'
 set autoquit on
 
 # cmds/functions

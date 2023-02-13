@@ -14,7 +14,7 @@ packages:
 	-ln -s /usr/bin/chromium ${PREFIX}/bin/ungoogled-chromium
 	-${ROOTCMD} patch -N -r - /usr/bin/when .local/etc/when/patch
 	${ROOTCMD} mandb &> /dev/null # This may take a few seconds
-	-chsh -s /bin/zsh # use your user password
+	chsh -s /bin/zsh # use your user password
 
 configs:
 	mkdir -p ${PREFIX}/etc
