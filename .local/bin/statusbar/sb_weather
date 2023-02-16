@@ -1,0 +1,4 @@
+#!/bin/sh
+WEATHER=$(curl -s v2.wttr.in | awk '/Weather:/ {gsub(",", " "); print $2 " " $3 " " $4}')
+
+[ -n "$(printf "$WEATHER" | grep "Sunny")" ] && printf "\x09$WEATHER\x01\n" || printf "$WEATHER\n"

@@ -1,0 +1,4 @@
+#!/bin/sh
+ICON=''
+UPTIME=$(uptime | sed 's/.*up \([^,]*\), .*/\1/')
+printf "$ICON $UPTIME\n"

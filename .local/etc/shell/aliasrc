@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # ROOTCMD not required for some system commands
-for command in mount umount fdisk cryptsetup modprobe pacman shutdown poweroff reboot ; do
+for command in iftop mount umount fdisk cryptsetup modprobe pacman shutdown poweroff reboot ; do
 	alias $command="$ROOTCMD $command"
 done; unset command
 
@@ -12,7 +12,6 @@ alias cfz="v $XDG_CONFIG_HOME/shell/.zshrc"
 alias cfa="v $XDG_CONFIG_HOME/shell/aliasrc"
 #alias cfp="v $XDG_CONFIG_HOME/shell/zprofile"
 alias cfx="v $XDG_CONFIG_HOME/sx/sxrc"
-alias cfb="v $XDG_CONFIG_HOME/dwmblocks/config.h"
 alias cfn="v $XDG_CONFIG_HOME/newsboat/config"
 alias cfu="v $XDG_CONFIG_HOME/newsboat/urls"
 alias dt="cd $XDG_DATA_HOME"
@@ -39,7 +38,6 @@ alias :q="exit"
 alias :Q="exit"
 alias calc="bc -ql"
 alias calendar="when c"
-alias battery="db_battery"
 alias sxiv="sxiv -a"
 alias yt="mpv --ytdl-format=22 "
 alias z="zathura"
@@ -53,6 +51,8 @@ alias py="python"
 alias 2048="swallow gnome-2048"
 alias nb="newsboat"
 alias cat="bat"
+alias du="dust -r"
+alias duf="duf -hide special"
 
 # verbosity and colors
 alias rm="rm -vI"
@@ -74,6 +74,8 @@ alias tree="ls --tree"
 alias g="git"
 alias gs="git status"
 alias gp="git pull"
+alias gb="git branch"
+alias gc="git checkout"
 alias ga="git add"
 alias gac="git add . && git commit -a"
 alias gacp="git add . && git commit -a && git push"

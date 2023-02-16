@@ -32,15 +32,16 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 
 - Web Browser: [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)
 - Shell: [zsh](https://github.com/zsh-users/zsh)
-- Editor: [Neovim](https://github.com/neovim/neovim)
+- Editor: [neovim](https://github.com/neovim/neovim)
 - File manager: [lf](https://github.com/gokcehan/lf)
 - Document viewer: [zathura](https://github.com/pwmt/zathura)
 - Video player: [mpv](https://github.com/mpv-player/mpv)
+- Music player: mpv with --input-ipc-server and some scripting to have it in dwmblocks
 - Image viewer: [sxiv](https://github.com/xyb3rt/sxiv)
 - Screenshot tool: [scrot](https://github.com/resurrecting-open-source-projects/scrot)
 - Notes: markdown files
 - Calendar: [when](https://github.com/bcrowell/when)
-- RSS Reader: [Newsboat](https://newsboat.org/)
+- RSS Reader: [newsboat](https://newsboat.org/)
 
 ### Software used but not worth mentionning
 
@@ -51,4 +52,4 @@ See [packages](.local/share/packages) and [AUR](.local/share/packages.aur)
 - setup neomutt for mail
 - add Ungoogled Chromium config
 - fix issue with colored unicode characters not appearing
-- change coc.nvim to LSP or something that don't use nodejs
+- change coc.nvim to native LSP

@@ -1,0 +1,56 @@
+#!/bin/sh
+CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
+
+BAT_0='󰂎'
+BAT_10='󰁺'
+BAT_20='󰁻'
+BAT_30='󰁼'
+BAT_40='󰁽'
+BAT_50='󰁾'
+BAT_60='󰁿'
+BAT_70='󰂀'
+BAT_80='󰂁'
+BAT_90='󰂂'
+BAT_100='󰁹'
+
+BAT_0_C='󰢟'
+BAT_10_C='󰢜'
+BAT_20_C='󰂆'
+BAT_30_C='󰂇'
+BAT_40_C='󰂈'
+BAT_50_C='󰢝'
+BAT_60_C='󰂉'
+BAT_70_C='󰢞'
+BAT_80_C='󰂊'
+BAT_90_C='󰂋'
+BAT_100_C='󰂅'
+
+if [ "$(cat /sys/class/power_supply/BAT0/status)" = "Charging" ]; then
+    case $CAPACITY in
+        100)        printf "\x04$BAT_100_C $CAPACITY%%\x01\n" ;;
+        9[0-9])     printf "\x04$BAT_90_C $CAPACITY%%\x01\n" ;;
+        8[0-9])     printf "$BAT_80_C $CAPACITY%%\n" ;;
+        7[0-9])     printf "$BAT_70_C $CAPACITY%%\n" ;;
+        6[0-9])     printf "$BAT_60_C $CAPACITY%%\n" ;;
+        5[0-9])     printf "$BAT_50_C $CAPACITY%%\n" ;;
+        4[0-9])     printf "$BAT_40_C $CAPACITY%%\n" ;;
+        3[0-9])     printf "$BAT_30_C $CAPACITY%%\n" ;;
+        2[0-9])     printf "$BAT_20_C $CAPACITY%%\n" ;;
+        1[0-9])     printf "$BAT_10_C $CAPACITY%%\n" ;;
+        [0-9])      printf "$BAT_0_C $CAPACITY%%\n" ;;
+    esac
+else
+    case $CAPACITY in
+        100)        printf "$BAT_100 $CAPACITY%%\n" ;;
+        9[0-9])     printf "$BAT_90 $CAPACITY%%\n" ;;
+        8[0-9])     printf "$BAT_80 $CAPACITY%%\n" ;;
+        7[0-9])     printf "$BAT_70 $CAPACITY%%\n" ;;
+        6[0-9])     printf "$BAT_60 $CAPACITY%%\n" ;;
+        5[0-9])     printf "$BAT_50 $CAPACITY%%\n" ;;
+        4[0-9])     printf "$BAT_40 $CAPACITY%%\n" ;;
+        3[0-9])     printf "\x09$BAT_30 $CAPACITY%%\x01\n" ;;
+        2[0-9])     printf "\x05$BAT_20 $CAPACITY%%\x01\n"  ;;
+        1[0-9])     printf "\x08$BAT_10 $CAPACITY%%\x01\n"  ;;
+        [0-9])      printf "\x08$BAT_0 $CAPACITY%%\x01\n" ;;
+    esac
+fi

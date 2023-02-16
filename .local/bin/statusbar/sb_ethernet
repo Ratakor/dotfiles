@@ -1,0 +1,4 @@
+#!/bin/sh
+ICON=''
+ETH=$(ip link | awk '/eth0/ { print $9 }')
+printf "$ICON $ETH\n"

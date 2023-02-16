@@ -1,0 +1,4 @@
+#!/bin/sh
+ICON='ﯱ'
+IP=$(ip addr | grep -e "inet " | awk 'NR==2' | sed 's/^.*inet.//g; s/\/.*//g')
+printf "$ICON $IP\n"

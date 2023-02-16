@@ -1,2 +1,0 @@
-#!/bin/sh
-ip link | awk '/eth0/ { print $9 }'

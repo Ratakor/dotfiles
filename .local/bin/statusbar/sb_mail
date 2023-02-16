@@ -1,0 +1,5 @@
+#!/bin/sh
+MAIL_DIR="$XDG_DATA_HOME/mail/INBOX/new/*"
+ICON=''
+
+printf "$ICON : $(du -a $MAIL_DIR 2>/dev/null | wc -l)\n"

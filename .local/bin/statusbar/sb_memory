@@ -1,0 +1,5 @@
+#!/bin/sh
+TEMP=$(sensors | awk '/temp1/ {gsub("+", " "); gsub("\\..", " "); print $2}')
+ICON='ﳔ'
+MEMORY=$(free -h | awk '/Mem/ { print $3"/"$2 }' | sed s/i//g)
+printf "$ICON $MEMORY\n"

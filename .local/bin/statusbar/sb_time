@@ -1,0 +1,10 @@
+#!/bin/sh
+ICON=''
+HOUR=$(date '+%H')
+TIME=$(date '+%M:%S')
+
+if [ "$HOUR" -ge 23 ] || [ "$HOUR" -le 6 ]; then
+    printf "\x05$ICON $HOUR:$TIME\x01\n"
+else
+    printf "$ICON $HOUR:$TIME\n"
+fi

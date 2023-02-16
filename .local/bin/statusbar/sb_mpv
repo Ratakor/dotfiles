@@ -1,0 +1,13 @@
+#!/bin/sh
+ICON_PAUSE=''
+ICON_PLAY=''
+
+PAUSE=$(echo '{ "command": ["get_property_string", "pause"] }' | socat - /tmp/mpvsocket 2> /dev/null | jq ".data" | sed 's/"//g')
+#ALBUM=$(echo '{ "command": ["get_property", "filtered-metadata"] }' | socat - /tmp/mpvsocket 2> /dev/null | jq ".data.Album" | sed 's/"//g')
+TITLE=$(echo '{ "command": ["get_property", "filtered-metadata"] }' | socat - /tmp/mpvsocket 2> /dev/null | jq ".data.Title" | sed 's/"//g')
+
+if [ "$PAUSE" = "yes" ]; then
+    printf "$ICON_PAUSE $TITLE\n"
+elif [ "$PAUSE" = "no" ]; then
+    printf "$ICON_PLAY $TITLE\n"
+fi

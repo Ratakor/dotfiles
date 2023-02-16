@@ -46,6 +46,7 @@ call plug#end()
 source $XDG_CONFIG_HOME/nvim/basics.vim
 source $XDG_CONFIG_HOME/nvim/lua.vim
 source $XDG_CONFIG_HOME/nvim/coc.vim
+"source $XDG_CONFIG_HOME/nvim/lsp.vim
 "autocmd FileType cs source $XDG_CONFIG_HOME/nvim/cs.vim
 
 " vimspector config

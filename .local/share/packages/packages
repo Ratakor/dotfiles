@@ -18,9 +18,9 @@ doas
 git
 
 #packages
+nodejs
 #texlive-most
 #pandoc-cli
-nodejs
 openssh
 unzip
 rsync
@@ -32,7 +32,6 @@ bc
 alsa-utils
 pulseaudio-alsa
 pamixer
-github-cli
 scrot
 optipng
 htop
@@ -41,6 +40,7 @@ ueberzug
 bat
 atool
 odt2txt
+ffmpegthumbnailer
 neofetch
 yt-dlp
 tlp-openrc
@@ -60,14 +60,24 @@ xdo
 picom
 sxiv
 mpv
+socat
+jq
 zathura
 zathura-cb
 zathura-djvu
 zathura-pdf-mupdf
 keepassxc
-redshift
+gammastep
 pinta
 qbittorrent
 python-pynvim
 gnome-2048
 streamlink
+dust
+duf
+gitui
+iftop
+#neomutt
+#isync
+#msmtp
+#pass

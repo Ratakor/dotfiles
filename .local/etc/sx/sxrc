@@ -10,8 +10,7 @@ xrandr --dpi 96
 setxkbmap fr us
 dwmblocks &
 xbanish &
-redshift &
-#oneko &
+gammastep &
 #xcompmgr &
 
 exec dwm

@@ -3,4 +3,5 @@
 MUSIC="${1:-$XDG_MUSIC_DIR/$(ls $XDG_MUSIC_DIR | dmenu -c -p 'Play ')}" &&
 [ -d "$MUSIC" ] || [ -n "$(printf $MUSIC | awk /playlist/)" ] &&
 	[ $(printf 'yes\nno' | dmenu -c -p 'Shuffle?') = "yes" ] && SHUFFLE="--shuffle"
-[ "$MUSIC" != "$XDG_MUSIC_DIR/" ] && mpv --no-video --loop-playlist "$SHUFFLE" "$MUSIC" #& [ "$MUSIC" != "$XDG_MUSIC_DIR/" ] && vis
+[ "$MUSIC" != "$XDG_MUSIC_DIR/" ] && killall mpv && mpv --input-ipc-server=/tmp/mpvsocket \
+    --no-video --loop-playlist "$SHUFFLE" "$MUSIC" #& [ "$MUSIC" != "$XDG_MUSIC_DIR/" ] && vis

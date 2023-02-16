@@ -1,0 +1,5 @@
+#!/bin/sh
+ICON=''
+IP=$(curl -s ifconfig.co)
+printf "$ICON $IP\n"
+

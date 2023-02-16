@@ -1,0 +1,3 @@
+#!/bin/sh
+ICON=''
+printf "$ICON $(sensors | awk '/fan1/ {print $2}') RPM\n"
