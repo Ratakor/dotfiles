@@ -1,4 +1,3 @@
-#!/bin/sh
-WEATHER=$(curl -s v2.wttr.in | awk '/Weather:/ {gsub(",", " "); print $2 " " $3 " " $4}')
-
-[ -n "$(printf "$WEATHER" | grep "Sunny")" ] && printf "\x09$WEATHER\x01\n" || printf "$WEATHER\n"
+#!/bin/bash
+WEATHER=$(curl -s v2.wttr.in | awk '/Weather:/ {gsub(",", " "); print $2 " " $3 " " $4}' & sleep 3s ; kill $!)
+[ -n "$(printf "$WEATHER" | grep "Sunny")" ] && printf "\x09$WEATHER\x01" || printf "$WEATHER"

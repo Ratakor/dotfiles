@@ -15,6 +15,7 @@ packages:
 	-${ROOTCMD} patch -N -r - /usr/bin/when .local/etc/when/patch
 	${ROOTCMD} mandb &> /dev/null # This may take a few seconds
 	chsh -s /bin/zsh # use your user password
+	${ROOTCMD} ln -sfT /usr/bin/dash /usr/bin/sh # change sh from bash to dash
 
 configs:
 	mkdir -p ${PREFIX}/etc

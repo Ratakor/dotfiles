@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
 
 BAT_0='󰂎'
@@ -27,7 +27,7 @@ BAT_100_C='󰂅'
 
 if [ "$(cat /sys/class/power_supply/BAT0/status)" = "Charging" ]; then
     case $CAPACITY in
-        100)        printf "\x04$BAT_100_C $CAPACITY%%\x01\n" ;;
+        100)        printf "\x04$BAT_100_C $CAPACITY%%\x01n" ;;
         9[0-9])     printf "\x04$BAT_90_C $CAPACITY%%\x01\n" ;;
         8[0-9])     printf "$BAT_80_C $CAPACITY%%\n" ;;
         7[0-9])     printf "$BAT_70_C $CAPACITY%%\n" ;;

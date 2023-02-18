@@ -41,8 +41,9 @@ bat
 atool
 odt2txt
 ffmpegthumbnailer
+mediainfo
 neofetch
-yt-dlp
+#yt-dlp
 tlp-openrc
 ntfs-3g
 p7zip
@@ -77,6 +78,8 @@ dust
 duf
 gitui
 iftop
+checkbashisms
+dash
 #neomutt
 #isync
 #msmtp

@@ -1,5 +1,5 @@
 #!/bin/sh
 ICON=''
-TIME=$(date '+%a %d %b %Y')
+DATE=$(date '+%d/%m/%y')
 
-printf "$ICON $TIME\n"
+printf "$ICON $DATE\n"

@@ -1,0 +1,3 @@
+#!/bin/sh
+newsboat -x reload
+printf "$(newsboat -x print-unread | awk '{ if($1>0) print "📰 " $1}')\n"

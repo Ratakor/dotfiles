@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ICON=''
 FIRE=''
 TEMP=$(sensors | awk '/temp1/ {gsub("+", " "); gsub("\\..", " "); print $2}')

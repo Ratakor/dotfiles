@@ -51,5 +51,5 @@ See [packages](.local/share/packages) and [AUR](.local/share/packages.aur)
 ## TODO
 - setup neomutt for mail
 - add Ungoogled Chromium config
-- fix issue with colored unicode characters not appearing
 - change coc.nvim to native LSP
+- fix issue with colored unicode characters not appearing

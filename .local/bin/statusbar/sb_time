@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ICON=''
 HOUR=$(date '+%H')
 TIME=$(date '+%M:%S')
