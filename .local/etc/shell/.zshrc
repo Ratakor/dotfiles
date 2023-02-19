@@ -1,6 +1,6 @@
 # fun stuff
 mesofetch
-when
+when | tail -n +3
 
 # Source aliases
 source $XDG_CONFIG_HOME/shell/aliasrc

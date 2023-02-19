@@ -1,6 +1,6 @@
-PREFIX = ${HOME}/.local
-GITSITE = https://git.ratakor.com/
-ROOTCMD = $(shell command -v doas || command -v sudo)
+PREFIX := ${HOME}/.local
+GITSITE := https://git.ratakor.com/
+ROOTCMD := $(shell command -v doas || command -v sudo)
 
 all: packages configs scripts suckless mesofetch
 
@@ -22,7 +22,7 @@ configs:
 	cp -r .local/etc/* ${PREFIX}/etc/
 	mkdir -p ${PREFIX}/share
 	cp -r .local/share/* ${PREFIX}/share/
-	-ln -s ${PREFIX}/etc/shell/zprofile ${HOME}/.zprofile
+	ln -sf ${PREFIX}/etc/shell/zprofile ${HOME}/.zprofile
 
 scripts:
 	mkdir -p ${PREFIX}/bin
@@ -50,3 +50,5 @@ mesofetch:
 	make PREFIX=${PREFIX} install
 	rm -rf /tmp/mesofetch
 	-mesofetch --recache
+
+.PHONY: all packages configs scripts suckless mesofetch

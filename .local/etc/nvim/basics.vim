@@ -22,7 +22,7 @@ set smarttab
 "filetype plugin indent on
 
 " disable the mouse
-set mouse=
+set mouse=a
 
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

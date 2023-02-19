@@ -1,10 +1,11 @@
 #!/bin/bash
 ICON=''
-HOUR=$(date '+%H')
-TIME=$(date '+%M:%S')
+H=$(date '+%H')
+M=$(date '+%M')
+#S=$(date '+%S')
 
-if [ "$HOUR" -ge 23 ] || [ "$HOUR" -le 6 ]; then
-    printf "\x05$ICON $HOUR:$TIME\x01\n"
+if [ "$H" -ge 23 ] || [ "$H" -le 6 ]; then
+    printf "\x05$ICON $H:$M\x01\n"
 else
-    printf "$ICON $HOUR:$TIME\n"
+    printf "$ICON $H:$M\n"
 fi
