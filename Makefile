@@ -2,7 +2,7 @@ PREFIX := ${HOME}/.local
 GITSITE := https://git.ratakor.com/
 ROOTCMD := $(shell command -v doas || command -v sudo)
 
-all: packages configs scripts suckless mesofetch
+all: packages configs scripts gui mesofetch
 
 packages:
 	${ROOTCMD} pacman -Syu --noconfirm --needed $(shell grep -v '^#' .local/share/packages/packages)
@@ -28,7 +28,7 @@ scripts:
 	mkdir -p ${PREFIX}/bin
 	cp -r .local/bin/* ${PREFIX}/bin/
 
-suckless:
+gui:
 	mkdir -p ${PREFIX}/bin/statusbar ${PREFIX}/etc
 	-cp .local/bin/statusbar/* ${PREFIX}/bin/statusbar/
 	[ -d "${PREFIX}/etc/dwm" ] && cd ${PREFIX}/etc/dwm && git pull || git clone ${GITSITE}dwm.git ${PREFIX}/etc/dwm
@@ -51,4 +51,4 @@ mesofetch:
 	rm -rf /tmp/mesofetch
 	-mesofetch --recache
 
-.PHONY: all packages configs scripts suckless mesofetch
+.PHONY: all packages configs scripts gui mesofetch

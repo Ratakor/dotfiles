@@ -43,7 +43,7 @@ odt2txt
 ffmpegthumbnailer
 mediainfo
 neofetch
-#yt-dlp
+yt-dlp
 tlp-openrc
 ntfs-3g
 p7zip
@@ -84,3 +84,6 @@ dash
 #isync
 #msmtp
 #pass
+fd
+#9base
+glow

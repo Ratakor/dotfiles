@@ -1,24 +1,20 @@
 #!/bin/sh
 # script for screencast because obs is cringe
-# stolen from swindles, needs rework
 set -e
 
 printf "Title: "
 read TITLE
-printf "Sound device (ex: default, 1, 2): "
-read SNDDEV
 
-TITLE="$(echo $TITLE | sed 's/ /_/g')"
-DIRNAME="$TITLE-$(date '+%s')"
-mkdir -p "$HOME/Videos/screencasts/$DIRNAME"
+TITLE="$(echo $TITLE | sed 's/ /_/g')_$(date '+%s').mp4"
+mkdir -p "$XDG_VIDEOS_DIR/screencasts"
 
-ffmpeg -loglevel fatal -video_size 1600x900 -framerate 30 -f x11grab -i :0.0 -c:v libx264 -preset veryfast "$HOME/Videos/screencasts/$DIRNAME/video.mkv" & printf "Video recording started.\n"
-aucat -f snd/$SNDDEV -o "$HOME/Videos/screencasts/$DIRNAME/audio.wav" > /dev/null & printf "Audio recording started.\n\n"
+printf "Recording started, press q 3s after you want to stop to stop.\n"
+ffmpeg -y -f x11grab -framerate 30 -s "$(xrandr | sed -n 's/\s*\([0-9]\+x[0-9]\+\).*\*.*/\1/p')" \
+    -i "$DISPLAY" -r 24 -use_wallclock_as_timestamps 1 -f alsa -thread_queue_size 1024 \
+    -i default -c:v h264 -crf 0 -preset ultrafast -c:a aac "$XDG_VIDEOS_DIR/screencasts/$TITLE" 2> /dev/null
 
-printf "Press enter to stop recording"
-read lol
-kill $(pgrep ffmpeg)
-kill $(pgrep aucat)
+#ffmpeg -loglevel fatal -f x11grab -framerate 30 -s "$(xrandr | sed -n 's/\s*\([0-9]\+x[0-9]\+\).*\*.*/\1/p')" \
+#    -i "$DISPLAY"  -f alsa -thread_queue_size 1024 \
+#    -i default -c:v libx264 -crf 0 -preset ultrafast -c:a aac "$XDG_VIDEOS_DIR/screencasts/$TITLE"
 
-cd "$HOME/Videos/screencasts/$DIRNAME"
-ffmpeg -loglevel fatal -i video.mkv -i audio.wav -c copy final.mkv
+#ffmpeg -loglevel fatal -video_size 1600x900 -framerate 30 -f x11grab -i :0.0 -c:v libx264 -preset veryfast "$XDG_VIDEOS_DIR/screencasts/$DIRNAME/video.mkv" & printf "Video recording started.\n"

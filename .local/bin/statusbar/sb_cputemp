@@ -1,5 +1,0 @@
-#!/bin/bash
-ICON=''
-FIRE=''
-TEMP=$(sensors | awk '/temp1/ {gsub("+", " "); gsub("\\..", " "); print $2}')
-[ "$TEMP" -ge 70 ] && printf "\x08$FIRE $TEMP°C\x01\n" || printf "$ICON $TEMP°C\n"

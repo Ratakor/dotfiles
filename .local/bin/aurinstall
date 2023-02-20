@@ -7,4 +7,5 @@ rm -rf /tmp/$1
 git clone "https://aur.archlinux.org/$1.git" /tmp/$1
 cd /tmp/$1 && makepkg -si
 rm -rf /tmp/$1
-[ -n "$(pacman -Qqdt)" ] && $ROOTCMD pacman -Rns $(pacman -Qqdt)
+[ -n "$(pacman -Qqdt)" ] && printf "Type your password to remove orphaned packages\n" &&
+    $ROOTCMD pacman -Rns $(pacman -Qqdt)

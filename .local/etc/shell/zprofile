@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 # Add ~/.local/bin to $PATH
-export PATH="$HOME/.local/bin/statusbar:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # Default programs:
