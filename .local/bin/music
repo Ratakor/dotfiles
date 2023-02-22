@@ -1,8 +1,8 @@
 #!/bin/sh
 # simple music selector with dmenu that uses and interacts with mpv
-MUSIC="${1:-$XDG_MUSIC_DIR/$(ls $XDG_MUSIC_DIR | dmenu -c -p 'Play ')}" &&
+MUSIC="${1:-$XDG_MUSIC_DIR/$(ls $XDG_MUSIC_DIR | dmenu -i -p 'Play ')}" &&
 [ -d "$MUSIC" ] || [ -n "$(printf $MUSIC | awk /playlist/)" ] &&
-	[ $(printf 'yes\nno' | dmenu -c -p 'Shuffle?') = "yes" ] && SHUFFLE="--shuffle"
+	[ $(printf 'yes\nno' | dmenu -i -p 'Shuffle?') = "yes" ] && SHUFFLE="--shuffle"
 [ "$MUSIC" = "$XDG_MUSIC_DIR/" ] && exit
 printf "stop\n" | socat - /tmp/mpvsocket 2> /dev/null
 mpv --vid=no --input-ipc-server=/tmp/mpvsocket --loop-playlist "$SHUFFLE" "$MUSIC"

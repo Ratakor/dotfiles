@@ -2,10 +2,8 @@
 set nu rnu
 
 " Add a column at 80 characters
-if (exists('+colorcolumn'))
-    set colorcolumn=80
-    highlight ColorColumn ctermbg=9
-endif
+set colorcolumn=80
+"let &colorcolumn = join(range(81,999), ',')
 
 " Theme
 set background=dark
@@ -14,12 +12,11 @@ colorscheme dracula
 
 " indentation
 set autoindent
-set tabstop=4 " n of whitespace in \t
-set shiftwidth=4 " n of whitespace for indent
-set softtabstop=4 " n of whitespace to delete with backspace
-set expandtab " \t -> whitespaces
-set smarttab
-"filetype plugin indent on
+set tabstop=8 " n of whitespace in \t
+set shiftwidth=8 " n of whitespace for indent
+set softtabstop=8 " n of whitespace to delete with backspace
+"set expandtab " \t -> whitespaces
+"set smarttab
 
 " disable the mouse
 set mouse=a
@@ -38,13 +35,6 @@ nnoremap <c-u> <c-u>zz
 " Move between buffers
 nnoremap <C-J> :bprev<CR>
 nnoremap <C-K> :bnext<CR>
-
-" better j, k, 0 and $
-" or use gqq
-"nnoremap j gj
-"nnoremap k gk
-"nnoremap 0 g0
-"nnoremap $ g$
 
 " Autocorrect
 "map <leader>o :setlocal spell! spelllang=en_us<CR>

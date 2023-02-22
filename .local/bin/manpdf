@@ -1,6 +1,6 @@
 #!/bin/sh
-# provide a menu to find a manpage and transform manpages to pdf, bind to Super+Shift+M and aliased to man in my config
+# Provide a menu to find a manpage and transform manpages to pdf, binded to Super+Shift+M in my dwm config
 MAN='/usr/bin/man'
 [ -n "$1" ] && $MAN -Tpdf $1 | swallow zathura - || \
-	INPUT=$($MAN -k . | dmenu -c -l 20 | awk '{print $1}') && \
+	INPUT=$($MAN -k . | dmenu -i -l 20 | awk '{print $1}') && \
 	[ -n "$INPUT" ] && $MAN -Tpdf $INPUT | zathura -

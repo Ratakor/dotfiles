@@ -1,0 +1,20 @@
+#!/bin/sh
+# helper for the music script
+# to force pause do: printf "{ \"command\": [\"set_property\", \"pause\", true] }\n" | socat - /tmp/mpvsocket 1> /dev/null
+
+CMD="${1:-$(printf '🆙update\n⏯️pause/play\n⏭️next\n⏮️prev\n🔳stop\n⬇️download' | dmenu -i -p 'musiccmd')}"
+
+case "$CMD" in
+cycle|*pause|*play)
+	printf "cycle pause\n" | socat - /tmp/mpvsocket ;;
+*next)
+	printf "playlist-next\n" | socat - /tmp/mpvsocket ; sleep 0.1 ;;
+*prev)
+	printf "playlist-prev\n" | socat - /tmp/mpvsocket ; sleep 0.1 ;;
+*stop)
+	printf "stop\n" | socat - /tmp/mpvsocket ;;
+*download)
+	dmenuhandler $(printf "{ \"command\": [\"get_property\", \"path\"] }\n" | socat - /tmp/mpvsocket 2> /dev/null | jq ".data" | sed 's/"//g')
+esac
+
+kill -43 $(pidof dwmblocks)

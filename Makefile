@@ -10,10 +10,8 @@ packages:
 	@for package in $(shell grep -v '^#' .local/share/packages/packages.aur) ; do \
 		.local/bin/aurinstall $$package ; \
 	done
-	mkdir -p ${PREFIX}/bin
-	-ln -s /usr/bin/chromium ${PREFIX}/bin/ungoogled-chromium
 	-${ROOTCMD} patch -N -r - /usr/bin/when .local/etc/when/patch
-	${ROOTCMD} mandb &> /dev/null # This may take a few seconds
+	${ROOTCMD} mandb 1> /dev/null # Updating man database, it may take some time
 	chsh -s /bin/zsh # use your user password
 	${ROOTCMD} ln -sfT /usr/bin/dash /usr/bin/sh # change sh from bash to dash
 
@@ -29,8 +27,7 @@ scripts:
 	cp -r .local/bin/* ${PREFIX}/bin/
 
 gui:
-	mkdir -p ${PREFIX}/bin/statusbar ${PREFIX}/etc
-	-cp .local/bin/statusbar/* ${PREFIX}/bin/statusbar/
+	mkdir -p ${PREFIX}/etc
 	[ -d "${PREFIX}/etc/dwm" ] && cd ${PREFIX}/etc/dwm && git pull || git clone ${GITSITE}dwm.git ${PREFIX}/etc/dwm
 	[ -d "${PREFIX}/etc/dwmblocks" ] && cd ${PREFIX}/etc/dwmblocks && git pull || git clone ${GITSITE}dwmblocks.git ${PREFIX}/etc/dwmblocks
 	[ -d "${PREFIX}/etc/st" ] && cd ${PREFIX}/etc/st && git pull || git clone ${GITSITE}st.git ${PREFIX}/etc/st

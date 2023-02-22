@@ -51,7 +51,6 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/packages.aur)
 
 ## TODO
-- cleanup dwm repo, remove config.h and update config.def.h
 - setup neomutt for mail
 - add Ungoogled Chromium config
 - change coc.nvim to native LSP

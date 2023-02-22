@@ -1,6 +1,5 @@
 #!/bin/sh
 # script for screencast because obs is cringe
-set -e
 
 printf "Title: "
 read TITLE
@@ -8,13 +7,13 @@ read TITLE
 TITLE="$(echo $TITLE | sed 's/ /_/g')_$(date '+%s').mp4"
 mkdir -p "$XDG_VIDEOS_DIR/screencasts"
 
-printf "Recording started, press q 3s after you want to stop to stop.\n"
-ffmpeg -y -f x11grab -framerate 30 -s "$(xrandr | sed -n 's/\s*\([0-9]\+x[0-9]\+\).*\*.*/\1/p')" \
-    -i "$DISPLAY" -r 24 -use_wallclock_as_timestamps 1 -f alsa -thread_queue_size 1024 \
-    -i default -c:v h264 -crf 0 -preset ultrafast -c:a aac "$XDG_VIDEOS_DIR/screencasts/$TITLE" 2> /dev/null
+printf "Record will start in"
+printf " 3" && sleep 1s
+printf " 2" && sleep 1s
+printf " 1" && sleep 1s
+printf "\nRecording started, press q 3s after you want to stop to stop.\n"
 
-#ffmpeg -loglevel fatal -f x11grab -framerate 30 -s "$(xrandr | sed -n 's/\s*\([0-9]\+x[0-9]\+\).*\*.*/\1/p')" \
-#    -i "$DISPLAY"  -f alsa -thread_queue_size 1024 \
-#    -i default -c:v libx264 -crf 0 -preset ultrafast -c:a aac "$XDG_VIDEOS_DIR/screencasts/$TITLE"
-
-#ffmpeg -loglevel fatal -video_size 1600x900 -framerate 30 -f x11grab -i :0.0 -c:v libx264 -preset veryfast "$XDG_VIDEOS_DIR/screencasts/$DIRNAME/video.mkv" & printf "Video recording started.\n"
+ffmpeg -loglevel fatal -s "$(xrandr | sed -n 's/\s*\([0-9]\+x[0-9]\+\).*\*.*/\1/p')" \
+       -framerate 30 -f x11grab -i "$DISPLAY" -f alsa -i default -ar 44100 \
+       -c:v libx264rgb -crf 0 -preset ultrafast -color_range 2 -c:a aac \
+       "$XDG_VIDEOS_DIR/screencasts/$TITLE"

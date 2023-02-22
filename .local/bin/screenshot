@@ -1,2 +1,2 @@
 #!/bin/sh
-scrot $1 $XDG_PICTURES_DIR/screenshots/'%Y-%m-%d_%H:%M:%S.png' -e 'optipng $f'
+scrot $@ $XDG_PICTURES_DIR/screenshots/'%Y-%m-%d_%H:%M:%S.png' -e 'optipng $f'

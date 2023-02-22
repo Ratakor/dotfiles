@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # websearch with dmenu
 
 #SEARCH_ENGINE="https://librex.ratakor.com/search.php?q="
@@ -15,5 +15,5 @@ for val in $INSTANCES; do
 	i=$((i+1))
 done
 
-QUERY=$(printf ""| dmenu -p "Search:" -l 0)
+QUERY=$(printf "%s"| dmenu -p "Search:" -l 0)
 [ -n "$QUERY" ] && "$BROWSER" "${SEARCH_ENGINE}search.php?q=${QUERY}&t=0" 2> /dev/null
