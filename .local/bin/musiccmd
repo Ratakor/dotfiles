@@ -14,7 +14,9 @@ cycle|*pause|*play)
 *stop)
 	printf "stop\n" | socat - /tmp/mpvsocket ;;
 *download)
-	dmenuhandler $(printf "{ \"command\": [\"get_property\", \"path\"] }\n" | socat - /tmp/mpvsocket 2> /dev/null | jq ".data" | sed 's/"//g')
+	yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 --postprocessor-args "-ar 44100" \
+		-o"%(title)s [%(id)s].%(ext)s" -P $XDG_MUSIC_DIR \
+		$(printf "{ \"command\": [\"get_property\", \"path\"] }\n" | socat - /tmp/mpvsocket 2> /dev/null | jq ".data" | sed 's/"//g') ;;
 esac
 
 kill -43 $(pidof dwmblocks)

@@ -17,8 +17,7 @@ zsh
 doas
 git
 
-#packages
-nodejs
+# packages
 #texlive-most
 #pandoc-cli
 openssh
@@ -71,18 +70,19 @@ keepassxc
 gammastep
 pinta
 qbittorrent
-python-pynvim
-gnome-2048
 streamlink
 dust
 duf
+fd
 gitui
 iftop
 checkbashisms
 dash
+glow
+python-pynvim
+nodejs
+npm
 #neomutt
 #isync
 #msmtp
 #pass
-fd
-glow

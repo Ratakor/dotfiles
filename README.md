@@ -53,5 +53,5 @@ See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/p
 ## TODO
 - setup neomutt for mail
 - add Ungoogled Chromium config
-- change coc.nvim to native LSP
+- add DAP for debugging in nvim
 - fix issue with colored unicode characters not appearing
