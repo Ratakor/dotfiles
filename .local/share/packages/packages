@@ -6,6 +6,7 @@ base-devel
 libelogind
 udev-init-scripts
 linux-libre-hardened
+#dhcpd-openrc
 networkmanager-openrc
 dbus-openrc
 elogind
@@ -54,7 +55,7 @@ sx
 libx11
 libxft
 webkit2gtk
-feh
+xwallpaper
 xclip
 xdo
 picom

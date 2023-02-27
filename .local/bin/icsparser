@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # A really poorly written parser to convert .ics file to calendar file for when
+# doesn't work when an event take longer than a day
 
 from sys import argv
 from pathlib import Path

@@ -1,5 +1,5 @@
 PREFIX := ${HOME}/.local
-GITSITE := https://git.ratakor.com/
+GITSITE := https://git.ratakor.com
 ROOTCMD := $(shell command -v doas || command -v sudo)
 
 all: packages configs scripts gui mesofetch
@@ -28,11 +28,11 @@ scripts:
 
 gui:
 	mkdir -p ${PREFIX}/etc
-	[ -d "${PREFIX}/etc/dwm" ] && cd ${PREFIX}/etc/dwm && git pull || git clone ${GITSITE}dwm.git ${PREFIX}/etc/dwm
-	[ -d "${PREFIX}/etc/dwmblocks" ] && cd ${PREFIX}/etc/dwmblocks && git pull || git clone ${GITSITE}dwmblocks.git ${PREFIX}/etc/dwmblocks
-	[ -d "${PREFIX}/etc/st" ] && cd ${PREFIX}/etc/st && git pull || git clone ${GITSITE}st.git ${PREFIX}/etc/st
-	[ -d "${PREFIX}/etc/dmenu" ] && cd ${PREFIX}/etc/dmenu && git pull || git clone ${GITSITE}dmenu.git ${PREFIX}/etc/dmenu
-	[ -d "${PREFIX}/etc/slock" ] && cd ${PREFIX}/etc/slock && git pull || git clone ${GITSITE}slock.git ${PREFIX}/etc/slock
+	[ -d "${PREFIX}/etc/dwm" ] && cd ${PREFIX}/etc/dwm && git pull || git clone ${GITSITE}/dwm.git ${PREFIX}/etc/dwm
+	[ -d "${PREFIX}/etc/dwmblocks" ] && cd ${PREFIX}/etc/dwmblocks && git pull || git clone ${GITSITE}/dwmblocks.git ${PREFIX}/etc/dwmblocks
+	[ -d "${PREFIX}/etc/st" ] && cd ${PREFIX}/etc/st && git pull || git clone ${GITSITE}/st.git ${PREFIX}/etc/st
+	[ -d "${PREFIX}/etc/dmenu" ] && cd ${PREFIX}/etc/dmenu && git pull || git clone ${GITSITE}/dmenu.git ${PREFIX}/etc/dmenu
+	[ -d "${PREFIX}/etc/slock" ] && cd ${PREFIX}/etc/slock && git pull || git clone ${GITSITE}/slock.git ${PREFIX}/etc/slock
 	cd ${PREFIX}/etc/dwm && make PREFIX=${PREFIX} clean install
 	cd ${PREFIX}/etc/dwmblocks && make PREFIX=${PREFIX} clean install
 	cd ${PREFIX}/etc/st && make PREFIX=${PREFIX} clean install
@@ -41,7 +41,7 @@ gui:
 
 mesofetch:
 	rm -rf /tmp/mesofetch
-	git clone ${GITSITE}mesofetch.git /tmp/mesofetch
+	git clone ${GITSITE}/mesofetch.git /tmp/mesofetch
 	cd /tmp/mesofetch && \
 	cp example_config/small.h config.h && \
 	make PREFIX=${PREFIX} install
