@@ -1,5 +1,4 @@
-# fun stuff
-mesofetch
+# slow calendar
 when | tail -n +3
 
 # Source aliases

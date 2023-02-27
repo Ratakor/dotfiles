@@ -6,7 +6,7 @@ base-devel
 libelogind
 udev-init-scripts
 linux-libre-hardened
-#dhcpd-openrc
+#dhcpcd-openrc
 networkmanager-openrc
 dbus-openrc
 elogind
@@ -21,6 +21,7 @@ git
 # packages
 #texlive-most
 #pandoc-cli
+#dotnet-sdk
 openssh
 unzip
 rsync
