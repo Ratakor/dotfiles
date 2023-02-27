@@ -1,4 +1,4 @@
-# base parabola OpenRC
+# base Parabola OpenRC
 archlinux-keyring
 parabola-keyring
 base
@@ -6,7 +6,6 @@ base-devel
 libelogind
 udev-init-scripts
 linux-libre-hardened
-#dhcpcd-openrc
 networkmanager-openrc
 dbus-openrc
 elogind
@@ -14,15 +13,32 @@ grub
 lvm2-openrc
 cryptsetup-openrc
 neovim
-zsh
 doas
+openssh
+git
+
+# base Artix OpenRC
+artix-archlinux-support
+base
+base-devel
+openrc
+elogind-openrc
+linux-hardened
+linux-firmware
+dhcpcd-openrc
+grub
+lvm2-openrc
+cryptsetup-openrc
+neovim
+doas
+openssh
 git
 
 # packages
 #texlive-most
 #pandoc-cli
 #dotnet-sdk
-openssh
+zsh
 unzip
 rsync
 imagemagick
