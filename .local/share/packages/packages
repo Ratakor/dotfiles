@@ -17,23 +17,6 @@ doas
 openssh
 git
 
-# base Artix OpenRC
-artix-archlinux-support
-base
-base-devel
-openrc
-elogind-openrc
-linux-hardened
-linux-firmware
-dhcpcd-openrc
-grub
-lvm2-openrc
-cryptsetup-openrc
-neovim
-doas
-openssh
-git
-
 # packages
 #texlive-most
 #pandoc-cli
@@ -49,8 +32,7 @@ bc
 alsa-utils
 pulseaudio-alsa
 pamixer
-scrot
-optipng
+maim
 htop
 lf
 ueberzug

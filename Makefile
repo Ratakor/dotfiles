@@ -36,8 +36,8 @@ clone:
 	[ -d "${PREFIX}/etc/slock" ] && cd ${PREFIX}/etc/slock && git pull || git clone ${GITSITE}slock.git ${PREFIX}/etc/slock
 
 build:
-	cd ${PREFIX}/etc/dwm && make PREFIX=${PREFIX} clean install
-	cd ${PREFIX}/etc/dwmblocks && make PREFIX=${PREFIX} clean install
-	cd ${PREFIX}/etc/st && make PREFIX=${PREFIX} clean install # need to build again for terminfo
-	cd ${PREFIX}/etc/dmenu && make PREFIX=${PREFIX} clean install
-	cd ${PREFIX}/etc/slock && ${ROOTCMD} make PREFIX=${PREFIX} clean install # slock need to be owned by root
+	$(MAKE) -C ${PREFIX}/etc/dwm PREFIX=${PREFIX} clean install
+	$(MAKE) -C ${PREFIX}/etc/dwmblocks PREFIX=${PREFIX} clean install
+	$(MAKE) -C ${PREFIX}/etc/st PREFIX=${PREFIX} clean install # need to build again for terminfo
+	$(MAKE) -C ${PREFIX}/etc/dmenu PREFIX=${PREFIX} clean install
+	${ROOTCMD} $(MAKE) -C ${PREFIX}/etc/slock PREFIX=${PREFIX} clean install # slock need to be owned by root
