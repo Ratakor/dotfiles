@@ -39,7 +39,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Video player: [mpv](https://github.com/mpv-player/mpv)
 - Music player: mpv with --input-ipc-server and some scripting to have it in dwmblocks
 - Image viewer: [sxiv](https://github.com/xyb3rt/sxiv)
-- Screenshot tool: [scrot](https://github.com/resurrecting-open-source-projects/scrot)
+- Screenshot tool: [maim](https://github.com/naelstrof/maim)
 - Notes: markdown files
 - Calendar: [when](https://github.com/bcrowell/when)
 - RSS Reader: [newsboat](https://newsboat.org/)
@@ -51,6 +51,8 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/packages.aur)
 
 ## TODO
+- make Steam works
+- better ungoogled-chromium-xdg
 - setup neomutt for mail
 - add Ungoogled Chromium config
 - add DAP for debugging in nvim

@@ -16,11 +16,13 @@ openssh
 git
 
 # packages
+thunar
 texlive-most
 pandoc-cli
 dotnet-sdk
 blender
-lutris
+#lutris
+#steam
 monero-gui
 zsh
 unzip
@@ -33,8 +35,7 @@ bc
 alsa-utils
 pulseaudio-alsa
 pamixer
-scrot
-optipng
+maim
 htop
 lf
 ueberzug
@@ -90,9 +91,10 @@ npm
 #pass
 
 # nvidia stuff
+#linux-hardened-headers
 #nvidia-dkms
-#nvidia-utils 
-#lib32-nvidia-utils 
-#nvidia-settings 
-#vulkan-icd-loader 
+#nvidia-utils
+#lib32-nvidia-utils
+#nvidia-settings
+#vulkan-icd-loader
 #lib32-vulkan-icd-loader

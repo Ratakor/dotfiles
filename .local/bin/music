@@ -1,6 +1,6 @@
 #!/bin/sh
 # simple music selector with dmenu that uses and interacts with mpv
-MUSIC="${1:-$XDG_MUSIC_DIR/$(ls $XDG_MUSIC_DIR | dmenu -i -p 'Play ')}" &&
+MUSIC="${1:-$XDG_MUSIC_DIR/$(ls $XDG_MUSIC_DIR | dmenu -i -l 20 -p 'Play ')}" &&
 [ -d "$MUSIC" ] || [ -n "$(printf $MUSIC | awk /playlist/)" ] &&
 	[ $(printf 'yes\nno' | dmenu -i -p 'Shuffle?') = "yes" ] && SHUFFLE="--shuffle"
 [ "$MUSIC" = "$XDG_MUSIC_DIR/" ] && exit

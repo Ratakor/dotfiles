@@ -1,7 +1,7 @@
 #!/bin/sh
-xrandr --dpi 96 --output HDMI-1 --right-of DP-2
+xrandr --dpi 96 --output HDMI-1 --pos 2560x360
 xwallpaper --output DP-2 --zoom $XDG_DATA_HOME/wallpapers/aiko.jpg
-xwallpaper --output HDMI-1 --zoom $XDG_DATA_HOME/wallpapers/punpun.jpg
+xwallpaper --output HDMI-1 --zoom $XDG_DATA_HOME/wallpapers/DOOM.jpg
 setxkbmap fr us
 
 dwmblocks &

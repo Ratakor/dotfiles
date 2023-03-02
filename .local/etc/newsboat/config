@@ -33,7 +33,7 @@ color info blue default bold
 browser linkhandler
 macro , open-in-browser
 #macro v set browser "setsid -f mpv --ytdl-format='bestvideo[height=480]+bestaudio'" ; open-in-browser ; set browser linkhandler
-macro v set browser "setsid -f mpv" ; open-in-browser ; set browser linkhandler
+macro v set browser "setsid -f mpv --ytdl-format=22" ; open-in-browser ; set browser linkhandler
 macro w set browser "$BROWSER" ; open-in-browser ; set browser linkhandler
 macro d set browser "dmenuhandler" ; open-in-browser ; set browser linkhandler
 macro c set browser "echo %u | xclip -r -sel c" ; open-in-browser ; set browser linkhandler
