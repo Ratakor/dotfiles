@@ -2,8 +2,8 @@
 when | tail -n +3
 
 # Source aliases
-source $XDG_CONFIG_HOME/shell/aliasrc
-[ -f "$XDG_CONFIG_HOME/shell/paliasrc" ] && source $XDG_CONFIG_HOME/shell/paliasrc # Private aliases
+source $ZDOTDIR/aliasrc
+[ -f "$ZDOTDIR/paliasrc" ] && source $ZDOTDIR/paliasrc # Private aliases
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
