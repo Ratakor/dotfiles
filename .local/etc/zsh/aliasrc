@@ -8,9 +8,9 @@ done; unset command
 # edit config files and stuff
 alias cf="cd $XDG_CONFIG_HOME"
 alias cfv="cd $XDG_CONFIG_HOME/nvim"
-alias cfz="v $XDG_CONFIG_HOME/shell/.zshrc"
-alias cfa="v $XDG_CONFIG_HOME/shell/aliasrc"
-alias cfp="v $XDG_CONFIG_HOME/shell/zprofile"
+alias cfz="v $ZDOTDIR/.zshrc"
+alias cfe="v $ZDOTDIR/.zshenv"
+alias cfa="v $ZDOTDIR/aliasrc"
 alias cfx="v $XDG_CONFIG_HOME/sx/sxrc"
 alias cfn="v $XDG_CONFIG_HOME/newsboat/config"
 alias cfu="v $XDG_CONFIG_HOME/newsboat/urls"

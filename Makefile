@@ -1,6 +1,6 @@
-PREFIX := ${HOME}/.local
-GITSITE := https://git.ratakor.com/
-ROOTCMD := $(shell command -v doas || command -v sudo)
+PREFIX = ${HOME}/.local
+GITSITE = https://git.ratakor.com/
+ROOTCMD = $(shell command -v doas || command -v sudo)
 
 all: packages configs scripts clone build
 
@@ -19,7 +19,8 @@ configs:
 	cp -r .local/etc/* ${PREFIX}/etc/
 	mkdir -p ${PREFIX}/share
 	cp -r .local/share/* ${PREFIX}/share/
-	ln -sf ${PREFIX}/etc/shell/zprofile ${HOME}/.zprofile
+	# Be sure to change/comment the line below if you changed the PREFIX
+	su -c 'printf "export ZDOTDIR=\"\$$HOME/.local/etc/zsh\"" > /etc/zsh/zshenv'
 
 scripts:
 	mkdir -p ${PREFIX}/bin

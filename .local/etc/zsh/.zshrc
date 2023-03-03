@@ -2,8 +2,8 @@
 when | tail -n +3
 
 # Source aliases
-source $XDG_CONFIG_HOME/shell/aliasrc
-[ -f "$XDG_CONFIG_HOME/shell/paliasrc" ] && source $XDG_CONFIG_HOME/shell/paliasrc # Private aliases
+source $ZDOTDIR/aliasrc
+[ -f "$ZDOTDIR/paliasrc" ] && source $ZDOTDIR/paliasrc # Private aliases
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
@@ -53,3 +53,12 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# git integration
+#autoload -Uz vcs_info
+#precmd_vcs_info() { vcs_info }
+#precmd_functions+=( precmd_vcs_info )
+#setopt prompt_subst
+#RPROMPT=\$vcs_info_msg_0_
+#zstyle ':vcs_info:git:*' formats '%F{red}(%b)%r%f'
+#zstyle ':vcs_info:*' enable git

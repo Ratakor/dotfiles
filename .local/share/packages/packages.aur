@@ -1,3 +1,5 @@
+# Be sure to comment what you don't want because there is some trash programs here
+
 cli-visualizer
 xbanish
 ungoogled-chromium-xdg-bin
@@ -7,3 +9,4 @@ unityhub
 #oneko
 dashbinsh
 #openssh-xdg
+anki
