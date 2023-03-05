@@ -44,14 +44,9 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Calendar: [when](https://github.com/bcrowell/when)
 - RSS Reader: [newsboat](https://newsboat.org/)
 
-### Software I use but not worth mentionning
-
-[yt-dlp](https://github.com/yt-dlp/yt-dlp), [tlp](https://linrunner.de/tlp), [redshift](https://github.com/jonls/redshift), [xbanish](https://github.com/jcs/xbanish), [cli-visualizer](https://github.com/dpayne/cli-visualizer), [neofetch](https://github.com/dylanaraps/neofetch), [mesofetch](https://github.com/ratakor/mesofetch), [exa](https://github.com/ogham/exa), [opendoas](https://man.openbsd.org/doas), man-db, xdo, htop, sx, pinta
-
-See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/packages.aur)
+See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/packages.aur) for a list of other programs I use.
 
 ## TODO
 - setup neomutt for mail
 - add Ungoogled Chromium config
 - add DAP for debugging in nvim
-- fix issue with colored unicode characters not appearing

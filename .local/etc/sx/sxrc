@@ -12,4 +12,4 @@ dwmblocks &
 xbanish &
 gammastep &
 
-exec dwm
+exec dwm #> /tmp/dwm.log 2>&1

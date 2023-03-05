@@ -16,6 +16,7 @@ neovim
 doas
 openssh
 git
+curl
 
 # packages
 #texlive-most

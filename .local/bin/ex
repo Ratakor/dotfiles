@@ -1,0 +1,25 @@
+#!/bin/sh
+
+[ -z "$1" ] && printf "You need to provide a file to extract\n" && exit
+[ ! -f "$1" ] && printf "$1 is not a valid file\n" && exit
+
+case "$1" in
+	*.tar.bz2|*.tbz2)
+		tar xjf "$1" ;;
+	*.tar.gz|*.tgz)
+		tar xzf "$1" ;;
+	*.bz2)
+		bzip2 "$1" ;;
+	*.gz|*.Z)
+		gzip -d "$1" ;;
+	*.rar)
+		unrar x "$1" ;;
+	*.tar)
+		tar xf "$1" ;;
+	*.zip)
+		unzip "$1" ;;
+	*.7z)
+		7z x "$1" ;;
+	*)
+		printf "Uh oh looks like ex can't handle $1\n" ;;
+esac

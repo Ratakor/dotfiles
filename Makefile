@@ -42,3 +42,10 @@ build:
 	$(MAKE) -C ${PREFIX}/etc/st PREFIX=${PREFIX} clean install # need to build again for terminfo
 	$(MAKE) -C ${PREFIX}/etc/dmenu PREFIX=${PREFIX} clean install
 	${ROOTCMD} $(MAKE) -C ${PREFIX}/etc/slock PREFIX=${PREFIX} clean install # slock need to be owned by root
+
+anki:
+	rm -rf anki-*
+	curl -LO "https://github.com/ankitects/anki/releases/download/2.1.54/anki-2.1.54-linux-qt6.tar.zst"
+	tar xf anki-*.tar.zst
+	cd anki-*-linux-qt6 && sed -i 's/\/usr\//\$$HOME\/./' install.sh && ./install.sh
+	rm -rf anki-*
