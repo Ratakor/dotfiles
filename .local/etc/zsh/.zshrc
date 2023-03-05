@@ -1,9 +1,10 @@
-# slow calendar
+# fun stuff
 when | tail -n +3
+awk -v random=$((RANDOM % 2584)) 'NR==random' "$XDG_DATA_HOME/navi"
 
 # Source aliases
-source $ZDOTDIR/aliasrc
-[ -f "$ZDOTDIR/paliasrc" ] && source $ZDOTDIR/paliasrc # Private aliases
+source "$ZDOTDIR/aliasrc"
+[ -f "$ZDOTDIR/paliasrc" ] && source "$ZDOTDIR/paliasrc" # Private aliases
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
@@ -12,7 +13,7 @@ setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
 # History in cache directory:
-HISTFILE=$XDG_DATA_HOME/histfile
+HISTFILE="$XDG_DATA_HOME/histfile"
 HISTSIZE=10000000
 SAVEHIST=10000000
 
@@ -55,10 +56,10 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # git integration
-#autoload -Uz vcs_info
-#precmd_vcs_info() { vcs_info }
-#precmd_functions+=( precmd_vcs_info )
-#setopt prompt_subst
-#RPROMPT=\$vcs_info_msg_0_
-#zstyle ':vcs_info:git:*' formats '%F{red}(%b)%r%f'
-#zstyle ':vcs_info:*' enable git
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_
+zstyle ':vcs_info:git:*' formats '%F{cyan}(%b)%f'
+zstyle ':vcs_info:*' enable git

@@ -14,8 +14,10 @@ neovim
 doas
 openssh
 git
+curl
 
 # packages
+libreoffice
 thunar
 texlive-most
 pandoc-cli

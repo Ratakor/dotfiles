@@ -115,7 +115,6 @@ map <c-n> push :mkdir<space>
 map <c-r> reload
 map <c-s> set hidden!
 map <enter> shell
-#map <enter> open
 map x $$f
 map X !$f
 map o &mimeopen "$f"

@@ -17,3 +17,7 @@ x-scheme-handler/https=browser.desktop
 x-scheme-handler/http=browser.desktop
 x-scheme-handler/magnet=torrent.desktop;
 application/x-bittorrent=torrent.desktop;
+# anki.desktop is automatically created by anki
+application/x-colpkg=anki.desktop
+application/x-apkg=anki.desktop
+application/x-ankiaddon=anki.desktop

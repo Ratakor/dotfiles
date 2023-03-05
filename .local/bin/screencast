@@ -1,6 +1,8 @@
 #!/bin/sh
 # script for screencast because obs is cringe
 
+set -e
+
 printf "Title: "
 read TITLE
 
