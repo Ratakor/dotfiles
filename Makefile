@@ -2,7 +2,7 @@ PREFIX = ${HOME}/.local
 GITSITE = https://git.ratakor.com/
 ROOTCMD = $(shell command -v doas || command -v sudo)
 
-all: packages configs scripts clone build
+all: packages configs scripts clone install
 
 packages:
 	@#${ROOTCMD} pacman -S --noconfirm --needed --dbonly pipewire # fix issue with parabola repos ?
@@ -11,7 +11,6 @@ packages:
 	@for package in $(shell grep -v '^#' .local/share/packages/packages.aur) ; do \
 		.local/bin/aurinstall $$package ; \
 	done
-	-${ROOTCMD} patch -N -r - /usr/bin/when .local/etc/when/patch
 	${ROOTCMD} mandb 2> /dev/null # Updating man database, it may take some time
 	chsh -s /bin/zsh # use your user password
 	${ROOTCMD} ln -sfT /usr/bin/dash /usr/bin/sh # change sh from bash to dash
@@ -36,7 +35,7 @@ clone:
 	[ -d "${PREFIX}/etc/dmenu" ] && cd ${PREFIX}/etc/dmenu && git pull || git clone ${GITSITE}dmenu.git ${PREFIX}/etc/dmenu
 	[ -d "${PREFIX}/etc/slock" ] && cd ${PREFIX}/etc/slock && git pull || git clone ${GITSITE}slock.git ${PREFIX}/etc/slock
 
-build:
+install:
 	$(MAKE) -C ${PREFIX}/etc/dwm PREFIX=${PREFIX} clean install
 	$(MAKE) -C ${PREFIX}/etc/dwmblocks PREFIX=${PREFIX} clean install
 	$(MAKE) -C ${PREFIX}/etc/st PREFIX=${PREFIX} clean install # need to build again for terminfo
@@ -49,3 +48,5 @@ anki:
 	tar xf anki-*.tar.zst
 	cd anki-*-linux-qt6 && sed -i 's/\/usr\//\$$HOME\/./' install.sh && ./install.sh
 	rm -rf anki-*
+
+.PHONY: all packages configs scripts clone install anki

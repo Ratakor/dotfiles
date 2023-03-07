@@ -1,0 +1,117 @@
+#!/bin/sh
+
+VERSION="1.0"
+CONF="$XDG_CONFIG_HOME/quand/config"
+
+language="${LANG:-en_US.utf-8}"
+calendar="$XDG_CONFIG_HOME/quand/calendar"
+editor="${EDITOR:-vi}"
+header=0
+past=0
+future=1
+yesterday="yesterday"
+today="today"
+tomorrow="tomorrow"
+
+lstrip() {
+	printf '%s\n' "${1##$2}"
+}
+
+getday() {
+	date --date="$1 day" "+%m %d"
+}
+
+getnameday() {
+	LC_ALL="$language" date --date="$1 day" "+%a"
+}
+
+print() {
+	while IFS= read -r line || [ -n "$line" ]; do
+		case $line in
+		"$year $1"*|"* $1"*)
+			printf '%s\n' "$2    $line" ;;
+		esac
+	done < "$calendar"
+}
+
+
+printhelp() {
+	printf "read the README\n"
+}
+
+getsettings() {
+	while IFS= read -r line || [ -n "$line" ]; do
+		case $line in
+		"language"*)
+			language="$(lstrip "$line" "language = ")" ;;
+		"calendar"*)
+			calendar="$(lstrip "$line" "calendar = ")" ;;
+		"editor"*)
+			editor="$(lstrip "$line" "editor = ")" ;;
+		"header"*)
+			header="$(lstrip "$line" "header = ")" ;;
+		"future"*)
+			future="$(lstrip "$line" "future = ")" ;;
+		"past"*)
+			past="$(lstrip "$line" "past = ")" ;;
+		"yesterday"*)
+			yesterday="$(lstrip "$line" "yesterday = ")" ;;
+		"today"*)
+			today="$(lstrip "$line" "today = ")" ;;
+		"tomorrow"*)
+			tomorrow="$(lstrip "$line" "tomorrow = ")" ;;
+		esac
+	done < "$CONF"
+}
+
+main() {
+	case $* in
+	-v|--version)
+		printf '%s\n' "${0##*/} $VERSION"
+	 	return 0 ;;
+	-h|--help)
+		printhelp
+		return 0 ;;
+	e|edit|-e|--edit)
+		"$editor" "$calendar"
+		return 0 ;;
+	c|calendar|-c|--calendar)
+		cal
+		return 0 ;;
+	'')
+		exec 2>/dev/null ;;
+	esac
+
+	getsettings
+
+	if [ ! -f "$calendar" ]; then
+		printf '%s\n' "$calendar is not a valid file"
+		return 1
+	fi
+
+	year="$(date "+%Y")"
+
+	[ $header = 1 ] && printf '%s\n\n' "$(date)"
+
+	while [ $past -gt 1 ]; do
+		print "$(getday "-$past")" "$(getnameday "-$past")"
+		past=$((past-1))
+	done
+
+	[ $past -eq 1 ] && print "$(getday "-1")" "$yesterday"
+
+	print "$(getday 0)" "$today"
+
+	[ $future -ge 1 ] && print "$(getday "+1")" "$tomorrow"
+
+	cpt=2
+	while [ $future -gt 1 ]; do
+		print "$(getday "+$cpt")" "$(getnameday "+$cpt")"
+		future="$((future-1))"
+		cpt="$((cpt+1))"
+	done
+
+	return 0
+}
+
+main "$@"
