@@ -7,9 +7,10 @@ ROOTCMD="${ROOTCMD:-$(command -v doas || command -v sudo)}"
 CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/aur"
 
 mkdir -p "$CACHE"
-rm -rf "$CACHE/$1"
+trap 'rm -rf "$CACHE/$1"' EXIT QUIT INT TERM PWR HUP
 git clone "https://aur.archlinux.org/$1.git" "$CACHE/$1"
 cd "$CACHE/$1" && makepkg -si
-rm -rf "$CACHE/$1"
-[ -n "$(pacman -Qqdt)" ] && printf "Type your password to remove orphaned packages\n" &&
-    "$ROOTCMD" pacman -Rns $(pacman -Qqdt)
+if [ -n "$(pacman -Qqdt)" ]; then
+	printf "Type your password to remove orphaned packages\n"
+	"$ROOTCMD" pacman -Rns $(pacman -Qqdt)
+fi

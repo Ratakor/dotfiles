@@ -17,6 +17,7 @@ git
 curl
 
 # packages
+pavucontrol
 libreoffice
 thunar
 texlive-most
@@ -51,7 +52,6 @@ yt-dlp
 tlp-openrc
 ntfs-3g
 p7zip
-when
 termdown
 newsboat
 xorg-server

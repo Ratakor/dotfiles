@@ -1,7 +1,0 @@
-editor = $EDITOR
-monday_first = 1
-orthodox_easter = 1
-ampm = 0
-filter_accents_on_output = 0
-past = 0
-future = 1
