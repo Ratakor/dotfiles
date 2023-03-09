@@ -1,6 +1,6 @@
 # fun stuff
 quand
-awk -v random=$((RANDOM % 2586 + 3)) 'NR==random' "$XDG_DATA_HOME/navi"
+shuf -n 1 "$XDG_DATA_HOME/navi" # database from https://github.com/HappyHippo77/NaviFrequencyList
 
 # Source aliases
 source "$ZDOTDIR/aliasrc"
@@ -14,8 +14,8 @@ stty stop undef		# Disable ctrl-s to freeze terminal.
 
 # History in cache directory:
 HISTFILE="$XDG_DATA_HOME/histfile"
-HISTSIZE=10000000
-SAVEHIST=10000000
+HISTSIZE=1000000
+SAVEHIST=1000000
 
 # Basic auto/tab complete:
 autoload -U compinit

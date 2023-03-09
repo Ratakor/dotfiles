@@ -1,19 +1,26 @@
-#!/bin/bash
-# websearch with dmenu
+#!/bin/sh
+# websearch with dmenu, need shuf and curl
 
-#SEARCH_ENGINE="https://librex.ratakor.com/search.php?q="
-#QUERY=$(printf ""| dmenu -p "Search:" -l 0)
-#[ -n "$QUERY" ] && "$BROWSER" "${SEARCH_ENGINE}${QUERY}&t=0" 2> /dev/null
+if [ ! -f "/tmp/instances" ]; then
+	curl -s "https://librex.ratakor.com/instances.json" > /tmp/instances.json
 
-# Choose a random instance
-INSTANCES=$(curl -s "https://librex.ratakor.com/instances.json" | awk '/https/ { print $2 }' | sed 's/,//' | tr '\n' ' ' | sed 's/\"//g')
-NUM_INSTANCES=$(printf "$INSTANCES" | wc -w)
-RAND=$((RANDOM%$NUM_INSTANCES))
-i=0
-for val in $INSTANCES; do
-	[ "$i" = "$RAND" ] && SEARCH_ENGINE=$val
-	i=$((i+1))
-done
+	lstrip() {
+		printf '%s\n' "${1##"              \"clearnet\": \""}"
+	}
 
-QUERY=$(printf "%s"| dmenu -p "Search:" -l 0)
-[ -n "$QUERY" ] && "$BROWSER" "${SEARCH_ENGINE}search.php?q=${QUERY}&t=0" 2> /dev/null
+	rstrip() {
+		printf '%s\n' "${1%%"\","}"
+	}
+
+	while IFS= read -r line || [ -n "$line" ]; do
+		case $line in
+		*"https"*)
+			rstrip $(lstrip "$line") >> /tmp/instances ;;
+		esac
+	done < /tmp/instances.json
+fi
+
+query="$(printf "%s"| dmenu -p "Search:" -l 0)"
+instance="$(shuf -n 1 /tmp/instances)"
+
+[ -n "$query" ] && "$BROWSER" "${instance}search.php?q=${query}&t=0" 2> /dev/null

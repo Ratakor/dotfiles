@@ -17,6 +17,17 @@ lstrip() {
 	printf '%s\n' "${1##$2}"
 }
 
+trimspaces() {
+	set -f
+	old_ifs=$IFS
+	IFS=\ 
+	set -- $1
+	IFS=
+	printf '%s\n' "$*"
+	IFS=$old_ifs
+	set +f
+}
+
 getday() {
 	date --date="$1 day" "+%m %d"
 }
@@ -43,23 +54,23 @@ getsettings() {
 	while IFS= read -r line || [ -n "$line" ]; do
 		case $line in
 		"language"*)
-			language="$(lstrip "$line" "language = ")" ;;
+			language="$(lstrip $(trimspaces "$line") "language=")" ;;
 		"calendar"*)
-			calendar="$(lstrip "$line" "calendar = ")" ;;
+			calendar="$(lstrip $(trimpspaces "$line") "calendar=")" ;;
 		"editor"*)
-			editor="$(lstrip "$line" "editor = ")" ;;
+			editor="$(lstrip $(trimspaces "$line") "editor=")" ;;
 		"header"*)
-			header="$(lstrip "$line" "header = ")" ;;
+			header="$(lstrip $(trimspaces "$line") "header=")" ;;
 		"future"*)
-			future="$(lstrip "$line" "future = ")" ;;
+			future="$(lstrip $(trimspaces "$line") "future=")" ;;
 		"past"*)
-			past="$(lstrip "$line" "past = ")" ;;
+			past="$(lstrip $(trimspaces "$line") "past=")" ;;
 		"yesterday"*)
-			yesterday="$(lstrip "$line" "yesterday = ")" ;;
+			yesterday="$(lstrip $(trimspaces "$line") "yesterday=")" ;;
 		"today"*)
-			today="$(lstrip "$line" "today = ")" ;;
+			today="$(lstrip $(trimspaces "$line") "today=")" ;;
 		"tomorrow"*)
-			tomorrow="$(lstrip "$line" "tomorrow = ")" ;;
+			tomorrow="$(lstrip $(trimspaces "$line") "tomorrow=")" ;;
 		esac
 	done < "$CONF"
 }
@@ -82,7 +93,7 @@ main() {
 		exec 2>/dev/null ;;
 	esac
 
-	getsettings
+	#getsettings
 
 	if [ ! -f "$calendar" ]; then
 		printf '%s\n' "$calendar is not a valid file"
