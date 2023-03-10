@@ -30,6 +30,7 @@ exa
 man-db
 sshfs
 bc
+polkit
 alsa-utils
 pulseaudio-alsa
 pamixer
@@ -70,7 +71,6 @@ keepassxc
 gammastep
 pinta
 qbittorrent
-streamlink
 dust
 duf
 fd
@@ -82,6 +82,7 @@ glow
 python-pynvim
 nodejs
 npm
+shellcheck
 #neomutt
 #isync
 #msmtp

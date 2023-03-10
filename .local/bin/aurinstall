@@ -1,7 +1,12 @@
 #!/bin/sh
 # install package from AUR
-[ -z "$1" ] && printf "You must run this command with an argument\n" && exit
-[ -n "$(pacman -Qq | grep -x $1)" ] && printf "$1 is already installed\n" && exit
+[ -z "$1" ] &&
+	printf "You must run this command with an argument\n" &&
+	exit 1
+
+[ -n "$(pacman -Qq | grep -x "$1")" ] &&
+	printf '%s is already installed\n' "$1" &&
+	exit 0
 
 ROOTCMD="${ROOTCMD:-$(command -v doas || command -v sudo)}"
 CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/aur"

@@ -8,6 +8,7 @@ export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="chromium"
 export ROOTCMD="doas"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # XDG
 export XDG_CONFIG_HOME="$HOME/.local/etc"

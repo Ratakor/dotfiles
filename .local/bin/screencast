@@ -6,7 +6,7 @@ set -e
 printf "Title: "
 read TITLE
 
-TITLE="$(echo $TITLE | sed 's/ /_/g')_$(date '+%s').mp4"
+TITLE="$(printf '%s\n' "$TITLE" | sed 's/ /_/g')_$(date '+%s').mp4"
 mkdir -p "$XDG_VIDEOS_DIR/screencasts"
 
 printf "Record will start in"

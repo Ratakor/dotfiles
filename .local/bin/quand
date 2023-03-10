@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION="1.0"
+VERSION="1.0.0"
 CONF="$XDG_CONFIG_HOME/quand/config"
 
 language="${LANG:-en_US.utf-8}"
@@ -12,15 +12,17 @@ future=1
 yesterday="yesterday"
 today="today"
 tomorrow="tomorrow"
+mondayfirst=1
 
 lstrip() {
-	printf '%s\n' "${1##$2}"
+	printf '%s\n' "${1##"$2"}"
 }
 
 trimspaces() {
 	set -f
 	old_ifs=$IFS
-	IFS=\ 
+	IFS=" "
+	# shellcheck disable=2086
 	set -- $1
 	IFS=
 	printf '%s\n' "$*"
@@ -51,6 +53,7 @@ printhelp() {
 }
 
 getsettings() {
+# shellcheck disable=2046
 	while IFS= read -r line || [ -n "$line" ]; do
 		case $line in
 		"language"*)
@@ -71,11 +74,23 @@ getsettings() {
 			today="$(lstrip $(trimspaces "$line") "today=")" ;;
 		"tomorrow"*)
 			tomorrow="$(lstrip $(trimspaces "$line") "tomorrow=")" ;;
+		"mondayfirst"*)
+			mondayfirst="$(lstrip $(trimspaces "$line") "mondayfirst=")" ;;
 		esac
 	done < "$CONF"
 }
 
+calendar() {
+	if [ "$mondayfirst" -eq 1 ]; then
+		LC_ALL="$language" cal -m
+	else
+		LC_ALL="$language" cal -s
+	fi
+}
+
 main() {
+	#getsettings
+
 	case $* in
 	-v|--version)
 		printf '%s\n' "${0##*/} $VERSION"
@@ -87,13 +102,11 @@ main() {
 		"$editor" "$calendar"
 		return 0 ;;
 	c|calendar|-c|--calendar)
-		cal
+		calendar
 		return 0 ;;
 	'')
 		exec 2>/dev/null ;;
 	esac
-
-	#getsettings
 
 	if [ ! -f "$calendar" ]; then
 		printf '%s\n' "$calendar is not a valid file"
@@ -102,21 +115,21 @@ main() {
 
 	year="$(date "+%Y")"
 
-	[ $header = 1 ] && printf '%s\n\n' "$(date)"
+	[ "$header" = 1 ] && printf '%s\n\n' "$(date)"
 
-	while [ $past -gt 1 ]; do
+	while [ "$past" -gt 1 ]; do
 		print "$(getday "-$past")" "$(getnameday "-$past")"
 		past=$((past-1))
 	done
 
-	[ $past -eq 1 ] && print "$(getday "-1")" "$yesterday"
+	[ "$past" -eq 1 ] && print "$(getday "-1")" "$yesterday"
 
 	print "$(getday 0)" "$today"
 
-	[ $future -ge 1 ] && print "$(getday "+1")" "$tomorrow"
+	[ "$future" -ge 1 ] && print "$(getday "+1")" "$tomorrow"
 
 	cpt=2
-	while [ $future -gt 1 ]; do
+	while [ "$future" -gt 1 ]; do
 		print "$(getday "+$cpt")" "$(getnameday "+$cpt")"
 		future="$((future-1))"
 		cpt="$((cpt+1))"

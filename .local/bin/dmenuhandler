@@ -1,7 +1,8 @@
 #!/bin/sh
 # Feed this script a link and it will give dmenu
 # some choice programs to use to open it.
-FEED="${1:-$(printf "%s" | dmenu -p 'Paste URL or file path')}"
+# this is ugly
+FEED="${1:-$(printf "" | dmenu -p 'Paste URL or file path')}"
 
 [ -z "$FEED" ] && exit
 
@@ -15,10 +16,14 @@ case "$(printf "$FEED\nbrowser\nmusic\nmpv\nmpv loop\nsxiv\nPDF\nvim\nyt-dlp\nmu
 	PDF) curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" && zathura "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
 	vim) curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" && setsid -f "$TERMINAL" -e "$EDITOR" "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
 	"yt-dlp") setsid -f yt-dlp -f "bv" -o "%(title)s [%(id)s].%(ext)s" -P "$XDG_VIDEOS_DIR" "$FEED" >/dev/null 2>&1 ;;
-	"music-dlp") [ $(printf 'no\nyes' | dmenu -i -p 'Playlist?') = "yes" ] &&
-		NAME=$(printf '' | dmenu -p 'Name ') && mkdir -p "$XDG_MUSIC_DIR/$NAME" &&
-		setsid -f yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 --postprocessor-args "-ar 44100" -o "%(playlist_index)s - %(title)s [%(id)s].%(ext)s" -P "$XDG_MUSIC_DIR/$NAME" "$FEED" >/dev/null 2>&1 ||
-		setsid -f yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 --postprocessor-args "-ar 44100" -o "%(title)s [%(id)s].%(ext)s" -P $XDG_MUSIC_DIR "$FEED" >/dev/null 2>&1 ;;
+	"music-dlp")
+		if [ "$(printf 'no\nyes' | dmenu -i -p 'Playlist?')" = "yes" ]; then
+			NAME=$(printf '' | dmenu -p 'Name ')
+			mkdir -p "$XDG_MUSIC_DIR/$NAME"
+			setsid -f yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 --postprocessor-args "-ar 44100" -o "%(playlist_index)s - %(title)s [%(id)s].%(ext)s" -P "$XDG_MUSIC_DIR/$NAME" "$FEED" >/dev/null 2>&1
+		else
+			setsid -f yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 --postprocessor-args "-ar 44100" -o "%(title)s [%(id)s].%(ext)s" -P "$XDG_MUSIC_DIR" "$FEED" >/dev/null 2>&1
+		fi ;;
 	#setbg) curl -sL "$FEED" > $XDG_CACHE_HOME/pic ; xwallpaper --zoom $XDG_CACHE_HOME/pic >/dev/null 2>&1 ;;
 	#"rssadd") rssadd "$FEED" >/dev/null 2>&1 ;;
 	#lynx) lynx "$FEED" >/dev/null 2>&1 ;;
