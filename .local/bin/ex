@@ -25,6 +25,8 @@ extract() {
 		7z x "$1" ;;
 	*.deb)
 		ar x "$1" ;;
+	*.zst)
+		unzstd "$1" ;;
 	*)
 		printf "Uh oh looks like ex can't handle %s\n" "$1"
 		return 1 ;;
@@ -34,7 +36,7 @@ extract() {
 	return 0
 }
 
-for file in $*; do
+for file in "$@"; do
 	if [ -f "$file" ]; then
 		extract "$file"
 	else

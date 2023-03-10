@@ -1,5 +1,13 @@
 #!/bin/sh
-#require nopass for poweroff and reboot in doas.conf
-QUERY=$(printf 'no\npoweroff\nreboot' | dmenu -i -sb '#ff5555' -p 'Shutdown?')
-[ "$QUERY" = "poweroff" ] && "$ROOTCMD" poweroff
-[ "$QUERY" = "reboot" ] && "$ROOTCMD" reboot
+# require nopass for poweroff and reboot
+QUERY=$(printf 'no\nlock\npoweroff\nreboot' | dmenu -i -sb '#ff5555' -p 'Shutdown?')
+ROOTCMD="${ROOTCMD:-$(command -v doas || command -v sudo)}"
+
+case "$QUERY" in
+"lock")
+	slock ;;
+"poweroff")
+	"$ROOTCMD" poweroff ;;
+"reboot")
+	"$ROOTCMD" reboot ;;
+esac

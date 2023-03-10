@@ -1,8 +1,20 @@
 #!/bin/sh
 # simple music selector with dmenu that uses and interacts with mpv
-MUSIC="${1:-$XDG_MUSIC_DIR/$(ls $XDG_MUSIC_DIR | dmenu -i -l 20 -p 'Play ')}" &&
-[ -d "$MUSIC" ] || [ -n "$(printf $MUSIC | awk /playlist/)" ] &&
-	[ $(printf 'yes\nno' | dmenu -i -p 'Shuffle?') = "yes" ] && SHUFFLE="--shuffle"
-[ "$MUSIC" = "$XDG_MUSIC_DIR/" ] && exit
+# shellcheck disable=SC2012
+MUSICDIR="${XDG_MUSIC_DIR:-$HOME/Music}"
+
+MUSIC="${1:-$MUSICDIR/$(ls "$MUSICDIR" | dmenu -i -p "Play ")}"
+
+[ "$MUSIC" = "$MUSICDIR/urls" ] &&
+	MUSIC="$(cat "$MUSICDIR/urls/$(ls "$MUSICDIR/urls" | dmenu -i -p "Play ")")"
+
+[ "$MUSIC" = "$XDG_MUSIC_DIR/" ] || [ -z "$MUSIC" ] && exit 1
+
+if [ -d "$MUSIC" ] || [ -n "$(printf '%s' "$MUSIC" | awk /playlist/)" ]; then
+	SHUFFLE="$(printf 'yes\nno' | dmenu -i -p 'Shuffle?')"
+	[ -z "$SHUFFLE" ] && exit 1
+fi
+
 printf "stop\n" | socat - /tmp/mpvsocket 2> /dev/null
-mpv --vid=no --input-ipc-server=/tmp/mpvsocket --loop-playlist "$SHUFFLE" "$MUSIC"
+mpv --vid=no --input-ipc-server=/tmp/mpvsocket --loop-playlist\
+	--ytdl-format="wv*+ba" --shuffle="$SHUFFLE" "$MUSIC"

@@ -28,7 +28,7 @@ Plug 'ray-x/cmp-treesitter'
 Plug 'saadparwaiz1/cmp_luasnip'
 "  Snippets
 Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp'}
-Plug 'rafamadriz/friendly-snippets'
+Plug 'honza/vim-snippets'
 " Misc
 Plug 'bronson/vim-trailing-whitespace' " FixWhitespace
 Plug 'airblade/vim-gitgutter' " hud for git in vim

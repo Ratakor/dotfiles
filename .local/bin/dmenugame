@@ -1,0 +1,6 @@
+#!/bin/sh
+# simple game selector with dmenu
+GAMEDIR="$HOME/games"
+GAME="${1:-$GAMEDIR/$(ls "$GAMEDIR" | dmenu -i -l 20 -p "Play ")}"
+[ "$GAME" = "$GAMEDIR/" ] && exit 1
+$GAME

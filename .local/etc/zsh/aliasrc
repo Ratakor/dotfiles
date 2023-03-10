@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck disable=SC2139
 
 # ROOTCMD not required for some system commands
 for command in iftop mount umount fdisk cryptsetup modprobe pacman shutdown poweroff reboot ; do
@@ -78,16 +79,19 @@ alias fd="fd -HI"
 alias g="git"
 alias gs="git status"
 alias ga="git add"
-alias gc="git commit -a" # replace -a with -v for verbosity
+alias gc="git commit -a"
+alias gcv="git commit -v"
 alias gcm="git commit -m"
-alias gp="git push"
+alias gp="git push --follow-tags"
 alias gpl="git pull"
 alias gr="git restore"
 alias grs="gr --staged"
 alias gb="git branch"
 alias gd="git diff"
 alias gac="ga . && gc"
+alias gacv="ga . && gcv"
 alias gacp="ga . && gc && gp"
+alias gacpv="ga . && gcv && gp"
 
 # music
 alias pause="musiccmd pause"

@@ -1,8 +1,8 @@
 #!/bin/sh
 # Stolen from Swindles
 COMMAND="$*"
-BINARY="$(printf "$COMMAND" | sed 's/ .*//')"
-ARGS="$(printf "$COMMAND" | sed "s/$BINARY //")"
+BINARY="$(printf '%s' "$COMMAND" | sed 's/ .*//')"
+ARGS="$(printf '%s' "$COMMAND" | sed "s/$BINARY //")"
 
 main() {
 	WINID=$(xdo id)

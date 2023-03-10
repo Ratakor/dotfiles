@@ -1,5 +1,0 @@
-#!/bin/sh
-
-[ -z "$1" ] && printf "You need to provide a word\n" && exit 1
-
-cat "$XDG_DATA_HOME"/navi | grep "\b$1\b"

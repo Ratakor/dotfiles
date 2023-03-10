@@ -8,6 +8,7 @@ export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="chromium"
 export ROOTCMD="doas"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # XDG
 export XDG_CONFIG_HOME="$HOME/.local/etc"
@@ -35,3 +36,4 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npmrc"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+alias nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings"

@@ -16,8 +16,8 @@ trimquotes() {
 }
 
 getthumbnail() {
-	path="$(trimquotes $(printf "{ \"command\": [\"get_property\", \"path\"] }\n"\
-		| socat - /tmp/mpvsocket 2> /dev/null | jq ".data"))"
+	path="$(trimquotes "$(printf "{ \"command\": [\"get_property\", \"path\"] }\n"\
+		| socat - /tmp/mpvsocket 2> /dev/null | jq ".data")")"
 	case $path in
 	*youtube.com*)
 		yt-dlp --skip-download --force-overwrites --write-thumbnail\
@@ -34,8 +34,8 @@ download() {
 }
 
 addtofav() {
-	path="$(trimquotes $(printf "{ \"command\": [\"get_property\", \"path\"] }\n"\
-		| socat - /tmp/mpvsocket 2> /dev/null | jq ".data"))"
+	path="$(trimquotes "$(printf "{ \"command\": [\"get_property\", \"path\"] }\n"\
+		| socat - /tmp/mpvsocket 2> /dev/null | jq ".data")")"
 	case $path in
 	*youtube.com*)
 		download "$XDG_MUSIC_DIR/favorite" "$path" ;;
@@ -55,14 +55,14 @@ cycle|*pause|*play)
 	addtofav ;;
 *volume)
 	printf "{ \"command\": [\"set_property\", \"volume\",\
-		${2:-$(printf "%s" | dmenu -p "Current volume:$(printf "{ \"command\": [\"get_property\", \"volume\"] }\n"\
+		${2:-$(printf "" | dmenu -p "Current volume:$(printf "{ \"command\": [\"get_property\", \"volume\"] }\n"\
 		| socat - /tmp/mpvsocket | jq ".data")")}] }\n"\
 		| socat - /tmp/mpvsocket ;; # 1> /dev/null
 *stop)
 	printf "stop\n" | socat - /tmp/mpvsocket ;;
 *download)
-	download "$XDG_MUSIC_DIR" "$(trimquotes $(printf "{ \"command\": [\"get_property\", \"path\"] }\n"\
-		| socat - /tmp/mpvsocket 2> /dev/null | jq ".data"))" ;;
+	download "$XDG_MUSIC_DIR" "$(trimquotes "$(printf "{ \"command\": [\"get_property\", \"path\"] }\n"\
+		| socat - /tmp/mpvsocket 2> /dev/null | jq ".data")")" ;;
 *thumbnail)
 	getthumbnail && sxiv "$XDG_CACHE_HOME/thumbnail.jpg" ;;
 esac
