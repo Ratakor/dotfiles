@@ -9,16 +9,14 @@ extract() {
 		tar xjf "$1" ;;
 	*.tar.gz|*.tgz)
 		tar xzf "$1" ;;
-	*.tar.xz|*.txz)
-		tar xJf "$1" ;;
+	*.tar.xz|*.tar)
+		tar xf "$1" ;;
 	*.bz2)
 		bzip2 "$1" ;;
 	*.gz|*.Z)
 		gzip -d "$1" ;;
 	*.rar)
 		unrar x "$1" ;;
-	*.tar)
-		tar xf "$1" ;;
 	*.zip)
 		unzip -q "$1" ;;
 	*.7z)

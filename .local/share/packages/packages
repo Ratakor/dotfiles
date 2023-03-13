@@ -7,6 +7,7 @@ libelogind
 udev-init-scripts
 linux-libre-hardened
 networkmanager-openrc
+inetutils
 dbus-openrc
 elogind
 grub
@@ -35,7 +36,6 @@ alsa-utils
 pulseaudio-alsa
 pamixer
 maim
-htop
 lf
 ueberzug
 bat
@@ -87,3 +87,5 @@ shellcheck
 #isync
 #msmtp
 #pass
+dunst
+#nyxt

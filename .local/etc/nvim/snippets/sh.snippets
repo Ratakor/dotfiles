@@ -1,4 +1,27 @@
 # most are from https://github.com/dylanaraps/pure-sh-bible
+#
+# The MIT License (MIT)
+#
+# Copyright (c) 2019 Dylan Araps
+# Copyright (c) 2023 Ratakor
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
 snippet lstrip Strip pattern from start of string
 	lstrip() {
@@ -34,6 +57,20 @@ snippet trimall Trim all white-space from string and truncate spaces
 		# shellcheck disable=SC2086,SC2048
 		set -- $*
 		printf '%s\n' "$*"
+		set +f
+	}
+
+snippet trim Trim $2 from $1
+	trim() {
+		# Usage: trim "string" "string"
+		set -f
+		old_ifs=\$IFS
+		IFS="\$2"
+		# shellcheck disable=SC2086
+		set -- \$1
+		IFS=
+		printf '%s\n' "$*"
+		IFS=\$old_ifs
 		set +f
 	}
 

@@ -12,6 +12,7 @@ set tabstop=8 " n of whitespace in \t
 set shiftwidth=8 " n of whitespace for indent
 set softtabstop=8 " n of whitespace to delete with backspace
 "set expandtab " \t -> whitespaces
+autocmd FileType lisp,html set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 " remove the 'a' to disable the mouse
 set mouse=a
@@ -28,11 +29,7 @@ set clipboard+=unnamedplus
 nnoremap <C-d> <C-d>zz
 nnoremap <c-u> <c-u>zz
 
-" Move between buffers
-"nnoremap <C-J> :bprev<CR>
-"nnoremap <C-K> :bnext<CR>
-
 " Autocorrect
-"map <leader>o :setlocal spell! spelllang=en_us<CR>
-"setlocal spell spelllang=en_US
+autocmd FileType html,markdown setlocal spell
+autocmd FileType tex setlocal spell spelllang=fr
 abbr hte the

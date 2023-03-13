@@ -1,0 +1,11 @@
+#!/bin/sh
+
+STATUS="$(cat /sys/class/power_supply/BAT0/status)"
+CAPACITY="$(cat /sys/class/power_supply/BAT0/capacity)"
+
+case $CAPACITY in
+[0-9]|1[0-5])
+	notify-send --urgency critical -h int:value:"$CAPACITY" "🔋 $STATUS" ;;
+*)
+	notify-send -h int:value:"$CAPACITY" "🔋 $STATUS" ;;
+esac

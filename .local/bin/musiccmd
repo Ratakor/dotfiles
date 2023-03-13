@@ -61,7 +61,8 @@ cycle|*pause|*play)
 *stop)
 	printf "stop\n" | socat - /tmp/mpvsocket ;;
 *download)
-	download "$XDG_MUSIC_DIR" "$(trimquotes "$(printf "{ \"command\": [\"get_property\", \"path\"] }\n"\
+	download "$XDG_MUSIC_DIR/download"
+		"$(trimquotes "$(printf "{ \"command\": [\"get_property\", \"path\"] }\n"\
 		| socat - /tmp/mpvsocket 2> /dev/null | jq ".data")")" ;;
 *thumbnail)
 	getthumbnail && sxiv "$XDG_CACHE_HOME/thumbnail.jpg" ;;

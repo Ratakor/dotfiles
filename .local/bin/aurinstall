@@ -4,9 +4,16 @@
 	printf "You must run this command with an argument\n" &&
 	exit 1
 
-[ -n "$(pacman -Qq | grep -x "$1")" ] &&
-	printf '%s is already installed\n' "$1" &&
-	exit 0
+if [ -n "$(pacman -Qq | grep -x "$1")" ]; then
+	printf '%s is already installed\nDo you want to update it ? (Y/n) ' "$1"
+	read -r CHOICE
+	case $CHOICE in
+		"y"|"Y"|"yes"|"YES")
+			;;
+		*)
+			exit 0 ;;
+	esac
+fi
 
 ROOTCMD="${ROOTCMD:-$(command -v doas || command -v sudo)}"
 CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/aur"
@@ -17,5 +24,6 @@ git clone "https://aur.archlinux.org/$1.git" "$CACHE/$1"
 cd "$CACHE/$1" && makepkg -si
 if [ -n "$(pacman -Qqdt)" ]; then
 	printf "Type your password to remove orphaned packages\n"
+	# shellcheck disable=SC2046
 	"$ROOTCMD" pacman -Rns $(pacman -Qqdt)
 fi
