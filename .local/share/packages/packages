@@ -33,6 +33,9 @@ sshfs
 bc
 polkit
 alsa-utils
+#wireplumber
+#pipewire-pulse
+#pipewire-alsa
 pulseaudio-alsa
 pamixer
 maim
@@ -62,7 +65,7 @@ picom
 sxiv
 mpv
 socat
-jq
+#jq
 zathura
 zathura-cb
 zathura-djvu

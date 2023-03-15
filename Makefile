@@ -5,14 +5,13 @@ ROOTCMD = $(shell command -v doas || command -v sudo)
 all: packages configs scripts clone install
 
 packages:
-	@#${ROOTCMD} pacman -S --noconfirm --needed --dbonly pipewire # fix issue with parabola repos ?
 	${ROOTCMD} pacman -Syu --noconfirm --needed $(shell grep -v '^#' .local/share/packages/packages)
 	-${ROOTCMD} pacman -Rdd your-freedom
 	@for package in $(shell grep -v '^#' .local/share/packages/packages.aur) ; do \
 		.local/bin/aurinstall $$package ; \
 	done
 	${ROOTCMD} mandb 2> /dev/null # Updating man database, it may take some time
-	chsh -s /bin/zsh # use your user password
+	chsh -s /bin/zsh # change your shell to zsh
 	${ROOTCMD} ln -sfT /usr/bin/dash /usr/bin/sh # change sh from bash to dash
 
 configs:
@@ -20,7 +19,6 @@ configs:
 	cp -r .local/etc/* ${PREFIX}/etc/
 	mkdir -p ${PREFIX}/share
 	cp -r .local/share/* ${PREFIX}/share/
-	# Be sure to change/comment the line below if you changed the PREFIX
 	su -c 'printf "export ZDOTDIR=\"\$$HOME/.local/etc/zsh\"" > /etc/zsh/zshenv'
 
 scripts:
@@ -38,7 +36,7 @@ clone:
 install:
 	$(MAKE) -C ${PREFIX}/etc/dwm PREFIX=${PREFIX} clean install
 	$(MAKE) -C ${PREFIX}/etc/dwmblocks PREFIX=${PREFIX} clean install
-	$(MAKE) -C ${PREFIX}/etc/st PREFIX=${PREFIX} clean install # need to build again for terminfo
+	$(MAKE) -C ${PREFIX}/etc/st PREFIX=${PREFIX} TERMINFO=${PREFIX}/share/terminfo clean install
 	$(MAKE) -C ${PREFIX}/etc/dmenu PREFIX=${PREFIX} clean install
 	${ROOTCMD} $(MAKE) -C ${PREFIX}/etc/slock PREFIX=${PREFIX} clean install # slock need to be owned by root
 

@@ -5,12 +5,12 @@
 	width = 300
 	height = 300
 	offset = 0x17
-	transparency = 25
-	padding = 2
+	transparency = 10
+	padding = 5
 	horizontal_padding = 2
 	frame_color = "#282a36"
 	highlight = "#bd93f9"
-	idle_threshold = 120
+	idle_threshold = 0
 	show_age_threshold = 60
 	font = Monospace 12
 	format = "<b>%s %p</b>\n%b"
