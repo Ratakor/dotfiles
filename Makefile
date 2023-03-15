@@ -5,6 +5,7 @@ ROOTCMD = $(shell command -v doas || command -v sudo)
 all: packages configs scripts clone install
 
 packages:
+	${ROOTCMD} pacman -Syu --dbonly --noconfirm libpipewire
 	${ROOTCMD} pacman -Syu --noconfirm --needed $(shell grep -v '^#' .local/share/packages/packages)
 	-${ROOTCMD} pacman -Rdd your-freedom
 	@for package in $(shell grep -v '^#' .local/share/packages/packages.aur) ; do \

@@ -29,15 +29,12 @@ rsync
 imagemagick
 exa
 man-db
+man-pages
 sshfs
 bc
-polkit
-alsa-utils
-#wireplumber
-#pipewire-pulse
-#pipewire-alsa
-pulseaudio-alsa
-pamixer
+rtkit
+extra/wireplumber
+pipewire-pulse
 maim
 lf
 ueberzug
@@ -57,7 +54,6 @@ xorg-server
 sx
 libx11
 libxft
-webkit2gtk
 xwallpaper
 xclip
 xdo
@@ -67,8 +63,6 @@ mpv
 socat
 #jq
 zathura
-zathura-cb
-zathura-djvu
 zathura-pdf-mupdf
 keepassxc
 gammastep
@@ -86,9 +80,6 @@ python-pynvim
 nodejs
 npm
 shellcheck
-#neomutt
-#isync
-#msmtp
-#pass
+libnotify
 dunst
 #nyxt
