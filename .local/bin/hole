@@ -1,0 +1,16 @@
+#!/bin/sh
+# helper for the hole
+
+HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/hole"
+HOST="ratakor.com"
+PORT="9999"
+
+[ -z "$1" ] &&
+	printf 'Usage: %s [text|file]\n' "${0##*/}" &&
+	exit 1
+
+[ -f "$1" ] &&
+	nc "$HOST" "$PORT" < "$1" | tee -a "$HISTORY" &&
+	exit 0
+
+printf '%s\n' "$*" | nc "$HOST" "$PORT" | tee -a "$HISTORY"

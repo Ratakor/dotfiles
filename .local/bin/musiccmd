@@ -2,9 +2,15 @@
 # helper for the music script
 # to force pause do: printf '{ "command": ["set_property", "pause", true] }\n' | socat - /tmp/mpvsocket 1> /dev/null
 
-[ $(pgrep music) ] 2> /dev/null && notify-send "There is no music playing" && exit 1
+[ $(pgrep music) ] 2> /dev/null &&
+	notify-send "There is no music playing" &&
+	kill -43 "$(pidof dwmblocks)" &&
+	exit 1
 
 CMD="${1:-$(printf '⏯️pause/play\n⏭️next\n⏮️prev\n📢volume\n🔳stop\n⭐favorite\n⬇️download\n🖼️thumbnail' | dmenu -i -p "musiccmd")}"
+FAVDIR="${XDG_MUSIC_DIR:-$HOME/Music}/favorite"
+DLDIR="${XDG_MUSIC_DIR:-$HOME/Music}/download"
+CACHE="${XDG_CACHE_HOME:-$HOME/.cache}"
 
 strip() {
 	tmp="${1##{\"data\":\"}"
@@ -24,14 +30,15 @@ getthumbnail() {
 	case $path in
 	*youtube.com*)
 		yt-dlp --skip-download --force-overwrites --write-thumbnail\
-			-o "$XDG_CACHE_HOME/thumbnail" "$path" > /dev/null 2>&1 &&\
-			magick "$XDG_CACHE_HOME/thumbnail.webp" "$XDG_CACHE_HOME/thumbnail.jpg" ;;
+			-o "$CACHE/thumbnail" "$path" > /dev/null 2>&1 &&\
+			magick "$CACHE/thumbnail.webp" "$CACHE/thumbnail.jpg" ;;
 	*)
-		ffmpeg -y -i "$path" "$XDG_CACHE_HOME/thumbnail.jpg" 2> /dev/null ;;
+		ffmpeg -y -i "$path" "$CACHE/thumbnail.jpg" 2> /dev/null ;;
 	esac
 }
 
 download() {
+	mkdir -p "$1"
 	yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 --postprocessor-args "-ar 44100"\
 		-o"%(title)s [%(id)s].%(ext)s" -P "$1" "$2" || notify-send "I can't download, this is a local file"
 }
@@ -42,9 +49,10 @@ addtofav() {
 
 	case $path in
 	*youtube.com*)
-		download "$XDG_MUSIC_DIR/favorite" "$path" ;;
+		download "$FAVDIR" "$path" ;;
 	*)
-		cp "$path" "$XDG_MUSIC_DIR/favorite" ;;
+		mkdir -p "$FAVDIR"
+		cp "$path" "$FAVDIR" ;;
 	esac
 }
 
@@ -56,23 +64,23 @@ cycle|*pause|*play)
 	printf 'playlist-next\n' | socat - /tmp/mpvsocket ;;
 *prev)
 	printf 'playlist-prev\n' | socat - /tmp/mpvsocket ;;
-*favorite)
+*favorite|fav)
 	addtofav ;;
 *volume)
 	[ -z "$2" ] &&
-		CURRENT="$(stripvol "$(printf '{ "command": ["get_property", "volume"] }\n'\
+		current="$(stripvol "$(printf '{ "command": ["get_property", "volume"] }\n'\
 			| socat - /tmp/mpvsocket)")"
 
 	printf '{ "command": ["set_property", "volume", %s] }\n'\
-		"${2:-$(printf "" | dmenu -p "Current volume:$CURRENT")}"\
+		"${2:-$(printf "" | dmenu -p "Current volume:$current")}"\
 		| socat - /tmp/mpvsocket 1> /dev/null ;;
 *stop)
 	printf 'stop\n' | socat - /tmp/mpvsocket
 	kill -43 "$(pidof dwmblocks)" ;;
 *download)
-	download "$XDG_MUSIC_DIR/download"\
+	download "$DLDIR"\
 		"$(strip "$(printf '{ "command": ["get_property", "path"] }\n'\
 		| socat - /tmp/mpvsocket 2> /dev/null)")" ;;
 *thumbnail)
-	getthumbnail && sxiv "$XDG_CACHE_HOME/thumbnail.jpg" ;;
+	getthumbnail && sxiv "$CACHE/thumbnail.jpg" ;;
 esac

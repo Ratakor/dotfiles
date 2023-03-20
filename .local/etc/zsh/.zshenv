@@ -21,8 +21,8 @@ export XDG_DOWNLOAD_DIR="$HOME/tmp"
 export XDG_PUBLICSHARE_DIR="$HOME/tmp"
 export XDG_TEMPLATES_DIR="$HOME/tmp"
 export XDG_MUSIC_DIR="$HOME/music"
-export XDG_PICTURES_DIR="$HOME/pictures"
-export XDG_VIDEOS_DIR="$HOME/videos"
+export XDG_PICTURES_DIR="$HOME/pic"
+export XDG_VIDEOS_DIR="$HOME/vid"
 
 # ~/ Clean-up:
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"

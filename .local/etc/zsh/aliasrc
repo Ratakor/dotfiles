@@ -2,7 +2,7 @@
 # shellcheck disable=SC2139
 
 # ROOTCMD not required for some system commands
-for command in iftop mount umount fdisk cryptsetup modprobe pacman shutdown poweroff reboot ; do
+for command in iftop mount umount fdisk cryptsetup modprobe pacman shutdown ; do
 	alias $command="$ROOTCMD $command"
 done; unset command
 
@@ -40,7 +40,6 @@ alias cac="cd $XDG_CACHE_HOME"
 alias v="$EDITOR"
 alias vim="$EDITOR"
 alias suvi="$ROOTCMD $EDITOR"
-alias suvim="suvi"
 alias make="make PREFIX=$HOME/.local" # ROOTCMD not required for make
 alias p="pacman"
 alias lf="lfub"
@@ -79,6 +78,11 @@ alias cat="bat"
 alias du="dust -r"
 alias duf="duf -hide special"
 alias fd="fd -HI"
+sic() {
+	# function is needed to pass arguements while piping
+	sic="$(whereis -b sic)"
+	"${sic#"sic: "}" "$@" | awk "{gsub(\"$USER\",\"\033[1;34m$USER\033[m\")}1"
+}
 
 # git
 alias g="git"

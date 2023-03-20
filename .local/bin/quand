@@ -48,8 +48,17 @@ print() {
 }
 
 
-printhelp() {
-	printf "read the README\n"
+usage() {
+	printf 'Usage: %s [options]
+
+Options:
+no option             | default
+                      |
+e|edit                | edit the calendar file
+c|cal                 | print the calendar
+                      │
+-h|--help             │ Print this help message and exit
+-v|--version          | Print the version\n' "${0##*/}"
 }
 
 getsettings() {
@@ -95,24 +104,27 @@ main() {
 		printf '%s %s\n' "${0##*/}" "$VERSION"
 	 	return 0 ;;
 	-h|--help)
-		printhelp
+		usage
 		return 0 ;;
-	e|edit|-e|--edit)
+	e|edit)
 		"$editor" "$calendar"
 		return 0 ;;
-	c|calendar|-c|--calendar)
+	c|cal)
 		calendar
 		return 0 ;;
 	'')
 		exec 2>/dev/null ;;
+	*)
+		printf 'Error: unknown option %s\n' "$*"
+		usage
+		return 1 ;;
 	esac
 
-	if [ ! -f "$calendar" ]; then
-		printf '%s is not a valid file\n' "$calendar"
+	[ ! -f "$calendar" ] &&
+		printf '%s is not a valid file\n' "$calendar" &&
 		return 1
-	fi
 
-	year="$(date "+%Y")"
+	year="$(date "+%Y")" # this is inaccurate
 
 	[ "$header" = 1 ] && printf '%s\n\n' "$(LC_ALL="$language" date)"
 

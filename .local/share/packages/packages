@@ -33,8 +33,11 @@ man-pages
 sshfs
 bc
 rtkit
+extra/pipewire
+extra/pipewire-jack
+extra/pipewire-pulse
+extra/libpulse
 extra/wireplumber
-pipewire-pulse
 maim
 lf
 ueberzug
@@ -54,7 +57,7 @@ xorg-server
 sx
 libx11
 libxft
-xwallpaper
+hsetroot
 xclip
 xdo
 picom
@@ -83,3 +86,7 @@ shellcheck
 libnotify
 dunst
 #nyxt
+parabola-wiki-docs
+fzf
+ytfzf
+openbsd-netcat

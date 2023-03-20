@@ -1,18 +1,22 @@
 #!/bin/sh
 
+killall picom pipewire wireplumber xbanish gammastep dwmblocks 1>/dev/null 2>&1
+
 if [ "$(xrandr | awk '/DP-2/ {print $2}')" = 'connected' ]; then
 	xrandr --output LVDS-1 --off
 else
 	picom -b
 fi
 
-xwallpaper --zoom "$XDG_DATA_HOME/wallpapers/OMORI/$(date '+%B').png"
-xrandr --dpi 96
 setxkbmap fr us
+xrandr --dpi 96
+#hsetroot -cover "$XDG_DATA_HOME/wallpapers/omori/$(date '+%B').png"
 
-killall xbanish gammastep dwmblocks 1>/dev/null 2>&1
-
-pipewire-launcher &
+while true; do
+	randwp
+	sleep 30m
+done &
+pipewire &
 xbanish &
 gammastep &
 dwmblocks &
