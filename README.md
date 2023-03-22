@@ -1,6 +1,6 @@
 <h1 align="center">My dotfiles</h1>
 
-![screenshot](/pictures/normal.png)
+![screenshot](/pic/normal.png)
 
 ## Installation
 I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe) so you'll need to tweak the Makefile if you don't. Also if you're not using Parabola OpenRC you will probably need to edit .local/share/packages/packages according to your distro.

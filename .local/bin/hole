@@ -1,16 +1,79 @@
 #!/bin/sh
-# helper for the hole
+# helper for the hole with encryption
 
-HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/hole"
-HOST="ratakor.com"
+DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hole"
+HOST="hole.ratakor.com"
 PORT="9999"
 
-[ -z "$1" ] &&
-	printf 'Usage: %s [text|file]\n' "${0##*/}" &&
-	exit 1
+encode() {
+	if [ -p "/dev/stdin" ]; then
+		openssl enc -aes-256-cbc -pass "file:$DIR/pass" -pbkdf2 -iter 100000 -salt -a < "/dev/stdin" |\
+			nc "$HOST" "$PORT" | tee -a "$DIR/history"
+	elif [ -f "$1" ]; then
+		openssl enc -aes-256-cbc -pass "file:$DIR/pass" -pbkdf2 -iter 100000 -salt -a < "$1" |\
+			nc "$HOST" "$PORT" | tee -a "$DIR/history"
+	else
+		printf '%s\n' "$1" |\
+			openssl enc -aes-256-cbc -pass "file:$DIR/pass" -pbkdf2 -iter 100000 -salt -a\
+			| nc "$HOST" "$PORT" | tee -a "$DIR/history"
+	fi
+}
 
-[ -f "$1" ] &&
-	nc "$HOST" "$PORT" < "$1" | tee -a "$HISTORY" &&
-	exit 0
+decode() {
+	# only handle string because it makes no sense to handle something else
+	printf '%s\n' "$1" | nc "$HOST" "$PORT" |\
+		openssl enc -aes-256-cbc -pass "file:$DIR/pass" -pbkdf2 -iter 100000 -salt -a -d
+}
 
-printf '%s\n' "$*" | nc "$HOST" "$PORT" | tee -a "$HISTORY"
+usage() {
+	printf 'Usage: %s [text|file]\n\nOptions:\n-e : encrypt\n-d : decrypt\n'\
+		"${0##*/}" 1>&2
+}
+
+main() {
+	# shellcheck disable=SC2174
+	[ ! -d "$DIR" ] && mkdir -pm 700 "$DIR"
+	[ ! -f "$DIR/history" ] &&
+		:> "$DIR/history" &&
+		chmod 600 "$DIR/history"
+	[ ! -f "$DIR/pass" ] &&
+		dd bs=1024 count=100 < /dev/urandom 2> /dev/null  | tr -d '\n' > "$DIR/pass" &&
+		chmod 400 "$DIR/pass"
+
+	case "$1" in
+	-e)
+		encode "$2"
+		return ;;
+	-d)
+		decode "$2"
+		return ;;
+	'')
+		# handle pipes
+		if [ -p "/dev/stdin" ]; then
+			nc "$HOST" "$PORT" < "/dev/stdin" | tee -a "$DIR/history"
+			return
+		fi
+		usage
+		return 1 ;;
+	-*)
+		printf 'Error: %s is not a valid option\n' "$1" 1>&2
+		usage
+		return 1 ;;
+	esac
+
+	# handle file
+	[ -f "$1" ] &&
+		nc "$HOST" "$PORT" < "$1" | tee -a "$DIR/history" &&
+		return 0
+
+	# handle string and do not put output in history
+	OUTPUT="$(printf '%s\n' "$1" | nc "$HOST" "$PORT")"
+
+	if printf '%s' "$OUTPUT" | grep -q "$HOST"; then
+		printf '%s\n' "$OUTPUT" | tee -a "$DIR/history"
+	else
+		printf '%s\n' "$OUTPUT"
+	fi
+}
+
+main "$@"

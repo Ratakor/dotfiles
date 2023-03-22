@@ -1,3 +1,0 @@
-#!/bin/sh
-# output the size of current directory or directory of choice
-du -h "${1:-$PWD}" | tail -n 1

@@ -58,7 +58,7 @@ e|edit                | edit the calendar file
 c|cal                 | print the calendar
                       │
 -h|--help             │ Print this help message and exit
--v|--version          | Print the version\n' "${0##*/}"
+-v|--version          | Print the version\n' "${0##*/}" 1>&2
 }
 
 getsettings() {
@@ -101,7 +101,7 @@ main() {
 
 	case $* in
 	-v|--version)
-		printf '%s %s\n' "${0##*/}" "$VERSION"
+		printf '%s %s\n' "${0##*/}" "$VERSION" 1>&2
 	 	return 0 ;;
 	-h|--help)
 		usage
@@ -115,13 +115,13 @@ main() {
 	'')
 		exec 2>/dev/null ;;
 	*)
-		printf 'Error: unknown option %s\n' "$*"
+		printf 'Error: unknown option %s\n' "$*" 1>&2
 		usage
 		return 1 ;;
 	esac
 
 	[ ! -f "$calendar" ] &&
-		printf '%s is not a valid file\n' "$calendar" &&
+		printf 'Error: %s is not a valid file\n' "$calendar" 1>&2 &&
 		return 1
 
 	year="$(date "+%Y")" # this is inaccurate

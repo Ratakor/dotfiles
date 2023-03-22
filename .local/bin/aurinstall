@@ -17,7 +17,7 @@ cleanup() {
 
 main() {
 	[ -z "$*" ] &&
-		printf "You must run this command with an argument\n" &&
+		printf "You must run this command with an argument\n" 1>&2 &&
 		return 1
 
 	mkdir -p "$CACHE"

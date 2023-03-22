@@ -19,6 +19,6 @@ done &
 pipewire &
 xbanish &
 gammastep &
-dwmblocks &
+sleep 0.1; dwmblocks &
 
 exec dwm
