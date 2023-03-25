@@ -63,7 +63,7 @@ xorg-server
 sx
 libx11
 libxft
-hsetroot
+xwallpaper
 xclip
 xdo
 picom

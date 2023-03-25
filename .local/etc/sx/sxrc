@@ -7,7 +7,6 @@ xrandr --setprovideroutputsource modesetting NVIDIA-0\
 	--output HDMI-0 --pos 2560x360\
 	--output DP-2 --mode 2560x1440 --rate 144
 setxkbmap fr us
-#hsetroot -cover "$XDG_DATA_HOME/wallpapers/omori/$(date '+%B').png"
 
 while true; do
 	randwp

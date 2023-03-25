@@ -1,18 +1,20 @@
 #!/bin/sh
-# set a random wallpaper
+# set a random wallpaper for multiple screen with xwallpaper
 # to ignore a folder or a file put it in IGNORE like "file1|folder|file2"
 
-#PROG="feh --bg-fill --no-fehbg"
-#PROG="xwallpaper --zoom"
-PROG="hsetroot -cover"
 WPDIR="${1:-$XDG_DATA_HOME/wallpapers}"
 IGNORE="nsfw"
+ALL="$(find "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md')"
 
-all="$(find "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md')"
-wp="$(printf '%s' "$all" | shuf -n 1)"
+searchwp() {
+	wp="$(printf '%s' "$ALL" | shuf -n 1)"
+	while printf '%s' "$wp" | grep -q -E "$IGNORE" ; do
+		wp="$(printf '%s' "$ALL" | shuf -n 1 -)"
+	done
+}
 
-while printf '%s' "$wp" | grep -q -E "$IGNORE" ; do
-	wp="$(printf '%s' "$all" | shuf -n 1 -)"
+
+for output in $(xrandr | awk '$2=="connected" {print $1 "\n"}'); do
+	searchwp
+	xwallpaper --output "$output" --zoom "$wp"
 done
-
-$PROG "$wp" 1>/dev/null
