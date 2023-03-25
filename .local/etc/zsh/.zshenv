@@ -36,3 +36,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npmrc"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+export W3M_DIR="$XDG_STATE_HOME/w3m"
+
+# misc
+export GPG_TTY=$(tty)

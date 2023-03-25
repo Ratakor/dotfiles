@@ -33,9 +33,9 @@ man-pages
 sshfs
 bc
 rtkit
-extra/pipewire
-extra/pipewire-jack
-extra/pipewire-pulse
+pipewire
+pipewire-jack
+pipewire-pulse
 extra/libpulse
 extra/wireplumber
 maim
@@ -89,3 +89,6 @@ dunst
 parabola-wiki-docs
 ytfzf
 openbsd-netcat
+neomutt
+isync
+w3m

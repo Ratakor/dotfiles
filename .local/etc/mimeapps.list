@@ -5,6 +5,7 @@
 
 x-scheme-handler/mailto=mail.desktop;
 video/x-matroska=video.desktop
+video/mp4=video.desktop
 text/x-shellscript=text.desktop;
 text/plain=text.desktop;
 application/postscript=pdf.desktop;

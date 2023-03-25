@@ -5,7 +5,6 @@ ROOTCMD = $(shell command -v doas || command -v sudo)
 all: packages config scripts wallpapers clone install
 
 packages:
-	@#${ROOTCMD} pacman -Sy --dbonly --noconfirm libpipewire
 	${ROOTCMD} pacman -Syu --noconfirm --needed $(shell grep -v '^#' .local/share/packages/packages)
 	-${ROOTCMD} pacman -Rdd your-freedom
 	@echo Installing package from the AUR

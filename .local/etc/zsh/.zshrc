@@ -8,7 +8,7 @@ source "$ZDOTDIR/aliasrc"
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
-PS1="%B%F{blue}%n %F{green}%~ %f$%b "
+PS1="%B%(?.0.%F{red}%?) %F{blue}%n %F{green}%~ %f$%b "
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
