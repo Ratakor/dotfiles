@@ -18,6 +18,7 @@ git
 curl
 
 # packages
+ungoogled-chromium
 lm_sensors-openrc
 pavucontrol
 libreoffice
@@ -27,7 +28,7 @@ pandoc-cli
 dotnet-sdk
 blender
 steam
-#lutris
+lutris
 monero-gui
 zsh
 unzip
@@ -35,14 +36,15 @@ rsync
 imagemagick
 exa
 man-db
+man-pages
 sshfs
 bc
-#polkit
-alsa-utils
-pulseaudio-alsa
-pamixer
+rtkit
+pipewire
+pipewire-pulse
+pipewire-jack
+wireplumber
 maim
-htop
 lf
 ueberzug
 bat
@@ -61,18 +63,15 @@ xorg-server
 sx
 libx11
 libxft
-webkit2gtk
-xwallpaper
+hsetroot
 xclip
 xdo
 picom
 sxiv
 mpv
 socat
-jq
+#jq
 zathura
-zathura-cb
-zathura-djvu
 zathura-pdf-mupdf
 keepassxc
 gammastep
@@ -89,13 +88,7 @@ glow
 python-pynvim
 nodejs
 npm
-#neomutt
-#isync
-#msmtp
-#pass
 shellcheck
-
-# nvidia stuff
 #linux-hardened-headers
 #nvidia-dkms
 nvidia
@@ -106,3 +99,12 @@ opencl-nvidia
 xorg-server-devel
 vulkan-icd-loader
 lib32-vulkan-icd-loader
+libnotify
+dunst
+#nyxt
+neomutt
+isync
+parabola-wiki-docs
+ytfzf
+openbsd-netcat
+w3m

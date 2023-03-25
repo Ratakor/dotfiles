@@ -1,12 +1,12 @@
 <h1 align="center">My dotfiles</h1>
 
-![screenshot](/pictures/normal.png)
+![screenshot](/pic/normal.png)
 
 ## Disclaimer
 This branch is not supposed to be installed, please look at master branch instead.
 
 ## Installation
-I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe) so be sure that PREFIX is setup the way you like. Also if you're not using Artix OpenRC you will probably need to edit .local/share/packages/packages according to your distro. Also you'll need Arch repos if you're using Artix.
+I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe) so you'll need to tweak the Makefile if you don't. Also if you're not using Artix OpenRC you will probably need to edit .local/share/packages/packages according to your distro. Also you'll need Arch repos if you're using Artix.
 
 DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're doing.
 
@@ -46,11 +46,17 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Notes: markdown files
 - Calendar: [when](https://github.com/bcrowell/when)
 - RSS Reader: [newsboat](https://newsboat.org/)
+- Wallpapers](https://git.ratakor.com/wallpapers.git/)
 
 See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/packages.aur) for a list of other programs I use.
 
 ## TODO
-- better ungoogled-chromium-xdg
-- setup neomutt for mail
 - add Ungoogled Chromium config
 - add DAP for debugging in nvim
+
+## LICENSE
+Copyright © 2023 Ratakor <contact@ratakor.com>
+
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.

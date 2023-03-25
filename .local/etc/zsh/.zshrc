@@ -1,6 +1,6 @@
 # fun stuff
-quand
-shuf -n 1 "$XDG_DATA_HOME/navi" # database from https://github.com/HappyHippo77/NaviFrequencyList
+#quand
+#shuf -n 1 "$XDG_DATA_HOME/navi" # database from https://github.com/HappyHippo77/NaviFrequencyList
 
 # Source aliases
 source "$ZDOTDIR/aliasrc"
@@ -8,7 +8,7 @@ source "$ZDOTDIR/aliasrc"
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
-PS1="%B%F{blue}%n %F{green}%~ %f$%b "
+PS1="%B%(?.0.%F{red}%?) %F{blue}%n %F{green}%~ %f$%b "
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
@@ -63,3 +63,6 @@ setopt prompt_subst
 RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{cyan}(%b)%f'
 zstyle ':vcs_info:*' enable git
+
+# disable double verification with rm -I *
+setopt RM_STAR_SILENT

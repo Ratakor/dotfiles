@@ -1,5 +1,0 @@
-#!/bin/sh
-# Simple script to toggle the microphone.
-
-pactl set-source-mute @DEFAULT_SOURCE@ toggle || exit 1
-kill -45 $(pidof dwmblocks)

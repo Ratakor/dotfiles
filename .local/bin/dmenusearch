@@ -1,0 +1,74 @@
+#!/bin/sh
+# different browser search with dmenu
+# websearch dependencies : shuf, curl
+# wiki dependencies: parabola-wiki-docs
+# youtube dependencies: ytfzf
+
+set -e
+
+web() {
+	if [ ! -f "/tmp/instances" ]; then
+		curl -s "https://librex.ratakor.com/instances.json" > /tmp/instances.json
+
+		strip() {
+			tmp="${1##"              \"clearnet\": \""}"
+			printf '%s\n' "${tmp%%"\","}"
+		}
+
+		while IFS= read -r line || [ -n "$line" ]; do
+			case $line in
+			*"https"*)
+				strip "$line" >> /tmp/instances ;;
+			esac
+		done < /tmp/instances.json
+	fi
+
+	instance="$(shuf -n 1 /tmp/instances)"
+	query="${instance}search.php?q=$(printf "" | dmenu -p "Search:" -l 0)&t=0"
+}
+
+wiki() {
+	WIKIDIR="/usr/share/doc/parabola-wiki/html/en"
+
+	strip() {
+		tmp="${1##"$WIKIDIR/"}"
+		printf '\n%s' "${tmp%%".html"}"
+	}
+
+	for file in "$WIKIDIR"/*.html; do
+		[ -f "$file" ] || continue
+		wikidocs="$wikidocs$(strip "$file")"
+	done
+
+	wikidocs="${wikidocs#*
+}" # remove a trailing newline
+
+	query="$WIKIDIR/$(printf '%s\n' "$wikidocs" | sed -e 's/_/ /g' | sort |\
+		dmenu -i -l 10 -p 'Search Wiki: ').html"
+	query="$(printf '%s\n' "$query" | sed 's/ /_/g')" # separate otherwise set -e fails
+}
+
+aur() {
+	AURSITE="https://aur.archlinux.org/packages?O=0&K="
+	query="$AURSITE$(printf "" | dmenu -p "AUR:" -l 0)"
+}
+
+main() {
+	case $1 in
+		web)
+			web ;;
+		wiki)
+			wiki ;;
+		aur)
+			aur ;;
+		youtube)
+			ytfzf -D --detach
+			return 0 ;;
+		*)
+			return 1 ;;
+	esac
+
+	"$BROWSER" "$query" 2> /dev/null
+}
+
+main "${1:-$(printf 'web\nwiki\naur\nyoutube' | dmenu -i)}"

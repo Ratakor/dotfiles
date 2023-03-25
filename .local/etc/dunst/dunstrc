@@ -1,0 +1,32 @@
+# vim: ft=cfg
+[global]
+	monitor = 0
+	follow = keyboard
+	width = 300
+	height = 300
+	offset = 0x17
+	transparency = 10
+	padding = 5
+	horizontal_padding = 2
+	frame_color = "#282a36"
+	highlight = "#bd93f9"
+	idle_threshold = 0
+	show_age_threshold = 60
+	font = Monospace 12
+	format = "<b>%s %p</b>\n%b"
+	corner_radius = 0
+
+[urgency_low]
+	background = "#282a36"
+	foreground = "#50fa7b"
+	timeout = 3
+
+[urgency_normal]
+	background = "#282a36"
+	foreground = "#bd93f9"
+	timeout = 5
+
+[urgency_critical]
+	background = "#282a36"
+	foreground = "#ff5555"
+	timeout = 10

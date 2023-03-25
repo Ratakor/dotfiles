@@ -7,7 +7,7 @@
 set -e
 
 cleanup() {
-    exec 3>&-
+	exec 3>&-
 	rm "$FIFO_UEBERZUG"
 }
 

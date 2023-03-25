@@ -2,7 +2,7 @@
 # shellcheck disable=SC2139
 
 # ROOTCMD not required for some system commands
-for command in iftop mount umount fdisk cryptsetup modprobe pacman shutdown poweroff reboot ; do
+for command in iftop mount umount fdisk cryptsetup modprobe pacman shutdown ; do
 	alias $command="$ROOTCMD $command"
 done; unset command
 
@@ -17,11 +17,15 @@ alias cfn="v $XDG_CONFIG_HOME/newsboat/config"
 alias cfu="v $XDG_CONFIG_HOME/newsboat/urls"
 alias cfq="v $XDG_CONFIG_HOME/quand/config"
 alias cfb="cd $XDG_CONFIG_HOME/dwmblocks/blocks"
+alias cfd="cd $XDG_CONFIG_HOME/dwm && $EDITOR config.h"
+alias cfm="v $XDG_CONFIG_HOME/mutt/muttrc"
 alias dt="cd $XDG_DATA_HOME"
 alias pkg="v $XDG_DATA_HOME/packages/packages"
 alias aur="v $XDG_DATA_HOME/packages/packages.aur"
 alias d="cd $XDG_DOWNLOAD_DIR"
-alias m="cd $XDG_MUSIC_DIR"
+alias D="cd $XDG_DOCUMENTS_DIR"
+alias mm="cd $XDG_MUSIC_DIR"
+alias mu="cd $XDG_MUSIC_DIR/urls"
 alias pp="cd $XDG_PICTURES_DIR"
 alias psc="cd $XDG_PICTURES_DIR/screenshots"
 alias vv="cd $XDG_VIDEOS_DIR"
@@ -29,13 +33,14 @@ alias ww="cd $XDG_DATA_HOME/wallpapers"
 alias n="lf $XDG_DATA_HOME/notes"
 alias nn="cd $XDG_DATA_HOME/notes"
 alias sc="cd $HOME/.local/bin"
+alias sta="cd $XDG_STATE_HOME"
+alias cac="cd $XDG_CACHE_HOME"
 
 # shorter name and basic stuff changed
 [ -x "$(command -v nvim)" ] && alias vimdiff="nvim -d"
 alias v="$EDITOR"
 alias vim="$EDITOR"
 alias suvi="$ROOTCMD $EDITOR"
-alias suvim="suvi"
 alias make="make PREFIX=$HOME/.local" # ROOTCMD not required for make
 alias p="pacman"
 alias lf="lfub"
@@ -54,10 +59,15 @@ alias python="python3"
 alias py="python"
 alias 2048="swallow gnome-2048"
 alias nb="newsboat"
+alias nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings"
+alias m="neomutt"
+alias mbsync="mbsync -c $XDG_CONFIG_HOME/mutt/mbsyncrc"
+alias sic="irc"
+alias ytfzf="ytfzf -D --detach"
 
 # verbosity and colors
 alias rm="rm -vI"
-alias rmdir="rmdir -v"
+alias rmdir="rm -d"
 alias cp="cp -riv"
 alias mv="mv -iv"
 alias mkdir="mkdir -pv"
@@ -99,5 +109,4 @@ alias play="musiccmd play" # This does the same thing as pause
 alias next="musiccmd next"
 alias prev="musiccmd prev"
 alias stop="musiccmd stop"
-alias update="kill -43 $(pidof dwmblocks)"
 alias vol="musiccmd volume" # put the volume you want in arg like vol 50

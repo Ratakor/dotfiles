@@ -1,0 +1,118 @@
+#!/bin/sh
+# dmenu for recordings with ffmpeg
+# dependencies: pipewire-pulse/pulseaudio, ffmpeg, dmenu
+# Original: https://github.com/whoisYoges/record-with-ffmpeg
+
+set -e
+
+videodir="${XDG_VIDEOS_DIR:-$HOME/Videos}/ffmpeg/"
+audiodir="$videodir"
+title="$(date +ffmpeg-"%Y-%m-%d-%H-%M-%S")"
+recordingresolution="$(xrandr | sed -n 's/\s*\([0-9]\+x[0-9]\+\).*\*.*/\1/p')"
+outputresolution="$recordingresolution"
+fps="30"
+crf="18"
+codecvideo="libx264rgb"
+codecaudio="libmp3lame"
+preset="veryfast"
+videoext="mp4"
+audioext="wav"
+
+# use pactl list source to check the infos
+monitoraudioinput="alsa_output.pci-0000_00_1b.0.analog-stereo.monitor"
+microphoneaudioinput="alsa_input.pci-0000_00_1b.0.analog-stereo"
+monitoraudiochannel="2"
+microphoneaudiochannel="2"
+monitoraudiofrequency="48000"
+microphoneaudiofrequency="48000"
+outputaudiofrequency="44100"
+
+internalAudioOnly() {
+	ffmpeg \
+		-f pulse -ac "$monitoraudiochannel" -ar "$monitoraudiofrequency" -i "$monitoraudioinput" \
+		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 "$title.$audioext"
+}
+
+microphoneOnly() {
+	ffmpeg \
+		-f pulse -ac "$microphoneaudiochannel" -ar "$microphoneaudiofrequency" -i "$microphoneaudioinput" \
+		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 "$title.$audioext"
+}
+
+internalAudioAndMicrophone() {
+	ffmpeg \
+		-f pulse -ac "$monitoraudiochannel" -ar "$monitoraudiofrequency" -i "$monitoraudioinput" \
+		-f pulse -ac "$microphoneaudiochannel" -ar "$microphoneaudiofrequency" -i "$microphoneaudioinput" \
+		-filter_complex amix=inputs=2 \
+		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 "$title.$audioext"
+}
+
+videoWithoutAudio() {
+	ffmpeg \
+		-f x11grab -r "$fps" -s "$recordingresolution" -i "$DISPLAY" \
+		-vcodec "$codecvideo" -preset "$preset" -crf "$crf" \
+		-pix_fmt yuv420p -s "$outputresolution" "$title.$videoext"
+}
+
+videoWithInternalAudio() {
+	ffmpeg \
+		-f pulse -ac "$monitoraudiochannel" -ar "$monitoraudiofrequency" -i "$monitoraudioinput" \
+		-f x11grab -r "$fps" -s "$recordingresolution" -i "$DISPLAY" \
+		-vcodec "$codecvideo" -preset "$preset" -crf "$crf" \
+		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 \
+		-pix_fmt yuv420p -s "$outputresolution" "$title.$videoext"
+}
+
+videoWithMicrophone() {
+	ffmpeg \
+		-f pulse -ac "$microphoneaudiochannel" -ar "$microphoneaudiofrequency" -i "$microphoneaudioinput" \
+		-f x11grab -r "$fps" -s "$recordingresolution" -i "$DISPLAY" \
+		-vcodec "$codecvideo" -preset "$preset" -crf "$crf" \
+		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 \
+		-pix_fmt yuv420p -s "$outputresolution" "$title.$videoext"
+}
+
+videoWithMicrophoneAndInternalAudio() {
+	ffmpeg \
+		-f pulse -ac "$monitoraudiochannel" -ar "$monitoraudiofrequency" -i "$monitoraudioinput" \
+		-f pulse -ac "$microphoneaudiochannel" -ar "$microphoneaudiofrequency" -i "$microphoneaudioinput" \
+		-filter_complex amix=inputs=2 \
+		-f x11grab -r "$fps" -s "$recordingresolution" -i "$DISPLAY" \
+		-vcodec "$codecvideo" -preset "$preset" -crf "$crf" \
+		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 \
+		-pix_fmt yuv420p -s "$outputresolution" "$title.$videoext"
+}
+
+main() {
+	choice="${1:-$(printf "Quit\n1 InternalAudioOnly\n2 MicrophoneOnly
+3 InternalAudioAndMic\n4 VideoWithoutAudio\n5 VideoWithInternalAudio
+6 VideoWithMic\n7 VideoWithBothMicAndInternalAudio" | dmenu -i -p "screencast")}"
+
+	case $choice in
+	1*)
+		[ ! -d "$audiodir" ] && mkdir -p "$audiodir"
+		cd "$audiodir" && internalAudioOnly ;;
+	2*)
+		[ ! -d "$audiodir" ] && mkdir -p "$audiodir"
+		cd "$audiodir" && microphoneOnly ;;
+	3*)
+		[ ! -d "$audiodir" ] && mkdir -p "$audiodir"
+		cd "$audiodir" && internalAudioAndMicrophone ;;
+	4*)
+		[ ! -d "$videodir" ] && mkdir -p "$videodir"
+		cd "$videodir" && videoWithoutAudio ;;
+	5*)
+		[ ! -d "$videodir" ] && mkdir -p "$videodir"
+		cd "$videodir" && videoWithInternalAudio ;;
+	6*)
+		[ ! -d "$videodir" ] && mkdir -p "$videodir"
+		cd "$videodir" && videoWithMicrophone ;;
+	7*)
+		[ ! -d "$videodir" ] && mkdir -p "$videodir"
+		cd "$videodir" && videoWithMicrophoneAndInternalAudio ;;
+	*)
+		return 1 ;;
+	esac
+}
+
+main "$1"

@@ -4,17 +4,20 @@
 MUSICDIR="${XDG_MUSIC_DIR:-$HOME/Music}"
 
 MUSIC="${1:-$MUSICDIR/$(ls "$MUSICDIR" | dmenu -i -p "Play ")}"
+SCRIPT="$XDG_CONFIG_HOME/mpv/music/local.lua"
 
-[ "$MUSIC" = "$MUSICDIR/urls" ] &&
+if [ "$MUSIC" = "$MUSICDIR/urls" ]; then
 	MUSIC="$(cat "$MUSICDIR/urls/$(ls "$MUSICDIR/urls" | dmenu -i -p "Play ")")"
+	SCRIPT="$XDG_CONFIG_HOME/mpv/music/online.lua"
+fi
 
-[ "$MUSIC" = "$XDG_MUSIC_DIR/" ] || [ -z "$MUSIC" ] && exit 1
+[ "$MUSIC" = "$MUSICDIR/" ] || [ -z "$MUSIC" ] && exit 1
 
-if [ -d "$MUSIC" ] || [ -n "$(printf '%s' "$MUSIC" | awk /playlist/)" ]; then
+if [ -d "$MUSIC" ] || printf '%s' "$MUSIC" | grep -q playlist; then
 	SHUFFLE="$(printf 'yes\nno' | dmenu -i -p 'Shuffle?')"
 	[ -z "$SHUFFLE" ] && exit 1
 fi
 
-printf "stop\n" | socat - /tmp/mpvsocket 2> /dev/null
+printf 'stop\n' | socat - /tmp/mpvsocket 2> /dev/null
 mpv --vid=no --input-ipc-server=/tmp/mpvsocket --loop-playlist\
-	--ytdl-format="wv*+ba" --shuffle="$SHUFFLE" "$MUSIC"
+	--ytdl-format="wv*+ba" --script="$SCRIPT" --shuffle="$SHUFFLE" "$MUSIC"

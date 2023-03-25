@@ -1,7 +1,7 @@
 #!/bin/sh
 # a simple utility to extract files based on extension
 
-[ -z "$1" ] && printf "You need to provide file(s) to extract\n" && exit 1
+[ -z "$1" ] && printf "You need to provide file(s) to extract\n" 1>&2 && exit 1
 
 extract() {
 	case $1 in
@@ -9,16 +9,14 @@ extract() {
 		tar xjf "$1" ;;
 	*.tar.gz|*.tgz)
 		tar xzf "$1" ;;
-	*.tar.xz|*.txz)
-		tar xJf "$1" ;;
+	*.tar.xz|*.tar)
+		tar xf "$1" ;;
 	*.bz2)
 		bzip2 "$1" ;;
 	*.gz|*.Z)
 		gzip -d "$1" ;;
 	*.rar)
 		unrar x "$1" ;;
-	*.tar)
-		tar xf "$1" ;;
 	*.zip)
 		unzip -q "$1" ;;
 	*.7z)
@@ -28,7 +26,7 @@ extract() {
 	*.zst)
 		unzstd "$1" ;;
 	*)
-		printf "Uh oh looks like ex can't handle %s\n" "$1"
+		printf "Uh oh looks like ex can't handle %s\n" "$1" 1>&2
 		return 1 ;;
 	esac
 

@@ -2,7 +2,6 @@
 
 cli-visualizer
 xbanish
-ungoogled-chromium-xdg-bin
 #rider
 unityhub
 #xdg-ninja
@@ -11,3 +10,8 @@ dashbinsh
 #openssh-xdg
 rider
 simple-mtpfs
+htop-vim
+sc-im
+electronplayer
+#ani-cli
+cyrus-sasl-xoauth2-git

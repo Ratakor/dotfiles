@@ -1,15 +1,22 @@
 #!/bin/sh
+
+killall picom pipewire wireplumber xbanish gammastep dwmblocks 1>/dev/null 2>&1
+
 xrandr --setprovideroutputsource modesetting NVIDIA-0\
 	--dpi 96\
 	--output HDMI-0 --pos 2560x360\
 	--output DP-2 --mode 2560x1440 --rate 144
-xwallpaper --output DP-2 --zoom $XDG_DATA_HOME/wallpapers/aiko.jpg
-xwallpaper --output HDMI-0 --zoom $XDG_DATA_HOME/wallpapers/DOOM.jpg
 setxkbmap fr us
+#hsetroot -cover "$XDG_DATA_HOME/wallpapers/omori/$(date '+%B').png"
 
-dwmblocks &
+while true; do
+	randwp
+	sleep 30m
+done &
+pipewire &
 xbanish &
-gammastep &
 picom &
+gammastep &
+sleep 1s; dwmblocks &
 
 exec dwm #> /tmp/dwm.log 2>&1
