@@ -43,6 +43,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Notes: markdown files
 - Calendar: [when](https://github.com/bcrowell/when)
 - RSS Reader: [newsboat](https://newsboat.org/)
+- IRC Client: [sic](https://tools.suckless.org/sic)
 - [Wallpapers](https://git.ratakor.com/wallpapers.git/)
 
 See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/packages.aur) for a list of other programs I use.

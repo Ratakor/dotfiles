@@ -58,6 +58,7 @@ sx
 libx11
 libxft
 hsetroot
+#xwallpaper
 xclip
 xdo
 picom
@@ -88,6 +89,7 @@ dunst
 #nyxt
 parabola-wiki-docs
 ytfzf
+#fzf
 openbsd-netcat
 neomutt
 isync

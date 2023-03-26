@@ -1,5 +1,7 @@
 #!/bin/sh
 # helper for the hole with encryption
+# for pure bash use (exec 3<>/dev/tcp/$HOST/$PORT; cat >&3; cat <&3; exec 3<&-)
+# instead of nc "$HOST" "$PORT"
 
 DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hole"
 HOST="hole.ratakor.com"
@@ -37,7 +39,7 @@ main() {
 		:> "$DIR/history" &&
 		chmod 600 "$DIR/history"
 	[ ! -f "$DIR/pass" ] &&
-		dd bs=1024 count=100 < /dev/urandom 2> /dev/null  | tr -d '\n' > "$DIR/pass" &&
+		dd bs=4096 count=1 if=/dev/urandom 2> /dev/null | base64 --wrap=0 > "$DIR/pass" &&
 		chmod 400 "$DIR/pass"
 
 	case "$1" in

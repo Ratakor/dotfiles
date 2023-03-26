@@ -1,5 +1,5 @@
 # fun stuff
-#quand
+quand
 #shuf -n 1 "$XDG_DATA_HOME/navi" # database from https://github.com/HappyHippo77/NaviFrequencyList
 
 # Source aliases
