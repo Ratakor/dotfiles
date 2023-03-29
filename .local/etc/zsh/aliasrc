@@ -2,7 +2,7 @@
 # shellcheck disable=SC2139
 
 # ROOTCMD not required for some system commands
-for command in iftop mount umount fdisk cryptsetup modprobe pacman shutdown ; do
+for command in iftop mount umount fdisk cryptsetup modprobe pacman ; do
 	alias $command="$ROOTCMD $command"
 done; unset command
 
@@ -51,9 +51,9 @@ alias sxiv="sxiv -a"
 alias z="zathura"
 alias pdf="swallow zathura"
 alias timer="termdown"
-alias video-dlp="yt-dlp -f '22' -o '%(title)s [%(id)s].%(ext)s'"
-alias music-dlp="yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3 \
-	--postprocessor-args \"-ar 44100\" -o '%(playlist_index)s - %(title)s [%(id)s].%(ext)s'"
+alias video-dlp="ytdl v"
+alias music-dlp="ytdl m"
+alias playlist-dlp="ytdl p"
 alias paint="pinta"
 alias python="python3"
 alias py="python"

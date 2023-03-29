@@ -7,3 +7,4 @@ mondayfirst=1
 yesterday="\033[36myesterday  "
 today="\033[35;1mtoday      "
 tomorrow="\033[32mtomorrow   "
+special="\033[33m*special* "

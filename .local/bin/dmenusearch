@@ -1,14 +1,16 @@
 #!/bin/sh
-# different browser search with dmenu
+# search web, parabola wiki, aur, youtube or man pages with dmenu
 # websearch dependencies : shuf, curl
-# wiki dependencies: parabola-wiki-docs
-# youtube dependencies: ytfzf
+# wiki dependency: parabola-wiki-docs
+# youtube dependency: ytfzf
+# man dependencies: man-db, zathura
 
 set -e
 
 web() {
 	if [ ! -f "/tmp/instances" ]; then
-		curl -s "https://librex.ratakor.com/instances.json" > /tmp/instances.json
+		curl -s "https://librex.ratakor.com/instances.json" > /tmp/instances.json ||
+			notify-send "No internet connection"
 
 		strip() {
 			tmp="${1##"              \"clearnet\": \""}"
@@ -53,8 +55,13 @@ aur() {
 	query="$AURSITE$(printf "" | dmenu -p "AUR:" -l 0)"
 }
 
+manpdf() {
+	INPUT=${1:-$(/usr/bin/man -k . | dmenu -i -l 20 | awk '{print $1}')}
+	[ -n "$INPUT" ] && /usr/bin/man -Tpdf "$INPUT" | zathura -
+}
+
 main() {
-	case $1 in
+	case ${1:-$(printf 'web\nwiki\naur\nyoutube\nman' | dmenu -i)} in
 		web)
 			web ;;
 		wiki)
@@ -63,7 +70,10 @@ main() {
 			aur ;;
 		youtube)
 			ytfzf -D
-			return 0 ;;
+			return ;;
+		man)
+			manpdf "$2"
+			return ;;
 		*)
 			return 1 ;;
 	esac
@@ -71,4 +81,4 @@ main() {
 	"$BROWSER" "$query" 2> /dev/null
 }
 
-main "${1:-$(printf 'web\nwiki\naur\nyoutube' | dmenu -i)}"
+main "$@"

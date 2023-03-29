@@ -6,7 +6,7 @@ export PATH="$HOME/.local/bin:$PATH"
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="chromium"
+export BROWSER="browser"
 export ROOTCMD="doas"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 

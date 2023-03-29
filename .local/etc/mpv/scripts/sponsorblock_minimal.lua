@@ -2,6 +2,8 @@
 -- https://codeberg.org/jouni/mpv_sponsorblock_minimal
 -- LICENSE: GPLv3
 --
+-- b toggles between on/off
+--
 -- This script skips sponsored segments of YouTube videos
 -- using data from https://github.com/ajayyy/SponsorBlock
 
