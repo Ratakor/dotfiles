@@ -10,12 +10,12 @@ case "$(printf "$FEED\nbrowser\nmusic\nmpv\nmpv loop\nsxiv\nPDF\nvim\nyt-dlp\nmu
 	"$FEED") echo "$FEED" | xclip -selection clipboard ;; # Copy URL
 	browser) setsid -f "$BROWSER" "$FEED" >/dev/null 2>&1 ;;
 	"music") setsid -f  music "$FEED" >/dev/null 2>&1 ;;
-	mpv) setsid -f mpv --quiet --ytdl-format=bv "$FEED" >/dev/null 2>&1 ;;
-	"mpv loop") setsid -f mpv --quiet --ytdl-format=bv --loop "$FEED" >/dev/null 2>&1 ;;
+	mpv) setsid -f mpv --quiet --ytdl-format="bv,ba" "$FEED" >/dev/null 2>&1 ;;
+	"mpv loop") setsid -f mpv --quiet --ytdl-format="bv,ba" --loop "$FEED" >/dev/null 2>&1 ;;
 	sxiv) curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" && sxiv -a "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
 	PDF) curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" && zathura "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
 	vim) curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" && setsid -f "$TERMINAL" -e "$EDITOR" "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
-	"yt-dlp") setsid -f yt-dlp -f "bv" -o "%(title)s [%(id)s].%(ext)s" -P "$XDG_VIDEOS_DIR" "$FEED" >/dev/null 2>&1 ;;
+	"yt-dlp") setsid -f yt-dlp -f "bv,ba" -o "%(title)s [%(id)s].%(ext)s" -P "$XDG_VIDEOS_DIR" "$FEED" >/dev/null 2>&1 ;;
 	"music-dlp")
 		if [ "$(printf 'no\nyes' | dmenu -i -p 'Playlist?')" = "yes" ]; then
 			NAME=$(printf '' | dmenu -p 'Name ')

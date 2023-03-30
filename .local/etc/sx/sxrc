@@ -2,11 +2,11 @@
 
 killall picom pipewire wireplumber xbanish gammastep dwmblocks 1>/dev/null 2>&1
 
+setxkbmap fr us
 xrandr --setprovideroutputsource modesetting NVIDIA-0\
 	--dpi 96\
 	--output HDMI-0 --pos 2560x360\
 	--output DP-2 --mode 2560x1440 --rate 144
-setxkbmap fr us
 
 while true; do
 	randwp
@@ -17,5 +17,6 @@ xbanish &
 picom &
 gammastep &
 sleep 1s; dwmblocks &
+#st -e "monerod --data-dir /storage/monero" &
 
 exec dwm #> /tmp/dwm.log 2>&1

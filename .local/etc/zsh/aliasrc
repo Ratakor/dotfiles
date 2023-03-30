@@ -35,6 +35,7 @@ alias nn="cd $XDG_DATA_HOME/notes"
 alias sc="cd $HOME/.local/bin"
 alias sta="cd $XDG_STATE_HOME"
 alias cac="cd $XDG_CACHE_HOME"
+alias ho="cat $XDG_DATA_HOME/hole/history"
 
 # shorter name and basic stuff changed
 [ -x "$(command -v nvim)" ] && alias vimdiff="nvim -d"
@@ -51,7 +52,7 @@ alias sxiv="sxiv -a"
 alias z="zathura"
 alias pdf="swallow zathura"
 alias timer="termdown"
-alias video-dlp="yt-dlp -f 'bv' -o '%(title)s [%(id)s].%(ext)s'"
+alias video-dlp="yt-dlp -f 'bv,ba' -o '%(title)s [%(id)s].%(ext)s'"
 alias music-dlp="yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3 \
 	--postprocessor-args \"-ar 44100\" -o '%(playlist_index)s - %(title)s [%(id)s].%(ext)s'"
 alias paint="pinta"
