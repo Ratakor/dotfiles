@@ -61,7 +61,6 @@ alias 2048="swallow gnome-2048"
 alias nb="newsboat"
 alias sic="irc"
 alias m="neomutt"
-alias mbsync="mbsync -c $XDG_CONFIG_HOME/mutt/mbsyncrc"
 alias ho="cat $XDG_DATA_HOME/hole/history"
 
 # verbosity and colors

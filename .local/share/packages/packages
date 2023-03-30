@@ -15,15 +15,15 @@ lvm2-openrc
 cryptsetup-openrc
 neovim
 doas
-openssh
 git
-curl
 
 # packages
 #texlive-most
 #pandoc-cli
 #dotnet-sdk
 zsh
+curl
+openssh
 unzip
 rsync
 imagemagick
@@ -57,6 +57,7 @@ xorg-server
 sx
 libx11
 libxft
+libxinerama
 hsetroot
 #xwallpaper
 xclip
@@ -91,5 +92,8 @@ ytfzf
 #fzf
 openbsd-netcat
 neomutt
-isync
 w3m
+isync
+pass
+#gsasl
+tcc
