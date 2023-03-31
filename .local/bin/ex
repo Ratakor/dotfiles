@@ -28,7 +28,7 @@ extract() {
 	*)
 		printf "Uh oh looks like ex can't handle %s\n" "$1" 1>&2
 		return 1 ;;
-	esac
+	esac &&
 
 	printf "The content of %s has been extracted\n" "$1"
 	return 0

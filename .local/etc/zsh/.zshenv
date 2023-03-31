@@ -3,14 +3,14 @@
 # Add ~/.local/bin to $PATH
 export PATH="$HOME/.local/bin:$PATH"
 
-# Default programs:
+# Default programs
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="chromium"
+export BROWSER="browser"
 export ROOTCMD="doas"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat --paging=auto -l man -p'"
 
-# XDG
+# XDG directories
 export XDG_CONFIG_HOME="$HOME/.local/etc"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.local/var/cache"
@@ -24,7 +24,7 @@ export XDG_MUSIC_DIR="$HOME/music"
 export XDG_PICTURES_DIR="$HOME/pic"
 export XDG_VIDEOS_DIR="$HOME/vid"
 
-# ~/ Clean-up:
+# ~/ Clean-up
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export FFMPEG_DATADIR="$XDG_CONFIG_HOME/ffmpeg"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
@@ -39,4 +39,4 @@ export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 
 # misc
-export GPG_TTY=$(tty)
+umask 0077

@@ -12,10 +12,8 @@ grub
 lvm2-openrc
 cryptsetup-openrc
 neovim
-doas
-openssh
+opendoas
 git
-curl
 
 # packages
 ungoogled-chromium
@@ -31,6 +29,8 @@ steam
 lutris
 monero-gui
 zsh
+openssh
+curl
 unzip
 rsync
 imagemagick
@@ -63,9 +63,10 @@ xorg-server
 sx
 libx11
 libxft
+libxinerma
+#hsetroot
 xwallpaper
 xclip
-xdo
 picom
 sxiv
 mpv
@@ -102,9 +103,15 @@ lib32-vulkan-icd-loader
 libnotify
 dunst
 #nyxt
-neomutt
-isync
-parabola-wiki-docs
+arch-wiki-docs
 ytfzf
+#fzf
 openbsd-netcat
 w3m
+neomutt
+isync
+pass
+#gsasl
+tcc
+nasm
+pypy3

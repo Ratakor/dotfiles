@@ -1,6 +1,6 @@
 <h1 align="center">My dotfiles</h1>
 
-![screenshot](/pic/normal.png)
+![screenshot](https://ratakor.com/images/setup/waw.png)
 
 ## Disclaimer
 This branch is not supposed to be installed, please look at master branch instead.
@@ -46,16 +46,16 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Notes: markdown files
 - Calendar: [when](https://github.com/bcrowell/when)
 - RSS Reader: [newsboat](https://newsboat.org/)
+- IRC Client: [sic](https://tools.suckless.org/sic)
 - Wallpapers](https://git.ratakor.com/wallpapers.git/)
 
 See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/packages.aur) for a list of other programs I use.
 
 ## TODO
-- add Ungoogled Chromium config
 - add DAP for debugging in nvim
 
 ## LICENSE
-Copyright © 2023 Ratakor <contact@ratakor.com>
+Copyright © 2023 Ratakor <ratakor@disroot.org>
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 

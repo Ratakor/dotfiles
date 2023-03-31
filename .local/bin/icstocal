@@ -7,10 +7,11 @@ from pathlib import Path
 
 if len(argv) < 3:
     print("To use this script you need to supply 2 arguments.")
-    print("e.g.: icsparser calendar.ics $XDG_CONFIG_HOME/when/calendar")
+    print("e.g.: icsparser calendar.ics $XDG_DATA_HOME/quand/calendar")
     exit()
 
-TIMEZONE = 1 # as UTC+1
+TIMEZONE = 2 # as UTC+2
+IN="en" # 'en' means 'in' in french
 INPUT = argv[1]
 OUTPUT = argv[2]
 
@@ -84,7 +85,15 @@ file.close()
 file = open(OUTPUT, "w")
 for i in range(len(locations)):
     # yyyy mm dd, hh:hh -> hh:hh summary location
-    file.write("{0} {1} {2}, {3}:{4} -> {5} {6} in {7}\n".format(starts[i][0], starts[i][1], starts[i][2], starts[i][3], starts[i][4], ends[i], summaries[i], locations[i]))
+    file.write("{0} {1} {2}, {3}:{4} -> {5} {6} {7} {8}\n".format(starts[i][0],
+                                                                  starts[i][1],
+                                                                  starts[i][2],
+                                                                  starts[i][3],
+                                                                  starts[i][4],
+                                                                  ends[i],
+                                                                  summaries[i],
+                                                                  IN,
+                                                                  locations[i]))
 
 file.close()
 print("All done!")

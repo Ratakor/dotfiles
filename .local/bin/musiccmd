@@ -27,6 +27,7 @@ getthumbnail() {
 	path="$(strip "$(printf '{ "command": ["get_property", "path"] }\n'\
 		| socat - /tmp/mpvsocket 2> /dev/null)")"
 
+	mkdir -p "$CACHE"
 	case $path in
 	*youtube.com*)
 		yt-dlp --skip-download --force-overwrites --write-thumbnail\
@@ -39,8 +40,10 @@ getthumbnail() {
 
 download() {
 	mkdir -p "$1"
-	yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3 --postprocessor-args "-ar 44100"\
-		-o"%(title)s [%(id)s].%(ext)s" -P "$1" "$2" || notify-send "I can't download, this is a local file"
+	yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3\
+		--postprocessor-args "-ar 44100"\
+		-o"%(title)s [%(id)s].%(ext)s" -P "$1" "$2" ||
+		notify-send "I can't download, this is a local file"
 }
 
 addtofav() {

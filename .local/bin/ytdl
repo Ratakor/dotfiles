@@ -1,0 +1,32 @@
+#!/bin/sh
+
+MUSICDIR="${XDG_MUSIC_DIR:-$HOME/Music}"
+VIDEODIR="${XDG_VIDEOS_DIR:-$HOME/Videos}"
+
+case $1 in
+v)
+	mkdir -p "$VIDEODIR"
+	notify-send "Video download started"
+	yt-dlp -f 'bv,ba' -o '%(title)s [%(id)s].%(ext)s'\
+	-P "$VIDEODIR" "$2" &&
+	notify-send "Video downloaded" ||
+		(notify-send "Error: No internet connection" && exit 1) ;;
+m)
+	mkdir -p "$MUSICDIR/download"
+	notify-send "Music download started"
+	yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3\
+	--postprocessor-args \"-ar 44100\" -o '%(title)s [%(id)s].%(ext)s'\
+	-P "$MUSICDIR/download" "$2" &&
+	notify-send "Music downloaded" ||
+		(notify-send "Error: No internet connection" && exit 1) ;;
+p)
+	NAME=$(printf '' | dmenu -p 'Name ')
+	mkdir -p "$MUSICDIR/$NAME"
+	notify-send "Playlist download started"
+	yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3\
+	--postprocessor-args \"-ar 44100\"\
+	-o '%(playlist_index)s - %(title)s [%(id)s].%(ext)s'\
+	-P "$MUSICDIR/$NAME" "$2" &&
+	notify-send "Playlist downloaded" ||
+		(notify-send "Error: No internet connection" && exit 1) ;;
+esac

@@ -1,4 +1,4 @@
-PREFIX = ${HOME}/.local
+PREFIX  = ${HOME}/.local
 GITSITE = https://git.ratakor.com/
 ROOTCMD = $(shell command -v doas || command -v sudo)
 
@@ -38,12 +38,12 @@ clone:
 	[ -d "${PREFIX}/etc/sic" ] && cd ${PREFIX}/etc/sic && git pull || git clone ${GITSITE}sic.git ${PREFIX}/etc/sic
 
 install:
+	${ROOTCMD} $(MAKE) -C ${PREFIX}/etc/slock PREFIX=${PREFIX} clean install # slock need to be owned by root
 	$(MAKE) -C ${PREFIX}/etc/dwm PREFIX=${PREFIX} clean install
 	$(MAKE) -C ${PREFIX}/etc/dwmblocks PREFIX=${PREFIX} clean install
 	$(MAKE) -C ${PREFIX}/etc/st PREFIX=${PREFIX} TERMINFO=${PREFIX}/share/terminfo clean install
 	$(MAKE) -C ${PREFIX}/etc/dmenu PREFIX=${PREFIX} clean install
-	${ROOTCMD} $(MAKE) -C ${PREFIX}/etc/slock PREFIX=${PREFIX} clean install # slock need to be owned by root
-	$(MAKE) -C ${PREFIX}/etc/sic PREFIX=${PREFIX} clean install
+	$(MAKE) -C ${PREFIX}/etc/sic PREFIX=${PREFIX} CFLAGS=-O2 clean install
 
 anki:
 	rm -rf anki-*

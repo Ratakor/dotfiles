@@ -1,5 +1,5 @@
 #!/bin/sh
-# set a random wallpaper for multiple screen with xwallpaper
+# set a random wallpaper
 # to ignore a folder or a file put it in IGNORE like "file1|folder|file2"
 
 WPDIR="${1:-$XDG_DATA_HOME/wallpapers}"
@@ -13,7 +13,11 @@ searchwp() {
 	done
 }
 
+# 1 screen with hsetroot
+#searchwp
+#hsetroot -cover "$wp" 1>/dev/null
 
+# multiple screens with xwallpaper
 for output in $(xrandr | awk '$2=="connected" {print $1 "\n"}'); do
 	searchwp
 	xwallpaper --output "$output" --zoom "$wp"
