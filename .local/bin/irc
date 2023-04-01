@@ -1,5 +1,5 @@
 #!/bin/sh
-# color username and save history
+# color username and save history for sic
 
 HIST="${XDG_DATA_HOME:-$HOME/.local/share}/sic"
 mkdir -p "$HIST"

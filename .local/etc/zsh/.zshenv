@@ -1,7 +1,8 @@
-#!/bin/zsh
+# Hardened umask
+umask 0077
 
-# Add ~/.local/bin to $PATH
-export PATH="$HOME/.local/bin:$PATH"
+# Update PATH
+export PATH="$HOME/.local/bin:$XDG_DATA_HOME/cargo/bin:$PATH"
 
 # Default programs
 export EDITOR="nvim"
@@ -10,7 +11,7 @@ export BROWSER="browser"
 export ROOTCMD="doas"
 export MANPAGER="sh -c 'col -bx | bat --paging=auto -l man -p'"
 
-# XDG dirs
+# XDG directories
 export XDG_CONFIG_HOME="$HOME/.local/etc"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.local/var/cache"
@@ -37,7 +38,3 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
-
-# misc
-export GPG_TTY=$(tty)
-umask 0077

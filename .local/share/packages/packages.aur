@@ -4,11 +4,11 @@ ungoogled-chromium-xdg-bin
 #xdg-ninja
 #oneko
 dashbinsh
+clangbincc
 #openssh-xdg
 htop-vim
 sc-im
-#electronplayer
-#ani-cli
 cyrus-sasl-xoauth2-git
 quand-git
 dracula-gtk-theme
+#gomuks

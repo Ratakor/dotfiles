@@ -1,5 +1,5 @@
 #!/bin/sh
-# install package from AUR
+# install packages from the AUR
 
 ROOTCMD="${ROOTCMD:-$(command -v doas || command -v sudo)}"
 CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/aur"

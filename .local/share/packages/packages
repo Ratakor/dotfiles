@@ -14,13 +14,14 @@ grub
 lvm2-openrc
 cryptsetup-openrc
 neovim
-doas
+opendoas
 git
 
 # packages
 #texlive-most
 #pandoc-cli
 #dotnet-sdk
+clang
 zsh
 curl
 openssh
@@ -36,8 +37,7 @@ rtkit
 pipewire
 pipewire-jack
 pipewire-pulse
-extra/libpulse
-extra/wireplumber
+wireplumber
 maim
 lf
 ueberzug
@@ -91,9 +91,12 @@ parabola-wiki-docs
 ytfzf
 #fzf
 openbsd-netcat
-neomutt
 w3m
+neomutt
 isync
 pass
 #gsasl
 tcc
+nasm
+pypy3
+rust

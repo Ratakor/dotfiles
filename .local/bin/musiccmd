@@ -1,6 +1,8 @@
 #!/bin/sh
 # helper for the music script
-# to force pause do: printf '{ "command": ["set_property", "pause", true] }\n' | socat - /tmp/mpvsocket 1> /dev/null
+# to force pause do:
+#printf '{ "command": ["set_property", "pause", true] }\n'\
+#	| socat - /tmp/mpvsocket 1> /dev/null
 
 [ $(pgrep music) ] 2> /dev/null &&
 	notify-send "There is no music playing" &&

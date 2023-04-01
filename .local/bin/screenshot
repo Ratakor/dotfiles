@@ -1,4 +1,5 @@
 #!/bin/sh
+# take a screenshot with main
 
 OUTPUT="$XDG_PICTURES_DIR/screenshots/$(date '+%d-%m-%Y_%H:%M:%S').png"
 XCLIPCMD="xclip -sel clip -t image/png"

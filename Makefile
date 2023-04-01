@@ -11,14 +11,13 @@ packages:
 	@.local/bin/aurinstall $(shell grep -v '^#' .local/share/packages/packages.aur)
 	${ROOTCMD} mandb 2> /dev/null # Updating man database, it may take some time
 	chsh -s /bin/zsh # change your shell to zsh
-	${ROOTCMD} ln -sfT /usr/bin/dash /usr/bin/sh # change sh from bash to dash
+	su -c 'printf "export ZDOTDIR=\"\$$HOME/.local/etc/zsh\"\n" > /etc/zsh/zshenv'
 
 config:
 	mkdir -p ${PREFIX}/etc
 	cp -r .local/etc/* ${PREFIX}/etc/
 	mkdir -p ${PREFIX}/share
 	cp -r .local/share/* ${PREFIX}/share/
-	su -c 'printf "export ZDOTDIR=\"\$$HOME/.local/etc/zsh\"" > /etc/zsh/zshenv'
 
 scripts:
 	mkdir -p ${PREFIX}/bin
@@ -39,11 +38,11 @@ clone:
 	[ -d "${PREFIX}/etc/sic" ] && cd ${PREFIX}/etc/sic && git pull || git clone https://git.suckless.org/sic ${PREFIX}/etc/sic
 
 install:
+	${ROOTCMD} $(MAKE) -C ${PREFIX}/etc/slock clean install # slock need to be owned by root
 	$(MAKE) -C ${PREFIX}/etc/dwm PREFIX=${PREFIX} clean install
 	$(MAKE) -C ${PREFIX}/etc/dwmblocks PREFIX=${PREFIX} clean install
 	$(MAKE) -C ${PREFIX}/etc/st PREFIX=${PREFIX} TERMINFO=${PREFIX}/share/terminfo clean install
 	$(MAKE) -C ${PREFIX}/etc/dmenu PREFIX=${PREFIX} clean install
-	${ROOTCMD} $(MAKE) -C ${PREFIX}/etc/slock PREFIX=${PREFIX} clean install # slock need to be owned by root
 	$(MAKE) -C ${PREFIX}/etc/sic PREFIX=${PREFIX} CFLAGS=-O2 clean install
 
 anki:

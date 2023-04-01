@@ -1,6 +1,7 @@
 #!/bin/sh
 # Feed this script a link and it will give dmenu
 # some choice programs to use to open it.
+
 FEED="${1:-$(printf "" | dmenu -p 'Paste URL or file path')}"
 
 [ -z "$FEED" ] && exit
