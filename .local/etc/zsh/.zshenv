@@ -1,6 +1,3 @@
-# Hardened umask
-umask 0077
-
 # Update PATH
 export PATH="$HOME/.local/bin:$XDG_DATA_HOME/cargo/bin:$PATH"
 
@@ -38,3 +35,9 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
+
+# Hardened umask
+umask 0077
+
+# fix gpg
+export GPG_TTY=$(tty)

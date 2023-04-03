@@ -1,14 +1,13 @@
-cli-visualizer
-xbanish
-ungoogled-chromium-xdg-bin
-#xdg-ninja
-#oneko
-dashbinsh
-clangbincc
-#openssh-xdg
-htop-vim
-sc-im
-cyrus-sasl-xoauth2-git
-quand-git
+cli-visualizer # audio visualizer
+xbanish # hide mouse when typing
+ungoogled-chromium-xdg-bin # ungoogled chromium but xdg compliant
+#xdg-ninja # tool to check if a home directory can be xdg compliant (e.g. .ssh)
+#oneko # cat that follow mouse cursor
+dashbinsh # a pacman hook to symlink dash to sh when there is a bash update
+#openssh-xdg # openssh but xdg compliant
+htop-vim # htop with vim keybind
+#sc-im # sc with vim keybind
+cyrus-sasl-xoauth2-git # xoauth for mutt
 dracula-gtk-theme
-#gomuks
+#gomuks # matrix client
+pam-gnupg # Unlock GnuPG keys on login

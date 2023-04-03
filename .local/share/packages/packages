@@ -14,89 +14,110 @@ grub
 lvm2-openrc
 cryptsetup-openrc
 neovim
-opendoas
+opendoas # sudo replacement
 git
 
 # packages
-#texlive-most
-#pandoc-cli
-#dotnet-sdk
-clang
-zsh
-curl
-openssh
-unzip
-rsync
-imagemagick
-exa
-man-db
-man-pages
-sshfs
-bc
+
+## custom
+dmenu-ratakor # application launcher
+dwm-ratakor # window manager
+dwmblocks-ratakor # status bar
+st-ratakor # terminal emulator
+slock-ratakor # screen locker
+sic # IRC client
+randhost # set a random hostname and disable blutooth (OpenRC service)
+quand # calendar app like when
+clangbincc # a pacman hook to symlink clang to cc when there is a gcc update
+
+## terminal
+zsh # user shell
+exa # ls replacement
+newsboat # RSS Reader
+lf # file manager
+bat # lf dependency and cat replacement
+w3m # lf dependency and terminal based browser
+ueberzug # lf dependency: see image in terminal
+atool # lf dependency
+odt2txt # lf dependency
+ffmpegthumbnailer # lf dependency
+mediainfo # lf dependency
+yt-dlp # download any video/audio from the web
+ytfzf # search youtube video without a browser
+dust # du replacement
+duf # df replacement
+fd # find replacement
+gitui # tui for git (good if you don't remember what change you made)
+glow # markdown renderer
+neomutt # mail client
+isync # mutt dependency
+pass # mutt dependency
+#gsasl # mutt dependency
+
+## sound
 rtkit
 pipewire
 pipewire-jack
 pipewire-pulse
 wireplumber
-maim
-lf
-ueberzug
-bat
-atool
-odt2txt
-ffmpegthumbnailer
-mediainfo
-neofetch
-yt-dlp
-tlp-openrc
-ntfs-3g
-p7zip
-termdown
-newsboat
+
+## grapical
 xorg-server
-sx
+sx # init xorg
 libx11
 libxft
 libxinerama
-hsetroot
-#xwallpaper
-xclip
-picom
-sxiv
-mpv
-socat
-#jq
-zathura
+freetype2
+hsetroot # wallpaper utility
+#xwallpaper # wallpaper utility for mutliple monitor
+xclip # clipboard management
+picom # compositor (window transparency and stuff)
+gammastep # no blue light at night
+sxiv # image viewer
+mpv # video and music player
+socat # dependency for the music script that uses mpv
+maim # screenshot tool
+zathura # document viewer
 zathura-pdf-mupdf
-keepassxc
-gammastep
-pinta
-qbittorrent
-dust
-duf
-fd
-gitui
-iftop
+dunst # notification daemon
+libnotify # dunst dependency
+
+# dev
+#texlive-most # LaTeX (big package)
+#pandoc-cli # I only use that to convert markdown to latex to pdf (big package)
+#dotnet-sdk # C#
+#rustup # rust
+nasm # x86 compiler
+clang # gcc replacement
+pypy3 # JIT python interpreter
+tcc # tiny c compiler
+
+# misc
+keepassxc # password manager
+curl
+openssh
+unzip
+p7zip
+rsync
+imagemagick # image manipulation from the terminal
+man-db
+man-pages # Linux man pages
+sshfs # mount drive over ssh
+bc # calculation
+tlp-openrc # laptop power saving settings (openrc edition)
+ntfs-3g # ntfs filesystem (windows compatibility)
+termdown # timer on the terminal
+neofetch
+#jq # json processor
+pinta # image editor
+qbittorrent # torrent client
+iftop # display bandwidth usage
 checkbashisms
-dash
-glow
-python-pynvim
-nodejs
-npm
+dash # sh replacement
+python-pynvim # neovim dependency
+nodejs # neovim dependency
+npm # neovim dependency
 shellcheck
-libnotify
-dunst
-#nyxt
+#nyxt # browser for lisp people
 parabola-wiki-docs
-ytfzf
-#fzf
 openbsd-netcat
-w3m
-neomutt
-isync
-pass
-#gsasl
-tcc
-nasm
-pypy3
-rust
