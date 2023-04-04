@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=Mail
-Exec=st -e neomutt %u
+Exec= claws-mail --alternate-config-dir "$XDG_DATA_HOME/claws-mail" %u

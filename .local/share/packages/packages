@@ -29,6 +29,8 @@ sic # IRC client
 randhost # set a random hostname and disable blutooth (OpenRC service)
 quand # calendar app like when
 clangbincc # a pacman hook to symlink clang to cc when there is a gcc update
+pinentry-dmenu # use dmenu for gpg
+drag-on # a simple drag-and-drop replacement for graphical stuff
 
 ## terminal
 zsh # user shell
@@ -49,10 +51,18 @@ duf # df replacement
 fd # find replacement
 gitui # tui for git (good if you don't remember what change you made)
 glow # markdown renderer
-neomutt # mail client
-isync # mutt dependency
-pass # mutt dependency
-#gsasl # mutt dependency
+btop # Process viewer
+
+# dev
+#texlive-most # LaTeX (big package)
+#pandoc-cli # I only use that to convert markdown to latex to pdf (big package)
+#dotnet-sdk # C#
+rustup # rust
+nasm # x86 compiler
+clang # gcc replacement
+pypy3 # JIT python interpreter
+tcc # tiny c compiler
+zig
 
 ## sound
 rtkit
@@ -64,10 +74,7 @@ wireplumber
 ## grapical
 xorg-server
 sx # init xorg
-libx11
-libxft
-libxinerama
-freetype2
+#libx11 libxft libxinerama freetype2 # dwm dependencies
 hsetroot # wallpaper utility
 #xwallpaper # wallpaper utility for mutliple monitor
 xclip # clipboard management
@@ -81,16 +88,10 @@ zathura # document viewer
 zathura-pdf-mupdf
 dunst # notification daemon
 libnotify # dunst dependency
-
-# dev
-#texlive-most # LaTeX (big package)
-#pandoc-cli # I only use that to convert markdown to latex to pdf (big package)
-#dotnet-sdk # C#
-#rustup # rust
-nasm # x86 compiler
-clang # gcc replacement
-pypy3 # JIT python interpreter
-tcc # tiny c compiler
+claws-mail # mail client
+hunspell # dictionary for claws
+hunspell-en_us
+hunspell-fr
 
 # misc
 keepassxc # password manager

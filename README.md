@@ -41,9 +41,10 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Image viewer: [sxiv](https://github.com/xyb3rt/sxiv)
 - Screenshot tool: [maim](https://github.com/naelstrof/maim)
 - Notes: markdown files
-- Calendar: [when](https://github.com/bcrowell/when)
-- RSS Reader: [newsboat](https://newsboat.org/)
-- IRC Client: [sic](https://tools.suckless.org/sic)
+- Calendar: [quand](https://github.com/ratakor/quand)
+- RSS reader: [newsboat](https://newsboat.org/)
+- IRC client: [sic](https://tools.suckless.org/sic)
+- Mail client: [Claws Mail](https://www.claws-mail.org)
 - [Wallpapers](https://git.ratakor.com/wallpapers.git/)
 
 See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/packages.aur) for a list of other programs I use.

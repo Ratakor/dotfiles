@@ -5,9 +5,7 @@ ungoogled-chromium-xdg-bin # ungoogled chromium but xdg compliant
 #oneko # cat that follow mouse cursor
 dashbinsh # a pacman hook to symlink dash to sh when there is a bash update
 #openssh-xdg # openssh but xdg compliant
-htop-vim # htop with vim keybind
 #sc-im # sc with vim keybind
-cyrus-sasl-xoauth2-git # xoauth for mutt
+#cyrus-sasl-xoauth2-git # xoauth for mutt
 dracula-gtk-theme
 #gomuks # matrix client
-pam-gnupg # Unlock GnuPG keys on login

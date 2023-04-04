@@ -31,6 +31,9 @@ set clipboard+=unnamedplus
 nnoremap <C-d> <C-d>zz
 nnoremap <c-u> <c-u>zz
 
+" fmt (will fail if opening a new file with a different filetype)
+autocmd FileType zig autocmd BufWritePost * !zig fmt %:p
+
 " Autocorrect
 autocmd FileType html,markdown setlocal spell
 autocmd FileType tex setlocal spell spelllang=fr

@@ -63,7 +63,7 @@ alias ytfzf="ytfzf -D --detach"
 
 # verbosity and colors
 alias rm="rm -vI"
-alias rmdir="rm -d"
+alias rmdir="rmdir -pv"
 alias cp="cp -riv"
 alias mv="mv -iv"
 alias mkdir="mkdir -pv"
