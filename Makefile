@@ -4,7 +4,8 @@ ROOTCMD = $(shell command -v doas || command -v sudo)
 all: packages config scripts wallpapers
 
 packages:
-	@curl -s https://raw.githubusercontent.com/Ratakor/ratakor-repo/master/setup
+	@curl -sLO https://raw.githubusercontent.com/Ratakor/ratakor-repo/master/setup
+	@chmod a+x setup
 	${ROOTCMD} ./setup # add ratakor repository
 	${ROOTCMD} pacman -Syu --noconfirm --needed $(shell sed 's/#.*//' .local/share/packages/packages)
 	-${ROOTCMD} pacman -Rdd your-freedom

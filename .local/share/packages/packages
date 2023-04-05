@@ -56,13 +56,22 @@ btop # Process viewer
 # dev
 #texlive-most # LaTeX (big package)
 #pandoc-cli # I only use that to convert markdown to latex to pdf (big package)
-#dotnet-sdk # C#
+#dotnet-sdk # C# for lsp do dotnet tool install -g csharp-ls
 rustup # rust
 nasm # x86 compiler
-clang # gcc replacement
+clang # gcc replacement and C lsp
 pypy3 # JIT python interpreter
 tcc # tiny c compiler
 zig
+zls # zig lsp
+gopls # go lsp
+rust-analyzer # rust lsp
+texlab # LaTeX lsp
+pyright # python lsp
+bash-language-server
+lua-language-server
+vscode-css-languageserver
+vscode-html-languageserver
 
 ## sound
 rtkit
@@ -116,8 +125,6 @@ iftop # display bandwidth usage
 checkbashisms
 dash # sh replacement
 python-pynvim # neovim dependency
-nodejs # neovim dependency
-npm # neovim dependency
 shellcheck
 #nyxt # browser for lisp people
 parabola-wiki-docs

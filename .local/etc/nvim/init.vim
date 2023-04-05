@@ -14,11 +14,8 @@ Plug 'nvim-lualine/lualine.nvim' " bottom bar
 Plug 'kyazdani42/nvim-web-devicons' " fancy icons
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " syntax color
 Plug 'p00f/nvim-ts-rainbow' " funny brackets
-" LSP Support
+" LSP and Autocompletion Engine
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-" Autocompletion Engine
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -37,6 +34,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } " fuzzy finder
 Plug 'preservim/nerdtree' " vs code be like
 Plug 'mbbill/undotree' " history visualizer
 Plug 'tpope/vim-commentary' " gc/gcc magic comment
+Plug 'ziglang/zig.vim'
 call plug#end()
 
 source $XDG_CONFIG_HOME/nvim/basics.vim
@@ -52,3 +50,6 @@ nnoremap <F2> :NERDTreeToggle<CR>
 
 " Undotree config
 nnoremap <F3> :UndotreeToggle<CR>
+
+" vim-commentary for zig
+autocmd FileType zig setlocal commentstring=//\ %s

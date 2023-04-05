@@ -1,5 +1,8 @@
 # Update PATH
-export PATH="$HOME/.local/bin:$XDG_DATA_HOME/cargo/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
+PATH="$PATH:$XDG_DATA_HOME/cargo/bin"
+PATH="$PATH:$XDG_DATA_HOME/dotnet/.dotnet/tools"
+export PATH
 
 # Default programs
 export EDITOR="nvim"
@@ -38,8 +41,7 @@ export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 
-# Hardened umask
+# Misc
 umask 0077
-
-# fix gpg
 export GPG_TTY=$(tty)
+export DMENUHP="browser,mail,chromium,anki"
