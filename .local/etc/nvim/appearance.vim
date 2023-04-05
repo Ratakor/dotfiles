@@ -20,7 +20,8 @@ require("nvim-treesitter.configs").setup {
 	ensure_installed = {
 		"bash", "c", "c_sharp", "comment", "css", "diff", "git_rebase",
 		"gitattributes", "gitcommit", "gitignore", "help", "html",
-		"latex", "lua", "make", "markdown", "python", "rust", "vim"
+		"latex", "lua", "make", "markdown", "python", "rust", "vim",
+		"zig"
 	},
 
 	highlight = {

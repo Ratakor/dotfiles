@@ -1,7 +1,5 @@
-#!/bin/zsh
-
 # Add ~/.local/bin to $PATH
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$XDG_DATA_HOME/cargo/bin:$PATH"
 
 # Default programs
 export EDITOR="nvim"
@@ -30,6 +28,8 @@ export FFMPEG_DATADIR="$XDG_CONFIG_HOME/ffmpeg"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export CARGO_TARGET_DIR="$XDG_CACHE_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export OPAMROOT="$XDG_DATA_HOME/opam"
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npmrc"
@@ -38,5 +38,8 @@ export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 
-# misc
+# Hardened umask
 umask 0077
+
+# fix gpg
+export GPG_TTY=$(tty)

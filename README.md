@@ -3,7 +3,7 @@
 ![screenshot](https://ratakor.com/images/setup/waw.png)
 
 ## Disclaimer
-This branch is not supposed to be installed, please look at master branch instead.
+**This branch is not supposed to be installed, please look at master branch instead.**
 
 ## Installation
 I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe) so you'll need to tweak the Makefile if you don't. Also if you're not using Artix OpenRC you will probably need to edit .local/share/packages/packages according to your distro. Also you'll need Arch repos if you're using Artix.
@@ -13,6 +13,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 	$ git clone -b artix https://git.ratakor.com/dotfiles.git
 	$ cd config
 	$ make
+	$ make install
 
 ## Softwares
 
@@ -44,9 +45,10 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Image viewer: [sxiv](https://github.com/xyb3rt/sxiv)
 - Screenshot tool: [maim](https://github.com/naelstrof/maim)
 - Notes: markdown files
-- Calendar: [when](https://github.com/bcrowell/when)
-- RSS Reader: [newsboat](https://newsboat.org/)
-- IRC Client: [sic](https://tools.suckless.org/sic)
+- Calendar: [quand](https://github.com/ratakor/quand)
+- RSS reader: [newsboat](https://newsboat.org/)
+- IRC client: [sic](https://tools.suckless.org/sic)
+- Mail client: [Claws Mail](https://www.claws-mail.org)
 - Wallpapers](https://git.ratakor.com/wallpapers.git/)
 
 See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/packages.aur) for a list of other programs I use.

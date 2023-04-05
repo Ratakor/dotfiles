@@ -141,6 +141,7 @@ fi      " "    # FILE
 *.img          " "
 *.part         "󰋔 "
 *.torrent      " "
+*.zig          " "
 
 # file names
 *gruntfile.coffee      " "

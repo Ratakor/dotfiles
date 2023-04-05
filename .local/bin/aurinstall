@@ -1,8 +1,11 @@
 #!/bin/sh
-# install package from AUR
+# install packages from the AUR
+# --update to reinstall all packages installed from the AUR
+# --noconfirm to remove the confirmation before reinstalling a package
 
 ROOTCMD="${ROOTCMD:-$(command -v doas || command -v sudo)}"
 CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/aur"
+CONFIRM=1
 
 install() {
 	git clone "https://aur.archlinux.org/$1.git" "$CACHE/$1"
@@ -24,8 +27,26 @@ main() {
 	trap 'rm -rf "$CACHE/*"; exit 1' INT HUP QUIT TERM
 	trap 'cleanup "$@"' EXIT
 
-	for package in "$@"; do
-		if pacman -Qq | grep -q -x "$package"; then
+	if [ "$1" = "--update" ]; then
+		printf "Do you want to update all your package installed from the AUR ?\n"
+		read -r CHOICE
+		case $CHOICE in
+		"y"|"Y"|"yes"|"YES"|"Yes")
+			packages=$(pacman -Qqm)
+			CONFIRM=0 ;;
+		*)
+			return 1;
+		esac
+	elif [ "$1" = "--noconfirm" ]; then
+		CONFIRM=0
+		shift
+		packages=$*
+	else
+		packages=$*
+	fi
+
+	for package in $packages; do
+		if pacman -Qq | grep -q -x "$package" && [ "$CONFIRM" -eq 1 ]; then
 			printf '%s is already installed\nDo you want to update it ? (Y/n) ' "$package"
 			read -r CHOICE
 			case $CHOICE in

@@ -6,6 +6,7 @@
 # directory based on the first chosen file, so that if I open the 15th image,
 # if I press next, it will go to the 16th etc. Autistic, I know, but this is
 # one of the reasons that sxiv is great for being able to read standard input.
+# ^ this is Luke's toughts and I approve them
 
 [ -z "$1" ] && echo "usage: rotdir regex 2>&1" && exit 1
 base="$(basename "$1")"

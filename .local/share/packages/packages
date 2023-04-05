@@ -16,6 +16,8 @@ opendoas
 git
 
 # packages
+micro
+pacman-contrib
 ungoogled-chromium
 lm_sensors-openrc
 pavucontrol
@@ -28,6 +30,7 @@ blender
 steam
 lutris
 monero-gui
+clang
 zsh
 openssh
 curl
@@ -54,7 +57,6 @@ ffmpegthumbnailer
 mediainfo
 neofetch
 yt-dlp
-tlp-openrc
 ntfs-3g
 p7zip
 termdown
@@ -63,7 +65,8 @@ xorg-server
 sx
 libx11
 libxft
-libxinerma
+libxinerama
+freetype2
 #hsetroot
 xwallpaper
 xclip
@@ -108,10 +111,25 @@ ytfzf
 #fzf
 openbsd-netcat
 w3m
-neomutt
-isync
-pass
+#neomutt
+#isync
+#pass
 #gsasl
 tcc
 nasm
 pypy3
+rustup
+btop
+dmenu-ratakor
+st-ratakor
+slock-ratakor
+sic
+quand
+clangbincc
+claws-mail
+zig
+drag-on
+pinentry-dmenu
+hunspell
+hunspell-en_us
+hunspell-fr

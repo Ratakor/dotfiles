@@ -1,5 +1,7 @@
 #!/bin/sh
+# menu for shutdown or lock
 # require nopass for poweroff and reboot
+
 QUERY=$(printf 'no\nlock\npoweroff\nreboot' | dmenu -i -sb '#ff5555' -p 'Shutdown?')
 ROOTCMD="${ROOTCMD:-$(command -v doas || command -v sudo)}"
 

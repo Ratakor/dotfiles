@@ -27,6 +27,7 @@ require("mason-lspconfig").setup({
 	'marksman',
 	'pyright',
         'rust_analyzer',
+	'zls'
     }
 })
 

@@ -1,6 +1,8 @@
 #!/bin/sh
 # helper for the music script
-# to force pause do: printf '{ "command": ["set_property", "pause", true] }\n' | socat - /tmp/mpvsocket 1> /dev/null
+# to force pause do:
+#printf '{ "command": ["set_property", "pause", true] }\n'\
+#	| socat - /tmp/mpvsocket 1> /dev/null
 
 [ $(pgrep music) ] 2> /dev/null &&
 	notify-send "There is no music playing" &&
@@ -22,11 +24,13 @@ stripvol() {
 	printf '%s\n' "${tmp%%.000000,\"request_id\":0,\"error\":\"success\"\}}"
 }
 
-
-getthumbnail() {
+getpath() {
 	path="$(strip "$(printf '{ "command": ["get_property", "path"] }\n'\
 		| socat - /tmp/mpvsocket 2> /dev/null)")"
+}
 
+getthumbnail() {
+	getpath
 	mkdir -p "$CACHE"
 	case $path in
 	*youtube.com*)
@@ -47,9 +51,7 @@ download() {
 }
 
 addtofav() {
-	path="$(strip "$(printf '{ "command": ["get_property", "path"] }\n'\
-		| socat - /tmp/mpvsocket 2> /dev/null)")"
-
+	getpath
 	case $path in
 	*youtube.com*)
 		download "$FAVDIR" "$path" ;;
@@ -81,9 +83,11 @@ cycle|*pause|*play)
 	printf 'stop\n' | socat - /tmp/mpvsocket
 	kill -43 "$(pidof dwmblocks)" ;;
 *download)
-	download "$DLDIR"\
-		"$(strip "$(printf '{ "command": ["get_property", "path"] }\n'\
-		| socat - /tmp/mpvsocket 2> /dev/null)")" ;;
+	getpath
+	download "$DLDIR" "$path" ;;
 *thumbnail)
 	getthumbnail && sxiv "$CACHE/thumbnail.jpg" ;;
+path)
+	getpath
+	printf '%s\n' "$path" ;;
 esac

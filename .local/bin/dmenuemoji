@@ -1,4 +1,5 @@
 #!/bin/sh
 # Get user selection via dmenu from emoji file.
+
 CHOSEN=$(cut -d ';' -f1 "$XDG_DATA_HOME/emoji" | dmenu -i -l 30 | sed "s/ .*//")
 [ -n "$CHOSEN" ] && printf '%s' "$CHOSEN" | xclip -selection clipboard

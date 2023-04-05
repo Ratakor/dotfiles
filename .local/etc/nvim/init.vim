@@ -37,6 +37,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } " fuzzy finder
 Plug 'preservim/nerdtree' " vs code be like
 Plug 'mbbill/undotree' " history visualizer
 Plug 'tpope/vim-commentary' " gc/gcc magic comment
+Plug 'ziglang/zig.vim'
 call plug#end()
 
 source $XDG_CONFIG_HOME/nvim/basics.vim
@@ -52,3 +53,6 @@ nnoremap <F2> :NERDTreeToggle<CR>
 
 " Undotree config
 nnoremap <F3> :UndotreeToggle<CR>
+
+" vim-commentary for zig
+autocmd FileType zig setlocal commentstring=//\ %s

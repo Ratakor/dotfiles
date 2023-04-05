@@ -1,4 +1,7 @@
 #!/bin/sh
+# chromium hardening flags
+# breaks heavy js website
+
 /usr/bin/chromium \
 	--block-new-web-contents \
 	--disable-background-networking \
@@ -17,8 +20,133 @@
 	--site-per-process \
 	--time-zone-for-testing=UTC \
 	--use-fake-device-for-media-stream \
-	--enable-features="BlockInsecurePrivateNetworkRequests,BlockInsecurePrivateNetworkRequestsForNavigations,BrowserDynamicCodeDisabled,DesktopScreenshots,DisableProcessReuse,ElementSuperRareData,EnableCsrssLockdown,EncryptedClientHello,ForceIsolationInfoFrameOriginToTopLevelFrame,GpuAppContainer,ImprovedCookieControls,IntensiveWakeUpThrottling:grace_period_seconds/10,IsolateOrigins,IsolatePrerenders,IsolateSandboxedIframes,MinimizeAudioProcessingForUnusedOutput,NetworkServiceSandbox,NetworkServiceCodeIntegrity,OpaqueResponseBlockingV01,OriginIsolationHeader,PartitionConnectionsByNetworkIsolationKey,PartitionDomainReliabilityByNetworkIsolationKey,PartitionExpectCTStateByNetworkIsolationKey,PartitionHttpServerPropertiesByNetworkIsolationKey,PartitionNelAndReportingByNetworkIsolationKey,PartitionSSLSessionsByNetworkIsolationKey,PartitionedCookies,PostQuantumCECPQ2,PrefetchPrivacyChanges,ReduceUserAgent,ReducedReferrerGranularity,RendererAppContainer,RestrictGamepadAccess,SandboxExternalProtocolBlocked,ScopeMemoryCachePerContext,SplitAuthCacheByNetworkIsolationKey,SplitCacheByIncludeCredentials,SplitCacheByNetworkIsolationKey,SplitHostCacheByNetworkIsolationKey,StrictOriginIsolation,SubframeShutdownDelay,SuppressDifferentOriginSubframeJSDialogs,ThirdPartyStoragePartitioning,ThrottleForegroundTimers,TurnOffStreamingMediaCachingAlways,TurnOffStreamingMediaCachingOnBattery,WinSboxDisableExtensionPoint,WinSboxDisableKtmComponent" \
-	--disable-features="AcceptCHFrame,AdInterestGroupAPI,AllowClientHintsToThirdParty,AllowURNsInIframes,AnonymousIframeOriginTrial,AutofillEnableAccountWalletStorage,AutofillServerCommunication,BrowsingTopics,ClearCrossSiteCrossBrowsingContextGroupWindowName,ClientHintThirdPartyDelegation,ClientHintsDPR,ClientHintsDPR_DEPRECATED,ClientHintsDeviceMemory,ClientHintsDeviceMemory_DEPRECATED,ClientHintsMetaHTTPEquivAcceptCH,ClientHintsMetaNameAcceptCH,ClientHintsResourceWidth,ClientHintsResourceWidth_DEPRECATED,ClientHintsViewportWidth,ClientHintsViewportWidth_DEPRECATED,ComputePressure,ContextMenuPerformanceInfoAndRemoteHintFetching,ConversionMeasurement,CookieDomainRejectNonASCII,CopyLinkToText,CrashReporting,CriticalClientHint,CrostiniAdditionalEnterpriseReporting,CssSelectorFragmentAnchor,DocumentReporting,EnableStructuredMetrics,EnterpriseRealtimeExtensionRequest,ExpectCTReporting,EnableTLS13EarlyData,FedCm,Fledge,FontAccess,GreaseUACH,IdleDetection,InterestGroupStorage,Journeys,LensStandalone,MediaDrmPreprovisioning,MediaEngagementBypassAutoplayPolicies,NavigationRequestPreconnect,NetworkTimeServiceQuerying,NotificationTriggers,OmniboxTriggerForNoStatePrefetch,OptimizationHints,OptimizationHintsFetching,OptimizationHintsFetchingAnonymousDataConsent,OptimizationHintsFieldTrials,Parakeet,Prerender2,PrefersColorSchemeClientHintHeader,PreloadMediaEngagementData,Reporting,RetailCoupons,SCTAuditing,SegmentationPlatform,SignedExchangeReportingForDistributors,SignedHTTPExchange,SpeculationRulesPrefetchProxy,SubresourceWebBundles,TabMetricsLogging,TFLiteLanguageDetectionEnabled,TextFragmentAnchor,SafeBrowsingBetterTelemetryAcrossReports,UserAgentClientHint,UserAgentClientHintFullVersionList,UsernameFirstFlow,UsernameFirstFlowFilling,UsernameFirstFlowFallbackCrowdsourcing,ViewportHeightClientHintHeader,WebNFC,WebOTP,WebSQLInThirdPartyContextEnabled,WebXR,WinrtGeolocationImplementation" \
+	--enable-features="BlockInsecurePrivateNetworkRequests,\
+	                   BlockInsecurePrivateNetworkRequestsForNavigations,\
+	                   BrowserDynamicCodeDisabled,\
+	                   DesktopScreenshots,\
+	                   DisableProcessReuse,\
+	                   ElementSuperRareData,\
+	                   EnableCsrssLockdown,\
+	                   EncryptedClientHello,\
+	                   ForceIsolationInfoFrameOriginToTopLevelFrame,\
+	                   GpuAppContainer,\
+	                   ImprovedCookieControls,\
+	                   IntensiveWakeUpThrottling:grace_period_seconds/10,\
+	                   IsolateOrigins,\
+	                   IsolatePrerenders,\
+	                   IsolateSandboxedIframes,\
+	                   MinimizeAudioProcessingForUnusedOutput,\
+	                   NetworkServiceSandbox,\
+	                   NetworkServiceCodeIntegrity,\
+	                   OpaqueResponseBlockingV01,\
+	                   OriginIsolationHeader,\
+	                   PartitionConnectionsByNetworkIsolationKey,\
+	                   PartitionDomainReliabilityByNetworkIsolationKey,\
+	                   PartitionExpectCTStateByNetworkIsolationKey,\
+	                   PartitionHttpServerPropertiesByNetworkIsolationKey,\
+	                   PartitionNelAndReportingByNetworkIsolationKey,\
+	                   PartitionSSLSessionsByNetworkIsolationKey,\
+	                   PartitionedCookies,\
+	                   PostQuantumCECPQ2,\
+	                   PrefetchPrivacyChanges,\
+	                   ReduceUserAgent,\
+	                   ReducedReferrerGranularity,\
+	                   RendererAppContainer,\
+	                   RestrictGamepadAccess,\
+	                   SandboxExternalProtocolBlocked,\
+	                   ScopeMemoryCachePerContext,\
+	                   SplitAuthCacheByNetworkIsolationKey,\
+	                   SplitCacheByIncludeCredentials,\
+	                   SplitCacheByNetworkIsolationKey,\
+	                   SplitHostCacheByNetworkIsolationKey,\
+	                   StrictOriginIsolation,\
+	                   SubframeShutdownDelay,\
+	                   SuppressDifferentOriginSubframeJSDialogs,\
+	                   ThirdPartyStoragePartitioning,\
+	                   ThrottleForegroundTimers,\
+	                   TurnOffStreamingMediaCachingAlways,\
+	                   TurnOffStreamingMediaCachingOnBattery,\
+	                   WinSboxDisableExtensionPoint,\
+	                   WinSboxDisableKtmComponent" \
+	--disable-features="AcceptCHFrame,\
+	                    AdInterestGroupAPI,\
+	                    AllowClientHintsToThirdParty,\
+	                    AllowURNsInIframes,\
+	                    AnonymousIframeOriginTrial,\
+	                    AutofillEnableAccountWalletStorage,\
+	                    AutofillServerCommunication,\
+	                    BrowsingTopics,\
+	                    ClearCrossSiteCrossBrowsingContextGroupWindowName,\
+	                    ClientHintThirdPartyDelegation,\
+	                    ClientHintsDPR,\
+	                    ClientHintsDPR_DEPRECATED,\
+	                    ClientHintsDeviceMemory,\
+	                    ClientHintsDeviceMemory_DEPRECATED,\
+	                    ClientHintsMetaHTTPEquivAcceptCH,\
+	                    ClientHintsMetaNameAcceptCH,\
+	                    ClientHintsResourceWidth,\
+	                    ClientHintsResourceWidth_DEPRECATED,\
+	                    ClientHintsViewportWidth,\
+	                    ClientHintsViewportWidth_DEPRECATED,\
+	                    ComputePressure,\
+	                    ContextMenuPerformanceInfoAndRemoteHintFetching,\
+	                    ConversionMeasurement,\
+	                    CookieDomainRejectNonASCII,\
+	                    CopyLinkToText,\
+	                    CrashReporting,\
+	                    CriticalClientHint,\
+	                    CrostiniAdditionalEnterpriseReporting,\
+	                    CssSelectorFragmentAnchor,\
+	                    DocumentReporting,\
+	                    EnableStructuredMetrics,\
+	                    EnterpriseRealtimeExtensionRequest,\
+	                    ExpectCTReporting,\
+	                    EnableTLS13EarlyData,\
+	                    FedCm,\
+	                    Fledge,\
+	                    FontAccess,\
+	                    GreaseUACH,\
+	                    IdleDetection,\
+	                    InterestGroupStorage,\
+	                    Journeys,\
+	                    LensStandalone,\
+	                    MediaDrmPreprovisioning,\
+	                    MediaEngagementBypassAutoplayPolicies,\
+	                    NavigationRequestPreconnect,\
+	                    NetworkTimeServiceQuerying,\
+	                    NotificationTriggers,\
+	                    OmniboxTriggerForNoStatePrefetch,\
+	                    OptimizationHints,\
+	                    OptimizationHintsFetching,\
+	                    OptimizationHintsFetchingAnonymousDataConsent,\
+	                    OptimizationHintsFieldTrials,\
+	                    Parakeet,\
+	                    Prerender2,\
+	                    PrefersColorSchemeClientHintHeader,\
+	                    PreloadMediaEngagementData,\
+	                    Reporting,\
+	                    RetailCoupons,\
+	                    SCTAuditing,\
+	                    SegmentationPlatform,\
+	                    SignedExchangeReportingForDistributors,\
+	                    SignedHTTPExchange,\
+	                    SpeculationRulesPrefetchProxy,\
+	                    SubresourceWebBundles,\
+	                    TabMetricsLogging,\
+	                    TFLiteLanguageDetectionEnabled,\
+	                    TextFragmentAnchor,\
+	                    SafeBrowsingBetterTelemetryAcrossReports,\
+	                    UserAgentClientHint,\
+	                    UserAgentClientHintFullVersionList,\
+	                    UsernameFirstFlow,\
+	                    UsernameFirstFlowFilling,\
+	                    UsernameFirstFlowFallbackCrowdsourcing,\
+	                    ViewportHeightClientHintHeader,\
+	                    WebNFC,\
+	                    WebOTP,\
+	                    WebSQLInThirdPartyContextEnabled,\
+	                    WebXR,\
+	                    WinrtGeolocationImplementation" \
 	--connectivity-check-url=0.0.0.0 \
 	--crash-server-url=0.0.0.0 \
 	--gcm-checkin-url=0.0.0.0 \
@@ -36,12 +164,10 @@
 	--cipher-suite-blacklist="0xc013,0xc014,0x009c,0x009d,0x002f,0x0035" \
 	--js-flags=\
 	--jitless \
-	--blink-settings="dnsPrefetchingEnabled=false,preferredColorScheme=1,strictMixedContentChecking=true,strictMixedContentCheckingForPlugin=true,strictlyBlockBlockableMixedContent=true" \
+	--blink-settings="dnsPrefetchingEnabled=false,\
+	                  preferredColorScheme=1,\
+	                  strictMixedContentChecking=true,\
+	                  strictMixedContentCheckingForPlugin=true,\
+	                  strictlyBlockBlockableMixedContent=true" \
 	--extension-content-verification=enforce_strict \
 	--isolation-by-default "$@"
-	#--disable-blink-features="CrossOriginOpenerPolicyReporting,DirectSockets,HandwritingRecognition,IdleDetection" \
-	#--gaia-url=0.0.0.0 \
-	#--lso-url=0.0.0.0 \
-	#--google-apis-url=0.0.0.0 \
-	#--oauth-account-manager-url=0.0.0.0 \
-	#--extensions-install-verification=enforce \
