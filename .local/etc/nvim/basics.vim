@@ -2,7 +2,7 @@
 set nu rnu
 
 " Add a column at 80 characters
-set colorcolumn=80
+set cc=80
 "let &colorcolumn = join(range(81,999), ',')
 set tw=79
 set wrap

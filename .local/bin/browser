@@ -170,4 +170,5 @@
 	                  strictMixedContentCheckingForPlugin=true,\
 	                  strictlyBlockBlockableMixedContent=true" \
 	--extension-content-verification=enforce_strict \
+	--no-default-browser-check \
 	--isolation-by-default "$@"

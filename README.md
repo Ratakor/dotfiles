@@ -3,12 +3,12 @@
 ![screenshot](https://ratakor.com/images/setup/waw.png)
 
 ## Installation
-I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe) so you'll need to tweak the Makefile if you don't. Also if you're not using Parabola OpenRC you will probably need to edit .local/share/packages/packages according to your distro.
+I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe) so you'll need to tweak the Makefile if you don't. Also if you're not using Parabola OpenRC you will probably need to edit .local/share/packages according to your distro.
 
 DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're doing.
 
 	$ git clone https://git.ratakor.com/dotfiles.git
-	$ cd config
+	$ cd dotfiles
 	$ make
 
 ## Softwares
@@ -16,7 +16,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 ### Graphical environment
 
 - Window manager: [dwm](https://dwm.suckless.org)
-- Compositor: [picom](https://github.com/yshui/picom), use [xcompmgr](https://github.com/freedesktop/xcompmgr) if you experience performance issues
+- Compositor: [picom](https://github.com/yshui/picom)
 - Bar: [dwmblocks](https://github.com/torrinfail/dwmblocks)
 - Terminal emulator: [st](https://st.suckless.org/)
 - Program launcher: [dmenu](https://tools.suckless.org/dmenu)
@@ -47,7 +47,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Mail client: [Claws Mail](https://www.claws-mail.org)
 - [Wallpapers](https://git.ratakor.com/wallpapers.git/)
 
-See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/packages.aur) for a list of other programs I use.
+See [packages](.local/share/packages) for a list and small description of other programs I use.
 
 ## TODO
 - add DAP for debugging in nvim

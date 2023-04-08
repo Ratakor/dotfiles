@@ -7,10 +7,8 @@ packages:
 	@curl -sLO https://raw.githubusercontent.com/Ratakor/ratakor-repo/master/setup
 	@chmod a+x setup
 	${ROOTCMD} ./setup # add ratakor repository
-	${ROOTCMD} pacman -Syu --noconfirm --needed $(shell sed 's/#.*//' .local/share/packages/packages)
-	-${ROOTCMD} pacman -Rdd your-freedom
-	@echo Installing package from the AUR
-	@.local/bin/aurinstall $(shell sed 's/#.*//' .local/share/packages/packages.aur)
+	${ROOTCMD} pacman -Syu --noconfirm --needed $(shell sed 's/#.*//' .local/share/packages)
+	.local/bin/aurinstall ungoogled-chromium-xdg-bin
 	${ROOTCMD} mandb 2> /dev/null # Updating man database, it may take some time
 	chsh -s /bin/zsh # change your shell to zsh
 	su -c 'printf "export ZDOTDIR=\"\$$HOME/.local/etc/zsh\"\n" > /etc/zsh/zshenv'

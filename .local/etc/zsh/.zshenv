@@ -45,3 +45,4 @@ export W3M_DIR="$XDG_STATE_HOME/w3m"
 umask 0077
 export GPG_TTY=$(tty)
 export DMENUHP="browser,mail,chromium,anki"
+export DOTNET_CLI_TELEMETRY_OPTOUT="true"

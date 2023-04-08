@@ -1,6 +1,6 @@
 #!/bin/sh
 
-killall picom pipewire wireplumber xbanish gammastep dwmblocks 1>/dev/null 2>&1
+killall picom pipewire wireplumber xbanish redshift dwmblocks 1>/dev/null 2>&1
 
 if [ "$(xrandr | awk '/DP-2/ {print $2}')" = 'connected' ]; then
 	xrandr --output LVDS-1 --off
@@ -18,7 +18,7 @@ while true; do
 done &
 pipewire &
 xbanish &
-gammastep &
+redshift &
 sleep 1s; dwmblocks &
 
 exec dwm
