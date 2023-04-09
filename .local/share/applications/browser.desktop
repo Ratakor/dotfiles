@@ -1,6 +1,4 @@
 [Desktop Entry]
 Type=Application
-Name=Ungoogled Chromium
-Exec=ungoogled-chromium %U
-#Terminal=false
-#MimeType=text/html;text/xml;application/xhtml_xml;
+Name=Browser
+Exec=browser %u

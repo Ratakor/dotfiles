@@ -19,4 +19,4 @@ gammastep &
 sleep 1s; dwmblocks &
 #st -e "monerod --data-dir /storage/monero" &
 
-exec dwm #> /tmp/dwm.log 2>&1
+exec dwm

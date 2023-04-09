@@ -1,6 +1,6 @@
 #!/bin/sh
 # search web, arch wiki, aur, youtube or man pages with dmenu
-# websearch dependencies : shuf, curl
+# websearch dependencies : shuf, curl, /tmp needs to be temporary
 # wiki dependency: arch-wiki-docs
 # youtube dependency: ytfzf
 # man dependencies: man-db, zathura
@@ -8,18 +8,21 @@
 set -e
 
 web() {
+	NETWORK=clearnet # clearnet, tor or i2p
 	if [ ! -f "/tmp/instances" ]; then
 		curl -s "https://librex.ratakor.com/instances.json" > /tmp/instances.json ||
 			notify-send "No internet connection"
 
 		strip() {
-			tmp="${1##"              \"clearnet\": \""}"
+			tmp="${1##"              \"$NETWORK\": \""}"
 			printf '%s\n' "${tmp%%"\","}"
 		}
 
 		while IFS= read -r line || [ -n "$line" ]; do
 			case $line in
-			*"https"*)
+			*"$NETWORK"*null,)
+				continue ;;
+			*"$NETWORK"*)
 				strip "$line" >> /tmp/instances ;;
 			esac
 		done < /tmp/instances.json

@@ -38,8 +38,8 @@ export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 
-# Hardened umask
+# misc
 umask 0077
-
-# fix gpg
 export GPG_TTY=$(tty)
+export DMENUHP="browser,chromium,anki,steam,monero-wallet-gui,unityhub"
+export DOTNET_CLI_TELEMETRY_OPTOUT="true"

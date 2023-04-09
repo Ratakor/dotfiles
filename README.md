@@ -11,7 +11,7 @@ I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670b7e11
 DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're doing.
 
 	$ git clone -b artix https://git.ratakor.com/dotfiles.git
-	$ cd config
+	$ cd dotfiles
 	$ make
 	$ make install
 
@@ -20,7 +20,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 ### Graphical environment
 
 - Window manager: [dwm](https://dwm.suckless.org)
-- Compositor: [picom](https://github.com/yshui/picom), use [xcompmgr](https://github.com/freedesktop/xcompmgr) if you experience performance issues
+- Compositor: [picom](https://github.com/yshui/picom)
 - Bar: [dwmblocks](https://github.com/torrinfail/dwmblocks)
 - Terminal emulator: [st](https://st.suckless.org/)
 - Program launcher: [dmenu](https://tools.suckless.org/dmenu)

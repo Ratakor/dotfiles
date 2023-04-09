@@ -1,36 +1,8 @@
 set updatetime=1000
 set signcolumn=yes
+let g:completion_enable_auto_popup = 1
 
 lua << EOF
-require("mason").setup({
-    update_all_packages = true,
-
-    ui = {
-        icons = {
-            package_installed = " ",
-	    package_pending = " ",
-	    package_uninstalled = " ﮊ",
-        }
-    }
-})
-
-require("mason-lspconfig").setup({
-    -- list of available LSP servers:
-    -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-    ensure_installed = {
-	'bashls',
-	'clangd',
-	'csharp_ls',
-	'cssls',
-	'html',
-	'texlab',
-	'marksman',
-	'pyright',
-        'rust_analyzer',
-	'zls'
-    }
-})
-
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
@@ -54,14 +26,16 @@ local lsp_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-require("mason-lspconfig").setup_handlers {
-    function (server_name)
-        require("lspconfig")[server_name].setup ({
-	    on_attach = lsp_attach,
-	    capabilities = lsp_capabilities,
-	})
-    end,
-}
+-- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+local servers = {'zls', 'clangd', 'bashls', 'rust_analyzer', 'texlab', 'gopls',
+                 'pyright', 'lua_ls', 'cssls', 'html', 'csharp_ls'}
+
+for _, lsp in ipairs(servers) do
+    require("lspconfig")[lsp].setup ({
+        on_attach = lsp_attach,
+        capabilities = lsp_capabilities,
+    })
+end
 
 -- required by cmp for using tab to choose completion
 local has_words_before = function()
@@ -121,6 +95,7 @@ cmp.setup({
         { name = 'calc' },
         { name = 'luasnip' },
         { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'path' },
         { name = 'treesitter' },
     },
