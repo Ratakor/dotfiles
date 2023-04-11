@@ -26,7 +26,8 @@ dwmblocks-ratakor # status bar
 st-ratakor # terminal emulator
 slock-ratakor # screen locker
 ratakor-repo/sic # IRC client
-randhost # set a random hostname and disable blutooth (OpenRC service)
+randhost # set a random hostname (OpenRC service)
+blocktooth # disablue bluetooth with rfkill (OpenRC service)
 networkmanager-hardened # randomized MAC address
 quand # calendar app like when
 clangbincc # a pacman hook to symlink clang to cc when there is a gcc update
@@ -60,7 +61,7 @@ gitui # tui for git (good if you don't remember what change you made)
 glow # markdown renderer
 btop # Process viewer
 
-# dev
+## dev
 #texlive-most # LaTeX (big package)
 #pandoc-cli # I only use that to convert markdown to latex to pdf (big package)
 #dotnet-sdk # C# for lsp do dotnet tool install -g csharp-ls
@@ -105,9 +106,7 @@ zathura-pdf-mupdf
 dunst # notification daemon
 libnotify # dunst dependency
 claws-mail # mail client, use nonprism repo to remove libgdata support
-hunspell # dictionary for claws
-hunspell-en_us
-hunspell-fr
+gajim # XMPP client
 
 ## misc
 keepassxc # password manager
@@ -136,3 +135,9 @@ shellcheck
 #nyxt # browser for lisp people
 parabola-wiki-docs
 openbsd-netcat
+noto-fonts-cjk
+hunspell # dictionary for claws
+hunspell-en_us
+hunspell-fr
+python-axolotl # gajim dependency
+python-gnupg # gajim dependency

@@ -9,7 +9,7 @@ else
 fi
 
 setxkbmap fr us
-xrandr --dpi 96
+xrandr --dpi 100
 #hsetroot -cover "$XDG_DATA_HOME/wallpapers/omori/$(date '+%B').png"
 
 while true; do

@@ -4,28 +4,36 @@ ROOTCMD = $(shell command -v doas || command -v sudo)
 all: packages config scripts wallpapers
 
 packages:
-	@curl -sLO https://raw.githubusercontent.com/Ratakor/ratakor-repo/master/setup
-	@chmod a+x setup
-	${ROOTCMD} ./setup # add ratakor repository
-	${ROOTCMD} pacman -Syu --noconfirm --needed $(shell sed 's/#.*//' .local/share/packages)
-	.local/bin/aurinstall ungoogled-chromium-xdg-bin
-	${ROOTCMD} mandb 2> /dev/null # Updating man database, it may take some time
-	chsh -s /bin/zsh # change your shell to zsh
-	su -c 'printf "export ZDOTDIR=\"\$$HOME/.local/etc/zsh\"\n" > /etc/zsh/zshenv'
+	@printf '\033[34;1mAdd ratakor repository\033[m\n'
+	@curl -s https://raw.githubusercontent.com/Ratakor/ratakor-repo/master/setup | ${ROOTCMD} sh
+	@printf '\033[34;1mInstall all packages\033[m\n'
+	${ROOTCMD} pacman -Syu --noconfirm $(shell sed 's/#.*//' .local/share/packages)
+	@printf '\033[34;1mInstall Ungoogled Chromium from the AUR\033[m\n'
+	@.local/bin/aurinstall ungoogled-chromium-xdg-bin
+	@printf '\033[34;1mUpdate man database, it may take some time\033[m\n'
+	@${ROOTCMD} mandb 2>/dev/null 1>&2
+	@printf '\033[34;1mChange %s shell to zsh\033[m\n' "$$USER"
+	@chsh -s /bin/zsh >/dev/null
+	@printf '\033[34;1mChange ZDOTDIR to not have a symlink in $$HOME\033[m\n'
+	@${ROOTCMD} sh -c 'printf "export ZDOTDIR=\"\$$HOME/.local/etc/zsh\"\n" > /etc/zsh/zshenv'
 
 config:
-	mkdir -p ${PREFIX}/etc
-	cp -r .local/etc/* ${PREFIX}/etc/
-	mkdir -p ${PREFIX}/share
-	cp -r .local/share/* ${PREFIX}/share/
+	@printf '\033[34;1mCopy config to %s\033[m\n' "${PREFIX}/etc"
+	@mkdir -p ${PREFIX}/etc
+	@cp -r .local/etc/* ${PREFIX}/etc/
+	@printf '\033[34;1mCopy data to %s\033[m\n' "${PREFIX}/share"
+	@mkdir -p ${PREFIX}/share
+	@cp -r .local/share/* ${PREFIX}/share/
 
 scripts:
-	mkdir -p ${PREFIX}/bin
-	cp -r .local/bin/* ${PREFIX}/bin/
+	@printf '\033[34;1mCopy scripts to %s\033[m\n' "${PREFIX}/bin"
+	@mkdir -p ${PREFIX}/bin
+	@cp -r .local/bin/* ${PREFIX}/bin/
 
 wallpapers:
-	[ -d "${PREFIX}/share/wallpapers" ] &&\
-		cd ${PREFIX}/share/wallpapers && git pull ||\
+	@printf '\033[34;1mDownloading wallpapers\033[m\n'
+	@[ -d "${PREFIX}/share/wallpapers" ] &&\
+		printf '\033[33;1mWallpaper folder already exists\033[m\n'||\
 		git clone https://github.com/ratakor/wallpapers ${PREFIX}/share/wallpapers
 
 anki:
@@ -35,4 +43,4 @@ anki:
 	cd anki-*-linux-qt6 && sed -i 's/\/usr\//\$$HOME\/./' install.sh && ./install.sh
 	rm -rf anki-*
 
-.PHONY: all packages config scripts wallpapers clone install anki
+.PHONY: all packages config scripts wallpapers anki

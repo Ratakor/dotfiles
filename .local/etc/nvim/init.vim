@@ -14,6 +14,8 @@ Plug 'nvim-lualine/lualine.nvim' " bottom bar
 Plug 'kyazdani42/nvim-web-devicons' " fancy icons
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " syntax color
 Plug 'p00f/nvim-ts-rainbow' " funny brackets
+Plug 'lukas-reineke/indent-blankline.nvim' " funny indentation
+Plug 'm-demare/hlargs.nvim' " highlight arguments
 " LSP and Autocompletion Engine
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
@@ -37,6 +39,7 @@ Plug 'preservim/nerdtree' " vs code be like
 Plug 'mbbill/undotree' " history visualizer
 Plug 'tpope/vim-commentary' " gc/gcc magic comment
 Plug 'ziglang/zig.vim'
+Plug 'petertriho/nvim-scrollbar'
 call plug#end()
 
 source $XDG_CONFIG_HOME/nvim/basics.vim

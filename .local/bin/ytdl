@@ -30,4 +30,6 @@ p)
 	-P "$MUSICDIR/$NAME" "$2" &&
 	notify-send "Playlist downloaded" ||
 		(notify-send "Error: No internet connection" && exit 1) ;;
+*)
+	exit 1 ;;
 esac
