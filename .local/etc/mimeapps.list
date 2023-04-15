@@ -18,6 +18,7 @@ x-scheme-handler/https=browser.desktop
 x-scheme-handler/http=browser.desktop
 x-scheme-handler/ircs=irc.desktop
 x-scheme-handler/irc=irc.desktop
+x-scheme-handler/git=git.desktop
 x-scheme-handler/magnet=torrent.desktop;
 application/x-bittorrent=torrent.desktop;
 # anki.desktop is automatically created by anki

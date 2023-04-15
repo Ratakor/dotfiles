@@ -8,7 +8,8 @@ endif
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 " Appearance
-Plug 'Ratakor/dracula.nvim' " dracula theme
+Plug 'Mofiqul/dracula.nvim' " dracula theme
+Plug 'ellisonleao/gruvbox.nvim' " gruvbox theme
 Plug 'mhinz/vim-startify' " start screen
 Plug 'nvim-lualine/lualine.nvim' " bottom bar
 Plug 'kyazdani42/nvim-web-devicons' " fancy icons
@@ -39,7 +40,9 @@ Plug 'preservim/nerdtree' " vs code be like
 Plug 'mbbill/undotree' " history visualizer
 Plug 'tpope/vim-commentary' " gc/gcc magic comment
 Plug 'ziglang/zig.vim'
+Plug 'kovetskiy/sxhkd-vim'
 Plug 'petertriho/nvim-scrollbar'
+Plug 'andrewferrier/debugprint.nvim'
 call plug#end()
 
 source $XDG_CONFIG_HOME/nvim/basics.vim
@@ -58,3 +61,7 @@ nnoremap <F3> :UndotreeToggle<CR>
 
 " vim-commentary for zig
 autocmd FileType zig setlocal commentstring=//\ %s
+
+lua << EOF
+require("debugprint").setup()
+EOF

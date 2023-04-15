@@ -1,6 +1,6 @@
 #!/bin/sh
 
-killall picom pipewire wireplumber xbanish redshift dwmblocks 1>/dev/null 2>&1
+killall picom scron sxhkd pipewire wireplumber xbanish redshift dwmblocks
 
 if [ "$(xrandr | awk '/DP-2/ {print $2}')" = 'connected' ]; then
 	xrandr --output LVDS-1 --off
@@ -10,12 +10,12 @@ fi
 
 setxkbmap fr us
 xrandr --dpi 100
-#hsetroot -cover "$XDG_DATA_HOME/wallpapers/omori/$(date '+%B').png"
+randwp
+scron -f "$XDG_CONFIG_HOME/crontab"
+[ -f "$XDG_STATE_HOME/theme" ] &&
+	xrdb "$XDG_CONFIG_HOME/sx/$(cat "$XDG_STATE_HOME/theme")"
 
-while true; do
-	randwp
-	sleep 30m
-done &
+sxhkd &
 pipewire &
 xbanish &
 redshift &

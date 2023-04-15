@@ -1,0 +1,34 @@
+super + Return
+	"$TERMINAL"
+super + d
+	dmenu_run -hp "browser,mail,chromium"
+XF86ScreenSaver
+	slock & xset dpms force off
+XF86Battery
+	battery
+Print
+	screenshot
+{super + equal, XF86AudioRaiseVolume}
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+; kill -44 $(pidof dwmblocks)
+{super + minus, XF86AudioLowerVolume}
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-; kill -44 $(pidof dwmblocks)
+XF86Launch1
+	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)
+F6
+	wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle;  kill -45 $(pidof dwmblocks)
+{F7,super + n,super + shift + n}
+	"$TERMINAL" -e {dmenurecord,lfub "$XDG_DATA_HOME/notes",newsboat}
+super + {m, shift + m}
+	{music,musiccmd}
+XF86Audio{Prev,Next,Play,Stop}
+	musiccmd {prev,next,cycle,stop}
+super + {u,shift + u}
+	{dmenuhandler,linkhandler} "$(xclip -o)"
+super + {shift + h,s,a,y,w,e}
+	dmenusearch {man,web,aur,youtube,wiki,emoji}
+super + shift + w
+	dmenuoff
+#button2
+#	plumb "$(xclip -o -sel)"
+F8
+	themeswap

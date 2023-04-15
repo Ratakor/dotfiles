@@ -86,7 +86,7 @@ cycle|*pause|*play)
 	getpath
 	download "$DLDIR" "$path" ;;
 *thumbnail)
-	getthumbnail && sxiv "$CACHE/thumbnail.jpg" ;;
+	getthumbnail && nsxiv "$CACHE/thumbnail.jpg" ;;
 path)
 	getpath
 	printf '%s\n' "$path" ;;

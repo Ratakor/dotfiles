@@ -16,8 +16,7 @@ m)
 	mkdir -p "$MUSICDIR/download"
 	notify-send "Music download started"
 	yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3\
-	--postprocessor-args \"-ar 44100\" -o '%(title)s [%(id)s].%(ext)s'\
-	-P "$MUSICDIR/download" "$2" &&
+	-o '%(title)s [%(id)s].%(ext)s' -P "$MUSICDIR/download" "$2" &&
 	notify-send "Music downloaded" ||
 		(notify-send "Error: No internet connection" && exit 1) ;;
 p)
@@ -25,7 +24,6 @@ p)
 	mkdir -p "$MUSICDIR/$NAME"
 	notify-send "Playlist download started"
 	yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3\
-	--postprocessor-args \"-ar 44100\"\
 	-o '%(playlist_index)s - %(title)s [%(id)s].%(ext)s'\
 	-P "$MUSICDIR/$NAME" "$2" &&
 	notify-send "Playlist downloaded" ||

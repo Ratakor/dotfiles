@@ -28,7 +28,7 @@ main() {
 	trap 'cleanup "$@"' EXIT
 
 	if [ "$1" = "--update" ]; then
-		printf "Do you want to update all your package installed from the AUR ?\n"
+		printf "Do you want to update all your package installed from the AUR ? (this is probably not a good idea)\n"
 		read -r CHOICE
 		case $CHOICE in
 		"y"|"Y"|"yes"|"YES"|"Yes")

@@ -1,5 +1,5 @@
 #!/bin/sh
-# search web, parabola wiki, aur, youtube or man pages with dmenu
+# search web, parabola wiki, aur, youtube, man pages or emoji with dmenu
 # websearch dependencies : shuf, curl, /tmp needs to be temporary
 # wiki dependency: parabola-wiki-docs
 # youtube dependency: ytfzf
@@ -63,8 +63,17 @@ manpdf() {
 	[ -n "$INPUT" ] && /usr/bin/man -Tpdf "$INPUT" | zathura -
 }
 
+emoji() {
+	CHOSEN=$(cut -d ';' -f1 "$XDG_DATA_HOME/emoji" | dmenu -i -l 30 | sed "s/ .*//")
+
+	[ -z "$CHOSEN" ] && return 1
+
+	printf '%s' "$CHOSEN" | xclip -selection clipboard
+	notify-send "'$CHOSEN' copied to clipboard."
+}
+
 main() {
-	case ${1:-$(printf 'web\nwiki\naur\nyoutube\nman' | dmenu -i)} in
+	case ${1:-$(printf 'web\nwiki\naur\nyoutube\nman\nemoji' | dmenu -i)} in
 		web)
 			web ;;
 		wiki)
@@ -76,6 +85,9 @@ main() {
 			return ;;
 		man)
 			manpdf "$2"
+			return ;;
+		emoji)
+			emoji
 			return ;;
 		*)
 			return 1 ;;

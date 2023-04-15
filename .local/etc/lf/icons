@@ -283,6 +283,7 @@ fi      " "    # FILE
 *.xwd   " "
 *.cgm   " "
 *.emf   " "
+*.ff    " "
 
 # video formats
 *.webm  " "

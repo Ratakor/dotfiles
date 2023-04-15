@@ -7,9 +7,7 @@ packages:
 	@printf '\033[34;1mAdd ratakor repository\033[m\n'
 	@curl -s https://raw.githubusercontent.com/Ratakor/ratakor-repo/master/setup | ${ROOTCMD} sh
 	@printf '\033[34;1mInstall all packages\033[m\n'
-	${ROOTCMD} pacman -Syu --noconfirm $(shell sed 's/#.*//' .local/share/packages)
-	@printf '\033[34;1mInstall Ungoogled Chromium from the AUR\033[m\n'
-	@.local/bin/aurinstall ungoogled-chromium-xdg-bin
+	@yes | LC_ALL=C ${ROOTCMD} pacman -Syu --needed $(shell sed 's/#.*//' .local/share/packages)
 	@printf '\033[34;1mUpdate man database, it may take some time\033[m\n'
 	@${ROOTCMD} mandb 2>/dev/null 1>&2
 	@printf '\033[34;1mChange %s shell to zsh\033[m\n' "$$USER"
