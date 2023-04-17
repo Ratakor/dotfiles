@@ -1,0 +1,180 @@
+#!/bin/sh
+# plumber 🪠
+# Author: Ratakor <ratakor@disroot.org>
+# dependencies: xdo, xclip or xsel, default programs
+# optional dependencies: herbe and dmenusearch web
+# shellcheck disable=SC2086
+
+# default programs
+WEB="$BROWSER" # xdg-open is used instead
+TEXT="$TERMINAL -e $EDITOR"
+VIDEO="mpv --ytdl-format=22 --loop"
+AUDIO="music"
+PIC="nsxiv -q -a -s w"
+DOC="zathura"
+DIR="$TERMINAL -e lfub"
+CD="st -d"
+
+openlink() {
+	case "$1" in
+	*.mkv|*.webm|*.mp4|*youtube.com/watch*|*youtube.com/playlist*|*youtu.be*|*inv*/playlist*|*inv*/watch*)
+		setsid -f $VIDEO "$1" >/dev/null 2>&1 ;;
+	*.mp3|*.flac|*.opus|*mp3?source*|*.ogg|*.wav)
+		setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
+	*.png|*.jpg|*.jpeg|*.gif|*.webp)
+		file=$(printf '%s' "$1" | sed "s/.*\///;s/%20/ /g")
+		curl -sL "$1" > "/tmp/$file" &&
+			$PIC "/tmp/$file" >/dev/null 2>&1 & ;;
+	*.pdf|*.ps|*.cbz|*.cbr|*.djvu|*.epub)
+		file=$(printf '%s' "$1" | sed "s/.*\///;s/%20/ /g")
+		curl -sL "$1" > "/tmp/$file" &&
+			$DOC "/tmp/$file" >/dev/null 2>&1 & ;;
+	*wp.com/stonetoss.com*)
+		file=$(printf '%s' "$1" | sed "s/.*\///;s/%20/ /g")
+		curl -sL "${1%"?resize=150%2C150&ssl=1"}" > "/tmp/file" &&
+			$PIC "/tmp/$file" >/dev/null 2>&1 & ;;
+	git://*|"git clone"*|*.git|git@*)
+		"$TERMINAL" -e git clone "$1" ;;
+	*)
+		setsid -f xdg-open "$1" >/dev/null 2>&1 ;;
+	esac
+}
+
+openfile() {
+	if [ -d "$1" ]; then
+		setsid -f $DIR "$1" >/dev/null 2>&1
+		return
+	fi
+
+	if [ ! -f "$1" ]; then
+		printf '\033[31mError:\033[m %s is not a valid file\n' "$1" >&2
+		return 1
+	fi
+
+	case "$1" in
+	*.mkv|*.webm|*.mp4)
+		setsid -f $VIDEO "$1" >/dev/null 2>&1 ;;
+	*.mp3|*.flac|*.opus|*.ogg|*.wav)
+		setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
+	*.png|*.jpg|*.jpeg|*.gif|*.webp)
+		setsid -f $PIC "$1" >/dev/null 2>&1 ;;
+	*.pdf|*.ps|*.cbz|*.cbr|*.djvu|*.epub)
+		setsid -f $DOC "$1" >/dev/null 2>&1 ;;
+	*)
+		setsid -f $TEXT "$1" >/dev/null 2>&1 ;;
+	esac
+}
+
+checksel() {
+	case "$1" in
+	http://*|https://*|git://*|irc://*|ircs://*|"git clone"*|git@*|*.git)
+		openlink "$1" ;;
+	/*)
+		opensel "$1" "$1" ;;
+
+	*)
+		pid=$(pstree -lpA "$(xdo pid)" | tail -n 1 | awk -F '---' '{print $NF}' | sed -re 's/[^0-9]//g')
+		opensel "$(readlink "/proc/$pid/cwd")/$1" "$1" ;;
+	esac
+}
+
+opensel() {
+	if [ -d "$1" ]; then
+		xdo kill
+		$CD "$1"
+		return
+	fi
+
+	if [ ! -f "$1" ]; then
+		# "$TERMINAL" -e $1 # idk how to make st not exiting with -e
+		herbe "Do you want to search for $2 ?" &&
+			dmenusearch web "$2"
+		return
+	fi
+
+	pid=$(xdo pid)
+
+	xdo hide -p "$pid"
+	case "$1" in
+	*.mkv|*.webm|*.mp4)
+		$VIDEO "$1" >/dev/null 2>&1 ;;
+	*.mp3|*.flac|*.opus|*.ogg|*.wav)
+		setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
+	*.png|*.jpg|*.jpeg|*.gif|*.webp)
+		$PIC "$1" >/dev/null 2>&1 ;;
+	*.pdf|*.ps|*.cbz|*.cbr|*.djvu|*.epub)
+		$DOC "$1" >/dev/null 2>&1 ;;
+	*)
+		$TEXT "$1" >/dev/null 2>&1 ;;
+	esac
+	xdo show -p "$pid"
+}
+
+
+usage() {
+	cat << EOF >&2
+Usage: ${0##*/} [options] [arg]
+
+Options:
+  no option [arg]     | Try to guess what to do
+  -l|--link [link]    | Open the link
+  -f|--file [file]    | Open the file or the folder
+  -s|--sel            | Use the selection buffer instead, Plan9's way
+  -h|--help           │ Print this help message
+
+Config:
+  browser      = $WEB # actually xdg-open is used instead
+  editor       = $TEXT
+  video        = $VIDEO
+  audio        = $AUDIO
+  picture      = $PIC
+  document     = $DOC
+  file manager = $DIR
+  cd           = $CD
+EOF
+}
+
+main() {
+	case "$1" in
+	-l|--link)
+		if [ -z "$2" ]; then
+			printf '\033[31mError:\033[m no argument given\n' >&2
+			usage
+			return 1
+		fi
+		openlink "$2" ;;
+	-f|--file)
+		if [ -z "$2" ]; then
+			printf '\033[31mError:\033[m no argument given\n' >&2
+			usage
+			return 1
+		fi
+		openfile "$2" ;;
+	-s|--sel|'')
+		sel=$(xclip -o -sel 2>/dev/null || xsel -o -p -n 2>/dev/null)
+		sel=${sel#"${sel%%[![:space:]]*}"}
+
+		if [ -z "$sel" ]; then
+			printf '\033[31mError:\033[m selection buffer is empty\n' >&2
+			usage
+			return 1
+		fi
+		checksel "$sel" ;;
+	-h|--help)
+		usage
+		return 0 ;;
+	-*)
+		printf '\033[31mError:\033[m unknown option\n' >&2
+		usage
+		return 1 ;;
+	*)
+		case "$1" in
+		http://*|https://*|git://*|irc://*|ircs://*)
+			openlink "$1" ;;
+		*)
+			openfile "$1" ;;
+		esac
+	esac
+}
+
+main "$@"

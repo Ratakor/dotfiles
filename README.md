@@ -19,12 +19,12 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 
 ### Graphical environment
 
-- Window manager: [dwm](https://dwm.suckless.org)
+- Window manager: [dwm](https://git.ratakor.com/dwm.git)
 - Compositor: [picom](https://github.com/yshui/picom)
-- Bar: [dwmblocks](https://github.com/torrinfail/dwmblocks)
-- Terminal emulator: [st](https://st.suckless.org/)
-- Program launcher: [dmenu](https://tools.suckless.org/dmenu)
-- Screen locker: [slock](https://tools.suckless.org/slock)
+- Bar: [dwmblocks](https://git.ratakor.com/dwmblocks.git)
+- Terminal emulator: [st](https://git.ratakor.com/st.git)
+- Program launcher: [dmenu](https://git.ratakor.com/dmenu.git)
+- Screen locker: [slock](https://git.ratakor.com/slock.git)
 
 ### Fonts
 - Serif font: [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif)
@@ -35,8 +35,8 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 ### Miscellaneous
 
 - Web Browser: [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)
-- User Shell: [zsh](https://github.com/zsh-users/zsh)
-- Shell: [dash](http://gondor.apana.org.au/~herbert/dash/)
+- Shell: [zsh](https://github.com/zsh-users/zsh)
+- sh: [dash](http://gondor.apana.org.au/~herbert/dash/)
 - Editor: [neovim](https://github.com/neovim/neovim)
 - File manager: [lf](https://github.com/gokcehan/lf)
 - Document viewer: [zathura](https://github.com/pwmt/zathura)
@@ -51,13 +51,11 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Mail client: [Claws Mail](https://www.claws-mail.org)
 - [Wallpapers](https://git.ratakor.com/wallpapers.git/)
 
-See [packages](.local/share/packages) for a list and small description of other programs I use.
+See [packages](.local/share/packages) for a list and a small description of other programs I use.
 
 ## TODO
-- update man page and README of dmenu and st
-- replace dunst with [herbe](https://github.com/dudik/herbe) (actions looks cool)
-- config or patch mtm to be usable
 - make dwmblocks' blocks activation with a config file
+- config or patch mtm to be usable
 
 ## LICENSE
 Copyright © 2023 Ratakor <ratakor@disroot.org>

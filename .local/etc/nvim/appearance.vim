@@ -1,5 +1,5 @@
 lua << EOF
-local colors = require('dracula').colors()
+local colors = require('dracula.palette')
 
 require("dracula").setup {
 	show_end_of_buffer = true,
@@ -124,7 +124,7 @@ require('hlargs').setup {
 require("scrollbar").setup({
 	marks = {
 		Search = { color = colors.orange },
-	Error = { color = colors.red },
+		Error = { color = colors.red },
 		Warn = { color = colors.yellow },
 		Info = { color = colors.pink },
 		Hint = { color = colors.cyan },
@@ -136,28 +136,28 @@ require("scrollbar").setup({
 	},
 })
 
-vim.cmd [[highlight IndentBlanklineIndent1 guifg=#bd93f9 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent2 guifg=#50fa7b gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent3 guifg=#8be9fd gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent4 guifg=#f1fa8c gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent5 guifg=#ffb86c gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent6 guifg=#ff5555 gui=nocombine]]
-
-require("indent_blankline").setup {
-	space_char_blankline = " ",
-
-	--show_current_context = true,
-	--show_current_context_start = true,
-
-	char_highlight_list = {
-		"IndentBlanklineIndent1",
-		"IndentBlanklineIndent2",
-		"IndentBlanklineIndent3",
-		"IndentBlanklineIndent4",
-		"IndentBlanklineIndent5",
-		"IndentBlanklineIndent6",
-	},
-}
+--vim.cmd [[highlight IndentBlanklineIndent1 guifg=#bd93f9 gui=nocombine]]
+--vim.cmd [[highlight IndentBlanklineIndent2 guifg=#50fa7b gui=nocombine]]
+--vim.cmd [[highlight IndentBlanklineIndent3 guifg=#8be9fd gui=nocombine]]
+--vim.cmd [[highlight IndentBlanklineIndent4 guifg=#f1fa8c gui=nocombine]]
+--vim.cmd [[highlight IndentBlanklineIndent5 guifg=#ffb86c gui=nocombine]]
+--vim.cmd [[highlight IndentBlanklineIndent6 guifg=#ff5555 gui=nocombine]]
+--
+--require("indent_blankline").setup {
+--	space_char_blankline = " ",
+--
+--	--show_current_context = true,
+--	--show_current_context_start = true,
+--
+--	char_highlight_list = {
+--		"IndentBlanklineIndent1",
+--		"IndentBlanklineIndent2",
+--		"IndentBlanklineIndent3",
+--		"IndentBlanklineIndent4",
+--		"IndentBlanklineIndent5",
+--		"IndentBlanklineIndent6",
+--	},
+--}
 
 require("nvim-web-devicons").setup {}
 
@@ -176,15 +176,11 @@ require("nvim-treesitter.configs").setup {
 	additional_vim_regex_highlighting = false,
 
 	rainbow = {
-		enable = false,
+		enable = true,
 		extended_mode = true,
 	}
 }
 EOF
-
-if has('termguicolors')
-	set termguicolors
-endif
 
 set background=dark
 colorscheme dracula

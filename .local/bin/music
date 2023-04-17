@@ -1,6 +1,6 @@
 #!/bin/sh
 # simple music selector with dmenu that uses and interacts with mpv
-# have a look at musiccmd and dwmblocks/sb_music
+# have a look at musiccmd, dwmblocks/sb_music, .local/etc/mpv/music and herbe
 # shellcheck disable=SC2012
 
 MUSICDIR="${XDG_MUSIC_DIR:-$HOME/Music}"

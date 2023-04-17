@@ -4,10 +4,12 @@
 #printf '{ "command": ["set_property", "pause", true] }\n'\
 #	| socat - /tmp/mpvsocket 1> /dev/null
 
-[ $(pgrep music) ] 2> /dev/null &&
-	notify-send "There is no music playing" &&
-	kill -43 "$(pidof dwmblocks)" &&
+if ! pgrep -x music >/dev/null; then
+	kill -43 "$(pidof dwmblocks)"
+	herbe "Error: There is no music playing" "Do you want to play some ?" &&
+		music
 	exit 1
+fi
 
 CMD="${1:-$(printf '⏯️pause/play\n⏭️next\n⏮️prev\n📢volume\n🔳stop\n⭐favorite\n⬇️download\n🖼️thumbnail' | dmenu -i -p "musiccmd")}"
 FAVDIR="${XDG_MUSIC_DIR:-$HOME/Music}/favorite"
@@ -47,7 +49,7 @@ download() {
 	yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3\
 		--postprocessor-args "-ar 44100"\
 		-o"%(title)s [%(id)s].%(ext)s" -P "$1" "$2" ||
-		notify-send "I can't download, this is a local file"
+		notify-send "Error: can't download, this is a local file"
 }
 
 addtofav() {

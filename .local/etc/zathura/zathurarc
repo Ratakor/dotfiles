@@ -4,6 +4,7 @@ set statusbar-v-padding 0
 set page-padding 1
 set selection-clipboard clipboard
 set window-title-basename true
+set statusbar-basename true
 #set adjust-open width
 map u scroll half-up
 map d scroll half-down

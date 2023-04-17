@@ -15,12 +15,14 @@ set shiftwidth=8 " n of whitespace for indent
 set softtabstop=8 " n of whitespace to delete with backspace
 "set expandtab " \t -> whitespaces
 autocmd FileType lisp,html set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-set list
-set lcs=tab:\|\ ,space:·,eol:$ " ↴
-set tgc
+"set list
+"set lcs=tab:\|\ ,space:·,eol:$ " ↴
 
 " remove highlight search
 set nohls
+
+" termguicolors
+set tgc
 
 " disable the mouse, btw use shift for highlighting
 "set mouse=

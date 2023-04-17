@@ -2,8 +2,11 @@
 
 !! Transparency
 !*.alpha: 0.85
+!#define TRANSPARENT     #77e9e7e5
+
 !! Font
-/* *.font: monospace:size=10 */
+!*.font: monospace:size=10
+!herbe.font_pattern: monospace:size=12
 
 !! Colors
 /* name       normal  brigth */
@@ -15,6 +18,8 @@
 /* purple     5       13     */
 /* cyan       6       14     */
 /* white      7       15     */
+
+!st.bellvolume: +100
 
 !! Dracula
 *.foreground:        #F8F8F2
@@ -46,3 +51,12 @@ dwm.last:            #6272a4
 dmenu.selfgcolor:    #F8F8F2
 dmenu.selbgcolor:    #6272A4
 dmenu.highlight:     #FFB86C
+herbe.border:        #BD93F9
+herbe.line_spacing:  +10
+herbe.padding:       +15
+herbe.width:         +400
+herbe.border_size:   +2
+herbe.pos_x:         +15
+herbe.pos_y:         +30
+herbe.corner:        +1
+herbe.duration:      +5

@@ -34,8 +34,6 @@ case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nnsxiv\nPDF\nvim\nyt-dlp\nmusi
 		else
 			setsid -f ytdl m "$FEED" >/dev/null 2>&1
 		fi
-	#"rssadd")
-	#	rssadd "$FEED" >/dev/null 2>&1 ;;
 	#setbg)
 	#	curl -sL "$FEED" > "$XDG_CACHE_HOME/pic" &&
 	#		hsetroot -cover "$XDG_CACHE_HOME/pic" >/dev/null 2>&1 ;;

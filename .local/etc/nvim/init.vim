@@ -15,7 +15,7 @@ Plug 'nvim-lualine/lualine.nvim' " bottom bar
 Plug 'kyazdani42/nvim-web-devicons' " fancy icons
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " syntax color
 Plug 'p00f/nvim-ts-rainbow' " funny brackets
-Plug 'lukas-reineke/indent-blankline.nvim' " funny indentation
+"Plug 'lukas-reineke/indent-blankline.nvim' " funny indentation
 Plug 'm-demare/hlargs.nvim' " highlight arguments
 " LSP and Autocompletion Engine
 Plug 'neovim/nvim-lspconfig'

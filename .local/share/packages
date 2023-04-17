@@ -37,7 +37,8 @@ ratakor-repo/your-privacy # better your-privacy
 ratakor-repo/your-freedom # parabola's your-freedom but with chromium allowed
 cli-visualizer # audio visualizer
 dashbinsh # a pacman hook to symlink dash to sh when there is a bash update
-dracula-gtk-theme
+dracula-gtk-theme # /usr/share/themes/dracula
+gruvbox-gtk-theme # /usr/share/themes/gruvbox
 xbanish # hide mouse when typing
 simple-mtpfs # mount phone easily
 dbus-xdg # dbus but without ~/.dbus
@@ -46,10 +47,12 @@ nsxiv # image viewer
 scron # simple cron daemon
 htop-vim # process viewer (htop) with vim keybinds
 openssh-dotlocal # openssh but ~/.ssh to ~/.local/etc/ssh
+herbe # notifications
 
 ## terminal
 zsh # user shell
 exa # ls replacement
+ripgrep # grep replacement
 newsboat # RSS Reader
 lf # file manager
 bat # lf dependency and cat replacement
@@ -110,8 +113,6 @@ socat # dependency for the music script that uses mpv
 maim # screenshot tool
 zathura # document viewer
 zathura-pdf-mupdf
-dunst # notification daemon
-libnotify # dunst dependency
 claws-mail # mail client, use nonprism repo to remove libgdata support
 gajim # XMPP client
 
@@ -149,3 +150,5 @@ hunspell-fr
 python-axolotl # gajim dependency
 python-gnupg # gajim dependency
 git-lfs
+xorg-xsetroot # to restart dwm with command line
+xdo # window manipulation

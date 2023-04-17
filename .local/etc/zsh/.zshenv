@@ -47,3 +47,7 @@ umask 0077
 export GPG_TTY=$(tty)
 export DOTNET_CLI_TELEMETRY_OPTOUT="true"
 export MANWIDTH=80
+HISTFILE="$XDG_DATA_HOME/histfile"
+HISTSIZE=10000
+SAVEHIST=10000
+#export LS_COLORS="di=1;34:ln=0;36:pi=0;33:bd=1;33:cd=1;33:so=1;31:ex=1;32:*README=1;33:*README.txt=1;33:*README.md=1;33:*readme.txt=1;33:*readme.md=1;33:*.ninja=1;33:*Makefile=1;33:*Cargo.toml=1;33:*SConstruct=1;33:*CMakeLists.txt=1;33:*build.gradle=1;33:*pom.xml=1;33:*Rakefile=1;33:*package.json=1;33:*Gruntfile.js=1;33:*Gruntfile.coffee=1;33:*BUILD=1;33:*BUILD.bazel=1;33:*WORKSPACE=1;33:*build.xml=1;33:*Podfile=1;33:*webpack.config.js=1;33:*meson.build=1;33:*composer.json=1;33:*RoboFile.php=1;33:*PKGBUILD=1;33:*Justfile=1;33:*Procfile=1;33:*Dockerfile=1;33:*Containerfile=1;33:*Vagrantfile=1;33:*Brewfile=1;33:*Gemfile=1;33:*Pipfile=1;33:*build.sbt=1;33:*mix.exs=1;33:*bsconfig.json=1;33:*tsconfig.json=1;33:*.zip=0;31:*.tar=0;31:*.Z=0;31:*.z=0;31:*.gz=0;31:*.bz2=0;31:*.a=0;31:*.ar=0;31:*.7z=0;31:*.iso=0;31:*.dmg=0;31:*.tc=0;31:*.rar=0;31:*.par=0;31:*.tgz=0;31:*.xz=0;31:*.txz=0;31:*.lz=0;31:*.tlz=0;31:*.lzma=0;31:*.deb=0;31:*.rpm=0;31:*.zst=0;31:*.lz4=0;31"
