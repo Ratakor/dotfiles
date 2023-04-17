@@ -1,9 +1,10 @@
 #!/bin/sh
-# search web, arch wiki, aur, youtube or man pages with dmenu
+# search web, arch wiki, aur, youtube man pages or emoji with dmenu
 # websearch dependencies : shuf, curl, /tmp needs to be temporary
 # wiki dependency: arch-wiki-docs
 # youtube dependency: ytfzf
 # man dependencies: man-db, zathura
+# emoji dependency: xclip
 
 set -e
 
@@ -11,7 +12,7 @@ web() {
 	NETWORK=clearnet # clearnet, tor or i2p
 	if [ ! -f "/tmp/instances" ]; then
 		curl -s "https://librex.ratakor.com/instances.json" > /tmp/instances.json ||
-			notify-send "No internet connection"
+			(notify-send "No internet connection"; exit 1)
 
 		strip() {
 			tmp="${1##"              \"$NETWORK\": \""}"
@@ -29,7 +30,7 @@ web() {
 	fi
 
 	instance="$(shuf -n 1 /tmp/instances)"
-	query="${instance}search.php?q=$(printf "" | dmenu -p "Search:" -l 0)&t=0"
+	query="${instance}search.php?q=${1:-(printf "" | dmenu -p "Search:" -l 0)}&t=0"
 }
 
 wiki() {
@@ -63,22 +64,34 @@ manpdf() {
 	[ -n "$INPUT" ] && /usr/bin/man -Tpdf "$INPUT" | zathura -
 }
 
+emoji() {
+	CHOSEN=$(cut -d ';' -f1 "$XDG_DATA_HOME/emoji" | dmenu -i -l 30 | sed "s/ .*//")
+
+	[ -z "$CHOSEN" ] && return 1
+
+	printf '%s' "$CHOSEN" | xclip -selection clipboard
+	# notify-send "'$CHOSEN' copied to clipboard."
+}
+
 main() {
-	case ${1:-$(printf 'web\nwiki\naur\nyoutube\nman' | dmenu -i)} in
-		web)
-			web ;;
-		wiki)
-			wiki ;;
-		aur)
-			aur ;;
-		youtube)
-			ytfzf -D
-			return ;;
-		man)
-			manpdf "$2"
-			return ;;
-		*)
-			return 1 ;;
+	case ${1:-$(printf 'web\nwiki\naur\nyoutube\nman\nemoji' | dmenu -i)} in
+	web)
+		web "$2" ;;
+	wiki)
+		wiki ;;
+	aur)
+		aur ;;
+	youtube)
+		ytfzf -D
+		return ;;
+	man)
+		manpdf "$2"
+		return ;;
+	emoji)
+		emoji
+		return ;;
+	*)
+		return 1 ;;
 	esac
 
 	"$BROWSER" "$query" 2> /dev/null

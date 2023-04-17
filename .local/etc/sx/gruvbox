@@ -1,0 +1,62 @@
+! vim:ft=xdefaults
+
+!! Transparency
+!*.alpha: 0.85
+!! Font
+!*.font: monospace:size=10
+!herbe.font_pattern: monospace:size=12
+
+!! Colors
+/* name       normal  brigth */
+/* black      0       8      */
+/* red        1       9      */
+/* green      2       10     */
+/* yellow     3       11     */
+/* blue       4       12     */
+/* purple     5       13     */
+/* cyan       6       14     */
+/* white      7       15     */
+
+!st.bellvolume: +100
+
+!! Gruvbox
+*.foreground:        #ebdbb2
+*.background:        #1d2021
+*.color0:            #1d2021
+*.color1:            #cc241d
+*.color2:            #98971a
+*.color3:            #d79921
+*.color4:            #458588
+*.color5:            #b16286
+*.color6:            #689d6a
+*.color7:            #a89984
+*.color8:            #928374
+*.color9:            #fb4934
+*.color10:           #b8bb26
+*.color11:           #fabd2f
+*.color12:           #83a598
+*.color13:           #d3869b
+*.color14:           #8ec07c
+*.color15:           #ebdbb2
+*.color256:          #1d2021
+*.color257:          #ebdbb2
+*.normfgcolor:       #ebdbb2
+*.normbgcolor:       #282828
+dwm.normbordercolor: #3c3836
+dwm.selfgcolor:      #458588
+dwm.selbgcolor:      #32302f
+dwm.selbordercolor:  #458588
+dwm.orange:          #D65D0E
+dwm.last:            #7c6f64
+dmenu.selfgcolor:    #ebdbb2
+dmenu.selbgcolor:    #98971a
+dmenu.highlight:     #fe8019
+herbe.border:        #98971a
+herbe.line_spacing:  +10
+herbe.padding:       +15
+herbe.width:         +400
+herbe.border_size:   +2
+herbe.pos_x:         +15
+herbe.pos_y:         +30
+herbe.corner:        +1
+herbe.duration:      +5

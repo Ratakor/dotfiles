@@ -15,15 +15,19 @@ set shiftwidth=8 " n of whitespace for indent
 set softtabstop=8 " n of whitespace to delete with backspace
 "set expandtab " \t -> whitespaces
 autocmd FileType lisp,html set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-set list
-set lcs=tab:\|\ ,space:⋅,eol:↴
-set tgc
+"set list
+"set lcs=tab:\|\ ,space:⋅,eol:$ "↴
 
 " remove highlight search
 set nohls
 
-" remove the 'a' to disable the mouse
-set mouse=a
+" termguicolors
+set tgc
+
+" disable the mouse, btw use shift for highlighting
+"set mouse=
+map <Middlemouse> <Nop>
+imap <Middlemouse> <Nop>
 aunmenu PopUp
 
 " Disables automatic commenting on newline:
@@ -41,3 +45,5 @@ nnoremap <c-u> <c-u>zz
 autocmd FileType html,markdown setlocal spell
 autocmd FileType tex setlocal spell spelllang=fr
 abbr hte the
+
+set title

@@ -24,7 +24,7 @@ function notify_current_media()
 		end
 	end
 	mp.command_native({"run", "pkill", "-RTMIN+9", "dwmblocks"})
-	return mp.command_native({"run", "notify-send", title, origin})
+	return mp.command_native({"run", "env", "HERBE_ID=/music", "herbe", title, origin})
 end
 
 mp.register_event("file-loaded", notify_current_media)

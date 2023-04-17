@@ -1,17 +1,18 @@
 #!/bin/sh
 
-killall picom pipewire wireplumber xbanish gammastep dwmblocks 1>/dev/null 2>&1
+killall picom scron sxhkd pipewire wireplumber xbanish gammastep dwmblocks
 
 setxkbmap fr us
 xrandr --setprovideroutputsource modesetting NVIDIA-0\
-	--dpi 96\
+	--dpi 120\
 	--output HDMI-0 --pos 2560x360\
-	--output DP-2 --mode 2560x1440 --rate 144
+	--output DP-2 --mode 2560x1440 --rate 144 --primary
+randwp
+scron -f "$XDG_CONFIG_HOME/crontab"
+[ -f "$XDG_STATE_HOME/theme" ] &&
+	xrdb "$XDG_CONFIG_HOME/sx/$(cat "$XDG_STATE_HOME/theme")"
 
-while true; do
-	randwp
-	sleep 30m
-done &
+sxhkd &
 pipewire &
 xbanish &
 picom &

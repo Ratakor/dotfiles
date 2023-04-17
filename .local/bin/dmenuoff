@@ -1,8 +1,8 @@
 #!/bin/sh
 # menu for shutdown or lock
-# require nopass for poweroff and reboot
+# require nopass for poweroff and reboot and my build of dmenu for -hf
 
-QUERY=$(printf 'no\nlock\npoweroff\nreboot' | dmenu -i -sb '#ff5555' -p 'Shutdown?')
+QUERY=$(printf 'no\nlock\npoweroff\nreboot' | dmenu -i -sb '#cc241d' -hf '#689d6a' -p 'Shutdown?')
 ROOTCMD="${ROOTCMD:-$(command -v doas || command -v sudo)}"
 
 case "$QUERY" in

@@ -21,5 +21,5 @@ if [ -d "$MUSIC" ] || printf '%s' "$MUSIC" | grep -q playlist; then
 fi
 
 printf 'stop\n' | socat - /tmp/mpvsocket 2> /dev/null
-mpv --vid=no --input-ipc-server=/tmp/mpvsocket --loop-playlist\
+mpv --vid=no --input-ipc-server=/tmp/mpvsocket --loop-playlist --volume=75\
 	--ytdl-format="wv*+ba" --script="$SCRIPT" --shuffle="$SHUFFLE" "$MUSIC"

@@ -1,12 +1,20 @@
 #!/bin/sh
 # color username and save history for sic
 
-HIST="${XDG_DATA_HOME:-$HOME/.local/share}/sic"
+HIST=${XDG_DATA_HOME:-$HOME/.local/share}/sic
 mkdir -p "$HIST"
-HIST="$HIST/$(date '+sic-%Y-%m-%d-%H:%M-%S')"
+HIST=$HIST/$(date '+sic-%Y-%m-%d-%H:%M-%S')
 
 if [ -z "$*" ]; then
 	sic -h "irc.libera.chat" | tee -a "$HIST" |\
+		awk "{gsub(\"$USER\",\"\033[1;34m$USER\033[m\")}1"
+elif [ "$1" = "-xdg" ]; then
+	link=${2#irc://}
+	[ "$link" = "$2" ] && link=${2#ircs://}
+	host=${link%:*}
+	host=${link%/*}
+	#port=${link#"$host:"}
+	sic -h "$host" | tee -a "$HIST" |\
 		awk "{gsub(\"$USER\",\"\033[1;34m$USER\033[m\")}1"
 else
 	sic "$@" | tee -a "$HIST" |\

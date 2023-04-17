@@ -18,7 +18,7 @@ git
 # packages
 micro
 pacman-contrib
-ungoogled-chromium
+ungoogled-chromium-xdg
 lm_sensors-openrc
 pavucontrol
 libreoffice
@@ -32,7 +32,6 @@ lutris
 monero-gui
 clang
 zsh
-openssh
 curl
 unzip
 rsync
@@ -71,7 +70,6 @@ freetype2
 xwallpaper
 xclip
 picom
-sxiv
 mpv
 socat
 #jq
@@ -101,8 +99,6 @@ opencl-nvidia
 xorg-server-devel
 vulkan-icd-loader
 lib32-vulkan-icd-loader
-libnotify
-dunst
 #nyxt
 arch-wiki-docs
 ytfzf
@@ -117,9 +113,8 @@ tcc
 nasm
 pypy3
 rustup
-btop
 dmenu-ratakor
-dwm-ratakor
+dwm-gaps-ratakor
 st-ratakor
 slock-ratakor
 sic
@@ -145,8 +140,25 @@ dragon
 cli-visualizer
 dashbinsh
 dracula-gtk-theme
+gruvbox-gtk-theme
 xbanish
 gajim
 python-axolotl
 python-gnupg
 noto-fonts-cjk
+randhost
+simple-mtpfs
+nsxiv
+scron
+htop-vim
+xorg-xrdb
+sxhkd
+mat2
+git-lfs
+xorg-xsetroot
+herbe-xrandr
+ripgrep
+xorg-xsetroot
+xdo
+dbus-xdg
+openssh-dotlocal

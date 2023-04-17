@@ -2,42 +2,46 @@ PREFIX  = ${HOME}/.local
 GITSITE = https://git.ratakor.com/
 ROOTCMD = $(shell command -v doas || command -v sudo)
 
-all: packages config scripts wallpapers clone
+all: packages config scripts wallpapers dwmblocks
 
 packages:
-	@curl -sLO https://raw.githubusercontent.com/Ratakor/ratakor-repo/master/setup
-	@chmod a+x setup
-	${ROOTCMD} ./setup # add ratakor repository
-	${ROOTCMD} pacman -Syu --noconfirm --needed $(shell grep -v '^#' .local/share/packages/packages)
-	@echo Installing package from the AUR
+	@printf '\033[34;1mAdd ratakor repository\033[m\n'
+	@curl -s https://raw.githubusercontent.com/Ratakor/ratakor-repo/master/setup | ${ROOTCMD} sh
+	@printf '\033[34;1mInstall all packages\033[m\n'
+	@yes | LC_ALL=C ${ROOTCMD} pacman -Syu --needed $(shell grep -v '^#' .local/share/packages/packages)
+	@printf '\033[34;1mInstalling package from the AUR\n'
 	@.local/bin/aurinstall $(shell grep -v '^#' .local/share/packages/packages.aur)
-	${ROOTCMD} mandb 2> /dev/null # Updating man database, it may take some time
-	chsh -s /usr/bin/zsh # change your shell to zsh
-	su -c 'printf "export ZDOTDIR=\"\$$HOME/.local/etc/zsh\"\n" > /etc/zsh/zshenv'
+	@printf '\033[34;1mUpdate man database, it may take some time\033[m\n'
+	@${ROOTCMD} mandb 2>/dev/null 1>&2
+	@printf '\033[34;1mChange %s shell to zsh\033[m\n' "$$USER"
+	@chsh -s /bin/zsh >/dev/null
+	@printf '\033[34;1mChange ZDOTDIR to not have a symlink in $$HOME\033[m\n'
+	@${ROOTCMD} sh -c 'printf "export ZDOTDIR=\"\$$HOME/.local/etc/zsh\"\n" > /etc/zsh/zshenv'
 
 config:
-	mkdir -p ${PREFIX}/etc
-	cp -r .local/etc/* ${PREFIX}/etc/
-	mkdir -p ${PREFIX}/share
-	cp -r .local/share/* ${PREFIX}/share/
+	@printf '\033[34;1mCopy config to %s\033[m\n' "${PREFIX}/etc"
+	@mkdir -p ${PREFIX}/etc
+	@cp -r .local/etc/* ${PREFIX}/etc/
+	@printf '\033[34;1mCopy data to %s\033[m\n' "${PREFIX}/share"
+	@mkdir -p ${PREFIX}/share
+	@cp -r .local/share/* ${PREFIX}/share/
 
 scripts:
-	mkdir -p ${PREFIX}/bin
-	cp -r .local/bin/* ${PREFIX}/bin/
+	@printf '\033[34;1mCopy scripts to %s\033[m\n' "${PREFIX}/bin"
+	@mkdir -p ${PREFIX}/bin
+	@cp -r .local/bin/* ${PREFIX}/bin/
 
 wallpapers:
-	[ -d "${PREFIX}/share/wallpapers" ] &&\
-		cd ${PREFIX}/share/wallpapers && git pull ||\
+	@printf '\033[34;1mDownloading wallpapers\033[m\n'
+	@[ -d "${PREFIX}/share/wallpapers" ] &&\
+		printf '\033[33;1mWallpaper folder already exists\033[m\n'||\
 		git clone ${GITSITE}wallpapers.git ${PREFIX}/share/wallpapers
 
-clone:
+dwmblocks:
 	mkdir -p ${PREFIX}/etc
-	[ -d "${PREFIX}/etc/dwm" ] && cd ${PREFIX}/etc/dwm && git pull || git clone ${GITSITE}dwm.git ${PREFIX}/etc/dwm
-	[ -d "${PREFIX}/etc/dwmblocks" ] && cd ${PREFIX}/etc/dwmblocks && git pull || git clone ${GITSITE}dwmblocks.git ${PREFIX}/etc/dwmblocks
-
-install:
-	$(MAKE) -C ${PREFIX}/etc/dwm PREFIX=${PREFIX} clean install
-	$(MAKE) -C ${PREFIX}/etc/dwmblocks PREFIX=${PREFIX} clean install
+	[ -d "${PREFIX}/etc/dwmblocks" ] && cd ${PREFIX}/etc/dwmblocks &&\
+		git pull || git clone ${GITSITE}dwmblocks.git ${PREFIX}/etc/dwmblocks
+	${ROOTCMD} ${MAKE} -C ${PREFIX}/etc/dwmblocks clean install
 
 anki:
 	rm -rf anki-*
@@ -49,4 +53,4 @@ anki:
 lutris:
 	${ROOTCMD} pacman -Syu --noconfirm --needed wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses ocl-icd lib32-ocl-icd libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
 
-.PHONY: all packages config scripts wallpapers clone install anki lutris
+.PHONY: all packages config scripts wallpapers dwmblocks anki lutris

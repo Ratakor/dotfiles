@@ -1,0 +1,41 @@
+# reload with kill -10 $(pidof sxhkd)
+super + Return
+	$TERMINAL
+super + d
+	dmenu_run -hp "browser,chromium,unity,anki,steam,monero-wallet-gui"
+{super + shift + x}
+	slock
+Scroll_Lock
+	themeswap
+Print
+	screenshot
+{super + equal, XF86AudioRaiseVolume}
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+; kill -44 $(pidof dwmblocks)
+{super + minus, XF86AudioLowerVolume}
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-; kill -44 $(pidof dwmblocks)
+XF86Launch1
+	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)
+F6
+	wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -45 $(pidof dwmblocks)
+{F7,super + n,super + shift + n}
+	$TERMINAL -e {dmenurecord,lfub "$XDG_DATA_HOME/notes",newsboat}
+super + {m, shift + m}
+	{music,musiccmd}
+XF86Audio{Prev,Next,Play,Stop}
+	musiccmd {prev,next,cycle,stop}
+super + {shift + h,s,a,y,w,e}
+	dmenusearch {man,web,aur,youtube,wiki,emoji}
+super + shift + w
+	dmenuoff
+super + u
+	dmenuhandler "$(xclip -o)"
+super + shift + u
+	plumber --sel
+#button2
+#	plumber --sel
+button8
+	$TERMINAL
+button9
+	xdo kill
+button10
+	musiccmd

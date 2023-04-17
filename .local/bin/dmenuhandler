@@ -6,7 +6,7 @@ FEED="${1:-$(printf "" | dmenu -p 'Paste URL or file path')}"
 
 [ -z "$FEED" ] && exit
 
-case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nsxiv\nPDF\nvim\nyt-dlp\nmusic-dlp' "$FEED" | dmenu -i -p "Open with ")" in
+case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nnsxiv\nPDF\nvim\nyt-dlp\nmusic-dlp' "$FEED" | dmenu -i -p "Open with ")" in
 	"$FEED")
 		printf '%s\n' "$FEED" | xclip -selection clipboard ;; # Copy URL
 	browser)
@@ -17,9 +17,9 @@ case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nsxiv\nPDF\nvim\nyt-dlp\nmusic
 		setsid -f mpv --quiet --ytdl-format="bv,ba" "$FEED" >/dev/null 2>&1 ;;
 	"mpv loop")
 		setsid -f mpv --quiet --ytdl-format="bv,ba" --loop "$FEED" >/dev/null 2>&1 ;;
-	sxiv)
+	nsxiv)
 		curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" &&
-			sxiv -a "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
+			nsxiv -a "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
 	PDF)
 		curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" &&
 			zathura "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
@@ -34,8 +34,6 @@ case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nsxiv\nPDF\nvim\nyt-dlp\nmusic
 		else
 			setsid -f ytdl m "$FEED" >/dev/null 2>&1
 		fi
-	#"rssadd")
-	#	rssadd "$FEED" >/dev/null 2>&1 ;;
 	#setbg)
 	#	curl -sL "$FEED" > "$XDG_CACHE_HOME/pic" &&
 	#		hsetroot -cover "$XDG_CACHE_HOME/pic" >/dev/null 2>&1 ;;
