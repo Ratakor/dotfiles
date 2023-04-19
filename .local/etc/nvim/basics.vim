@@ -24,6 +24,8 @@ set nohls
 " termguicolors
 set tgc
 
+set title
+
 " disable the mouse, btw use shift for highlighting
 "set mouse=
 map <Middlemouse> <Nop>

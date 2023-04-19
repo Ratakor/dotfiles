@@ -5,7 +5,7 @@
 #	| socat - /tmp/mpvsocket 1> /dev/null
 
 if ! pgrep -x music >/dev/null; then
-	kill -43 "$(pidof dwmblocks)"
+	kill -35 "$(pidof dwmblocks)"
 	herbe "Error: There is no music playing" "Do you want to play some ?" &&
 		music
 	exit 1
@@ -66,7 +66,7 @@ addtofav() {
 case "$CMD" in
 cycle|*pause|*play)
 	printf 'cycle pause\n' | socat - /tmp/mpvsocket
-	kill -43 "$(pidof dwmblocks)" ;;
+	kill -35 "$(pidof dwmblocks)" ;;
 *next)
 	printf 'playlist-next\n' | socat - /tmp/mpvsocket ;;
 *prev)
@@ -83,7 +83,7 @@ cycle|*pause|*play)
 		| socat - /tmp/mpvsocket 1> /dev/null ;;
 *stop)
 	printf 'stop\n' | socat - /tmp/mpvsocket
-	kill -43 "$(pidof dwmblocks)" ;;
+	kill -35 "$(pidof dwmblocks)" ;;
 *download)
 	getpath
 	download "$DLDIR" "$path" ;;

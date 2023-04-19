@@ -1,0 +1,63 @@
+! vim:ft=xdefaults
+
+!! Transparency
+!*.alpha: 0.85
+!#define TRANSPARENT     #77e9e7e5
+
+!! Font
+!*.font: monospace:size=10
+!herbe.font_pattern: monospace:size=12
+
+!! Colors
+/* name       normal  brigth */
+/* black      0       8      */
+/* red        1       9      */
+/* green      2       10     */
+/* yellow     3       11     */
+/* blue       4       12     */
+/* purple     5       13     */
+/* cyan       6       14     */
+/* white      7       15     */
+
+!st.bellvolume: +100
+
+!! Everforest
+*.foreground:        #d3c6aa
+*.background:        #232a2e
+*.cursorColor:       #d3c6aa
+*.color0:            #7a8478
+*.color1:            #e67e80
+*.color2:            #a7c080
+*.color3:            #dbbc7f
+*.color4:            #7fbbb3
+*.color5:            #d699b6
+*.color6:            #83c092
+*.color7:            #d3c6aa
+*.color8:            #7a8478
+*.color9:            #e67e80
+*.color10:           #a7c080
+*.color11:           #dbbc7f
+*.color12:           #7fbbb3
+*.color13:           #d699b6
+*.color14:           #83c092
+*.color15:           #d3c6aa
+*.normfgcolor:       #d3c6aa
+*.normbgcolor:       #232a2e
+dwm.normbordercolor: #343F44
+dwm.selfgcolor:      #a7c080
+dwm.selbgcolor:      #343F44
+dwm.selbordercolor:  #a7c080
+dwm.orange:          #e69875
+dwm.last:            #859289
+dmenu.selfgcolor:    #d3c6aa
+dmenu.selbgcolor:    #425047
+dmenu.highlight:     #e69875
+herbe.border:        #83C092
+herbe.line_spacing:  +10
+herbe.padding:       +15
+herbe.width:         +400
+herbe.border_size:   +2
+herbe.pos_x:         +15
+herbe.pos_y:         +30
+herbe.corner:        +1
+herbe.duration:      +5

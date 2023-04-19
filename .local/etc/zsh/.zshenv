@@ -5,7 +5,7 @@ PATH="$PATH:$XDG_DATA_HOME/dotnet/.dotnet/tools"
 export PATH
 
 # Default programs
-export EDITOR="nvim"
+export EDITOR="editor"
 export TERMINAL="st"
 export BROWSER="browser"
 export ROOTCMD="doas"

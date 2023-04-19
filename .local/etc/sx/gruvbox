@@ -2,6 +2,8 @@
 
 !! Transparency
 !*.alpha: 0.85
+!#define TRANSPARENT     #77e9e7e5
+
 !! Font
 !*.font: monospace:size=10
 !herbe.font_pattern: monospace:size=12

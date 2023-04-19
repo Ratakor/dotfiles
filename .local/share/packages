@@ -39,6 +39,7 @@ cli-visualizer # audio visualizer
 dashbinsh # a pacman hook to symlink dash to sh when there is a bash update
 dracula-gtk-theme # /usr/share/themes/dracula
 gruvbox-gtk-theme # /usr/share/themes/gruvbox
+#catppuccin-macchiato-gtk-theme # /usr/share/themes/catppuccin
 xbanish # hide mouse when typing
 simple-mtpfs # mount phone easily
 dbus-xdg # dbus but without ~/.dbus
@@ -100,11 +101,10 @@ wireplumber
 ## grapical
 xorg-server
 sx # init xorg
-#libx11 libxft libxinerama freetype2 # dwm dependencies
 xorg-xrdb # Xresources
 sxhkd # hotkey daemon
 hsetroot # wallpaper utility
-#xwallpaper # wallpaper utility for mutliple monitor
+#xwallpaper # wallpaper utility for mutliple monitors
 xclip # clipboard management
 picom # compositor (window transparency and stuff)
 redshift # no blue light at night, use nonprism repo to remove geoclue2 support
@@ -141,7 +141,6 @@ dash # sh replacement
 python-pynvim # neovim dependency
 shellcheck
 #nyxt # browser for lisp people
-parabola-wiki-docs
 openbsd-netcat
 noto-fonts-cjk
 hunspell # dictionary for claws

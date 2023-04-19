@@ -1,5 +1,6 @@
 #!/bin/sh
-# cycle theme
+# cycle between themes
+# shellcheck disable=SC2046,SC2016
 
 STATE=${XDG_STATE_HOME:-$HOME/.local/state}
 CONF=${XDG_CONFIG_HOME:-$HOME/.config}
@@ -14,7 +15,6 @@ gruvbox)
 	bat=Dracula
 	red="#ff5555"
 	cyan="#8be9fd" ;;
-
 dracula)
 	theme=gruvbox
 	bat=gruvbox-dark
@@ -26,8 +26,9 @@ dracula)
 esac
 
 echo "$theme" > "$STATE/theme"
+
+# change theme
 xrdb "$CONF/sx/$theme"
-xsetroot -name restart
 sed -i -e "s/^colorscheme.*/colorscheme $theme/"\
 	-e "s/lualine.themes.*/lualine.themes.$theme'/"\
 	"$CONF/nvim/appearance.vim"
@@ -49,3 +50,9 @@ dracula)
 		-e 's/dark0/black/'\
 		"$CONF/nvim/appearance.vim" ;;
 esac
+
+# restart programs
+kill -10 $(pidof dwm) $(pidof st)
+for socket in /tmp/nvim.*.pipe; do
+	nvim --server "$socket" --remote-send '<C-\><C-N>:source $MYVIMRC<CR>'
+done

@@ -18,13 +18,21 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 ## Softwares
 
 ### Graphical environment
-
 - Window manager: [dwm](https://git.ratakor.com/dwm.git)
 - Compositor: [picom](https://github.com/yshui/picom)
 - Bar: [dwmblocks](https://git.ratakor.com/dwmblocks.git)
 - Terminal emulator: [st](https://git.ratakor.com/st.git)
 - Program launcher: [dmenu](https://git.ratakor.com/dmenu.git)
-- Screen locker: [slock](https://git.ratakor.com/slock.git)
+- Web Browser: [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)
+- Themes: [Dracula](https://draculatheme.com/) and [Gruvbox](https://github.com/morhetz/gruvbox)
+
+### Command Line Interface
+- Shell: [zsh](https://github.com/zsh-users/zsh)
+- Editor: [neovim](https://github.com/neovim/neovim)
+- File manager: [lf](https://github.com/gokcehan/lf)
+- Calendar: [quand](https://github.com/ratakor/quand)
+- RSS reader: [newsboat](https://newsboat.org/)
+- IRC client: [sic](https://tools.suckless.org/sic)
 
 ### Fonts
 - Serif font: [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif)
@@ -33,22 +41,14 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Emoji font: [Noto Emoji](https://fonts.google.com/noto/specimen/Noto+Emoji)
 
 ### Miscellaneous
-
-- Web Browser: [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)
-- Shell: [zsh](https://github.com/zsh-users/zsh)
-- sh: [dash](http://gondor.apana.org.au/~herbert/dash/)
-- Editor: [neovim](https://github.com/neovim/neovim)
-- File manager: [lf](https://github.com/gokcehan/lf)
 - Document viewer: [zathura](https://github.com/pwmt/zathura)
 - Video player: [mpv](https://github.com/mpv-player/mpv)
-- Music player: mpv with --input-ipc-server and some scripting to have it in dwmblocks
+- Music player: [music](.local/bin/music)
 - Image viewer: [nsxiv](https://nsxiv.codeberg.page/)
+- Notifications: [herbe](https://github.com/dudik/herbe)
 - Screenshot tool: [maim](https://github.com/naelstrof/maim)
-- Notes: markdown files
-- Calendar: [quand](https://github.com/ratakor/quand)
-- RSS reader: [newsboat](https://newsboat.org/)
-- IRC client: [sic](https://tools.suckless.org/sic)
 - Mail client: [Claws Mail](https://www.claws-mail.org)
+- Screen locker: [slock](https://git.ratakor.com/slock.git)
 - [Wallpapers](https://git.ratakor.com/wallpapers.git/)
 
 See [packages](.local/share/packages) for a list and a small description of other programs I use.

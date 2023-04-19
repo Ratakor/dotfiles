@@ -14,6 +14,17 @@ require("gruvbox").setup {
 	transparent_mode = true,
 }
 
+--require("catppuccin").setup({
+--    flavour = "macchiato",
+--    transparent_background = true,
+--    show_end_of_buffer = true,
+--})
+--
+--require("everforest").setup({
+--	transparent_background_level = 1,
+--})
+
+
 local empty = require('lualine.component'):extend()
 function empty:draw(default_highlight)
 	self.status = ''

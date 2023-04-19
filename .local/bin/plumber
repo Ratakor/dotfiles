@@ -6,11 +6,11 @@
 # shellcheck disable=SC2086
 
 # default programs
-WEB="$BROWSER" # xdg-open is used instead
+WEB="xdg-open"
 TEXT="$TERMINAL -e $EDITOR"
 VIDEO="mpv --ytdl-format=22 --loop"
 AUDIO="music"
-PIC="nsxiv -q -a -s w"
+PIC="nsxiv -a"
 DOC="zathura"
 DIR="$TERMINAL -e lfub"
 CD="st -d"
@@ -31,12 +31,12 @@ openlink() {
 			$DOC "/tmp/$file" >/dev/null 2>&1 & ;;
 	*wp.com/stonetoss.com*)
 		file=$(printf '%s' "$1" | sed "s/.*\///;s/%20/ /g")
-		curl -sL "${1%"?resize=150%2C150&ssl=1"}" > "/tmp/file" &&
+		curl -sL "${1%"?resize=150%2C150&ssl=1"}" > "/tmp/$file" &&
 			$PIC "/tmp/$file" >/dev/null 2>&1 & ;;
 	git://*|"git clone"*|*.git|git@*)
 		"$TERMINAL" -e git clone "$1" ;;
 	*)
-		setsid -f xdg-open "$1" >/dev/null 2>&1 ;;
+		setsid -f $WEB "$1" >/dev/null 2>&1 ;;
 	esac
 }
 
@@ -87,7 +87,7 @@ opensel() {
 
 	if [ ! -f "$1" ]; then
 		# "$TERMINAL" -e $1 # idk how to make st not exiting with -e
-		herbe "Do you want to search for $2 ?" &&
+		herbe "Do you want to search for '$2' ?" &&
 			dmenusearch web "$2"
 		return
 	fi
@@ -123,7 +123,7 @@ Options:
   -h|--help           │ Print this help message
 
 Config:
-  browser      = $WEB # actually xdg-open is used instead
+  browser      = $WEB
   editor       = $TEXT
   video        = $VIDEO
   audio        = $AUDIO

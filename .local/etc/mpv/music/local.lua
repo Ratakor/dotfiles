@@ -23,7 +23,7 @@ function notify_current_media()
 			origin = string.format("%s (%s)", origin, year)
 		end
 	end
-	mp.command_native({"run", "pkill", "-RTMIN+9", "dwmblocks"})
+	mp.command_native({"run", "pkill", "-RTMIN+1", "dwmblocks"})
 	return mp.command_native({"run", "env", "HERBE_ID=/music", "herbe", title, origin})
 end
 

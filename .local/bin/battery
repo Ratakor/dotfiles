@@ -58,4 +58,5 @@ else
 	esac
 fi
 
+kill -39 $(pidof dwmblocks)
 env HERBE_ID=/battery herbe "$ICON $CAPACITY% $STATUS"
