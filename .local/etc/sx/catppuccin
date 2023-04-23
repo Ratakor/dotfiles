@@ -1,0 +1,62 @@
+! vim:ft=xdefaults
+
+!! Transparency
+!*.alpha: 0.85
+!#define TRANSPARENT     #77e9e7e5
+
+!! Font
+!*.font: monospace:size=10
+!herbe.font_pattern: monospace:size=12
+
+!! Colors
+/* name       normal  brigth */
+/* black      0       8      */
+/* red        1       9      */
+/* green      2       10     */
+/* yellow     3       11     */
+/* blue       4       12     */
+/* purple     5       13     */
+/* cyan       6       14     */
+/* white      7       15     */
+
+!st.bellvolume: +100
+
+!! Catppuccin Macchiato
+*foreground:         #CAD3F5
+*background:         #24273A
+*color0:             #494D64
+*color1:             #ED8796
+*color2:             #A6DA95
+*color3:             #EED49F
+*color4:             #8AADF4
+*color5:             #F5BDE6
+*color6:             #8BD5CA
+*color7:             #B8C0E0
+*color8:             #5B6078
+*color9:             #ED8796
+*color10:            #A6DA95
+*color11:            #EED49F
+*color12:            #8AADF4
+*color13:            #F5BDE6
+*color14:            #8BD5CA
+*color15:            #A5ADCB
+*.normfgcolor:       #CAD3F5
+*.normbgcolor:       #24273A
+!dwm.normbordercolor: #44475A
+!dwm.selfgcolor:      #BD93F9
+!dwm.selbgcolor:      #44475A
+!dwm.selbordercolor:  #BD93F9
+dwm.orange:          #f5a97f
+dwm.last:            #f0c6c6
+dmenu.selfgcolor:    #181926
+dmenu.selbgcolor:    #91d7e3
+dmenu.highlight:     #f5a97f
+!herbe.border:        #BD93F9
+herbe.line_spacing:  +10
+herbe.padding:       +15
+herbe.width:         +400
+herbe.border_size:   +2
+herbe.pos_x:         +15
+herbe.pos_y:         +30
+herbe.corner:        +1
+herbe.duration:      +5

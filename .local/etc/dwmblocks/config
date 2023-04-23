@@ -1,0 +1,18 @@
+/*Name       State  Update Signal + 34*/
+music      = true   // 35
+cputemp    = true   // 36
+fanspeed   = false  // 37
+memory     = true   // 38
+battery    = false  // 39
+wifi       = false  // 40
+ethernet   = false  // 41
+localip    = false  // 42
+publicip   = false  // 43
+volume     = true   // 44
+mic        = true   // 45
+news       = false  // 46
+mail       = false  // 47
+weather    = true   // 48
+daypercent = false  // 49
+date       = true   // 50
+time       = true   // 51

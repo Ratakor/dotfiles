@@ -2,7 +2,7 @@ PREFIX  = ${HOME}/.local
 GITSITE = https://git.ratakor.com/
 ROOTCMD = $(shell command -v doas || command -v sudo)
 
-all: packages config scripts wallpapers dwmblocks
+all: packages config scripts wallpapers
 
 packages:
 	@printf '\033[34;1mAdd ratakor repository\033[m\n'
@@ -22,6 +22,7 @@ config:
 	@printf '\033[34;1mCopy config to %s\033[m\n' "${PREFIX}/etc"
 	@mkdir -p ${PREFIX}/etc
 	@cp -r .local/etc/* ${PREFIX}/etc/
+	@# need to rebuild bat cache with bat cache --build
 	@printf '\033[34;1mCopy data to %s\033[m\n' "${PREFIX}/share"
 	@mkdir -p ${PREFIX}/share
 	@cp -r .local/share/* ${PREFIX}/share/
@@ -37,12 +38,6 @@ wallpapers:
 		printf '\033[33;1mWallpaper folder already exists\033[m\n'||\
 		git clone ${GITSITE}wallpapers.git ${PREFIX}/share/wallpapers
 
-dwmblocks:
-	mkdir -p ${PREFIX}/etc
-	[ -d "${PREFIX}/etc/dwmblocks" ] && cd ${PREFIX}/etc/dwmblocks &&\
-		git pull || git clone ${GITSITE}dwmblocks.git ${PREFIX}/etc/dwmblocks
-	${ROOTCMD} ${MAKE} -C ${PREFIX}/etc/dwmblocks clean install
-
 anki:
 	rm -rf anki-*
 	curl -LO "https://github.com/ankitects/anki/releases/download/2.1.51/anki-2.1.51-linux-qt6.tar.zst"
@@ -53,4 +48,4 @@ anki:
 lutris:
 	${ROOTCMD} pacman -Syu --noconfirm --needed wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses ocl-icd lib32-ocl-icd libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
 
-.PHONY: all packages config scripts wallpapers dwmblocks anki lutris
+.PHONY: all packages config scripts wallpapers anki lutris

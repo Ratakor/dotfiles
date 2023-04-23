@@ -17,6 +17,7 @@ alias cfn="v $XDG_CONFIG_HOME/newsboat/config"
 alias cfu="v $XDG_CONFIG_HOME/newsboat/urls"
 alias cfq="v $XDG_CONFIG_HOME/quand/config"
 alias cfh="v $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
+alias cfd="v $XDG_CONFIG_HOME/dwmblocks/config"
 alias dt="cd $XDG_DATA_HOME"
 alias pkg="v $XDG_DATA_HOME/packages/packages"
 alias aur="v $XDG_DATA_HOME/packages/packages.aur"
@@ -57,7 +58,7 @@ alias nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings
 alias sic="irc"
 alias ho="cat $XDG_DATA_HOME/hole/history"
 alias ytfzf="ytfzf -D --detach"
-alias tmp="cd $(mktemp -d)"
+alias tmp='cd $(mktemp -d)'
 alias p="plumber"
 
 # verbosity and colors

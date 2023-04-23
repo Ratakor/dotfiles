@@ -35,7 +35,6 @@ cmd open ${{
 			lf -remote "send select \"$file\""
 			lf -remote "send toggle"
 		done & ;;
-		;;
 	audio/*|video/x-ms-asf) mpv --audio-display=no $f ;;
 	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
 	application/pdf|application/vnd.djvu|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;

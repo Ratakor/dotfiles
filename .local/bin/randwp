@@ -8,9 +8,11 @@ ALL="$(find "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md')"
 
 searchwp() {
 	wp="$(printf '%s' "$ALL" | shuf -n 1)"
-	while printf '%s' "$wp" | grep -q -E "$IGNORE" ; do
-		wp="$(printf '%s' "$ALL" | shuf -n 1 -)"
-	done
+	if [ -n "$IGNORE" ]; then
+		while printf '%s' "$wp" | grep -q -E "$IGNORE" ; do
+			wp="$(printf '%s' "$ALL" | shuf -n 1 -)"
+		done
+	fi
 }
 
 # 1 screen with hsetroot

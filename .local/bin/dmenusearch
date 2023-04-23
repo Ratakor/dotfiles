@@ -30,7 +30,7 @@ web() {
 	fi
 
 	instance="$(shuf -n 1 /tmp/instances)"
-	query="${instance}search.php?q=${1:-(printf "" | dmenu -p "Search:" -l 0)}&t=0"
+	query="${instance}search.php?q=${1:-$(printf "" | dmenu -p "Search:" -l 0)}&t=0"
 }
 
 wiki() {
@@ -74,11 +74,11 @@ emoji() {
 }
 
 main() {
-	case ${1:-$(printf 'web\nwiki\naur\nyoutube\nman\nemoji' | dmenu -i)} in
+	case ${1:-$(printf 'web\naur\nyoutube\nman\nemoji' | dmenu -i)} in
 	web)
 		web "$2" ;;
-	wiki)
-		wiki ;;
+	#wiki)
+	#	wiki ;;
 	aur)
 		aur ;;
 	youtube)

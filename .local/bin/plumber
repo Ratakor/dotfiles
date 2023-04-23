@@ -31,7 +31,7 @@ openlink() {
 			$DOC "/tmp/$file" >/dev/null 2>&1 & ;;
 	*wp.com/stonetoss.com*)
 		file=$(printf '%s' "$1" | sed "s/.*\///;s/%20/ /g")
-		curl -sL "${1%"?resize=150%2C150&ssl=1"}" > "/tmp/file" &&
+		curl -sL "${1%"?resize=150%2C150&ssl=1"}" > "/tmp/$file" &&
 			$PIC "/tmp/$file" >/dev/null 2>&1 & ;;
 	git://*|"git clone"*|*.git|git@*)
 		"$TERMINAL" -e git clone "$1" ;;

@@ -1,8 +1,8 @@
 # reload with kill -10 $(pidof sxhkd)
-super + Return
+{super + Return,button8}
 	$TERMINAL
 super + d
-	dmenu_run -hp "browser,chromium,unity,anki,steam,monero-wallet-gui"
+	dmenu_run -hp "browser,mail,chromium,unity,anki,steam,monero-wallet-gui"
 {super + shift + x}
 	slock
 Scroll_Lock
@@ -23,18 +23,16 @@ super + {m, shift + m}
 	{music,musiccmd}
 XF86Audio{Prev,Next,Play,Stop}
 	musiccmd {prev,next,cycle,stop}
-super + {shift + h,s,a,y,w,e}
-	dmenusearch {man,web,aur,youtube,wiki,emoji}
+super + {s,a,y,w,e}
+	dmenusearch {web,aur,youtube,man,emoji}
 super + shift + w
 	dmenuoff
 super + u
 	dmenuhandler "$(xclip -o)"
 super + shift + u
 	plumber --sel
-#button2
-#	plumber --sel
-button8
-	$TERMINAL
+button2
+	plumber --sel
 button9
 	xdo kill
 button10

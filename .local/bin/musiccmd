@@ -5,7 +5,7 @@
 #	| socat - /tmp/mpvsocket 1> /dev/null
 
 if ! pgrep -x music >/dev/null; then
-	kill -43 "$(pidof dwmblocks)"
+	kill -35 "$(pidof dwmblocks)"
 	herbe "Error: There is no music playing" "Do you want to play some ?" &&
 		music
  	exit 1
@@ -26,13 +26,12 @@ stripvol() {
 	printf '%s\n' "${tmp%%.000000,\"request_id\":0,\"error\":\"success\"\}}"
 }
 
-getpath() {
+setpath() {
 	path="$(strip "$(printf '{ "command": ["get_property", "path"] }\n'\
 		| socat - /tmp/mpvsocket 2> /dev/null)")"
 }
 
 getthumbnail() {
-	getpath
 	mkdir -p "$CACHE"
 	case $path in
 	*youtube.com*)
@@ -46,13 +45,13 @@ getthumbnail() {
 
 download() {
 	mkdir -p "$1"
+	notify-send "Downloading '$2'"
 	yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3\
 		-o"%(title)s [%(id)s].%(ext)s" -P "$1" "$2" ||
 		notify-send "Error: can't download, this is a local file"
 }
 
 addtofav() {
-	getpath
 	case $path in
 	*youtube.com*)
 		download "$FAVDIR" "$path" ;;
@@ -65,12 +64,13 @@ addtofav() {
 case "$CMD" in
 cycle|*pause|*play)
 	printf 'cycle pause\n' | socat - /tmp/mpvsocket
-	kill -43 "$(pidof dwmblocks)" ;;
+	kill -35 "$(pidof dwmblocks)" ;;
 *next)
 	printf 'playlist-next\n' | socat - /tmp/mpvsocket ;;
 *prev)
 	printf 'playlist-prev\n' | socat - /tmp/mpvsocket ;;
 *favorite|fav)
+	setpath
 	addtofav ;;
 *volume)
 	[ -z "$2" ] &&
@@ -82,13 +82,15 @@ cycle|*pause|*play)
 		| socat - /tmp/mpvsocket 1> /dev/null ;;
 *stop)
 	printf 'stop\n' | socat - /tmp/mpvsocket
-	kill -43 "$(pidof dwmblocks)" ;;
+	kill -35 "$(pidof dwmblocks)" ;;
 *download)
-	getpath
-	download "$DLDIR" "$path" ;;
+	setpath
+	download "$DLDIR" "$path" &&
+		notify-send "$path successfuly downloaded at '$DLDIR'" ;;
 *thumbnail)
+	setpath
 	getthumbnail && nsxiv "$CACHE/thumbnail.jpg" ;;
 path)
-	getpath
+	setpath
 	printf '%s\n' "$path" ;;
 esac

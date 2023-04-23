@@ -26,9 +26,9 @@ thunar
 texlive-most
 pandoc-cli
 dotnet-sdk
-blender
-steam
-lutris
+#blender
+#steam
+#lutris
 monero-gui
 clang
 zsh
@@ -62,10 +62,6 @@ termdown
 newsboat
 xorg-server
 sx
-libx11
-libxft
-libxinerama
-freetype2
 #hsetroot
 xwallpaper
 xclip
@@ -100,7 +96,6 @@ xorg-server-devel
 vulkan-icd-loader
 lib32-vulkan-icd-loader
 #nyxt
-arch-wiki-docs
 ytfzf
 #fzf
 openbsd-netcat
@@ -115,6 +110,7 @@ pypy3
 rustup
 dmenu-ratakor
 dwm-gaps-ratakor
+dwmblocks-ratakor
 st-ratakor
 slock-ratakor
 sic
@@ -162,3 +158,4 @@ xorg-xsetroot
 xdo
 dbus-xdg
 openssh-dotlocal
+android-tools
