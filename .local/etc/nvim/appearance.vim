@@ -24,7 +24,6 @@ require("gruvbox").setup {
 --	transparent_background_level = 1,
 --})
 
-
 local empty = require('lualine.component'):extend()
 function empty:draw(default_highlight)
 	self.status = ''
