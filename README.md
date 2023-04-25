@@ -54,8 +54,8 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 See [packages](.local/share/packages) for a list and a small description of other programs I use.
 
 ## TODO
-- make dwmblocks' blocks activation with a config file
 - config or patch mtm to be usable
+- replace sic with ii
 
 ## LICENSE
 Copyright © 2023 Ratakor <ratakor@disroot.org>
