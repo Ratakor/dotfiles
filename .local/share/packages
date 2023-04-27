@@ -83,7 +83,7 @@ tcc # tiny c compiler
 zig
 zls # zig lsp
 gopls # go lsp
-rust-analyzer # rust lsp
+#rust-analyzer # rust lsp
 texlab # LaTeX lsp
 pyright # python lsp
 bash-language-server
@@ -151,3 +151,4 @@ python-gnupg # gajim dependency
 git-lfs
 xorg-xsetroot # to restart dwm with command line
 xdo # window manipulation
+#vhs

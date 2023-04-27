@@ -21,7 +21,7 @@
 
 !st.bellvolume: +100
 
-!! Gruvbox
+!! Gruvbox Dark
 *.foreground:        #ebdbb2
 *.background:        #1d2021
 *.color0:            #1d2021

@@ -1,3 +1,5 @@
+set background=dark
+
 lua << EOF
 local colors = require('dracula.palette')
 
@@ -192,5 +194,4 @@ require("nvim-treesitter.configs").setup {
 }
 EOF
 
-set background=dark
 colorscheme dracula
