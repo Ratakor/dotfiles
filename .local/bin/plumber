@@ -9,7 +9,7 @@
 WEB="xdg-open"
 TEXT="$TERMINAL -e $EDITOR"
 VIDEO="mpv --ytdl-format=bv,ba --loop"
-AUDIO="music"
+AUDIO="music --shuffle"
 PIC="nsxiv -a"
 DOC="zathura"
 DIR="$TERMINAL -e lfub"
@@ -17,7 +17,7 @@ CD="st -d"
 
 openlink() {
 	case "$1" in
-	*.mkv|*.webm|*.mp4|*youtube.com/watch*|*youtube.com/playlist*|*youtu.be*|*inv*/playlist*|*inv*/watch*)
+	*.mkv|*.webm|*.mp4|*.mov|*youtube.com/watch*|*youtube.com/playlist*|*youtube.com/shorts*|*youtu.be*|*inv*/playlist*|*inv*/watch*)
 		setsid -f $VIDEO "$1" >/dev/null 2>&1 ;;
 	*.mp3|*.flac|*.opus|*mp3?source*|*.ogg|*.wav)
 		setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
@@ -52,7 +52,7 @@ openfile() {
 	fi
 
 	case "$1" in
-	*.mkv|*.webm|*.mp4)
+	*.mkv|*.webm|*.mp4|*.mov)
 		setsid -f $VIDEO "$1" >/dev/null 2>&1 ;;
 	*.mp3|*.flac|*.opus|*.ogg|*.wav)
 		setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
@@ -80,8 +80,13 @@ checksel() {
 
 opensel() {
 	if [ -d "$1" ]; then
-		xdo kill
-		$CD "$1"
+		case $1 in
+		"$XDG_MUSIC_DIR"/*)
+			setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
+		*)
+			xdo kill
+			$CD "$1" ;;
+		esac
 		return
 	fi
 
@@ -92,22 +97,21 @@ opensel() {
 		return
 	fi
 
-	pid=$(xdo pid)
-
-	xdo hide -p "$pid"
 	case "$1" in
-	*.mkv|*.webm|*.mp4)
-		$VIDEO "$1" >/dev/null 2>&1 ;;
+	*.mkv|*.webm|*.mp4|*.mov)
+		setsid -f $VIDEO "$1" >/dev/null 2>&1 ;;
 	*.mp3|*.flac|*.opus|*.ogg|*.wav)
 		setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
 	*.png|*.jpg|*.jpeg|*.gif|*.webp)
-		$PIC "$1" >/dev/null 2>&1 ;;
+		setsid -f $PIC "$1" >/dev/null 2>&1 ;;
 	*.pdf|*.ps|*.cbz|*.cbr|*.djvu|*.epub)
-		$DOC "$1" >/dev/null 2>&1 ;;
+		setsid -f $DOC "$1" >/dev/null 2>&1 ;;
 	*)
-		$TEXT "$1" >/dev/null 2>&1 ;;
+		pid=$(xdo pid)
+		xdo hide -p "$pid"
+		$TEXT "$1" >/dev/null 2>&1
+		xdo show -p "$pid" ;;
 	esac
-	xdo show -p "$pid"
 }
 
 

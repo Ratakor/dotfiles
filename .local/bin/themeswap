@@ -1,48 +1,60 @@
 #!/bin/sh
-# cycle between themes
+# apply a random theme or the one given as an argument
 # shellcheck disable=SC2046,SC2016
 
-STATE=${XDG_STATE_HOME:-$HOME/.local/state}
 CONF=${XDG_CONFIG_HOME:-$HOME/.config}
+CACHE=${XDG_CACHE_HOME:-$HOME/.cache}
+THEME=${1:-$(shuf -n 1 "$CONF/sx/themes")}
 
-[ ! -f "$STATE/theme" ] &&
-	true | dmenu -p "What theme are you currently using?" > "$STATE/theme" &&
-	exit 0
+if [ -z "$1" ] && [ -f "$CACHE/theme" ]; then
+	while [ "$THEME" = "$(cat "$CACHE/theme")" ]; do
+		THEME=$(shuf -n 1 "$CONF/sx/themes")
+	done
+fi
 
-case $(cat "$STATE/theme") in
-gruvbox)
+# set theme variables
+case $THEME in
+dracula)
+	bg=dark
 	theme=dracula
 	bat=Dracula
 	red="#ff5555"
 	cyan="#8be9fd" ;;
-dracula)
-	theme=gruvbox
-	bat=gruvbox-dark
+gruvbox-dark)
+	bg=dark
+	theme=gruvbox-$bg
+	red="#cc241d"
+	cyan="#689d6a" ;;
+gruvbox-light)
+	bg=light
+	theme=gruvbox-$bg
 	red="#cc241d"
 	cyan="#689d6a" ;;
 *)
-	rm -f "$STATE/theme"
 	exit 1 ;;
 esac
 
-echo "$theme" > "$STATE/theme"
+echo "$theme" > "$CACHE/theme"
 
 # change theme
 xrdb "$CONF/sx/$theme"
-sed -i -e "s/^colorscheme.*/colorscheme $theme/"\
-	-e "s/lualine.themes.*/lualine.themes.$theme'/"\
+sed -i -e "s/^colorscheme.*/colorscheme ${theme%"-$bg"}/"\
+	-e "s/lualine.themes.*/lualine.themes.${theme%"-$bg"}'/"\
+	-e "s/^set background=.*/set background=$bg/"\
 	"$CONF/nvim/appearance.vim"
 sed -i -e "s/-sb '#.*-hf/-sb '$red' -hf/"\
 	-e "s/-hf '#.*-/-hf '$cyan' -/"\
 	"$HOME/.local/bin/dmenuoff"
-sed -i -e "s/--theme.*/--theme=$bat/" "$CONF/bat/config"
-sed -i -e "s/^THEME=.*/THEME=$bat/" "$CONF/lf/scope"
+sed -i -e "s/--theme.*/--theme=${bat:-$theme}/" "$CONF/bat/config"
+sed -i -e "s/^THEME=.*/THEME=${bat:-$theme}/" "$CONF/lf/scope"
 sed -i -e "s/^gtk-theme-name.*/gtk-theme-name=$theme/" "$CONF/gtk-3.0/settings.ini"
 case $theme in
-gruvbox)
-	sed -i -e "s/^local colors =.*/local colors = require('$theme.palette').colors/"\
+gruvbox*)
+	sed -i -e "s/^local colors =.*/local colors = require('${theme%"-$bg"}.palette').colors/"\
 		-e 's/colors\./colors\.neutral_/g'\
+		-e 's/neutral_neutral_/neutral_/g'\
 		-e 's/neutral_black/dark0/'\
+		-e 's/neutral_dark0/dark0/'\
 		"$CONF/nvim/appearance.vim" ;;
 dracula)
 	sed -i -e "s/^local colors =.*/local colors = require('$theme.palette')/"\
@@ -51,8 +63,21 @@ dracula)
 		"$CONF/nvim/appearance.vim" ;;
 esac
 
+# disable transparency for light themes
+case $bg in
+light)
+	kill $(pidof picom) 2>/dev/null ;;
+dark)
+	pgrep -x picom >/dev/null || picom -b ;;
+esac
+
+
 # restart programs
-kill -10 $(pidof dwm) $(pidof st)
-for socket in /tmp/nvim.*.pipe; do
-	nvim --server "$socket" --remote-send '<C-\><C-N>:source $MYVIMRC<CR>'
-done
+if pgrep -x dwm >/dev/null; then
+	kill -10 $(pidof dwm) $(pidof st)
+fi
+if pgrep -x nvim >/dev/null; then
+	for socket in /tmp/nvim.*.pipe; do
+		nvim --server "$socket" --remote-send '<C-\><C-N>:source $MYVIMRC<CR>'
+	done
+fi

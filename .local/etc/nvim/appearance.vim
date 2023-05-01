@@ -1,3 +1,5 @@
+set background=light
+
 lua << EOF
 local colors = require('gruvbox.palette').colors
 
@@ -192,5 +194,4 @@ require("nvim-treesitter.configs").setup {
 }
 EOF
 
-set background=dark
 colorscheme gruvbox

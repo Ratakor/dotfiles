@@ -171,4 +171,5 @@
 	                  strictlyBlockBlockableMixedContent=true" \
 	--extension-content-verification=enforce_strict \
 	--no-default-browser-check \
-	--isolation-by-default "$@"
+	--isolation-by-default \
+	--autoplay-policy=no-user-gesture-required "$@"

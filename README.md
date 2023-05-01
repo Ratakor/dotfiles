@@ -59,8 +59,8 @@ See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/p
 
 ## TODO
 - add DAP for debugging in nvim
-- make dwmblocks' blocks activation with a config file
 - config or patch mtm to be usable
+- replace sic with ii
 
 ## LICENSE
 Copyright © 2023 Ratakor <ratakor@disroot.org>

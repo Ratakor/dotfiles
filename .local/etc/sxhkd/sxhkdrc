@@ -1,27 +1,30 @@
-# reload with kill -10 $(pidof sxhkd)
+super + Escape
+	kill -10 $(pidof sxhkd)
 {super + Return,button8}
 	$TERMINAL
 super + d
 	dmenu_run -hp "browser,mail,chromium,unity,anki,steam,monero-wallet-gui"
-{super + shift + x}
+super + shift + x
 	slock
 Scroll_Lock
 	themeswap
 Print
 	screenshot
-{super + equal, XF86AudioRaiseVolume}
+{super + equal,XF86AudioRaiseVolume}
 	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+; kill -44 $(pidof dwmblocks)
-{super + minus, XF86AudioLowerVolume}
+{super + minus,XF86AudioLowerVolume}
 	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-; kill -44 $(pidof dwmblocks)
-XF86Launch1
-	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)
+#XF86Launch1
+#	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)
 F6
 	wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -45 $(pidof dwmblocks)
-{F7,super + n,super + shift + n}
-	$TERMINAL -e {dmenurecord,lfub "$XDG_DATA_HOME/notes",newsboat}
-super + {m, shift + m}
+{F7,super + b}
+	$TERMINAL -e {dmenurecord,newsboat}
+super + {n,shift + n}
+	st -d "$XDG_DATA_HOME/notes" {-e lfub, }
+super + {m,shift + m}
 	{music,musiccmd}
-XF86Audio{Prev,Next,Play,Stop}
+super + shift + {Left,Right,Down,Up}
 	musiccmd {prev,next,cycle,stop}
 super + {s,a,y,w,e}
 	dmenusearch {web,aur,youtube,man,emoji}

@@ -45,6 +45,7 @@ Plug 'ziglang/zig.vim'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'petertriho/nvim-scrollbar'
 Plug 'andrewferrier/debugprint.nvim'
+"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 call plug#end()
 
 source $XDG_CONFIG_HOME/nvim/basics.vim
