@@ -5,6 +5,11 @@
 
 MUSICDIR="${XDG_MUSIC_DIR:-$HOME/Music}"
 
+if [ "$1" = "--shuffle" ]; then
+	SHUFFLE=yes
+	shift
+fi
+
 MUSIC="${1:-$MUSICDIR/$(ls "$MUSICDIR" | dmenu -i -p "Play ")}"
 SCRIPT="$XDG_CONFIG_HOME/mpv/music/local.lua"
 
@@ -15,7 +20,7 @@ fi
 
 [ "$MUSIC" = "$MUSICDIR/" ] || [ -z "$MUSIC" ] && exit 1
 
-if [ -d "$MUSIC" ] || printf '%s' "$MUSIC" | grep -q playlist; then
+if [ -z "$SHUFFLE" ] && [ -d "$MUSIC" ] || printf '%s' "$MUSIC" | grep -q playlist; then
 	SHUFFLE="$(printf 'yes\nno' | dmenu -i -p 'Shuffle?')"
 	[ -z "$SHUFFLE" ] && exit 1
 fi

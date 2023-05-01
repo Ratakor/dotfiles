@@ -38,7 +38,7 @@ ratakor-repo/your-freedom # parabola's your-freedom but with chromium allowed
 cli-visualizer # audio visualizer
 dashbinsh # a pacman hook to symlink dash to sh when there is a bash update
 dracula-gtk-theme # /usr/share/themes/dracula
-gruvbox-gtk-theme # /usr/share/themes/gruvbox
+gruvbox-gtk-theme # /usr/share/themes/gruvbox-[dark|light]
 #catppuccin-macchiato-gtk-theme # /usr/share/themes/catppuccin
 xbanish # hide mouse when typing
 simple-mtpfs # mount phone easily
@@ -69,7 +69,6 @@ dust # du replacement
 duf # df replacement
 fd # find replacement
 gitui # tui for git (good if you don't remember what change you made)
-glow # markdown renderer
 
 ## dev
 #texlive-most # LaTeX (big package)

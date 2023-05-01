@@ -47,14 +47,14 @@ sed -i -e "s/-sb '#.*-hf/-sb '$red' -hf/"\
 	"$HOME/.local/bin/dmenuoff"
 sed -i -e "s/--theme.*/--theme=${bat:-$theme}/" "$CONF/bat/config"
 sed -i -e "s/^THEME=.*/THEME=${bat:-$theme}/" "$CONF/lf/scope"
-# TODO: handle gruvbox-light gtk theme
-sed -i -e "s/^gtk-theme-name.*/gtk-theme-name=${theme%"-$bg"}/" "$CONF/gtk-3.0/settings.ini"
+sed -i -e "s/^gtk-theme-name.*/gtk-theme-name=$theme/" "$CONF/gtk-3.0/settings.ini"
 case $theme in
 gruvbox*)
 	sed -i -e "s/^local colors =.*/local colors = require('${theme%"-$bg"}.palette').colors/"\
 		-e 's/colors\./colors\.neutral_/g'\
 		-e 's/neutral_neutral_/neutral_/g'\
 		-e 's/neutral_black/dark0/'\
+		-e 's/neutral_dark0/dark0/'\
 		"$CONF/nvim/appearance.vim" ;;
 dracula)
 	sed -i -e "s/^local colors =.*/local colors = require('$theme.palette')/"\
@@ -71,9 +71,12 @@ dark)
 	pgrep -x picom >/dev/null || picom -b ;;
 esac
 
-
 # restart programs
-kill -10 $(pidof dwm) $(pidof st)
-for socket in /tmp/nvim.*.pipe; do
-	nvim --server "$socket" --remote-send '<C-\><C-N>:source $MYVIMRC<CR>'
-done
+if pgrep -x dwm >/dev/null; then
+	kill -10 $(pidof dwm) $(pidof st)
+fi
+if pgrep -x nvim >/dev/null; then
+	for socket in /tmp/nvim.*.pipe; do
+		nvim --server "$socket" --remote-send '<C-\><C-N>:source $MYVIMRC<CR>'
+	done
+fi

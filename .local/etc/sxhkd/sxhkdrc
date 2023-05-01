@@ -23,7 +23,7 @@ F6
 {F7,super + b}
 	$TERMINAL -e {dmenurecord,newsboat}
 super + {n,shift + n}
-	{$TERMINAL -e glow "$XDG_DATA_HOME/notes",st -d "$XDG_DATA_HOME/notes"}
+	st -d "$XDG_DATA_HOME/notes" {-e lfub, }
 super + {m,shift + m}
 	{music,musiccmd}
 #super + shift + {Left, Right, Down, Up}

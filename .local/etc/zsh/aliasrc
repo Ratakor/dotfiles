@@ -2,7 +2,7 @@
 # shellcheck disable=SC2139
 
 # ROOTCMD not required for some system commands
-for command in iftop mount umount fdisk cryptsetup modprobe pacman ; do
+for command in iftop umount fdisk cryptsetup modprobe pacman su; do
 	alias $command="$ROOTCMD $command"
 done; unset command
 
@@ -18,6 +18,7 @@ alias cfu="v $XDG_CONFIG_HOME/newsboat/urls"
 alias cfq="v $XDG_CONFIG_HOME/quand/config"
 alias cfh="v $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
 alias cfb="v $XDG_CONFIG_HOME/dwmblocks/config"
+alias cfc="v $XDG_CONFIG_HOME/crontab"
 alias dt="cd $XDG_DATA_HOME"
 alias pkg="v $XDG_DATA_HOME/packages"
 alias d="cd $XDG_DOWNLOAD_DIR"
@@ -57,6 +58,7 @@ alias ho="cat $XDG_DATA_HOME/hole/history"
 alias ytfzf="ytfzf -D --detach"
 alias tmp='cd $(mktemp -d)'
 alias p="plumber"
+alias mount="$ROOTCMD mount -o nosuid,nodev,noexec"
 
 # verbosity and colors
 alias rm="rm -vI"
