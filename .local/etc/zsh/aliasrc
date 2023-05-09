@@ -53,7 +53,6 @@ alias playlist-dlp="ytdl p"
 alias paint="pinta"
 alias python="python3"
 alias py="pypy3"
-alias sic="irc"
 alias ho="cat $XDG_DATA_HOME/hole/history"
 alias ytfzf="ytfzf -D --detach"
 alias tmp='cd $(mktemp -d)'

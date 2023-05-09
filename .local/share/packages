@@ -25,7 +25,6 @@ dwm-ratakor # window manager
 dwmblocks-ratakor # status bar
 st-ratakor # terminal emulator
 slock-ratakor # screen locker
-ratakor-repo/sic # IRC client
 randhost # set a random hostname (OpenRC service)
 blocktooth # block bluetooth with rfkill (OpenRC service)
 networkmanager-hardened # set a randomized MAC address
