@@ -17,7 +17,7 @@ CD="st -d"
 
 openlink() {
 	case "$1" in
-	*.mkv|*.webm|*.mp4|*.mov|*youtube.com/watch*|*youtube.com/playlist*|*youtu.be*|*inv*/playlist*|*inv*/watch*)
+	*.mkv|*.webm|*.mp4|*.mov|*youtube.com/watch*|*youtube.com/playlist*|*youtube.com/shorts*|*youtu.be*|*inv*/playlist*|*inv*/watch*)
 		setsid -f $VIDEO "$1" >/dev/null 2>&1 ;;
 	*.mp3|*.flac|*.opus|*mp3?source*|*.ogg|*.wav)
 		setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;

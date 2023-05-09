@@ -89,6 +89,7 @@ bash-language-server
 lua-language-server
 vscode-css-languageserver
 vscode-html-languageserver
+astyle # C formatter
 
 ## sound
 rtkit

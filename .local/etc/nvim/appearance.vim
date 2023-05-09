@@ -12,6 +12,7 @@ require("dracula").setup {
 require("gruvbox").setup {
 	italic = {
 		strings = false,
+		comments = false
 	},
 	transparent_mode = true,
 }

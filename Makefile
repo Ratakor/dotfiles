@@ -20,6 +20,7 @@ config:
 	@mkdir -p ${PREFIX}/etc
 	@cp -r .local/etc/* ${PREFIX}/etc/
 	@# need to rebuild bat cache with bat cache --build
+	@# run changeheader to update vim header
 	@printf '\033[34;1mCopy data to %s\033[m\n' "${PREFIX}/share"
 	@mkdir -p ${PREFIX}/share
 	@cp -r .local/share/* ${PREFIX}/share/

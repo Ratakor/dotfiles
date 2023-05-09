@@ -36,7 +36,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 
 ### Fonts
 - Serif font: [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif)
-- Sans-serif font: [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans)
+- Sans-serif font: [Luciole](https://luciole-vision.com)
 - Monospace font: [Agave Nerd Font Mono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Agave)
 - Emoji font: [Noto Emoji](https://fonts.google.com/noto/specimen/Noto+Emoji)
 

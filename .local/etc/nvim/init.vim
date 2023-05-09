@@ -19,7 +19,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " syntax color
 Plug 'p00f/nvim-ts-rainbow' " funny brackets
 "Plug 'lukas-reineke/indent-blankline.nvim' " funny indentation
 Plug 'm-demare/hlargs.nvim' " highlight arguments
-" LSP and Autocompletion Engine
+
+" LSP, Autocompletion Engine and Snippets
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -30,9 +31,9 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-calc'
 Plug 'ray-x/cmp-treesitter'
 Plug 'saadparwaiz1/cmp_luasnip'
-"  Snippets
 Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp'}
-Plug 'honza/vim-snippets'
+Plug 'ratakor/vim-snippets'
+
 " Misc
 Plug 'bronson/vim-trailing-whitespace' " FixWhitespace
 Plug 'airblade/vim-gitgutter' " hud for git in vim
@@ -49,6 +50,7 @@ Plug 'andrewferrier/debugprint.nvim'
 call plug#end()
 
 source $XDG_CONFIG_HOME/nvim/basics.vim
+source $XDG_CONFIG_HOME/nvim/header.vim
 source $XDG_CONFIG_HOME/nvim/appearance.vim
 source $XDG_CONFIG_HOME/nvim/lsp.vim
 
@@ -62,9 +64,18 @@ nnoremap <F2> :NERDTreeToggle<CR>
 " Undotree config
 nnoremap <F3> :UndotreeToggle<CR>
 
-" vim-commentary for zig
-autocmd FileType zig setlocal commentstring=//\ %s
+" custom vim-commentary
+autocmd FileType zig setl commentstring=//\ %s
+autocmd FileType cs setl commentstring=/*\ %s\ */
 
 lua << EOF
 require("debugprint").setup()
 EOF
+
+let g:startify_custom_header = [
+	\"   ▄▄▄   ▄▄▄· ▄▄▄▄▄ ▄▄▄· ▄ •▄       ▄▄▄  ",
+	\"   ▀▄ █·▐█ ▀█ •██  ▐█ ▀█ █▌▄▌▪▪     ▀▄ █·",
+	\"   ▐▀▀▄ ▄█▀▀█  ▐█.▪▄█▀▀█ ▐▀▀▄· ▄█▀▄ ▐▀▀▄ ",
+	\"   ▐█•█▌▐█ ▪▐▌ ▐█▌·▐█ ▪▐▌▐█.█▌▐█▌.▐▌▐█•█▌",
+	\"   .▀  ▀ ▀  ▀  ▀▀▀  ▀  ▀ ·▀  ▀ ▀█▄▀▪.▀  ▀",
+	\]

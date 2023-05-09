@@ -22,7 +22,7 @@
 !st.bellvolume: +100
 
 !! Gruvbox Light
-*.foreground:        #282828
+*.foreground:        #3c3836
 *.background:        #fbf1c7
 *.color0:            #fbf1c7
 *.color1:            #cc241d
@@ -40,7 +40,7 @@
 *.color13:           #8f3f71
 *.color14:           #427b58
 *.color15:           #3c3836
-*.normfgcolor:       #282828
+*.normfgcolor:       #3c3836
 *.normbgcolor:       #fbf1c7
 dwm.normbordercolor: #ebdbb2
 dwm.selfgcolor:      #458588
