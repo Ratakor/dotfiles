@@ -1,14 +1,23 @@
 #!/bin/sh
-# plumber 🪠
-# Author: Ratakor <ratakor@disroot.org>
-# dependencies: xdo, xclip or xsel, default programs
-# optional dependencies: herbe and dmenusearch web
+#                                                      .     :-. .
+#    author:  ratakor <ratakor@disroot.org>            :*==*%%%#%+=---:
+#                                                       :#%%%*+%#=+%*:.
+#    created: Sat, 13 May 2023 13:06:54 +0200            :%%%. .   -*%-
+#    updated: Sat, 13 May 2023 13:17:31 +0200             =## .   :#%*=:.
+#                                                         -#*#%:=#%%%#-
+#    description: plumber 🪠                             *:*%%%%%%%#-
+#                                                         .-#%%%%%%+
+#    dependencies:                                         %%%--%%%%*-
+#      - default programs                                 ##%=  +%%=:..
+#      - xdo                                               #*    #%#
+#      - xclip or xsel                                    :#     -==*
+#      - (optional) herbe and dmenusearch web             ::        .:
 # shellcheck disable=SC2086
 
 # default programs
 WEB="xdg-open"
 TEXT="$TERMINAL -e $EDITOR"
-VIDEO="mpv --ytdl-format=bv,ba --loop"
+VIDEO="mpv --script-opts=ytdl_hook-all_formats=yes --ytdl-format=bv,ba --loop"
 AUDIO="music --shuffle"
 PIC="nsxiv -a"
 DOC="zathura"

@@ -12,13 +12,14 @@ Plug 'Mofiqul/dracula.nvim' " dracula theme
 Plug 'ellisonleao/gruvbox.nvim' " gruvbox theme
 "Plug 'catppuccin/nvim', { 'as': 'catppuccin' } " catppuccin theme
 "Plug 'neanias/everforest-nvim'  " everforest theme
-Plug 'mhinz/vim-startify' " start screen
+Plug 'ratakor/vim-startify' " start screen
 Plug 'nvim-lualine/lualine.nvim' " bottom bar
 Plug 'kyazdani42/nvim-web-devicons' " fancy icons
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " syntax color
 Plug 'p00f/nvim-ts-rainbow' " funny brackets
 "Plug 'lukas-reineke/indent-blankline.nvim' " funny indentation
 Plug 'm-demare/hlargs.nvim' " highlight arguments
+
 " LSP Support and Autocompletion Engine
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
@@ -30,9 +31,9 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-calc'
 Plug 'ray-x/cmp-treesitter'
 Plug 'saadparwaiz1/cmp_luasnip'
-"  Snippets
 Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp'}
-Plug 'honza/vim-snippets'
+Plug 'ratakor/vim-snippets'
+
 " Misc
 Plug 'bronson/vim-trailing-whitespace' " FixWhitespace
 Plug 'airblade/vim-gitgutter' " hud for git in vim
@@ -49,6 +50,7 @@ Plug 'andrewferrier/debugprint.nvim'
 call plug#end()
 
 source $XDG_CONFIG_HOME/nvim/basics.vim
+source $XDG_CONFIG_HOME/nvim/header.vim
 source $XDG_CONFIG_HOME/nvim/appearance.vim
 source $XDG_CONFIG_HOME/nvim/lsp.vim
 
@@ -62,9 +64,19 @@ nnoremap <F2> :NERDTreeToggle<CR>
 " Undotree config
 nnoremap <F3> :UndotreeToggle<CR>
 
-" vim-commentary for zig
-autocmd FileType zig setlocal commentstring=//\ %s
+" custom vim-commentary
+autocmd FileType zig setl commentstring=//\ %s
+autocmd FileType cs setl commentstring=/*\ %s\ */
 
 lua << EOF
 require("debugprint").setup()
 EOF
+
+"let g:startify_custom_header = [
+let g:cow = [
+	\"   ▄▄▄   ▄▄▄· ▄▄▄▄▄ ▄▄▄· ▄ •▄       ▄▄▄  ",
+	\"   ▀▄ █·▐█ ▀█ •██  ▐█ ▀█ █▌▄▌▪▪     ▀▄ █·",
+	\"   ▐▀▀▄ ▄█▀▀█  ▐█.▪▄█▀▀█ ▐▀▀▄· ▄█▀▄ ▐▀▀▄ ",
+	\"   ▐█•█▌▐█ ▪▐▌ ▐█▌·▐█ ▪▐▌▐█.█▌▐█▌.▐▌▐█•█▌",
+	\"   .▀  ▀ ▀  ▀  ▀▀▀  ▀  ▀ ·▀  ▀ ▀█▄▀▪.▀  ▀",
+	\]

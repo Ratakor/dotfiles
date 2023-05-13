@@ -1,7 +1,19 @@
 #!/bin/sh
-# search web, arch wiki, aur, youtube man pages or emoji with dmenu
+#                                                      .     :-. .
+#    author:  ratakor <ratakor@disroot.org>            :*==*%%%#%+=---:
+#                                                       :#%%%*+%#=+%*:.
+#    created: Fri, 12 May 2023 07:58:58 +0200            :%%%. .   -*%-
+#    updated: Sat, 13 May 2023 13:19:54 +0200             =## .   :#%*=:.
+#                                                         -#*#%:=#%%%#-
+#    description:                                        *:*%%%%%%%#-
+#    search web, parabola/arch wiki, aur youtube,         .-#%%%%%%+
+#    man pages or emoji with dmenu                         %%%--%%%%*-
+#                                                         ##%=  +%%=:..
+#                                                          #*    #%#
+#                                                         :#     -==*
+#                                                         ::        .:
 # websearch dependencies : shuf, curl, /tmp needs to be temporary
-# wiki dependency: arch-wiki-docs
+# wiki dependency: parabola-wiki-docs (can be used with arch-wiki-docs)
 # youtube dependency: ytfzf
 # man dependencies: man-db, zathura
 # emoji dependency: xclip
@@ -15,7 +27,7 @@ web() {
 			(notify-send "No internet connection"; exit 1)
 
 		strip() {
-			tmp="${1##"              \"$NETWORK\": \""}"
+			tmp=${1##"              \"$NETWORK\": \""}
 			printf '%s\n' "${tmp%%"\","}"
 		}
 
@@ -29,8 +41,17 @@ web() {
 		done < /tmp/instances.json
 	fi
 
-	instance="$(shuf -n 1 /tmp/instances)"
-	query="${instance}search.php?q=${1:-$(printf "" | dmenu -p "Search:" -l 0)}&t=0"
+	instance=$(shuf -n 1 /tmp/instances)
+	query=${1:-$(true | dmenu -p "Search:" -l 0)}
+	if [ "$query" = '!!' ]; then
+		[ -f /tmp/query ] &&
+			query=$(cat /tmp/query) ||
+			exit 1
+	else
+		echo "$query" > /tmp/query
+	fi
+	query="${instance}search.php?q=${query}&t=0"
+
 }
 
 wiki() {
@@ -66,9 +87,7 @@ manpdf() {
 
 emoji() {
 	CHOSEN=$(cut -d ';' -f1 "$XDG_DATA_HOME/emoji" | dmenu -i -l 30 | sed "s/ .*//")
-
 	[ -z "$CHOSEN" ] && return 1
-
 	printf '%s' "$CHOSEN" | xclip -selection clipboard
 	# notify-send "'$CHOSEN' copied to clipboard."
 }

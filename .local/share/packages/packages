@@ -26,8 +26,12 @@ thunar
 texlive-most
 pandoc-cli
 dotnet-sdk
+wine
+lib32-alsa-plugins
+lib32-libpulse
+lib32-openal
 #blender
-#steam
+steam
 #lutris
 monero-gui
 clang
@@ -158,3 +162,5 @@ xdo
 dbus-xdg
 openssh-dotlocal
 android-tools
+scrcpy
+astyle

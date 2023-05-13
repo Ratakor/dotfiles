@@ -1,8 +1,8 @@
 #!/bin/sh
 # wrapper for yt-dlp
 
-MUSICDIR="${XDG_MUSIC_DIR:-$HOME/Music}"
-VIDEODIR="${XDG_VIDEOS_DIR:-$HOME/Videos}"
+MUSICDIR=${3:-XDG_MUSIC_DIR:-$HOME/Music}}
+VIDEODIR=${3:-${XDG_VIDEOS_DIR:-$HOME/Videos}}
 
 case $1 in
 v)

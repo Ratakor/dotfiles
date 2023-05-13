@@ -15,9 +15,8 @@ according to your distro. Also you'll need Arch repos if you're using Artix.
 DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're doing.
 
 	$ git clone -b artix https://git.ratakor.com/dotfiles.git
-	$ cd dotfiles
+	$ cd dotfiles/.local
 	$ make
-	$ make install
 
 ## Softwares
 
@@ -40,7 +39,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 
 ### Fonts
 - Serif font: [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif)
-- Sans-serif font: [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans)
+- Sans-serif font: [Luciole](https://luciole-vision.com)
 - Monospace font: [Agave Nerd Font Mono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Agave)
 - Emoji font: [Noto Emoji](https://fonts.google.com/noto/specimen/Noto+Emoji)
 

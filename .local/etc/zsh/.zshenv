@@ -47,8 +47,9 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 # misc
 umask 0077
 export GPG_TTY=$(tty)
-export DOTNET_CLI_TELEMETRY_OPTOUT="true"
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export MANWIDTH=80
+LESS=-R
 export HISTFILE="$XDG_DATA_HOME/histfile"
 export HISTSIZE=10000
 export SAVEHIST=10000
