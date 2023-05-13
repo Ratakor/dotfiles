@@ -1,22 +1,40 @@
-"                                                         ..      ...
-"    author:  ratakor <ratakor@disroot.org>            :~"8888x :"%888x
-"                                                     8    8888Xf  8888>
-"    created: Sat, 06 May 2023 18:54:06 +0200        X88x. ?8888k  8888X
-"    updated: Sat, 06 May 2023 21:34:33 +0200        '8888L'8888X  '%88X
-"                                                     "888X 8888X:xnHH(``
-"    description:                                       ?8~ 8888X X8888
-"    script to produce an header like this one        -~`   8888> X8888
-"    use .local/bin/updateheader to change the        :H8x  8888  X8888
-"    the letter shown                                 8888> 888~  X8888
-"                                                     48"` '8*~   `8888!`
-"                                                      ^-==""      `""
+"                                                      .     :-. .
+"    author:  ratakor <ratakor@disroot.org>            :*==*%%%#%+=---:
+"                                                       :#%%%*+%#=+%*:.
+"    created: Sat, 06 May 2023 18:54:06 +0200            :%%%. .   -*%-
+"    updated: Sat, 13 May 2023 13:16:03 +0200             =## .   :#%*=:.
+"                                                         -#*#%:=#%%%#-
+"    description:                                        *:*%%%%%%%#-
+"    script to produce an header like this one            .-#%%%%%%+
+"    use .local/bin/updateheader to change the             %%%--%%%%*-
+"    letter shown                                         ##%=  +%%=:..
+"                                                          #*    #%#
+"                                                         :#     -==*
+"                                                         ::        .:
+
+let s:ascii = [
+              \"",
+	      \".     :-. .",
+              \":*==*%%%#%+=---:",
+              \" :#%%%*+%#=+%*:.",
+              \"  :%%%. .   -*%-",
+              \"   =## .   :#%*=:.",
+              \"   -#*#%:=#%%%#-",
+              \"  *:*%%%%%%%#-",
+              \"   .-#%%%%%%+",
+              \"    %%%--%%%%*-",
+              \"   ##%=  +%%=:..",
+              \"    #*    #%#",
+              \"   :#     -==*",
+              \"   ::        .:",
+              \]
 
 let s:start   = '#'
 let s:mid     = '#'
 let s:end     = ''
 let s:size    = 20 " ascii width
-let s:length  = 13 " header length
-let s:width   = 78 " header width
+let s:length  = len(s:ascii) " header length
+let s:width   = 80 " header width
 let s:margin  = 5
 
 let s:types   = {
@@ -129,19 +147,3 @@ endfunction
 command! Header call s:header ()
 autocmd BufNewFile  * call s:header ()
 autocmd BufWritePre * call s:update ()
-
-let s:ascii = [
-              \"",
-              \"     ..      ...",
-              \"  :~\"8888x :\"%888x",
-              \" 8    8888Xf  8888>",
-              \"X88x. ?8888k  8888X",
-              \"'8888L'8888X  '%88X",
-              \" \"888X 8888X:xnHH(``",
-              \"   ?8~ 8888X X8888",
-              \" -~`   8888> X8888",
-              \" :H8x  8888  X8888",
-              \" 8888> 888~  X8888",
-              \" 48\"` '8*~   `8888!`",
-              \"  ^-==\"\"      `\"\"",
-              \]

@@ -12,7 +12,7 @@ to your distro.
 DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're doing.
 
 	$ git clone https://git.ratakor.com/dotfiles.git
-	$ cd dotfiles
+	$ cd dotfiles/.local
 	$ make
 
 ## Softwares
