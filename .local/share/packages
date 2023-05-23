@@ -27,18 +27,16 @@ st-ratakor # terminal emulator
 slock-ratakor # screen locker
 randhost # set a random hostname (OpenRC service)
 blocktooth # block bluetooth with rfkill (OpenRC service)
-networkmanager-hardened # set a randomized MAC address
+networkmanager-hardened # set a randomized MAC address + disable co test
 quand # a calendar app like when
 clangbincc # a pacman hook to symlink clang to cc when there is a gcc update
 pinentry-dmenu # use dmenu for gpg
 ratakor-repo/dragon # a simple drag-and-drop replacement for graphical stuff
-ratakor-repo/your-privacy # better your-privacy
-ratakor-repo/your-freedom # parabola's your-freedom but with chromium allowed
+ratakor-repo/your-privacy # your-privacy but without NM as it's in another pkg
 cli-visualizer # audio visualizer
 dashbinsh # a pacman hook to symlink dash to sh when there is a bash update
 dracula-gtk-theme # /usr/share/themes/dracula
 gruvbox-gtk-theme # /usr/share/themes/gruvbox-[dark|light]
-#catppuccin-macchiato-gtk-theme # /usr/share/themes/catppuccin
 xbanish # hide mouse when typing
 simple-mtpfs # mount phone easily
 dbus-xdg # dbus but without ~/.dbus
@@ -48,6 +46,7 @@ scron # simple cron daemon
 htop-vim # process viewer (htop) with vim keybinds
 openssh-dotlocal # openssh but ~/.ssh to ~/.local/etc/ssh
 herbe # notifications
+gomuks # matrix client
 
 ## terminal
 zsh # user shell
@@ -89,6 +88,7 @@ lua-language-server
 vscode-css-languageserver
 vscode-html-languageserver
 astyle # C formatter
+shellcheck
 
 ## sound
 rtkit
@@ -138,7 +138,6 @@ iftop # display bandwidth usage
 checkbashisms
 dash # sh replacement
 python-pynvim # neovim dependency
-shellcheck
 #nyxt # browser for lisp people
 openbsd-netcat
 noto-fonts-cjk
@@ -150,4 +149,3 @@ python-gnupg # gajim dependency
 git-lfs
 xorg-xsetroot # to restart dwm with command line
 xdo # window manipulation
-#vhs

@@ -22,7 +22,7 @@ set period 1
 set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 set cleaner '~/.local/etc/lf/cleaner'
 set previewer '~/.local/etc/lf/scope'
-set autoquit on
+set autoquit true
 
 # cmds/functions
 cmd open ${{

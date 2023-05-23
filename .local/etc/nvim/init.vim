@@ -50,7 +50,7 @@ Plug 'andrewferrier/debugprint.nvim'
 call plug#end()
 
 source $XDG_CONFIG_HOME/nvim/basics.vim
-source $XDG_CONFIG_HOME/nvim/header.vim
+"source $XDG_CONFIG_HOME/nvim/header.vim
 source $XDG_CONFIG_HOME/nvim/appearance.vim
 source $XDG_CONFIG_HOME/nvim/lsp.vim
 

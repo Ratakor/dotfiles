@@ -10,6 +10,8 @@ XF86Battery
 	battery
 Scroll_Lock
 	themeswap
+super + shift + r
+	randwp
 Print
 	screenshot
 {super + equal,XF86AudioRaiseVolume}

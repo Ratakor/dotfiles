@@ -2,7 +2,13 @@
 # menu for shutdown or lock
 # require nopass for poweroff and reboot and my build of dmenu for -hf
 
-QUERY=$(printf 'no\nlock\npoweroff\nreboot' | dmenu -i -sb '#ff5555' -hf '#8be9fd' -p 'Shutdown?')
+red=$(xrdb -query | awk '/color1:/ { print $2 }')
+cyan=$(xrdb -query | awk '/color6:/ { print $2 }')
+
+[ -z "$red" ] && red='#ff5555'
+[ -z "$cyan" ] && cyan='#8be9fd'
+
+QUERY=$(printf 'no\nlock\npoweroff\nreboot' | dmenu -i -sb "$red" -hf "$cyan" -p 'Shutdown?')
 ROOTCMD="${ROOTCMD:-$(command -v doas || command -v sudo)}"
 
 case "$QUERY" in

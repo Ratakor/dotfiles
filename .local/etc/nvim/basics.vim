@@ -20,7 +20,7 @@ nnoremap <c-u> <c-u>zz
 set number
 set relativenumber
 set colorcolumn=80
-set textwidth=79
+"set textwidth=79
 set title
 set nohlsearch
 set termguicolors

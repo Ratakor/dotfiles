@@ -21,6 +21,11 @@
 
 !st.bellvolume: +100
 
+!! Gaps
+!dwm.enablegaps:      +1
+dwm.gaps:            +10
+!herbe.pos_y:         +40
+
 !! Gruvbox Light
 *.foreground:        #3c3836
 *.background:        #fbf1c7

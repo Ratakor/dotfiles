@@ -3,7 +3,7 @@
 #    author:  ratakor <ratakor@disroot.org>            :*==*%%%#%+=---:
 #                                                       :#%%%*+%#=+%*:.
 #    created: Sat, 13 May 2023 13:06:54 +0200            :%%%. .   -*%-
-#    updated: Sat, 13 May 2023 15:17:34 +0200             =## .   :#%*=:.
+#    updated: Fri, 19 May 2023 00:54:45 +0200             =## .   :#%*=:.
 #                                                         -#*#%:=#%%%#-
 #    description: plumber 🪠                             *:*%%%%%%%#-
 #                                                         .-#%%%%%%+
@@ -164,14 +164,18 @@ main() {
 		fi
 		openfile "$2" ;;
 	-s|--sel|'')
-		sel=$(xclip -o -sel 2>/dev/null || xsel -o -p -n 2>/dev/null)
+		sel=$(xclip -o -sel 2>/dev/null || xsel -opn 2>/dev/null)
 		sel=${sel#"${sel%%[![:space:]]*}"}
+
+		# clear clipboard
+		true | xclip 2>/dev/null || true | xsel 2>/dev/null
 
 		if [ -z "$sel" ]; then
 			printf '\033[31mError:\033[m selection buffer is empty\n' >&2
 			usage
 			return 1
 		fi
+
 		checksel "$sel" ;;
 	-h|--help)
 		usage

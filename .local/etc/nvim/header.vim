@@ -2,7 +2,7 @@
 "    author:  ratakor <ratakor@disroot.org>            :*==*%%%#%+=---:
 "                                                       :#%%%*+%#=+%*:.
 "    created: Sat, 06 May 2023 18:54:06 +0200            :%%%. .   -*%-
-"    updated: Sat, 13 May 2023 13:16:03 +0200             =## .   :#%*=:.
+"    updated: Tue, 23 May 2023 15:03:56 +0200             =## .   :#%*=:.
 "                                                         -#*#%:=#%%%#-
 "    description:                                        *:*%%%%%%%#-
 "    script to produce an header like this one            .-#%%%%%%+
@@ -40,7 +40,7 @@ let s:margin  = 5
 let s:types   = {
                 \'\.c$\|\.h$\|\.cc$\|\.hh$\|\.cpp$\|\.hpp$\|\.cs$\|\.php$':
                 \['/*', ' *', ' */'],
-                \'\.htm$\|\.html$\|\.xml$':
+                \'\.htm$\|\.html$\|\.xml$\|\.md$':
                 \['<!--', ' ', '-->'],
                 \'\.js$':
                 \['//', '//', ''],
