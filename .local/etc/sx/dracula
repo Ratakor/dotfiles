@@ -20,6 +20,9 @@
 
 !st.bellvolume: +100
 
+dwm.enablegaps:      +1
+herbe.pos_y:         +45
+
 !! Dracula
 *.foreground:        #F8F8F2
 *.background:        #282A36
@@ -41,6 +44,7 @@
 *.color15:           #FFFFFF
 *.normfgcolor:       #F8F8F2
 *.normbgcolor:       #282A36
+dwm.borderpx:        +3
 dwm.normbordercolor: #44475A
 dwm.selfgcolor:      #BD93F9
 dwm.selbgcolor:      #44475A
@@ -56,6 +60,6 @@ herbe.padding:       +15
 herbe.width:         +400
 herbe.border_size:   +2
 herbe.pos_x:         +15
-herbe.pos_y:         +30
+/* herbe.pos_y:         +30 */
 herbe.corner:        +1
 herbe.duration:      +5

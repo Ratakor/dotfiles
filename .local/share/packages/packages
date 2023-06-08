@@ -20,10 +20,8 @@ micro
 pacman-contrib
 ungoogled-chromium-xdg
 lm_sensors-openrc
-pavucontrol
 libreoffice
-thunar
-texlive-most
+texlive
 pandoc-cli
 dotnet-sdk
 wine
@@ -112,11 +110,10 @@ nasm
 pypy3
 rustup
 dmenu-ratakor
-dwm-gaps-ratakor
+dwm-ratakor
 dwmblocks-ratakor
 st-ratakor
 slock-ratakor
-sic
 quand
 clangbincc
 claws-mail
@@ -154,7 +151,6 @@ xorg-xrdb
 sxhkd
 mat2
 git-lfs
-xorg-xsetroot
 herbe-xrandr
 ripgrep
 xorg-xsetroot
@@ -164,3 +160,5 @@ openssh-dotlocal
 android-tools
 scrcpy
 astyle
+gomuks
+tesseract-data-eng

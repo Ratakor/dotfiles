@@ -3,7 +3,7 @@
 #    author:  ratakor <ratakor@disroot.org>            :*==*%%%#%+=---:
 #                                                       :#%%%*+%#=+%*:.
 #    created: Fri, 12 May 2023 07:58:58 +0200            :%%%. .   -*%-
-#    updated: Sat, 13 May 2023 13:19:54 +0200             =## .   :#%*=:.
+#    updated: Fri, 19 May 2023 17:06:26 +0200             =## .   :#%*=:.
 #                                                         -#*#%:=#%%%#-
 #    description:                                        *:*%%%%%%%#-
 #    search web, parabola/arch wiki, aur youtube,         .-#%%%%%%+
@@ -22,8 +22,9 @@ set -e
 
 web() {
 	NETWORK=clearnet # clearnet, tor or i2p
+	SOURCE=https://raw.githubusercontent.com/Ratakor/librex/main/instances.json
 	if [ ! -f "/tmp/instances" ]; then
-		curl -s "https://librex.ratakor.com/instances.json" > /tmp/instances.json ||
+		curl -s "$SOURCE" > /tmp/instances.json ||
 			(notify-send "No internet connection"; exit 1)
 
 		strip() {
@@ -55,7 +56,7 @@ web() {
 }
 
 wiki() {
-	WIKIDIR="/usr/share/doc/arch-wiki/html/en"
+	WIKIDIR="/usr/share/doc/parabola-wiki/html/en"
 
 	strip() {
 		tmp="${1##"$WIKIDIR/"}"

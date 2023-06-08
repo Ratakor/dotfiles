@@ -8,6 +8,8 @@ super + shift + x
 	slock
 Scroll_Lock
 	themeswap
+super + shift + r
+	randwp
 Print
 	screenshot
 {super + equal,XF86AudioRaiseVolume}

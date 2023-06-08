@@ -56,7 +56,6 @@ alias paint="pinta"
 alias python="python3"
 alias py="pypy3"
 alias nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings"
-alias sic="irc"
 alias ho="cat $XDG_DATA_HOME/hole/history"
 alias ytfzf="ytfzf -D --detach"
 alias tmp='cd $(mktemp -d)'

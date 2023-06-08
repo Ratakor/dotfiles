@@ -12,7 +12,7 @@ Plug 'Mofiqul/dracula.nvim' " dracula theme
 Plug 'ellisonleao/gruvbox.nvim' " gruvbox theme
 "Plug 'catppuccin/nvim', { 'as': 'catppuccin' } " catppuccin theme
 "Plug 'neanias/everforest-nvim'  " everforest theme
-Plug 'ratakor/vim-startify' " start screen
+Plug 'mhinz/vim-startify' " start screen
 Plug 'nvim-lualine/lualine.nvim' " bottom bar
 Plug 'kyazdani42/nvim-web-devicons' " fancy icons
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " syntax color
@@ -50,7 +50,7 @@ Plug 'andrewferrier/debugprint.nvim'
 call plug#end()
 
 source $XDG_CONFIG_HOME/nvim/basics.vim
-source $XDG_CONFIG_HOME/nvim/header.vim
+"source $XDG_CONFIG_HOME/nvim/header.vim
 source $XDG_CONFIG_HOME/nvim/appearance.vim
 source $XDG_CONFIG_HOME/nvim/lsp.vim
 
@@ -60,6 +60,7 @@ nnoremap <C-G> :Telescope git_files<CR>
 
 " NerdTree config
 nnoremap <F2> :NERDTreeToggle<CR>
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Undotree config
 nnoremap <F3> :UndotreeToggle<CR>
@@ -72,8 +73,7 @@ lua << EOF
 require("debugprint").setup()
 EOF
 
-"let g:startify_custom_header = [
-let g:cow = [
+let g:startify_custom_header = [
 	\"   ▄▄▄   ▄▄▄· ▄▄▄▄▄ ▄▄▄· ▄ •▄       ▄▄▄  ",
 	\"   ▀▄ █·▐█ ▀█ •██  ▐█ ▀█ █▌▄▌▪▪     ▀▄ █·",
 	\"   ▐▀▀▄ ▄█▀▀█  ▐█.▪▄█▀▀█ ▐▀▀▄· ▄█▀▄ ▐▀▀▄ ",

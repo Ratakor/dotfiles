@@ -21,6 +21,9 @@
 
 !st.bellvolume: +100
 
+dwm.enablegaps:      +1
+herbe.pos_y:         +45
+
 !! Catppuccin Macchiato
 *foreground:         #CAD3F5
 *background:         #24273A
@@ -42,6 +45,7 @@
 *color15:            #A5ADCB
 *.normfgcolor:       #CAD3F5
 *.normbgcolor:       #24273A
+dwm.borderpx:        +3
 !dwm.normbordercolor: #44475A
 !dwm.selfgcolor:      #BD93F9
 !dwm.selbgcolor:      #44475A
@@ -57,6 +61,6 @@ herbe.padding:       +15
 herbe.width:         +400
 herbe.border_size:   +2
 herbe.pos_x:         +15
-herbe.pos_y:         +30
+/* herbe.pos_y:         +30 */
 herbe.corner:        +1
 herbe.duration:      +5

@@ -21,6 +21,9 @@
 
 !st.bellvolume: +100
 
+dwm.enablegaps:      +1
+herbe.pos_y:         +45
+
 !! Gruvbox Dark
 *.foreground:        #ebdbb2
 *.background:        #1d2021
@@ -44,6 +47,7 @@
 *.color257:          #ebdbb2
 *.normfgcolor:       #ebdbb2
 *.normbgcolor:       #282828
+dwm.borderpx:        +3
 dwm.normbordercolor: #3c3836
 dwm.selfgcolor:      #458588
 dwm.selbgcolor:      #32302f
@@ -59,6 +63,6 @@ herbe.padding:       +15
 herbe.width:         +400
 herbe.border_size:   +2
 herbe.pos_x:         +15
-herbe.pos_y:         +30
+/* herbe.pos_y:         +30 */
 herbe.corner:        +1
 herbe.duration:      +5

@@ -9,8 +9,6 @@ set softtabstop=8 " n of whitespace to delete with backspace
 
 " Disable the mouse, btw use shift for highlighting
 "set mouse=
-map <Middlemouse> <Nop>
-imap <Middlemouse> <Nop>
 aunmenu PopUp
 
 " better <C-d> and <C-u>
@@ -23,7 +21,7 @@ abbr hte the
 " Misc
 set nu rnu
 set cc=80
-set tw=79
+"set tw=79
 set title
 set nohls
 set tgc

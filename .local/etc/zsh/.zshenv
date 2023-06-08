@@ -43,9 +43,10 @@ export W3M_DIR="$XDG_STATE_HOME/w3m"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+export DOOMWADDIR="$XDG_DATA_HOME/gzdoom"
 
 # misc
-umask 0077
+# umask 0077
 export GPG_TTY=$(tty)
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export MANWIDTH=80

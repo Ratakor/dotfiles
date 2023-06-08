@@ -17,19 +17,13 @@ case $THEME in
 dracula)
 	bg=dark
 	theme=dracula
-	bat=Dracula
-	red="#ff5555"
-	cyan="#8be9fd" ;;
-gruvbox-dark)
+	bat=Dracula ;;
+dark|gruvbox-dark)
 	bg=dark
-	theme=gruvbox-$bg
-	red="#cc241d"
-	cyan="#689d6a" ;;
-gruvbox-light)
+	theme=gruvbox-$bg ;;
+light|gruvbox-light)
 	bg=light
-	theme=gruvbox-$bg
-	red="#cc241d"
-	cyan="#689d6a" ;;
+	theme=gruvbox-$bg ;;
 *)
 	exit 1 ;;
 esac
@@ -42,9 +36,6 @@ sed -i -e "s/^colorscheme.*/colorscheme ${theme%"-$bg"}/"\
 	-e "s/lualine.themes.*/lualine.themes.${theme%"-$bg"}'/"\
 	-e "s/^set background=.*/set background=$bg/"\
 	"$CONF/nvim/appearance.vim"
-sed -i -e "s/-sb '#.*-hf/-sb '$red' -hf/"\
-	-e "s/-hf '#.*-/-hf '$cyan' -/"\
-	"$HOME/.local/bin/dmenuoff"
 sed -i -e "s/--theme.*/--theme=${bat:-$theme}/" "$CONF/bat/config"
 sed -i -e "s/^THEME=.*/THEME=${bat:-$theme}/" "$CONF/lf/scope"
 sed -i -e "s/^gtk-theme-name.*/gtk-theme-name=$theme/" "$CONF/gtk-3.0/settings.ini"
@@ -70,7 +61,6 @@ light)
 dark)
 	pgrep -x picom >/dev/null || picom -b ;;
 esac
-
 
 # restart programs
 if pgrep -x dwm >/dev/null; then

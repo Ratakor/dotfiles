@@ -3,12 +3,12 @@
 #    author:  ratakor <ratakor@disroot.org>            :*==*%%%#%+=---:
 #                                                       :#%%%*+%#=+%*:.
 #    created: Sat, 06 May 2023 18:44:52 +0200            :%%%. .   -*%-
-#    updated: Sat, 13 May 2023 13:52:18 +0200             =## .   :#%*=:.
+#    updated: Sat, 13 May 2023 15:22:04 +0200             =## .   :#%*=:.
 #                                                         -#*#%:=#%%%#-
 #    description:                                        *:*%%%%%%%#-
 #    simple music selector with dmenu that uses and       .-#%%%%%%+
 #    interacts with mpv. have a look at musiccmd,          %%%--%%%%*-
-#   dwmblocks/sb_music and .local/etc/mpv/music ;)        ##%=  +%%=:..
+#    dwmblocks/sb_music and .local/etc/mpv/music ;)       ##%=  +%%=:..
 #                                                          #*    #%#
 #                                                         :#     -==*
 #   shellcheck disable=SC2012 #                           ::        .:

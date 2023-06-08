@@ -1,0 +1,26 @@
+#!/bin/sh
+
+OUTPUT=HDMI-0
+MIN=0
+MAX=2
+
+main() {
+	cmd="xrandr --output $OUTPUT --brightness"
+
+	case "$1" in
+	up)
+		new=$(xrandr --verbose |\
+			awk '/Brightness/ {x = $2 + 0.1;printf "%.2f", x;exit}')
+		[ 1 -eq "$(echo "$new > $MAX" | bc)" ] && return 1;
+		$cmd "$new" ;;
+	down)
+		new=$(xrandr --verbose |\
+			awk '/Brightness/ {x = $2 - 0.1;printf "%.2f", x;exit}')
+		[ 1 -eq "$(echo "$new < $MIN" | bc)" ] && return 1;
+		$cmd "$new" ;;
+	*)
+		return 1 ;;
+	esac
+}
+
+main "$1"

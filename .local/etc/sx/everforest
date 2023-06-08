@@ -21,6 +21,9 @@
 
 !st.bellvolume: +100
 
+dwm.enablegaps:      +1
+herbe.pos_y:         +45
+
 !! Everforest
 *.foreground:        #d3c6aa
 *.background:        #232a2e
@@ -43,6 +46,7 @@
 *.color15:           #d3c6aa
 *.normfgcolor:       #d3c6aa
 *.normbgcolor:       #232a2e
+dwm.borderpx:        +3
 dwm.normbordercolor: #343F44
 dwm.selfgcolor:      #a7c080
 dwm.selbgcolor:      #343F44
@@ -58,6 +62,6 @@ herbe.padding:       +15
 herbe.width:         +400
 herbe.border_size:   +2
 herbe.pos_x:         +15
-herbe.pos_y:         +30
+/* herbe.pos_y:         +30 */
 herbe.corner:        +1
 herbe.duration:      +5

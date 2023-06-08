@@ -18,11 +18,12 @@ gammastep &
 sleep 2s; dwmblocks &
 #st -e "monerod --data-dir /storage/monero" &
 
-case $(date +%H) in
-2[1-3]|0[0-7])
-	themeswap gruvbox-dark ;;
-*)
-	themeswap gruvbox-light ;;
-esac
+#case $(date +%H) in
+#2[1-3]|0[0-7])
+#	themeswap gruvbox-dark ;;
+#*)
+#	themeswap gruvbox-light ;;
+#esac
+themeswap gruvbox-dark
 
 exec dwm

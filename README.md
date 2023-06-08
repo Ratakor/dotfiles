@@ -35,7 +35,6 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - File manager: [lf](https://github.com/gokcehan/lf)
 - Calendar: [quand](https://github.com/ratakor/quand)
 - RSS reader: [newsboat](https://newsboat.org/)
-- IRC client: [sic](https://tools.suckless.org/sic)
 
 ### Fonts
 - Serif font: [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif)
