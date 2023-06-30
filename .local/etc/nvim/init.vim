@@ -60,6 +60,7 @@ nnoremap <C-G> :Telescope git_files<CR>
 
 " NerdTree config
 nnoremap <F2> :NERDTreeToggle<CR>
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Undotree config
 nnoremap <F3> :UndotreeToggle<CR>

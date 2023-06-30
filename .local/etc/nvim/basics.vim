@@ -8,8 +8,6 @@ set softtabstop=8 " n of whitespace to delete with backspace
 
 " Disable the mouse, btw use shift for highlighting
 "set mouse=
-map <Middlemouse> <Nop>
-imap <Middlemouse> <Nop>
 aunmenu PopUp
 
 " better <C-d> and <C-u>
@@ -29,10 +27,13 @@ set clipboard+=unnamedplus
 "set lcs=tab:\|\ ,space:⋅,eol:$ "↴
 autocmd FileType * setl fo-=ro fo+=tc
 abbreviate hte the
+nnoremap :Q<CR> :q<CR>
+nnoremap :Q!<CR> :q!<CR>
 
 " Language specific
 autocmd FileType python setl ts=4 sw=4 sts=4 expandtab
 autocmd FileType lisp,html setl ts=2 sw=2 sts=2 expandtab
 autocmd FileType html,markdown setl spell
 autocmd FileType tex setl spell spl=fr
-autocmd BufWritePost *.c silent! !astyle -A3 -t8 -p -xg -H -xB -n %:p
+autocmd BufWritePost *.c silent! !astyle -A3 -t8 -p -xg -H -xB -n -w %:p
+command Astyle !astyle -A3 -t8 -p -xg -H -xB -n -w %:p

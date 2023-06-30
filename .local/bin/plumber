@@ -1,17 +1,12 @@
 #!/bin/sh
-#                                                      .     :-. .
-#    author:  ratakor <ratakor@disroot.org>            :*==*%%%#%+=---:
-#                                                       :#%%%*+%#=+%*:.
-#    created: Sat, 13 May 2023 13:06:54 +0200            :%%%. .   -*%-
-#    updated: Fri, 19 May 2023 00:54:45 +0200             =## .   :#%*=:.
-#                                                         -#*#%:=#%%%#-
-#    description: plumber 🪠                             *:*%%%%%%%#-
-#                                                         .-#%%%%%%+
-#    dependencies:                                         %%%--%%%%*-
-#      - default programs                                 ##%=  +%%=:..
-#      - xdo                                               #*    #%#
-#      - xclip or xsel                                    :#     -==*
-#      - (optional) herbe and dmenusearch web             ::        .:
+# Copywrong © 2023 Ratakor. Under ISC License.
+# plumber 🪠
+# dependencies:
+#   - default programs
+#   - xdo
+#   - xclip or xsel
+#   - (optional) herbe and dmenusearch web
+#   - (optional) dmenu_path
 # shellcheck disable=SC2086
 
 # default programs
@@ -22,13 +17,13 @@ AUDIO="music --shuffle"
 PIC="nsxiv -a"
 DOC="zathura"
 DIR="$TERMINAL -e lfub"
-CD="st -d"
 
 openlink() {
 	case "$1" in
-	*.mkv|*.webm|*.mp4|*.mov|*youtube.com/watch*|*youtube.com/playlist*|*youtube.com/shorts*|*youtu.be*|*inv*/playlist*|*inv*/watch*)
+	*.mkv|*.webm|*.mp4|*.mov|*youtube.com/watch*|*youtube.com/playlist*|\
+		*youtube.com/shorts*|*youtu.be*|*inv*/playlist*|*inv*/watch*)
 		setsid -f $VIDEO "$1" >/dev/null 2>&1 ;;
-	*.mp3|*.flac|*.opus|*mp3?source*|*.ogg|*.wav)
+	*.mp3|*.flac|*.opus|*mp3?source*|*.ogg|*.wav|*soundcloud.com*)
 		setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
 	*.png|*.jpg|*.jpeg|*.gif|*.webp)
 		file=$(printf '%s' "$1" | sed "s/.*\///;s/%20/ /g")
@@ -39,10 +34,11 @@ openlink() {
 		curl -sL "$1" > "/tmp/$file" &&
 			$DOC "/tmp/$file" >/dev/null 2>&1 & ;;
 	*wp.com/stonetoss.com*)
-		file=$(printf '%s' "$1" | sed "s/.*\///;s/%20/ /g")
+		file=$(printf '%s' "${1%"?resize=150%2C150&ssl=1"}" |\
+			sed "s/.*\///;s/%20/ /g")
 		curl -sL "${1%"?resize=150%2C150&ssl=1"}" > "/tmp/$file" &&
 			$PIC "/tmp/$file" >/dev/null 2>&1 & ;;
-	git://*|"git clone"*|*.git|git@*)
+	git://*|git@*|*.git)
 		"$TERMINAL" -e git clone "$1" ;;
 	*)
 		setsid -f $WEB "$1" >/dev/null 2>&1 ;;
@@ -76,13 +72,14 @@ openfile() {
 
 checksel() {
 	case "$1" in
-	http://*|https://*|git://*|irc://*|ircs://*|"git clone"*|git@*|*.git)
+	http://*|https://*|irc://*|ircs://*|git://*|git@*)
 		openlink "$1" ;;
 	/*)
 		opensel "$1" "$1" ;;
 
 	*)
-		pid=$(pstree -lpA "$(xdo pid)" | tail -n 1 | awk -F '---' '{print $NF}' | sed -re 's/[^0-9]//g')
+		pid=$(pstree -lpA "$(xdo pid)" | tail -n 1 |\
+			awk -F '---' '{print $NF}' | sed -re 's/[^0-9]//g')
 		opensel "$(readlink "/proc/$pid/cwd")/$1" "$1" ;;
 	esac
 }
@@ -94,15 +91,22 @@ opensel() {
 			setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
 		*)
 			xdo kill
-			$CD "$1" ;;
+			$TERMINAL -e sh -c "cd $1; $SHELL" ;;
 		esac
 		return
 	fi
 
 	if [ ! -f "$1" ]; then
-		# "$TERMINAL" -e $1 # idk how to make st not exiting with -e
-		herbe "Do you want to search for '$2' ?" &&
-			dmenusearch web "$2"
+		progname=${2%\ *}
+		for prog in $(dmenu_path); do
+			case $prog in
+			"$progname")
+				$TERMINAL -e sh -c\
+					"cd ${1%"$2"}; echo \$ $2; $2; $SHELL"
+				return ;;
+			esac
+		done
+		herbe "Do you want to search for '$2' ?" && dmenusearch web "$2"
 		return
 	fi
 
@@ -143,7 +147,6 @@ Config:
   picture      = $PIC
   document     = $DOC
   file manager = $DIR
-  cd           = $CD
 EOF
 }
 

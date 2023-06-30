@@ -9,28 +9,35 @@ CACHE="${XDG_CACHE_HOME:-$HOME/.cache}"
 IMG="nsxiv"
 
 getpath() {
-	tmp="$(printf '{ "command": ["get_property", "path"] }\n'\
-		| socat - /tmp/mpvsocket)"
-	tmp="${tmp#{\"data\":\"}"
-	path="${tmp%\",\"request_id\":0,\"error\":\"success\"\}}"
+	tmp=$(printf '{ "command": ["get_property", "path"] }\n'\
+		| socat - /tmp/mpvsocket)
+	tmp=${tmp#{\"data\":\"}
+	path=${tmp%\",\"request_id\":0,\"error\":\"success\"\}}
+}
+
+gettitle() {
+	tmp=$(printf '{ "command": ["get_property", "media-title"] }\n'\
+		| socat - /tmp/mpvsocket)
+	tmp=${tmp##{\"data\":\"}
+	title=${tmp%\",\"request_id\":0,\"error\":\"success\"\}}
 }
 
 getvol() {
-	tmp="$(printf '{ "command": ["get_property", "volume"] }\n'\
-		| socat - /tmp/mpvsocket)"
-	tmp="${tmp#{\"data\":}"
+	tmp=$(printf '{ "command": ["get_property", "volume"] }\n'\
+		| socat - /tmp/mpvsocket)
+	tmp=${tmp#{\"data\":}
 	printf '%s\n' "${tmp%.000000,\"request_id\":0,\"error\":\"success\"\}}"
 }
 
 download() {
 	mkdir -p "$1"
-	notify-send "Downloading '$path' to '$1'"
+	notify-send "Downloading '$title' to '$1'"
 	if yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3\
 			-o"%(title)s [%(id)s].%(ext)s" -P "$1" "$path"; then
-		notify-send "'$path' successfuly downloaded to '$2'"
+		notify-send "'$title' successfuly downloaded to '$1'"
 		return 0
 	else
-		notify-send "Error: '$path' couldn't be downloaded"
+		notify-send "Error: '$title' couldn't be downloaded"
 		return 1
 	fi
 }
@@ -42,10 +49,10 @@ addtofav() {
 	*)
 		mkdir -p "$FAVDIR"
 		if cp "$path" "$FAVDIR"; then
-			notify-send "'$path' was copied to '$FAVDIR'"
+			notify-send "'$title' was copied to '$FAVDIR'"
 			return 0
 		else
-			notify-send "'$path' couldn't be copied to '$FAVDIR'"
+			notify-send "'$title' couldn't be copied to '$FAVDIR'"
 			return 1
 		fi ;;
 	esac
@@ -68,8 +75,7 @@ main() {
 	if ! pgrep -x music >/dev/null; then
 		kill -35 "$(pidof dwmblocks)"
 		herbe "Error: There is no music playing"\
-			"Do you want to play some ?" &&
-			music
+			"Do you want to play some ?" && music
 		return 1
 	fi
 
@@ -93,9 +99,11 @@ main() {
 		kill -35 "$(pidof dwmblocks)" ;;
 	*favorite|fav)
 		getpath
+		gettitle
 		addtofav ;;
 	*download)
 		getpath
+		gettitle
 		download "$DLDIR" ;;
 	*thumbnail)
 		getpath
@@ -108,6 +116,9 @@ main() {
 	path)
 		getpath
 		printf '%s\n' "$path" ;;
+	title)
+		gettitle
+		printf '%s\n' "$title" ;;
 	vol)
 		getvol ;;
 	esac

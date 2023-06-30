@@ -2,7 +2,7 @@ super + Escape
 	kill -10 $(pidof sxhkd)
 {super + Return,button8)
 	$TERMINAL
-{super + d,button10}
+super + d
 	dmenu_run -hp "browser,mail"
 XF86ScreenSaver
 	slock & xset dpms force off
@@ -22,14 +22,19 @@ XF86Launch1
 	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)
 F6
 	wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -45 $(pidof dwmblocks)
-{F7,super + b}
-	$TERMINAL -e {dmenurecord,newsboat}
-super + {n,shift + n}
-	st -d "$XDG_DATA_HOME/notes" {-e lfub, }
+F7
+	$TERMINAL -e dmenurecord
+super + b
+	$BROWSER
+super + n
+	$TERMINAL -e sh -c 'cd "$XDG_DATA_HOME/notes"; lfub'
+super + shift + n
+	$TERMINAL -e newsboat
 super + {m,shift + m}
 	{music,musiccmd}
-#super + shift + {Left, Right, Down, Up}
 XF86Audio{Prev,Next,Play,Stop}
+	musiccmd {prev,next,cycle,stop}
+super + shift + {Left, Right, Down, Up}
 	musiccmd {prev,next,cycle,stop}
 super + {s,a,y,w,e}
 	dmenusearch {web,aur,youtube,man,emoji}
@@ -41,3 +46,5 @@ super + u
 	plumber --sel
 button9
 	xdo kill
+button10
+	musiccmd

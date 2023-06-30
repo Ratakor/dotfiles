@@ -29,7 +29,7 @@ randhost # set a random hostname (OpenRC service)
 blocktooth # block bluetooth with rfkill (OpenRC service)
 networkmanager-hardened # set a randomized MAC address + disable co test
 quand # a calendar app like when
-clangbincc # a pacman hook to symlink clang to cc when there is a gcc update
+#clangbincc # a pacman hook to symlink clang to cc when there is a gcc update
 pinentry-dmenu # use dmenu for gpg
 ratakor-repo/dragon # a simple drag-and-drop replacement for graphical stuff
 ratakor-repo/your-privacy # your-privacy but without NM as it's in another pkg
@@ -69,7 +69,7 @@ fd # find replacement
 gitui # tui for git (good if you don't remember what change you made)
 
 ## dev
-#texlive-most # LaTeX (big package)
+#texlive # LaTeX (big package)
 #pandoc-cli # I only use that to convert markdown to latex to pdf (big package)
 #dotnet-sdk # C# for lsp do dotnet tool install -g csharp-ls
 rustup # rust
@@ -89,6 +89,7 @@ vscode-css-languageserver
 vscode-html-languageserver
 astyle # C formatter
 shellcheck
+mingw-w64-gcc
 
 ## sound
 rtkit
@@ -147,5 +148,4 @@ hunspell-fr
 python-axolotl # gajim dependency
 python-gnupg # gajim dependency
 git-lfs
-xorg-xsetroot # to restart dwm with command line
 xdo # window manipulation
