@@ -27,10 +27,13 @@ set nohls
 set tgc
 set clipboard+=unnamedplus
 autocmd FileType * setl fo-=ro fo+=tc
+nnoremap :Q<CR> :q<CR>
+nnoremap :Q!<CR> :q!<CR>
 
 " Language specific
 autocmd FileType python setl ts=4 sw=4 sts=4 expandtab
 autocmd FileType lisp,html setl ts=2 sw=2 sts=2 expandtab
 autocmd FileType html,markdown setl spell
 autocmd FileType tex setl spell spl=fr
-autocmd BufWritePost *.c silent! !astyle -A3 -t8 -p -xg -H -xB -n %:p
+autocmd BufWritePost *.c silent! !astyle -A3 -t8 -p -xg -H -xB -n -w %:p
+command Astyle !astyle -A3 -t8 -p -xg -H -xB -n -w %:p

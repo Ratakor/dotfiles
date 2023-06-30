@@ -24,6 +24,6 @@ sleep 2s; dwmblocks &
 #*)
 #	themeswap gruvbox-light ;;
 #esac
-themeswap gruvbox-dark
+themeswap dracula
 
 exec dwm

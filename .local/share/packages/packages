@@ -115,7 +115,7 @@ dwmblocks-ratakor
 st-ratakor
 slock-ratakor
 quand
-clangbincc
+#clangbincc
 claws-mail
 zig
 drag-on
@@ -162,3 +162,4 @@ scrcpy
 astyle
 gomuks
 tesseract-data-eng
+mingw-w64-gcc

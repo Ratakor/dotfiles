@@ -1,17 +1,6 @@
 #!/bin/sh
-#                                                      .     :-. .
-#    author:  ratakor <ratakor@disroot.org>            :*==*%%%#%+=---:
-#                                                       :#%%%*+%#=+%*:.
-#    created: Fri, 12 May 2023 07:58:58 +0200            :%%%. .   -*%-
-#    updated: Fri, 19 May 2023 17:06:26 +0200             =## .   :#%*=:.
-#                                                         -#*#%:=#%%%#-
-#    description:                                        *:*%%%%%%%#-
-#    search web, parabola/arch wiki, aur youtube,         .-#%%%%%%+
-#    man pages or emoji with dmenu                         %%%--%%%%*-
-#                                                         ##%=  +%%=:..
-#                                                          #*    #%#
-#                                                         :#     -==*
-#                                                         ::        .:
+# search web, parabola/arch wiki, AUR, youtube, man pages or emoji with dmenu
+
 # websearch dependencies : shuf, curl, /tmp needs to be temporary
 # wiki dependency: parabola-wiki-docs (can be used with arch-wiki-docs)
 # youtube dependency: ytfzf

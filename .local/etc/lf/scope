@@ -4,7 +4,7 @@
 
 set -C -f
 IFS="$(printf '%b_' '\n')"; IFS="${IFS%_}"
-THEME=gruvbox-light
+THEME=Dracula
 
 image() {
 	if [ -f "$1" ] && [ -n "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ] && command -V ueberzug >/dev/null 2>&1; then

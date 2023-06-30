@@ -1,18 +1,5 @@
 #!/bin/sh
-#                                                      .     :-. .
-#    author:  ratakor <ratakor@disroot.org>            :*==*%%%#%+=---:
-#                                                       :#%%%*+%#=+%*:.
-#    created: Tue, 09 May 2023 15:39:19 +0200            :%%%. .   -*%-
-#    updated: Sat, 13 May 2023 13:16:27 +0200             =## .   :#%*=:.
-#                                                         -#*#%:=#%%%#-
-#    description:                                        *:*%%%%%%%#-
-#    Make steam kind of XDG compatible                    .-#%%%%%%+
-#                                                          %%%--%%%%*-
-#                                                         ##%=  +%%=:..
-#                                                          #*    #%#
-#                                                         :#     -==*
-#                                                         ::        .:
-
+# xdg compatibility for steam, sort of
 [ -d "$HOME/.steam" ] && mv "$HOME/.steam" "$XDG_DATA_HOME/steam"
 ln -s "$XDG_DATA_HOME/steam" "$HOME/.steam"
 /usr/bin/steam "$@"

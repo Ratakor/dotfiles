@@ -20,12 +20,18 @@ Print
 #	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)
 F6
 	wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -45 $(pidof dwmblocks)
-{F7,super + b}
-	$TERMINAL -e {dmenurecord,newsboat}
-super + {n,shift + n}
-	st -d "$XDG_DATA_HOME/notes" {-e lfub, }
+F7
+	$TERMINAL -e dmenurecord
+super + b
+	$BROWSER
+super + n
+	$TERMINAL -e sh -c 'cd "$XDG_DATA_HOME/notes"; lfub'
+super + shift + n
+	$TERMINAL -e newsboat
 super + {m,shift + m}
 	{music,musiccmd}
+XF86Audio{Prev,Next,Play,Stop}
+        musiccmd {prev,next,cycle,stop}
 super + shift + {Left,Right,Down,Up}
 	musiccmd {prev,next,cycle,stop}
 super + {s,a,y,w,e}
