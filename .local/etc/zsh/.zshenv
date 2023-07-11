@@ -1,7 +1,7 @@
 # Update PATH
 PATH="$HOME/.local/bin:$PATH"
-PATH="$PATH:$XDG_DATA_HOME/cargo/bin"
-PATH="$PATH:$XDG_DATA_HOME/dotnet/.dotnet/tools"
+PATH="$PATH:$CARGO_HOME/bin"
+PATH="$PATH:$GOPATH/bin"
 export PATH
 
 # Default programs
@@ -9,7 +9,7 @@ export EDITOR="editor"
 export TERMINAL="st"
 export BROWSER="browser"
 export ROOTCMD="doas"
-export MANPAGER="sh -c 'col -bx | bat --paging=auto -l man -p'"
+export MANPAGER="manpager"
 
 # XDG directories
 export XDG_CONFIG_HOME="$HOME/.local/etc"

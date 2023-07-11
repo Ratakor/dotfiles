@@ -25,9 +25,7 @@ set clipboard+=unnamedplus
 "set list
 "set lcs=tab:\|\ ,space:⋅,eol:$ "↴
 autocmd FileType * setl fo-=ro fo+=tc
-abbreviate hte the
-nnoremap :Q<CR> :q<CR>
-nnoremap :Q!<CR> :q!<CR>
+cabbrev Q q
 set ttimeoutlen=10
 nnoremap <silent> <C-L> :nohls<C-R>=has('diff')?'<Bar>dif':''<CR><CR><C-L>
 
@@ -37,5 +35,7 @@ autocmd FileType lisp,html setl ts=2 sw=2 sts=2 expandtab
 autocmd FileType html,markdown setl spell
 autocmd FileType tex setl spell spl=fr
 autocmd FileType c setl makeprg=cc\ %:p
-autocmd BufWritePost *.c silent! !astyle -A3 -t8 -p -xg -H -xB -n -w %:p
+autocmd BufWritePost *.c silent !astyle -A3 -t8 -p -xg -H -xB -n -w %:p
+autocmd BufWritePost *.go silent !gofmt -s -w %:p
 command Astyle !astyle -A3 -t8 -p -xg -H -xB -n -w %:p
+command GoBuild !go build %:p

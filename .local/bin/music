@@ -10,7 +10,7 @@ if [ "$1" = "--shuffle" ]; then
 	shift
 fi
 
-MUSIC="${1:-$MUSICDIR/$(ls "$MUSICDIR" | dmenu -i -p "Play ")}"
+MUSIC="${1:-$MUSICDIR/$(ls "$MUSICDIR" | cut -c 1-80 | dmenu -i -p "Play ")}"
 SCRIPT="${XDG_CONFIG_HOME:-$HOME/.config}/mpv/music/local.lua"
 
 if [ "$MUSIC" = "$MUSICDIR/urls" ]; then

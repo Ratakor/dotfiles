@@ -42,6 +42,8 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } " fuzzy finder
 Plug 'preservim/nerdtree' " vs code be like
 Plug 'mbbill/undotree' " history visualizer
 Plug 'tpope/vim-commentary' " gc/gcc magic comment
+"Plug 'tpope/vim-abolish'
+"Plug 'tpope/vim-fugitive' " git in vim
 Plug 'ziglang/zig.vim'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'petertriho/nvim-scrollbar'
@@ -65,10 +67,13 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " Undotree config
 nnoremap <F3> :UndotreeToggle<CR>
 
+autocmd BufWritePost * GitGutter
+
 " custom vim-commentary
 autocmd FileType zig setl commentstring=//\ %s
 autocmd FileType cs setl commentstring=/*\ %s\ */
 
+" g?p or g?v
 lua << EOF
 require("debugprint").setup()
 EOF

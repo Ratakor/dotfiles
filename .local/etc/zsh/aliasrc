@@ -58,6 +58,7 @@ alias ytfzf="ytfzf -D --detach"
 alias tmp='cd $(mktemp -d)'
 alias p="plumber"
 alias mount="$ROOTCMD mount -o nosuid,nodev,noexec"
+alias gb="go build"
 
 # verbosity and colors
 alias rm="rm -vI"
@@ -92,7 +93,6 @@ alias gp="git push --follow-tags" # --tags
 alias gpl="git pull"
 alias gr="git restore"
 alias grs="gr --staged"
-alias gb="git branch"
 alias gd="git diff"
 alias gac="ga . && gc"
 alias gacv="ga . && gcv"

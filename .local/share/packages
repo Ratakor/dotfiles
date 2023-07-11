@@ -71,7 +71,6 @@ gitui # tui for git (good if you don't remember what change you made)
 ## dev
 #texlive # LaTeX (big package)
 #pandoc-cli # I only use that to convert markdown to latex to pdf (big package)
-#dotnet-sdk # C# for lsp do dotnet tool install -g csharp-ls
 rustup # rust
 nasm # x86 compiler
 clang # another cc + clangd C lsp
@@ -125,7 +124,7 @@ p7zip
 rsync
 imagemagick # image manipulation from the terminal
 mat2 # metadata removal tool
-man-db
+mandoc
 man-pages # Linux man pages
 sshfs # mount drive over ssh
 bc # calculation

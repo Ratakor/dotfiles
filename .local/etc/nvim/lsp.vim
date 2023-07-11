@@ -32,7 +32,7 @@ end
 
 -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 local servers = {'zls', 'clangd', 'bashls', 'rust_analyzer', 'texlab', 'gopls',
-                 'jedi_language_server', 'lua_ls', 'cssls', 'html', 'csharp_ls'}
+                 'jedi_language_server', 'lua_ls', 'cssls', 'html', }
 
 for _, lsp in ipairs(servers) do
     require("lspconfig")[lsp].setup ({

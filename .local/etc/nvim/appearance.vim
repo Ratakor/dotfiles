@@ -176,10 +176,10 @@ require("nvim-web-devicons").setup {}
 
 require("nvim-treesitter.configs").setup {
 	ensure_installed = {
-		"bash", "c", "c_sharp", "comment", "css", "diff", "git_rebase",
-		"gitattributes", "gitcommit", "gitignore", "html", "latex",
-		"lua", "make", "markdown", "python", "rust", "vim", "vimdoc",
-		"zig"
+		"bash", "c", "comment", "css", "diff", "git_rebase",
+		"gitattributes", "gitcommit", "gitignore", "go", "html",
+		"latex", "lua", "make", "markdown", "python", "rust", "vim",
+		"vimdoc", "zig"
 	},
 
 	highlight = {
