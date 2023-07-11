@@ -1,17 +1,7 @@
 #!/bin/sh
-#                                                      .     :-. .
-#    author:  ratakor <ratakor@disroot.org>            :*==*%%%#%+=---:
-#                                                       :#%%%*+%#=+%*:.
-#    created: Sat, 06 May 2023 18:44:52 +0200            :%%%. .   -*%-
-#    updated: Sat, 13 May 2023 15:22:42 +0200             =## .   :#%*=:.
-#                                                         -#*#%:=#%%%#-
-#    description:                                        *:*%%%%%%%#-
-#    simple music selector with dmenu that uses and       .-#%%%%%%+
-#    interacts with mpv. have a look at musiccmd,          %%%--%%%%*-
-#    dwmblocks/sb_music and .local/etc/mpv/music ;)       ##%=  +%%=:..
-#                                                          #*    #%#
-#                                                         :#     -==*
-#   shellcheck disable=SC2012 #                           ::        .:
+# Simple music selector with dmenu that uses and interacts with mpv.
+# Have a look at musiccmd, .local/etc/mpv/music and sb (statusbar)
+# shellcheck disable=SC2012
 
 MUSICDIR="${XDG_MUSIC_DIR:-$HOME/Music}"
 

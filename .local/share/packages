@@ -22,7 +22,7 @@ git
 ## ratakor-repo
 dmenu-ratakor # application launcher
 dwm-ratakor # window manager
-dwmblocks-ratakor # status bar
+sb # status bar
 st-ratakor # terminal emulator
 slock-ratakor # screen locker
 randhost # set a random hostname (OpenRC service)
@@ -74,10 +74,12 @@ gitui # tui for git (good if you don't remember what change you made)
 #dotnet-sdk # C# for lsp do dotnet tool install -g csharp-ls
 rustup # rust
 nasm # x86 compiler
-clang # gcc replacement and C lsp
-pypy3 # JIT python interpreter
+clang # another cc + clangd C lsp
 tcc # tiny c compiler
+mingw-w64-gcc # windows cc
+musl # another libc
 zig
+pypy3 # JIT python interpreter
 zls # zig lsp
 gopls # go lsp
 #rust-analyzer # rust lsp
@@ -89,7 +91,6 @@ vscode-css-languageserver
 vscode-html-languageserver
 astyle # C formatter
 shellcheck
-mingw-w64-gcc
 
 ## sound
 rtkit

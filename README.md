@@ -11,18 +11,18 @@ to your distro.
 
 DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're doing.
 
-	$ git clone https://git.ratakor.com/dotfiles.git
+	$ git clone https://github.com/ratakor/dotfiles.git
 	$ cd dotfiles/.local
 	$ make
 
 ## Softwares
 
 ### Graphical environment
-- Window manager: [dwm](https://git.ratakor.com/dwm.git)
+- Window manager: [dwm](https://github.com/ratakor/dwm)
 - Compositor: [picom](https://github.com/yshui/picom)
-- Bar: [dwmblocks](https://git.ratakor.com/dwmblocks.git)
-- Terminal emulator: [st](https://git.ratakor.com/st.git)
-- Program launcher: [dmenu](https://git.ratakor.com/dmenu.git)
+- Bar: [sb](https://github.com/ratakor/sb)
+- Terminal emulator: [st](https://github.com/ratakor/st)
+- Program launcher: [dmenu](https://github.com/ratakor/dmenu)
 - Web Browser: [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)
 - Themes: [Dracula](https://draculatheme.com/) and [Gruvbox](https://github.com/morhetz/gruvbox)
 
@@ -47,10 +47,11 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Notifications: [herbe](https://github.com/dudik/herbe)
 - Screenshot tool: [maim](https://github.com/naelstrof/maim)
 - Mail client: [Claws Mail](https://www.claws-mail.org)
-- Screen locker: [slock](https://git.ratakor.com/slock.git)
-- [Wallpapers](https://git.ratakor.com/wallpapers.git/)
+- Screen locker: [slock](https://github.com/ratakor/slock)
+- [Wallpapers](https://github.com/ratakor/wallpapers)
 
-See [packages](.local/share/packages) for a list and a small description of other programs I use.
+See [packages](.local/share/packages) for a list and a small description of
+other programs I use.
 
 ## TODO
 - config or patch mtm (or tmux) to be usable

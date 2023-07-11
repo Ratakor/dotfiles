@@ -1,6 +1,6 @@
 #!/bin/sh
 
-killall picom scron sxhkd pipewire wireplumber xbanish redshift dwmblocks
+killall picom scron sxhkd pipewire wireplumber xbanish redshift sb
 
 if [ "$(xrandr | awk '/DP-2/ {print $2}')" = 'connected' ]; then
 	xrandr --output LVDS-1 --off
@@ -18,6 +18,6 @@ sxhkd &
 pipewire &
 xbanish &
 redshift &
-sleep 1s; dwmblocks &
+sb &
 
 exec dwm
