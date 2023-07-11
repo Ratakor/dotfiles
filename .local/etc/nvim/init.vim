@@ -69,6 +69,7 @@ nnoremap <F3> :UndotreeToggle<CR>
 autocmd FileType zig setl commentstring=//\ %s
 autocmd FileType cs setl commentstring=/*\ %s\ */
 
+" g?p or g?v
 lua << EOF
 require("debugprint").setup()
 EOF

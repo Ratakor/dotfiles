@@ -111,7 +111,7 @@ pypy3
 rustup
 dmenu-ratakor
 dwm-ratakor
-dwmblocks-ratakor
+sb
 st-ratakor
 slock-ratakor
 quand
@@ -163,3 +163,4 @@ astyle
 gomuks
 tesseract-data-eng
 mingw-w64-gcc
+musl

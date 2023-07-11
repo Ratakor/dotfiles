@@ -23,17 +23,18 @@ set nu rnu
 set cc=80
 "set tw=79
 set title
-set nohls
 set tgc
 set clipboard+=unnamedplus
 autocmd FileType * setl fo-=ro fo+=tc
-nnoremap :Q<CR> :q<CR>
-nnoremap :Q!<CR> :q!<CR>
+cabbrev Q q
+set ttimeoutlen=10
+nnoremap <silent> <C-L> :nohls<C-R>=has('diff')?'<Bar>dif':''<CR><CR><C-L>
 
 " Language specific
 autocmd FileType python setl ts=4 sw=4 sts=4 expandtab
 autocmd FileType lisp,html setl ts=2 sw=2 sts=2 expandtab
 autocmd FileType html,markdown setl spell
 autocmd FileType tex setl spell spl=fr
+autocmd FileType c setl makeprg=cc\ %
 autocmd BufWritePost *.c silent! !astyle -A3 -t8 -p -xg -H -xB -n -w %:p
 command Astyle !astyle -A3 -t8 -p -xg -H -xB -n -w %:p

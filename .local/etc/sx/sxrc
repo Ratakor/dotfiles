@@ -1,6 +1,6 @@
 #!/bin/sh
 
-killall picom scron sxhkd pipewire wireplumber xbanish gammastep dwmblocks
+killall picom scron sxhkd pipewire wireplumber xbanish gammastep sb
 
 setxkbmap fr us
 xrandr --setprovideroutputsource modesetting NVIDIA-0\
@@ -15,7 +15,7 @@ pipewire &
 xbanish &
 picom &
 gammastep &
-sleep 2s; dwmblocks &
+sb &
 #st -e "monerod --data-dir /storage/monero" &
 
 #case $(date +%H) in

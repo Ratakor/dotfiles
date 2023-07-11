@@ -13,13 +13,13 @@ super + shift + r
 Print
 	screenshot
 {super + equal,XF86AudioRaiseVolume}
-	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+; kill -44 $(pidof dwmblocks)
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+; kill -43 $(pidof sb)
 {super + minus,XF86AudioLowerVolume}
-	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-; kill -44 $(pidof dwmblocks)
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-; kill -43 $(pidof sb)
 #XF86Launch1
-#	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)
+#	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -43 $(pidof sb)
 F6
-	wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -45 $(pidof dwmblocks)
+	wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -44 $(pidof sb)
 F7
 	$TERMINAL -e dmenurecord
 super + b
