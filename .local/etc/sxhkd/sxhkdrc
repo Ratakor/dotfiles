@@ -1,5 +1,5 @@
 super + Escape
-	kill -10 $(pidof sxhkd)
+	kill -10 $(pidof sxhkd) $(pidof sb)
 super + Return
 	$TERMINAL
 super + d
@@ -13,7 +13,7 @@ super + shift + r
 Print
 	screenshot
 {super + equal,XF86AudioRaiseVolume}
-	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+; kill -43 $(pidof sb)
+	wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+; kill -43 $(pidof sb)
 {super + minus,XF86AudioLowerVolume}
 	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-; kill -43 $(pidof sb)
 #XF86Launch1

@@ -35,6 +35,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - File manager: [lf](https://github.com/gokcehan/lf)
 - Calendar: [quand](https://github.com/ratakor/quand)
 - RSS reader: [newsboat](https://newsboat.org/)
+- IRC client: [sic](https://tools.suckless.org/sic)
 
 ### Fonts
 - Serif font: [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif)
@@ -57,8 +58,8 @@ See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/p
 
 ## TODO
 - add DAP for debugging in nvim
-- config or patch mtm to be usable
-- replace sic with ii
+- config mtm (or tmux) to be usable
+- replace sic with ii ?
 
 ## LICENSE
 Copyright © 2023 Ratakor <ratakor@disroot.org>

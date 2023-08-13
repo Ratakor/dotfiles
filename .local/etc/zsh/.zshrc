@@ -1,7 +1,8 @@
 # fun stuff
-quand
+quand -f 14
 #shuf -n 1 "$XDG_DATA_HOME/navi" # database from https://github.com/HappyHippo77/NaviFrequencyList
-exa -aa --color=auto --group-directories-first
+tpercent
+ls -a --color=auto --group-directories-first
 
 # Source aliases
 source "$ZDOTDIR/aliasrc"

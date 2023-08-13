@@ -19,20 +19,20 @@ local lsp_attach = function(client, bufnr)
     --vim.keymap.set('n', '<space>wl', function()
     --    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     --end, bufopts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<space>df', vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
     vim.keymap.set('n', '<space>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
-    vim.keymap.set('n', '<space>d[', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
-    vim.keymap.set('n', '<space>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
+    vim.keymap.set('n', '<space>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
+    vim.keymap.set('n', '<space>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
     vim.keymap.set('n', '<space>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true })
 end
 
 -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 local servers = {'zls', 'clangd', 'bashls', 'rust_analyzer', 'texlab', 'gopls',
-                 'jedi_language_server', 'lua_ls', 'cssls', 'html', 'csharp_ls'}
+                 'jedi_language_server', 'lua_ls', 'cssls', 'html', }
 
 for _, lsp in ipairs(servers) do
     require("lspconfig")[lsp].setup ({

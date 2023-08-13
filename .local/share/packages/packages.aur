@@ -1,5 +1,3 @@
-#rider
-#unityhub
 #xdg-ninja
 #oneko
 sc-im
@@ -8,9 +6,10 @@ sc-im
 #cyrus-sasl-xoauth2-git
 #iamb-git
 aseprite
-teams
+#teams
 #cbonsai
 #pipes.sh
 #ri-li
 shazam-cli-git
 xclicker
+zig-dev-bin

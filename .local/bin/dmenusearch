@@ -4,7 +4,7 @@
 # websearch dependencies : shuf, curl, /tmp needs to be temporary
 # wiki dependency: parabola-wiki-docs (can be used with arch-wiki-docs)
 # youtube dependency: ytfzf
-# man dependencies: man-db, zathura
+# man dependencies: mandoc/man-db, zathura
 # emoji dependency: xclip
 
 set -e
@@ -71,8 +71,15 @@ aur() {
 }
 
 manpdf() {
-	INPUT=${1:-$(/usr/bin/man -k . | dmenu -i -l 20 | awk '{print $1}')}
-	[ -n "$INPUT" ] && /usr/bin/man -Tpdf "$INPUT" | zathura -
+	INPUT=${1:-$(man -k . | cut -c 1-80 | dmenu -i -l 20 | awk '{print $1}')}
+	[ -z "$INPUT" ] && return 1
+	if command -v mandb; then
+		# This is man-db
+		man -Tpdf "$INPUT" | zathura -
+	else
+		# This is mandoc, TODO: parse INPUT to use pdf too
+		"$TERMINAL" -e man "${INPUT%'('*}"
+	fi
 }
 
 emoji() {

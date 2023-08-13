@@ -2,6 +2,7 @@
 # helper for the music script
 # dependencies: music, mpv, socat, yt-dlp, ffmpeg, imagemagick
 # optional dependencies: sb, libnotify, herbe
+# shellcheck disable=SC2046
 
 FAVDIR="${XDG_MUSIC_DIR:-$HOME/Music}/favorite"
 DLDIR="${XDG_MUSIC_DIR:-$HOME/Music}/download"
@@ -73,10 +74,10 @@ getthumbnail() {
 
 main() {
 	if ! pgrep -x music >/dev/null; then
-		kill -34 "$(pidof sb)"
+		kill -34 $(pidof sb)
 		herbe "Error: There is no music playing"\
 			"Do you want to play some ?" && music
-		return 1
+		return
 	fi
 
 	cmd="${1:-$(printf '⏯️pause/play\n⏭️next\n⏮️prev\n📢volume\n🔳stop
@@ -85,7 +86,7 @@ main() {
 	case "$cmd" in
 	cycle|*pause|*play)
 		printf 'cycle pause\n' | socat - /tmp/mpvsocket
-		kill -34 "$(pidof sb)" ;;
+		kill -34 $(pidof sb) ;;
 	*next)
 		printf 'playlist-next\n' | socat - /tmp/mpvsocket ;;
 	*prev)
@@ -96,7 +97,7 @@ main() {
 			| socat - /tmp/mpvsocket 1> /dev/null ;;
 	*stop)
 		printf 'stop\n' | socat - /tmp/mpvsocket
-		kill -34 "$(pidof sb)" ;;
+		kill -34 $(pidof sb) ;;
 	*favorite|fav)
 		getpath
 		gettitle

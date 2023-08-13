@@ -6,8 +6,8 @@
 "                                                         -#*#%:=#%%%#-
 "    description:                                        *:*%%%%%%%#-
 "    script to produce an header like this one            .-#%%%%%%+
-"    use .local/bin/updateheader to change the             %%%--%%%%*-
-"    letter shown                                         ##%=  +%%=:..
+"    automaticaly for each new file                        %%%--%%%%*-
+"                                                         ##%=  +%%=:..
 "                                                          #*    #%#
 "                                                         :#     -==*
 "                                                         ::        .:
@@ -52,6 +52,8 @@ let s:types   = {
                 \['"', '"', ''],
                 \'\.f90$\|\.f95$\|\.f03$\|\.f$\|\.for$':
                 \['!', '!', ''],
+                \'\.zig$':
+                \['///', '///', ''],
                 \}
 
 function! s:filetype()

@@ -18,7 +18,7 @@ dracula)
 	bg=dark
 	theme=dracula
 	bat=Dracula ;;
-dark|gruvbox-dark)
+dark|gruvbox|gruvbox-dark)
 	bg=dark
 	theme=gruvbox-$bg ;;
 light|gruvbox-light)
