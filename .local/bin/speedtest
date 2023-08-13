@@ -6,3 +6,4 @@ while [ $i -lt 1000 ]; do
 	"$@"
 	i=$((i+1))
 done
+printf '%d op\n' "$i"

@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=IRC
+Exec=st -e irc -xdg %u

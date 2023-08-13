@@ -12,12 +12,12 @@ setxkbmap fr us
 xrandr --dpi 100
 randwp
 scron -f "$XDG_CONFIG_HOME/crontab"
-themeswap dracula
+themeswap gruvbox
 
 sxhkd &
 pipewire &
 xbanish &
 redshift &
-sb &
+sleep 1; sb &
 
 exec dwm

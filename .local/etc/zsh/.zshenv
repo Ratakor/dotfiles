@@ -46,7 +46,7 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 
 # Misc
-umask 0077
+# umask 0077
 export GPG_TTY=$(tty)
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export MANWIDTH=80
@@ -54,4 +54,8 @@ export LESS=-R
 export HISTFILE="$XDG_DATA_HOME/histfile"
 export HISTSIZE=10000
 export SAVEHIST=10000
-#export LS_COLORS="di=1;34:ln=0;36:pi=0;33:bd=1;33:cd=1;33:so=1;31:ex=1;32:*README=1;33:*README.txt=1;33:*README.md=1;33:*readme.txt=1;33:*readme.md=1;33:*.ninja=1;33:*Makefile=1;33:*Cargo.toml=1;33:*SConstruct=1;33:*CMakeLists.txt=1;33:*build.gradle=1;33:*pom.xml=1;33:*Rakefile=1;33:*package.json=1;33:*Gruntfile.js=1;33:*Gruntfile.coffee=1;33:*BUILD=1;33:*BUILD.bazel=1;33:*WORKSPACE=1;33:*build.xml=1;33:*Podfile=1;33:*webpack.config.js=1;33:*meson.build=1;33:*composer.json=1;33:*RoboFile.php=1;33:*PKGBUILD=1;33:*Justfile=1;33:*Procfile=1;33:*Dockerfile=1;33:*Containerfile=1;33:*Vagrantfile=1;33:*Brewfile=1;33:*Gemfile=1;33:*Pipfile=1;33:*build.sbt=1;33:*mix.exs=1;33:*bsconfig.json=1;33:*tsconfig.json=1;33:*.zip=0;31:*.tar=0;31:*.Z=0;31:*.z=0;31:*.gz=0;31:*.bz2=0;31:*.a=0;31:*.ar=0;31:*.7z=0;31:*.iso=0;31:*.dmg=0;31:*.tc=0;31:*.rar=0;31:*.par=0;31:*.tgz=0;31:*.xz=0;31:*.txz=0;31:*.lz=0;31:*.tlz=0;31:*.lzma=0;31:*.deb=0;31:*.rpm=0;31:*.zst=0;31:*.lz4=0;31"
+# export CC="tcc -L/usr/local/lib"
+export CC="zig cc"
+CC="$CC -Wall"
+export LD_LIBRARY_PATH=/usr/local/lib
+export LS_COLORS="di=1;34:ln=0;36:or=91:pi=0;33:bd=1;33:cd=1;33:so=1;31:ex=1;32:*.zig=38;5;214:*.pdf=38;5;62:*.o=38;5;94:*README=1;4;33:*README.txt=1;4;33:*README.md=1;4;33:*.ninja=1;4;33:*Makefile=1;4;33:*Cargo.toml=1;4;33:*CMakeLists.txt=1;4;33:*meson.build=1;4;33:*PKGBUILD=1;4;33:*Dockerfile=1;4;33:*.zip=0;31:*.tar=0;31:*.gz=0;31:*.bz2=0;31:*.a=0;31:*.ar=0;31:*.7z=0;31:*.iso=0;31:*.dmg=0;31:*.rar=0;31:*.tgz=0;31:*.xz=0;31:*.txz=0;31:*.lz=0;31:*.tlz=0;31:*.lzma=0;31:*.deb=0;31:*.rpm=0;31:*.zst=0;31:*.lz4=0;31:*.sig=0;37:*.bak=0;37:*.old=0;37:*.orig=0;37:*.part=0;37:*.rej=0;37:*.swp=0;37:*.tmp=0;37::*.jpg=38;5;70:*.jpeg=38;5;70:*.mjpg=38;5;70:*.gif=38;5;70:*.ico=38;5;70:*.bmp=38;5;70:*.pbm=38;5;70:*.pgm=38;5;70:*.ppm=38;5;70:*.tga=38;5;70:*.xbm=38;5;70:*.xpm=38;5;70:*.tif=38;5;70:*.tiff=38;5;70:*.png=38;5;70:*.svg=38;5;70:*.svgz=38;5;70:*.webp=38;5;70:*.mng=38;5;70:*.pcx=38;5;70:*.flc=38;5;70:*.fli=38;5;70:*.xcf=38;5;70:*.xwd=38;5;70:*.cgm=38;5;70:*.emf=38;5;70:*.ff=38;5;70:*.webm=38;5;25:*.ogm=38;5;25:*.mp4=38;5;25:*.m4v=38;5;25:*.mp4v=38;5;25:*.mkv=38;5;25:*.mpg=38;5;25:*.mpeg=38;5;25:*.avi=38;5;25:*.mov=38;5;25:*.wmv=38;5;25:*.flv=38;5;25:*.m2v=38;5;25:*.vob=38;5;25:*.qt=38;5;25:*.asf=38;5;25:*.rm=38;5;25:*.rmvb=38;5;25:*.ogv=38;5;25:*.ogx=38;5;25:*.mjpeg=38;5;25:*.aac=38;5;35:*.au=38;5;35:*.flac=38;5;35:*.m4a=38;5;35:*.mid=38;5;35:*.midi=38;5;35:*.mka=38;5;35:*.mp3=38;5;35:*.mpc=38;5;35:*.ogg=38;5;35:*.ra=38;5;35:*.wav=38;5;35:*.oga=38;5;35:*.opus=38;5;35:*.spx=38;5;35:*.xspf=38;5;35"
