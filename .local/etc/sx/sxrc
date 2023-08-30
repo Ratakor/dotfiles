@@ -18,6 +18,7 @@ sxhkd &
 pipewire &
 xbanish &
 redshift &
-sleep 1; sb &
+sb &
+sh -c "sleep 3; kill -10 $(pidof sb)" &
 
 exec dwm

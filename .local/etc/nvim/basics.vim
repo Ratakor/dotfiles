@@ -10,7 +10,7 @@ aunmenu PopUp
 
 set number
 set relativenumber
-set colorcolumn=80
+set colorcolumn=80,100
 "set textwidth=79
 set title
 set termguicolors
@@ -23,12 +23,14 @@ set nofoldenable
 autocmd FileType * setl fo-=ro fo+=tc
 
 cabbrev Q q
+cabbrev W w
 iabbrev reutnr return
 iabbrev TOOD TODO
 
 nnoremap <silent> <C-L> :nohls<C-R>=has('diff')?'<Bar>dif':''<CR><CR><C-L>
+"nnoremap <C-P> :autocmd! BufWritePost *.c<CR>
 nnoremap <C-d> <C-d>zz
-nnoremap <c-u> <c-u>zz
+nnoremap <C-u> <C-u>zz
 nnoremap ZQ :q<CR>
 
 " Language specific

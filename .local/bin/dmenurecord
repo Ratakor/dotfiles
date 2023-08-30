@@ -1,6 +1,6 @@
 #!/bin/sh
 # dmenu for recordings with ffmpeg
-# dependencies: pipewire-pulse/pulseaudio, ffmpeg, dmenu
+# dependencies: pipewire-pulse/pulseaudio, ffmpeg, dmenu, slop
 # Original: https://github.com/whoisYoges/record-with-ffmpeg
 
 set -e
@@ -10,6 +10,7 @@ audiodir="$videodir"
 title="$(date +ffmpeg-"%Y-%m-%d-%H-%M-%S")"
 recordingresolution="$(xrandr | sed -n 's/\s*\([0-9]\+x[0-9]\+\).*\*.*/\1/p')"
 outputresolution="$recordingresolution"
+display="$DISPLAY"
 fps="30"
 crf="22" # 18
 codecvideo="libx264"
@@ -49,7 +50,7 @@ internalAudioAndMicrophone() {
 
 videoWithoutAudio() {
 	ffmpeg \
-		-f x11grab -r "$fps" -s "$recordingresolution" -i "$DISPLAY" \
+		-f x11grab -r "$fps" -s "$recordingresolution" -i "$display" \
 		-vcodec "$codecvideo" -preset "$preset" -crf "$crf" \
 		-pix_fmt yuv420p -s "$outputresolution" "$title.$videoext"
 }
@@ -57,7 +58,7 @@ videoWithoutAudio() {
 videoWithInternalAudio() {
 	ffmpeg \
 		-f pulse -ac "$monitoraudiochannel" -ar "$monitoraudiofrequency" -i "$monitoraudioinput" \
-		-f x11grab -r "$fps" -s "$recordingresolution" -i "$DISPLAY" \
+		-f x11grab -r "$fps" -s "$recordingresolution" -i "$display" \
 		-vcodec "$codecvideo" -preset "$preset" -crf "$crf" \
 		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 \
 		-pix_fmt yuv420p -s "$outputresolution" "$title.$videoext"
@@ -66,7 +67,7 @@ videoWithInternalAudio() {
 videoWithMicrophone() {
 	ffmpeg \
 		-f pulse -ac "$microphoneaudiochannel" -ar "$microphoneaudiofrequency" -i "$microphoneaudioinput" \
-		-f x11grab -r "$fps" -s "$recordingresolution" -i "$DISPLAY" \
+		-f x11grab -r "$fps" -s "$recordingresolution" -i "$display" \
 		-vcodec "$codecvideo" -preset "$preset" -crf "$crf" \
 		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 \
 		-pix_fmt yuv420p -s "$outputresolution" "$title.$videoext"
@@ -77,38 +78,76 @@ videoWithMicrophoneAndInternalAudio() {
 		-f pulse -ac "$monitoraudiochannel" -ar "$monitoraudiofrequency" -i "$monitoraudioinput" \
 		-f pulse -ac "$microphoneaudiochannel" -ar "$microphoneaudiofrequency" -i "$microphoneaudioinput" \
 		-filter_complex amix=inputs=2 \
-		-f x11grab -r "$fps" -s "$recordingresolution" -i "$DISPLAY" \
+		-f x11grab -r "$fps" -s "$recordingresolution" -i "$display" \
 		-vcodec "$codecvideo" -preset "$preset" -crf "$crf" \
 		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 \
 		-pix_fmt yuv420p -s "$outputresolution" "$title.$videoext"
+}
+
+audio() {
+	choice=${1:-$(printf "Quit
+1 Internal audio
+2 Microphone
+3 Both" | dmenu -i -p "Audio")}
+
+	case $choice in
+		Quit) return 0 ;;
+		1*) cd "$audiodir" && internalAudioOnly ;;
+		2*) cd "$audiodir" && microphoneOnly ;;
+		3*) cd "$audiodir" && internalAudioAndMicrophone ;;
+		*) return 1 ;;
+	esac
+}
+
+video() {
+	choice=${1:-$(printf "Quit
+1 Without audio
+2 With internal audio
+3 With mic
+4 With both" | dmenu -i -p "Video")}
+
+	case $choice in
+		Quit) return 0 ;;
+		1*) cd "$videodir" && videoWithoutAudio ;;
+		2*) cd "$videodir" && videoWithInternalAudio ;;
+		3*) cd "$videodir" && videoWithMicrophone ;;
+		4*) cd "$videodir" && videoWithMicrophoneAndInternalAudio ;;
+		*) return 1 ;;
+	esac
+}
+
+setSelectionVal() {
+	X=$1 Y=$2 W=$3 H=$4
+	[ $((W % 2)) -eq 1 ] && W=$((W + 1))
+	[ $((H % 2)) -eq 1 ] && H=$((H + 1))
+	recordingresolution="$W"x"$H"
+	outputresolution="$recordingresolution"
+	display="$display"+"$X","$Y"
+}
+
+videosel() {
+	slop=$(slop -q -f "%x %y %w %h") || return 1
+	# shellcheck disable=SC2086
+	setSelectionVal $slop
+	video "$1"
 }
 
 main() {
 	[ ! -d "$audiodir" ] && mkdir -p "$audiodir"
 	[ ! -d "$videodir" ] && mkdir -p "$videodir"
 
-	choice="${1:-$(printf "Quit\n1 InternalAudioOnly\n2 MicrophoneOnly
-3 InternalAudioAndMic\n4 VideoWithoutAudio\n5 VideoWithInternalAudio
-6 VideoWithMic\n7 VideoWithBothMicAndInternalAudio" | dmenu -i -p "screencast")}"
+	choice=${1:-$(printf "Quit
+1 Audio
+2 Video
+3 Video Selection" | dmenu -i -p "Mode")}
 
 	case $choice in
-	1*)
-		cd "$audiodir" && internalAudioOnly ;;
-	2*)
-		cd "$audiodir" && microphoneOnly ;;
-	3*)
-		cd "$audiodir" && internalAudioAndMicrophone ;;
-	4*)
-		cd "$videodir" && videoWithoutAudio ;;
-	5*)
-		cd "$videodir" && videoWithInternalAudio ;;
-	6*)
-		cd "$videodir" && videoWithMicrophone ;;
-	7*)
-		cd "$videodir" && videoWithMicrophoneAndInternalAudio ;;
-	*)
-		return 1 ;;
+		Quit) return 0 ;;
+		1*) audio "$2" ;;
+		2*) video "$2" ;;
+		3*) videosel "$2" ;;
+		*) return 1 ;;
 	esac
 }
 
-main "$1"
+main "$@"

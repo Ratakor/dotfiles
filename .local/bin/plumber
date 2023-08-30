@@ -7,6 +7,7 @@
 #   - xclip or xsel
 #   - (optional) herbe and dmenusearch web
 #   - (optional) dmenu_path
+#   - (optional) st with plumber patch
 # shellcheck disable=SC2086
 
 # default programs
@@ -137,6 +138,7 @@ Options:
   -l|--link [link]    | Open the link
   -f|--file [file]    | Open the file or the folder
   -s|--sel            | Use the selection buffer instead, Plan9's way
+  -t|--term           | To be used only when invoking through a patched st
   -h|--help           │ Print this help message
 
 Config:
@@ -180,6 +182,13 @@ main() {
 		fi
 
 		checksel "$sel" ;;
+	-t|--term)
+		#if [ "$(ps -o comm= $PPID)" != "st" ]; then
+		#	printf '\033[31mError:\033[m --term option used outside of st\n' >&2
+		#	usage
+		#	return 1
+		#fi
+		[ -n "$2" ] && checksel "$2" ;;
 	-h|--help)
 		usage
 		return 0 ;;

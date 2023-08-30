@@ -13,7 +13,8 @@ autoload -U colors && colors # Load colors
 setopt AUTOCD # Automatically cd into typed directory.
 stty stop undef # Disable ctrl-s to freeze terminal.
 setopt RM_STAR_SILENT # disable double verification with rm -I *
-bindkey -v # vi mode
+setopt VI
+setopt IGNOREEOF
 export KEYTIMEOUT=1
 
 # Prompt

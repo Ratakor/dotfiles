@@ -10,8 +10,6 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
 " Appearance
 Plug 'Mofiqul/dracula.nvim' " dracula theme
 Plug 'ellisonleao/gruvbox.nvim' " gruvbox theme
-"Plug 'catppuccin/nvim', { 'as': 'catppuccin' } " catppuccin theme
-"Plug 'neanias/everforest-nvim'  " everforest theme
 Plug 'mhinz/vim-startify' " start screen
 Plug 'nvim-lualine/lualine.nvim' " bottom bar
 Plug 'kyazdani42/nvim-web-devicons' " fancy icons
@@ -78,6 +76,7 @@ lua << EOF
 require("debugprint").setup()
 EOF
 
+let g:zig_fmt_autosave = 0 " too slow
 let g:startify_custom_header = [
 	\"   ▄▄▄   ▄▄▄· ▄▄▄▄▄ ▄▄▄· ▄ •▄       ▄▄▄  ",
 	\"   ▀▄ █·▐█ ▀█ •██  ▐█ ▀█ █▌▄▌▪▪     ▀▄ █·",

@@ -48,6 +48,7 @@ htop-vim # process viewer (htop) with vim keybinds
 openssh-dotlocal # openssh but ~/.ssh to ~/.local/etc/ssh
 herbe # notifications
 gomuks # matrix client
+poop # Performance Optimizer Observation Platform
 
 ## terminal
 zsh # user shell
@@ -65,7 +66,7 @@ ytfzf # search youtube video without a browser
 dust # du replacement
 duf # df replacement
 fd # find replacement
-gitui # tui for git (good if you don't remember what change you made)
+gitui=0.22.1 # tui for git
 
 ## dev
 #texlive # LaTeX (big package)
@@ -77,7 +78,7 @@ tcc # tiny c compiler
 mingw-w64-gcc # windows cc
 musl # another libc
 libbsd
-zig
+zig # NOTE: use zig-dev-bin from AUR instead
 pypy3 # JIT python interpreter
 zls # zig lsp
 gopls # go lsp
@@ -91,6 +92,7 @@ vscode-html-languageserver
 astyle # C formatter
 shellcheck
 cmake # use zig or make please
+gdb
 
 ## sound
 rtkit
@@ -150,3 +152,5 @@ python-axolotl # gajim dependency
 python-gnupg # gajim dependency
 git-lfs
 xdo # window manipulation
+zsh-completions
+slop

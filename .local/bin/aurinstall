@@ -35,7 +35,7 @@ main() {
 			packages=$(pacman -Qqm)
 			CONFIRM=0 ;;
 		*)
-			return 0;
+			return 1;
 		esac
 	elif [ "$1" = "--noconfirm" ]; then
 		CONFIRM=0
