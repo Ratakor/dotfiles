@@ -5,7 +5,7 @@
 # IGNORE can be an env variable (useful for lf)
 
 WPDIR=${1:-$XDG_DATA_HOME/wallpapers}
-IGNORE=${IGNORE-nsfw}
+IGNORE=${IGNORE-nsfw|.webp} # xwallpaper doesn't work with webp
 ALL=$(find "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md')
 
 searchwp() {
@@ -22,7 +22,10 @@ searchwp() {
 #hsetroot -cover "$wp" 1>/dev/null
 
 # multiple screens with xwallpaper
-for output in $(xrandr | awk '$2=="connected" {print $1 "\n"}'); do
+for output in $(xrandr | awk '$2=="connected" {print $1}'); do
 	searchwp
-	xwallpaper --output "$output" --zoom "$wp"
+	args="$args --output $output --zoom $wp"
 done
+# doing this speedup a lot, there must be no space in wallpaper filename
+# shellcheck disable=SC2086
+xwallpaper $args

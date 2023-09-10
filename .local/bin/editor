@@ -2,5 +2,5 @@
 # this is for changing neovim's theme on the fly with themeswap
 
 SOCKET="/tmp/nvim.$(base32 /dev/urandom | head -c 5).pipe"
-trap 'rm -f $SOCKET' INT QUIT TERM EXIT
+trap 'rm -f $SOCKET' INT QUIT TERM EXIT HUP
 nvim --listen "$SOCKET" "$@"

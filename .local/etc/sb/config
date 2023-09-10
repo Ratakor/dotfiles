@@ -1,7 +1,7 @@
 # Name       State  Update Signal
 music      = true   # 34
 cputemp    = true   # 35
-cpu        = true   # 36
+cpu        = false  # 36
 memory     = true   # 37
 battery    = false  # 38
 wifi       = false  # 39

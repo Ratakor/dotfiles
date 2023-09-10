@@ -11,9 +11,9 @@ scron -f "$XDG_CONFIG_HOME/crontab"
 sxhkd &
 pipewire &
 xbanish &
-picom &
 gammastep &
-sb &
+picom -b
+sb -b
 sh -c "sleep 3; kill -10 $(pidof sb)" &
 
 #case $(date +%H) in

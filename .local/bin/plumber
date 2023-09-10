@@ -7,6 +7,7 @@
 #   - xclip or xsel
 #   - (optional) herbe and dmenusearch web
 #   - (optional) dmenu_path
+#   - (optional) st with plumber patch
 # shellcheck disable=SC2086
 
 # default programs
@@ -17,6 +18,9 @@ AUDIO="music --shuffle"
 PIC="nsxiv -a"
 DOC="zathura"
 DIR="$TERMINAL -e lfub"
+
+HISTDIR=${XDG_STATE_HOME:-$HOME/.local/state}/plumber
+HISTFILE=$HISTDIR/history
 
 openlink() {
 	case "$1" in
@@ -87,7 +91,7 @@ checksel() {
 opensel() {
 	if [ -d "$1" ]; then
 		case $1 in
-		"$XDG_MUSIC_DIR"/*)
+		"${XDG_MUSIC_DIR:-$HOME/Music}"/*)
 			setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
 		*)
 			xdo kill
@@ -130,13 +134,14 @@ opensel() {
 
 usage() {
 	cat << EOF >&2
-Usage: ${0##*/} [options] [arg]
+Usage: ${0##*/} [options] [args]
 
 Options:
-  no option [arg]     | Try to guess what to do
-  -l|--link [link]    | Open the link
-  -f|--file [file]    | Open the file or the folder
+  no option [args]    | Try to guess what to do
+  -l|--link [links]   | Open the links
+  -f|--file [files]   | Open the files or the folders
   -s|--sel            | Use the selection buffer instead, Plan9's way
+  -t|--term           | To be used only when invoking through a patched st
   -h|--help           │ Print this help message
 
 Config:
@@ -151,23 +156,32 @@ EOF
 }
 
 main() {
+	mkdir -p "$HISTDIR"
 	case "$1" in
 	-l|--link)
-		if [ -z "$2" ]; then
+		shift
+		if [ -z "$1" ]; then
 			printf '\033[31mError:\033[m no argument given\n' >&2
 			usage
 			return 1
 		fi
-		openlink "$2" ;;
+		for arg in "$@"; do
+			printf '%s\n' "$arg" >> "$HISTFILE"
+			openlink "$arg"
+		done ;;
 	-f|--file)
-		if [ -z "$2" ]; then
+		shift
+		if [ -z "$1" ]; then
 			printf '\033[31mError:\033[m no argument given\n' >&2
 			usage
 			return 1
 		fi
-		openfile "$2" ;;
+		for arg in "$@"; do
+			printf '%s\n' "$arg" >> "$HISTFILE"
+			openfile "$arg"
+		done ;;
 	-s|--sel|'')
-		sel=$(xclip -o -sel 2>/dev/null || xsel -opn 2>/dev/null)
+		sel=$(xclip -o 2>/dev/null || xsel -opn 2>/dev/null)
 		sel=${sel#"${sel%%[![:space:]]*}"}
 
 		# clear clipboard
@@ -178,22 +192,30 @@ main() {
 			usage
 			return 1
 		fi
-
+		printf '%s\n' "$sel" >> "$HISTFILE"
 		checksel "$sel" ;;
+	-t|--term)
+		#if [ "$(ps -o comm= $PPID)" != "st" ]; then
+		#	printf '\033[31mError:\033[m --term option used outside of st\n' >&2
+		#	usage
+		#	return 1
+		#fi
+		[ -n "$2" ] && checksel "$2" ;;
 	-h|--help)
-		usage
-		return 0 ;;
+		usage ;;
 	-*)
 		printf '\033[31mError:\033[m unknown option\n' >&2
 		usage
 		return 1 ;;
 	*)
-		case "$1" in
-		http://*|https://*|git://*|irc://*|ircs://*)
-			openlink "$1" ;;
-		*)
-			openfile "$1" ;;
-		esac
+		for arg in "$@"; do
+			case "$arg" in
+			http://*|https://*|git://*|irc://*|ircs://*)
+				openlink "$arg" ;;
+			*)
+				openfile "$arg" ;;
+			esac
+		done
 	esac
 }
 

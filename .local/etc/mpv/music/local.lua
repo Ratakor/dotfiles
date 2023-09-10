@@ -1,12 +1,13 @@
+local mp = require "mp"
 local utils = require "mp.utils"
 
-function notify_current_media()
+local function notify_current_media()
 	local path = mp.get_property_native("path")
 	local origin, title = utils.split_path(path)
 
 	local metadata = mp.get_property_native("metadata")
 	if metadata then
-		function tag(name)
+		local function tag(name)
 			return metadata[string.upper(name)] or metadata[name]
 		end
 

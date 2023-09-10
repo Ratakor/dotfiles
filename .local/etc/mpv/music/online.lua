@@ -1,6 +1,6 @@
-local utils = require "mp.utils"
+local mp = require "mp"
 
-function notify_current_media(key)
+local function notify_current_media(key)
 	local title = mp.get_property(key)
 	mp.command_native({"run", "pkill", "-RTMIN", "sb"})
 	return mp.command_native({"run", "env", "HERBE_ID=/music", "herbe", title})

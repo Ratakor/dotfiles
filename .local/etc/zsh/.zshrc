@@ -1,8 +1,7 @@
 # fun stuff
-quand -f 14
+quand
 #shuf -n 1 "$XDG_DATA_HOME/navi" # database from https://github.com/HappyHippo77/NaviFrequencyList
-tpercent
-ls -a --color=auto --group-directories-first
+eza -aa --color=auto --group-directories-first
 
 # Source aliases
 source "$ZDOTDIR/aliasrc"
@@ -13,7 +12,8 @@ autoload -U colors && colors # Load colors
 setopt AUTOCD # Automatically cd into typed directory.
 stty stop undef # Disable ctrl-s to freeze terminal.
 setopt RM_STAR_SILENT # disable double verification with rm -I *
-bindkey -v # vi mode
+setopt VI
+setopt IGNOREEOF
 export KEYTIMEOUT=1
 
 # Prompt
