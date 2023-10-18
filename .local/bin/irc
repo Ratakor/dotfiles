@@ -1,7 +1,7 @@
 #!/bin/sh
 # color username and save history for sic
 
-HIST=${XDG_DATA_HOME:-$HOME/.local/share}/sic
+HIST=${XDG_STATE_HOME:-$HOME/.local/state}/sic
 mkdir -p "$HIST"
 HIST=$HIST/$(date '+sic-%Y-%m-%d-%H:%M-%S')
 

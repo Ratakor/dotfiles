@@ -40,7 +40,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } " fuzzy finder
 Plug 'preservim/nerdtree' " vs code be like
 Plug 'mbbill/undotree' " history visualizer
 Plug 'tpope/vim-commentary' " gc/gcc magic comment
-"Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-abolish'
 "Plug 'tpope/vim-fugitive' " git in vim
 Plug 'ziglang/zig.vim'
 Plug 'kovetskiy/sxhkd-vim'
@@ -76,7 +76,6 @@ lua << EOF
 require("debugprint").setup()
 EOF
 
-let g:zig_fmt_autosave = 0 " too slow
 let g:startify_custom_header = [
 	\"   ▄▄▄   ▄▄▄· ▄▄▄▄▄ ▄▄▄· ▄ •▄       ▄▄▄  ",
 	\"   ▀▄ █·▐█ ▀█ •██  ▐█ ▀█ █▌▄▌▪▪     ▀▄ █·",

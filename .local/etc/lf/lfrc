@@ -39,7 +39,8 @@ cmd open ${{
 	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
 	application/pdf|application/vnd.djvu|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
 	application/pgp-encrypted) $EDITOR $fx ;;
-        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+        # *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+        *) $EDITOR $fx ;;
     esac
 }}
 
@@ -107,13 +108,14 @@ map x $$f
 map X !$f
 map o &mimeopen "$f"
 map O $mimeopen --ask "$f"
-
-map A rename # at the very end
-map c push A<c-u> # new rename
-map I push A<c-a> # at the very beginning
-map i push A<a-b><a-b><a-f> # before extension
-map a push A<a-b> # after extension
 map w $env IGNORE="" randwp "$f"
+map p $plumber "$f"
+
+map A :rename; cmd-end # at the very end
+map c push A<c-u> # new rename
+map I :rename; cmd-home # at the very beginning
+map i :rename # before extension
+map a :rename; cmd-right # after extension
 
 map <c-e> down
 map <c-y> up

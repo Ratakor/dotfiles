@@ -11,9 +11,9 @@ set -e
 
 web() {
 	NETWORK=clearnet # clearnet, tor or i2p
-	SOURCE=https://raw.githubusercontent.com/Ratakor/librex/main/instances.json
+	SOURCE=https://search.ratakor.com/instances.json
 	if [ ! -f "/tmp/instances" ]; then
-		curl -s "$SOURCE" > /tmp/instances.json ||
+		curl -s "$SOURCE" -o /tmp/instances.json ||
 			(notify-send "No internet connection"; exit 1)
 
 		strip() {

@@ -49,10 +49,13 @@ openssh-dotlocal # openssh but ~/.ssh to ~/.local/etc/ssh
 herbe # notifications
 gomuks # matrix client
 poop # Performance Optimizer Observation Platform
+2048
+bf # brainfuck interpreter and compiler
 
 ## terminal
 zsh # user shell
 newsboat # RSS Reader
+eza # ls replacement
 lf # file manager
 bat # lf dependency and cat replacement
 w3m # lf dependency and terminal based browser
@@ -82,7 +85,7 @@ zig # NOTE: use zig-dev-bin from AUR instead
 pypy3 # JIT python interpreter
 zls # zig lsp
 gopls # go lsp
-#rust-analyzer # rust lsp
+rust-analyzer # rust lsp
 texlab # LaTeX lsp
 pyright # python lsp
 bash-language-server
@@ -93,6 +96,11 @@ astyle # C formatter
 shellcheck
 cmake # use zig or make please
 gdb
+qemu-full
+dosfstools
+mtools
+xorriso
+gptfdisk
 
 ## sound
 rtkit
@@ -122,6 +130,7 @@ gajim # XMPP client
 ## misc
 keepassxc # password manager
 curl
+zip
 unzip
 p7zip
 rsync

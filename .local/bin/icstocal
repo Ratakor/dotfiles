@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 # A really poorly written script to convert .ics file to calendar file for quand or when
-# doesn't work when an event take longer than a day
+# doesn't work when an event take longer than a day and other stuff
 
 from sys import argv
+from os.path import basename
 from pathlib import Path
 
 if len(argv) < 3:
-    print("To use this script you need to supply 2 arguments.")
-    print("e.g.: icsparser calendar.ics $XDG_DATA_HOME/quand/calendar")
-    exit()
+    progname = basename(argv[0])
+    print("usage:", progname, "input output")
+    print("example:", progname, "calendar.ics $XDG_DATA_HOME/quand/calendar")
+    exit(1)
 
 TIMEZONE = 2 # as UTC+2
 IN="en" # 'en' means 'in' in french

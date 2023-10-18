@@ -22,7 +22,10 @@ searchwp
 hsetroot -cover "$wp" 1>/dev/null
 
 # multiple screens with xwallpaper
-#for output in $(xrandr | awk '$2=="connected" {print $1 "\n"}'); do
+#for output in $(xrandr | awk '$2=="connected" {print $1}'); do
 #	searchwp
-#	xwallpaper --output "$output" --zoom "$wp"
+#	args="$args --output $output --zoom $wp"
 #done
+## doing this speedup a lot, there must be no space in wallpaper filename
+## shellcheck disable=SC2086
+#xwallpaper $args

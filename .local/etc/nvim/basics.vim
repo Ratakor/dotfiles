@@ -26,6 +26,7 @@ cabbrev Q q
 cabbrev W w
 iabbrev reutnr return
 iabbrev TOOD TODO
+iabbrev cosnt const
 
 nnoremap <silent> <C-L> :nohls<C-R>=has('diff')?'<Bar>dif':''<CR><CR><C-L>
 "nnoremap <C-P> :autocmd! BufWritePost *.c<CR>
@@ -34,13 +35,14 @@ nnoremap <C-u> <C-u>zz
 nnoremap ZQ :q<CR>
 
 " Language specific
-autocmd FileType python setl ts=4 sw=4 sts=4 expandtab
-autocmd FileType lisp,html setl ts=2 sw=2 sts=2 expandtab
-autocmd FileType html,markdown setl spell
-autocmd FileType tex setl spell spl=fr
-autocmd FileType c setl makeprg=cc\ %:p
-" -j or -xj
-autocmd BufWritePost *.c silent !astyle -A3 -t8 -p -xg -H -xB -U -n %:p
-autocmd BufWritePost *.go silent !gofmt -s -w %:p
-command Astyle !astyle -A3 -t8 -p -xg -H -xB -U -n -w %:p
-command GoBuild !go build %:p
+autocmd FileType c,python setl ts=4 sw=4 sts=4 et
+autocmd FileType lisp,html setl ts=2 sw=2 sts=2 et
+"autocmd FileType html,markdown setl spell
+"autocmd FileType tex setl spell spl=fr
+autocmd BufNewFile,BufRead *.zon setl ft=zig
+
+" Autoformat
+"autocmd BufWritePost *.c silent !astyle -A3 -t8 -p -xg -H -xB -U -n %:p
+"autocmd BufWritePost *.c silent !clang-format -i %:p
+"autocmd BufWritePost *.go silent !gofmt -s -w %:p
+let g:zig_fmt_autosave = 0 " too slow

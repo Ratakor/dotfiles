@@ -24,8 +24,8 @@ F6
 	wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -44 $(pidof sb)
 F7
 	$TERMINAL -e dmenurecord
-super + b
-	$BROWSER
+# super + b
+# 	$BROWSER
 super + n
 	$TERMINAL -e sh -c 'cd "$XDG_DATA_HOME/notes"; lfub'
 super + shift + n
