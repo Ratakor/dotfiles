@@ -70,6 +70,7 @@ dust # du replacement
 duf # df replacement
 fd # find replacement
 gitui=0.22.1 # tui for git
+vivid # LS_COLORS generator
 
 ## dev
 #texlive # LaTeX (big package)
@@ -163,3 +164,4 @@ git-lfs
 xdo # window manipulation
 zsh-completions
 slop
+cloc

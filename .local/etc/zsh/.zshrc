@@ -14,7 +14,7 @@ stty stop undef # Disable ctrl-s to freeze terminal.
 setopt RM_STAR_SILENT # disable double verification with rm -I *
 setopt VI
 setopt IGNOREEOF
-export KEYTIMEOUT=1
+KEYTIMEOUT=1
 
 # Prompt
 timer=$(print -P %D{%s%3.})
@@ -41,7 +41,7 @@ function precmd() {
 	else local elapsed=${ms}ms
 	fi
 
-	export PS1="%B%(?.0.%F{red}%?) %F{blue}${elapsed} %F{green}%~ %f%#%b "
+	PS1="%B%(?.0.%F{red}%?) %F{blue}${elapsed} %F{green}%~ %f%#%b "
 }
 
 # Basic auto/tab complete

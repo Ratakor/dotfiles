@@ -6,7 +6,7 @@ FEED="${1:-$(printf "" | dmenu -p 'Paste URL or file path')}"
 
 [ -z "$FEED" ] && exit
 
-case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nnsxiv\nPDF\nvim\nyt-dlp\nmusic-dlp' "$FEED" | dmenu -i -p "Open with ")" in
+case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nnsxiv\nPDF\nvim\nyt-dlp\nmusic-dlp\nsetbg' "$FEED" | dmenu -i -p "Open with ")" in
 	"$FEED")
 		printf '%s\n' "$FEED" | xclip -selection clipboard ;; # Copy URL
 	browser)
@@ -33,8 +33,8 @@ case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nnsxiv\nPDF\nvim\nyt-dlp\nmusi
 			setsid -f ytdl p "$FEED" >/dev/null 2>&1
 		else
 			setsid -f ytdl m "$FEED" >/dev/null 2>&1
-		fi
-	#setbg)
-	#	curl -sL "$FEED" > "$XDG_CACHE_HOME/pic" &&
-	#		hsetroot -cover "$XDG_CACHE_HOME/pic" >/dev/null 2>&1 ;;
+		fi ;;
+	setbg)
+		curl -sL "$FEED" > "$XDG_CACHE_HOME/pic" &&
+			randwp "$XDG_CACHE_HOME/pic" >/dev/null 2>&1 ;;
 esac

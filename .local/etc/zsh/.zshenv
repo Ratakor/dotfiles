@@ -17,13 +17,13 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.local/var/cache"
 export XDG_STATE_HOME="$HOME/.local/var/state"
 export XDG_DESKTOP_DIR="$HOME/tmp"
-export XDG_DOCUMENTS_DIR="$HOME/tmp"
 export XDG_DOWNLOAD_DIR="$HOME/tmp"
 export XDG_PUBLICSHARE_DIR="$HOME/tmp"
 export XDG_TEMPLATES_DIR="$HOME/tmp"
 export XDG_MUSIC_DIR="$HOME/music"
 export XDG_PICTURES_DIR="$HOME/pic"
 export XDG_VIDEOS_DIR="$HOME/vid"
+export XDG_DOCUMENTS_DIR="$HOME/doc"
 
 # ~/ Clean-up
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
@@ -51,10 +51,12 @@ export GPG_TTY=$(tty)
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export MANWIDTH=80
 export LESS=-R
-export HISTFILE="$XDG_STATE_HOME/histfile"
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 # export CC="tcc -L/usr/local/lib"
-export CC="zig cc"
+# export CC="zig cc"
+export CC=cc
 CC="$CC -Wall"
 export LD_LIBRARY_PATH=/usr/local/lib
+export LS_COLORS="$(vivid generate gruvbox-dark):di=1;34"

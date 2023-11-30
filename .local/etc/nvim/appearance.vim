@@ -1,7 +1,7 @@
 set background=dark
 
 lua << EOF
-local colors = require('gruvbox.palette').colors
+local colors = require('gruvbox').palette
 
 require("dracula").setup {
 	show_end_of_buffer = true,

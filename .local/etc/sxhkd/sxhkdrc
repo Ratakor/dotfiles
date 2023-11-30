@@ -48,3 +48,5 @@ button9
 	xdo kill
 button10
 	musiccmd
+ctrl + p
+	killall picom || picom -b

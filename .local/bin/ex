@@ -12,7 +12,7 @@ extract() {
 	*.tar.xz|*.txz|*.tar)
 		tar xf "$1" ;;
 	*.bz2)
-		bzip2 "$1" ;;
+		bunzip2 "$1" ;;
 	*.gz|*.Z)
 		gzip -d "$1" ;;
 	*.rar)

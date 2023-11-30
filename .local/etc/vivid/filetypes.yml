@@ -1,0 +1,13 @@
+programming:
+  source:
+    zig:
+      - .zig
+  tooling:
+    build:
+      zig:
+        - build.zig
+    packaging:
+      zig:
+        - build.zig.zon
+
+

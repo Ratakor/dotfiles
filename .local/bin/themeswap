@@ -39,9 +39,10 @@ sed -i -e "s/^colorscheme.*/colorscheme ${theme%"-$bg"}/"\
 sed -i -e "s/--theme.*/--theme=${bat:-$theme}/" "$CONF/bat/config"
 sed -i -e "s/^THEME=.*/THEME=${bat:-$theme}/" "$CONF/lf/scope"
 sed -i -e "s/^gtk-theme-name.*/gtk-theme-name=$theme/" "$CONF/gtk-3.0/settings.ini"
+sed -i -e "s/vivid.*/vivid generate $theme):di=1;34\"/" "$CONF/zsh/.zshenv"
 case $theme in
 gruvbox*)
-	sed -i -e "s/^local colors =.*/local colors = require('${theme%"-$bg"}.palette').colors/"\
+	sed -i -e "s/^local colors =.*/local colors = require('${theme%"-$bg"}').palette/"\
 		-e 's/colors\./colors\.neutral_/g'\
 		-e 's/neutral_neutral_/neutral_/g'\
 		-e 's/neutral_black/dark0/'\

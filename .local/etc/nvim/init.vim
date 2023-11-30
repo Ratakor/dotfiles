@@ -35,8 +35,11 @@ Plug 'ratakor/vim-snippets'
 " Misc
 Plug 'bronson/vim-trailing-whitespace' " FixWhitespace
 Plug 'airblade/vim-gitgutter' " hud for git in vim
-Plug 'nvim-lua/plenary.nvim' " dependency for telescope
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } " fuzzy finder
+Plug 'nvim-lua/plenary.nvim' " dependency for telescope and neotest
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' } " fuzzy finder
+Plug 'antoinemadec/FixCursorHold.nvim' " dependency for neotest
+Plug 'nvim-neotest/neotest'
+Plug 'lawrence-laz/neotest-zig'
 Plug 'preservim/nerdtree' " vs code be like
 Plug 'mbbill/undotree' " history visualizer
 Plug 'tpope/vim-commentary' " gc/gcc magic comment
@@ -47,6 +50,7 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'petertriho/nvim-scrollbar'
 Plug 'andrewferrier/debugprint.nvim'
 "Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+"Plug 'mfussenegger/nvim-dap'
 call plug#end()
 
 source $XDG_CONFIG_HOME/nvim/basics.vim
@@ -71,9 +75,50 @@ autocmd BufWritePost * GitGutter
 autocmd FileType zig setl commentstring=//\ %s
 autocmd FileType cs setl commentstring=/*\ %s\ */
 
-" g?p or g?v
 lua << EOF
+-- g?p or g?v
 require("debugprint").setup()
+
+require("neotest").setup({
+	adapters = {
+		require("neotest-zig"),
+	},
+	summary = {
+		enabled = true,
+		animated = true,
+		follow = true,
+		expand_error = true,
+
+		mappings = {
+			expand = { "<CR>", "<2-LeftMouse>" },
+			expand_all = "e",
+			output = "o",
+			short = "O",
+			attach = "a",
+			jumpto = { "i", "<C-]>" },
+			stop = "u",
+			run = "r",
+			debug = "d",
+			mark = "m",
+			run_marked = "R",
+			debug_marked = "D",
+			clear_marked = "M",
+			target = "t",
+			clear_target = "T",
+			next_failed = "J",
+			prev_failed = "K",
+		},
+	},
+})
+
+vim.keymap.set("n", "<C-t>", function()
+	-- require("neotest").run.run()
+	require("neotest").summary.toggle()
+	local win = vim.fn.bufwinid("Neotest Summary")
+	if win > -1 then
+		vim.api.nvim_set_current_win(win)
+	end
+end)
 EOF
 
 let g:startify_custom_header = [

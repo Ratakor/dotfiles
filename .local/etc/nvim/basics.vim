@@ -1,9 +1,9 @@
 set autoindent
 set smartindent
 set tabstop=8 " n of whitespace in \t
-set shiftwidth=8 " n of whitespace for indent
-set softtabstop=8 " n of whitespace to delete with backspace
-"set expandtab " \t -> whitespaces
+set shiftwidth=4 " n of whitespace for indent
+set softtabstop=4 " n of whitespace to delete with backspace
+set expandtab " \t -> whitespaces
 
 "set mouse=
 aunmenu PopUp
@@ -29,14 +29,14 @@ iabbrev TOOD TODO
 iabbrev cosnt const
 
 nnoremap <silent> <C-L> :nohls<C-R>=has('diff')?'<Bar>dif':''<CR><CR><C-L>
-"nnoremap <C-P> :autocmd! BufWritePost *.c<CR>
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap ZQ :q<CR>
 
 " Language specific
-autocmd FileType c,python setl ts=4 sw=4 sts=4 et
-autocmd FileType lisp,html setl ts=2 sw=2 sts=2 et
+autocmd FileType asm,make,vim,sh setl ts=8 sw=8 noet
+"autocmd FileType c,python setl ts=4 sw=4 sts=4 et
+"autocmd FileType lisp,html setl ts=2 sw=2 sts=2 et
 "autocmd FileType html,markdown setl spell
 "autocmd FileType tex setl spell spl=fr
 autocmd BufNewFile,BufRead *.zon setl ft=zig

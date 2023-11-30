@@ -29,7 +29,7 @@ openlink() {
 		setsid -f $VIDEO "$1" >/dev/null 2>&1 ;;
 	*.mp3|*.flac|*.opus|*mp3?source*|*.ogg|*.wav|*soundcloud.com*)
 		setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
-	*.png|*.jpg|*.jpeg|*.gif|*.webp)
+	*.png|*.jpg|*.jpeg|*.gif|*.webp|*.bmp)
 		file=$(printf '%s' "$1" | sed "s/.*\///;s/%20/ /g")
 		curl -sL "$1" > "/tmp/$file" &&
 			$PIC "/tmp/$file" >/dev/null 2>&1 & ;;
@@ -65,7 +65,7 @@ openfile() {
 		setsid -f $VIDEO "$1" >/dev/null 2>&1 ;;
 	*.mp3|*.flac|*.opus|*.ogg|*.wav)
 		setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
-	*.png|*.jpg|*.jpeg|*.gif|*.webp)
+	*.png|*.jpg|*.jpeg|*.gif|*.webp|*.bmp)
 		setsid -f $PIC "$1" >/dev/null 2>&1 ;;
 	*.pdf|*.ps|*.cbz|*.cbr|*.djvu|*.epub)
 		setsid -f $DOC "$1" >/dev/null 2>&1 ;;
@@ -119,7 +119,7 @@ opensel() {
 		setsid -f $VIDEO "$1" >/dev/null 2>&1 ;;
 	*.mp3|*.flac|*.opus|*.ogg|*.wav)
 		setsid -f $AUDIO "$1" >/dev/null 2>&1 ;;
-	*.png|*.jpg|*.jpeg|*.gif|*.webp)
+	*.png|*.jpg|*.jpeg|*.gif|*.webp|*.bmp)
 		setsid -f $PIC "$1" >/dev/null 2>&1 ;;
 	*.pdf|*.ps|*.cbz|*.cbr|*.djvu|*.epub)
 		setsid -f $DOC "$1" >/dev/null 2>&1 ;;
