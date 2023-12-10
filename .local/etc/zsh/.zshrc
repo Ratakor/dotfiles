@@ -20,13 +20,13 @@ KEYTIMEOUT=1
 timer=$(print -P %D{%s%3.})
 function preexec() {
 	timer=$(print -P %D{%s%3.})
-	echo -ne "\e[5 q" # Use beam shape cursor for each new prompt.
+	echo -ne "\x1b[6 q" # Use beam shape cursor for each new prompt.
 }
 
 function precmd() {
 	local now=$(($(print -P %D{%s%3.}) - 2))
 	[ -z "$timer" ] && timer=$now
-	local d_ms=$(($now - $timer))
+	local d_ms=$((now - timer))
 	local d_s=$((d_ms / 1000))
 	local ms=$((d_ms % 1000))
 	local s=$((d_s % 60))
@@ -62,13 +62,13 @@ bindkey -v '^?' backward-delete-char
 function zle-keymap-select() {
 	case $KEYMAP in
 	vicmd)
-		echo -ne '\e[1 q' ;; # block
+		echo -ne "\x1b[2 q" ;; # block
 	viins|main)
-		echo -ne '\e[5 q' ;; # beam
+		echo -ne "\x1b[6 q" ;; # beam
 	esac
 }
 function zle-line-init() {
-	echo -ne '\e[5 q'
+	echo -ne "\x1b[6 q"
 }
 zle -N zle-keymap-select
 zle -N zle-line-init

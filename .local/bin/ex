@@ -38,6 +38,6 @@ for file in "$@"; do
 	if [ -f "$file" ]; then
 		extract "$file"
 	else
-		printf "%s is not a valid file\n" "$file"
+		printf "%s is not a valid file\n" "$file" 1>&2
 	fi
 done

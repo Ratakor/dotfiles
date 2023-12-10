@@ -1,11 +1,14 @@
-set updatetime=1000
-set signcolumn=yes
-let g:completion_enable_auto_popup = 1
+vim.opt.updatetime = 1000
+vim.opt.signcolumn = "yes"
+vim.g.completion_enable_auto_popup = 1
 
-" auto-format on write
-"autocmd BufWritePre * lua vim.lsp.buf.format()
+-- Auto-format on write
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     callback = function ()
+--         vim.lsp.buf.format()
+--     end,
+-- })
 
-lua << EOF
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
@@ -34,8 +37,18 @@ local lsp_attach = function(client, bufnr)
 end
 
 -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-local servers = {'zls', 'clangd', 'bashls', 'rust_analyzer', 'texlab', 'gopls',
-                 'jedi_language_server', 'lua_ls', 'cssls', 'html', }
+local servers = {
+    'bashls',
+    'clangd',
+    'cssls',
+    'gopls',
+    'html',
+    'jedi_language_server',
+    'lua_ls',
+    'rust_analyzer',
+    'texlab',
+    'zls',
+}
 
 for _, lsp in ipairs(servers) do
     require("lspconfig")[lsp].setup ({
@@ -44,14 +57,14 @@ for _, lsp in ipairs(servers) do
     })
 end
 
--- required by cmp for using tab to choose completion
+-- Required by cmp for using tab to choose completion
 local has_words_before = function()
     unpack = unpack or table.unpack
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
--- load snippets
+-- Load snippets
 require("luasnip.loaders.from_snipmate").lazy_load()
 
 local luasnip = require("luasnip")
@@ -88,7 +101,7 @@ cmp.setup({
         end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-	        cmp.select_prev_item()
+                cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
                 luasnip.jump(-1)
             else
@@ -113,4 +126,3 @@ for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl= hl, numhl = hl })
 end
-EOF
