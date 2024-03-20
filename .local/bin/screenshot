@@ -1,12 +1,12 @@
 #!/bin/sh
-# take a screenshot with main
+# take a screenshot with grim
 
 OUTPUT="$XDG_PICTURES_DIR/screenshots/$(date '+%Y-%m-%d_%H:%M:%S').png"
-XCLIPCMD="xclip -sel clip -t image/png"
 
-case "$(printf "save select\nsave screen\ncopy select\ncopy screen" | dmenu -i -p "Screenshot")" in
-	"save select") maim -u -s "$OUTPUT" ;;
-	"save screen")  maim -u -q -d 0.5 "$OUTPUT" ;;
-	"copy select") maim -u -s | $XCLIPCMD ;;
-	"copy screen") maim -u -q -d 0.5 | $XCLIPCMD ;;
+#case "$(printf "save select\nsave screen\ncopy select\ncopy screen" | $DMENU -i -p "Screenshot")" in
+case "$(printf "save select\nsave screen\ncopy select\ncopy screen" | $DMENU --prompt-text "Screenshot ")" in
+	"save select") grim -g "$(slurp)" "$OUTPUT" ;;
+	"save screen") grim "$OUTPUT" ;;
+	"copy select") grim -g "$(slurp)" - | wl-copy ;;
+	"copy screen") grim - | wl-copy ;;
 esac

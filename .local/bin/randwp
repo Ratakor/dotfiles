@@ -17,15 +17,19 @@ searchwp() {
 	fi
 }
 
-# 1 screen with hsetroot
 searchwp
-hsetroot -cover "$wp" 1>/dev/null
+OLD_PID=$(cat /tmp/swaybg.pid)
+swaybg -m fill -i "$wp" 2>/dev/null &
+echo $! > /tmp/swaybg.pid
+(sleep 3 && kill "$OLD_PID" 2>/dev/null || exit 0) &
 
-# multiple screens with xwallpaper
-#for output in $(xrandr | awk '$2=="connected" {print $1}'); do
-#	searchwp
-#	args="$args --output $output --zoom $wp"
-#done
-## doing this speedup a lot, there must be no space in wallpaper filename
-## shellcheck disable=SC2086
-#xwallpaper $args
+# multiple screens (TODO: kill and pid)
+# killall swaybg
+# for output in $(xrandr | awk '$2=="connected" {print $1}'); do
+# 	searchwp
+# 	args="$args -o $output -m fill -i $wp"
+# 	# swaybg -o "$output" -m fill -i "$wp"
+# done
+# # doing this speedup a lot, there must be no space in wallpaper filename
+# # shellcheck disable=SC2086
+# swaybg $args &

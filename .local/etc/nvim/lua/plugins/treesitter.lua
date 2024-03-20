@@ -2,7 +2,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        config = function ()
+        config = function()
             require("nvim-treesitter.configs").setup {
                 ensure_installed = {
                     "bash",
@@ -16,6 +16,7 @@ return {
                     "gitignore",
                     "go",
                     "html",
+                    "java",
                     "latex",
                     "lua",
                     "make",
@@ -25,12 +26,22 @@ return {
                     "regex",
                     "rust",
                     "scheme",
+                    "sql",
                     "vim",
                     "vimdoc",
                     "zig",
                 },
-                highlight = {
+                auto_install = false,
+                highlight = { enable = true },
+                indent = { enable = true },
+                incremental_selection = {
                     enable = true,
+                    keymaps = {
+                        init_selection = "<C-N>",
+                        node_incremental = "<C-N>",
+                        scope_incremental = false,
+                        node_decremental = "<C-M>",
+                    },
                 },
                 additional_vim_regex_highlighting = false,
                 rainbow = {

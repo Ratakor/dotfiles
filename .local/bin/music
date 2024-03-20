@@ -1,30 +1,35 @@
 #!/bin/sh
-# Simple music selector with dmenu that uses and interacts with mpv.
-# Have a look at musiccmd, .local/etc/mpv/music and sb (statusbar)
+# Simple music selector with a $DMENU that uses and interacts with mpv.
+# Have a look at musiccmd, .local/etc/mpv/music/ and
+# .local/etc/waybar/scripts/music.sh
 # shellcheck disable=SC2012
 
-MUSICDIR="${XDG_MUSIC_DIR:-$HOME/Music}"
+MUSICDIR=${XDG_MUSIC_DIR:-$HOME/Music}
+SOCKET=${XDG_RUNTIME_DIR:-/tmp}/music.sock
 
 if [ "$1" = "--shuffle" ]; then
-	SHUFFLE=yes
+	shuffle=yes
 	shift
 fi
 
-MUSIC="${1:-$MUSICDIR/$(ls "$MUSICDIR" | cut -c 1-50 | dmenu -i -p "Play ")}"
-SCRIPT="${XDG_CONFIG_HOME:-$HOME/.config}/mpv/music/local.lua"
+# music="${1:-$MUSICDIR/$(ls "$MUSICDIR" | cut -c 1-50 | $DMENU -p "Play ")}"
+music="${1:-$MUSICDIR/$(ls "$MUSICDIR" | cut -c 1-50 | tofi --padding-left 25% --prompt-text "Play ")}"
+script="${XDG_CONFIG_HOME:-$HOME/.config}/mpv/music/local.lua"
 
-if [ "$MUSIC" = "$MUSICDIR/urls" ]; then
-	MUSIC="$(cat "$MUSICDIR/urls/$(ls "$MUSICDIR/urls" | dmenu -i -p "Play ")")"
-	SCRIPT="${XDG_CONFIG_HOME:-$HOME/.config}/mpv/music/online.lua"
+if [ "$music" = "$MUSICDIR/urls" ]; then
+	# music="$(cat "$MUSICDIR/urls/$(ls "$MUSICDIR/urls" | $DMENU -p "Play ")")"
+	music="$(cat "$MUSICDIR/urls/$(ls "$MUSICDIR/urls" | tofi --padding-left 25% --prompt-text "Play ")")"
+	script="${XDG_CONFIG_HOME:-$HOME/.config}/mpv/music/online.lua"
 fi
 
-[ "$MUSIC" = "$MUSICDIR/" ] || [ -z "$MUSIC" ] && exit 1
+[ "$music" = "$MUSICDIR/" ] || [ -z "$music" ] && exit 1
 
-if [ -z "$SHUFFLE" ] && [ -d "$MUSIC" ] || printf '%s' "$MUSIC" | grep -q playlist; then
-	SHUFFLE="$(printf 'yes\nno' | dmenu -i -p 'Shuffle?')"
-	[ -z "$SHUFFLE" ] && exit 1
+if [ -z "$shuffle" ] && [ -d "$music" ] || printf '%s' "$music" | grep -q playlist; then
+	# shuffle="$(printf 'yes\nno' | $DMENU -p 'Shuffle?')"
+	shuffle="$(printf 'yes\nno' | tofi --prompt-text 'Shuffle? ')"
+	[ -z "$shuffle" ] && exit 1
 fi
 
-printf 'stop\n' | socat - /tmp/mpvsocket 2> /dev/null
-mpv --vid=no --input-ipc-server=/tmp/mpvsocket --loop-playlist\
-	--ytdl-format=ba --script="$SCRIPT" --shuffle="$SHUFFLE" "$MUSIC"
+printf 'stop\n' | socat - "$SOCKET" 2> /dev/null
+mpv --vid=no --input-ipc-server="$SOCKET" --loop-playlist\
+	--ytdl-format=ba --script="$script" --shuffle="$shuffle" "$music"

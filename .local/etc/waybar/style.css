@@ -1,0 +1,159 @@
+@import "gruvbox.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: monospace;
+    /* font-size: 14px; */
+    min-height: 0;
+}
+
+window#waybar {
+    /* background-color: transparent; */
+    background: rgba(40, 40, 40, 1);
+    border-bottom: 3px solid rgba(69, 133, 136, 1);
+    color: @bright_white;
+}
+
+/* #tags { */
+/*     margin-top: 8px; */
+/*     margin-left: 8px; */
+/*     padding: 1px; */
+/*     background-color: #073642; base02 */
+/*     border: 2px solid #93a1a1; base1 */
+/* } */
+
+#tags button {
+    /* Disable animation on click */
+    transition-property: none;
+
+    /* margin: 1px; */
+    /* padding: 1px; */
+    /* color: #93a1a1; base1 */
+    /* border: 2px solid #073642; base02 */
+
+    padding: 0 5px;
+    background: transparent;
+    color: @bright_white;
+    border-bottom: 3px solid transparent;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+/* #tags button:hover { */
+/*     box-shadow: inherit; */
+/*     text-shadow: inherit; */
+/*     background: #073642; base02 */
+/* } */
+
+#tags button.focused {
+    /* color: #073642; base02 */
+    /* background-color: #93a1a1; base1 */
+    /* border: 2px solid #073642; base02 */
+    background: @blue;
+    border-bottom: 3px solid @blue;
+}
+
+/* #tags button.occupied { */
+/*     border: 2px solid #93a1a1; base1* */
+/* } */
+
+/* #tags button.urgent { */
+/*     border: 2px solid @red; */
+/* } */
+
+/* #tags button.occupied.urgent { */
+/*     border: 2px solid @red; */
+/* } */
+
+/* #tags button.focused.occupied { */
+/*     color: #073642; base02 */
+/*     background-color: #93a1a1; base1 */
+/*     border: 2px solid #93a1a1; base1 */
+/* } */
+
+/* #battery, */
+/* #wireplumber, */
+/* #clock, */
+/* #mode, */
+/* #cpu, */
+/* #memory, */
+/* #network, */
+/* #temperature { */
+/*     padding: 1px 5px; */
+/*     margin-top: 8px; */
+/*     margin-left: 8px; */
+/*     background-color: #073642; base02 */
+/*     color: #93a1a1; base1 */
+/*     border: 2px solid #93a1a1; base1 */
+/* } */
+
+#wireplumber.muted {
+    color: @orange;
+}
+
+/* #temperature { */
+/*     margin-right: 8px; */
+/* } */
+/**/
+/* #clock { */
+/*     margin-left: 0px; */
+/*     margin-right: 0px; */
+/* } */
+/**/
+/* #cpu.warning, */
+/* #memory.warning { */
+/*     border: 2px solid @yellow; */
+/* } */
+/**/
+/* #cpu.critical, */
+/* #memory.critical, */
+/* #temperature.critical { */
+/*     border: 2px solid @red; */
+/* } */
+
+#mode, #clock, #battery {
+    padding: 0 10px;
+    margin: 0 5px;
+}
+
+#mode {
+    background: @red;
+    border-bottom: 3px solid @white_b;
+}
+
+#clock {
+    background-color: @bright_orange;
+    color: @white_b;
+}
+
+#battery {
+    background-color: @bright_white;
+    color: @background;
+}
+
+#battery.charging {
+    color: @background;
+    background-color: @green;
+}
+
+@keyframes blink {
+    to {
+        background-color: @bright_white;
+        color: @background;
+    }
+}
+
+#idle_inhibitor, #pulseaudio, #custom-openvpn, #network, #cpu, #memory, #temperature, #backlight, #battery, #clock, #tray {
+     padding: 0 6px;
+     margin: 0 3px;
+}
+
+#battery.warning:not(.charging) {
+    background: @red;
+    color: @bright_white;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}

@@ -4,10 +4,7 @@
 # dependencies:
 #   - default programs
 #   - xdo
-#   - xclip or xsel
-#   - (optional) herbe and dmenusearch web
-#   - (optional) dmenu_path
-#   - (optional) st with plumber patch
+#   - wl-clipboard
 # shellcheck disable=SC2086
 
 # default programs
@@ -15,15 +12,17 @@ WEB="xdg-open"
 TEXT="$TERMINAL -e $EDITOR"
 VIDEO="mpv --ytdl-format=22 --loop"
 AUDIO="music --shuffle"
-PIC="nsxiv -a"
+PIC="imv"
 DOC="zathura"
-DIR="$TERMINAL -e lfub"
+DIR="$TERMINAL -e lf"
 
 HISTDIR=${XDG_STATE_HOME:-$HOME/.local/state}/plumber
 HISTFILE=$HISTDIR/history
 
-openlink() {
+openurls() {
 	case "$1" in
+	file://*)
+		openfile "${1##file://}" ;;
 	*.mkv|*.webm|*.mp4|*.mov|*youtube.com/watch*|*youtube.com/playlist*|\
 		*youtube.com/shorts*|*youtu.be*|*inv*/playlist*|*inv*/watch*)
 		setsid -f $VIDEO "$1" >/dev/null 2>&1 ;;
@@ -77,7 +76,7 @@ openfile() {
 checksel() {
 	case "$1" in
 	http://*|https://*|irc://*|ircs://*|git://*|git@*)
-		openlink "$1" ;;
+		openurls "$1" ;;
 	/*)
 		opensel "$1" "$1" ;;
 
@@ -100,19 +99,7 @@ opensel() {
 		return
 	fi
 
-	if [ ! -f "$1" ]; then
-		progname=${2%\ *}
-		for prog in $(dmenu_path); do
-			case $prog in
-			"$progname")
-				$TERMINAL -e sh -c\
-					"cd ${1%"$2"}; echo \$ $2; $2; $SHELL"
-				return ;;
-			esac
-		done
-		herbe "Do you want to search for '$2' ?" && dmenusearch web "$2"
-		return
-	fi
+	[ ! -f "$1" ] && return
 
 	case "$1" in
 	*.mkv|*.webm|*.mp4|*.mov)
@@ -138,10 +125,9 @@ Usage: ${0##*/} [options] [args]
 
 Options:
   no option [args]    | Try to guess what to do
-  -l|--link [links]   | Open the links
+  -u|--url [urls]     | Open the urls
   -f|--file [files]   | Open the files or the folders
   -s|--sel            | Use the selection buffer instead, Plan9's way
-  -t|--term           | To be used only when invoking through a patched st
   -h|--help           │ Print this help message
 
 Config:
@@ -158,7 +144,7 @@ EOF
 main() {
 	mkdir -p "$HISTDIR"
 	case "$1" in
-	-l|--link)
+	-u|--url)
 		shift
 		if [ -z "$1" ]; then
 			printf '\033[31mError:\033[m no argument given\n' >&2
@@ -167,7 +153,7 @@ main() {
 		fi
 		for arg in "$@"; do
 			printf '%s\n' "$arg" >> "$HISTFILE"
-			openlink "$arg"
+			openurls "$arg"
 		done ;;
 	-f|--file)
 		shift
@@ -181,11 +167,9 @@ main() {
 			openfile "$arg"
 		done ;;
 	-s|--sel|'')
-		sel=$(xclip -o 2>/dev/null || xsel -opn 2>/dev/null)
+		sel=$(wl-paste)
 		sel=${sel#"${sel%%[![:space:]]*}"}
-
-		# clear clipboard
-		true | xclip 2>/dev/null || true | xsel 2>/dev/null
+		wl-copy --clear
 
 		if [ -z "$sel" ]; then
 			printf '\033[31mError:\033[m selection buffer is empty\n' >&2
@@ -194,13 +178,6 @@ main() {
 		fi
 		printf '%s\n' "$sel" >> "$HISTFILE"
 		checksel "$sel" ;;
-	-t|--term)
-		#if [ "$(ps -o comm= $PPID)" != "st" ]; then
-		#	printf '\033[31mError:\033[m --term option used outside of st\n' >&2
-		#	usage
-		#	return 1
-		#fi
-		[ -n "$2" ] && checksel "$2" ;;
 	-h|--help)
 		usage ;;
 	-*)
@@ -210,8 +187,8 @@ main() {
 	*)
 		for arg in "$@"; do
 			case "$arg" in
-			http://*|https://*|git://*|irc://*|ircs://*)
-				openlink "$arg" ;;
+			http://*|https://*|git://*|irc://*|ircs://*|file://*)
+				openurls "$arg" ;;
 			*)
 				openfile "$arg" ;;
 			esac

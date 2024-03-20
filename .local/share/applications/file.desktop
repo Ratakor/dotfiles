@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=File Manager
-Exec=st -d %u
+Exec=footclient -D %u

@@ -1,0 +1,7 @@
+daemonize
+ignore-empty-password
+show-failed-attempts
+indicator-caps-lock
+indicator-radius=100
+font=monospace
+scaling=fill

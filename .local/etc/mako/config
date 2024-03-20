@@ -1,0 +1,18 @@
+width=350
+height=400
+border-size=2
+default-timeout=5000
+font=monospace
+max-icon-size=32
+on-button-middle=exec makoctl menu -n "$id" "$MENU" -p "Select action:"
+
+background-color=#282828e6
+text-color=#ebdbb2e6
+border-color=#689d6ae6
+
+[urgency=low]
+border-color=#98971ae6
+
+[urgency=high]
+border-color=#cc241de6
+default-timeout=0

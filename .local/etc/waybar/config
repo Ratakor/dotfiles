@@ -1,0 +1,105 @@
+{
+    "layer": "top",
+    // "height": 30,
+    // "spacing": 4, // Gaps between modules (4px)
+    "modules-left": [
+        "river/tags",
+        "river/window" // TODO add padding to the right
+    ],
+    "modules-right": [
+        "custom/music",
+        "temperature",
+        // TODO "bluetooth",
+        // TODO "cpu",
+        // TODO "memory",
+        "battery",
+        "network",
+        "wireplumber",
+        "custom/weather",
+        "clock"
+    ],
+    "river/window": {
+        "max-length": 50,
+        "tooltip": false
+    },
+    // TODO: change color based on hour
+    "clock": {
+        "format": " {:%H:%M}",
+        "format-alt": " {:%b %d (%a)}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "format": {
+                "today": "<b><u>{}</u></b>"
+            }
+        }
+
+    },
+    "temperature": {
+        "format": " {temperatureC}°C",
+        "format-critical": " {temperatureC}°C",
+        "critical-threshold": 80,
+        "tooltip": false
+    },
+    "battery": {
+        "full-at": 95,
+        "format": "{icon} {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "states": {
+            "100": 100,
+            "90": 90,
+            "80": 80,
+            "70": 70,
+            "60": 60,
+            "50": 50,
+            "40": 40,
+            "30": 30,
+            "20": 20,
+            "10": 10,
+            "0": 0
+        },
+        "format-charging-100": "󰂅 {capacity}%",
+        "format-charging-90": "󰂋 {capacity}%",
+        "format-charging-80": "󰂊 {capacity}%",
+        "format-charging-70": "󰢞 {capacity}%",
+        "format-charging-60": "󰂉 {capacity}%",
+        "format-charging-50": "󰢝 {capacity}%",
+        "format-charging-40": "󰂈 {capacity}%",
+        "format-charging-30": "󰂇 {capacity}%",
+        "format-charging-20": "󰂆 {capacity}%",
+        "format-charging-10": "󰢜 {capacity}%",
+        "format-charging-0": "󰢟 {capacity}%",
+        "tooltip": true
+    },
+    "network": {
+        "interface": "wlan0",
+        "format-wifi": "{icon} {essid}",
+        "format-disconnected": "󰤯",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "format-icons": [ "󰤟", "󰤢", "󰤨" ],
+        "tooltip": true
+    },
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+        "format-icons": ["", "", ""],
+        "tooltip": false,
+        "max-volume": 150,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+    "custom/music": {
+        "exec": "$XDG_CONFIG_HOME/waybar/scripts/music.sh",
+        "interval": "once",
+        "signal": 1,
+        "max-length": 40,
+        "tooltip": false,
+        "on-click": "musiccmd"
+    },
+    "custom/weather": {
+        "exec": "$XDG_CONFIG_HOME/waybar/scripts/weather.sh",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 3600,
+        "tooltip": true
+    }
+}
+
+// vim: ft=jsonc

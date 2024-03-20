@@ -1,47 +1,25 @@
-# Stolen from Luke Smith config
-# Note on Image Previews
-# For those wanting image previews, like this system, there are four steps to
-# set it up. These are done automatically for those that useed my Makefile users,
-# but I will state them here for others doing it manually.
-#
-# 1. ueberzug must be installed.
-# 2. The scope file (~/.local/etc/lf/scope for me), must have a command similar to
-#    mine to generate ueberzug images.
-# 3. A `set cleaner` line as below is a cleaner script.
-# 4. lf should be started through a wrapper script (~/.local/bin/lfub for me)
-#    that creates the environment for ueberzug. This command can be be aliased
-#    in your shellrc (`alias lf="lfub") or if set to a binding, should be
-#    called directly instead of normal lf.
-
-# Basic vars
 set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
 set icons
 set period 1
-set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
-set cleaner '~/.local/etc/lf/cleaner'
 set previewer '~/.local/etc/lf/scope'
 set autoquit true
+set sixel true
 
 # cmds/functions
 cmd open ${{
-    case $(file --mime-type "$(readlink -f $f)" -b) in
+	case $(file --mime-type "$(readlink -f $f)" -b) in
 	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-        text/*|application/json|inode/x-empty|application/x-subrip) $EDITOR $fx;;
-	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
-		setsid -f nsxiv -aio 2>/dev/null | while read -r file; do
-			[ -z "$file" ] && continue
-			lf -remote "send select \"$file\""
-			lf -remote "send toggle"
-		done & ;;
+	text/*|application/json|inode/x-empty|application/x-subrip) $EDITOR $fx ;;
+	image/*) imv $fx & ;;
 	audio/*|video/x-ms-asf) mpv --audio-display=no $f ;;
 	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
 	application/pdf|application/vnd.djvu|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
 	application/pgp-encrypted) $EDITOR $fx ;;
-        # *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
-        *) $EDITOR $fx ;;
-    esac
+	# *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+	*) $EDITOR $fx ;;
+	esac
 }}
 
 cmd mkdir $mkdir -p "$@"
@@ -110,6 +88,7 @@ map o &mimeopen "$f"
 map O $mimeopen --ask "$f"
 map w $env IGNORE="" randwp "$f"
 map p $plumber "$f"
+map d $dragon "$f"
 
 map A :rename; cmd-end # at the very end
 map c push A<c-u> # new rename

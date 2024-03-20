@@ -1,6 +1,6 @@
 #!/bin/sh
 # chromium hardening flags
-# breaks heavy js website
+# TODO: find which flags break everything
 
 /usr/bin/chromium \
 	--block-new-web-contents \

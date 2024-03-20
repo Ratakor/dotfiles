@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=Text editor
-Exec=st -e nvim %u
+Exec=footclient -e nvim %u

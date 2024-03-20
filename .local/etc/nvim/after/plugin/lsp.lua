@@ -9,51 +9,74 @@ vim.g.completion_enable_auto_popup = 1
 --     end,
 -- })
 
-local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-local lsp_attach = function(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+local on_attach = function(_, bufnr)
+    local nmap = function(keys, func, desc)
+        if desc then
+            desc = "LSP: " .. desc
+        end
+        vim.keymap.set('n', keys, func, {
+            noremap = true,
+            silent = true,
+            buffer = bufnr,
+            desc = desc,
+        })
+    end
+
+    local telescope = require("telescope.builtin")
+
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap=true, silent=true, buffer=bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    --vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    --vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    --vim.keymap.set('n', '<space>wl', function()
-    --    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    --end, bufopts)
-    vim.keymap.set('n', '<space>df', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-    vim.keymap.set('n', '<space>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
-    vim.keymap.set('n', '<space>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
-    vim.keymap.set('n', '<space>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
-    vim.keymap.set('n', '<space>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true })
+    nmap("<leader>r", vim.lsp.buf.rename, "[r]ename")
+    nmap("<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
+
+    nmap("gD", vim.lsp.buf.declaration, "[g]o to [D]eclaration")
+    nmap("gd", vim.lsp.buf.definition, "[g]o to [d]efinition")
+    -- nmap("gd", telescope.lsp_definitions, "[g]o to [d]efinition")
+    nmap("gr", telescope.lsp_references, "[g]o to [r]eferences")
+    nmap("gi", telescope.lsp_implementations, "[g]o to [i]mplementation")
+    nmap("<leader>td", telescope.lsp_type_definitions, "[t]ype [d]efinition")
+    nmap("<leader>ds", telescope.lsp_document_symbols, "[d]ocument [s]ymbols")
+    nmap("<leader>ws", telescope.lsp_dynamic_workspace_symbols, "[w]orkspace [s]ymbols")
+
+    nmap("K", vim.lsp.buf.hover, "Hover documenation")
+    nmap("<C-k>", vim.lsp.buf.signature_help, "Signature documenation")
+
+    nmap("<leader>do", vim.diagnostic.open_float, "[d]iagnostics [o]pen")
+    nmap("<leader>dp", vim.diagnostic.goto_prev, "[d]iagnostics [p]revious")
+    nmap("<leader>dn", vim.diagnostic.goto_next, "[d]iagnostics [n]ext")
+    nmap("<leader>dd", telescope.diagnostics, "[d]isplay [d]iagnostics")
+
+    -- nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[w]orkspace [a]dd Folder")
+    -- nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[w]orkspace [r]emove Folder")
+    -- nmap('<leader>wl', function()
+    --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    -- end, '[w]orkspace [l]ist Folders')
+
+    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+        vim.lsp.buf.format()
+    end, { desc = 'Format current buffer with LSP' })
 end
 
 -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 local servers = {
-    'bashls',
-    'clangd',
-    'cssls',
-    'gopls',
-    'html',
-    'jedi_language_server',
-    'lua_ls',
-    'rust_analyzer',
-    'texlab',
-    'zls',
+    "bashls",
+    "clangd",
+    "cssls",
+    "gopls",
+    "html",
+    "jdtls",
+    "jedi_language_server",
+    "lua_ls",
+    "rust_analyzer",
+    "texlab",
+    "zls",
 }
 
-for _, lsp in ipairs(servers) do
-    require("lspconfig")[lsp].setup ({
-        on_attach = lsp_attach,
-        capabilities = lsp_capabilities,
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+for _, server_name in ipairs(servers) do
+    require("lspconfig")[server_name].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
     })
 end
 
@@ -83,11 +106,11 @@ cmp.setup({
     },
 
     mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Set `select` to `false` to only confirm explicitly selected items.
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Set `select` to `false` to only confirm explicitly selected items.
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -98,7 +121,7 @@ cmp.setup({
             else
                 fallback()
             end
-        end, { "i", "s" }),
+        end, { 'i', 's' }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -107,22 +130,22 @@ cmp.setup({
             else
                 fallback()
             end
-        end, { "i", "s" }),
+        end, { 'i', 's' }),
     }),
 
     sources = {
-        { name = 'buffer' },
-        { name = 'calc' },
-        { name = 'luasnip' },
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'path' },
-        { name = 'treesitter' },
+        { name = "buffer" },
+        { name = "calc" },
+        { name = "luasnip" },
+        { name = "nvim_lsp" },
+        { name = "nvim_lsp_signature_help" },
+        { name = "path" },
+        { name = "treesitter" },
     },
 })
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl= hl, numhl = hl })
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end

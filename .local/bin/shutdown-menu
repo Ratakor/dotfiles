@@ -1,0 +1,20 @@
+#!/bin/sh
+# menu for lock and shutdown
+# requires nopass for openrc-shutdown
+
+RED="#cc241d"
+#CYAN="#689d6a"
+#query=$(printf ' lock\n exit wm\n⏻ shutdown\n⏼ reboot' | $DMENU -i -sb "$RED" -hf "$CYAN" -p 'System ')
+query=$(printf '\n\n lock\n exit wm\n⏻ shutdown\n⏼ reboot' | tofi --prompt-text 'System ' --selection-color "$RED")
+ROOTCMD=${ROOTCMD:-$(command -v doas || command -v sudo)}
+
+case $query in
+*"lock")
+	glitchlock ;;
+*"exit wm")
+	riverctl exit ;;
+*"shutdown")
+	$ROOTCMD openrc-shutdown -p 0 ;;
+*"reboot")
+	$ROOTCMD openrc-shutdown -r 0 ;;
+esac

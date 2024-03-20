@@ -1,15 +1,18 @@
 # Update PATH
-PATH="$HOME/.local/bin:$PATH"
+PATH="$PATH:$HOME/.local/bin"
 PATH="$PATH:$CARGO_HOME/bin"
 PATH="$PATH:$GOPATH/bin"
 export PATH
+export MANPATH="$HOME/.local/share/man:/usr/local/share/man:/usr/share/man"
+#export LD_LIBRARY_PATH="$HOME/.local/lib:/usr/local/lib:/usr/lib"
 
 # Default programs
-export EDITOR="editor"
-export TERMINAL="st"
-export BROWSER="browser"
+export EDITOR="nvim"
+export TERMINAL="footclient"
+export BROWSER="chromium"
 export ROOTCMD="doas"
 export MANPAGER="manpager"
+export DMENU="tofi"
 
 # XDG directories
 export XDG_CONFIG_HOME="$HOME/.local/etc"
@@ -38,16 +41,16 @@ export OPAMROOT="$XDG_DATA_HOME/opam"
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npmrc"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
-export TERMINFO="$XDG_DATA_HOME/terminfo"
-export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 
 # Misc
 # umask 0077
 export GPG_TTY=$(tty)
+export MOZ_ENABLE_WAYLAND=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export MANWIDTH=80
 export LESS=-R
@@ -58,5 +61,3 @@ export SAVEHIST=10000
 # export CC="zig cc"
 export CC=cc
 CC="$CC -Wall"
-export LD_LIBRARY_PATH=/usr/local/lib
-export LS_COLORS="$(vivid generate gruvbox-dark):di=1;34"

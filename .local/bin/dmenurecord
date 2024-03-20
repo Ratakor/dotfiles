@@ -2,6 +2,7 @@
 # dmenu for recordings with ffmpeg
 # dependencies: pipewire-pulse/pulseaudio, ffmpeg, dmenu, slop
 # Original: https://github.com/whoisYoges/record-with-ffmpeg
+# TODO: change to use wf-recorder and $DMENU
 
 set -e
 
@@ -126,9 +127,9 @@ setSelectionVal() {
 }
 
 videosel() {
-	slop=$(slop -q -f "%x %y %w %h") || return 1
+	coord=$(slurp -f "%x %y %w %h") || return 1
 	# shellcheck disable=SC2086
-	setSelectionVal $slop
+	setSelectionVal $coord
 	video "$1"
 }
 

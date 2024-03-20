@@ -1,4 +1,4 @@
-# base Parabola OpenRC
+## base Parabola OpenRC
 archlinux-keyring
 parabola-keyring
 base
@@ -17,36 +17,21 @@ neovim
 opendoas # sudo replacement
 git
 
-# packages
-
 ## ratakor-repo
-dmenu-ratakor # application launcher
-dwm-ratakor # window manager
-sb # status bar
-st-ratakor # terminal emulator
-slock-ratakor # screen locker
-ratakor-repo/sic # IRC client
+pinentry-dmenu # use dmenu for gpg # TODO: create pinentry-tofi
 randhost # set a random hostname (OpenRC service)
 blocktooth # block bluetooth with rfkill (OpenRC service)
 networkmanager-hardened # set a randomized MAC address + disable co test
 quand # a calendar app like when
-#clangbincc # a pacman hook to symlink clang to cc when there is a gcc update
-pinentry-dmenu # use dmenu for gpg
 ratakor-repo/dragon # a simple drag-and-drop replacement for graphical stuff
-ratakor-repo/your-privacy # your-privacy but without NM as it's in another pkg
-cli-visualizer # audio visualizer
 dashbinsh # a pacman hook to symlink dash to sh when there is a bash update
-dracula-gtk-theme # /usr/share/themes/dracula
 gruvbox-gtk-theme # /usr/share/themes/gruvbox-[dark|light]
-xbanish # hide mouse when typing
 simple-mtpfs # mount phone easily
 dbus-xdg # dbus but without ~/.dbus
 ungoogled-chromium-xdg # ungoogled chromium but without ~/.pki
-nsxiv # image viewer
 scron # simple cron daemon
 htop-vim # process viewer (htop) with vim keybinds
-openssh-dotlocal # openssh but ~/.ssh to ~/.local/etc/ssh
-herbe # notifications
+openssh # TODO openssh-dotlocal # openssh but ~/.ssh to ~/.local/etc/ssh
 gomuks # matrix client
 poop # Performance Optimizer Observation Platform
 2048
@@ -59,10 +44,10 @@ eza # ls replacement
 lf # file manager
 bat # lf dependency and cat replacement
 w3m # lf dependency and terminal based browser
-ueberzug # lf dependency: see image in terminal
 atool # lf dependency
 odt2txt # lf dependency
 ffmpegthumbnailer # lf dependency
+chafa # lf dependency (image in terminal)
 mediainfo # lf dependency
 yt-dlp # download any video/audio from the web
 ytfzf # search youtube video without a browser
@@ -70,7 +55,6 @@ dust # du replacement
 duf # df replacement
 fd # find replacement
 gitui=0.22.1 # tui for git
-vivid # LS_COLORS generator
 
 ## dev
 #texlive # LaTeX (big package)
@@ -83,16 +67,7 @@ mingw-w64-gcc # windows cc
 musl # another libc
 libbsd
 zig # NOTE: use zig-dev-bin from AUR instead
-pypy3 # JIT python interpreter
-zls # zig lsp
-gopls # go lsp
-rust-analyzer # rust lsp
-texlab # LaTeX lsp
-pyright # python lsp
-bash-language-server
-lua-language-server
-vscode-css-languageserver
-vscode-html-languageserver
+go
 astyle # C formatter
 shellcheck
 cmake # use zig or make please
@@ -102,6 +77,8 @@ dosfstools
 mtools
 xorriso
 gptfdisk
+mariadb-openrc
+jdk17-openjdk
 
 ## sound
 rtkit
@@ -111,22 +88,29 @@ pipewire-pulse
 wireplumber
 
 ## grapical
-xorg-server
-sx # init xorg
-xorg-xrdb # Xresources
-sxhkd # hotkey daemon
-hsetroot # wallpaper utility
-#xwallpaper # wallpaper utility for mutliple monitors
-xclip # clipboard management
-picom # compositor (window transparency and stuff)
-redshift # no blue light at night, use nonprism repo to remove geoclue2 support
+river # window manager # TODO: need river-git for XF86ScreenSaver
+waybar # bar
+foot # terminal emulator
+foot-terminfo
+tofi # dynamic menu # TODO: aur
+mako # notification daemon
+swaylock # screen locker
+swaybg # wallpaper utility
+grim # screenshot
+slurp # region selection
+swayidle # idle manager
+wlopm-git # power management # TODO: aur
+wl-clipboard # clipboard management
+wf-recorder # screen recording
+#kanshi # multiple displays
+gammastep # no blue light at night
 mpv # video and music player
 socat # dependency for the music script that uses mpv
-maim # screenshot tool
 zathura # document viewer
 zathura-pdf-mupdf
 claws-mail # mail client, use nonprism repo to remove libgdata support
 gajim # XMPP client
+imv # image viewer
 
 ## misc
 keepassxc # password manager
@@ -163,5 +147,7 @@ python-gnupg # gajim dependency
 git-lfs
 xdo # window manipulation
 zsh-completions
-slop
 cloc
+perf
+python-graphviz
+trash-cli

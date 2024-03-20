@@ -3,7 +3,16 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             -- LSP for neovim, must be loaded before lspconfig
-            { "folke/neodev.nvim", setup = true },
+            { "folke/neodev.nvim", config = true },
+            {
+                "williamboman/mason-lspconfig.nvim",
+                opts = {
+                    automatic_installation = true,
+                },
+                dependencies = {
+                    { "williamboman/mason.nvim", config = true },
+                },
+            },
         },
     },
     {
@@ -14,9 +23,7 @@ return {
             {
                 "L3MON4D3/LuaSnip",
                 build = "make install_jsregexp",
-                dependencies = {
-                    "ratakor/vim-snippets",
-                },
+                dependencies = "ratakor/vim-snippets",
             },
 
             "hrsh7th/cmp-nvim-lsp",

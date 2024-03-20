@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=git
-Exec=st -e git clone %u
+Exec=footclient -e git clone %u

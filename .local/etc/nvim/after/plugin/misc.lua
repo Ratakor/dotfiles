@@ -1,13 +1,12 @@
 local map = vim.keymap.set
 
 -- lazy
-map('n', "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map('n', "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
 
 -- Telescope
 local telescope = require("telescope.builtin")
--- map('n', "<leader>f", telescope.find_files)
-map('n', "<C-S>", telescope.find_files)
-map('n', "<C-G>", telescope.git_files)
+map('n', "<leader>f", telescope.find_files, { desc = "Find files" })
+map('n', "<C-g>", telescope.git_files)
 
 -- NERDTree (see their README)
 map('n', "<F2>", ":NERDTreeToggle<CR>")
@@ -16,16 +15,8 @@ vim.cmd("autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists(
 -- Undotree
 map('n', "<F3>", ":UndotreeToggle<CR>")
 
--- GitGutter update on write
-vim.api.nvim_create_autocmd("BufWritePost", { command = "GitGutter" })
-
-vim.g.zig_fmt_autosave = 0 -- too slow
-
--- map("i", "<C-H>", "copilot#Accept('<CR>')", {
--- 	expr = true,
--- 	replace_keycodes = false,
--- })
--- vim.g.copilot_no_tab_map = true
+-- Disable auto-format on save for zig, too slow
+vim.g.zig_fmt_autosave = 0
 
 require("neotest").setup({
     adapters = {

@@ -1,62 +1,36 @@
 #!/bin/sh
-# This is kinda useless
 
-STATUS="$(cat /sys/class/power_supply/BAT0/status)"
-CAPACITY="$(cat /sys/class/power_supply/BAT0/capacity)"
+status=$(cat /sys/class/power_supply/BAT0/status)
+capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 
-BAT_0='󰂎'
-BAT_10='󰁺'
-BAT_20='󰁻'
-BAT_30='󰁼'
-BAT_40='󰁽'
-BAT_50='󰁾'
-BAT_60='󰁿'
-BAT_70='󰂀'
-BAT_80='󰂁'
-BAT_90='󰂂'
-BAT_100='󰁹'
-
-CBAT_0='󰢟'
-CBAT_10='󰢜'
-CBAT_20='󰂆'
-CBAT_30='󰂇'
-CBAT_40='󰂈'
-CBAT_50='󰢝'
-CBAT_60='󰂉'
-CBAT_70='󰢞'
-CBAT_80='󰂊'
-CBAT_90='󰂋'
-CBAT_100='󰂅'
-
-if [ "$STATUS" = "Charging" ]; then
-	case $CAPACITY in
-	99|100)     ICON="$CBAT_100" ;;
-	9[0-8])     ICON="$CBAT_90"  ;;
-	8[0-9])     ICON="$CBAT_80"  ;;
-	7[0-9])     ICON="$CBAT_70"  ;;
-	6[0-9])     ICON="$CBAT_60"  ;;
-	5[0-9])     ICON="$CBAT_50"  ;;
-	4[0-9])     ICON="$CBAT_40"  ;;
-	3[0-9])     ICON="$CBAT_30"  ;;
-	2[0-9])     ICON="$CBAT_20"  ;;
-	1[0-9])     ICON="$CBAT_10"  ;;
-	[0-9])      ICON="$CBAT_0"   ;;
+if [ "$status" = "Charging" ]; then
+	case $capacity in
+	99|100) icon=󰂅 ;;
+	9[0-8]) icon=󰂋 ;;
+	8[0-9]) icon=󰂊 ;;
+	7[0-9]) icon=󰢞 ;;
+	6[0-9]) icon=󰂉 ;;
+	5[0-9]) icon=󰢝 ;;
+	4[0-9]) icon=󰂈 ;;
+	3[0-9]) icon=󰂇 ;;
+	2[0-9]) icon=󰂆 ;;
+	1[0-9]) icon=󰢜 ;;
+	[0-9])  icon=󰢟 ;;
 	esac
 else
-	case $CAPACITY in
-	99|100)     ICON="$BAT_100" ;;
-	9[0-8])     ICON="$BAT_90"  ;;
-	8[0-9])     ICON="$BAT_80"  ;;
-	7[0-9])     ICON="$BAT_70"  ;;
-	6[0-9])     ICON="$BAT_60"  ;;
-	5[0-9])     ICON="$BAT_50"  ;;
-	4[0-9])     ICON="$BAT_40"  ;;
-	3[0-9])     ICON="$BAT_30"  ;;
-	2[0-9])     ICON="$BAT_20"  ;;
-	1[0-9])     ICON="$BAT_10"  ;;
-	[0-9])      ICON="$BAT_0"   ;;
+	case $capacity in
+	99|100) icon=󰁹 ;;
+	9[0-8]) icon=󰂂 ;;
+	8[0-9]) icon=󰂁 ;;
+	7[0-9]) icon=󰂀 ;;
+	6[0-9]) icon=󰁿 ;;
+	5[0-9]) icon=󰁾 ;;
+	4[0-9]) icon=󰁽 ;;
+	3[0-9]) icon=󰁼 ;;
+	2[0-9]) icon=󰁻 ;;
+	1[0-9]) icon=󰁺 ;;
+	[0-9])  icon=󰂎 ;;
 	esac
 fi
 
-kill -38 $(pidof sb)
-env HERBE_ID=/battery herbe "$ICON $CAPACITY% $STATUS"
+notify-send "$icon $capacity% $status"
