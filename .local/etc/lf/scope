@@ -1,7 +1,7 @@
 #!/bin/sh
 # File preview handler for lf
 
-THEME=gruvbox-dark
+THEME=Dracula
 
 image() {
 	if [ -f "$1" ]; then

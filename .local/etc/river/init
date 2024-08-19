@@ -10,10 +10,10 @@ riverctl set-repeat 50 300
 riverctl keyboard-layout "fr(us)"
 riverctl default-layout rivertile
 
-riverctl background-color 0x282828
-riverctl border-color-focused 0x458588
-riverctl border-color-unfocused 0x3c3836
-riverctl border-color-urgent 0xcc241d
+riverctl background-color 0x282a36
+riverctl border-color-focused 0xbd93f9
+riverctl border-color-unfocused 0x44475a
+riverctl border-color-urgent 0xff5555
 
 if [ -d "/sys/class/drm" ]; then
 	for dev in /sys/class/drm/*/modes; do

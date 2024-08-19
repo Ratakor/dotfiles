@@ -6,13 +6,13 @@ font=monospace
 max-icon-size=32
 on-button-middle=exec makoctl menu -n "$id" "$MENU" -p "Select action:"
 
-background-color=#282828e6
-text-color=#ebdbb2e6
-border-color=#689d6ae6
+background-color=#282a36e6
+text-color=#f8f8f2e6
+border-color=#bd93f9e6
 
 [urgency=low]
-border-color=#98971ae6
+border-color=#50fa7be6
 
 [urgency=high]
-border-color=#cc241de6
+border-color=#ff5555e6
 default-timeout=0

@@ -1,19 +1,19 @@
-local colors = require("gruvbox").palette
+local colors = require("dracula").colors();
 
-vim.cmd("colorscheme gruvbox")
+vim.cmd("colorscheme dracula")
 
 require("hlargs").setup {
-    color = colors.neutral_orange,
+    color = colors.orange,
 }
 
 require("scrollbar").setup({
     marks = {
-        Search = { color = colors.neutral_orange },
-        Error = { color = colors.neutral_red },
-        Warn = { color = colors.neutral_yellow },
-        Info = { color = colors.neutral_pink },
-        Hint = { color = colors.neutral_cyan },
-        Misc = { color = colors.neutral_purple },
+        Search = { color = colors.orange },
+        Error = { color = colors.red },
+        Warn = { color = colors.yellow },
+        Info = { color = colors.pink },
+        Hint = { color = colors.cyan },
+        Misc = { color = colors.purple },
     },
     handlers = {
         cursor = false,
@@ -38,8 +38,8 @@ local function process_sections(sections)
             table.insert(section, pos * 2, {
                 empty,
                 color = {
-                    fg = colors.neutral_white,
-                    bg = colors.neutral_white,
+                    fg = colors.white,
+                    bg = colors.white,
                 },
             })
         end
@@ -63,7 +63,7 @@ local function modified()
     return ''
 end
 
-local transparent = require'lualine.themes.gruvbox'
+local transparent = require'lualine.themes.dracula'
 transparent.inactive.c.bg = 'nil'
 transparent.visual.c.bg = 'nil'
 transparent.replace.c.bg = 'nil'
@@ -90,8 +90,8 @@ require('lualine').setup {
                 symbols = { error = 'E ' },
                 diagnostics_color = {
                     error = {
-                        bg = colors.neutral_red,
-                        fg = colors.dark0,
+                        bg = colors.red,
+                        fg = colors.black,
                         gui = 'bold',
                     },
                 },
@@ -106,8 +106,8 @@ require('lualine').setup {
                 symbols = { warn = 'W ' },
                 diagnostics_color = {
                         warn = {
-                            bg = colors.neutral_orange,
-                            fg = colors.dark0,
+                            bg = colors.orange,
+                            fg = colors.black,
                             gui = 'bold',
                         },
                     },
@@ -115,7 +115,7 @@ require('lualine').setup {
                 --     vim.diagnostic.goto_next()
                 -- end
             },
-            { modified, color = { bg = colors.neutral_purple } },
+            { modified, color = { bg = colors.purple } },
             {
                 '%w',
                 cond = function()

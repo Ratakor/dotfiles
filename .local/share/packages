@@ -103,7 +103,7 @@ claws-mail # mail client, use nonprism repo to remove libgdata support
 gajim # XMPP client
 imv # image viewer
 aur/ungoogled-chromium-xdg-bin # ungoogled chromium but without ~/.pki
-aur/gruvbox-gtk-theme-git # gtk theme
+aur/dracula-gtk-theme # gtk theme
 
 ## misc
 openssh
