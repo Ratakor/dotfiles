@@ -17,7 +17,7 @@ web() {
 			(notify-send "No internet connection"; exit 1)
 
 		strip() {
-			tmp=${1##"              \"$NETWORK\": \""}
+			tmp=${1##*"\"$NETWORK\": \""}
 			printf '%s\n' "${tmp%%"\","}"
 		}
 

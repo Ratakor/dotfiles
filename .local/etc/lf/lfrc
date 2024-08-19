@@ -39,11 +39,12 @@ cmd open ${{
 	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
 	application/pdf|application/vnd.djvu|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
 	application/pgp-encrypted) $EDITOR $fx ;;
-        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+        # *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+        *) $EDITOR $fx ;;
     esac
 }}
 
-cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
+cmd mkdir $mkdir -p "$@"
 
 cmd extract ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
@@ -99,7 +100,7 @@ map <backspace2> delete
 map E extract
 map C copyto
 map M moveto
-map <c-n> push :mkdir<space>
+map <c-n> push :mkdir<space>""<left>
 map <c-r> reload
 map <c-s> set hidden!
 map <enter> shell
@@ -108,6 +109,8 @@ map X !$f
 map o &mimeopen "$f"
 map O $mimeopen --ask "$f"
 map w $env IGNORE="" randwp "$f"
+map p $plumber "$f"
+map d $dragon "$f"
 
 map A :rename; cmd-end # at the very end
 map c push A<c-u> # new rename

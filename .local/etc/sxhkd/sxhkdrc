@@ -3,11 +3,11 @@ super + Escape
 super + Return
 	$TERMINAL
 super + d
-	dmenu_run -hp "browser,mail,chromium,unity,anki,steam,monero-wallet-gui"
+	dmenu_run -hp "browser,mail,chromium,lutris,discord,anki,steam,monero-wallet-gui"
 super + shift + x
 	slock
-Scroll_Lock
-	themeswap
+#Scroll_Lock
+#	themeswap
 super + shift + r
 	randwp
 Print
@@ -18,12 +18,12 @@ Print
 	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-; kill -43 $(pidof sb)
 #XF86Launch1
 #	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -43 $(pidof sb)
-F6
-	wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -44 $(pidof sb)
+#F6
+#	wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -44 $(pidof sb)
 F7
 	$TERMINAL -e dmenurecord
-super + b
-	$BROWSER
+# super + b
+# 	$BROWSER
 super + n
 	$TERMINAL -e sh -c 'cd "$XDG_DATA_HOME/notes"; lfub'
 super + shift + n
@@ -40,9 +40,13 @@ super + shift + w
 	dmenuoff
 super + u
 	dmenuhandler "$(xclip -o)"
-{super + shift + u,button8}
+super + shift + u
 	plumber --sel
-button9
-	xdo kill
-button10
-	musiccmd
+#button8
+#	plumber --sel
+#button9
+#	xdo kill
+#button10
+#	musiccmd
+ctrl + p
+	killall picom || picom -b

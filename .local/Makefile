@@ -7,9 +7,10 @@ all: packages config scripts wallpapers
 packages:
 	@printf '\033[34;1mAdd ratakor repository\033[m\n'
 	@curl -s https://raw.githubusercontent.com/Ratakor/ratakor-repo/master/setup | ${ROOTCMD} sh
+	# TODO: setup arch and universe repos
 	@printf '\033[34;1mInstall all packages\033[m\n'
 	@yes | LC_ALL=C ${ROOTCMD} pacman -Syu --needed $(shell grep -v '^#' share/packages/packages)
-	@printf '\033[34;1mInstalling package from the AUR\n'
+	@printf '\033[34;1mInstall packages from the AUR\033[m\n'
 	@bin/aurinstall $(shell grep -v '^#' share/packages/packages.aur)
 	@printf '\033[34;1mChange %s shell to zsh\033[m\n' "$$USER"
 	@chsh -s /bin/zsh >/dev/null
