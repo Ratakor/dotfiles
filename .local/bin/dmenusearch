@@ -8,7 +8,8 @@
 set -e
 
 web() {
-	SEARCH_ENGINE="https://4get.ca/web?s="
+	# SEARCH_ENGINE="https://4get.ca/web?s="
+	SEARCH_ENGINE="https://duckduckgo.com/?q="
 	# query=${1:-$(true | $DMENU -p "Search:" -l 0)}
 	query=${1:-$(true | tofi --prompt-text "Search: ")}
 	if [ -z "$query" ]; then

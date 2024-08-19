@@ -1,28 +1,37 @@
 {
     "layer": "top",
-    // "height": 30,
-    // "spacing": 4, // Gaps between modules (4px)
+    "spacing": 0,
     "modules-left": [
-        "river/tags",
-        "river/window" // TODO add padding to the right
+        "river/tags"
+    ],
+    "modules-center": [
+        // "river/window"
+        "custom/music"
     ],
     "modules-right": [
-        "custom/music",
         "temperature",
-        // TODO "bluetooth",
-        // TODO "cpu",
-        // TODO "memory",
         "battery",
         "network",
+        // TODO "bluetooth",
         "wireplumber",
         "custom/weather",
         "clock"
     ],
     "river/window": {
         "max-length": 50,
-        "tooltip": false
+        "tooltip": false,
+        "tag-labels": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "",
+            "9": ""
+        }
     },
-    // TODO: change color based on hour
     "clock": {
         "format": " {:%H:%M}",
         "format-alt": " {:%b %d (%a)}",
@@ -41,7 +50,7 @@
         "tooltip": false
     },
     "battery": {
-        "full-at": 95,
+        "full-at": 99,
         "format": "{icon} {capacity}%",
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
         "states": {
@@ -101,5 +110,3 @@
         "tooltip": true
     }
 }
-
-// vim: ft=jsonc

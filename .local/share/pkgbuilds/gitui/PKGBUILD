@@ -1,0 +1,19 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=gitui
+pkgver=0.22.1
+pkgrel=1
+pkgdesc="Blazing fast terminal-ui for git written in Rust (v0.22.1)"
+arch=('x86_64')
+url="https://github.com/extrawurst/$pkgname"
+license=('MIT')
+#depends=('gcc-libs' 'libgit2.so' 'libxcb' 'openssl' 'zlib')
+#makedepends=('cargo' 'python')
+provides=("$pkgname")
+conflicts=("$pkgname")
+source=("$url/releases/download/v$pkgver/$pkgname-linux-musl.tar.gz")
+sha256sums=('03877698f3dc2d8f332bd65d872fa7d88d79004feca703394bdb928bd13f1955')
+
+package() {
+	install -Dm755 "$pkgname" "$pkgdir/usr/bin/$pkgname"
+}

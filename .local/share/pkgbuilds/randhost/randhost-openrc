@@ -1,0 +1,9 @@
+#!/usr/bin/openrc-run
+
+description="Set a random hostname."
+
+start() {
+    ebegin "Setting a random hostname "
+    randhost
+    eend $? "Failed to set a random hostname"
+}

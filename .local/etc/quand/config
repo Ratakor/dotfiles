@@ -2,7 +2,7 @@
 # shellcheck disable=SC2034
 header=0
 past=0
-future=1
+future=30
 mondayfirst=1
 yesterday="\033[36myesterday  "
 today="\033[35;1mtoday      "

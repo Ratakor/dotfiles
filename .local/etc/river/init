@@ -15,8 +15,24 @@ riverctl border-color-focused 0x458588
 riverctl border-color-unfocused 0x3c3836
 riverctl border-color-urgent 0xcc241d
 
-# TODO
-#riverctl rule-add -app-id "imv" float
+if [ -d "/sys/class/drm" ]; then
+	for dev in /sys/class/drm/*/modes; do
+		read -r resolution _ < "$dev" || continue
+		break
+	done
+
+	width=$((${resolution%%x*} / 2))
+	height=$((${resolution#*x} / 2))
+
+	# width=$(echo "${resolution%%x*} * 0.8" | bc)
+	# height=$(echo "${resolution#*x} * 0.8" | bc)
+	# width=${width%.*}
+	# height=${height%.*}
+
+	riverctl rule-add -app-id "imv" float
+	riverctl rule-add -app-id "imv" dimensions "$width"x"$height"
+fi
+
 
 ### WM bindings
 
@@ -135,29 +151,28 @@ riverctl map normal Super Escape spawn 'kill -USR2 $(pidof waybar); makoctl relo
 
 # toggle bar
 riverctl map normal Super+Shift B spawn 'kill -USR1 $(pidof waybar)'
-# TODO: toggle gaps
+# TODO: toggle padding (gaps)
 #riverctl map normal Super+Shift G ...
-# TODO: cycle layout (toggle floating mode)
-#riverctl map normal Super+Shift Space ...
-# TODO: toggle transparence
+# cycle layout (toggle floating mode)
+# riverctl map normal Super+Shift Space spawn \
+# 	'killall rivertile || rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55'
+# TODO: toggle transparency
 #riverctl map normal Control P spawn 'killall picom || picom -b'
 
 ### Start programs
 
-# TODO
-spawn_once() {
-	#pidof -q "$1" || riverctl spawn "$*"
-	riverctl spawn "$*"
+spawn() {
+	pidof -q "$1" || riverctl spawn "$*"
 }
 
-randwp
-spawn_once pipewire
-spawn_once foot --server
-spawn_once scron -f "$XDG_CONFIG_HOME/crontab" -n
-spawn_once gammastep
-spawn_once mako
-spawn_once waybar
-spawn_once rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55
-spawn_once swayidle -w \
+spawn randwp
+spawn pipewire
+spawn foot --server
+spawn crond -f "$XDG_CONFIG_HOME/crontab" -n
+spawn gammastep
+spawn mako
+spawn waybar
+spawn rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55
+spawn swayidle -w \
 	timeout 300 "glitchlock" \
 	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'"

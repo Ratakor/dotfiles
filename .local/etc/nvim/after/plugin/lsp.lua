@@ -67,6 +67,7 @@ local servers = {
     "jedi_language_server",
     "lua_ls",
     "rust_analyzer",
+    "sqls",
     "texlab",
     "zls",
 }

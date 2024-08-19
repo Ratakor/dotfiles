@@ -4,7 +4,7 @@ parabola-keyring
 base
 base-devel
 libelogind
-udev-init-scripts
+#udev-init-scripts
 linux-libre-hardened
 networkmanager-openrc
 inetutils
@@ -17,25 +17,11 @@ neovim
 opendoas # sudo replacement
 git
 
-## ratakor-repo
-pinentry-dmenu # use dmenu for gpg # TODO: create pinentry-tofi
-randhost # set a random hostname (OpenRC service)
-blocktooth # block bluetooth with rfkill (OpenRC service)
-networkmanager-hardened # set a randomized MAC address + disable co test
-quand # a calendar app like when
-ratakor-repo/dragon # a simple drag-and-drop replacement for graphical stuff
-dashbinsh # a pacman hook to symlink dash to sh when there is a bash update
-gruvbox-gtk-theme # /usr/share/themes/gruvbox-[dark|light]
-simple-mtpfs # mount phone easily
-dbus-xdg # dbus but without ~/.dbus
-ungoogled-chromium-xdg # ungoogled chromium but without ~/.pki
-scron # simple cron daemon
-htop-vim # process viewer (htop) with vim keybinds
-openssh # TODO openssh-dotlocal # openssh but ~/.ssh to ~/.local/etc/ssh
-gomuks # matrix client
-poop # Performance Optimizer Observation Platform
-2048
-bf # brainfuck interpreter and compiler
+## custom packages (in .local/share/pkgbuilds)
+#randhost # set a random hostname (OpenRC service)
+#dbus-xdg # dbus but without ~/.dbus
+#gitui=0.22.1 # tui for git (in .local/share/pkgbuilds)
+#pinentry-dmenu # use dmenu for gpg # TODO: switch to pinentry-tofi
 
 ## terminal
 zsh # user shell
@@ -54,7 +40,7 @@ ytfzf # search youtube video without a browser
 dust # du replacement
 duf # df replacement
 fd # find replacement
-gitui=0.22.1 # tui for git
+aur/quand-git # a calendar app like when
 
 ## dev
 #texlive # LaTeX (big package)
@@ -66,7 +52,8 @@ tcc # tiny c compiler
 mingw-w64-gcc # windows cc
 musl # another libc
 libbsd
-zig # NOTE: use zig-dev-bin from AUR instead
+aur/zig-dev-bin
+aur/zls-git
 go
 astyle # C formatter
 shellcheck
@@ -79,6 +66,7 @@ xorriso
 gptfdisk
 mariadb-openrc
 jdk17-openjdk
+aur/poop-bin # Performance Optimizer Observation Platform
 
 ## sound
 rtkit
@@ -86,20 +74,23 @@ pipewire
 pipewire-jack
 pipewire-pulse
 wireplumber
+bluez # bluetooth, rc-update add bluetoothd default
+bluez-utils
+bluez-openrc
 
 ## grapical
-river # window manager # TODO: need river-git for XF86ScreenSaver
+river # window manager
 waybar # bar
 foot # terminal emulator
 foot-terminfo
-tofi # dynamic menu # TODO: aur
+aur/tofi # dynamic menu
 mako # notification daemon
 swaylock # screen locker
 swaybg # wallpaper utility
 grim # screenshot
 slurp # region selection
 swayidle # idle manager
-wlopm-git # power management # TODO: aur
+aur/wlopm-git # power management
 wl-clipboard # clipboard management
 wf-recorder # screen recording
 #kanshi # multiple displays
@@ -111,8 +102,11 @@ zathura-pdf-mupdf
 claws-mail # mail client, use nonprism repo to remove libgdata support
 gajim # XMPP client
 imv # image viewer
+aur/ungoogled-chromium-xdg-bin # ungoogled chromium but without ~/.pki
+aur/gruvbox-gtk-theme-git # gtk theme
 
 ## misc
+openssh
 keepassxc # password manager
 curl
 zip
@@ -135,6 +129,7 @@ qbittorrent # torrent client
 iftop # display bandwidth usage
 checkbashisms
 dash # sh replacement
+aur/dashbinsh # a pacman hook to symlink dash to sh when there is a bash update
 python-pynvim # neovim dependency
 #nyxt # browser for lisp people
 openbsd-netcat
@@ -151,3 +146,14 @@ cloc
 perf
 python-graphviz
 trash-cli
+ntp-openrc # ntp client, rc-update add ntpd default
+detox
+python-pipx
+aur/sc-im # spreadsheet
+aur/2048.zig-bin
+aur/htop-vim # process viewer (htop) with vim keybinds
+aur/scron-git # simple cron daemon, spawn with crond
+aur/simple-mtpfs # mount phone easily
+aur/dragon-drop # a simple drag-and-drop replacement for graphical stuff
+networkmanager-hardened-configs # Enables MAC randomization
+gomuks # matrix client

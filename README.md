@@ -1,6 +1,9 @@
 <h1 align="center">My dotfiles</h1>
 
-![screenshot](https://ratakor.com/images/setup/waw.png)
+![screenshot 1](.local/share/screenshot/1.png)
+(river not sway! bad neofetch :/)
+
+![screenshot 2](.local/share/screenshot/2.png)
 (Outdated screenshot)
 
 ## Installation
