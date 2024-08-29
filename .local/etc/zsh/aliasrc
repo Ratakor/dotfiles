@@ -65,6 +65,7 @@ alias cfmt="astyle -A3 -t8 -p -xg -H -xB -U -n"
 alias gofmt="gofmt -s -w"
 alias javafmt="astyle --mode=java --style=google -n"
 alias fork="setsid -f"
+alias zigup="zigup --install-dir $XDG_DATA_HOME/zigup --path-link $HOME/.local/bin/zig"
 
 # verbosity and colors
 alias rm="trash -v" # "rm -vI"

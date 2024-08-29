@@ -21,7 +21,8 @@ git
 #randhost # set a random hostname (OpenRC service)
 #dbus-xdg # dbus but without ~/.dbus
 #gitui=0.22.1 # tui for git (in .local/share/pkgbuilds)
-#pinentry-dmenu # use dmenu for gpg # TODO: switch to pinentry-tofi
+#pinentry-dmenu # use dmenu for gpg
+#tofi # dynamic menu
 
 ## terminal
 zsh # user shell
@@ -52,19 +53,19 @@ tcc # tiny c compiler
 mingw-w64-gcc # windows cc
 musl # another libc
 libbsd
-aur/zig-dev-bin
-aur/zls-git
+aur/zigup-bin
+zls
 go
 astyle # C formatter
 shellcheck
-cmake # use zig or make please
+cmake
 gdb
 qemu-full
 dosfstools
 mtools
 xorriso
 gptfdisk
-mariadb-openrc
+#mariadb-openrc
 jdk17-openjdk
 aur/poop-bin # Performance Optimizer Observation Platform
 
@@ -73,7 +74,7 @@ rtkit
 pipewire
 pipewire-jack
 pipewire-pulse
-wireplumber
+extra/wireplumber
 bluez # bluetooth, rc-update add bluetoothd default
 bluez-utils
 bluez-openrc
@@ -83,7 +84,6 @@ river # window manager
 waybar # bar
 foot # terminal emulator
 foot-terminfo
-aur/tofi # dynamic menu
 mako # notification daemon
 swaylock # screen locker
 swaybg # wallpaper utility

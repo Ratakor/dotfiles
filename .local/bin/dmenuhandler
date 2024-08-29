@@ -1,13 +1,11 @@
 #!/bin/sh
 # Feed this script a link and it will spawn $DMENU with a selection of programs to open it
 
-# feed=${1:-$(true | $DMENU -p 'Paste URL or file path')}
-feed=${1:-$(true | tofi --prompt-text 'Paste URL or file path ')}
+feed=${1:-$(true | $DMENU -p 'Paste URL or file path')}
 
 [ -z "$feed" ] && exit
 
-#case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nimage\nPDF\nvim\nyt-dlp\nmusic-dlp\nsetbg' "$feed" | $DMENU -i -p "Open with ")" in
-case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nimage\nPDF\nvim\nyt-dlp\nmusic-dlp\nsetbg' "$feed" | tofi --prompt-text "Open with ")" in
+case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nimage\nPDF\nvim\nyt-dlp\nmusic-dlp\nsetbg' "$feed" | $DMENU -i -p "Open with")" in
 	"$feed")
 		printf '%s\n' "$feed" | wl-paste ;;
 	browser)
@@ -30,8 +28,7 @@ case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nimage\nPDF\nvim\nyt-dlp\nmusi
 	yt-dlp)
 		setsid -f ytdl v "$feed" >/dev/null 2>&1 ;;
 	music-dlp)
-		# if [ "$(printf 'no\nyes' | $DMENU -i -p 'Playlist?')" = "yes" ]; then
-		if [ "$(printf 'no\nyes' | tofi --prompt-text 'Playlist?')" = "yes" ]; then
+		if [ "$(printf 'no\nyes' | $DMENU -i -p 'Playlist?')" = "yes" ]; then
 			setsid -f ytdl p "$feed" >/dev/null 2>&1
 		else
 			setsid -f ytdl m "$feed" >/dev/null 2>&1

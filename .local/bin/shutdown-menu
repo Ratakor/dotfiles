@@ -3,11 +3,13 @@
 # requires nopass for openrc-shutdown
 
 RED="#ff5555"
-#CYAN="#8be9fd"
-#query=$(printf ' lock\n exit wm\n⏻ shutdown\n⏼ reboot' | $DMENU -i -sb "$RED" -hf "$CYAN" -p 'System ')
-query=$(printf '\n\n lock\n exit wm\n⏻ shutdown\n⏼ reboot' | tofi --prompt-text 'System ' --selection-color "$RED")
+CYAN="#8be9fd"
 ROOTCMD=${ROOTCMD:-$(command -v doas || command -v sudo)}
 
+[ "$DMENU" = "tofi" ] && DMENU="tofi --selection-color $RED"
+[ "$DMENU" = "dmenu" ] && DMENU="dmenu -sb $RED -hf $CYAN"
+
+query=$(printf ' lock\n exit wm\n⏻ shutdown\n⏼ reboot' | $DMENU -i -p 'System')
 case $query in
 *"lock")
 	glitchlock ;;
