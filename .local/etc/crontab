@@ -1,3 +1,2 @@
 */30 * * * * kill -49 $(pidof sb); randwp
-#0 21 */1 * * themeswap gruvbox-dark
 0 0 * * * kill -48 $(pidof sb)

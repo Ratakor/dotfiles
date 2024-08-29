@@ -19,16 +19,16 @@ set ifs "\n"
 set scrolloff 10
 set icons
 set period 1
-set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+# set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 set cleaner '~/.local/etc/lf/cleaner'
 set previewer '~/.local/etc/lf/scope'
 set autoquit true
 
 # cmds/functions
 cmd open ${{
-    case $(file --mime-type "$(readlink -f $f)" -b) in
+	case $(file --mime-type "$(readlink -f $f)" -b) in
 	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-        text/*|application/json|inode/x-empty|application/x-subrip) $EDITOR $fx;;
+	text/*|application/json|inode/x-empty|application/x-subrip) $EDITOR $fx;;
 	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
 		setsid -f nsxiv -aio 2>/dev/null | while read -r file; do
 			[ -z "$file" ] && continue
@@ -39,9 +39,9 @@ cmd open ${{
 	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
 	application/pdf|application/vnd.djvu|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
 	application/pgp-encrypted) $EDITOR $fx ;;
-        # *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
-        *) $EDITOR $fx ;;
-    esac
+	# *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+	*) $EDITOR $fx ;;
+	esac
 }}
 
 cmd mkdir $mkdir -p "$@"
@@ -110,7 +110,7 @@ map o &mimeopen "$f"
 map O $mimeopen --ask "$f"
 map w $env IGNORE="" randwp "$f"
 map p $plumber "$f"
-map d $dragon "$f"
+map d $dragon-drop "$f"
 
 map A :rename; cmd-end # at the very end
 map c push A<c-u> # new rename

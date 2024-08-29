@@ -1,0 +1,249 @@
+## base Artix OpenRC
+artix-archlinux-support
+base
+base-devel
+openrc
+elogind-openrc
+linux
+#linux-hardened
+linux-firmware
+dhcpcd-openrc
+grub
+lvm2-openrc
+cryptsetup-openrc
+neovim
+opendoas # sudo replacement
+git
+
+## custom packages (in .local/share/pkgbuilds)
+#randhost # set a random hostname (OpenRC service)
+#dbus-xdg # dbus but without ~/.dbus
+#gitui=0.22.1 # tui for git
+#pinentry-dmenu # use dmenu for gpg
+#dwm # window manager
+#sb # bar
+#st # terminal emulator
+#herbe # notification daemon
+#slock-ratakor # screen locker
+#dmenu-ratakor # dynamic menu
+
+## terminal
+zsh # user shell
+newsboat # RSS Reader
+eza # ls replacement
+lf # file manager
+bat # lf dependency and cat replacement
+w3m # lf dependency and terminal based browser
+atool # lf dependency
+odt2txt # lf dependency
+ffmpegthumbnailer # lf dependency
+ueberzug # lf dependency (image in terminal)
+mediainfo # lf dependency
+yt-dlp # download any video/audio from the web
+ytfzf # search youtube video without a browser
+dust # du replacement
+duf # df replacement
+fd # find replacement
+aur/quand-git # a calendar app like when
+
+## dev
+texlive # LaTeX (big package)
+pandoc-cli # I only use that to convert markdown to latex to pdf (big package)
+rustup # rust
+nasm # x86 compiler
+clang # another cc + clangd C lsp
+tcc # tiny c compiler
+mingw-w64-gcc # windows cc
+musl # another libc
+libbsd
+aur/zigup-bin
+zls
+go
+astyle # C formatter
+shellcheck
+cmake
+gdb
+qemu-full
+dosfstools
+mtools
+xorriso
+gptfdisk
+#mariadb-openrc
+jdk17-openjdk
+aur/poop-bin # Performance Optimizer Observation Platform
+
+## sound
+rtkit
+pipewire
+pipewire-jack
+pipewire-pulse
+wireplumber
+#bluez # bluetooth, rc-update add bluetoothd default
+#bluez-utils
+#bluez-openrc
+
+## graphical
+sx # init xorg
+xorg-server
+xorg-server-devel
+xorg-xrdb # Xresources
+picom # compositor (window transparency and stuff)
+sxhkd # hotkey daemon
+hsetroot # wallpaper utility
+xwallpaper # wallpaper utility for multiple monitors
+maim # screenshot
+slop # region selection
+xclip # clipboard management
+gammastep # no blue light at night
+mpv # video and music player
+socat # dependency for the music script that uses mpv
+zathura # document viewer
+zathura-pdf-mupdf
+claws-mail # mail client, use nonprism repo to remove libgdata support
+gajim # XMPP client
+nsxiv # image viewer
+aur/ungoogled-chromium-xdg-bin # ungoogled chromium but without ~/.pki
+aur/gruvbox-theme-git # gtk theme
+
+## misc
+openssh
+micro # normie text editor
+pacman-contrib
+lm_sensors-openrc
+libreoffice
+#dotnet-sdk
+#blender
+monero-gui
+curl
+keepassxc # password manager
+jq # json processor
+zip
+unzip
+rsync
+imagemagick # image manipulation from the terminal
+mat2 # metadata removal tool
+mandoc
+man-pages # Linux man pages
+sshfs # mount drive over ssh
+bc # calculation
+neofetch
+ntfs-3g # ntds filesystem (windows compatibility)
+p7zip
+termdown # timer on the terminal
+pinta # image editor
+qbittorrent
+iftop
+checkbashisms
+dash # sh replacement
+aur/dashbinsh # a pacman hook to symlink dash to sh when there is a bash update
+python-pynvim
+#nyxt # browser for lisp people
+openbsd-netcat
+noto-fonts-cjk
+hunspell # dictionary for claws
+hunspell-en_us
+hunspell-fr
+aur/xbanish-git
+python-axolotl # gajim dependency
+python-gnupg # gajim dependency
+git-lfs
+xdo # window manipulation
+zsh-completions
+cloc
+perf
+python-graphviz
+trash-cli
+ntp-openrc # ntp client, rc-update add ntpd default
+detox
+python-pipx
+aur/sc-im # spreadsheet
+aur/2048.zig-bin
+aur/htop-vim # process viewer (htop) with vim keybinds
+aur/scron-git # simple cron daemon, spawn with crond
+aur/simple-mtpfs # mount phone easily
+aur/dragon-drop # a simple drag-and-drop replacement for graphical stuff
+gomuks # matrix client
+aria2
+scrcpy
+android-tools
+wasmtime
+#aur/xdg-ninja
+#aur/oneko
+#aur/electronplayer
+#aur/ani-cli
+#aur/cyrus-sasl-xoauth2-git
+#aur/iamb-git
+aur/aseprite
+#aur/teams
+#aur/cbonsai
+#aur/pipes.sh
+#aur/ri-li
+aur/shazam-cli-git
+aur/xclicker
+#aur/guile-colorized-git
+
+## game stuff
+discord
+wine-staging
+winetricks
+lib32-alsa-plugins
+lib32-libpulse
+lib32-openal
+steam
+#nvidia-dkms
+nvidia
+#nvidia-utils
+#lib32-nvidia-utils
+#nvidia-settings
+#opencl-nvidia
+giflib
+lib32-giflib
+libpng
+lib32-libpng
+libldap
+lib32-libldap
+gnutls
+lib32-gnutls
+mpg123
+lib32-mpg123
+openal
+lib32-openal
+v4l-utils
+lib32-v4l-utils
+libpulse
+lib32-libpulse
+libgpg-error
+lib32-libgpg-error
+alsa-plugins
+lib32-alsa-plugins
+alsa-lib
+lib32-alsa-lib
+libjpeg-turbo
+lib32-libjpeg-turbo
+sqlite
+lib32-sqlite
+libxcomposite
+lib32-libxcomposite
+libxinerama
+lib32-libgcrypt
+libgcrypt
+lib32-libxinerama
+ncurses
+lib32-ncurses
+ocl-icd
+lib32-ocl-icd
+libxslt
+lib32-libxslt
+libva
+lib32-libva
+gtk3
+lib32-gtk3
+gst-plugins-base-libs
+lib32-gst-plugins-base-libs
+vulkan-icd-loader
+lib32-vulkan-icd-loader
+xdg-desktop-portal-gtk
+lutris
+aur/lug-helper
+#aur/wowup-cf-bin
+#aur/warcraftlogsuploader

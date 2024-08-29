@@ -29,6 +29,21 @@ vim.opt.path = ".,/usr/include,/usr/local/include,,"
 vim.opt.foldenable = false
 vim.api.nvim_create_autocmd("FileType", { command = "setl fo-=ro fo+=tc" })
 
+-- Toggle between tabs and spaces
+local using_space = true
+vim.api.nvim_create_user_command("ToggleIndent", function()
+    if using_space then
+        vim.opt.shiftwidth = 8
+        vim.opt.softtabstop = 8
+        vim.opt.expandtab = false
+    else
+        vim.opt.shiftwidth = 4
+        vim.opt.softtabstop = 4
+        vim.opt.expandtab = true
+    end
+    using_space = not using_space
+end, {})
+
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "asm", "make", "sh" },
     callback = function()

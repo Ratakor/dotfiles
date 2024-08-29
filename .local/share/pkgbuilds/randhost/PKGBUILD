@@ -1,0 +1,19 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=randhost
+pkgver=0.1
+pkgrel=2
+pkgdesc="Set a random hostname."
+arch=('any')
+license=('GPL')
+depends=('openrc' 'coreutils')
+install=$pkgname.install
+source=("${pkgname}" "${pkgname}-openrc")
+sha256sums=('537cc5d2e5e54c300d0b6c74353193b915b2f4a4812660aecda21fa4ebffcec6'
+            '3ec11c0f7ce34c29a60e743e032bf44102228a1defce0d01786a9867e405a8e0')
+
+package() {
+	cd "$srcdir"
+	install -Dm755 "${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
+	install -Dm755 "${pkgname}-openrc" "${pkgdir}/etc/init.d/${pkgname}"
+}

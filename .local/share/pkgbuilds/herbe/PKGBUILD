@@ -1,0 +1,28 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=herbe
+pkgver=1.0.0.r10.gdec89e4
+pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
+pkgrel=2
+pkgdesc="Daemon-less notifications"
+arch=('x86_64')
+url="https://github.com/dudik/$pkgname"
+license=('MIT')
+depends=('libx11' 'libxft' 'freetype2')
+provides=("$pkgname" "libnotify")
+conflicts=("$pkgname" "libnotify")
+source=("git+$url" "herbe.diff")
+sha256sums=('SKIP'
+            '3604b73bc2ace9dca92774c0cf127ffc4b33e85c77b7defd46cfc20853ff80f0')
+
+prepare() {
+	cd "$srcdir/$pkgname"
+	patch -p1 -i ../herbe.diff
+}
+
+package() {
+	cd "$srcdir/$pkgname"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+	make DESTDIR="$pkgdir" PREFIX="/usr" install
+}

@@ -1,0 +1,20 @@
+#!/bin/sh
+# menu for lock and shutdown
+# requires nopass for openrc-shutdown
+
+RED="#cc241d"
+CYAN="#689d6a"
+ROOTCMD=${ROOTCMD:-$(command -v doas || command -v sudo)}
+
+[ "$DMENU" = "tofi" ] && DMENU="tofi --selection-color $RED"
+[ "$DMENU" = "dmenu" ] && DMENU="dmenu -sb $RED -hf $CYAN"
+
+query=$(printf ' lock\n⏻ shutdown\n⏼ reboot' | $DMENU -i -p 'System')
+case $query in
+*"lock")
+	slock ;;
+*"shutdown")
+	$ROOTCMD openrc-shutdown -p 0 ;;
+*"reboot")
+	$ROOTCMD openrc-shutdown -r 0 ;;
+esac

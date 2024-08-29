@@ -4,6 +4,15 @@ return {
         dependencies = {
             -- LSP for neovim, must be loaded before lspconfig
             { "folke/neodev.nvim", config = true },
+            {
+                "williamboman/mason-lspconfig.nvim",
+                opts = {
+                    automatic_installation = true,
+                },
+                dependencies = {
+                    { "williamboman/mason.nvim", config = true },
+                },
+            },
         },
     },
     {

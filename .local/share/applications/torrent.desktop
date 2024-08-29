@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=Torrent
-Exec=/usr/bin/qbittorrent %u
+Exec=qbittorrent %u

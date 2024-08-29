@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # File preview handler for lf.
 
 set -C -f
@@ -51,4 +50,3 @@ case "$(file --dereference --brief --mime-type -- "$1")" in
 	*opendocument*) odt2txt "$1" ;;
 	application/pgp-encrypted) gpg -d -- "$1" ;;
 esac
-exit 1

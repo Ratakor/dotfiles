@@ -1,40 +1,39 @@
 #!/bin/sh
-# Feed this script a link and it will give dmenu
-# some choice programs to use to open it.
+# Feed this script a link and it will spawn $DMENU with a selection of programs to open it
 
-FEED="${1:-$(printf "" | dmenu -p 'Paste URL or file path')}"
+feed=${1:-$(true | $DMENU -p 'Paste URL or file path')}
 
-[ -z "$FEED" ] && exit
+[ -z "$feed" ] && exit
 
-case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nnsxiv\nPDF\nvim\nyt-dlp\nmusic-dlp\nsetbg' "$FEED" | dmenu -i -p "Open with ")" in
-	"$FEED")
-		printf '%s\n' "$FEED" | xclip -selection clipboard ;; # Copy URL
+case "$(printf '%s\nbrowser\nmusic\nmpv\nmpv loop\nimage\nPDF\nvim\nyt-dlp\nmusic-dlp\nsetbg' "$feed" | $DMENU -i -p "Open with")" in
+	"$feed")
+		printf '%s\n' "$feed" | wl-paste ;;
 	browser)
-		setsid -f "$BROWSER" "$FEED" >/dev/null 2>&1 ;;
+		setsid -f "$BROWSER" "$feed" >/dev/null 2>&1 ;;
 	music)
-		setsid -f  music "$FEED" >/dev/null 2>&1 ;;
+		setsid -f  music "$feed" >/dev/null 2>&1 ;;
 	mpv)
-		setsid -f mpv --quiet --ytdl-format="bv+ba" "$FEED" >/dev/null 2>&1 ;;
+		setsid -f mpv --quiet --ytdl-format=22 "$feed" >/dev/null 2>&1 ;;
 	"mpv loop")
-		setsid -f mpv --quiet --ytdl-format="bv+ba" --loop "$FEED" >/dev/null 2>&1 ;;
-	nsxiv)
-		curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" &&
-			nsxiv -a "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
+		setsid -f mpv --quiet --ytdl-format=22 --loop "$feed" >/dev/null 2>&1 ;;
+	image)
+		curl -sL "$feed" > "/tmp/$(echo "$feed" | sed "s/.*\///;s/%20/ /g")" &&
+			imv "/tmp/$(echo "$feed" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
 	PDF)
-		curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" &&
-			zathura "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
+		curl -sL "$feed" > "/tmp/$(echo "$feed" | sed "s/.*\///;s/%20/ /g")" &&
+			zathura "/tmp/$(echo "$feed" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
 	vim)
-		curl -sL "$FEED" > "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")" &&
-			setsid -f "$TERMINAL" -e "$EDITOR" "/tmp/$(echo "$FEED" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
+		curl -sL "$feed" > "/tmp/$(echo "$feed" | sed "s/.*\///;s/%20/ /g")" &&
+			setsid -f "$TERMINAL" -e "$EDITOR" "/tmp/$(echo "$feed" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 ;;
 	yt-dlp)
-		setsid -f ytdl v "$FEED" >/dev/null 2>&1 ;;
+		setsid -f ytdl v "$feed" >/dev/null 2>&1 ;;
 	music-dlp)
-		if [ "$(printf 'no\nyes' | dmenu -i -p 'Playlist?')" = "yes" ]; then
-			setsid -f ytdl p "$FEED" >/dev/null 2>&1
+		if [ "$(printf 'no\nyes' | $DMENU -i -p 'Playlist?')" = "yes" ]; then
+			setsid -f ytdl p "$feed" >/dev/null 2>&1
 		else
-			setsid -f ytdl m "$FEED" >/dev/null 2>&1
+			setsid -f ytdl m "$feed" >/dev/null 2>&1
 		fi ;;
 	setbg)
-		curl -sL "$FEED" > "$XDG_CACHE_HOME/pic" &&
+		curl -sL "$feed" > "$XDG_CACHE_HOME/pic" &&
 			randwp "$XDG_CACHE_HOME/pic" >/dev/null 2>&1 ;;
 esac

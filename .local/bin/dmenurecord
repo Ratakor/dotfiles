@@ -1,6 +1,6 @@
 #!/bin/sh
-# dmenu for recordings with ffmpeg
-# dependencies: pipewire-pulse/pulseaudio, ffmpeg, dmenu, slop
+# simple menu for recordings with ffmpeg
+# dependencies: pipewire-pulse/pulseaudio, ffmpeg, $DMENU, slop
 # Original: https://github.com/whoisYoges/record-with-ffmpeg
 
 set -e
@@ -88,7 +88,7 @@ audio() {
 	choice=${1:-$(printf "Quit
 1 Internal audio
 2 Microphone
-3 Both" | dmenu -i -p "Audio")}
+3 Both" | $DMENU -i -p "Audio")}
 
 	case $choice in
 		Quit) return 0 ;;
@@ -104,7 +104,7 @@ video() {
 1 Without audio
 2 With internal audio
 3 With mic
-4 With both" | dmenu -i -p "Video")}
+4 With both" | $DMENU -i -p "Video")}
 
 	case $choice in
 		Quit) return 0 ;;
@@ -126,9 +126,9 @@ setSelectionVal() {
 }
 
 videosel() {
-	slop=$(slop -q -f "%x %y %w %h") || return 1
+	coord=$(slop -q -f "%x %y %w %h") || return 1
 	# shellcheck disable=SC2086
-	setSelectionVal $slop
+	setSelectionVal $coord
 	video "$1"
 }
 
@@ -139,7 +139,7 @@ main() {
 	choice=${1:-$(printf "Quit
 1 Audio
 2 Video
-3 Video Selection" | dmenu -i -p "Mode")}
+3 Video Selection" | $DMENU -i -p "Mode")}
 
 	case $choice in
 		Quit) return 0 ;;

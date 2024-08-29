@@ -37,7 +37,7 @@ super + shift + {Left,Right,Down,Up}
 super + {s,a,y,w,e}
 	dmenusearch {web,aur,youtube,man,emoji}
 super + shift + w
-	dmenuoff
+	shutdown-menu
 super + u
 	dmenuhandler "$(xclip -o)"
 super + shift + u

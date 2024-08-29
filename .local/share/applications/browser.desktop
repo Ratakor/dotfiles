@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=Browser
-Exec=browser %u
+Exec=chromium %u

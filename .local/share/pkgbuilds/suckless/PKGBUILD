@@ -1,0 +1,63 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=suckless
+pkgver=r3.4e41f13
+pkgrel=1
+pkgdesc="Ratakor's build of dmenu, dwm, st, and slock + sb"
+arch=('x86_64')
+url="https://github.com/ratakor/$pkgname"
+license=('MIT' 'ISC')
+depends=('libx11' 'libxft' 'libxinerama' 'freetype2')
+provides=('dmenu' 'dwm' 'st' 'slock' 'sb')
+conflicts=('dmenu' 'dwm' 'st' 'slock' 'sb')
+source=("git+$url")
+sha256sums=('SKIP')
+
+pkgver() {
+	cd "$pkgname"
+	printf 'r%s.%s' \
+		"$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package_dmenu() {
+	cd "$srcdir/$pkgname/dmenu"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/dmenu/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/dmenu/README.md"
+	make DESTDIR="$pkgdir" PREFIX="/usr" install
+}
+
+package_dwm() {
+	cd "$srcdir/$pkgname/dwm"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/dwm/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/dwm/README.md"
+	make DESTDIR="$pkgdir" PREFIX="/usr" install
+}
+
+package_sb() {
+	cd "$srcdir/$pkgname/sb"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/sb/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/sb/README.md"
+	make DESTDIR="$pkgdir" PREFIX="/usr" install
+}
+
+package_slock() {
+	cd "$srcdir/$pkgname/slock"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/slock/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/slock/README.md"
+	make DESTDIR="$pkgdir" PREFIX="/usr" install
+}
+
+package_st() {
+	cd "$srcdir/$pkgname/st"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/st/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/st/README.md"
+	make DESTDIR="$pkgdir" PREFIX="/usr" install
+}
+
+package() {
+	package_dmenu
+	package_dwm
+	package_sb
+	package_slock
+	package_st
+}

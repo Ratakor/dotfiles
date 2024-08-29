@@ -1,15 +1,18 @@
 # Add ~/.local/bin to $PATH
-PATH="$HOME/.local/bin:$PATH"
+PATH="$PATH:$HOME/.local/bin"
 PATH="$PATH:$CARGO_HOME/bin"
 PATH="$PATH:$GOPATH/bin"
 export PATH
+export MANPATH="$HOME/.local/share/man:/usr/local/share/man:/usr/share/man"
+#export LD_LIBRARY_PATH="$HOME/.local/lib:/usr/local/lib:/usr/lib"
 
 # Default programs
-export EDITOR="editor"
+export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="browser"
+export BROWSER="chromium"
 export ROOTCMD="doas"
 export MANPAGER="manpager"
+export DMENU="dmenu"
 
 # XDG directories
 export XDG_CONFIG_HOME="$HOME/.local/etc"
@@ -44,6 +47,7 @@ export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export DOOMWADDIR="$XDG_DATA_HOME/gzdoom"
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 
 # misc
 # umask 0077
@@ -58,4 +62,3 @@ export SAVEHIST=10000
 # export CC="zig cc"
 export CC=cc
 CC="$CC -Wall"
-export LD_LIBRARY_PATH=/usr/local/lib

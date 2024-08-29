@@ -1,13 +1,14 @@
 #!/bin/sh
 
-killall picom scron sxhkd pipewire wireplumber xbanish gammastep sb
+killall picom crond sxhkd pipewire wireplumber xbanish gammastep sb
 
 setxkbmap fr us
 xrandr --output DP-2 --mode 2560x1440 --rate 60
 xrandr --dpi 140 --output HDMI-0 --pos 2560x360\
 	--output DP-2 --mode 2560x1440 --rate 144 --primary
 randwp
-scron -f "$XDG_CONFIG_HOME/crontab"
+crond -f "$XDG_CONFIG_HOME/crontab"
+xrdb "$XDG_CONFIG_HOME/sx/gruvbox-dark"
 
 sxhkd &
 pipewire &
@@ -16,13 +17,5 @@ gammastep &
 picom -b
 sb -b
 sh -c "sleep 3; kill -10 $(pidof sb)" &
-
-#case $(date +%H) in
-#2[1-3]|0[0-7])
-#	themeswap gruvbox-dark ;;
-#*)
-#	themeswap gruvbox-light ;;
-#esac
-themeswap gruvbox
 
 exec dwm

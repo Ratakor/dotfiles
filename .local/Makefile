@@ -5,19 +5,21 @@ ROOTCMD = $(shell command -v doas || command -v sudo)
 all: packages config scripts wallpapers
 
 packages:
-	@printf '\033[34;1mAdd ratakor repository\033[m\n'
-	@curl -s https://raw.githubusercontent.com/Ratakor/ratakor-repo/master/setup | ${ROOTCMD} sh
 	# TODO: setup arch and universe repos
 	@printf '\033[34;1mInstall all packages\033[m\n'
-	@yes | LC_ALL=C ${ROOTCMD} pacman -Syu --needed $(shell grep -v '^#' share/packages/packages)
+	@LC_ALL=C ${ROOTCMD} pacman -Syu --needed $(shell sed -e 's/#.*//' -e 's/aur\/.*//' share/packages)
 	@printf '\033[34;1mInstall packages from the AUR\033[m\n'
-	@bin/aurinstall $(shell grep -v '^#' share/packages/packages.aur)
+	@bin/aurinstall $(shell grep '^aur/' share/packages | sed -e 's/#.*//' -e 's/aur\///')
+	@printf '\033[34;1mInstall custom packages\033[m\n'
+	@for pkg in share/pkgbuilds/*; do\
+		(cd "$$pkg" && makepkg -fsic);\
+	done
+
+config:
 	@printf '\033[34;1mChange %s shell to zsh\033[m\n' "$$USER"
 	@chsh -s /bin/zsh >/dev/null
 	@printf '\033[34;1mChange ZDOTDIR to not have a symlink in $$HOME\033[m\n'
 	@${ROOTCMD} sh -c 'printf "export ZDOTDIR=\"\$$HOME/.local/etc/zsh\"\n" > /etc/zsh/zshenv'
-
-config:
 	@printf '\033[34;1mCopy config to %s\033[m\n' "${PREFIX}/etc"
 	@mkdir -p ${PREFIX}/etc
 	@cp -r etc/* ${PREFIX}/etc/

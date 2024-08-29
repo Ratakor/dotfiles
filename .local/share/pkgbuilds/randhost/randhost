@@ -1,0 +1,8 @@
+#!/bin/sh
+
+hostname=$(dd bs=10 count=1 if=/dev/urandom 2>/dev/null | base32)
+
+echo "$hostname" > /etc/hostname
+sed -i "s/=.*/=\"$hostname\"/" /etc/conf.d/hostname # this line is for OpenRC only
+sed -i "0,/^127.0.1.1.*/{s/^127.0.1.1.*/127.0.1.1 $hostname/}" /etc/hosts
+sed -i "s/^127.0.1.1.*.localdomain/127.0.1.1 $hostname.localdomain/" /etc/hosts

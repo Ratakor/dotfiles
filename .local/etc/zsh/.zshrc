@@ -1,6 +1,5 @@
 # fun stuff
 quand
-#shuf -n 1 "$XDG_DATA_HOME/navi" # database from https://github.com/HappyHippo77/NaviFrequencyList
 eza -aa --color=auto --group-directories-first
 
 # Source aliases

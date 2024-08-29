@@ -9,7 +9,7 @@
 I follow the [.local
 convention](https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe)
 so you'll need to tweak the Makefile if you don't. Also if you're not using
-Artix OpenRC you will probably need to edit .local/share/packages/packages
+Artix OpenRC you will probably need to edit .local/share/packages
 according to your distro. Also you'll need Arch repos if you're using Artix.
 
 DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're doing.
@@ -27,7 +27,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Terminal emulator: [st](https://git.ratakor.com/st.git)
 - Program launcher: [dmenu](https://git.ratakor.com/dmenu.git)
 - Web Browser: [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)
-- Themes: [Dracula](https://draculatheme.com/) and [Gruvbox](https://github.com/morhetz/gruvbox)
+- Themes: [Gruvbox](https://github.com/morhetz/gruvbox)
 
 ### Command Line Interface
 - Shell: [zsh](https://github.com/zsh-users/zsh)
@@ -54,7 +54,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Screen locker: [slock](https://git.ratakor.com/slock.git)
 - Wallpapers](https://git.ratakor.com/wallpapers.git/)
 
-See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/packages.aur) for a list of other programs I use.
+See [packages](.local/share/packages) for a list of other programs I use.
 
 ## TODO
 - add DAP for debugging in nvim
@@ -62,7 +62,7 @@ See [packages](.local/share/packages/packages) and [AUR](.local/share/packages/p
 - replace sic with ii ?
 
 ## LICENSE
-Copyright © 2023 Ratakor <ratakor@disroot.org>
+Copyright (c) Ratakor
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
