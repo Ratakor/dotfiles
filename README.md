@@ -1,7 +1,5 @@
 <h1 align="center">My dotfiles</h1>
 
-![screenshot](/pic/waw.png)
-
 ## Disclaimer
 **This branch is not supposed to be installed, please look at master branch instead.**
 
@@ -52,7 +50,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Screenshot tool: [maim](https://github.com/naelstrof/maim)
 - Mail client: [Claws Mail](https://www.claws-mail.org)
 - Screen locker: [slock](https://git.ratakor.com/slock.git)
-- Wallpapers](https://git.ratakor.com/wallpapers.git/)
+- [Wallpapers](https://git.ratakor.com/wallpapers.git/)
 
 See [packages](.local/share/packages) for a list of other programs I use.
 
