@@ -30,8 +30,7 @@ m)
 	notify-send "Music downloaded" ||
 		(notify-send "Error: Download failed"; exit 1) ;;
 p)
-	# NAME=$(true | $DMENU -p 'Name ')
-	NAME=$(true | tofi --prompt-text 'Name ')
+	NAME=$(true | $DMENU -p 'Name')
 	mkdir -p "$MUSICDIR/$NAME"
 	notify-send "Playlist download started"
 	yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3\

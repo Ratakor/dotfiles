@@ -88,7 +88,7 @@ map o &mimeopen "$f"
 map O $mimeopen --ask "$f"
 map w $env IGNORE="" randwp "$f"
 map p $plumber "$f"
-map d $dragon "$f"
+map d $dragon-drop "$f"
 
 map A :rename; cmd-end # at the very end
 map c push A<c-u> # new rename

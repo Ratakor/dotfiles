@@ -6,27 +6,25 @@
 
 MUSICDIR=${XDG_MUSIC_DIR:-$HOME/Music}
 SOCKET=${XDG_RUNTIME_DIR:-/tmp}/music.sock
+[ "$DMENU" = "tofi" ] && DMENU="tofi --padding-left 25%"
 
 if [ "$1" = "--shuffle" ]; then
 	shuffle=yes
 	shift
 fi
 
-# music="${1:-$MUSICDIR/$(ls "$MUSICDIR" | cut -c 1-50 | $DMENU -p "Play ")}"
-music="${1:-$MUSICDIR/$(ls "$MUSICDIR" | cut -c 1-50 | tofi --padding-left 25% --prompt-text "Play ")}"
+music="${1:-$MUSICDIR/$(ls "$MUSICDIR" | cut -c 1-50 | $DMENU -p "Play")}"
 script="${XDG_CONFIG_HOME:-$HOME/.config}/mpv/music/local.lua"
 
 if [ "$music" = "$MUSICDIR/urls" ]; then
-	# music="$(cat "$MUSICDIR/urls/$(ls "$MUSICDIR/urls" | $DMENU -p "Play ")")"
-	music="$(cat "$MUSICDIR/urls/$(ls "$MUSICDIR/urls" | tofi --padding-left 25% --prompt-text "Play ")")"
+	music="$(cat "$MUSICDIR/urls/$(ls "$MUSICDIR/urls" | $DMENU -p "Play")")"
 	script="${XDG_CONFIG_HOME:-$HOME/.config}/mpv/music/online.lua"
 fi
 
 [ "$music" = "$MUSICDIR/" ] || [ -z "$music" ] && exit 1
 
 if [ -z "$shuffle" ] && [ -d "$music" ] || printf '%s' "$music" | grep -q playlist; then
-	# shuffle="$(printf 'yes\nno' | $DMENU -p 'Shuffle?')"
-	shuffle="$(printf 'yes\nno' | tofi --prompt-text 'Shuffle? ')"
+	shuffle="$(printf 'yes\nno' | $DMENU -p 'Shuffle?')"
 	[ -z "$shuffle" ] && exit 1
 fi
 

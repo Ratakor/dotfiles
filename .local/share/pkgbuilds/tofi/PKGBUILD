@@ -1,0 +1,28 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=tofi
+pkgver=0.9.1.r17.gb32c995
+pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
+pkgrel=1
+pkgdesc="Tiny dynamic menu for Wayland"
+arch=("x86_64")
+url="https://github.com/philj56/$pkgname"
+license=("MIT")
+depends=("freetype2" "harfbuzz" "cairo" "pango" "wayland" "libxkbcommon")
+makedepends=("meson" "scdoc" "wayland-protocols" "git")
+provides=("$pkgname")
+conflicts=("$pkgname")
+source=("git+$url" "tofi-dmenu-20240829.diff")
+sha256sums=('SKIP'
+            '0ea2d4f243ed08c45ae7649fb0bc61ee273be7e262e5eb4bcbfad999a8eafed7')
+
+prepare() {
+	cd "$pkgname"
+	patch -Np1 -i ../tofi-dmenu-20240829.diff
+	meson setup build --prefix /usr -Dbuildtype=release
+}
+
+package() {
+	cd "$pkgname"
+	DESTDIR="$pkgdir" ninja -C build install
+}

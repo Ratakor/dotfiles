@@ -10,8 +10,7 @@ set -e
 web() {
 	# SEARCH_ENGINE="https://4get.ca/web?s="
 	SEARCH_ENGINE="https://duckduckgo.com/?q="
-	# query=${1:-$(true | $DMENU -p "Search:" -l 0)}
-	query=${1:-$(true | tofi --prompt-text "Search: ")}
+	query=${1:-$(true | $DMENU -p "Search:" -l 0)}
 	if [ -z "$query" ]; then
 		exit 1
 	elif [ "$query" = '!!' ]; then
@@ -27,13 +26,12 @@ web() {
 
 aur() {
 	AURSITE="https://aur.archlinux.org/packages?O=0&K="
-	# query="$AURSITE$(true | $DMENU -p "AUR:" -l 0)"
-	query="$AURSITE$(true | tofi --prompt-text "AUR: ")"
+	query="$AURSITE$(true | $DMENU -p "AUR:" -l 0)"
 }
 
 manpdf() {
-	# INPUT=${1:-$(man -k . | cut -c 1-80 | $DMENU -i -l 20 | awk '{print $1}')}
-	INPUT=${1:-$(man -k . | cut -c 1-80 | tofi | awk '{print $1}')}
+	[ "$DMENU" = "tofi" ] && DMENU="tofi --padding-left 0% --padding-top 0%"
+	INPUT=${1:-$(man -k . | cut -c 1-80 | $DMENU -i -l 20 -p "man:" | awk '{print $1}')}
 	[ -z "$INPUT" ] && return 1
 	if command -v mandb; then
 		# This is man-db
@@ -45,16 +43,14 @@ manpdf() {
 }
 
 emoji() {
-	# CHOSEN=$(cut -d ';' -f1 "$XDG_DATA_HOME/emoji" | $DMENU -i -l 30 | sed "s/ .*//")
-	CHOSEN=$(cut -d ';' -f1 "$XDG_DATA_HOME/emoji" | tofi | sed "s/ .*//")
+	CHOSEN=$(cut -d ';' -f1 "$XDG_DATA_HOME/emoji" | $DMENU -i -l 30 | sed "s/ .*//")
 	[ -z "$CHOSEN" ] && return 1
 	printf '%s' "$CHOSEN" | wl-copy
 	notify-send "'$CHOSEN' copied to clipboard."
 }
 
 main() {
-	# case ${1:-$(printf 'web\naur\nyoutube\nman\nemoji' | $DMENU -i)} in
-	case ${1:-$(printf 'web\naur\nyoutube\nman\nemoji' | tofi)} in
+	case ${1:-$(printf 'web\naur\nyoutube\nman\nemoji' | $DMENU -i)} in
 	web)
 		web "$2" ;;
 	aur)

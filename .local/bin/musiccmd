@@ -80,8 +80,7 @@ main() {
 	fi
 
 	cmd="${1:-$(printf '⏯️ pause/play\n⏭️ next\n⏮️ prev\n📢 volume\n🔳 stop
-⭐ favorite\n⬇️ download\n🖼️ thumbnail' | tofi --prompt-text "musiccmd ")}"
-# ⭐ favorite\n⬇️ download\n🖼️ thumbnail' | $DMENU -p "musiccmd ")}"
+⭐ favorite\n⬇️ download\n🖼️ thumbnail' | $DMENU -p "musiccmd")}"
 
 	case "$cmd" in
 	cycle|*pause|*play)
@@ -92,11 +91,8 @@ main() {
 	*prev)
 		printf 'playlist-prev\n' | socat - "$SOCKET" ;;
 	*volume)
-		# printf '{ "command": ["set_property", "volume", %s] }\n'\
-		# 	"${2:-$(true | $DMENU -p "Current volume: $(getvol) -> ")}"\
-		# 	| socat - "$SOCKET" 1> /dev/null ;;
 		printf '{ "command": ["set_property", "volume", %s] }\n'\
-			"${2:-$(true | tofi --prompt-text "Current volume: $(getvol) -> ")}"\
+			"${2:-$(true | $DMENU -p "Current volume: $(getvol) ->")}"\
 			| socat - "$SOCKET" 1> /dev/null ;;
 	*stop)
 		printf 'stop\n' | socat - "$SOCKET"

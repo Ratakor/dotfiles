@@ -6,6 +6,7 @@
 riverctl focus-follows-cursor normal
 riverctl attach-mode bottom
 riverctl hide-cursor when-typing enabled
+riverctl set-cursor-warp on-output-change
 riverctl set-repeat 50 300
 riverctl keyboard-layout "fr(us)"
 riverctl default-layout rivertile
