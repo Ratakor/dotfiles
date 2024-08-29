@@ -5,12 +5,12 @@ all: packages config scripts wallpapers
 
 packages:
 	@printf '\033[34;1mInstall all packages\033[m\n'
-	@yes | LC_ALL=C ${ROOTCMD} pacman -Syu --needed $(shell sed -e 's/#.*//' -e 's/aur\/.*//' share/packages)
+	@LC_ALL=C ${ROOTCMD} pacman -Syu --needed $(shell sed -e 's/#.*//' -e 's/aur\/.*//' share/packages)
 	@printf '\033[34;1mInstall packages from the AUR\033[m\n'
 	@bin/aurinstall $(shell grep '^aur/' share/packages | sed -e 's/#.*//' -e 's/aur\///')
 	@printf '\033[34;1mInstall custom packages\033[m\n'
 	@for pkg in share/pkgbuilds/*; do\
-		(cd "$$pkg" && makepkg -si --noconfirm);\
+		(cd "$$pkg" && makepkg -fsic);\
 	done
 
 config:

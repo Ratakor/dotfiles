@@ -15,7 +15,7 @@ to your distro.
 
 DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're doing.
 
-	$ git clone https://github.com/ratakor/dotfiles.git
+	$ git clone -b dracula https://github.com/ratakor/dotfiles.git
 	$ cd dotfiles/.local
 	$ make
 
@@ -27,7 +27,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Terminal emulator: [foot](https://codeberg.org/dnkl/foot)
 - Dynamic menu: [tofi](https://github.com/philj56/tofi)
 - Web Browser: [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)
-- Theme: [Gruvbox](https://github.com/morhetz/gruvbox)
+- Theme: [Dracula](https://draculatheme.com)
 
 ### Command Line Interface
 - Shell: [zsh](https://github.com/zsh-users/zsh)
@@ -57,7 +57,6 @@ See [packages](.local/share/packages) for a list and a small description of
 other programs I use.
 
 ## TODO
-- patch tofi then replace tofi with $DMENU in scripts
 - use ii as irc client?
 - config mtm (or tmux) to be usable
 
