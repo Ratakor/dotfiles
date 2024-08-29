@@ -20,7 +20,7 @@ git
 ## custom packages (in .local/share/pkgbuilds)
 #randhost # set a random hostname (OpenRC service)
 #dbus-xdg # dbus but without ~/.dbus
-#gitui=0.22.1 # tui for git (in .local/share/pkgbuilds)
+#gitui=0.22.1 # tui for git
 #pinentry-dmenu # use dmenu for gpg
 #tofi # dynamic menu
 
@@ -103,7 +103,7 @@ claws-mail # mail client, use nonprism repo to remove libgdata support
 gajim # XMPP client
 imv # image viewer
 aur/ungoogled-chromium-xdg-bin # ungoogled chromium but without ~/.pki
-aur/gruvbox-gtk-theme-git # gtk theme
+aur/gruvbox-theme-git # gtk theme
 
 ## misc
 openssh

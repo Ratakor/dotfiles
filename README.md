@@ -57,7 +57,6 @@ See [packages](.local/share/packages) for a list and a small description of
 other programs I use.
 
 ## TODO
-- patch tofi then replace tofi with $DMENU in scripts
 - use ii as irc client?
 - config mtm (or tmux) to be usable
 

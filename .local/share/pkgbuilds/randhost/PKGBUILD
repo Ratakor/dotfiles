@@ -8,10 +8,9 @@ arch=('any')
 license=('GPL')
 depends=('openrc' 'coreutils')
 install=$pkgname.install
-source=("${pkgname}" "${pkgname}-openrc" "names")
-sha256sums=('5dec834a04c437d60ad51a29a007f73a8f5cba9b89d1f381413c0594427e9e33'
-            '3ec11c0f7ce34c29a60e743e032bf44102228a1defce0d01786a9867e405a8e0'
-            '1221bb38bb7ba7a16e0ccf3ccaab5d84b705c8221fe406b81965af25a494e093')
+source=("${pkgname}" "${pkgname}-openrc")
+sha256sums=('537cc5d2e5e54c300d0b6c74353193b915b2f4a4812660aecda21fa4ebffcec6'
+            '3ec11c0f7ce34c29a60e743e032bf44102228a1defce0d01786a9867e405a8e0')
 
 package() {
 	cd "$srcdir"
