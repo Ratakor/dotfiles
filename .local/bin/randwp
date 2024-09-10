@@ -6,7 +6,7 @@
 
 WPDIR=${1:-$XDG_DATA_HOME/wallpapers}
 IGNORE=${IGNORE-nsfw}
-ALL=$(find "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md')
+ALL=$(find "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md' ! -name 'list.txt')
 
 searchwp() {
 	wp=$(printf '%s' "$ALL" | shuf -n 1)

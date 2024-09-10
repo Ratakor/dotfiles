@@ -46,11 +46,11 @@ function precmd() {
 # Basic auto/tab complete
 autoload -U compinit
 zstyle ':completion:*' menu select
-zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # Include hidden files.
 
 # Use vim keys in tab complete menu:
+zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char

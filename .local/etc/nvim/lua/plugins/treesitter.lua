@@ -17,6 +17,7 @@ return {
                     "go",
                     "html",
                     "java",
+                    -- "javascript",
                     "latex",
                     "lua",
                     "make",

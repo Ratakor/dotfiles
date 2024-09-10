@@ -75,7 +75,7 @@ getthumbnail() {
 main() {
 	if ! pgrep -x music >/dev/null; then
 		kill -35 $(pidof waybar)
-		notify-send "Error: There is no music playing"
+		# notify-send "Error: There is no music playing"
 		return 1
 	fi
 

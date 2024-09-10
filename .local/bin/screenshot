@@ -3,9 +3,10 @@
 
 OUTPUT="$XDG_PICTURES_DIR/screenshots/$(date '+%Y-%m-%d_%H:%M:%S').png"
 
-case "$(printf "save select\nsave screen\ncopy select\ncopy screen" | $DMENU -i -p "Screenshot")" in
+case "$(printf "save select\nsave screen\ncopy select\ncopy screen\nvideo" | $DMENU -i -p "Screenshot")" in
 	"save select") grim -g "$(slurp)" "$OUTPUT" ;;
 	"save screen") grim "$OUTPUT" ;;
 	"copy select") grim -g "$(slurp)" - | wl-copy ;;
 	"copy screen") grim - | wl-copy ;;
+	"video") dmenurecord ;;
 esac

@@ -14,6 +14,7 @@ window#waybar {
 
 #window,
 #tags,
+#custom-spotify,
 #custom-music,
 #temperature,
 #bluetooth,
@@ -78,10 +79,8 @@ window#waybar {
     border: 2px solid @red;
 }
 
-/* TODO: better color organization */
-
-#custom-music {
-    border-bottom: 2px solid @bright_magenta;
+#image, #custom-spotify, #custom-music {
+    border-bottom: 2px solid @green;
 }
 
 #temperature {
@@ -93,9 +92,9 @@ window#waybar {
     border-bottom: 2px solid @red;
 }
 
-/* #bluetooth { */
-/*     border-bottom: 2px solid @blue; */
-/* } */
+#bluetooth {
+    border-bottom: 2px solid @blue;
+}
 
 #battery {
     border-bottom: 2px solid @yellow;
@@ -106,7 +105,7 @@ window#waybar {
 }
 
 #battery.100 {
-    border-bottom: 2px solid @green;
+    border-bottom: 2px solid @bright_green;
 }
 
 #battery.20:not(.charging) {
@@ -126,7 +125,7 @@ window#waybar {
 }
 
 #wireplumber {
-    border-bottom: 2px solid @bright_green;
+    border-bottom: 2px solid @bright_magenta;
 }
 
 #wireplumber.muted {

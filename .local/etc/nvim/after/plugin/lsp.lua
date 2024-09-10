@@ -66,6 +66,7 @@ local servers = {
     "jdtls",
     "jedi_language_server",
     "lua_ls",
+    "marksman",
     "rust_analyzer",
     "sqls",
     "texlab",

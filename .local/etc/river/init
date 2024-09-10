@@ -110,7 +110,7 @@ riverctl map normal None XF86Battery spawn 'battery'
 riverctl map normal Super+Shift R spawn 'randwp'
 riverctl map normal None Print spawn 'screenshot'
 
-riverctl map normal None F7 spawn "$TERMINAL -e dmenurecord"
+#riverctl map normal None F7 spawn "$TERMINAL -e dmenurecord"
 #riverctl map normal Super B spawn "$BROWSER"
 riverctl map normal Super N spawn "$TERMINAL -e sh -c 'cd $XDG_DATA_HOME/notes; lf'"
 riverctl map normal Super+Shift N spawn "$TERMINAL -e newsboat"
@@ -122,16 +122,16 @@ riverctl map -repeat normal Super Minus spawn 'wpctl set-volume @DEFAULT_AUDIO_S
 riverctl map normal None XF86Launch1 spawn 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'
 riverctl map normal None F6 spawn 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'
 
-riverctl map normal Super M spawn 'music'
-riverctl map normal Super+Shift M spawn 'musiccmd'
-riverctl map normal None XF86AudioPrev spawn 'musiccmd prev'
-riverctl map normal None XF86AudioNext spawn 'musiccmd next'
-riverctl map normal None XF86AudioPlay spawn 'musiccmd cycle'
-riverctl map normal None XF86AudioStop spawn 'musiccmd stop'
-riverctl map normal Super+Shift Left spawn 'musiccmd prev'
-riverctl map normal Super+Shift Right spawn 'musiccmd next'
-riverctl map normal Super+Shift Down spawn 'musiccmd cycle'
-riverctl map normal Super+Shift Up spawn 'musiccmd stop'
+riverctl map normal Super M spawn 'zpotify play playlist' # 'music'
+riverctl map normal Super+Shift M spawn 'zpotify play album' # 'musiccmd'
+riverctl map normal None XF86AudioPrev spawn 'musiccmd prev || zpotify prev >/dev/null'
+riverctl map normal None XF86AudioNext spawn 'musiccmd next || zpotify next >/dev/null'
+riverctl map normal None XF86AudioPlay spawn 'musiccmd cycle || zpotify pause >/dev/null'
+riverctl map normal None XF86AudioStop spawn 'musiccmd stop || zpotify pause >/dev/null'
+riverctl map normal Super+Shift Left spawn 'musiccmd prev || zpotify prev >/dev/null'
+riverctl map normal Super+Shift Right spawn 'musiccmd next || zpotify next >/dev/null'
+riverctl map normal Super+Shift Down spawn 'musiccmd cycle || zpotify pause >/dev/null'
+riverctl map normal Super+Shift Up spawn 'musiccmd stop || zpotify pause >/dev/null'
 
 riverctl map normal Super S spawn 'dmenusearch web'
 riverctl map normal Super A spawn 'dmenusearch aur'

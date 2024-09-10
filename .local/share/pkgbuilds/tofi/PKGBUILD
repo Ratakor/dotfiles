@@ -3,7 +3,7 @@
 pkgname=tofi
 pkgver=0.9.1.r17.gb32c995
 pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
-pkgrel=1
+pkgrel=2
 pkgdesc="Tiny dynamic menu for Wayland"
 arch=("x86_64")
 url="https://github.com/philj56/$pkgname"
@@ -12,13 +12,13 @@ depends=("freetype2" "harfbuzz" "cairo" "pango" "wayland" "libxkbcommon")
 makedepends=("meson" "scdoc" "wayland-protocols" "git")
 provides=("$pkgname")
 conflicts=("$pkgname")
-source=("git+$url" "tofi-dmenu-20240829.diff")
+source=("git+$url" "tofi-dmenu-20240910.diff")
 sha256sums=('SKIP'
-            '0ea2d4f243ed08c45ae7649fb0bc61ee273be7e262e5eb4bcbfad999a8eafed7')
+            '150bbf23324b8edf74788c17ca9c289f278dc7d10f8386437effc9bc6a2b0638')
 
 prepare() {
 	cd "$pkgname"
-	patch -Np1 -i ../tofi-dmenu-20240829.diff
+	patch -Np1 -i ../tofi-dmenu-20240910.diff
 	meson setup build --prefix /usr -Dbuildtype=release
 }
 

@@ -42,6 +42,7 @@ dust # du replacement
 duf # df replacement
 fd # find replacement
 aur/quand-git # a calendar app like when
+aur/zpotify-bin # CLI for spotify
 
 ## dev
 #texlive # LaTeX (big package)
@@ -54,7 +55,7 @@ mingw-w64-gcc # windows cc
 musl # another libc
 libbsd
 aur/zigup-bin
-zls
+#aur/zls-git
 go
 astyle # C formatter
 shellcheck
@@ -75,9 +76,8 @@ pipewire
 pipewire-jack
 pipewire-pulse
 extra/wireplumber
-bluez # bluetooth, rc-update add bluetoothd default
+bluez-openrc # bluetooth, rc-update add bluetoothd default
 bluez-utils
-bluez-openrc
 
 ## grapical
 river # window manager
@@ -157,3 +157,4 @@ aur/simple-mtpfs # mount phone easily
 aur/dragon-drop # a simple drag-and-drop replacement for graphical stuff
 networkmanager-hardened-configs # Enables MAC randomization
 gomuks # matrix client
+aur/neocities-zig-bin

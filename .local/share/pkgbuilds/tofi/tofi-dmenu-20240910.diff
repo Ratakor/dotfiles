@@ -1,6 +1,6 @@
-From a51058b9026893f80bb924ef927681db0a8a1f42 Mon Sep 17 00:00:00 2001
+From b87c5ca4b98a24a82ffae3bbda4dd9facdbc9ed1 Mon Sep 17 00:00:00 2001
 From: Ratakor <ratakor@disroot.org>
-Date: Thu, 29 Aug 2024 17:19:57 +0200
+Date: Tue, 10 Sep 2024 04:35:48 +0200
 Subject: [PATCH] Add more compatibility with dmenu
 
 ---
@@ -8,8 +8,9 @@ Subject: [PATCH] Add more compatibility with dmenu
  doc/tofi.5.md  |  2 +-
  doc/tofi.5.scd |  2 +-
  src/config.c   |  2 +-
- src/main.c     | 16 +++++++++++++---
- 5 files changed, 17 insertions(+), 7 deletions(-)
+ src/input.c    |  4 ++++
+ src/main.c     | 14 ++++++++++++--
+ 6 files changed, 20 insertions(+), 6 deletions(-)
 
 diff --git a/doc/config b/doc/config
 index b9242dc..532ea78 100644
@@ -63,8 +64,23 @@ index 52e14d8..9dfa2e6 100644
  	} else if (strcasecmp(option, "prompt-padding") == 0) {
  		uint32_t val = parse_uint32(filename, lineno, value, &err);
  		if (!err) {
+diff --git a/src/input.c b/src/input.c
+index 58154a7..3913e6c 100644
+--- a/src/input.c
++++ b/src/input.c
+@@ -351,6 +351,10 @@ void select_next_result(struct tofi *tofi)
+ {
+ 	struct entry *entry = &tofi->window.entry;
+ 
++	if (entry->first_result + entry->selection == entry->results.count - 1) {
++		return;
++	}
++
+ 	uint32_t nsel = MAX(MIN(entry->num_results_drawn, entry->results.count), 1);
+ 
+ 	entry->selection++;
 diff --git a/src/main.c b/src/main.c
-index e91838f..7c76f7c 100644
+index e91838f..19e2180 100644
 --- a/src/main.c
 +++ b/src/main.c
 @@ -828,7 +828,7 @@ static void usage(bool err)
@@ -109,15 +125,6 @@ index e91838f..7c76f7c 100644
  		}
  		opt = getopt_long(argc, argv, short_options, long_options, &option_index);
  	}
-@@ -1172,7 +1182,7 @@ int main(int argc, char *argv[])
- 			.entry = {
- 				.font_name = "Sans",
- 				.font_size = 24,
--				.prompt_text = "run: ",
-+				.prompt_text = "run:",
- 				.hidden_character_utf8 = u8"*",
- 				.padding_top = 8,
- 				.padding_bottom = 8,
 -- 
 2.46.0
 

@@ -5,49 +5,51 @@
         "river/tags"
     ],
     "modules-center": [
-        // "river/window"
+        // "river/window",
+        // "image",
+        "custom/spotify",
         "custom/music"
     ],
     "modules-right": [
         "temperature",
         "battery",
         "network",
-        // TODO "bluetooth",
+        "bluetooth",
         "wireplumber",
         "custom/weather",
         "clock"
     ],
     "river/window": {
         "max-length": 50,
-        "tooltip": false,
-        "tag-labels": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "6": "",
-            "7": "",
-            "8": "",
-            "9": ""
-        }
+        "tooltip": false
     },
-    "clock": {
-        "format": " {:%H:%M}",
-        "format-alt": " {:%b %d (%a)}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>",
-        "calendar": {
-            "format": {
-                "today": "<b><u>{}</u></b>"
-            }
-        }
-
+    "image": {
+        "path": "/tmp/cover.jpg"
+        // TODO
+    },
+    "custom/music": {
+        "exec": "$XDG_CONFIG_HOME/waybar/scripts/music.sh",
+        "interval": "once",
+        "signal": 1,
+        "max-length": 40,
+        "tooltip": false,
+        "on-click": "musiccmd"
+    },
+    "custom/spotify": {
+        "exec": "zpotify waybar 2>/dev/null",
+        "return-type": "json",
+        "max-length": 40,
+        "tooltip": true,
+        "on-click": "zpotify prev >/dev/null",
+        "on-click-middle": "zpotify pause >/dev/null",
+        "on-click-right": "zpotify next >/dev/null"
     },
     "temperature": {
         "format": " {temperatureC}°C",
         "format-critical": " {temperatureC}°C",
         "critical-threshold": 80,
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "$TERMINAL -e htop"
     },
     "battery": {
         "full-at": 99,
@@ -85,7 +87,15 @@
         "format-disconnected": "󰤯",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
         "format-icons": [ "󰤟", "󰤢", "󰤨" ],
-        "tooltip": true
+        "tooltip": true,
+        "on-click": "$TERMINAL -e nmtui"
+    },
+    "bluetooth": {
+        "format-disabled": "",
+        "format-connected": " {device_alias}",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t\t{controller_address}\n{device_alias}\t{device_address}",
+        "on-click": "$TERMINAL -e bluetoothctl"
     },
     "wireplumber": {
         "format": "{icon} {volume}%",
@@ -94,19 +104,22 @@
         "max-volume": 150,
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
-    "custom/music": {
-        "exec": "$XDG_CONFIG_HOME/waybar/scripts/music.sh",
-        "interval": "once",
-        "signal": 1,
-        "max-length": 40,
-        "tooltip": false,
-        "on-click": "musiccmd"
-    },
     "custom/weather": {
         "exec": "$XDG_CONFIG_HOME/waybar/scripts/weather.sh",
         "return-type": "json",
         "format": "{}",
         "interval": 3600,
         "tooltip": true
+    },
+    "clock": {
+        "format": " {:%H:%M}",
+        "format-alt": " {:%b %d (%a)}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "format": {
+                "today": "<b><u>{}</u></b>"
+            }
+        }
+
     }
 }
