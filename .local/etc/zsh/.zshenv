@@ -57,7 +57,3 @@ export LESS=-R
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 export HISTSIZE=10000
 export SAVEHIST=10000
-# export CC="tcc -L/usr/local/lib"
-# export CC="zig cc"
-export CC=cc
-CC="$CC -Wall"

@@ -1,0 +1,50 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=librespot-cfg
+_pkgname=${pkgname%-cfg}
+pkgver=0.4.1.r500.gfb5c0efd
+pkgver() { git -C "$_pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
+pkgrel=1
+pkgdesc="Open Source Spotify client library"
+arch=('x86_64')
+url="https://github.com/librespot-org/$_pkgname"
+license=('MIT')
+depends=('libvorbis' 'alsa-lib' 'libpulse')
+makedepends=('git' 'cargo' 'zig')
+provides=("$pkgname" "$_pkgname")
+conflicts=("$pkgname" "$_pkgname")
+source=("git+$url"
+	"https://gist.github.com/Ratakor/7dab4b17311a5c60d3b36ad34a02388a/raw/9e797c187df4ca0513d091ef0d71bbac1971e517/$pkgname.zig")
+sha256sums=('SKIP'
+            '3a622e0d2a43d9979edebeec76845098f4ad2aedb151a01c98e8d7fbc627f491')
+
+prepare() {
+	cd "$srcdir/$_pkgname"
+	cargo fetch --target x86_64-unknown-linux-gnu
+}
+
+build() {
+	cd "$srcdir"
+	zig build-exe \
+		-OReleaseFast \
+		"$pkgname.zig"
+
+	cd "$_pkgname"
+	CFLAGS="-march=native -O3" cargo build \
+		--release \
+		--no-default-features \
+		--features pulseaudio-backend
+}
+
+package() {
+	cd "$srcdir"
+	install -Dm 755 "$pkgname" "$pkgdir/usr/bin/$pkgname"
+	cd "$_pkgname"
+	CFLAGS="-march=native -O3" cargo install \
+		--no-track \
+		--root "$pkgdir/usr" \
+		--path . \
+		--no-default-features \
+		--features pulseaudio-backend
+	install -Dm 644 LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
+}

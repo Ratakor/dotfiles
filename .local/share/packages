@@ -23,6 +23,7 @@ git
 #gitui=0.22.1 # tui for git
 #pinentry-dmenu # use dmenu for gpg
 #tofi # dynamic menu
+#librespot-cfg # spotify client
 
 ## terminal
 zsh # user shell
@@ -42,7 +43,7 @@ dust # du replacement
 duf # df replacement
 fd # find replacement
 aur/quand-git # a calendar app like when
-aur/zpotify-bin # CLI for spotify
+aur/zpotify # CLI for spotify
 
 ## dev
 #texlive # LaTeX (big package)
@@ -69,8 +70,9 @@ gptfdisk
 #mariadb-openrc
 jdk17-openjdk
 aur/poop-bin # Performance Optimizer Observation Platform
+aur/superhtml # html LSP
 
-## sound
+## audio
 rtkit
 pipewire
 pipewire-jack

@@ -27,6 +27,13 @@
         "path": "/tmp/cover.jpg"
         // TODO
     },
+    "custom/spotify": {
+        "exec": "zpotify waybar",
+        "return-type": "json",
+        "tooltip": true,
+        "on-click": "zpotify pause >/dev/null",
+        "max-length": 40
+    },
     "custom/music": {
         "exec": "$XDG_CONFIG_HOME/waybar/scripts/music.sh",
         "interval": "once",
@@ -34,15 +41,6 @@
         "max-length": 40,
         "tooltip": false,
         "on-click": "musiccmd"
-    },
-    "custom/spotify": {
-        "exec": "zpotify waybar 2>/dev/null",
-        "return-type": "json",
-        "max-length": 40,
-        "tooltip": true,
-        "on-click": "zpotify prev >/dev/null",
-        "on-click-middle": "zpotify pause >/dev/null",
-        "on-click-right": "zpotify next >/dev/null"
     },
     "temperature": {
         "format": " {temperatureC}°C",
