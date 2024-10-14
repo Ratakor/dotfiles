@@ -17,5 +17,6 @@ gammastep &
 picom -b
 sb -b
 sh -c "sleep 3; kill -10 $(pidof sb)" &
+librespot-cfg &
 
 exec dwm

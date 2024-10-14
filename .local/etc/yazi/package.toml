@@ -1,0 +1,11 @@
+[plugin]
+deps = [
+	{ use = "yazi-rs/plugins:hide-preview", rev = "e01bc16" },
+	{ use = "Ape/mediainfo", rev = "c69314e" },
+	{ use = "ndtoan96/ouch", rev = "251da69" },
+	{ use = "Rolv-Apneseth/bypass", rev = "db4c2a7" },
+	{ use = "Reledia/hexyl", rev = "f845ea5" },
+]
+
+[flavor]
+deps = []

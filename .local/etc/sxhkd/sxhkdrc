@@ -20,20 +20,30 @@ Print
 #	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -43 $(pidof sb)
 #F6
 #	wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -44 $(pidof sb)
-F7
-	$TERMINAL -e dmenurecord
-# super + b
-# 	$BROWSER
+#F7
+#	$TERMINAL -e dmenurecord
+#super + b
+#	$BROWSER
 super + n
 	$TERMINAL -e sh -c 'cd "$XDG_DATA_HOME/notes"; lfub'
 super + shift + n
 	$TERMINAL -e newsboat
+super + shift + p
+	librespot-cfg
+#super + {m,shift + m}
+#	{music,musiccmd}
 super + {m,shift + m}
-	{music,musiccmd}
+	zpotify play {playlist,album}
 XF86Audio{Prev,Next,Play,Stop}
-        musiccmd {prev,next,cycle,stop}
-super + shift + {Left,Right,Down,Up}
 	musiccmd {prev,next,cycle,stop}
+super + shift + Left
+	musiccmd prev || zpotify prev >/dev/null 2>&1
+super + shift + Right
+	musiccmd next || zpotify next >/dev/null 2>&1
+super + shift + Down
+	musiccmd cycle || zpotify pause >/dev/null 2>&1
+super + shift + Up
+	musiccmd stop
 super + {s,a,y,w,e}
 	dmenusearch {web,aur,youtube,man,emoji}
 super + shift + w

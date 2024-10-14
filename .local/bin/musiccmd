@@ -75,8 +75,8 @@ getthumbnail() {
 main() {
 	if ! pgrep -x music >/dev/null; then
 		kill -34 $(pidof sb)
-		herbe "Error: There is no music playing"\
-			"Do you want to play some ?" && music
+		#herbe "Error: There is no music playing"\
+		#	"Do you want to play some ?" && music
 		return 1
 	fi
 

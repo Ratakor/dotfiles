@@ -17,6 +17,7 @@ return {
                     "go",
                     "html",
                     "java",
+                    -- "javascript",
                     "latex",
                     "lua",
                     "make",
@@ -44,14 +45,10 @@ return {
                     },
                 },
                 additional_vim_regex_highlighting = false,
-                rainbow = {
-                    enable = true,
-                    extended_mode = true,
-                },
             }
         end,
         dependencies = {
-            "p00f/nvim-ts-rainbow",
+            -- "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
             "m-demare/hlargs.nvim",
         },
     },

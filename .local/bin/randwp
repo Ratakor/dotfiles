@@ -2,11 +2,11 @@
 # set a random wallpaper
 # to ignore a folder or a file put it in IGNORE after the - like below
 # IGNORE=${IGNORE-file1|folder|file2}
-# IGNORE can be an env variable (useful for lf)
+# IGNORE can be an env variable (useful for yazi)
 
 WPDIR=${1:-$XDG_DATA_HOME/wallpapers}
 IGNORE=${IGNORE-nsfw|.webp} # xwallpaper doesn't work with webp
-ALL=$(find "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md')
+ALL=$(find "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md' ! -name 'list.txt')
 
 searchwp() {
 	wp=$(printf '%s' "$ALL" | shuf -n 1)
@@ -20,6 +20,7 @@ searchwp() {
 # 1 screen with hsetroot
 #searchwp
 #hsetroot -cover "$wp" 1>/dev/null
+
 
 # multiple screens with xwallpaper
 for output in $(xrandr | awk '$2=="connected" {print $1}'); do

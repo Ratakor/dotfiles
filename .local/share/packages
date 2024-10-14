@@ -16,35 +16,32 @@ opendoas # sudo replacement
 git
 
 ## custom packages (in .local/share/pkgbuilds)
-#randhost # set a random hostname (OpenRC service)
 #dbus-xdg # dbus but without ~/.dbus
 #gitui=0.22.1 # tui for git
 #pinentry-dmenu # use dmenu for gpg
-#dwm # window manager
-#sb # bar
-#st # terminal emulator
+#suckless # dwm, sb, st, slock and dmenu
 #herbe # notification daemon
-#slock-ratakor # screen locker
-#dmenu-ratakor # dynamic menu
+#librespot-cfg # spotify client
 
 ## terminal
 zsh # user shell
 newsboat # RSS Reader
 eza # ls replacement
-lf # file manager
-bat # lf dependency and cat replacement
-w3m # lf dependency and terminal based browser
-atool # lf dependency
-odt2txt # lf dependency
-ffmpegthumbnailer # lf dependency
-ueberzug # lf dependency (image in terminal)
-mediainfo # lf dependency
+bat # cat replacement
+ouch # Obvious Unified Compression Helper
+yazi # file manager
+poppler # yazi dependency
+aur/turbo-base64 # ueberzugpp dependency
+aur/ueberzugpp # yazi dependency (image in terminal)
+mediainfo # yazi dependency
+ffmpegthumbnailer # yazi dependency
 yt-dlp # download any video/audio from the web
 ytfzf # search youtube video without a browser
 dust # du replacement
 duf # df replacement
 fd # find replacement
 aur/quand-git # a calendar app like when
+aur/zpotify # CLI for Spotify
 
 ## dev
 texlive # LaTeX (big package)
@@ -57,7 +54,7 @@ mingw-w64-gcc # windows cc
 musl # another libc
 libbsd
 aur/zigup-bin
-zls
+aur/zls-git
 go
 astyle # C formatter
 shellcheck
@@ -71,16 +68,16 @@ gptfdisk
 #mariadb-openrc
 jdk17-openjdk
 aur/poop-bin # Performance Optimizer Observation Platform
+aur/superhtml # html LSP
 
-## sound
+## audio
 rtkit
 pipewire
 pipewire-jack
 pipewire-pulse
 wireplumber
-#bluez # bluetooth, rc-update add bluetoothd default
-#bluez-utils
-#bluez-openrc
+bluez-openrc # bluetooth, rc-update add bluetoothd default
+bluez-utils
 
 ## graphical
 sx # init xorg
@@ -102,7 +99,8 @@ zathura-pdf-mupdf
 claws-mail # mail client, use nonprism repo to remove libgdata support
 gajim # XMPP client
 nsxiv # image viewer
-aur/ungoogled-chromium-xdg-bin # ungoogled chromium but without ~/.pki
+# aur/ungoogled-chromium-xdg-bin # ungoogled chromium but without ~/.pki
+chromium
 aur/gruvbox-theme-git # gtk theme
 
 ## misc
@@ -131,6 +129,7 @@ ntfs-3g # ntds filesystem (windows compatibility)
 p7zip
 termdown # timer on the terminal
 pinta # image editor
+gimp # second image editor
 qbittorrent
 iftop
 checkbashisms
@@ -181,6 +180,8 @@ aur/aseprite
 aur/shazam-cli-git
 aur/xclicker
 #aur/guile-colorized-git
+aur/neocities-zig-bin
+aur/nekoweb-bin
 
 ## game stuff
 discord

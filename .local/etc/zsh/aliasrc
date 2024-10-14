@@ -1,4 +1,4 @@
-#!/bin/sh
+# vim: ft=zsh
 # shellcheck disable=SC2139
 
 # ROOTCMD not required for some system commands
@@ -29,7 +29,7 @@ alias pp="cd $XDG_PICTURES_DIR"
 alias psc="cd $XDG_PICTURES_DIR/screenshots"
 alias vv="cd $XDG_VIDEOS_DIR"
 alias wp="cd $XDG_DATA_HOME/wallpapers"
-alias n="lf $XDG_DATA_HOME/notes"
+alias n="yazi $XDG_DATA_HOME/notes"
 alias nn="cd $XDG_DATA_HOME/notes"
 alias sc="cd $HOME/.local/bin"
 alias sta="cd $XDG_STATE_HOME"
@@ -40,9 +40,7 @@ alias ho="cat $XDG_DATA_HOME/hole/history"
 [ -x "$(command -v nvim)" ] && alias vimdiff="nvim -d"
 alias e="$EDITOR"
 alias se="$ROOTCMD $EDITOR"
-alias cc="$CC"
 alias "$ROOTCMD"="$ROOTCMD " # run root commands with aliases
-alias lf="lfub"
 alias :q="exit"
 alias :Q="exit"
 alias bc="bc -ql"
@@ -70,6 +68,7 @@ alias gofmt="gofmt -s -w"
 alias javafmt="astyle --mode=java --style=google -n"
 alias fork="setsid -f"
 alias zigup="zigup --install-dir $XDG_DATA_HOME/zigup --path-link $HOME/.local/bin/zig"
+alias zpot="zpotify"
 
 # verbosity and colors
 alias rm="trash -v" # "rm -vI"
@@ -118,3 +117,12 @@ alias next="musiccmd next"
 alias prev="musiccmd prev"
 alias stop="musiccmd stop"
 alias vol="musiccmd volume" # put the volume you want in arg like vol 50
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file "$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	command rm -f -- "$tmp"
+}

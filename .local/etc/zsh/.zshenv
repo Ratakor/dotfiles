@@ -12,7 +12,7 @@ export TERMINAL="st"
 export BROWSER="chromium"
 export ROOTCMD="doas"
 export MANPAGER="manpager"
-export DMENU="dmenu"
+export DMENU="dmenu -i"
 
 # XDG directories
 export XDG_CONFIG_HOME="$HOME/.local/etc"
@@ -58,7 +58,3 @@ LESS=-R
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 export HISTSIZE=10000
 export SAVEHIST=10000
-# export CC="tcc -L/usr/local/lib"
-# export CC="zig cc"
-export CC=cc
-CC="$CC -Wall"

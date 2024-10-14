@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "lisp", "scheme", "clojure" },
+    pattern = { "lisp", "scheme", "clojure", "html", "css" },
     callback = function()
         vim.opt_local.shiftwidth = 2
         vim.opt_local.softtabstop = 2

@@ -61,9 +61,10 @@ local servers = {
     "clangd",
     "cssls",
     "gopls",
-    "html",
+    -- "html",
     "jedi_language_server",
     "lua_ls",
+    "marksman",
     "rust_analyzer",
     "sqls",
     "texlab",
@@ -78,6 +79,13 @@ for _, server_name in ipairs(servers) do
         capabilities = capabilities,
     })
 end
+
+require("lspconfig")["superhtml"].setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = { "superhtml", "lsp" },
+    filetypes = { "html", "shtml", "xhtml", "htm" },
+})
 
 -- Required by cmp for using tab to choose completion
 local has_words_before = function()

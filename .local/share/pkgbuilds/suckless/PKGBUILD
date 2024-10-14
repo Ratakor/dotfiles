@@ -1,7 +1,7 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=suckless
-pkgver=r3.4e41f13
+pkgver=r4.771c89c
 pkgrel=1
 pkgdesc="Ratakor's build of dmenu, dwm, st, and slock + sb"
 arch=('x86_64')

@@ -1,0 +1,14 @@
+{
+    "quiet": true,
+    "disable-audio-cache": true,
+    "cache": "$XDG_CACHE_HOME/librespot",
+    "autoplay": true,
+    "enable-volume-normalisation": true,
+    "name": "librespot@$(hostname)",
+    "bitrate": 320,
+    "format": "F32",
+    "backend": "pulseaudio",
+    "enable-oauth": true,
+    "initial-volume": 100,
+    "volume-ctrl": "fixed"
+}
