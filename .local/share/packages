@@ -29,14 +29,13 @@ git
 zsh # user shell
 newsboat # RSS Reader
 eza # ls replacement
-lf # file manager
-bat # lf dependency and cat replacement
-w3m # lf dependency and terminal based browser
-atool # lf dependency
-odt2txt # lf dependency
-ffmpegthumbnailer # lf dependency
-chafa # lf dependency (image in terminal)
-mediainfo # lf dependency
+bat # cat replacement
+ripgrep # grep replacement (TODO)
+ouch # Obvious Unified Compression Helper
+yazi # file manager
+poppler # yazi dependency
+mediainfo # yazi dependency
+ffmpegthumbnailer # yazi dependency
 yt-dlp # download any video/audio from the web
 ytfzf # search youtube video without a browser
 dust # du replacement
@@ -160,3 +159,9 @@ aur/dragon-drop # a simple drag-and-drop replacement for graphical stuff
 networkmanager-hardened-configs # Enables MAC randomization
 gomuks # matrix client
 aur/neocities-zig-bin
+chafa # image in terminal
+
+#innoextract # innoextract setup_warcraft_ii_2.02_v4_\(28734\).exe && wartool -v -r . ~/.stratagus/data.Wargus
+#aur/stratagus
+#aur/war1gus
+#aur/wargus

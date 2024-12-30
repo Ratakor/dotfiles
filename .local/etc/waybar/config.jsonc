@@ -106,6 +106,7 @@
         "exec": "$XDG_CONFIG_HOME/waybar/scripts/weather.sh",
         "return-type": "json",
         "format": "{}",
+        "max-length": 10,
         "interval": 3600,
         "tooltip": true
     },

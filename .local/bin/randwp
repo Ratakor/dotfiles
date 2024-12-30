@@ -2,7 +2,7 @@
 # set a random wallpaper
 # to ignore a folder or a file put it in IGNORE after the - like below
 # IGNORE=${IGNORE-file1|folder|file2}
-# IGNORE can be an env variable (useful for lf)
+# IGNORE can be an env variable (useful for yazi)
 
 WPDIR=${1:-$XDG_DATA_HOME/wallpapers}
 IGNORE=${IGNORE-nsfw}

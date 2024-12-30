@@ -14,7 +14,7 @@ VIDEO="mpv --ytdl-format=22 --loop"
 AUDIO="music --shuffle"
 PIC="imv"
 DOC="zathura"
-DIR="$TERMINAL -e lf"
+DIR="$TERMINAL -e yazi"
 
 HISTDIR=${XDG_STATE_HOME:-$HOME/.local/state}/plumber
 HISTFILE=$HISTDIR/history

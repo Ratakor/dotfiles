@@ -1,4 +1,4 @@
-#!/bin/sh
+# vim: ft=zsh
 # shellcheck disable=SC2139
 
 # ROOTCMD not required for some system commands
@@ -9,6 +9,7 @@ done; unset command
 # edit config files and stuff
 alias cf="cd $XDG_CONFIG_HOME"
 alias cfv="cd $XDG_CONFIG_HOME/nvim"
+alias cfy="cd $XDG_CONFIG_HOME/yazi"
 alias cfz="$EDITOR $ZDOTDIR/.zshrc"
 alias cfe="$EDITOR $ZDOTDIR/.zshenv"
 alias cfa="$EDITOR $ZDOTDIR/aliasrc"
@@ -29,7 +30,7 @@ alias pp="cd $XDG_PICTURES_DIR"
 alias psc="cd $XDG_PICTURES_DIR/screenshots"
 alias vv="cd $XDG_VIDEOS_DIR"
 alias wp="cd $XDG_DATA_HOME/wallpapers"
-alias n="lf $XDG_DATA_HOME/notes"
+alias n="yazi $XDG_DATA_HOME/notes"
 alias nn="cd $XDG_DATA_HOME/notes"
 alias sc="cd $HOME/.local/bin"
 alias sta="cd $XDG_STATE_HOME"
@@ -39,7 +40,6 @@ alias cac="cd $XDG_CACHE_HOME"
 [ -x "$(command -v nvim)" ] && alias vimdiff="nvim -d"
 alias e="$EDITOR"
 alias se="$ROOTCMD $EDITOR"
-alias cc="$CC"
 alias "$ROOTCMD"="$ROOTCMD " # run root commands with aliases
 alias :q="exit"
 alias :Q="exit"
@@ -55,7 +55,7 @@ alias sic="irc"
 alias ho="cat $XDG_DATA_HOME/hole/history"
 alias ytfzf="ytfzf -D --detach"
 alias tmp='cd $(mktemp -d)'
-alias p="plumber"
+alias o="plumber" # o for open
 alias mount="$ROOTCMD mount -o nosuid,nodev,noexec"
 alias gb="go build"
 alias zb="zig build"
@@ -66,6 +66,7 @@ alias gofmt="gofmt -s -w"
 alias javafmt="astyle --mode=java --style=google -n"
 alias fork="setsid -f"
 alias zigup="zigup --install-dir $XDG_DATA_HOME/zigup --path-link $HOME/.local/bin/zig"
+alias zpot="zpotify"
 
 # verbosity and colors
 alias rm="trash -v" # "rm -vI"
@@ -73,10 +74,10 @@ alias rmdir="rmdir -v"
 alias cp="cp -riv"
 alias mv="mv -iv"
 alias mkdir="mkdir -pv"
-alias grep="grep --color=auto -n"
-alias diff="diff --color=auto"
-alias ip="ip --color=auto"
-alias ls="eza --color=auto --group-directories-first --hyperlink"
+alias grep="grep --color=always -n"
+alias diff="diff --color=always"
+alias ip="ip --color=always"
+alias ls="eza --color=always --group-directories-first --hyperlink"
 alias sl="ls"
 alias ll="ls -lho --git"
 alias la="ls -aa"
@@ -85,7 +86,8 @@ alias tree="ls -T"
 alias cat="bat --style=numbers,changes --tabs 8"
 alias du="dust -r"
 alias duf="duf -hide special"
-alias fd="fd -HI"
+alias fd="fd -HI --color=always"
+alias less="less -R"
 
 # git
 alias G="gitui"
@@ -114,3 +116,12 @@ alias next="musiccmd next"
 alias prev="musiccmd prev"
 alias stop="musiccmd stop"
 alias vol="musiccmd volume" # put the volume you want in arg like vol 50
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file "$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	command rm -f -- "$tmp"
+}

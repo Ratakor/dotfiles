@@ -1,0 +1,27 @@
+[manager]
+ratio = [ 1, 4, 3 ]
+sort_by = "natural"
+scrolloff = 0
+mouse_events = [ "click", "scroll", "move", "drag" ]
+
+[preview]
+tab_size = 8
+cache_dir = "$XDG_CACHE_HOME/yazi"
+# image_delay = 0
+
+[plugin]
+prepend_previewers = [
+	{ mime = "text/troff", run = "man" },
+	{ mime = "text/*", run = "text" },
+	{ mime = "{image,audio,video}/*", run = "mediainfo"},
+	{ mime = "application/x-subrip", run = "mediainfo"},
+	{ mime = "application/*zip", run = "ouch" },
+	{ mime = "application/x-tar", run = "ouch" },
+	{ mime = "application/x-bzip{,2}", run = "ouch" },
+	{ mime = "application/x-7z-compressed", run = "ouch" },
+	{ mime = "application/x-rar", run = "ouch" },
+	{ mime = "application/x-xz", run = "ouch" },
+	{ mime = "application/zstd", run = "ouch" },
+	# *opendocument*) odt2txt "$1" ;;
+	# application/pgp-encrypted) gpg -d -- "$1" ;;
+]
