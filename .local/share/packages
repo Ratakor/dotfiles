@@ -69,6 +69,7 @@ gptfdisk
 jdk17-openjdk
 aur/poop-bin # Performance Optimizer Observation Platform
 aur/superhtml # html LSP
+tree-sitter-cli
 
 ## audio
 rtkit
@@ -100,6 +101,7 @@ claws-mail # mail client, use nonprism repo to remove libgdata support
 gajim # XMPP client
 nsxiv # image viewer
 # aur/ungoogled-chromium-xdg-bin # ungoogled chromium but without ~/.pki
+# aur/cromite-bin
 chromium
 aur/gruvbox-theme-git # gtk theme
 
@@ -181,7 +183,8 @@ aur/shazam-cli-git
 aur/xclicker
 #aur/guile-colorized-git
 aur/neocities-zig-bin
-aur/nekoweb-bin
+kiwix-desktop
+cups-openrc # printer
 
 ## game stuff
 discord
@@ -193,10 +196,10 @@ lib32-openal
 steam
 #nvidia-dkms
 nvidia
-#nvidia-utils
-#lib32-nvidia-utils
-#nvidia-settings
-#opencl-nvidia
+nvidia-utils
+multilib/lib32-nvidia-utils
+nvidia-settings
+opencl-nvidia
 giflib
 lib32-giflib
 libpng
@@ -246,5 +249,6 @@ lib32-vulkan-icd-loader
 xdg-desktop-portal-gtk
 lutris
 aur/lug-helper
-#aur/wowup-cf-bin
-#aur/warcraftlogsuploader
+aur/wowup-cf-bin
+aur/warcraftlogsuploader
+aur/exiled-exchange-2

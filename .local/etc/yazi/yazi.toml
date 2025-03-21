@@ -25,7 +25,3 @@ prepend_previewers = [
 	# *opendocument*) odt2txt "$1" ;;
 	# application/pgp-encrypted) gpg -d -- "$1" ;;
 ]
-
-append_previewers = [
-	{ name = "*", run = "hexyl" },
-]

@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 -- lazy
-map('n', "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
+map('n', "<leader>lz", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
 
 -- Telescope
 local telescope = require("telescope.builtin")
@@ -67,4 +67,6 @@ vim.g.startify_custom_header = {
     "   .▀  ▀ ▀  ▀  ▀▀▀  ▀  ▀ ·▀  ▀ ▀█▄▀▪.▀  ▀",
 }
 
-require("Comment.ft").set("c", { "/*%s*/", "//%s" })
+local comment = require("Comment.ft")
+comment.set("c", { "/*%s*/", "//%s" })
+comment.set("nov", { ";%s" })

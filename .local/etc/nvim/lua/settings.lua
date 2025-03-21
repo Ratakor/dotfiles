@@ -70,6 +70,13 @@ vim.api.nvim_create_autocmd("FileType", {
 --     end,
 -- })
 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "*.nov" },
+    callback = function()
+        vim.opt_local.filetype = "nov"
+    end,
+})
+
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()

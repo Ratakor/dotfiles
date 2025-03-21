@@ -2,8 +2,12 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        keys = {
+            { "<c-n>", desc = "Increment Selection" },
+            { "<c-m>", desc = "Decrement Selection", mode = "x" },
+        },
         config = function()
-            require("nvim-treesitter.configs").setup {
+            require("nvim-treesitter.configs").setup({
                 ensure_installed = {
                     "bash",
                     "c",
@@ -17,8 +21,8 @@ return {
                     "go",
                     "html",
                     "java",
-                    -- "javascript",
-                    "latex",
+                    "javascript",
+                    -- "latex",
                     "lua",
                     "make",
                     "markdown",
@@ -28,12 +32,17 @@ return {
                     "rust",
                     "scheme",
                     "sql",
+                    "v",
                     "vim",
                     "vimdoc",
                     "zig",
                 },
                 auto_install = false,
-                highlight = { enable = true },
+                highlight = {
+                    enable = true,
+                    disable = { "latex" }, -- done by vimtex
+                    additional_vim_regex_highlighting = { "latex", "markdown" },
+                },
                 indent = { enable = true },
                 incremental_selection = {
                     enable = true,
@@ -44,8 +53,7 @@ return {
                         node_decremental = "<C-M>",
                     },
                 },
-                additional_vim_regex_highlighting = false,
-            }
+            })
         end,
         dependencies = {
             -- "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",

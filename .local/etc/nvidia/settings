@@ -1,5 +1,8 @@
+#
+# /home/ratakor/.local/etc/nvidia/settings
+#
 # Configuration file for nvidia-settings - the NVIDIA Settings utility
-# Generated on Thu Mar  9 14:27:38 2023
+# Generated on Sat Dec 21 19:22:48 2024
 #
 
 # ConfigProperties:
@@ -9,9 +12,9 @@ DisplayStatusBar = Yes
 SliderTextEntries = Yes
 IncludeDisplayNameInConfigFile = No
 UpdateRulesOnProfileNameChange = Yes
-Timer = Memory_Used_(GPU_0),Yes,3000
-Timer = Thermal_Monitor_(GPU_0),Yes,1000
 Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
+Timer = Thermal_Monitor_(GPU_0),Yes,1000
+Timer = Memory_Used_(GPU_0),Yes,3000
 
 # Attributes:
 

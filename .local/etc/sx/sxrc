@@ -3,11 +3,11 @@
 killall picom crond sxhkd pipewire wireplumber xbanish gammastep sb
 
 setxkbmap fr us
-xrandr --output DP-2 --mode 2560x1440 --rate 60
 xrandr --dpi 140 --output HDMI-0 --pos 2560x360\
-	--output DP-2 --mode 2560x1440 --rate 144 --primary
+	--output DP-2 --mode 2560x1440 --rate 60 --primary
+xrandr --output DP-2 --rate 144
 randwp
-crond -f "$XDG_CONFIG_HOME/crontab"
+#crond -f "$XDG_CONFIG_HOME/crontab"
 xrdb "$XDG_CONFIG_HOME/sx/gruvbox-dark"
 
 sxhkd &

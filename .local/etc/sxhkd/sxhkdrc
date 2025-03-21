@@ -58,5 +58,7 @@ super + shift + u
 #	xdo kill
 #button10
 #	musiccmd
-ctrl + p
-	killall picom || picom -b
+#ctrl + p
+#	killall picom || picom -b
+#ctrl + F8
+#	spam
