@@ -1,6 +1,6 @@
 [manager]
 prepend_keymap = [
-	{ on = "l", run = "plugin bypass smart_enter", desc = "Open a file, or recursively enter child directory, skipping children with only a single subdirectory" },
+	{ on = "l", run = "plugin bypass smart-enter", desc = "Open a file, or recursively enter child directory, skipping children with only a single subdirectory" },
 	{ on = "h", run = "plugin bypass reverse", desc = "Recursively enter parent directory, skipping parents with only a single subdirectory" },
 	{ on = "p", run = "plugin --sync smart-paste", desc = "Paste into the hovered directory or CWD" },
 	{ on = "T", run = "plugin --sync hide-preview", desc = "Hide or show preview" },

@@ -1,22 +1,22 @@
 [[plugin.deps]]
-use = "yazi-rs/plugins:hide-preview"
-rev = "2730199"
-hash = "53f826884e2c7e521cecc492a7f31d7e"
-
-[[plugin.deps]]
-use = "Ape/mediainfo"
-rev = "df17c4f"
-hash = "74c2b0063f30c6b4e4ede533f9ca03f2"
-
-[[plugin.deps]]
 use = "ndtoan96/ouch"
-rev = "ce6fb75"
-hash = "ed6c185514109d7c5463f609282b220c"
+rev = "2496cd9"
+hash = "5b9dea47776a30946cfbf83232d18fb1"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/bypass"
-rev = "ecb1f7f"
-hash = "905054b2df08ff79af223e0b6f249fa3"
+rev = "85b5e96"
+hash = "db441e5d2a2aad7fcd356440148136f0"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "55bf699"
+hash = "f3853bbdd1da2fad09d059ab5464abfd"
+
+[[plugin.deps]]
+use = "boydaihungst/mediainfo"
+rev = "70ed228"
+hash = "99a9bd21bc896710bbfce44f1ea00f74"
 
 [flavor]
 deps = []
