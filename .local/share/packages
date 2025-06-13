@@ -186,6 +186,21 @@ aur/neocities-zig-bin
 kiwix-desktop
 cups-openrc # printer
 obs-studio # screen recording / streaming
+aur/python-casttube
+aur/python-pychromecast
+go-task
+aur/tauri-cli
+aur/linuxdeploy-appimage
+luarocks
+
+#cage
+#lxc
+#dnsmasq
+#aur/libglibutil
+#aur/libgbinder
+#aur/python-gbinder
+#aur/waydroid-git
+#aur/waydroid-settings-git
 
 ## game stuff
 discord

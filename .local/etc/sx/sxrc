@@ -12,7 +12,7 @@ xrdb "$XDG_CONFIG_HOME/sx/gruvbox-dark"
 
 sxhkd &
 pipewire &
-xbanish &
+#xbanish &
 gammastep &
 picom -b
 sb -b
