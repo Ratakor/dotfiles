@@ -87,7 +87,7 @@ return {
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
-        init = function ()
+        init = function()
             vim.opt.timeout = true
             vim.opt.timeoutlen = 300
         end,
@@ -109,12 +109,25 @@ return {
         end
     },
 
+    -- {
+    --     "OXY2DEV/markview.nvim",
+    --     lazy = false,
+    --     dependencies = {
+    --         "nvim-treesitter/nvim-treesitter",
+    --         "nvim-tree/nvim-web-devicons"
+    --     },
+    -- },
+
     {
-        "OXY2DEV/markview.nvim",
-        lazy = false,
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons"
-        },
+        "gruvw/strudel.nvim",
+        cmd = "StrudelLaunch",
+        build = "npm install",
+        config = function()
+            require("strudel").setup({
+                update_on_save = true,
+                -- headless = true,
+                browser_data_dir = (os.getenv("XDG_CACHE_HOME") or "~/.cache") .. "/strudel-nvim",
+            })
+        end,
     },
 }

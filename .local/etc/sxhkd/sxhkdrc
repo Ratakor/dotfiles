@@ -25,7 +25,7 @@ Print
 #super + b
 #	$BROWSER
 super + n
-	$TERMINAL -e sh -c 'cd "$XDG_DATA_HOME/notes"; lfub'
+	$TERMINAL -e sh -c 'yazi "$XDG_DATA_HOME/notes"'
 super + shift + n
 	$TERMINAL -e newsboat
 super + shift + p

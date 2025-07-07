@@ -55,7 +55,8 @@ local on_attach = function(_, bufnr)
     end, { desc = 'Format current buffer with LSP' })
 end
 
--- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+-- https://github.com/mason-org/mason-lspconfig.nvim/tree/5c142464ea29ceca3b4d77d2c80b9e8e3fca02d9?tab=readme-ov-file#available-lsp-servers
+-- match lua/plugins/lsp.lua
 local servers = {
     "bashls",
     "clangd",
@@ -68,6 +69,7 @@ local servers = {
     "rust_analyzer",
     "sqls",
     "texlab",
+    "vtsls",
     "zls",
 }
 
