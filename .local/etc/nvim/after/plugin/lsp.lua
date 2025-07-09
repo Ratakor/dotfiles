@@ -56,7 +56,8 @@ local on_attach = function(_, bufnr)
     end, { desc = 'Format current buffer with LSP' })
 end
 
--- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+-- https://github.com/mason-org/mason-lspconfig.nvim/tree/5c142464ea29ceca3b4d77d2c80b9e8e3fca02d9?tab=readme-ov-file#available-lsp-servers
+-- match lua/plugins/lsp.lua
 local servers = {
     "bashls",
     "clangd",
@@ -70,11 +71,11 @@ local servers = {
     "rust_analyzer",
     "sqls",
     "texlab",
+    "vtsls",
     "zls",
 }
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 for _, server_name in ipairs(servers) do
     require("lspconfig")[server_name].setup({
         on_attach = on_attach,
@@ -153,8 +154,29 @@ cmp.setup({
     },
 })
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+-- See `:help vim.diagnostic.Opts`
+vim.diagnostic.config({
+    virtual_lines = false,
+    virtual_text = true,
+    signs = {
+        enabled = true,
+        text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN]  = " ",
+            [vim.diagnostic.severity.HINT]  = " ",
+            [vim.diagnostic.severity.INFO]  = " ",
+        },
+        texthl = {
+            [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+            [vim.diagnostic.severity.WARN]  = "DiagnosticSignWarn",
+            [vim.diagnostic.severity.HINT]  = "DiagnosticSignHint",
+            [vim.diagnostic.severity.INFO]  = "DiagnosticSignInfo",
+        },
+        numhl = {
+            [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+            [vim.diagnostic.severity.WARN]  = "DiagnosticSignWarn",
+            [vim.diagnostic.severity.HINT]  = "DiagnosticSignHint",
+            [vim.diagnostic.severity.INFO]  = "DiagnosticSignInfo",
+        },
+    },
+})

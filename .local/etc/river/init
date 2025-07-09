@@ -112,7 +112,7 @@ riverctl map normal None Print spawn 'screenshot'
 
 #riverctl map normal None F7 spawn "$TERMINAL -e dmenurecord"
 #riverctl map normal Super B spawn "$BROWSER"
-riverctl map normal Super N spawn "$TERMINAL -e sh -c 'cd $XDG_DATA_HOME/notes; lf'"
+riverctl map normal Super N spawn "$TERMINAL -e yazi $XDG_DATA_HOME/notes"
 riverctl map normal Super+Shift N spawn "$TERMINAL -e newsboat"
 
 riverctl map -repeat normal None XF86AudioRaiseVolume spawn 'wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+'

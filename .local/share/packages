@@ -3,23 +3,22 @@ archlinux-keyring
 parabola-keyring
 base
 base-devel
+elogind
 libelogind
-#udev-init-scripts
 linux-libre-hardened
 networkmanager-openrc
 inetutils
-dbus-openrc
-elogind
 grub
+dbus-openrc
 lvm2-openrc
 cryptsetup-openrc
 neovim
 opendoas # sudo replacement
+openssh
 git
 
 ## custom packages (in .local/share/pkgbuilds)
 #randhost # set a random hostname (OpenRC service)
-#dbus-xdg # dbus but without ~/.dbus
 #gitui=0.22.1 # tui for git
 #pinentry-dmenu # use dmenu for gpg
 #tofi # dynamic menu
@@ -30,7 +29,7 @@ zsh # user shell
 newsboat # RSS Reader
 eza # ls replacement
 bat # cat replacement
-ripgrep # grep replacement (TODO)
+ripgrep # grep replacement
 ouch # Obvious Unified Compression Helper
 yazi # file manager
 poppler # yazi dependency
@@ -45,8 +44,8 @@ aur/quand-git # a calendar app like when
 aur/zpotify # CLI for spotify
 
 ## dev
-#texlive # LaTeX (big package)
-#pandoc-cli # I only use that to convert markdown to latex to pdf (big package)
+texlive # LaTeX (big package)
+pandoc-cli # I only use that to convert markdown to latex to pdf (big package)
 rustup # rust
 nasm # x86 compiler
 clang # another cc + clangd C lsp
@@ -55,7 +54,6 @@ mingw-w64-gcc # windows cc
 musl # another libc
 libbsd
 aur/zigup-bin
-#aur/zls-git
 go
 astyle # C formatter
 shellcheck
@@ -66,10 +64,12 @@ dosfstools
 mtools
 xorriso
 gptfdisk
-#mariadb-openrc
 jdk17-openjdk
 aur/poop-bin # Performance Optimizer Observation Platform
-aur/superhtml # html LSP
+aur/superhtml-bin # html LSP
+nodejs
+npm
+pnpm
 
 ## audio
 rtkit
@@ -103,11 +103,13 @@ zathura-pdf-mupdf
 claws-mail # mail client, use nonprism repo to remove libgdata support
 gajim # XMPP client
 imv # image viewer
-aur/ungoogled-chromium-xdg-bin # ungoogled chromium but without ~/.pki
-aur/gruvbox-theme-git # gtk theme
+aur/gruvbox-theme-git # gtk theme (very long packaging)
+# ungoogled-chromium required to `pacman -Rdd your-freedom`
+aur/ungoogled-chromium-bin
+#aur/ungoogled-chromium-xdg-bin # ungoogled chromium but without ~/.pki
 
 ## misc
-openssh
+less
 keepassxc # password manager
 curl
 zip
@@ -120,12 +122,14 @@ mandoc
 man-pages # Linux man pages
 sshfs # mount drive over ssh
 bc # calculation
-tlp-openrc # laptop power saving settings (openrc edition)
+tlp-openrc # laptop power saving settings (rc-update add tlp default)
 ntfs-3g # ntfs filesystem (windows compatibility)
 termdown # timer on the terminal
-neofetch
-#jq # json processor
-pinta # image editor
+fastfetch
+jq # json processor
+krita # image editor
+#aur/aseprite # pixel art editor
+audacity
 qbittorrent # torrent client
 iftop # display bandwidth usage
 checkbashisms
@@ -138,7 +142,7 @@ noto-fonts-cjk
 hunspell # dictionary for claws
 hunspell-en_us
 hunspell-fr
-python-axolotl # gajim dependency
+#python-axolotl # gajim dependency (TODO: removed from parabola repos)
 python-gnupg # gajim dependency
 git-lfs
 xdo # window manipulation
@@ -156,10 +160,13 @@ aur/htop-vim # process viewer (htop) with vim keybinds
 aur/scron-git # simple cron daemon, spawn with crond
 aur/simple-mtpfs # mount phone easily
 aur/dragon-drop # a simple drag-and-drop replacement for graphical stuff
-networkmanager-hardened-configs # Enables MAC randomization
+#networkmanager-hardened-configs # Enables MAC randomization
 gomuks # matrix client
 aur/neocities-zig-bin
 chafa # image in terminal
+reflector # mirrorlist generator
+pkgfile
+love
 
 #innoextract # innoextract setup_warcraft_ii_2.02_v4_\(28734\).exe && wartool -v -r . ~/.stratagus/data.Wargus
 #aur/stratagus

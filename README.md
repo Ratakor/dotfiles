@@ -1,19 +1,20 @@
 <h1 align="center">My dotfiles</h1>
 
 ![screenshot 1](.local/share/screenshot/1.png)
-(river not sway! bad neofetch :/)
+(river not sway! at least fastfetch got it right)
 
 ![screenshot 2](.local/share/screenshot/2.png)
-(Outdated screenshot)
+(Outdated screenshot, my [artix](https://github.com/ratakor/dotfiles/tree/artix) config still look like that)
 
 ## Installation
 I follow the [.local convention](https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe)
-to a point that I have just one dotfile in $HOME (yes no ~.ssh~, .dbus or .pki)
+to a point that I have just one dotfile in $HOME (yes no ~.ssh~, .dbus or ~.pki~)
 so you'll need to tweak the Makefile if you don't. Also if you're not using
 Parabola OpenRC you will probably need to edit .local/share/packages according
 to your distro.
 
 DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're doing.
+**This is outdated, I need to do an installation script instead of a simple makefile because of dependencies issues**
 
 	$ git clone https://github.com/ratakor/dotfiles.git
 	$ cd dotfiles/.local
@@ -57,7 +58,7 @@ See [packages](.local/share/packages) for a list and a small description of
 other programs I use.
 
 ## TODO
-- use ii as irc client?
+- find a good and reliable irc client (ii?)
 - config mtm (or tmux) to be usable
 
 ## LICENSE

@@ -20,20 +20,20 @@ config:
 	@${ROOTCMD} sh -c 'printf "export ZDOTDIR=\"\$$HOME/.local/etc/zsh\"\n" > /etc/zsh/zshenv'
 	@printf '\033[34;1mCopy config to %s\033[m\n' "${PREFIX}/etc"
 	@mkdir -p ${PREFIX}/etc
-	@cp -r etc/* ${PREFIX}/etc/
+	@-cp -r etc/* ${PREFIX}/etc/
 	@printf '\033[34;1mCopy data to %s\033[m\n' "${PREFIX}/share"
 	@mkdir -p ${PREFIX}/share
-	@cp -r share/* ${PREFIX}/share/
+	@-cp -r share/* ${PREFIX}/share/
 
 scripts:
 	@printf '\033[34;1mCopy scripts to %s\033[m\n' "${PREFIX}/bin"
 	@mkdir -p ${PREFIX}/bin
-	@cp -r bin/* ${PREFIX}/bin/
+	@-cp -r bin/* ${PREFIX}/bin/
 
 wallpapers:
 	@printf '\033[34;1mDownloading wallpapers\033[m\n'
 	@[ -d "${PREFIX}/share/wallpapers" ] &&\
 		printf '\033[33;1mWallpaper folder already exists\033[m\n'||\
-		git clone https://github.com/ratakor/wallpapers ${PREFIX}/share/wallpapers
+		git clone git@github.com:ratakor/wallpapers ${PREFIX}/share/wallpapers
 
 .PHONY: all packages config scripts wallpapers

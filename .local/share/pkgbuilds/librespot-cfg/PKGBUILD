@@ -2,7 +2,7 @@
 
 pkgname=librespot-cfg
 _pkgname=${pkgname%-cfg}
-pkgver=0.4.1.r500.gfb5c0efd
+pkgver=0.6.0.r44.g80c27ec4
 pkgver() { git -C "$_pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
 pkgrel=1
 pkgdesc="Open Source Spotify client library"

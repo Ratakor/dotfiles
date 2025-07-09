@@ -9,7 +9,7 @@ export MANPATH="$HOME/.local/share/man:/usr/local/share/man:/usr/share/man"
 # Default programs
 export EDITOR="nvim"
 export TERMINAL="footclient"
-export BROWSER="chromium"
+export BROWSER="chromium --new-window"
 export ROOTCMD="doas"
 export MANPAGER="manpager"
 export DMENU="tofi"
@@ -57,3 +57,4 @@ export LESS=-R
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 export HISTSIZE=10000
 export SAVEHIST=10000
+export WEBKIT_DISABLE_DMABUF_RENDERER=1

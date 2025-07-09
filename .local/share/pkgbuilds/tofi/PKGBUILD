@@ -1,9 +1,9 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=tofi
-pkgver=0.9.1.r17.gb32c995
+pkgver=0.9.1.r23.g1eb6137
 pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
-pkgrel=2
+pkgrel=1
 pkgdesc="Tiny dynamic menu for Wayland"
 arch=("x86_64")
 url="https://github.com/philj56/$pkgname"
