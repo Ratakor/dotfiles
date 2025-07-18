@@ -33,9 +33,11 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 ### Command Line Interface
 - Shell: [zsh](https://github.com/zsh-users/zsh)
 - Editor: [neovim](https://github.com/neovim/neovim)
+- Terminal workspace: [zellij](https://zellij.dev/)
 - File manager: [yazi](https://github.com/sxyazi/yazi)
 - Calendar: [quand](https://github.com/ratakor/quand)
 - RSS reader: [newsboat](https://newsboat.org/)
+- IRC client: [senpai](https://sr.ht/~delthas/senpai/)
 
 ### Fonts
 - Serif font: [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif)
@@ -56,10 +58,6 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 
 See [packages](.local/share/packages) for a list and a small description of
 other programs I use.
-
-## TODO
-- find a good and reliable irc client (ii?)
-- config mtm (or tmux) to be usable
 
 ## LICENSE
 Copyright (c) Ratakor

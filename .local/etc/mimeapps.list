@@ -3,19 +3,21 @@
 # xdg-open will use these settings to determine how to open filetypes.
 # These .desktop entries can also be seen and changed in $XDG_DATA_HOME/applications/
 
-x-scheme-handler/mailto=mail.desktop;
-video/x-matroska=video.desktop
-video/mp4=video.desktop
-text/x-shellscript=text.desktop;
-text/plain=text.desktop;
-application/postscript=pdf.desktop;
-application/pdf=pdf.desktop;
-image/png=img.desktop;
-image/jpeg=img.desktop;
-image/gif=img.desktop;
+x-scheme-handler/mailto=mail.desktop
+video/x-matroska=mpv.desktop
+video/mp4=mpv.desktop
+text/x-shellscript=text.desktop
+text/plain=text.desktop
+application/postscript=pdf.desktop
+application/pdf=pdf.desktop
+image/png=imv.desktop
+image/jpeg=imv.desktop
+image/gif=imv.desktop
 inode/directory=file.desktop
-x-scheme-handler/https=browser.desktop
-x-scheme-handler/http=browser.desktop
+x-scheme-handler/https=chromium.desktop
+x-scheme-handler/http=chromium.desktop
+x-scheme-handler/ircs=senpai.desktop
+x-scheme-handler/irc=senpai.desktop
 x-scheme-handler/git=git.desktop
 x-scheme-handler/magnet=torrent.desktop;
 application/x-bittorrent=torrent.desktop;

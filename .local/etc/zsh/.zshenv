@@ -46,6 +46,8 @@ export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+export ZELLIJ_CONFIG_DIR="$XDG_CONFIG_HOME/zellij"
+export ZELLIJ_CONFIG_FILE="$XDG_CONFIG_HOME/zellij/config.kdl"
 
 # Misc
 # umask 0077

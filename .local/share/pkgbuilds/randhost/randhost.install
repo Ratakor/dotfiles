@@ -1,3 +1,0 @@
-post_install() {
-	printf '  Type `rc-update add randhost default` to enable randhost.\n'
-}

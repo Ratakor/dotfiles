@@ -133,4 +133,15 @@ return {
             })
         end,
     },
+
+    {
+        "mluders/comfy-line-numbers.nvim",
+        opts = {
+            hidden_file_types = {
+                "undotree",
+                -- "NERD_tree",
+                "",
+            },
+        },
+    },
 }

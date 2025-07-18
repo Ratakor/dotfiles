@@ -79,3 +79,5 @@ setopt PROMPT_SUBST
 RPROMPT='${vcs_info_msg_0_}'
 zstyle ':vcs_info:git:*' formats '%F{cyan}(%b)%f'
 zstyle ':vcs_info:*' enable git
+
+eval "$(zoxide init zsh --cmd cd)"

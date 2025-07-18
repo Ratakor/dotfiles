@@ -16,13 +16,13 @@ neovim
 opendoas # sudo replacement
 openssh
 git
+aur/paru-bin
 
-## custom packages (in .local/share/pkgbuilds)
-#randhost # set a random hostname (OpenRC service)
-#gitui=0.22.1 # tui for git
-#pinentry-dmenu # use dmenu for gpg
-#tofi # dynamic menu
-#librespot-cfg # spotify client
+## Ratakor's Cursed Packages (not really cursed tho)
+rcp/gitui=0.22.1 # tui for git
+rcp/pinentry-dmenu # use dmenu for gpg
+rcp/tofi # dynamic menu
+rcp/librespot-cfg # spotify client
 
 ## terminal
 zsh # user shell
@@ -40,6 +40,9 @@ ytfzf # search youtube video without a browser
 dust # du replacement
 duf # df replacement
 fd # find replacement
+zoxide # cd replacement
+zellij # terminal multiplexer & session manager
+senpai # IRC client
 aur/quand-git # a calendar app like when
 aur/zpotify # CLI for spotify
 
@@ -102,7 +105,7 @@ zathura # document viewer
 zathura-pdf-mupdf
 claws-mail # mail client, use nonprism repo to remove libgdata support
 gajim # XMPP client
-imv # image viewer
+aur/imv-git # image viewer (v4.5.0 doesn't work with gifs)
 aur/gruvbox-theme-git # gtk theme (very long packaging)
 # ungoogled-chromium required to `pacman -Rdd your-freedom`
 aur/ungoogled-chromium-bin
@@ -116,6 +119,8 @@ zip
 unzip
 p7zip
 rsync
+syncthing # file sync
+fzf
 imagemagick # image manipulation from the terminal
 mat2 # metadata removal tool
 mandoc
@@ -137,15 +142,15 @@ dash # sh replacement
 aur/dashbinsh # a pacman hook to symlink dash to sh when there is a bash update
 python-pynvim # neovim dependency
 #nyxt # browser for lisp people
+#qutebrowser # parabola still ship the QtWebKit version :(
 openbsd-netcat
 noto-fonts-cjk
 hunspell # dictionary for claws
 hunspell-en_us
 hunspell-fr
-#python-axolotl # gajim dependency (TODO: removed from parabola repos)
+#python-axolotl # gajim dependency (removed from parabola repos)
 python-gnupg # gajim dependency
 git-lfs
-xdo # window manipulation
 zsh-completions
 cloc
 perf
