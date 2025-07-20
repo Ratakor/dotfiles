@@ -108,7 +108,7 @@ window#waybar {
     border-bottom: 2px solid @bright_green;
 }
 
-#battery.20:not(.charging) {
+#battery.20:not(.charging), #battery.10:not(.charging) {
     color: @red;
     border-bottom: 2px solid @red;
     animation: blink 1s linear infinite;

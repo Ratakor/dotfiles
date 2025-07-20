@@ -5,7 +5,7 @@ base
 base-devel
 elogind
 libelogind
-linux-libre-hardened
+linux-libre
 networkmanager-openrc
 inetutils
 grub
@@ -23,6 +23,7 @@ rcp/gitui=0.22.1 # tui for git
 rcp/pinentry-dmenu # use dmenu for gpg
 rcp/tofi # dynamic menu
 rcp/librespot-cfg # spotify client
+rcp/networkmanager-hardened
 
 ## terminal
 zsh # user shell
@@ -73,6 +74,7 @@ aur/superhtml-bin # html LSP
 nodejs
 npm
 pnpm
+lua
 
 ## audio
 rtkit
@@ -108,8 +110,9 @@ gajim # XMPP client
 aur/imv-git # image viewer (v4.5.0 doesn't work with gifs)
 aur/gruvbox-theme-git # gtk theme (very long packaging)
 # ungoogled-chromium required to `pacman -Rdd your-freedom`
-aur/ungoogled-chromium-bin
+#aur/ungoogled-chromium-bin
 #aur/ungoogled-chromium-xdg-bin # ungoogled chromium but without ~/.pki
+aur/cromite-bin
 
 ## misc
 less
@@ -157,7 +160,7 @@ perf
 python-graphviz
 trash-cli
 ntp-openrc # ntp client, rc-update add ntpd default
-detox
+detox # cli to cleanup filenames
 python-pipx
 aur/sc-im # spreadsheet
 aur/2048.zig-bin
@@ -165,13 +168,14 @@ aur/htop-vim # process viewer (htop) with vim keybinds
 aur/scron-git # simple cron daemon, spawn with crond
 aur/simple-mtpfs # mount phone easily
 aur/dragon-drop # a simple drag-and-drop replacement for graphical stuff
-#networkmanager-hardened-configs # Enables MAC randomization
 gomuks # matrix client
 aur/neocities-zig-bin
 chafa # image in terminal
 reflector # mirrorlist generator
 pkgfile
 love
+caligula # TUI for burning disks
+pastel # CLI for color manipulation
 
 #innoextract # innoextract setup_warcraft_ii_2.02_v4_\(28734\).exe && wartool -v -r . ~/.stratagus/data.Wargus
 #aur/stratagus

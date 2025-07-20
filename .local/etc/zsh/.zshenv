@@ -9,7 +9,7 @@ export MANPATH="$HOME/.local/share/man:/usr/local/share/man:/usr/share/man"
 # Default programs
 export EDITOR="nvim"
 export TERMINAL="footclient"
-export BROWSER="chromium --new-window"
+export BROWSER="cromite --new-window"
 export ROOTCMD="doas"
 export MANPAGER="manpager"
 export DMENU="tofi"

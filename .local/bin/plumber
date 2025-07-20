@@ -8,7 +8,7 @@
 # currently assuming that WEB, VIDEO and AUDIO handle URLs
 WEB="open ${BROWSER:-"xdg-open"}"
 TEXT="openterm $EDITOR"
-VIDEO="open mpv --ytdl-format=22 --loop"
+VIDEO="open mpv --loop" #--ytdl-format=22
 AUDIO="open music"
 PIC="open imv"
 DOC="open zathura"

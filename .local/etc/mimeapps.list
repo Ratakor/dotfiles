@@ -14,13 +14,18 @@ image/png=imv.desktop
 image/jpeg=imv.desktop
 image/gif=imv.desktop
 inode/directory=file.desktop
-x-scheme-handler/https=chromium.desktop
-x-scheme-handler/http=chromium.desktop
 x-scheme-handler/ircs=senpai.desktop
 x-scheme-handler/irc=senpai.desktop
 x-scheme-handler/git=git.desktop
 x-scheme-handler/magnet=torrent.desktop;
 application/x-bittorrent=torrent.desktop;
+
+text/html=cromite.desktop
+x-scheme-handler/https=cromite.desktop
+x-scheme-handler/http=cromite.desktop
+x-scheme-handler/about=cromite.desktop
+x-scheme-handler/unknown=cromite.desktop
+
 # anki.desktop is automatically created by anki
 application/x-colpkg=anki.desktop
 application/x-apkg=anki.desktop
