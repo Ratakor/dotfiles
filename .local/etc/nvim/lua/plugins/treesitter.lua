@@ -58,6 +58,27 @@ return {
         dependencies = {
             -- "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
             "m-demare/hlargs.nvim",
+            {
+                "OXY2DEV/markview.nvim",
+                config = function()
+                    local presets = require("markview.presets");
+
+                    require("markview").setup({
+                        preview = {
+                            modes = { "i", "n", "no", "c" },
+                            hybrid_modes = { "i" },
+                            linewise_hybrid_mode = true,
+                            edit_range = { 0, 0 },
+                        },
+                        markdown = {
+                            headings = presets.headings.glow,
+                            tables = presets.tables.single,
+                            -- horizontal_rules = presets.horizontal_rules.thin,
+                        }
+                    });
+                end,
+            },
         },
+        lazy = false,
     },
 }

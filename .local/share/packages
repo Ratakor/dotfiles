@@ -13,7 +13,6 @@ dbus-openrc
 lvm2-openrc
 cryptsetup-openrc
 neovim
-opendoas # sudo replacement
 openssh
 git
 aur/paru-bin
@@ -23,7 +22,6 @@ rcp/gitui=0.22.1 # tui for git
 rcp/pinentry-dmenu # use dmenu for gpg
 rcp/tofi # dynamic menu
 rcp/librespot-cfg # spotify client
-rcp/networkmanager-hardened
 
 ## terminal
 zsh # user shell
@@ -75,6 +73,7 @@ nodejs
 npm
 pnpm
 lua
+just # command runner
 
 ## audio
 rtkit
@@ -95,6 +94,7 @@ swaylock # screen locker
 swaybg # wallpaper utility
 grim # screenshot
 slurp # region selection
+#swappy # image editor for screenshots
 swayidle # idle manager
 aur/wlopm-git # power management
 wl-clipboard # clipboard management
@@ -123,6 +123,8 @@ unzip
 p7zip
 rsync
 syncthing # file sync
+borg # backup tool
+borgmatic # borg wrapper
 fzf
 imagemagick # image manipulation from the terminal
 mat2 # metadata removal tool
@@ -132,6 +134,8 @@ sshfs # mount drive over ssh
 bc # calculation
 tlp-openrc # laptop power saving settings (rc-update add tlp default)
 ntfs-3g # ntfs filesystem (windows compatibility)
+xfsprogs # xfs filesystem
+xfsdump
 termdown # timer on the terminal
 fastfetch
 jq # json processor
@@ -147,6 +151,7 @@ python-pynvim # neovim dependency
 #nyxt # browser for lisp people
 #qutebrowser # parabola still ship the QtWebKit version :(
 openbsd-netcat
+noto-fonts-emoji # emoji font
 noto-fonts-cjk
 hunspell # dictionary for claws
 hunspell-en_us
@@ -176,6 +181,13 @@ pkgfile
 love
 caligula # TUI for burning disks
 pastel # CLI for color manipulation
+#clamav-openrc # antivirus (rc-update add clamd default) OUTDATED on parabola
+#glow # markdown viewer, imo bat or markview.nvim are better
+thefuck # corrects your last command
+pmount # mount removable devices as normal user, greatest software in existence
+aur/pacman-pkgfile-hook # pacman hook to update pkgfile database
+acpi # battery status, -i is good
+lsof # list open files
 
 #innoextract # innoextract setup_warcraft_ii_2.02_v4_\(28734\).exe && wartool -v -r . ~/.stratagus/data.Wargus
 #aur/stratagus

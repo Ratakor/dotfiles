@@ -112,15 +112,6 @@ return {
         end,
     },
 
-    -- {
-    --     "OXY2DEV/markview.nvim",
-    --     lazy = false,
-    --     dependencies = {
-    --         "nvim-treesitter/nvim-treesitter",
-    --         "nvim-tree/nvim-web-devicons",
-    --     },
-    -- },
-
     {
         "gruvw/strudel.nvim",
         cmd = "StrudelLaunch",
@@ -143,5 +134,14 @@ return {
                 "",
             },
         },
+    },
+
+    {
+        "NotAShelf/syntax-gaslighting.nvim",
+        enabled = false,
+        config = function()
+            vim.api.nvim_set_hl(0, "GaslightingUnderline", { fg = "#d79921" })
+            require('syntax-gaslighting').setup({})
+        end,
     },
 }

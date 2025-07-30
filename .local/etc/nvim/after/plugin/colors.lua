@@ -1,5 +1,6 @@
 local colors = require("gruvbox").palette
 
+vim.opt.background = "dark"
 vim.cmd("colorscheme gruvbox")
 
 require("hlargs").setup {
@@ -11,8 +12,8 @@ require("scrollbar").setup({
         Search = { color = colors.neutral_orange },
         Error = { color = colors.neutral_red },
         Warn = { color = colors.neutral_yellow },
-        Info = { color = colors.neutral_pink },
-        Hint = { color = colors.neutral_cyan },
+        Info = { color = colors.neutral_purple },
+        Hint = { color = colors.neutral_aqua },
         Misc = { color = colors.neutral_purple },
     },
     handlers = {
@@ -38,8 +39,8 @@ local function process_sections(sections)
             table.insert(section, pos * 2, {
                 empty,
                 color = {
-                    fg = colors.neutral_white,
-                    bg = colors.neutral_white,
+                    fg = colors.light1,
+                    bg = colors.light1,
                 },
             })
         end
@@ -63,7 +64,7 @@ local function modified()
     return ''
 end
 
-local transparent = require'lualine.themes.gruvbox'
+local transparent = require('lualine.themes.gruvbox')
 transparent.inactive.c.bg = 'nil'
 transparent.visual.c.bg = 'nil'
 transparent.replace.c.bg = 'nil'

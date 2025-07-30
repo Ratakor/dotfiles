@@ -28,6 +28,7 @@ vim.opt.listchars = "tab:| ,space:·" --,eol:$ --↴
 vim.opt.path = ".,/usr/include,/usr/local/include,,"
 vim.opt.foldenable = false
 vim.api.nvim_create_autocmd("FileType", { command = "setl fo-=ro fo+=tc" })
+vim.opt.wrap = false
 
 -- Toggle between tabs and spaces
 local using_space = true
@@ -118,3 +119,4 @@ abbrev('i', "reutnr", "return")
 abbrev('i', "TOOD", "TODO")
 abbrev('i', "cosnt", "const")
 abbrev('i', "swtich", "switch")
+abbrev('i', "emd", "end")

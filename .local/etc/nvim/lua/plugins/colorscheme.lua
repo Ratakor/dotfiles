@@ -1,5 +1,3 @@
-vim.opt.background = "dark"
-
 return {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,

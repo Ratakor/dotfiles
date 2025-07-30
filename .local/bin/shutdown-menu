@@ -4,19 +4,18 @@
 
 RED="#cc241d"
 CYAN="#689d6a"
-ROOTCMD=${ROOTCMD:-$(command -v doas || command -v sudo)}
 
 [ "$DMENU" = "tofi" ] && DMENU="tofi --selection-color $RED"
 [ "$DMENU" = "dmenu" ] && DMENU="dmenu -sb $RED -hf $CYAN"
 
-query=$(printf ' lock\n exit wm\n⏻ shutdown\n⏼ reboot' | $DMENU -i -p 'System')
+query=$(printf ' lock\n exit wm\n⏻ poweroff\n⏼ reboot' | $DMENU -i -p 'System')
 case $query in
 *"lock")
 	glitchlock ;;
 *"exit wm")
 	riverctl exit ;;
-*"shutdown")
-	$ROOTCMD openrc-shutdown -p 0 ;;
+*"poweroff")
+	sudo poweroff ;;
 *"reboot")
-	$ROOTCMD openrc-shutdown -r 0 ;;
+	sudo reboot ;;
 esac

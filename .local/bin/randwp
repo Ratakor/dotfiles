@@ -4,7 +4,8 @@
 # IGNORE=${IGNORE-file1|folder|file2}
 # IGNORE can be an env variable (useful for yazi)
 
-WPDIR=${1:-$XDG_DATA_HOME/wallpapers}
+TMPDIR=${XDG_RUNTIME_DIR:-/tmp}
+WPDIR=${1:-$XDG_PICTURES_DIR/wallpapers}
 IGNORE=${IGNORE-nsfw}
 ALL=$(find "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md' ! -name 'list.txt')
 
@@ -18,9 +19,9 @@ searchwp() {
 }
 
 searchwp
-OLD_PID=$(cat /tmp/swaybg.pid)
+OLD_PID=$(cat "$TMPDIR/swaybg.pid" 2>/dev/null)
 swaybg -m fill -i "$wp" 2>/dev/null &
-echo $! > /tmp/swaybg.pid
+echo $! > "$TMPDIR/swaybg.pid"
 (sleep 3 && kill "$OLD_PID" 2>/dev/null || exit 0) &
 
 # multiple screens (TODO: kill and pid)

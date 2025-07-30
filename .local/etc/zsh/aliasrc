@@ -1,9 +1,9 @@
 # vim: ft=zsh
 # shellcheck disable=SC2139
 
-# ROOTCMD not required for some system commands
-for command in iftop umount fdisk cryptsetup modprobe pacman su; do
-	alias $command="$ROOTCMD $command"
+# sudo not required for some system commands
+for command in iftop umount fdisk cryptsetup modprobe pacman su visudo borgmatic; do
+	alias $command="sudo $command"
 done; unset command
 
 # edit config files and stuff
@@ -29,7 +29,7 @@ alias mu="cd $XDG_MUSIC_DIR/urls"
 alias pp="cd $XDG_PICTURES_DIR"
 alias psc="cd $XDG_PICTURES_DIR/screenshots"
 alias vv="cd $XDG_VIDEOS_DIR"
-alias wp="cd $XDG_DATA_HOME/wallpapers"
+alias wp="cd $XDG_PICTURES_DIR/wallpapers"
 alias n="yazi $XDG_DOCUMENTS_DIR/notes"
 alias nn="cd $XDG_DOCUMENTS_DIR/notes"
 alias sc="cd $HOME/.local/bin"
@@ -37,10 +37,10 @@ alias sta="cd $XDG_STATE_HOME"
 alias cac="cd $XDG_CACHE_HOME"
 
 # shorter name and basic stuff changed
-[ -x "$(command -v nvim)" ] && alias vimdiff="nvim -d"
 alias e="$EDITOR"
-alias se="$ROOTCMD $EDITOR"
-alias "$ROOTCMD"="$ROOTCMD " # run root commands with aliases
+alias se="sudoedit"
+alias sudo="sudo " # run aliases with sudo
+alias sudoers="visudo --strict"
 alias :q="exit"
 alias :Q="exit"
 alias bc="bc -ql"
@@ -55,7 +55,7 @@ alias ho="cat $XDG_DATA_HOME/hole/history"
 alias ytfzf="ytfzf -D --detach"
 alias tmp='cd $(mktemp -d)'
 alias o="plumber" # o for open
-alias mount="$ROOTCMD mount -o nosuid,nodev,noexec"
+alias mount="sudo mount -o nosuid,nodev,noexec"
 alias gb="go build"
 alias zb="zig build"
 alias cb="cargo build"
@@ -69,11 +69,13 @@ alias zpot="zpotify"
 alias z="zellij --layout welcome"
 alias zac="zellij attach --create"
 alias p="paru"
+alias musb="pmount"
+alias umusb="pumount"
 
 # verbosity and colors
 alias rm="trash -v" # "rm -vI"
 alias rmdir="rmdir -v"
-alias cp="cp -riv"
+alias cp="cp -riv" #--reflink=auto"
 alias mv="mv -iv"
 alias mkdir="mkdir -pv"
 alias grep="grep --color=always -n"
@@ -90,6 +92,7 @@ alias du="dust -r"
 alias duf="duf -hide special"
 alias fd="fd -HI --color=always"
 alias less="less -R"
+alias vimdiff="nvim -d"
 
 # git
 alias G="gitui"
@@ -126,4 +129,9 @@ function y() {
 		builtin cd -- "$cwd"
 	fi
 	command rm -f -- "$tmp"
+}
+
+# convert markdown to pdf with pandoc
+function pdfmd() {
+	pandoc "$1" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g')" # -V geometry:margin=1in
 }

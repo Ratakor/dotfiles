@@ -16,25 +16,6 @@ riverctl border-color-focused 0x458588
 riverctl border-color-unfocused 0x3c3836
 riverctl border-color-urgent 0xcc241d
 
-if [ -d "/sys/class/drm" ]; then
-	for dev in /sys/class/drm/*/modes; do
-		read -r resolution _ < "$dev" || continue
-		break
-	done
-
-	width=$((${resolution%%x*} / 2))
-	height=$((${resolution#*x} / 2))
-
-	# width=$(echo "${resolution%%x*} * 0.8" | bc)
-	# height=$(echo "${resolution#*x} * 0.8" | bc)
-	# width=${width%.*}
-	# height=${height%.*}
-
-	riverctl rule-add -app-id "imv" float
-	riverctl rule-add -app-id "imv" dimensions "$width"x"$height"
-fi
-
-
 ### WM bindings
 
 riverctl map normal Super F toggle-fullscreen
@@ -112,7 +93,8 @@ riverctl map normal None Print spawn 'screenshot'
 
 #riverctl map normal None F7 spawn "$TERMINAL -e dmenurecord"
 #riverctl map normal Super B spawn "$BROWSER"
-riverctl map normal Super N spawn "$TERMINAL -e yazi $XDG_DOCUMENTS_DIR/notes"
+#riverctl map normal Super N spawn "$TERMINAL -e yazi $XDG_DOCUMENTS_DIR/notes"
+riverctl map normal Super N spawn "$TERMINAL -D $XDG_DOCUMENTS_DIR/notes -e zellij attach --create notes"
 riverctl map normal Super+Shift N spawn "$TERMINAL -e newsboat"
 
 riverctl map -repeat normal None XF86AudioRaiseVolume spawn 'wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+'
@@ -122,7 +104,7 @@ riverctl map -repeat normal Super Minus spawn 'wpctl set-volume @DEFAULT_AUDIO_S
 riverctl map normal None XF86Launch1 spawn 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'
 riverctl map normal None F6 spawn 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'
 
-ricerctl map normal Super+Shift P spawn 'librespot-cfg'
+#riverctl map normal Super+Shift P spawn 'librespot-cfg'
 riverctl map normal Super M spawn 'zpotify play playlist' # 'music'
 riverctl map normal Super+Shift M spawn 'zpotify play album' # 'musiccmd'
 riverctl map normal None XF86AudioPrev spawn 'musiccmd prev || zpotify prev >/dev/null'
@@ -173,7 +155,7 @@ spawn foot --server
 spawn crond -f "$XDG_CONFIG_HOME/crontab" -n
 spawn gammastep
 spawn mako
-spawn waybar
+spawn waybar --log-level warning
 spawn rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55
 spawn swayidle -w \
 	timeout 300 "glitchlock" \

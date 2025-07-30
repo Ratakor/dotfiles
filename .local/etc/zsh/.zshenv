@@ -10,7 +10,6 @@ export MANPATH="$HOME/.local/share/man:/usr/local/share/man:/usr/share/man"
 export EDITOR="nvim"
 export TERMINAL="footclient"
 export BROWSER="cromite --new-window"
-export ROOTCMD="doas"
 export MANPAGER="manpager"
 export DMENU="tofi"
 
@@ -49,11 +48,18 @@ export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 export ZELLIJ_CONFIG_DIR="$XDG_CONFIG_HOME/zellij"
 export ZELLIJ_CONFIG_FILE="$XDG_CONFIG_HOME/zellij/config.kdl"
 
+# Disable telemetry (https://consoledonottrack.com)
+export AZURE_CORE_COLLECT_TELEMETRY=0
+export DO_NOT_TRACK=1
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export GATSBY_TELEMETRY_DISABLED=1
+export POWERSHELL_TELEMETRY_OPTOUT=1
+export SAM_CLI_TELEMETRY=0
+
 # Misc
 # umask 0077
 export GPG_TTY=$(tty)
 export MOZ_ENABLE_WAYLAND=1
-export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export MANWIDTH=80
 export LESS=-R
 export HISTFILE="$XDG_STATE_HOME/zsh/history"

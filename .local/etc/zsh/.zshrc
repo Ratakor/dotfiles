@@ -80,4 +80,8 @@ RPROMPT='${vcs_info_msg_0_}'
 zstyle ':vcs_info:git:*' formats '%F{cyan}(%b)%f'
 zstyle ':vcs_info:*' enable git
 
+# init zoxide and replace cd with zoxide
 eval "$(zoxide init zsh --cmd cd)"
+
+# init fuck alias
+eval "$(thefuck --alias)"

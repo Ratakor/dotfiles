@@ -27,7 +27,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Bar: [waybar](https://github.com/Alexays/Waybar)
 - Terminal emulator: [foot](https://codeberg.org/dnkl/foot)
 - Dynamic menu: [tofi](https://github.com/philj56/tofi)
-- Web Browser: [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)
+- Web Browser: [Cromite](https://www.cromite.org)
 - Theme: [Gruvbox](https://github.com/morhetz/gruvbox)
 
 ### Command Line Interface
@@ -55,6 +55,7 @@ DO NOT TRY TO INSTALL if it's not a fresh install and you don't know what you're
 - Mail client: [Claws Mail](https://www.claws-mail.org)
 - Screen locker: [swaylock](https://github.com/swaywm/swaylock)
 - [Wallpapers](https://github.com/ratakor/wallpapers)
+- [Custom Packages](https://github.com/ratakor/rcp)
 
 See [packages](.local/share/packages) for a list and a small description of
 other programs I use.
