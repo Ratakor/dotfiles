@@ -1,0 +1,42 @@
+theme "gruvbox-dark"
+show_startup_tips false
+// pane_frames false
+// simplified_ui true
+// default_layout "compact"
+
+keybinds {
+    // Detach instead of of Quit for "Ctrl q"
+    shared_except "locked" {
+        bind "Ctrl q" { Detach; }
+    }
+    // rebind "Ctrl h" to "Ctrl m"
+    move {
+        unbind "Ctrl h"
+        bind "Ctrl m" { SwitchToMode "normal"; }
+    }
+    shared_except "locked" "move" {
+        unbind "Ctrl h"
+        bind "Ctrl m" { SwitchToMode "move"; }
+    }
+    // rebind "Ctrl o" to "Ctrl y"
+    session {
+        unbind "Ctrl o"
+        bind "Ctrl y" { SwitchToMode "normal"; }
+    }
+    shared_except "locked" "session" {
+        unbind "Ctrl o"
+        bind "Ctrl y" { SwitchToMode "session"; }
+    }
+    // More keybinds
+    shared_except "locked" {
+        bind "Alt Shift j" { ScrollDown; }
+        bind "Alt Shift k" { ScrollUp; }
+        bind "Alt q" { CloseFocus; SwitchToMode "normal"; }
+    }
+    tab {
+        bind "q" { CloseTab; SwitchToMode "normal"; }
+    }
+    shared_among "pane" "tmux" {
+        bind "q" { CloseFocus; SwitchToMode "normal"; }
+    }
+}

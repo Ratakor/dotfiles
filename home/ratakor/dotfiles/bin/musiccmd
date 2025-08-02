@@ -1,0 +1,127 @@
+#!/bin/sh
+# helper for the music script
+# dependencies: music, mpv, socat, yt-dlp, ffmpeg, imagemagick, $DMENU
+# optional dependencies: waybar, notify-send, imv
+# shellcheck disable=SC2046
+
+FAVDIR=${XDG_MUSIC_DIR:-$HOME/Music}/favorite
+DLDIR=${XDG_MUSIC_DIR:-$HOME/Music}/download
+CACHE=${XDG_CACHE_HOME:-$HOME/.cache}
+SOCKET=${XDG_RUNTIME_DIR:-/tmp}/music.sock
+
+getpath() {
+	tmp=$(printf '{ "command": ["get_property", "path"] }\n'\
+		| socat - "$SOCKET")
+	tmp=${tmp#{\"data\":\"}
+	path=${tmp%\",\"request_id\":0,\"error\":\"success\"\}}
+}
+
+gettitle() {
+	tmp=$(printf '{ "command": ["get_property", "media-title"] }\n'\
+		| socat - "$SOCKET")
+	tmp=${tmp##{\"data\":\"}
+	title=${tmp%\",\"request_id\":0,\"error\":\"success\"\}}
+}
+
+getvol() {
+	tmp=$(printf '{ "command": ["get_property", "volume"] }\n'\
+		| socat - "$SOCKET")
+	tmp="${tmp#{\"data\":}" # smh this line breaks highlighting
+	printf '%s\n' "${tmp%.000000,\"request_id\":0,\"error\":\"success\"\}}"
+}
+
+download() {
+	mkdir -p "$1"
+	notify-send "Downloading '$title' to '$1'"
+	if yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3\
+			-o"%(title)s [%(id)s].%(ext)s" -P "$1" "$path"; then
+		notify-send "'$title' successfuly downloaded to '$1'"
+		return 0
+	else
+		notify-send "Error: '$title' couldn't be downloaded"
+		return 1
+	fi
+}
+
+addtofav() {
+	case $path in
+	*youtube.com*)
+		download "$FAVDIR" ;;
+	*)
+		mkdir -p "$FAVDIR"
+		if cp "$path" "$FAVDIR"; then
+			notify-send "'$title' was copied to '$FAVDIR'"
+			return 0
+		else
+			notify-send "'$title' couldn't be copied to '$FAVDIR'"
+			return 1
+		fi ;;
+	esac
+}
+
+getthumbnail() {
+	mkdir -p "$CACHE"
+	case $path in
+	*youtube.com*)
+		yt-dlp --skip-download --force-overwrites --write-thumbnail\
+			-o "$CACHE/thumbnail" "$path" > /dev/null 2>&1 &&\
+			magick "$CACHE/thumbnail.webp" "$CACHE/thumbnail.jpg" ;;
+	*)
+		ffmpeg -y -i "$path" "$CACHE/thumbnail.jpg" 2> /dev/null ;;
+	esac
+}
+
+
+main() {
+	if ! pgrep -x music >/dev/null; then
+		kill -35 $(pidof waybar)
+		# notify-send "Error: There is no music playing"
+		return 1
+	fi
+
+	cmd="${1:-$(printf '⏯️ pause/play\n⏭️ next\n⏮️ prev\n📢 volume\n🔳 stop
+⭐ favorite\n⬇️ download\n🖼️ thumbnail' | $DMENU -p "musiccmd")}"
+
+	case "$cmd" in
+	cycle|*pause|*play)
+		printf 'cycle pause\n' | socat - "$SOCKET"
+		kill -35 $(pidof waybar) ;;
+	*next)
+		printf 'playlist-next\n' | socat - "$SOCKET" ;;
+	*prev)
+		printf 'playlist-prev\n' | socat - "$SOCKET" ;;
+	*volume)
+		printf '{ "command": ["set_property", "volume", %s] }\n'\
+			"${2:-$(true | $DMENU -p "Current volume: $(getvol) ->")}"\
+			| socat - "$SOCKET" 1> /dev/null ;;
+	*stop)
+		printf 'stop\n' | socat - "$SOCKET"
+		kill -35 $(pidof waybar) ;;
+	*favorite|fav)
+		getpath
+		gettitle
+		addtofav ;;
+	*download)
+		getpath
+		gettitle
+		download "$DLDIR" ;;
+	*thumbnail)
+		getpath
+		if getthumbnail; then
+			imv "$CACHE/thumbnail.jpg"
+		else
+			notify-send "Error: can't get thumbnail"
+			return 1
+		fi ;;
+	path)
+		getpath
+		printf '%s\n' "$path" ;;
+	title)
+		gettitle
+		printf '%s\n' "$title" ;;
+	vol)
+		getvol ;;
+	esac
+}
+
+main "$@"

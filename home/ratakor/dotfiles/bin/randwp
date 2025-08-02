@@ -1,0 +1,36 @@
+#!/bin/sh
+# set a random wallpaper
+# to ignore a folder or a file put it in IGNORE after the - like below
+# IGNORE=${IGNORE-file1|folder|file2}
+# IGNORE can be an env variable (useful for yazi)
+
+TMPDIR=${XDG_RUNTIME_DIR:-/tmp}
+WPDIR=${1:-$XDG_PICTURES_DIR/wallpapers}
+IGNORE=${IGNORE-nsfw}
+ALL=$(find "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md' ! -name 'list.txt')
+
+searchwp() {
+	wp=$(printf '%s' "$ALL" | shuf -n 1)
+	if [ -n "$IGNORE" ]; then
+		while printf '%s' "$wp" | grep -q -E "$IGNORE" ; do
+			wp=$(printf '%s' "$ALL" | shuf -n 1)
+		done
+	fi
+}
+
+searchwp
+OLD_PID=$(cat "$TMPDIR/swaybg.pid" 2>/dev/null)
+swaybg -m fill -i "$wp" 2>/dev/null &
+echo $! > "$TMPDIR/swaybg.pid"
+(sleep 3 && kill "$OLD_PID" 2>/dev/null || exit 0) &
+
+# multiple screens (TODO: kill and pid)
+# killall swaybg
+# for output in $(xrandr | awk '$2=="connected" {print $1}'); do
+# 	searchwp
+# 	args="$args -o $output -m fill -i $wp"
+# 	# swaybg -o "$output" -m fill -i "$wp"
+# done
+# # doing this speedup a lot, there must be no space in wallpaper filename
+# # shellcheck disable=SC2086
+# swaybg $args &

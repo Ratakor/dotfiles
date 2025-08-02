@@ -1,0 +1,43 @@
+#!/bin/sh
+# wrapper for yt-dlp with notification support
+# shellcheck disable=SC2015
+
+TYPE=$1
+if [ -d "$2" ]; then
+	MUSICDIR=$2
+	VIDEODIR=$2
+	URL=$3
+else
+	MUSICDIR=${3:-${XDG_MUSIC_DIR:-$HOME/Music}}
+	VIDEODIR=${3:-${XDG_VIDEOS_DIR:-$HOME/Videos}}
+	URL=$2
+fi
+
+case $TYPE in
+v)
+	mkdir -p "$VIDEODIR"
+	notify-send "Video download started"
+	yt-dlp -f '22' -o '%(title)s [%(id)s].%(ext)s'\
+	--embed-metadata -P "$VIDEODIR" "$URL" &&
+	notify-send "Video downloaded" ||
+		(notify-send "Error: Download failed"; exit 1) ;;
+m)
+	mkdir -p "$MUSICDIR/download"
+	notify-send "Music download started"
+	yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3\
+	-o '%(title)s [%(id)s].%(ext)s' --embed-metadata\
+	-P "$MUSICDIR/download" "$URL" &&
+	notify-send "Music downloaded" ||
+		(notify-send "Error: Download failed"; exit 1) ;;
+p)
+	NAME=$(true | $DMENU -p 'Name')
+	mkdir -p "$MUSICDIR/$NAME"
+	notify-send "Playlist download started"
+	yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3\
+	-o '%(playlist_index)s - %(title)s [%(id)s].%(ext)s'\
+	--embed-metadata -P "$MUSICDIR/$NAME" "$URL" &&
+	notify-send "Playlist downloaded" ||
+		(notify-send "Error: Download failed"; exit 1) ;;
+*)
+	exit 1 ;;
+esac

@@ -1,0 +1,137 @@
+# vim: ft=zsh
+# shellcheck disable=SC2139
+
+# sudo not required for some system commands
+for command in iftop umount fdisk cryptsetup modprobe pacman su visudo borgmatic; do
+	alias $command="sudo $command"
+done; unset command
+
+# edit config files and stuff
+alias cf="cd $XDG_CONFIG_HOME"
+alias cfv="cd $XDG_CONFIG_HOME/nvim"
+alias cfy="cd $XDG_CONFIG_HOME/yazi"
+alias cfz="$EDITOR $ZDOTDIR/.zshrc"
+alias cfe="$EDITOR $ZDOTDIR/.zshenv"
+alias cfa="$EDITOR $ZDOTDIR/aliasrc"
+alias cfr="$EDITOR $XDG_CONFIG_HOME/river/init"
+alias cfn="$EDITOR $XDG_CONFIG_HOME/newsboat/config"
+alias cfu="$EDITOR $XDG_CONFIG_HOME/newsboat/urls"
+alias cfq="$EDITOR $XDG_CONFIG_HOME/quand/config"
+alias cfb="cd $XDG_CONFIG_HOME/waybar"
+alias cft="$EDITOR $XDG_CONFIG_HOME/foot/foot.ini"
+alias cfc="$EDITOR $XDG_CONFIG_HOME/crontab"
+alias dt="cd $XDG_DATA_HOME"
+alias pkg="$EDITOR $XDG_DATA_HOME/packages"
+alias d="cd $XDG_DOWNLOAD_DIR"
+alias D="cd $XDG_DOCUMENTS_DIR"
+alias mm="cd $XDG_MUSIC_DIR"
+alias mu="cd $XDG_MUSIC_DIR/urls"
+alias pp="cd $XDG_PICTURES_DIR"
+alias psc="cd $XDG_PICTURES_DIR/screenshots"
+alias vv="cd $XDG_VIDEOS_DIR"
+alias wp="cd $XDG_PICTURES_DIR/wallpapers"
+alias n="yazi $XDG_DOCUMENTS_DIR/notes"
+alias nn="cd $XDG_DOCUMENTS_DIR/notes"
+alias sc="cd $HOME/.local/bin"
+alias sta="cd $XDG_STATE_HOME"
+alias cac="cd $XDG_CACHE_HOME"
+
+# shorter name and basic stuff changed
+alias e="$EDITOR"
+alias se="sudoedit"
+alias sudo="sudo " # run aliases with sudo
+alias sudoers="visudo --strict"
+alias :q="exit"
+alias :Q="exit"
+alias bc="bc -ql"
+alias timer="termdown"
+alias video-dlp="ytdl v ."
+alias music-dlp="ytdl m"
+alias playlist-dlp="ytdl p"
+alias paint="pinta"
+alias py="python3"
+alias sic="irc"
+alias ho="cat $XDG_DATA_HOME/hole/history"
+alias ytfzf="ytfzf -D --detach"
+alias tmp='cd $(mktemp -d)'
+alias o="plumber" # o for open
+alias mount="sudo mount -o nosuid,nodev,noexec"
+alias gb="go build"
+alias zb="zig build"
+alias cb="cargo build"
+alias g="grep -RIn --exclude-dir=.git"
+alias cfmt="astyle -A3 -t8 -p -xg -H -xB -U -n"
+alias gofmt="gofmt -s -w"
+alias javafmt="astyle --mode=java --style=google -n"
+alias fork="setsid -f"
+alias zigup="zigup --install-dir $XDG_DATA_HOME/zigup --path-link $HOME/.local/bin/zig"
+alias zpot="zpotify"
+alias z="zellij --layout welcome"
+alias zac="zellij attach --create"
+alias p="paru"
+alias musb="pmount"
+alias umusb="pumount"
+
+# verbosity and colors
+alias rm="trash -v" # "rm -vI"
+alias rmdir="rmdir -v"
+alias cp="cp -riv" #--reflink=auto"
+alias mv="mv -iv"
+alias mkdir="mkdir -pv"
+alias grep="grep --color=always -n"
+alias diff="diff --color=always"
+alias ip="ip --color=always"
+alias ls="eza --color=always --group-directories-first --hyperlink"
+alias sl="ls"
+alias ll="ls -lho --git"
+alias la="ls -aa"
+alias lr="ls -R"
+alias tree="ls -T"
+alias cat="bat --style=numbers,changes --tabs 8"
+alias du="dust -r"
+alias duf="duf -hide special"
+alias fd="fd -HI --color=always"
+alias less="less -R"
+alias vimdiff="nvim -d"
+
+# git
+alias G="gitui"
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gca="git commit -a"
+alias gcv="git commit -v"
+alias gcm="git commit -m"
+alias gam="git commit --amend"
+alias gp="git push --follow-tags"
+alias gpl="git pull"
+alias gr="git restore"
+alias grs="gr --staged"
+alias gd="git diff"
+alias gac="ga . && gc"
+alias gacv="ga . && gcv"
+alias gcp="gc && gp"
+alias gacp="ga . && gc && gp"
+alias gacpv="ga . && gcv && gp"
+
+# music
+alias pause="musiccmd pause"
+alias play="musiccmd play" # This does the same thing as pause
+alias next="musiccmd next"
+alias prev="musiccmd prev"
+alias stop="musiccmd stop"
+alias vol="musiccmd volume" # put the volume you want in arg like vol 50
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file "$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	command rm -f -- "$tmp"
+}
+
+# convert markdown to pdf with pandoc
+function pdfmd() {
+	pandoc "$1" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g')" # -V geometry:margin=1in
+}

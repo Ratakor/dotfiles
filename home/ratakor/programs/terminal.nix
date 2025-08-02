@@ -1,0 +1,78 @@
+{
+  ...
+}: {
+  programs.foot = {
+    enable = true;
+    # server.enable = true; # TODO
+
+    settings = {
+      main = {
+        font = "monospace:size=10";
+        pad = "5x5";
+        # dpi-aware = "yes";
+      };
+
+      url = {
+        launch = "plumber --url \${url}";
+      };
+
+      scrollback = {
+        lines = 5000;
+      };
+
+      key-bindings = {
+        unicode-input = "none";
+        show-urls-launch = "Control+Shift+l";
+        show-urls-copy = "Control+Shift+u";
+        search-start = "Mod1+s";
+
+        scrollback-up-half-page = "Mod1+u";
+        scrollback-down-half-page = "Mod1+d";
+        scrollback-up-line = "Mod1+k";
+        scrollback-down-line = "Mod1+j";
+        clipboard-copy = "Control+Shift+c";
+        clipboard-paste = "Control+Shift+v";
+        primary-paste = "Shift+Insert";
+        font-increase = "Control+Shift+plus";
+        font-decrease = "Control+Shift+minus";
+        font-reset = "Control+equal";
+        #pipe-selected = "[xargs -r firefox] none";
+      };
+
+      search-bindings = {
+        find-prev = "Control+Shift+n";
+        find-next = "Control+n";
+      };
+
+      mouse-bindings = {
+        primary-paste = "none";
+      };
+
+      # TODO: use variables to define colors (ez dracula theme swap)
+      colors = {
+        alpha = "0.85";
+        foreground = "ebdbb2";
+        background = "282828";
+        cursor = "1d2021 ebdbb2";
+
+        regular0 = "282828"; # black
+        regular1 = "cc241d"; # red
+        regular2 = "98971a"; # green
+        regular3 = "d79921"; # yellow
+        regular4 = "458588"; # blue
+        regular5 = "b16286"; # magenta
+        regular6 = "689d6a"; # cyan
+        regular7 = "a89984"; # white
+
+        bright0 = "928374"; # black
+        bright1 = "fb4934"; # red
+        bright2 = "b8bb26"; # green
+        bright3 = "fabd2f"; # yellow
+        bright4 = "83a598"; # blue
+        bright5 = "d3869b"; # magenta
+        bright6 = "8ec07c"; # cyan
+        bright7 = "ebdbb2"; # white
+      };
+    };
+  };
+}

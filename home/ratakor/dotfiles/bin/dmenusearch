@@ -1,0 +1,75 @@
+#!/bin/sh
+# search web, AUR, youtube, man pages or emoji with $DMENU
+
+# youtube dependency: ytfzf
+# man dependencies: mandoc/man-db, zathura
+# emoji dependency: wl-clipboard
+
+set -e
+
+BROWSER=${BROWSER:-"xdg-open"}
+DMENU=${DMENU:-"dmenu -i"}
+
+web() {
+	SEARCH_ENGINE="https://4get.ca/web?s="
+	# SEARCH_ENGINE="https://duckduckgo.com/?q="
+	query=${1:-$(true | $DMENU -p "Search:" -l 0)}
+	if [ -z "$query" ]; then
+		exit 1
+	elif [ "$query" = '!!' ]; then
+		[ -f /tmp/query ] &&
+			query=$(cat /tmp/query) ||
+			exit 1
+	else
+		echo "$query" > /tmp/query
+	fi
+	query="$SEARCH_ENGINE$query"
+
+}
+
+aur() {
+	AURSITE="https://aur.archlinux.org/packages?O=0&K="
+	query="$AURSITE$(true | $DMENU -p "AUR:" -l 0)"
+}
+
+manpdf() {
+	[ "$DMENU" = "tofi" ] && DMENU="tofi --padding-left 0% --padding-top 0%"
+	if [ -z "$1" ]; then
+		# shellcheck disable=SC2046
+		set -- $(man -k . | cut -c 1-80 | $DMENU -i -l 20 -p "man:" | awk -F'[()]' '{print $1, $2}')
+		[ -z "$1" ] && return 1
+	fi
+	man -Tpdf "$2" "$(man -w "$1")" | zathura -
+	# "$TERMINAL" -e man "$2" "$(man -w "$1")"
+}
+
+emoji() {
+	chosen=$(cut -d ';' -f1 "$XDG_DATA_HOME/emoji" | $DMENU -i -l 10 | sed "s/ .*//")
+	[ -z "$chosen" ] && return 1
+	printf '%s' "$chosen" | wl-copy
+	notify-send "'$chosen' copied to clipboard."
+}
+
+main() {
+	case ${1:-$(printf 'web\naur\nyoutube\nman\nemoji' | $DMENU -i)} in
+	web)
+		web "$2" ;;
+	aur)
+		aur ;;
+	youtube)
+		ytfzf -D
+		return ;;
+	man)
+		manpdf "$2"
+		return ;;
+	emoji)
+		emoji
+		return ;;
+	*)
+		return 1 ;;
+	esac
+
+	$BROWSER "$query" 2> /dev/null
+}
+
+main "$@"

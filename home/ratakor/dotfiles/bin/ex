@@ -1,0 +1,45 @@
+#!/bin/sh
+# a simple utility to extract files based on extension
+
+[ -z "$1" ] && printf "You need to provide file(s) to extract\n" 1>&2 && exit 1
+
+extract() {
+	case $1 in
+	*.tar.bz2|*.tbz2)
+		tar xjf "$1" ;;
+	*.tar.gz|*.tgz)
+		tar xzf "$1" ;;
+	*.tar.xz|*.txz|*.tar)
+		tar xf "$1" ;;
+	*.bz2)
+		bunzip2 "$1" ;;
+	*.gz|*.Z)
+		gzip -d "$1" ;;
+	*.rar)
+		unrar x "$1" ;;
+	*.zip)
+		unzip -q "$1" ;;
+	*.7z)
+		7z x "$1" ;;
+	*.deb)
+		ar x "$1" ;;
+	*.tar.zst)
+		unzstd "$1" && tar xf "${1%.zst}" && rm "${1%.zst}" ;;
+	*.zst)
+		unzstd "$1" ;;
+	*)
+		printf "Uh oh looks like ex can't handle %s\n" "$1" 1>&2
+		return 1 ;;
+	esac &&
+
+	printf "The content of %s has been extracted\n" "$1"
+	return 0
+}
+
+for file in "$@"; do
+	if [ -f "$file" ]; then
+		extract "$file"
+	else
+		printf "%s is not a valid file\n" "$file" 1>&2
+	fi
+done

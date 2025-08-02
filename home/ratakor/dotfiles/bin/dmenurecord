@@ -1,0 +1,168 @@
+#!/bin/sh
+# simple menu for recordings with ffmpeg
+# dependencies: pipewire-pulse/pulseaudio, ffmpeg, $DMENU, slurp
+# Original: https://github.com/whoisYoges/record-with-ffmpeg
+# TODO: change to use wf-recorder -a
+
+set -e
+
+getResolution() {
+	if [ ! -d "/sys/class/drm" ]; then
+		printf "No DRM found\n" >&2
+		exit 1
+	fi
+
+	for dev in /sys/class/drm/*/modes; do
+		read -r resolution _ < "$dev" || continue
+		break
+	done
+
+	printf "%s" "$resolution"
+}
+
+videodir="${XDG_VIDEOS_DIR:-$HOME/Videos}/ffmpeg/"
+audiodir="$videodir"
+title="$(date +ffmpeg-"%Y-%m-%d-%H-%M-%S")"
+recordingresolution="$(getResolution)"
+outputresolution="$recordingresolution"
+display="$DISPLAY"
+fps="30"
+crf="22" # 18
+codecvideo="libx264"
+codecaudio="libmp3lame"
+preset="veryfast"
+videoext="mp4"
+audioext="wav"
+
+# use pactl list source to check the infos
+monitoraudioinput="alsa_output.pci-0000_00_1b.0.analog-stereo.monitor"
+microphoneaudioinput="alsa_input.pci-0000_00_1b.0.analog-stereo"
+monitoraudiochannel="2"
+microphoneaudiochannel="2"
+monitoraudiofrequency="48000"
+microphoneaudiofrequency="48000"
+outputaudiofrequency="44100"
+
+internalAudioOnly() {
+	ffmpeg \
+		-f pulse -ac "$monitoraudiochannel" -ar "$monitoraudiofrequency" -i "$monitoraudioinput" \
+		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 "$title.$audioext"
+}
+
+microphoneOnly() {
+	ffmpeg \
+		-f pulse -ac "$microphoneaudiochannel" -ar "$microphoneaudiofrequency" -i "$microphoneaudioinput" \
+		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 "$title.$audioext"
+}
+
+internalAudioAndMicrophone() {
+	ffmpeg \
+		-f pulse -ac "$monitoraudiochannel" -ar "$monitoraudiofrequency" -i "$monitoraudioinput" \
+		-f pulse -ac "$microphoneaudiochannel" -ar "$microphoneaudiofrequency" -i "$microphoneaudioinput" \
+		-filter_complex amix=inputs=2 \
+		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 "$title.$audioext"
+}
+
+videoWithoutAudio() {
+	ffmpeg \
+		-f x11grab -r "$fps" -s "$recordingresolution" -i "$display" \
+		-vcodec "$codecvideo" -preset "$preset" -crf "$crf" \
+		-pix_fmt yuv420p -s "$outputresolution" "$title.$videoext"
+}
+
+videoWithInternalAudio() {
+	ffmpeg \
+		-f pulse -ac "$monitoraudiochannel" -ar "$monitoraudiofrequency" -i "$monitoraudioinput" \
+		-f x11grab -r "$fps" -s "$recordingresolution" -i "$display" \
+		-vcodec "$codecvideo" -preset "$preset" -crf "$crf" \
+		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 \
+		-pix_fmt yuv420p -s "$outputresolution" "$title.$videoext"
+}
+
+videoWithMicrophone() {
+	ffmpeg \
+		-f pulse -ac "$microphoneaudiochannel" -ar "$microphoneaudiofrequency" -i "$microphoneaudioinput" \
+		-f x11grab -r "$fps" -s "$recordingresolution" -i "$display" \
+		-vcodec "$codecvideo" -preset "$preset" -crf "$crf" \
+		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 \
+		-pix_fmt yuv420p -s "$outputresolution" "$title.$videoext"
+}
+
+videoWithMicrophoneAndInternalAudio() {
+	ffmpeg \
+		-f pulse -ac "$monitoraudiochannel" -ar "$monitoraudiofrequency" -i "$monitoraudioinput" \
+		-f pulse -ac "$microphoneaudiochannel" -ar "$microphoneaudiofrequency" -i "$microphoneaudioinput" \
+		-filter_complex amix=inputs=2 \
+		-f x11grab -r "$fps" -s "$recordingresolution" -i "$display" \
+		-vcodec "$codecvideo" -preset "$preset" -crf "$crf" \
+		-acodec "$codecaudio" -ar "$outputaudiofrequency" -q:a 1 \
+		-pix_fmt yuv420p -s "$outputresolution" "$title.$videoext"
+}
+
+audio() {
+	choice=${1:-$(printf "Quit
+1 Internal audio
+2 Microphone
+3 Both" | $DMENU -i -p "Audio")}
+
+	case $choice in
+		Quit) return 0 ;;
+		1*) cd "$audiodir" && internalAudioOnly ;;
+		2*) cd "$audiodir" && microphoneOnly ;;
+		3*) cd "$audiodir" && internalAudioAndMicrophone ;;
+		*) return 1 ;;
+	esac
+}
+
+video() {
+	choice=${1:-$(printf "Quit
+1 Without audio
+2 With internal audio
+3 With mic
+4 With both" | $DMENU -i -p "Video")}
+
+	case $choice in
+		Quit) return 0 ;;
+		1*) cd "$videodir" && videoWithoutAudio ;;
+		2*) cd "$videodir" && videoWithInternalAudio ;;
+		3*) cd "$videodir" && videoWithMicrophone ;;
+		4*) cd "$videodir" && videoWithMicrophoneAndInternalAudio ;;
+		*) return 1 ;;
+	esac
+}
+
+setSelectionVal() {
+	X=$1 Y=$2 W=$3 H=$4
+	[ $((W % 2)) -eq 1 ] && W=$((W + 1))
+	[ $((H % 2)) -eq 1 ] && H=$((H + 1))
+	recordingresolution="$W"x"$H"
+	outputresolution="$recordingresolution"
+	display="$display"+"$X","$Y"
+}
+
+videosel() {
+	coord=$(slurp -f "%x %y %w %h") || return 1
+	# shellcheck disable=SC2086
+	setSelectionVal $coord
+	video "$1"
+}
+
+main() {
+	[ ! -d "$audiodir" ] && mkdir -p "$audiodir"
+	[ ! -d "$videodir" ] && mkdir -p "$videodir"
+
+	choice=${1:-$(printf "Quit
+1 Audio
+2 Video
+3 Video Selection" | $DMENU -i -p "Mode")}
+
+	case $choice in
+		Quit) return 0 ;;
+		1*) audio "$2" ;;
+		2*) video "$2" ;;
+		3*) videosel "$2" ;;
+		*) return 1 ;;
+	esac
+}
+
+main "$@"

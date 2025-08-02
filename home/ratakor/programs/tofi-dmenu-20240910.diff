@@ -1,0 +1,130 @@
+From b87c5ca4b98a24a82ffae3bbda4dd9facdbc9ed1 Mon Sep 17 00:00:00 2001
+From: Ratakor <ratakor@disroot.org>
+Date: Tue, 10 Sep 2024 04:35:48 +0200
+Subject: [PATCH] Add more compatibility with dmenu
+
+---
+ doc/config     |  2 +-
+ doc/tofi.5.md  |  2 +-
+ doc/tofi.5.scd |  2 +-
+ src/config.c   |  2 +-
+ src/input.c    |  4 ++++
+ src/main.c     | 14 ++++++++++++--
+ 6 files changed, 20 insertions(+), 6 deletions(-)
+
+diff --git a/doc/config b/doc/config
+index b9242dc..532ea78 100644
+--- a/doc/config
++++ b/doc/config
+@@ -142,7 +142,7 @@
+ ### Text layout
+ #
+ 	# Prompt to display.
+-	prompt-text = "run: "
++	prompt-text = "run:"
+ 
+ 	# Extra horizontal padding between prompt and input.
+ 	prompt-padding = 0
+diff --git a/doc/tofi.5.md b/doc/tofi.5.md
+index 5065752..84084b9 100644
+--- a/doc/tofi.5.md
++++ b/doc/tofi.5.md
+@@ -257,7 +257,7 @@ options.
+ 
+ > Prompt text.
+ >
+-> Default: "run: "
++> Default: "run:"
+ 
+ **prompt-padding**=*px*
+ 
+diff --git a/doc/tofi.5.scd b/doc/tofi.5.scd
+index 59f5779..6899f3e 100644
+--- a/doc/tofi.5.scd
++++ b/doc/tofi.5.scd
+@@ -230,7 +230,7 @@ options.
+ *prompt-text*=_string_
+ 	Prompt text.
+ 
+-	Default: "run: "
++	Default: "run:"
+ 
+ *prompt-padding*=_px_
+ 	Extra horizontal padding between prompt and input.
+diff --git a/src/config.c b/src/config.c
+index 52e14d8..9dfa2e6 100644
+--- a/src/config.c
++++ b/src/config.c
+@@ -403,7 +403,7 @@ bool parse_option(struct tofi *tofi, const char *filename, size_t lineno, const
+ 			tofi->window.entry.cursor_theme.thickness_specified = true;
+ 		}
+ 	} else if (strcasecmp(option, "prompt-text") == 0) {
+-		snprintf(tofi->window.entry.prompt_text, N_ELEM(tofi->window.entry.prompt_text), "%s", value);
++		snprintf(tofi->window.entry.prompt_text, N_ELEM(tofi->window.entry.prompt_text), "%s ", value);
+ 	} else if (strcasecmp(option, "prompt-padding") == 0) {
+ 		uint32_t val = parse_uint32(filename, lineno, value, &err);
+ 		if (!err) {
+diff --git a/src/input.c b/src/input.c
+index 58154a7..3913e6c 100644
+--- a/src/input.c
++++ b/src/input.c
+@@ -351,6 +351,10 @@ void select_next_result(struct tofi *tofi)
+ {
+ 	struct entry *entry = &tofi->window.entry;
+ 
++	if (entry->first_result + entry->selection == entry->results.count - 1) {
++		return;
++	}
++
+ 	uint32_t nsel = MAX(MIN(entry->num_results_drawn, entry->results.count), 1);
+ 
+ 	entry->selection++;
+diff --git a/src/main.c b/src/main.c
+index e91838f..19e2180 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -828,7 +828,7 @@ static void usage(bool err)
+ "Basic options:\n"
+ "  -h, --help                           Print this message and exit.\n"
+ "  -c, --config <path>                  Specify a config file.\n"
+-"      --prompt-text <string>           Prompt text.\n"
++"  -p, --prompt-text <string>           Prompt text.\n"
+ "      --width <px|%>                   Width of the window.\n"
+ "      --height <px|%>                  Height of the window.\n"
+ "      --output <name>                  Name of output to display window on.\n"
+@@ -929,7 +929,7 @@ const struct option long_options[] = {
+ 	{"late-keyboard-init", optional_argument, NULL, 'k'},
+ 	{NULL, 0, NULL, 0}
+ };
+-const char *short_options = ":hc:";
++const char *short_options = ":hc:il:p:";
+ 
+ static void parse_args(struct tofi *tofi, int argc, char *argv[])
+ {
+@@ -950,6 +950,8 @@ static void parse_args(struct tofi *tofi, int argc, char *argv[])
+ 		} else if (opt == 'c') {
+ 			config_load(tofi, optarg);
+ 			load_default_config = false;
++		} else if (opt == 'i') {
++			// Ignore -i for compatibility with dmenu.
+ 		} else if (opt == ':') {
+ 			log_error("Option %s requires an argument.\n", argv[optind - 1]);
+ 			usage(true);
+@@ -989,6 +991,14 @@ static void parse_args(struct tofi *tofi, int argc, char *argv[])
+ 			} else {
+ 				tofi->late_keyboard_init = true;
+ 			}
++		} else if (opt == 'p') {
++			if (!config_apply(tofi, "prompt-text", optarg)) {
++				exit(EXIT_FAILURE);
++			}
++		} else if (opt == 'l') {
++			if (!config_apply(tofi, "num-results", optarg)) {
++				exit(EXIT_FAILURE);
++			}
+ 		}
+ 		opt = getopt_long(argc, argv, short_options, long_options, &option_index);
+ 	}
+-- 
+2.46.0
+
