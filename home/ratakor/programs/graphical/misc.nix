@@ -16,6 +16,9 @@
     # audacity # sound editor
     graphviz # graph visualization tool
     swaybg # wallpaper utility
+    wlopm # power management (black screen)
+    # claws-mail # mail client
+    # gajim # XMPP client
   ];
 
   programs = {
@@ -23,6 +26,44 @@
     keepassxc = {
       enable = true;
       settings = {}; # TODO, -> password-manager.nix?
+    };
+  };
+
+  services = {
+    # no blue light at night
+    gammastep = {
+      enable = true;
+      settings.general.fade = 0;
+      temperature.day = 6000;
+      temperature.night = 3000;
+      provider = "geoclue2";
+      # provider = "manual";
+      # latitude = 48.8;
+      # longitude = 2.3;
+    };
+
+    # idle manager
+    swayidle = {
+      enable = false; # TODO
+      extraArgs = [ "-w" ];
+      timeouts = [
+        {
+          timeout = 300;
+          command = "glitchlock";
+        }
+        {
+          timeout = 600;
+          command = "${pkgs.wlopm}/bin/wlopm --off '*'";
+          resumeCommand = "${pkgs.wlopm}/bin/wlopm --on '*'";
+        }
+        # { timeout = 600; command = "${pkgs.systemd}/bin/systemctl suspend"; }
+      ];
+    };
+
+    # multiple displays
+    kanshi = {
+      # TODO
+      enable = false;
     };
   };
 

@@ -4,11 +4,21 @@
   username,
   ...
 }: {
-  # tests
+  # services.displayManager = {
+  #   enable = true;
+  #   # defaultSession = "none";
+  #   # defaultSession = "none+river";
+  #   autoLogin = {
+  #     enable = true;
+  #     user = username;
+  #   };
+  # };
   services.xserver = {
     enable = true;
     desktopManager.xterm.enable = false;
-    displayManager.lightdm.enable = false;
+    displayManager = {
+      lightdm.enable = false;
+    };
   };
 
   users.users = {
@@ -212,38 +222,39 @@
   programs.zsh.enable = true;
 
   # Enable sound with pipewire
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
+
+    # TODO: config
+
+    wireplumber = {
+      enable = true;
+      # TODO: config?
+    };
   };
 
-  # TODO: there is too much unrelated to audio stuff here
-  # services.pulseaudio.enable = false;
-  # serivces.power-profiles-daemon.enable = true;
-  # security.polkit.enable = true;
-  # services = {
-  #   dbus.packages = [pkgs.gcr];
+  # used by gammastep
+  services.geoclue2 = {
+    enable = true;
+    # TODO: config
+  };
 
-  #   geoclue2.enable = true;
-  #
-  #   pipewire = {
-  #     enable = true;
-  #     alsa.enable = true;
-  #     alsa.support32Bit = true;
-  #     pulse.enable = true;
-  #     jack.enable = true;
+  # TODO: what is that?
+  # Whether to enable power-profiles-daemon, a DBus daemon that allows changing
+  # system behavior based upon user-selected power profiles.
+  # services.power-profiles-daemon.enable = true;
 
-  #     # media-session.enable = true;
-  #   }
-
-  #   udev.packages = with pkgs; [gnome-settings-daemon];
-  # };
-
+  # TODO: what is that?
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
+  # TODO: what is that?
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -264,6 +275,10 @@
         group = "root";
         source = "${pkgs.pmount}/bin/pumount";
       };
+    };
+
+    pam.services.swaylock = {
+      fprintAuth = false;
     };
 
     sudo = {

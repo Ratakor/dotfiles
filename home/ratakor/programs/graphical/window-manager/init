@@ -150,15 +150,15 @@ spawn() {
 }
 
 spawn randwp
-spawn pipewire
+#spawn pipewire
 spawn foot --server
-spawn crond -f "$XDG_CONFIG_HOME/crontab" -n
-#spawn gammastep
+#spawn crond -f "$XDG_CONFIG_HOME/crontab" -n
+spawn gammastep
 #spawn mako
 spawn waybar --log-level warning
 spawn rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55
-spawn swayidle -w \
-	timeout 300 "glitchlock" \
-	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'"
+# spawn swayidle -w \
+# 	timeout 300 "glitchlock" \
+# 	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'"
 #spawn librespot-cfg
 #spawn syncthing --no-browser

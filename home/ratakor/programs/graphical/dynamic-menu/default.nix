@@ -19,7 +19,7 @@
       num-results = 10;
       font = "monospace";
       require-match = false;
-      background-color = colors.background; # "#000a";
+      background-color = colors.background + "e6"; # "#000a";
       text-color = colors.foreground;
       selection-color = colors.cyan;
     };

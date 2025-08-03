@@ -11,7 +11,7 @@ export MANPATH="$HOME/.local/share/man:$MANPATH"
 export EDITOR="nvim"
 export TERMINAL="footclient"
 export BROWSER="cromite --new-window"
-export MANPAGER="manpager"
+# export MANPAGER="manpager"
 export DMENU="tofi"
 
 # XDG directories

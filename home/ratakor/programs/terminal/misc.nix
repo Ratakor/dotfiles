@@ -55,4 +55,24 @@
       # TODO: settings
     };
   };
+
+  services = {
+    # spotify client
+    librespot = {
+      enable = false; # TODO: org.freedesktop.systemd1.NoSuchUnit: Unit librespot.service not found.
+      # https://github.com/librespot-org/librespot/wiki/Options
+      settings = {
+        quiet = true;
+        autoplay = "on";
+        enable-volume-normalisation = true;
+        name = "librespot"; # TODO: "librespot@$(hostname)";
+        bitrate = 320;
+        format = "F32";
+        backend = "pulseaudio";
+        enable-oauth = true;
+        initial-volume = 100;
+        volume-ctrl = "fixed";
+      };
+    };
+  };
 }

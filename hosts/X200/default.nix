@@ -11,7 +11,6 @@
 }: {
   imports = [
     ../../modules/system.nix
-    # ../../modules/i3.nix
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -29,7 +28,7 @@
       enable = true;
       zfsSupport = true; # https://nixos.wiki/wiki/ZFS
       efiSupport = false;
-      # default = 1;
+      default = 1; # weird ZFS bug I think
       # enableCryptodisk = true;
       # useOSProber = true;
       # eifInstallAsRemovable = true;
@@ -54,5 +53,16 @@
     # Pick only one of the below networking options.
     # wireless.enable = true; # Enables wireless support via wpa_supplicant.
     networkmanager.enable = true;
+  };
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    # https://github.com/bluez/bluez/blob/master/src/main.conf
+    settings = {
+      General = {
+        Experimental = true;
+      };
+    };
   };
 }
