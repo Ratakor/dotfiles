@@ -37,35 +37,36 @@
     nixpkgs-stable,
     home-manager,
     ...
-  }: {
+  }: let
+    username = "ratakor";
+    colors = (import ./modules/colors.nix).gruvbox-dark;
+  in {
     nixosConfigurations = {
-      X200 = let
-        username = "ratakor";
-      in
-        nixpkgs.lib.nixosSystem rec {
-          system = "x86_64-linux";
+      X200 = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
 
-          specialArgs = {
-            pkgs-stable = import nixpkgs-stable {
-              inherit system;
-              config.allowUnfree = true;
-            };
-            inherit inputs;
-            inherit username;
+        specialArgs = {
+          pkgs-stable = import nixpkgs-stable {
+            inherit system;
+            config.allowUnfree = true;
           };
-
-          modules = [
-            ./hosts/X200
-
-            home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = inputs; # // specialArgs;
-              home-manager.backupFileExtension = "hmbak";
-              home-manager.users.${username} = import ./home/${username};
-            }
-          ];
+          inherit inputs;
+          inherit username;
+          inherit colors;
         };
+
+        modules = [
+          ./hosts/X200
+
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = inputs // specialArgs;
+            home-manager.backupFileExtension = "hmbak";
+            home-manager.users.${username} = import ./home/${username};
+          }
+        ];
+      };
     };
   };
 }

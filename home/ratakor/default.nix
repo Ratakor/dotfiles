@@ -1,7 +1,6 @@
 {
-  # TODO: use this, see git config too -> personal.nix loaded if username == "ratakor"
-  # TODO: use nix/git secrets, also needed for github copilot
-  # username,
+  wallpapers,
+  username,
   config,
   pkgs,
   ...
@@ -13,12 +12,14 @@
   ];
 
   home = {
-    # inherit username;
-    # homeDirectory = "/home/${username}";
-    username = "ratakor";
-    homeDirectory = "/home/ratakor";
+    inherit username;
+    homeDirectory = "/home/${username}";
     stateVersion = "25.05";
   };
 
+  # TODO: this shouldn't be here
+  home.file."${config.xdg.userDirs.pictures}/wallpapers".source = wallpapers;
+
+  # TODO: what is that?
   # programs.home-manager.enable = true;
 }

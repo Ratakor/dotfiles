@@ -14,11 +14,6 @@ in {
     recursive = true;
   };
 
-  home.file."${configHome}/gitui" = {
-    source = ./etc/gitui;
-    recursive = true;
-  };
-
   # TODO: glow
   # TODO: gtk-3.0
 
@@ -27,45 +22,10 @@ in {
   #   recursive = true;
   # };
 
-  home.file."${configHome}/mpv" = {
-    source = ./etc/mpv;
-    recursive = true;
-  };
-
-  home.file."${configHome}/newsboat" = {
-    source = ./etc/newsboat;
-    recursive = true;
-  };
-
-  home.file."${configHome}/nvim" = {
-    source = ./etc/nvim;
-    recursive = true;
-  };
-
   # TODO: pipewire
-
-  home.file."${configHome}/python" = {
-    source = ./etc/python;
-    recursive = true;
-  };
 
   home.file."${configHome}/quand" = {
     source = ./etc/quand;
-    recursive = true;
-  };
-
-  home.file."${configHome}/river" = {
-    source = ./etc/river;
-    recursive = true;
-  };
-
-  home.file."${configHome}/waybar" = {
-    source = ./etc/waybar;
-    recursive = true;
-  };
-
-  home.file."${configHome}/yazi" = {
-    source = ./etc/yazi;
     recursive = true;
   };
 
@@ -74,27 +34,9 @@ in {
     recursive = true;
   };
 
-  # this one is probably good
-  # home.file."${configHome}/zathura" = {
-  #   source = ./etc/zathura;
-  #   recursive = true;
-  # };
-
-  home.file."${configHome}/zellij" = {
-    source = ./etc/zellij;
-    recursive = true;
-  };
-
-  home.file."${configHome}/zsh" = {
-    source = ./etc/zsh;
-    recursive = true;
-  };
-
   # TODO: crontab
 
   # TODO: mimeapps.list
-
-  # TODO: npmrc
 
   # TODO: syncthing
 
