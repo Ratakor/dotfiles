@@ -10,5 +10,6 @@
     ./status-bar
     ./terminal.nix
     ./video
+    ./window-manager
   ];
 }

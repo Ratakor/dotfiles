@@ -1,16 +1,17 @@
+# TODO
+
 {
   pkgs,
   ...
 }: {
-  # TODO
   # install borgbackup (backup tool) too
 
   # borg wrapper
   programs.borgmatic = {
-    enable = true;
+    enable = false;
   };
 
   services.borgmatic = {
-    enable = true;
+    enable = false;
   };
 }

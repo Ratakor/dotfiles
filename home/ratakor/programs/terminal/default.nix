@@ -1,6 +1,6 @@
 {
   imports = [
-    # ./backup.nix
+    ./backup.nix
     ./dev.nix
     ./editor
     ./file-manager
