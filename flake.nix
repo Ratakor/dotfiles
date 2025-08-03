@@ -39,7 +39,7 @@
     ...
   }: let
     username = "ratakor";
-    colors = (import ./modules/colors.nix).gruvbox-dark;
+    theme = "gruvbox-dark"; # gruvbox-dark gruvbox-light dracula
   in {
     nixosConfigurations = {
       X200 = nixpkgs.lib.nixosSystem rec {
@@ -52,7 +52,7 @@
           };
           inherit inputs;
           inherit username;
-          inherit colors;
+          colors = ((import ./modules/colors.nix) { pkgs = nixpkgs; })."${theme}";
         };
 
         modules = [

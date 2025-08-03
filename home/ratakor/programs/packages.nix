@@ -77,7 +77,6 @@
     # wargus
 
     # TODO: from previous config
-    #libnotify
     wineWowPackages.wayland
     xdg-utils
 
@@ -193,23 +192,5 @@
     #   });
     #   program = "pinentry-dmenu";
     # };
-  };
-
-  # TODO: shouldn't be here
-  gtk = {
-    theme = {
-      name = "Gruvbox-Dark";
-      package = pkgs.gruvbox-gtk-theme;
-    };
-
-    gtk3.extraCss = ''
-      /* No (default) titlebar on wayland */
-      .titlebar, .css, headerbar {
-          background-image:none;
-          background-color: transparent;
-          margin-top: -100px;
-          margin-bottom: 50px;
-      }
-    '';
   };
 }

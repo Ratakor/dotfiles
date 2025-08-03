@@ -1,4 +1,5 @@
 {
+  colors,
   pkgs,
   ...
 }: {
@@ -23,5 +24,22 @@
       enable = true;
       settings = {}; # TODO, -> password-manager.nix?
     };
+  };
+
+  gtk = {
+    theme = {
+      name = colors.gtk.name;
+      package = colors.gtk.package;
+    };
+
+    gtk3.extraCss = ''
+      /* No (default) titlebar on wayland */
+      .titlebar, .css, headerbar {
+          background-image:none;
+          background-color: transparent;
+          margin-top: -100px;
+          margin-bottom: 50px;
+      }
+    '';
   };
 }

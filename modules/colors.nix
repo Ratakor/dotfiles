@@ -1,6 +1,17 @@
+# This probably shouldn't be in modules/
+# also it's a function now
+
 {
+  pkgs,
+  ...
+}: {
   gruvbox-dark = {
     theme = "gruvbox-dark";
+
+    gtk = {
+      name = "Gruvbox-Dark";
+      package = pkgs.gruvbox-gtk-theme;
+    };
 
     foreground = "ebdbb2";
     background = "282828";
@@ -27,6 +38,11 @@
   gruvbox-light = {
     theme = "gruvbox-light";
 
+    gtk = {
+      name = "Gruvbox-Light";
+      package = pkgs.gruvbox-gtk-theme;
+    };
+
     foreground = "3c3836";
     background = "fbf1c7";
 
@@ -51,6 +67,12 @@
 
   dracula = {
     theme = "dracula";
+
+    # TODO: no dracula gtk theme in nixpkgs
+    gtk = {
+      name = "Gruvbox-Dark";
+      package = pkgs.gruvbox-gtk-theme;
+    };
 
     foreground = "f8f8f2";
     background = "282a36";
