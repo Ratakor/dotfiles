@@ -21,9 +21,18 @@
       extraConfig = builtins.readFile ./init;
     };
 
-    # TODO
     hyprland = {
-      enable = false;
+      enable = false; # TODO
+      xwayland.enable = true;
+      systemd = {
+        enable = true;
+        variables = [ "--all" ];
+        # enableXdgAutostart = true;
+      };
+
+      # plugins = []; # TODO
+
+      # settings = {}; # TODO
     };
   };
 }

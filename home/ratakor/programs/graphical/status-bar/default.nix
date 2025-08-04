@@ -97,7 +97,7 @@
           tooltip = true;
       };
       network = {
-          interface = "wlan0";
+          interface = "wlp2s0";
           format-wifi = "{icon} {essid}";
           format-disconnected = "󰤯";
           tooltip-format = "{ifname}: {ipaddr}/{cidr}";

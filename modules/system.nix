@@ -24,7 +24,6 @@
   users.users = {
     root = {
       shell = pkgs.zsh;
-      ignoreShellProgramCheck = true; # TODO: remove
       # password = TODO
     };
 
@@ -38,11 +37,11 @@
         # "audio"
         # "video"
         # "storage"
-        "network" "networkmanager"
+        # "network"
+        "networkmanager"
         # "kvm"
       ];
       shell = pkgs.zsh;
-      ignoreShellProgramCheck = true; # TODO: remove
       # openssh.authorizedKeys.keys = [];
     };
   };
@@ -307,4 +306,8 @@
     };
     dev.enable = true;
   };
+
+  # TODO
+  programs.hyprland.enable = false;
+  programs.river.enable = true;
 }

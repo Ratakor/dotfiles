@@ -27,6 +27,10 @@
     # less
     # curl
     # rsync
+    autoconf
+    automake
+    libtool
+    pkg-config
 
     # TODO: see man page nixos wiki
     # documentation.dev.enable = true;
