@@ -1,7 +1,6 @@
 {
   imports = [
-    ./packages.nix
-    ./xdg.nix # TODO: this shouldn't be here
+    ./packages.nix # TODO: remove that
 
     ./graphical
     ./terminal

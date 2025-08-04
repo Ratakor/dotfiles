@@ -19,6 +19,7 @@
     wlopm # power management (black screen)
     # claws-mail # mail client
     # gajim # XMPP client
+    swayidle # idle manager (see services.swayidle)
   ];
 
   programs = {
@@ -44,7 +45,7 @@
 
     # idle manager
     swayidle = {
-      enable = false; # TODO
+      enable = true; # TODO: not started automatically when starting river (same for waybar)
       extraArgs = [ "-w" ];
       timeouts = [
         {
@@ -63,6 +64,26 @@
     # multiple displays
     kanshi = {
       # TODO
+      enable = false;
+    };
+
+    # TODO
+    # gpg-agent.pinentry = {
+    #   package = pkgs.pinentry-dmenu.overrideAttrs (oldAttrs: rec {
+    #     version = "460fde704079c3791294d13a60a03069426e7f82";
+    #     src = pkgs.fetchFromGithub {
+    #       owner = "ratakor";
+    #       repo = "pinentry-dmenu";
+    #       tag = version;
+    #       hash = "";
+    #     };
+    #   });
+    #   program = "pinentry-dmenu";
+    # };
+
+    # TODO?
+    # auto mount usb drives
+    udiskie = {
       enable = false;
     };
   };

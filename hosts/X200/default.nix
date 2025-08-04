@@ -36,13 +36,13 @@
       #   { devices = [ "nodev" ]; path = "/boot"; }
       # ];
       device = "/dev/sda"; # or "nodev" for efi only
-      configurationLimit = 30; # Limit the number of generations to keep
+      configurationLimit = 50; # Limit the number of generations to keep
     };
     # efi = {
     #   canTouchEfiVariables = true;
     #   efiSysMountPoint = "/boot/efi";
     # }
-    timeout = 10; # TODO
+    # timeout = 10; # TODO
   };
 
   networking = {

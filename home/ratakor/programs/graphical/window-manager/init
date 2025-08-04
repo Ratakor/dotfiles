@@ -149,6 +149,8 @@ spawn() {
 	pidof -q "$1" || riverctl spawn "$*"
 }
 
+# TODO: separate log output
+
 spawn randwp
 #spawn pipewire
 spawn foot --server

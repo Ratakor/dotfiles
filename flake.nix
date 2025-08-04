@@ -62,7 +62,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = inputs // specialArgs;
-            home-manager.backupFileExtension = "hmbak";
+            home-manager.backupFileExtension = "hm.bak";
             home-manager.users.${username} = import ./home/${username};
           }
         ];

@@ -10,6 +10,7 @@
     ./oxidation.nix
     ./rss
     ./shell
+    ./syncthing.nix
     ./zellij
   ];
 }

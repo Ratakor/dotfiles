@@ -2,13 +2,28 @@
   pkgs,
   ...
 }: {
-  # TODO: config through nix?
-  wayland.windowManager.river = {
-    enable = true;
-    systemd.enable = true;
-    xwayland.enable = true;
-    extraConfig = builtins.readFile ./init;
-  };
+  wayland.windowManager = {
+    river = {
+      enable = true;
+      xwayland.enable = true;
+      systemd = {
+        enable = true;
+        variables = [ "--all" ];
+      };
 
-  # TODO: hyprland
+      # extraSessionVariables = {
+      #   XDG_SESSION_TYPE = "wayland";
+      #   XDG_CURRENT_DESKTOP = "river";
+      # };
+
+      # settings = {}; # TODO
+
+      extraConfig = builtins.readFile ./init;
+    };
+
+    # TODO
+    hyprland = {
+      enable = false;
+    };
+  };
 }

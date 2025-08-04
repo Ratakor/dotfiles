@@ -36,8 +36,6 @@ in {
 
   # TODO: crontab
 
-  # TODO: mimeapps.list
-
   # TODO: syncthing
 
   # NOTE: this can be really useful to provide XDG_CONFIG_HOME etc where there is no env var interpretation

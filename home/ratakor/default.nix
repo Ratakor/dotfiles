@@ -1,5 +1,4 @@
 {
-  wallpapers,
   username,
   config,
   pkgs,
@@ -7,8 +6,8 @@
 }: {
   imports = [
     ./programs
-    ./shell
     ./dotfiles
+    ./misc
   ];
 
   home = {
@@ -17,9 +16,7 @@
     stateVersion = "25.05";
   };
 
-  # TODO: this shouldn't be here
-  home.file."${config.xdg.userDirs.pictures}/wallpapers".source = wallpapers;
-
-  # TODO: what is that?
-  # programs.home-manager.enable = true;
+  # Allow HM to manage itself when in standalone mode.
+  # This makes the home-manager command available to users.
+  programs.home-manager.enable = true;
 }

@@ -46,6 +46,11 @@
     zstd
     lz4
     ouch # Obvious Unified Compression Helper
+
+    ## nix tools
+    alejandra # formatter
+    statix # linter
+    deadnix # find and remove unused code in .nix source files
   ];
 
   programs = {
@@ -67,16 +72,12 @@
       # goPath = "${config.xdg.dataHome}/go";
       # telemetry.mode = "off";
     };
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableZshIntegration = true;
+      # config = {}; # TODO
+    };
   };
-
-  xdg.configFile.npmrc.text = ''
-    prefix=${config.xdg.dataHome}/npm
-    cache=${config.xdg.cacheHome}/npm
-    init-module=${config.xdg.configHome}/npm/config/npm-init.js
-  '';
-
-  xdg.configFile."python/pythonrc".text = ''
-    import readline
-    readline.write_history_file = lambda *args: None
-  '';
 }

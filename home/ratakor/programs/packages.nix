@@ -21,6 +21,7 @@
     # aur/zpotify # CLI for spotify
     # aur/2048.zig-bin
     # aur/neocities-zig-bin
+    # anki idk which version (move to latest maybe lol?)
 
     ## misc
     # less
@@ -110,38 +111,6 @@
     #     "--preview 'eza --icons --git --color always -T -L 3 {} | head -200'"
     #     "--exact"
     #   ];
-    # };
-  };
-
-  # TODO: enable these with systemd or something
-  services = {
-    # TODO: auto mount usb drives
-    # udiskie.enable = true;
-
-    # TODO
-    # file sync
-    syncthing = {
-      enable = false;
-      # overrideDevices = false;
-      # overrideFolders = false;
-      # settings = {
-      #   devices = {}; # TODO
-      #   folders = {}; # TODO
-      #   options = {}; # TODO
-      # };
-    };
-
-    # gpg-agent.pinentry = {
-    #   package = pkgs.pinentry-dmenu.overrideAttrs (oldAttrs: rec {
-    #     version = "460fde704079c3791294d13a60a03069426e7f82";
-    #     src = pkgs.fetchFromGithub {
-    #       owner = "ratakor";
-    #       repo = "pinentry-dmenu";
-    #       tag = version;
-    #       hash = "";
-    #     };
-    #   });
-    #   program = "pinentry-dmenu";
     # };
   };
 }
