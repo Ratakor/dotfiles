@@ -14,12 +14,11 @@
     # openssh
 
     # TODO: overlay / custom packages (add ~/.local/bin scripts too for stuff like "${...}/bin/randwp")
-    # rcp/pinentry-dmenu # use dmenu for gpg
     # aur/scron-git # simple cron daemon, spawn with crond # TODO: use systemd-timers
     # aur/dashbinsh # TODO: break things on nixos (?)
+
     # aur/quand-git # a calendar app like when
-    # aur/zpotify # CLI for spotify
-    # aur/2048.zig-bin
+    # rcp/pinentry-dmenu # use dmenu for gpg
     # aur/neocities-zig-bin
     # anki idk which version (move to latest maybe lol?)
 

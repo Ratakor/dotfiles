@@ -25,6 +25,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # TODO: this feels very wrong (4 diff nixpkgs already)
+    # custom packages
+    zig-2048.url = "github:ratakor/2048.zig";
+    zpotify.url = "github:ratakor/zpotify";
+
     wallpapers = {
       url = "github:ratakor/wallpapers";
       flake = false;

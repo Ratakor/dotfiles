@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   ...
 }: {
@@ -20,6 +21,9 @@
     termdown # timer on the terminal
     trash-cli # rm replacement kinda
     detox # cli to cleanup filenames
+
+    inputs.zig-2048.packages."${pkgs.system}".default
+    inputs.zpotify.packages."${pkgs.system}".default # CLI for spotify
   ];
 
   programs = {

@@ -1,5 +1,41 @@
 {
   "nodes": {
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -52,12 +88,74 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1754269788,
+        "narHash": "sha256-ztbMC9sBT8ObDXuJLQ74aB+udE/7mF57mZD8+VwzzPM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d9da6cda4e5eed60e8c5489789d092be51a565be",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1754269788,
+        "narHash": "sha256-ztbMC9sBT8ObDXuJLQ74aB+udE/7mF57mZD8+VwzzPM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d9da6cda4e5eed60e8c5489789d092be51a565be",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
-        "wallpapers": "wallpapers"
+        "wallpapers": "wallpapers",
+        "zig-2048": "zig-2048",
+        "zpotify": "zpotify"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
       }
     },
     "wallpapers": {
@@ -73,6 +171,80 @@
       "original": {
         "owner": "ratakor",
         "repo": "wallpapers",
+        "type": "github"
+      }
+    },
+    "zig-2048": {
+      "inputs": {
+        "zig2nix": "zig2nix"
+      },
+      "locked": {
+        "lastModified": 1754313359,
+        "narHash": "sha256-SpHLs8SAFpYdlXPaMAr19CDYTQil1XoZMhw4VP34WQg=",
+        "owner": "ratakor",
+        "repo": "2048.zig",
+        "rev": "c73ee14e8bab4d2d036736654e0765eae248e7a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ratakor",
+        "repo": "2048.zig",
+        "type": "github"
+      }
+    },
+    "zig2nix": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1754273366,
+        "narHash": "sha256-K98m10pYcezWlvsvVlNTA8h7yjwcBnLu2oTB59M1vRg=",
+        "owner": "Cloudef",
+        "repo": "zig2nix",
+        "rev": "f3389410553140f9c696a1cb5c9362176d4b47fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Cloudef",
+        "repo": "zig2nix",
+        "type": "github"
+      }
+    },
+    "zig2nix_2": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1754273366,
+        "narHash": "sha256-K98m10pYcezWlvsvVlNTA8h7yjwcBnLu2oTB59M1vRg=",
+        "owner": "Cloudef",
+        "repo": "zig2nix",
+        "rev": "f3389410553140f9c696a1cb5c9362176d4b47fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Cloudef",
+        "repo": "zig2nix",
+        "type": "github"
+      }
+    },
+    "zpotify": {
+      "inputs": {
+        "zig2nix": "zig2nix_2"
+      },
+      "locked": {
+        "lastModified": 1754346805,
+        "narHash": "sha256-RrBFhUmI/k4C7sDrHZDXSb76BgeNFNRwC+hhB+qCtnY=",
+        "owner": "ratakor",
+        "repo": "zpotify",
+        "rev": "4a05de9d5de73a0f42c349801d9e20d8e9c3d1b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ratakor",
+        "repo": "zpotify",
         "type": "github"
       }
     }
