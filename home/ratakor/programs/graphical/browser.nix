@@ -12,9 +12,9 @@
   programs = {
     chromium = {
       enable = true;
-      # package = pkgs.cromite; # TODO: cromite or UC
+      package = pkgs.ungoogled-chromium; # TODO: cromite
       extensions = [
-        { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # Vimium
+        {id = "dbepggeogbaibhgnhhndojpepiihcmeb";} # Vimium
         # TODO: add UBO, ...
       ];
     };

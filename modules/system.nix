@@ -54,7 +54,7 @@
     trusted-users = [username];
 
     # enable flakes globally
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
 
     substituters = [
       # TODO

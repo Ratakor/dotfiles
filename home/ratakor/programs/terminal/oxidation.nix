@@ -1,6 +1,5 @@
 # replacement of various shell utilities
 # most of them are bloated and written in rust hence oxidation
-
 {
   colors,
   pkgs,
@@ -48,7 +47,7 @@
     # cd replacement
     zoxide = {
       enable = true;
-      options = [ "--cmd cd" ];
+      options = ["--cmd cd"];
       enableZshIntegration = true;
     };
   };

@@ -1,9 +1,5 @@
 # TODO
-
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # install borgbackup (backup tool) too
 
   # borg wrapper

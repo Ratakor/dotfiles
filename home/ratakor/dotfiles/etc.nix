@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}: let
+{config, ...}: let
   configHome = config.xdg.configHome;
 in {
   home.file."${configHome}/fastfetch" = {

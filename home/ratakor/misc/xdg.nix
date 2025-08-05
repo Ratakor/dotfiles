@@ -1,9 +1,5 @@
 # TODO: missing custom entries
-
-{
-  config,
-  ...
-}: let
+{config, ...}: let
   browser = ["chromium.desktop"]; # TODO: change to cromite?
 
   # XDG MIME types
@@ -93,7 +89,7 @@ in {
                     pass
 
             atexit.register(write_history)
-       '';
+      '';
     };
 
     userDirs = {

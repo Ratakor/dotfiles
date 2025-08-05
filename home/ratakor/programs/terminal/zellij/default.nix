@@ -1,5 +1,4 @@
 # terminal multiplexer & session manager
-
 {
   config,
   pkgs,

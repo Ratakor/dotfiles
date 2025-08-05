@@ -1,14 +1,11 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   wayland.windowManager = {
     river = {
       enable = true;
       xwayland.enable = true;
       systemd = {
         enable = true;
-        variables = [ "--all" ];
+        variables = ["--all"];
       };
 
       # extraSessionVariables = {
@@ -26,7 +23,7 @@
       xwayland.enable = true;
       systemd = {
         enable = true;
-        variables = [ "--all" ];
+        variables = ["--all"];
         # enableXdgAutostart = true;
       };
 

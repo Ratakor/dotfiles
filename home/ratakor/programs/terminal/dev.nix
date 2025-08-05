@@ -25,7 +25,8 @@
     gptfdisk
     sshfs # mount drive over ssh
     ntfs3g # ntfs filesystem (windows compatibility)
-    xfsprogs xfsdump # xfs filesystem
+    xfsprogs # xfs filesystem
+    xfsdump # xfs snapshots
     # jdk17-openjdk # java (TODO: idk nixpkgs)
     poop # Performance Optimizer Observation Platform
     # TODO: vimPlugins.nvim-treesitter-parsers.superhtml?

@@ -1,6 +1,5 @@
 # TODO: I don't know if I like that, at least css is good
 # also change orange color
-
 {
   config,
   colors,
@@ -37,105 +36,105 @@
         "clock"
       ];
       "river/window" = {
-          max-length = 50;
-          tooltip = false;
+        max-length = 50;
+        tooltip = false;
       };
       image = {
-          path = "/tmp/cover.jpg";
-          # TODO
+        path = "/tmp/cover.jpg";
+        # TODO
       };
       "custom/spotify" = {
-          exec = "zpotify waybar";
-          return-type = "json";
-          tooltip = true;
-          on-click = "zpotify pause >/dev/null";
-          max-length = 40;
+        exec = "zpotify waybar";
+        return-type = "json";
+        tooltip = true;
+        on-click = "zpotify pause >/dev/null";
+        max-length = 40;
       };
       "custom/music" = {
-          exec = "$XDG_CONFIG_HOME/waybar/scripts/music.sh";
-          interval = "once";
-          signal = 1;
-          max-length = 40;
-          tooltip = false;
-          on-click = "musiccmd";
+        exec = "$XDG_CONFIG_HOME/waybar/scripts/music.sh";
+        interval = "once";
+        signal = 1;
+        max-length = 40;
+        tooltip = false;
+        on-click = "musiccmd";
       };
       temperature = {
-          format = " {temperatureC}°C";
-          format-critical = " {temperatureC}°C";
-          critical-threshold = 80;
-          tooltip = false;
-          on-click = "$TERMINAL -e htop";
+        format = " {temperatureC}°C";
+        format-critical = " {temperatureC}°C";
+        critical-threshold = 80;
+        tooltip = false;
+        on-click = "$TERMINAL -e htop";
       };
       battery = {
-          full-at = 99;
-          format = "{icon} {capacity}%";
-          format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
-          states = {
-              "100" = 100;
-              "90" = 90;
-              "80" = 80;
-              "70" = 70;
-              "60" = 60;
-              "50" = 50;
-              "40" = 40;
-              "30" = 30;
-              "20" = 20;
-              "10" = 10;
-              "0" = 0;
-          };
-          format-charging-100 = "󰂅 {capacity}%";
-          format-charging-90 = "󰂋 {capacity}%";
-          format-charging-80 = "󰂊 {capacity}%";
-          format-charging-70 = "󰢞 {capacity}%";
-          format-charging-60 = "󰂉 {capacity}%";
-          format-charging-50 = "󰢝 {capacity}%";
-          format-charging-40 = "󰂈 {capacity}%";
-          format-charging-30 = "󰂇 {capacity}%";
-          format-charging-20 = "󰂆 {capacity}%";
-          format-charging-10 = "󰢜 {capacity}%";
-          format-charging-0 = "󰢟 {capacity}%";
-          tooltip = true;
+        full-at = 99;
+        format = "{icon} {capacity}%";
+        format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+        states = {
+          "100" = 100;
+          "90" = 90;
+          "80" = 80;
+          "70" = 70;
+          "60" = 60;
+          "50" = 50;
+          "40" = 40;
+          "30" = 30;
+          "20" = 20;
+          "10" = 10;
+          "0" = 0;
+        };
+        format-charging-100 = "󰂅 {capacity}%";
+        format-charging-90 = "󰂋 {capacity}%";
+        format-charging-80 = "󰂊 {capacity}%";
+        format-charging-70 = "󰢞 {capacity}%";
+        format-charging-60 = "󰂉 {capacity}%";
+        format-charging-50 = "󰢝 {capacity}%";
+        format-charging-40 = "󰂈 {capacity}%";
+        format-charging-30 = "󰂇 {capacity}%";
+        format-charging-20 = "󰂆 {capacity}%";
+        format-charging-10 = "󰢜 {capacity}%";
+        format-charging-0 = "󰢟 {capacity}%";
+        tooltip = true;
       };
       network = {
-          interface = "wlp2s0";
-          format-wifi = "{icon} {essid}";
-          format-disconnected = "󰤯";
-          tooltip-format = "{ifname}: {ipaddr}/{cidr}";
-          format-icons = [ "󰤟"  "󰤢"  "󰤨" ];
-          tooltip = true;
-          on-click = "$TERMINAL -e nmtui";
+        interface = "wlp2s0";
+        format-wifi = "{icon} {essid}";
+        format-disconnected = "󰤯";
+        tooltip-format = "{ifname}: {ipaddr}/{cidr}";
+        format-icons = ["󰤟" "󰤢" "󰤨"];
+        tooltip = true;
+        on-click = "$TERMINAL -e nmtui";
       };
       bluetooth = {
-          format-disabled = "";
-          format-connected = " {device_alias}";
-          tooltip-format = "{controller_alias}\t{controller_address}";
-          tooltip-format-connected = "{controller_alias}\t\t{controller_address}\n{device_alias}\t{device_address}";
-          on-click = "$TERMINAL -e bluetoothctl";
+        format-disabled = "";
+        format-connected = " {device_alias}";
+        tooltip-format = "{controller_alias}\t{controller_address}";
+        tooltip-format-connected = "{controller_alias}\t\t{controller_address}\n{device_alias}\t{device_address}";
+        on-click = "$TERMINAL -e bluetoothctl";
       };
       wireplumber = {
-          format = "{icon} {volume}%";
-          format-icons = [ "" "" "" ];
-          tooltip = false;
-          max-volume = 150;
-          on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        format = "{icon} {volume}%";
+        format-icons = ["" "" ""];
+        tooltip = false;
+        max-volume = 150;
+        on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
       };
       "custom/weather" = {
-          exec = "$XDG_CONFIG_HOME/waybar/scripts/weather.sh";
-          return-type = "json";
-          format = "{}";
-          max-length = 10;
-          interval = 3600;
-          tooltip = true;
+        exec = "$XDG_CONFIG_HOME/waybar/scripts/weather.sh";
+        return-type = "json";
+        format = "{}";
+        max-length = 10;
+        interval = 3600;
+        tooltip = true;
       };
       clock = {
-          format = " {:%H:%M}";
-          format-alt = " {:%b %d (%a)}";
-          tooltip-format = "<tt><small>{calendar}</small></tt>";
-          calendar = {
-              format = {
-                  today = "<b><u>{}</u></b>";
-              };
+        format = " {:%H:%M}";
+        format-alt = " {:%b %d (%a)}";
+        tooltip-format = "<tt><small>{calendar}</small></tt>";
+        calendar = {
+          format = {
+            today = "<b><u>{}</u></b>";
           };
+        };
       };
     };
 

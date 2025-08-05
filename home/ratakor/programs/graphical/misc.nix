@@ -46,7 +46,7 @@
     # idle manager
     swayidle = {
       enable = true; # TODO: not started automatically when starting river (same for waybar)
-      extraArgs = [ "-w" ];
+      extraArgs = ["-w"];
       timeouts = [
         {
           timeout = 300;

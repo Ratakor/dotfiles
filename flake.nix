@@ -1,7 +1,6 @@
 # see https://github.com/Misterio77/nix-starter-configs/tree/main/standard for a simple starter
 # based on https://github.com/ryan4yin/nix-config/tree/i3-kickstarter
 # and https://github.com/ryan4yin/nix-config/tree/42bcfeb47c31b27d1a80b46ddbb29b76c1299d3a
-
 {
   description = "NixOS configuration";
 
@@ -36,13 +35,13 @@
     };
   };
 
-  outputs = inputs@{
+  outputs = {
     self,
     nixpkgs,
     nixpkgs-stable,
     home-manager,
     ...
-  }: let
+  } @ inputs: let
     username = "ratakor";
     theme = "gruvbox-dark"; # gruvbox-dark gruvbox-light dracula
   in {
@@ -57,13 +56,14 @@
           };
           inherit inputs;
           inherit username;
-          colors = ((import ./modules/colors.nix) { pkgs = nixpkgs; })."${theme}";
+          colors = ((import ./modules/colors.nix) {pkgs = nixpkgs;})."${theme}";
         };
 
         modules = [
           ./hosts/X200
 
-          home-manager.nixosModules.home-manager {
+          home-manager.nixosModules.home-manager
+          {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = inputs // specialArgs;

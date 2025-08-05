@@ -1,10 +1,6 @@
 # This probably shouldn't be in modules/
 # also it's a function now
-
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   gruvbox-dark = {
     theme = "gruvbox-dark";
 
