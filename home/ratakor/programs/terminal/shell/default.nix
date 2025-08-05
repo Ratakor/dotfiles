@@ -3,12 +3,22 @@
   pkgs,
   ...
 }: {
-  home.shell.enableZshIntegration = true;
+  home = {
+    shell = {
+      enableZshIntegration = true;
+    };
 
-  home.packages = with pkgs; [
-    zsh-completions
-    nix-zsh-completions
-  ];
+    packages = with pkgs; [
+      zsh-completions
+      nix-zsh-completions
+    ];
+
+    # TODO
+    file."${config.xdg.configHome}/zsh" = {
+      source = ./zsh;
+      recursive = true;
+    };
+  };
 
   programs.zsh = {
     enable = true;
@@ -33,11 +43,6 @@
         };
       }
     ];
-  };
-
-  home.file."${config.xdg.configHome}/zsh" = {
-    source = ./zsh;
-    recursive = true;
   };
 }
 # {

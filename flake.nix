@@ -64,11 +64,13 @@
 
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = inputs // specialArgs;
-            home-manager.backupFileExtension = "hm.bak";
-            home-manager.users.${username} = import ./home/${username};
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = inputs // specialArgs;
+              backupFileExtension = "hm.bak";
+              users.${username} = import ./home/${username};
+            };
           }
         ];
       };

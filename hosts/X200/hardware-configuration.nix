@@ -21,31 +21,33 @@
     extraModulePackages = [];
   };
 
-  fileSystems."/" = {
-    device = "zpool/root";
-    fsType = "zfs";
-  };
+  fileSystems = {
+    "/" = {
+      device = "zpool/root";
+      fsType = "zfs";
+    };
 
-  fileSystems."/nix" = {
-    device = "zpool/nix";
-    fsType = "zfs";
-  };
+    "/nix" = {
+      device = "zpool/nix";
+      fsType = "zfs";
+    };
 
-  fileSystems."/var" = {
-    device = "zpool/var";
-    fsType = "zfs";
-  };
+    "/var" = {
+      device = "zpool/var";
+      fsType = "zfs";
+    };
 
-  fileSystems."/home" = {
-    device = "zpool/home";
-    fsType = "zfs";
-  };
+    "/home" = {
+      device = "zpool/home";
+      fsType = "zfs";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/8224-B0EA";
-    fsType = "vfat";
-    # rw,noatime,nodev,nosuid,noexec
-    options = ["fmask=0022" "dmask=0022"];
+    "/boot" = {
+      device = "/dev/disk/by-uuid/8224-B0EA";
+      fsType = "vfat";
+      # TODO: rw,noatime,nodev,nosuid,noexec
+      options = ["fmask=0022" "dmask=0022"];
+    };
   };
 
   swapDevices = [

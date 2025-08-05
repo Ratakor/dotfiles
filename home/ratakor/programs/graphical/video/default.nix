@@ -3,14 +3,15 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [
-    socat # dependency for the music script that uses mpv
-  ];
+  # TODO: probably move that to a specific "music.nix" file
+  home = {
+    # dependency for the music script that uses mpv
+    packages = [pkgs.socat];
 
-  # TODO: probably move that and the above to a specific "music.nix" file
-  home.file."${config.xdg.configHome}/mpv/music" = {
-    source = ./music;
-    recursive = true;
+    file."${config.xdg.configHome}/mpv/music" = {
+      source = ./music;
+      recursive = true;
+    };
   };
 
   home.file."${config.xdg.configHome}/mpv/scripts" = {
