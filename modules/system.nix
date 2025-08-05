@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   username,
@@ -164,15 +165,15 @@
 
   # TODO
   # Enable the OpenSSH daemon.
-  # services.openssh = {
-  #   enable = true;
-  #   settings = {
-  #     X11Forwarding = true;
-  #     PermitRootLogin = "no"; # disable root login
-  #     PasswordAuthentication = false; # disable password logind
-  #   };
-  #   openFirewall = true;
-  # };
+  services.openssh = {
+    enable = true;
+    settings = {
+      # X11Forwarding = true;
+      # PermitRootLogin = "no"; # disable root login
+      PasswordAuthentication = false; # disable password login
+    };
+    openFirewall = true;
+  };
 
   environment = {
     # List packages installed in system profile.
@@ -197,6 +198,8 @@
       gnutar
       gawk
       gnupg
+
+      inputs.agenix.packages."${system}".default
 
       # TODO: these probably don't belong here
       sysstat
