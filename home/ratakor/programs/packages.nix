@@ -31,19 +31,11 @@
     libtool
     pkg-config
 
-    # TODO: see man page nixos wiki
-    # documentation.dev.enable = true;
-    # mandoc
-    man-pages # Linux man pages
-    man-pages-posix
-
     # tlp-openrc # laptop power saving settings (rc-update add tlp default)
     # jq # json processor # TODO: programs.jq
     # yq # jq wrapper for yaml, xml and toml
     # checkbashisms
     # openbsd-netcat
-    # noto-fonts-emoji # emoji font
-    # noto-fonts-cjk
     # hunspell # dictionary for claws
     # hunspell-en_us
     # hunspell-fr
@@ -106,7 +98,7 @@
       # TODO + this should be available system wide?
     };
 
-    # TODO
+    # TODO: fzf replacement
     # skim = {
     #   enable = true;
     #   enableZshIntegration = true;

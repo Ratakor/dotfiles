@@ -89,9 +89,8 @@
   };
 
   gtk = {
-    theme = with colors.gtk; {
-      inherit name;
-      inherit package;
+    theme = {
+      inherit (colors.gtk) name package;
     };
 
     gtk3.extraCss = ''

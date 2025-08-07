@@ -48,8 +48,10 @@
 
       colors = {
         alpha = "0.85";
-        foreground = colors.foreground;
-        background = colors.background;
+        # statix shut up
+        inherit (colors) foreground background;
+        # foreground = colors.foreground;
+        # background = colors.background;
         cursor = "${colors.background} ${colors.foreground}";
 
         regular0 = colors.black;

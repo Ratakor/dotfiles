@@ -1,16 +1,21 @@
 {pkgs, ...}: {
   # yazi dependencies
   home.packages = with pkgs; [
-    ouch
-    poppler
+    file # file type detection
+    jq # json preview
+    ouch # archive extraction
+    poppler # pdf preview
     mediainfo
     ffmpegthumbnailer
   ];
 
   programs.yazi = {
     enable = true;
+
+    # adds a shell wrapper that changes cwd when exiting yazi
     enableZshIntegration = true;
     shellWrapperName = "y";
+
     initLua = ./init.lua;
 
     keymap.mgr.prepend_keymap = [

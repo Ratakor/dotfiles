@@ -3,8 +3,21 @@
   pkgs,
   lib,
   username,
+  colors,
   ...
-}: {
+}: let
+  # TODO: this should be in lib
+  capitalize = word:
+    if word == ""
+    then ""
+    else let
+      head = builtins.substring 0 1 word;
+      tail = builtins.substring 1 (builtins.stringLength word - 1) word;
+    in "${lib.toUpper head}${tail}";
+in {
+  # TODO
+  programs.hyprland.enable = false;
+  programs.river.enable = true;
   # services.displayManager = {
   #   enable = true;
   #   # defaultSession = "none";
@@ -22,29 +35,21 @@
     };
   };
 
-  users.users = {
-    root = {
-      shell = pkgs.zsh;
-      # password = TODO
-    };
-
-    ${username} = {
-      isNormalUser = true;
-      description = username; # TODO: capitalize
-      # group = username; # add "users" to extraGroups
-      # password = TODO
-      extraGroups = [
-        "wheel"
-        # "audio"
-        # "video"
-        # "storage"
-        # "network"
-        "networkmanager"
-        # "kvm"
-      ];
-      shell = pkgs.zsh;
-      # openssh.authorizedKeys.keys = [];
-    };
+  users.users.${username} = {
+    isNormalUser = true;
+    shell = pkgs.zsh;
+    description = capitalize username; # TODO: capitalize
+    # password = TODO
+    extraGroups = [
+      "wheel"
+      # "audio"
+      # "video"
+      # "storage"
+      # "network"
+      "networkmanager"
+      # "kvm"
+    ];
+    # openssh.authorizedKeys.keys = [];
   };
 
   # customise /etc/nix/nix.conf declaratively via `nix.settings`
@@ -74,6 +79,7 @@
 
     builders-use-substitutes = true;
 
+    # TODO
     # Optimize storage
     # You can also manually optimize the store via:
     #    nix-store --optimise
@@ -83,6 +89,7 @@
   };
 
   # Perform garbage collection weekly to maintain low disk usage
+  # TODO: see programs.nh too
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -91,6 +98,11 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # TODO;
+  system.autoUpgrade = {
+    enable = false;
+  };
 
   # Set your time zone
   time.timeZone = "Europe/Paris";
@@ -109,19 +121,28 @@
   #   LC_TIME = "fr_FR.UTF-8";
   # };
 
-  # TODO: what is that
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
+  console.colors = [
+    colors.black
+    colors.red
+    colors.green
+    colors.yellow
+    colors.blue
+    colors.magenta
+    colors.cyan
+    colors.white
+    colors.bright_black
+    colors.bright_red
+    colors.bright_green
+    colors.bright_yellow
+    colors.bright_blue
+    colors.bright_magenta
+    colors.bright_cyan
+    colors.bright_white
+  ];
 
   # Enable CUPS to print documents
   services.printing.enable = true;
 
-  # TODO: wrong fonts
-  # sans-serif: Luciole
-  # monospace: agave Nerd Font Mono
   fonts = {
     packages = with pkgs; [
       # icon fonts
@@ -130,15 +151,14 @@
       # normal fonts
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
-      # noto-fonts-color-emoji
+      # noto-fonts-monochrome-emoji
+      noto-fonts-color-emoji
+      noto-fonts-emoji-blob-bin
+      luciole-fonts
 
       # nerdfonts
-      # https://github.com/NixOS/nixpkgs/blob/nixos-unstable-small/pkgs/data/fonts/nerd-fonts/manifests/fonts.json
+      # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerd-fonts/manifests/fonts.json
       nerd-fonts.symbols-only # symbols icon only
-      nerd-fonts.fira-code
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.iosevka
       nerd-fonts.agave
     ];
 
@@ -149,10 +169,10 @@
     # the reason there's Noto Color Emoji everywhere is to override DejaVu's
     # B&W emojis that would sometimes show instead of some Color emojis
     fontconfig.defaultFonts = {
-      serif = ["Noto Serif" "Noto Color Emoji"];
-      sansSerif = ["Noto Sans" "Noto Color Emoji"];
-      monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
-      emoji = ["Noto Color Emoji"];
+      serif = ["Noto Serif" "Blobmoji" "Noto Color Emoji"];
+      sansSerif = ["Luciole" "Noto Sans" "Blobmoji" "Noto Color Emoji"];
+      monospace = ["Agave Nerd Font Mono" "Blobmoji" "Noto Color Emoji"];
+      emoji = ["Blobmoji" "Noto Color Emoji"];
     };
   };
 
@@ -178,12 +198,11 @@
   environment = {
     # List packages installed in system profile.
     # You can use https://search.nixos.org/ to find more packages (and options).
-    # $ nix search <pkgname>
+    # $ nix search nixpkgs <pkgname>
+    # see `environment.defaultPackages` too
+    # TODO: sort that
     systemPackages = with pkgs; [
       neovim # editor
-      yazi # file manager
-      zellij # terminal multiplexer (TODO: this one should probably be in home)
-      zsh
       git
       wget
       curl
@@ -191,6 +210,7 @@
       cryptsetup
       #ntfs3g
       #xfsprogs xfsdump
+      killall
 
       file
       which
@@ -198,6 +218,12 @@
       gnutar
       gawk
       gnupg
+
+      dash
+
+      # Linux man pages
+      man-pages
+      man-pages-posix
 
       inputs.agenix.packages."${system}".default
 
@@ -211,14 +237,18 @@
       zsh
     ];
 
-    # binsh = "${pkgs.dash}/bin/dash"
-
-    # Change ZDOTDIR in /etc/zshenv to not have a symlink in $HOME
-    # TODO: this can probably be done in systemWide zsh config
-    etc.zshenv = {
-      text = "export ZDOTDIR=\"$HOME/.local/etc/zsh\"\n";
-      # mode = "0655";
+    variables = {
+      EDITOR = "nvim";
+      # VISUAL = "nvim";
     };
+
+    # binsh = "${pkgs.dash}/bin/dash"
+    localBinInPath = true;
+    homeBinInPath = false;
+    # memoryAllocator.provider = "graphene-hardened";
+    enableAllTerminfo = false;
+    enableDebugInfo = false; # see wiki to enable debug info per package instead
+    extraOutputsToInstall = []; # enable it per package instead like `pkg.dev`
   };
 
   programs.zsh.enable = true;
@@ -263,22 +293,6 @@
   };
 
   security = {
-    # TODO: or simply alias pmount to sudo pmount
-    wrappers = {
-      pmount = {
-        setuid = true;
-        owner = "root";
-        group = "root";
-        source = "${pkgs.pmount}/bin/pmount";
-      };
-      pumount = {
-        setuid = true;
-        owner = "root";
-        group = "root";
-        source = "${pkgs.pmount}/bin/pumount";
-      };
-    };
-
     pam.services.swaylock = {
       fprintAuth = false;
     };
@@ -303,14 +317,11 @@
 
   documentation = {
     man = {
-      man-db.enable = false;
-      mandoc.enable = true;
+      enable = true;
+      man-db.enable = true;
+      mandoc.enable = false; # sadly mandoc is poorly supported on nixos
       generateCaches = true;
     };
     dev.enable = true;
   };
-
-  # TODO
-  programs.hyprland.enable = false;
-  programs.river.enable = true;
 }

@@ -30,7 +30,7 @@
     # corrects your last command
     pay-respects = {
       enable = true;
-      enableZshIntegration = true;
+      enableZshIntegration = true; # adds the `f` alias
     };
 
     # process viewer

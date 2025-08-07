@@ -4,7 +4,6 @@
 {
   imports = [
     ./etc.nix
-    ./share.nix # TODO
-    ./bin.nix
+    ./share.nix
   ];
 }

@@ -50,6 +50,7 @@ in {
     dataHome = "${config.home.homeDirectory}/.local/share";
     stateHome = "${config.home.homeDirectory}/.local/var/state";
 
+    # Make npm and python respect XDG directories
     configFile = {
       "npm/npmrc".text = ''
         prefix=${config.xdg.dataHome}/npm

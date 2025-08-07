@@ -1,15 +1,11 @@
 # TODO: I don't know if I like that, at least css is good
 # also change orange color
 {
+  pkgs,
   config,
   colors,
   ...
 }: {
-  home.file."${config.xdg.configHome}/waybar/scripts" = {
-    source = ./scripts;
-    recursive = true;
-  };
-
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -51,7 +47,7 @@
         max-length = 40;
       };
       "custom/music" = {
-        exec = "$XDG_CONFIG_HOME/waybar/scripts/music.sh";
+        exec = pkgs.writeShellScript "waybar-music" (builtins.readFile ./scripts/music.sh);
         interval = "once";
         signal = 1;
         max-length = 40;
@@ -119,7 +115,7 @@
         on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
       };
       "custom/weather" = {
-        exec = "$XDG_CONFIG_HOME/waybar/scripts/weather.sh";
+        exec = pkgs.writeShellScript "waybar-weather" (builtins.readFile ./scripts/weather.sh);
         return-type = "json";
         format = "{}";
         max-length = 10;

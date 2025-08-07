@@ -5,17 +5,25 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [
-    dust # du replacement
-    duf # df replacement
-  ];
+  home = {
+    packages = with pkgs; [
+      dust # du replacement
+      duf # df replacement
+      procs # ps replacement
+    ];
+
+    # TODO: move other aliases here too
+    shellAliases = {
+      ps = "procs";
+    };
+  };
 
   programs = {
     # cat replacement
     bat = {
       enable = true;
       config = {
-        theme = colors.theme;
+        inherit (colors) theme;
         style = "plain";
         tabs = "0";
       };
@@ -48,7 +56,7 @@
     zoxide = {
       enable = true;
       options = ["--cmd cd"];
-      enableZshIntegration = true;
+      enableZshIntegration = true; # replaces cd & add `cdi` command
     };
   };
 }

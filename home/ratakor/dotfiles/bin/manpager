@@ -1,2 +1,0 @@
-#!/bin/sh
-col -bx < "$1" | bat -l man -p

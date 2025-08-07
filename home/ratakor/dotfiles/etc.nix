@@ -1,16 +1,6 @@
 {config, ...}: let
   configHome = config.xdg.configHome;
 in {
-  home.file."${configHome}/fastfetch" = {
-    source = ./etc/fastfetch;
-    recursive = true;
-  };
-
-  home.file."${configHome}/fontconfig" = {
-    source = ./etc/fontconfig;
-    recursive = true;
-  };
-
   # TODO: glow
   # TODO: gtk-3.0
 

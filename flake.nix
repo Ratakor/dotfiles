@@ -88,6 +88,8 @@
         modules = [
           ./hosts/X200
 
+          (import ./overlays)
+
           home-manager.nixosModules.home-manager
           {
             home-manager = {
