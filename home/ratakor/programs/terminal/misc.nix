@@ -12,7 +12,6 @@
     caligula # TUI for burning disks
     pastel # CLI for color manipulation
     # glow # markdown viewer, imo bat or markview.nvim are better
-    pmount # mount removable devices as normal user
     acpi # battery status, -i is good
     ytfzf # search youtube video without a browser
     imagemagick # image manipulation from the terminal
@@ -21,9 +20,17 @@
     termdown # timer on the terminal
     trash-cli # rm replacement kinda
     detox # cli to cleanup filenames
+    yq # jq wrapper for yaml, xml and toml
 
-    inputs.zig-2048.packages."${pkgs.system}".default
-    inputs.zpotify.packages."${pkgs.system}".default # CLI for spotify
+    # mount removable devices as normal user
+    (pmount.overrideAttrs (oldAttrs: {
+      configureFlags = (oldAttrs.configureFlags or []) ++ [
+        "--with-cryptsetup-prog=${cryptsetup}/bin/cryptsetup"
+      ];
+    }))
+
+    inputs.zig-2048.packages."${system}".default
+    inputs.zpotify.packages."${system}".default # CLI for spotify
   ];
 
   programs = {
@@ -57,6 +64,11 @@
     fastfetch = {
       enable = true;
       # TODO: settings
+    };
+
+    # json processor
+    jq = {
+      enable = true;
     };
   };
 

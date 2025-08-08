@@ -2,19 +2,11 @@
   inputs,
   pkgs,
   lib,
+  mylib,
   username,
   colors,
   ...
-}: let
-  # TODO: this should be in lib
-  capitalize = word:
-    if word == ""
-    then ""
-    else let
-      head = builtins.substring 0 1 word;
-      tail = builtins.substring 1 (builtins.stringLength word - 1) word;
-    in "${lib.toUpper head}${tail}";
-in {
+}: {
   # TODO
   programs.hyprland.enable = false;
   programs.river.enable = true;
@@ -38,7 +30,7 @@ in {
   users.users.${username} = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    description = capitalize username; # TODO: capitalize
+    description = mylib.capitalize username;
     # password = TODO
     extraGroups = [
       "wheel"
@@ -203,11 +195,13 @@ in {
     # TODO: sort that
     systemPackages = with pkgs; [
       neovim # editor
+      yazi # file manager
       git
       wget
       curl
 
       cryptsetup
+      sysfsutils
       #ntfs3g
       #xfsprogs xfsdump
       killall
@@ -311,6 +305,7 @@ in {
     };
   };
 
+  # this is for pmount
   systemd.tmpfiles.rules = [
     "d /media 0755 ${username} users"
   ];
@@ -323,5 +318,11 @@ in {
       generateCaches = true;
     };
     dev.enable = true;
+  };
+
+  # laptop power saving settings
+  services.tlp = {
+    enable = true;
+    # settings ...
   };
 }

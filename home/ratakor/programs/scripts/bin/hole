@@ -3,6 +3,7 @@
 # for pure bash use (exec 3<>/dev/tcp/$HOST/$PORT; cat >&3; cat <&3; exec 3<&-)
 # instead of nc "$HOST" "$PORT"
 # gpg -e -r keyid and gpg -d can be used instead of openssl
+# TODO: use socat instead of openbsd-netcat
 
 DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hole"
 HOST="hole.ratakor.com"

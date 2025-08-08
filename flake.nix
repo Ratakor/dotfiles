@@ -56,13 +56,13 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-stable,
     home-manager,
-    agenix,
     ...
   } @ inputs: let
+    system = "x86_64-linux";
     username = "ratakor";
     theme = "gruvbox-dark"; # gruvbox-dark gruvbox-light dracula
+    mylib = import ./lib { inherit (nixpkgs) lib; };
   in {
     # Systems for which attributes of perSystem will be built. As
     # a rule of thumb, only systems provided by available hosts
@@ -73,16 +73,17 @@
 
     nixosConfigurations = {
       X200 = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
+        inherit system;
 
         specialArgs = {
-          pkgs-stable = import nixpkgs-stable {
+          inherit inputs username mylib;
+
+          colors = ((import ./modules/colors.nix) {pkgs = nixpkgs;})."${theme}";
+
+          pkgs-stable = import inputs.nixpkgs-stable {
             inherit system;
             config.allowUnfree = true;
           };
-          inherit inputs;
-          inherit username;
-          colors = ((import ./modules/colors.nix) {pkgs = nixpkgs;})."${theme}";
         };
 
         modules = [
@@ -101,7 +102,7 @@
             };
           }
 
-          agenix.nixosModules.default
+          inputs.agenix.nixosModules.default
         ];
       };
     };

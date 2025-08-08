@@ -6,7 +6,7 @@
   home.packages = with pkgs; [
     grim # screenshot
     slurp # region selection
-    #swayppy # image editor for screenshots
+    # swayppy # image editor for screenshots
     wl-clipboard # clipboard management
     wf-recorder # screen recording
     dragon-drop # a simple drag-and-drop replacement for graphical stuff
@@ -18,7 +18,10 @@
     swaybg # wallpaper utility
     wlopm # power management (black screen)
     # claws-mail # mail client
-    # gajim # XMPP client
+    # hunspell # spell checker (dictionary for claws)
+    # hunspellDicts.en_US
+    # hunspellDicts.fr-any
+    # gajim # XMPP client (see python-axolotl & python-gnupg)
     swayidle # idle manager (see services.swayidle)
   ];
 
@@ -26,7 +29,20 @@
     # password manager (provides a cli version too)
     keepassxc = {
       enable = true;
-      settings = {}; # TODO, -> password-manager.nix?
+      settings = {
+        Browser.Enabled = true;
+
+        GUI = {
+          ApplicationTheme = "dark";
+          # HidePasswords = true;
+          # AdvancedSettings = true;
+          # CompactMode = true;
+        };
+
+        Security = {
+          ClearClipboardTimeout = 30;
+        };
+      };
     };
   };
 
@@ -81,10 +97,17 @@
     #   program = "pinentry-dmenu";
     # };
 
-    # TODO?
     # auto mount usb drives
     udiskie = {
-      enable = false;
+      enable = false; # TODO
+      automount = true;
+      notify = true;
+      # TODO
+      settings = {
+        program_options = {
+          terminal = "footclient -D";
+        };
+      };
     };
   };
 

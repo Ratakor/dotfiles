@@ -1,16 +1,18 @@
 {
-  username,
+  config,
+  mylib,
   pkgs,
+  username,
   ...
 }: {
   programs.senpai = {
     enable = true;
-    # TODO
     config = {
-      nickname = username;
-      address = "libera.chat:6697";
+      nickname = mylib.capitalize username;
+      address = "irctoday.com"; # "libera.chat:6697";
+      # TODO
       # password = "";
-      # passowrd-cmd = "";
+      # passowrd-cmd = ["cat" age.secrets.irc.path];
     };
   };
 }

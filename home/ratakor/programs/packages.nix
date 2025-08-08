@@ -15,8 +15,6 @@
 
     # TODO: overlay / custom packages (add ~/.local/bin scripts too for stuff like "${...}/bin/randwp")
     # aur/scron-git # simple cron daemon, spawn with crond # TODO: use systemd-timers
-    # aur/dashbinsh # TODO: break things on nixos (?)
-
     # aur/quand-git # a calendar app like when
     # rcp/pinentry-dmenu # use dmenu for gpg
     # aur/neocities-zig-bin
@@ -31,21 +29,9 @@
     libtool
     pkg-config
 
-    # tlp-openrc # laptop power saving settings (rc-update add tlp default)
-    # jq # json processor # TODO: programs.jq
-    # yq # jq wrapper for yaml, xml and toml
-    # checkbashisms
-    # openbsd-netcat
-    # hunspell # dictionary for claws
-    # hunspell-en_us
-    # hunspell-fr
-    # #python-axolotl # gajim dependency (removed from parabola repos)
-    # python-gnupg # gajim dependency
-    # git-lfs
-    # perf
+    # perf # perf-linux?
     # ntp-openrc # ntp client, rc-update add ntpd default
     # python-pipx
-    # love
     # #clamav-openrc # antivirus (rc-update add clamd default) OUTDATED on parabola
 
     # innoextract # innoextract setup_warcraft_ii_2.02_v4_\(28734\).exe && wartool -v -r . ~/.stratagus/data.Wargus
@@ -63,7 +49,6 @@
     dnsutils # `dig` + `nslookup`
     ldns # replacement of `dig`, it provide the command `drill`
     aria2 # A lightweight multi-protocol & multi-source command-line download utility
-    socat # replacement of openbsd-netcat
     nmap # A utility for network discovery and security auditing
     ipcalc # it is a calculator for the IPv4/v6 addresses
 

@@ -10,6 +10,7 @@
       dust # du replacement
       duf # df replacement
       procs # ps replacement
+      socat # netcat replacement
     ];
 
     # TODO: move other aliases here too

@@ -1,0 +1,12 @@
+# Title[!]: Summary, imperative, start upper case, don't end with a period
+# types: fix, feat, build, chore, ci, docs, style, refactor, perf, test
+# No more than 50 chars. #### 50 chars is here:  #
+
+# Separate subject from body with a blank line.
+
+# Body: Explain *what* and *why* (not *how*).
+# Wrap at 72 chars. ################################## which is here:  #
+
+# At the end: Include Co-authored-by for all contributors.
+# Include at least one empty line before it.
+# Co-authored-by: name <user@users.noreply.github.com>

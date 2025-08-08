@@ -20,10 +20,10 @@ in {
     ];
 
     # prepend extra directories to arbitrary PATH-like environment variables
-    sessionSearchVariables = {
-      MANPATH = ["$HOME/.local/share/man"];
-      LD_LIBRARY_PATH = ["$HOME/.local/lib"];
-    };
+    # sessionSearchVariables = {
+    #   MANPATH = ["$HOME/.local/share/man"];
+    #   LD_LIBRARY_PATH = ["$HOME/.local/lib"];
+    # };
 
     sessionVariables = {
       # Default programs

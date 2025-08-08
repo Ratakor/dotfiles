@@ -38,12 +38,16 @@
     luarocks
     just # command runner (like make)
     cloc # counts lines of code
+    checkbashisms # checks for bashisms in scripts
+    # love # lua 2D game engine (Balatro)
 
     ## archives
+    bzip2
+    gzip
     zip
-    xz
     unzip
     p7zip
+    xz
     zstd
     lz4
     ouch # Obvious Unified Compression Helper
