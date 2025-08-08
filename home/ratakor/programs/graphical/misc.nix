@@ -1,5 +1,6 @@
 {
   colors,
+  config,
   pkgs,
   ...
 }: {
@@ -23,6 +24,8 @@
     # hunspellDicts.fr-any
     # gajim # XMPP client (see python-axolotl & python-gnupg)
     swayidle # idle manager (see services.swayidle)
+
+    # anki # TODO: install + configure + which version?
   ];
 
   programs = {
@@ -83,7 +86,7 @@
       enable = false;
     };
 
-    # TODO
+    # TODO: gnupg pinentry
     # gpg-agent.pinentry = {
     #   package = pkgs.pinentry-dmenu.overrideAttrs (oldAttrs: rec {
     #     version = "460fde704079c3791294d13a60a03069426e7f82";
@@ -112,8 +115,10 @@
   };
 
   gtk = {
+    enable = true;
     theme = {
-      inherit (colors.gtk) name package;
+      inherit (colors.gtk) name;
+      package = pkgs."${colors.gtk.packageName}";
     };
 
     gtk3.extraCss = ''
@@ -126,4 +131,11 @@
       }
     '';
   };
+
+  xdg.configFile."swappy/config".text = ''
+    [Default]
+    save_dir = ${config.xdg.userDirs.extraConfig.XDG_SCREENSHOTS_DIR}
+    save_filename_format = swappy-%Y-%m-%d_%H:%M.png
+    show_panel = true
+  '';
 }

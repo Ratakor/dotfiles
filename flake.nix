@@ -62,7 +62,7 @@
     system = "x86_64-linux";
     username = "ratakor";
     theme = "gruvbox-dark"; # gruvbox-dark gruvbox-light dracula
-    mylib = import ./lib { inherit (nixpkgs) lib; };
+    mylib = import ./lib {inherit (nixpkgs) lib;};
   in {
     # Systems for which attributes of perSystem will be built. As
     # a rule of thumb, only systems provided by available hosts
@@ -78,7 +78,7 @@
         specialArgs = {
           inherit inputs username mylib;
 
-          colors = ((import ./modules/colors.nix) {pkgs = nixpkgs;})."${theme}";
+          colors = (import ./modules/colors.nix)."${theme}";
 
           pkgs-stable = import inputs.nixpkgs-stable {
             inherit system;

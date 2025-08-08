@@ -6,7 +6,6 @@
 }: {
   imports = [
     ./programs
-    ./dotfiles
     ./misc
   ];
 

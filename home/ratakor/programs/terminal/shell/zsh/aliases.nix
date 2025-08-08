@@ -94,8 +94,8 @@ in {
       zpot = "zpotify";
       z = "zellij --layout welcome";
       zac = "zellij attach --create";
-      musb = "pmount";
-      umusb = "pumount";
+      musb = "sudo pmount";
+      umusb = "sudo pumount";
 
       # verbosity and colors
       rm = "trash -v"; # "rm -vI"

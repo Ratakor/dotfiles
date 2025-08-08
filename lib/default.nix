@@ -1,4 +1,3 @@
-{lib, ...}:
-{
-  capitalize = import ./capitalize.nix { inherit lib; };
+{lib, ...}: {
+  capitalize = import ./capitalize.nix {inherit lib;};
 }

@@ -1,47 +1,4 @@
-# TODO: missing custom entries
-{config, ...}: let
-  browser = ["chromium.desktop"]; # TODO: change to cromite?
-
-  # XDG MIME types
-  associations = {
-    "audio/*" = ["mpv.desktop"];
-    "video/*" = ["mpv.desktop"];
-    "image/*" = ["imv.desktop"];
-    # "text/x-shellscript" = ["text.desktop"];
-    # "text/plain" = ["text.desktop"];
-    # "application/postscript" = ["pdf.desktop"];
-    # "application/pdf" = ["pdf.desktop"]; # ["org.pwmt.zathura.desktop.desktop"];
-    # "inode/directory" = ["file.desktop"];
-    # "x-scheme-handler/ircs" = ["senpai.desktop"];
-    # "x-scheme-handler/irc" = ["senpai.desktop"];
-    # "x-scheme-handler/git" = ["git.desktop"];
-    # "x-scheme-handler/magnet" = ["torrent.desktop;"];
-    # "application/x-bittorrent" = ["torrent.desktop;"];
-
-    "text/html" = browser;
-    "x-scheme-handler/ftp" = browser;
-    "x-scheme-handler/http" = browser;
-    "x-scheme-handler/https" = browser;
-    "x-scheme-handler/about" = browser;
-    "x-scheme-handler/unknown" = browser;
-    # "application/json" = browser;
-    "application/xhtml+xml" = browser;
-    "application/x-extension-htm" = browser;
-    "application/x-extension-html" = browser;
-    "application/x-extension-shtml" = browser;
-    "application/x-extension-xht" = browser;
-    "application/x-extension-xhtml" = browser;
-
-    # "x-scheme-handler/mailto" = ["mail.desktop"];
-    # "x-scheme-handler/discord" = ["discord.desktop"];
-    # "x-scheme-handler/spotify" = ["spotify.desktop"];
-
-    # anki.desktop is automatically created by anki
-    # application/x-colpkg=anki.desktop
-    # application/x-apkg=anki.desktop
-    # application/x-ankiaddon=anki.desktop
-  };
-in {
+{config, ...}: {
   xdg = {
     enable = true;
 
@@ -113,10 +70,72 @@ in {
       };
     };
 
+    desktopEntries = {
+      file = {
+        name = "File Manager";
+        exec = "footclient -D %f";
+      };
+      git = {
+        name = "git";
+        exec = "footclient -e git clone %u";
+      };
+      mail = {
+        name = "Mail Client";
+        exec = "mail --compose %u";
+      };
+      text = {
+        name = "Text Editor";
+        exec = "footclient -e nvim %u";
+      };
+      torrent = {
+        name = "Torrent Client";
+        exec = "qbittorrent %u";
+      };
+    };
+
     mimeApps = {
       enable = true;
-      associations.added = associations;
-      defaultApplications = associations;
+      defaultApplications = let
+        browser = ["chromium-browser.desktop"]; # TODO: change to cromite?
+      in {
+        "audio/*" = ["mpv.desktop"];
+        "video/*" = ["mpv.desktop"];
+        "image/*" = ["imv.desktop"];
+        "text/x-shellscript" = ["text.desktop"];
+        "text/plain" = ["text.desktop"];
+        "application/postscript" = ["org.pwmt.zathura.desktop"];
+        "application/pdf" = ["org.pwmt.zathura.desktop"];
+        "inode/directory" = ["file.desktop"];
+        # "x-scheme-handler/ircs" = ["senpai.desktop"];
+        # "x-scheme-handler/irc" = ["senpai.desktop"];
+        "x-scheme-handler/git" = ["git.desktop"];
+        "x-scheme-handler/magnet" = ["torrent.desktop;"];
+        "application/x-bittorrent" = ["torrent.desktop;"];
+
+        "text/html" = browser;
+        "x-scheme-handler/ftp" = browser;
+        "x-scheme-handler/http" = browser;
+        "x-scheme-handler/https" = browser;
+        "x-scheme-handler/about" = browser;
+        "x-scheme-handler/unknown" = browser;
+        # "application/json" = browser;
+        "application/xhtml+xml" = browser;
+        "application/x-extension-htm" = browser;
+        "application/x-extension-html" = browser;
+        "application/x-extension-shtml" = browser;
+        "application/x-extension-xht" = browser;
+        "application/x-extension-xhtml" = browser;
+
+        # TODO
+        # "x-scheme-handler/mailto" = ["mail.desktop"];
+        # "x-scheme-handler/discord" = ["discord.desktop"];
+        # "x-scheme-handler/spotify" = ["spotify.desktop"];
+
+        # anki.desktop is automatically created by anki
+        # application/x-colpkg=anki.desktop
+        # application/x-apkg=anki.desktop
+        # application/x-ankiaddon=anki.desktop
+      };
     };
   };
 }

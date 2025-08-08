@@ -11,14 +11,9 @@
     # base-devel (autoconf automake binutils bison debugedit fakeroot file findutils flex gawk gcc gettext grep groff gzip libtool m4 make patch pkgconf sed sudo texinfo which)
     # linux-libre
     # inetutils
-    # openssh
 
     # TODO: overlay / custom packages (add ~/.local/bin scripts too for stuff like "${...}/bin/randwp")
-    # aur/scron-git # simple cron daemon, spawn with crond # TODO: use systemd-timers
-    # aur/quand-git # a calendar app like when
-    # rcp/pinentry-dmenu # use dmenu for gpg
     # aur/neocities-zig-bin
-    # anki idk which version (move to latest maybe lol?)
 
     ## misc
     # less
@@ -75,23 +70,4 @@
     #pulsemixer
     # services.playserctld.enable = true;
   ];
-
-  # this is home-manager.programs not nixos.programs
-  programs = {
-    ssh = {
-      enable = true;
-      # TODO + this should be available system wide?
-    };
-
-    # TODO: fzf replacement
-    # skim = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    #   defaultCommand = "rg --files --hidden";
-    #   changeDirWidgetOptions = [
-    #     "--preview 'eza --icons --git --color always -T -L 3 {} | head -200'"
-    #     "--exact"
-    #   ];
-    # };
-  };
 }

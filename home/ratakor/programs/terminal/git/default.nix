@@ -1,16 +1,17 @@
 {
+  config,
   mylib,
   pkgs,
   username,
   ...
 }: {
   programs = {
-    # TODO: signing
     git = {
       enable = true;
       userName = mylib.capitalize username;
       userEmail = "ratakor@disroot.org"; # ?
-      # signing.key = "241B1CBE567B287E"; # /home/ratakor/.ssh/id_rsa.pub
+      # signing.key = "241B1CBE567B287E";
+      signing.key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub"; # need gpg.format = "ssh"
       lfs.enable = true;
 
       extraConfig = {
@@ -25,10 +26,10 @@
           };
         };
         commit = {
-          # gpgsign = true;
+          gpgsign = true;
           template = "${pkgs.writeText "commit" (builtins.readFile ./commit)}";
         };
-        # gpg.format = "ssh";
+        gpg.format = "ssh";
         push.autoSetupRemote = true;
       };
     };

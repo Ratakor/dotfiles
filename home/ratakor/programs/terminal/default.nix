@@ -1,6 +1,7 @@
 {
   imports = [
     ./backup.nix
+    ./calendar
     ./dev.nix
     ./editor
     ./file-manager

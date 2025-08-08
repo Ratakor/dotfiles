@@ -1,4 +1,0 @@
-[Default]
-save_dir = $XDG_PICTURES_DIR/screenshots
-save_filename_format = swappy-%Y-%m-%d_%H:%M.png
-show_panel = true

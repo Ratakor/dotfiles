@@ -175,7 +175,6 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # TODO
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
@@ -257,11 +256,8 @@
     pulse.enable = true;
     jack.enable = true;
 
-    # TODO: config
-
     wireplumber = {
       enable = true;
-      # TODO: config?
     };
   };
 
@@ -280,10 +276,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
-  # TODO: what is that?
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+    # pinentryPackage = pkgs.pinentry-curses;
   };
 
   security = {

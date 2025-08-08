@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -24,9 +25,11 @@
 
     # mount removable devices as normal user
     (pmount.overrideAttrs (oldAttrs: {
-      configureFlags = (oldAttrs.configureFlags or []) ++ [
-        "--with-cryptsetup-prog=${cryptsetup}/bin/cryptsetup"
-      ];
+      configureFlags =
+        (oldAttrs.configureFlags or [])
+        ++ [
+          "--with-cryptsetup-prog=${cryptsetup}/bin/cryptsetup"
+        ];
     }))
 
     inputs.zig-2048.packages."${system}".default
@@ -70,6 +73,19 @@
     jq = {
       enable = true;
     };
+
+    # this should probably be somewhere else
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "ssh.cri.epita.fr" = {
+          extraOptions = {
+            GSSAPIAuthentication = "yes";
+            GSSAPIDelegateCredentials = "yes";
+          };
+        };
+      };
+    };
   };
 
   services = {
@@ -79,6 +95,7 @@
       # https://github.com/librespot-org/librespot/wiki/Options
       settings = {
         quiet = true;
+        cache = "${config.xdg.cacheHome}/librespot";
         autoplay = "on";
         enable-volume-normalisation = true;
         name = "librespot"; # TODO: "librespot@$(hostname)";
@@ -91,4 +108,24 @@
       };
     };
   };
+
+  xdg.configFile."glow/glow.yml".text = ''
+    # style name or JSON path (default "auto")
+    style: "auto"
+    # show local files only; no network (TUI-mode only)
+    local: true
+    # mouse support (TUI-mode only)
+    mouse: true
+    # use pager to display markdown
+    pager: true
+    # word-wrap at width
+    width: 0 # 80
+  '';
+
+  xdg.configFile."ytfzf/conf.sh".text = ''
+    video_pref=720p
+    #show_thumbnails=1
+    is_detach=1
+    #is_loop=1
+  '';
 }

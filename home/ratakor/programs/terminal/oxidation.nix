@@ -59,5 +59,17 @@
       options = ["--cmd cd"];
       enableZshIntegration = true; # replaces cd & add `cdi` command
     };
+
+    # TODO: replace fzf correctly + config skim
+    # fzf replacement
+    skim = {
+      enable = false;
+      # enableZshIntegration = true;
+      # defaultCommand = "rg --files --hidden";
+      # changeDirWidgetOptions = [
+      #   "--preview 'eza --icons --git --color always -T -L 3 {} | head -200'"
+      #   "--exact"
+      # ];
+    };
   };
 }

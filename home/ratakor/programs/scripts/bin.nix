@@ -6,4 +6,6 @@
     recursive = true;
     executable = true;
   };
+
+  home.file."${config.xdg.dataHome}/emoji".source = ./emoji;
 }
