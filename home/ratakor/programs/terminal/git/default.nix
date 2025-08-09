@@ -6,7 +6,7 @@
   programs = {
     git = {
       enable = true;
-      package = pkgs.gitFull;
+      # package = pkgs.gitFull;
       lfs.enable = true;
 
       userName = "Ratakor";
@@ -35,6 +35,7 @@
           template = "${pkgs.writeText "commit" (builtins.readFile ./commit)}";
         };
         push.autoSetupRemote = true;
+        core.sshCommand = "${pkgs.openssh_gssapi}/bin/ssh";
       };
     };
 

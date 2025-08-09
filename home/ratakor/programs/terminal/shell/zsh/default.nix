@@ -26,7 +26,7 @@
     dotDir = "${config.xdg.configHome}/zsh";
     enableCompletion = true; # see programs.zsh.completionInit
     enableVteIntegration = true;
-    autosuggestion.enable = true;
+    autosuggestion.enable = true; # TODO: bind <C-h> to completion
     autocd = true; # automatically cd into typed directory
 
     syntaxHighlighting = {

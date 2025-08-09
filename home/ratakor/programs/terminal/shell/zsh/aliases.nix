@@ -106,10 +106,10 @@ in {
       ip = "ip --color=always";
       ls = "eza --color=always --group-directories-first --hyperlink";
       sl = "ls";
-      ll = "ls -lho --git";
+      ll = "ls -lgho --git";
       la = "ls -a";
       laa = "ls -aa";
-      l = "ls -lhoa";
+      l = "ll -a";
       lr = "ls -R";
       tree = "ls -T";
       cat = "bat --style=numbers,changes --tabs 8"; # --theme=${colors.theme}";
@@ -117,6 +117,7 @@ in {
       duf = "duf -hide special";
       fd = "fd -HI --color=always";
       less = "less -R";
+      # readlink = "readlink -f"; # use realpath instead
 
       # git
       G = "gitui";

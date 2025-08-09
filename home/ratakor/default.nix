@@ -1,5 +1,4 @@
 {
-  username,
   config,
   pkgs,
   ...
@@ -10,8 +9,8 @@
   ];
 
   home = {
-    inherit username;
-    homeDirectory = "/home/${username}";
+    username = "ratakor";
+    homeDirectory = "/home/ratakor";
     stateVersion = "25.05";
   };
 

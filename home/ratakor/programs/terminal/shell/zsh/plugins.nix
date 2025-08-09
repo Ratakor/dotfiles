@@ -18,14 +18,6 @@
       file = "zsh-vi-mode.plugin.zsh";
       src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
     }
-    {
-      # I don't know why but apparently
-      # 'programs.zsh.autosuggestion.enable = true;'
-      # is not enough
-      name = "zsh-autosuggestions";
-      file = "zsh-autosuggestions.zsh";
-      src = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
-    }
     # {
     #   name = "fast-syntax-highlighting";
     #   file = "fast-syntax-highlighting.plugin.zsh";

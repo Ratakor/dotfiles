@@ -2,8 +2,6 @@
   inputs,
   pkgs,
   lib,
-  mylib,
-  username,
   colors,
   ...
 }: {
@@ -20,7 +18,7 @@
   #   # defaultSession = "none+river";
   #   autoLogin = {
   #     enable = true;
-  #     user = username;
+  #     user = "ratakor";
   #   };
   # };
   services.xserver = {
@@ -31,10 +29,10 @@
     };
   };
 
-  users.users.${username} = {
+  users.users.ratakor = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    description = mylib.capitalize username;
+    description = "Ratakor";
     # password = TODO
     extraGroups = [
       "wheel"
@@ -53,10 +51,13 @@
     # given the users in this list the right to specify additional substituters via:
     #    1. `nixConfig.substituers` in `flake.nix`
     #    2. command line args `--options substituers http://xxx`
-    trusted-users = [username];
+    trusted-users = ["@wheel"];
 
     # enable flakes globally
     experimental-features = ["nix-command" "flakes"];
+
+    # TODO?
+    # system-features = ["kvm" "big-parrallel"];
 
     substituters = [
       # TODO
@@ -67,10 +68,16 @@
       # "https://mirrors.ustc.edu.cn/nix-channels/store"
 
       "https://cache.nixos.org"
+      # "https://s3.cri.epita.fr/cri-nix-cache.s3.cri.epita.fr"
+      # "https://nix-community.cachix.org"
+      # "https://nix-gaming.cachix.org"
     ];
 
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      # "cache.nix.cri.epita.fr:qDIfJpZWGBWaGXKO3wZL1zmC+DikhMwFRO4RVE6VVeo="
+      # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     ];
 
     builders-use-substitutes = true;
@@ -105,17 +112,17 @@
 
   # Select internationalisation properties
   i18n.defaultLocale = "en_US.UTF-8";
-  # i18n.extraLocaleSettings = {
-  #   LC_ADDRESS = "fr_FR.UTF-8";
-  #   LC_IDENTIFICATION = "fr_FR.UTF-8";
-  #   LC_MEASUREMENT = "fr_FR.UTF-8";
-  #   LC_MONETARY = "fr_FR.UTF-8";
-  #   LC_NAME = "fr_FR.UTF-8";
-  #   LC_NUMERIC = "fr_FR.UTF-8";
-  #   LC_PAPER = "fr_FR.UTF-8";
-  #   LC_TELEPHONE = "fr_FR.UTF-8";
-  #   LC_TIME = "fr_FR.UTF-8";
-  # };
+  i18n.extraLocaleSettings = {
+    #   LC_ADDRESS = "fr_FR.UTF-8";
+    #   LC_IDENTIFICATION = "fr_FR.UTF-8";
+    LC_MEASUREMENT = "fr_FR.UTF-8";
+    #   LC_MONETARY = "fr_FR.UTF-8";
+    #   LC_NAME = "fr_FR.UTF-8";
+    #   LC_NUMERIC = "fr_FR.UTF-8";
+    #   LC_PAPER = "fr_FR.UTF-8";
+    #   LC_TELEPHONE = "fr_FR.UTF-8";
+    #   LC_TIME = "fr_FR.UTF-8";
+  };
 
   console.colors = [
     colors.black
@@ -306,18 +313,26 @@
   };
 
   # this is for pmount
+  # change user to root with mode 0775?
   systemd.tmpfiles.rules = [
-    "d /media 0755 ${username} users"
+    "d /media 0755 ratakor users"
   ];
 
   documentation = {
+    enable = true;
+    dev.enable = true;
+    doc.enable = true;
+    info.enable = true;
     man = {
       enable = true;
       man-db.enable = true;
       mandoc.enable = false; # sadly mandoc is poorly supported on nixos
       generateCaches = true;
     };
-    dev.enable = true;
+    nixos = {
+      enable = true;
+      # includeAllModules = true;
+    };
   };
 
   # laptop power saving settings

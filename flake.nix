@@ -60,7 +60,6 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    username = "ratakor";
     theme = "gruvbox-dark"; # gruvbox-dark gruvbox-light dracula
     mylib = import ./lib {inherit (nixpkgs) lib;};
   in {
@@ -76,7 +75,7 @@
         inherit system;
 
         specialArgs = {
-          inherit inputs username mylib;
+          inherit inputs mylib;
 
           colors = (import ./modules/colors.nix).${theme};
 
@@ -98,7 +97,7 @@
               useUserPackages = true;
               extraSpecialArgs = inputs // specialArgs;
               backupFileExtension = "hm.bak";
-              users.${username} = import ./home/${username};
+              users.ratakor = import ./home/ratakor;
             };
           }
 
