@@ -1,18 +1,23 @@
 {
   config,
-  mylib,
   pkgs,
-  username,
   ...
 }: {
   programs = {
     git = {
       enable = true;
-      userName = mylib.capitalize username;
-      userEmail = "ratakor@disroot.org"; # ?
-      # signing.key = "241B1CBE567B287E";
-      signing.key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub"; # need gpg.format = "ssh"
+      package = pkgs.gitFull;
       lfs.enable = true;
+
+      userName = "Ratakor";
+      userEmail = "ratakor@disroot.org"; # ?
+      signing = {
+        key = "241B1CBE567B287E";
+        format = "openpgp";
+        # key = "${config.home.homeDirectory}/.ssh/id_rsa.pub";
+        # format = "ssh";
+        signByDefault = true;
+      };
 
       extraConfig = {
         init.defaultBranch = "master";
@@ -29,7 +34,6 @@
           gpgsign = true;
           template = "${pkgs.writeText "commit" (builtins.readFile ./commit)}";
         };
-        gpg.format = "ssh";
         push.autoSetupRemote = true;
       };
     };

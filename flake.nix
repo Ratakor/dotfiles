@@ -78,7 +78,7 @@
         specialArgs = {
           inherit inputs username mylib;
 
-          colors = (import ./modules/colors.nix)."${theme}";
+          colors = (import ./modules/colors.nix).${theme};
 
           pkgs-stable = import inputs.nixpkgs-stable {
             inherit system;

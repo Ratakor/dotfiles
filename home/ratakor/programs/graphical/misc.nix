@@ -28,27 +28,6 @@
     # anki # TODO: install + configure + which version?
   ];
 
-  programs = {
-    # password manager (provides a cli version too)
-    keepassxc = {
-      enable = true;
-      settings = {
-        Browser.Enabled = true;
-
-        GUI = {
-          ApplicationTheme = "dark";
-          # HidePasswords = true;
-          # AdvancedSettings = true;
-          # CompactMode = true;
-        };
-
-        Security = {
-          ClearClipboardTimeout = 30;
-        };
-      };
-    };
-  };
-
   services = {
     # no blue light at night
     gammastep = {
@@ -118,8 +97,10 @@
     enable = true;
     theme = {
       inherit (colors.gtk) name;
-      package = pkgs."${colors.gtk.packageName}";
+      package = pkgs.${colors.gtk.packageName};
     };
+
+    gtk2.enable = false; # .gtkrc-2.0 symlink in $HOME
 
     gtk3.extraCss = ''
       /* No (default) titlebar on wayland */

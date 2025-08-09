@@ -6,6 +6,7 @@
     ./image.nix
     ./misc.nix
     ./notification.nix
+    ./password-manager.nix
     ./screen-locker.nix
     ./status-bar
     ./terminal.nix

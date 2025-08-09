@@ -32,8 +32,8 @@
         ];
     }))
 
-    inputs.zig-2048.packages."${system}".default
-    inputs.zpotify.packages."${system}".default # CLI for spotify
+    inputs.zig-2048.packages.${system}.default
+    inputs.zpotify.packages.${system}.default # CLI for spotify
   ];
 
   programs = {
@@ -77,6 +77,7 @@
     # this should probably be somewhere else
     ssh = {
       enable = true;
+      package = pkgs.openssh_gssapi; # use `null` for system default
       matchBlocks = {
         "ssh.cri.epita.fr" = {
           extraOptions = {

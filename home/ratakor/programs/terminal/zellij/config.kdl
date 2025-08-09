@@ -8,6 +8,7 @@ keybinds {
     // Detach instead of of Quit for "Ctrl q"
     shared_except "locked" {
         bind "Ctrl q" { Detach; }
+        bind "Ctrl Shift q" { Quit; }
     }
     // rebind "Ctrl h" to "Ctrl m"
     move {

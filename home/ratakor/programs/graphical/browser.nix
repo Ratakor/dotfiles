@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  username,
   ...
 }: {
   # # ungoogled-chromium required to `pacman -Rdd your-freedom`

@@ -77,8 +77,7 @@ in {
       music-dlp = "ytdl m";
       playlist-dlp = "ytdl p";
       py = "python3";
-      # ho = "cat $XDG_DATA_HOME/hole/history";
-      # ytfzf = "ytfzf -D --detach";
+      # ho = "cat ${XDG_DATA_HOME}/hole/history";
       tmp = "cd $(mktemp -d)";
       mount = "sudo mount -o nosuid,nodev,noexec";
       o = "plumber"; # o for open
@@ -94,8 +93,7 @@ in {
       zpot = "zpotify";
       z = "zellij --layout welcome";
       zac = "zellij attach --create";
-      musb = "sudo pmount";
-      umusb = "sudo pumount";
+      timestamp = "date +%Y-%m-%dT%H:%M:%S%z";
 
       # verbosity and colors
       rm = "trash -v"; # "rm -vI"

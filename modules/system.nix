@@ -7,6 +7,10 @@
   colors,
   ...
 }: {
+  imports = [
+    ./secrets.nix
+  ];
+
   # TODO
   programs.hyprland.enable = false;
   programs.river.enable = true;
@@ -180,7 +184,7 @@
     enable = true;
     settings = {
       # X11Forwarding = true;
-      # PermitRootLogin = "no"; # disable root login
+      PermitRootLogin = "prohibit-password"; # disable root login with password
       PasswordAuthentication = false; # disable password login
     };
     openFirewall = true;
@@ -218,7 +222,7 @@
       man-pages
       man-pages-posix
 
-      inputs.agenix.packages."${system}".default
+      inputs.agenix.packages.${system}.default
 
       # TODO: these probably don't belong here
       sysstat
