@@ -125,6 +125,7 @@ rsync
 syncthing # file sync
 borg # backup tool
 borgmatic # borg wrapper
+python-llfuse # dependency for borg mount
 fzf
 imagemagick # image manipulation from the terminal
 mat2 # metadata removal tool

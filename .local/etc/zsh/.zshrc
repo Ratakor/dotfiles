@@ -14,6 +14,8 @@ setopt RM_STAR_SILENT # disable double verification with rm -I *
 setopt VI
 setopt IGNOREEOF
 KEYTIMEOUT=1
+# setopt CORRECT
+# setopt CORRECT_ALL
 
 # Prompt
 timer=$(print -P %D{%s%3.})
@@ -23,7 +25,7 @@ function preexec() {
 }
 
 function precmd() {
-	local now=$(($(print -P %D{%s%3.}) - 2))
+	local now=$(print -P %D{%s%3.})
 	[ -z "$timer" ] && timer=$now
 	local d_ms=$((now - timer))
 	local d_s=$((d_ms / 1000))
@@ -34,8 +36,8 @@ function precmd() {
 	unset timer
 
 	if   ((h > 0)); then local elapsed=${h}h${m}m${s}s
-	elif ((m > 0)); then local elapsed=${m}m${s}.$(($ms / 100))s
-	elif ((s > 9)); then local elapsed=${s}.$(printf %02d $(($ms / 10)))s
+	elif ((m > 0)); then local elapsed=${m}m${s}.$((ms / 100))s
+	elif ((s > 9)); then local elapsed=${s}.$(printf %02d $((ms / 10)))s
 	elif ((s > 0)); then local elapsed=${s}.$(printf %03d $ms)s
 	else local elapsed=${ms}ms
 	fi
