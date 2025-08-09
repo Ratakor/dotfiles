@@ -28,9 +28,9 @@
     xfsprogs # xfs filesystem
     xfsdump # xfs snapshots
     # jdk17-openjdk # java (TODO: idk nixpkgs)
-    poop # Performance Optimizer Observation Platform
-    # TODO: vimPlugins.nvim-treesitter-parsers.superhtml?
-    superhtml # html LSP
+    hyperfine # benchmarking tool
+    # poop # Performance Optimizer Observation Platform
+    superhtml # html LSP # TODO: vimPlugins.nvim-treesitter-parsers.superhtml?
     # nodejs # javascript (TODO: idk nixpkgs)
     nodePackages.npm
     nodePackages.pnpm
@@ -82,7 +82,8 @@
       enable = true;
       nix-direnv.enable = true;
       enableZshIntegration = true; # adds a hook to enable direnv with zsh
-      # config = {}; # TODO
+      silent = true;
+      # config = {};
     };
   };
 }

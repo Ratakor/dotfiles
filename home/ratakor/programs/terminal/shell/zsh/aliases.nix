@@ -13,9 +13,10 @@
     "fdisk"
     "cryptsetup"
     "modprobe"
-    "su"
-    "visudo"
     "borgmatic"
+    # "systemctl"
+    # "nixos-rebuild"
+    "sync"
   ];
 
   sudoAliases = builtins.listToAttrs (
@@ -68,7 +69,6 @@ in {
       e = "$EDITOR";
       se = "sudoedit";
       sudo = "sudo "; # allows to run aliases with sudo
-      sudoers = "visudo --strict";
       ":q" = "exit";
       ":Q" = "exit";
       bc = "bc -ql";

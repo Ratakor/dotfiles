@@ -43,7 +43,7 @@
       "RM_STAR_SILENT" # disable double verification with rm -I *
       "VI" # vim mode
       "IGNORE_EOF" # do not exit on EoF <C-d>
-      # "PROMPT_SUBST" # git integration...
+      # "PROMPT_SUBST" # used for git integration
       # "CORRECT"
       # "CORRECT_ALL"
     ];
@@ -55,12 +55,15 @@
       # share command history between zsh sessions
       share = false;
 
+      # append to the history file instead of overwriting it
+      append = true;
+
       # save timestamp into the history file
       extended = true;
 
       # avoid duplicates
-      save = 100000;
-      size = 100000;
+      save = 100000; # SAVEHIST
+      size = 150000; # HISTSIZE
       expireDuplicatesFirst = true;
       ignoreDups = true;
       ignoreAllDups = false;
