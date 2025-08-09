@@ -20,7 +20,12 @@ in {
       file = "irc.age";
       owner = "ratakor";
       group = "users";
-      mode = "400";
+    };
+
+    git-epita = mkAgenixSecret true {
+      file = "git-epita.age";
+      owner = "ratakor";
+      group = "users";
     };
   };
 }

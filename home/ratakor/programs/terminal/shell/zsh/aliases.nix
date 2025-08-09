@@ -128,7 +128,7 @@ in {
       gcv = "git commit --verbose";
       gcm = "git commit --message";
       gam = "git commit --amend";
-      gp = "git push --follow-tags"; # --tags
+      gp = "git push"; # --follow-tags"; # --tags
       gpl = "git pull";
       gr = "git restore";
       grs = "git restore --staged";

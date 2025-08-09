@@ -18,4 +18,5 @@ let
   all = concatLists ((attrValues users) ++ (attrValues hosts));
 in {
   "irc.age".publicKeys = all;
+  "git-epita.age".publicKeys = all;
 }

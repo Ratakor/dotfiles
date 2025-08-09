@@ -19,9 +19,15 @@
         signByDefault = true;
       };
 
+      delta = {
+        enable = true;
+        options = {}; # TODO
+      };
+
       extraConfig = {
         init.defaultBranch = "master";
         color.ui = true;
+        core.sshCommand = "${pkgs.openssh_gssapi}/bin/ssh";
         url = {
           "ssh://git@github.com" = {
             insteadOf = "https://github.com";
@@ -31,12 +37,28 @@
           };
         };
         commit = {
-          gpgsign = true;
+          # verbose = true;
           template = "${pkgs.writeText "commit" (builtins.readFile ./commit)}";
         };
-        push.autoSetupRemote = true;
-        core.sshCommand = "${pkgs.openssh_gssapi}/bin/ssh";
+        # rebase = {
+        #   autoSquash = true;
+        #   autoStash = true;
+        # };
+        push = {
+          # default = "simple";
+          autoSetupRemote = true;
+          followTags = true;
+        };
+        # branch.autoSetupRebase = "always";
+        # rerere.enabled = true;
       };
+
+      includes = [
+        {
+          condition = "hasconfig:remote.*.url:*epita.fr:**/**";
+          path = "/run/agenix/git-epita";
+        }
+      ];
     };
 
     gitui = {
