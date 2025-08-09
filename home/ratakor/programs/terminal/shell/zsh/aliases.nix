@@ -17,6 +17,7 @@
     # "systemctl"
     # "nixos-rebuild"
     "sync"
+    "dmesg"
   ];
 
   sudoAliases = builtins.listToAttrs (
@@ -146,10 +147,5 @@ in {
       prev = "musiccmd prev";
       stop = "musiccmd stop";
       vol = "musiccmd volume"; # put the volume you want in arg like vol 50
-
-      # # convert markdown to pdf with pandoc
-      # function pdfmd() {
-      #     pandoc "$1" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g')" # -V geometry:margin=1in
-      # }
     };
 }

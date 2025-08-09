@@ -241,6 +241,11 @@
       zsh
     ];
 
+    variables = {
+      EDITOR = "nvim";
+      # VISUAL = "nvim";
+    };
+
     # binsh = "${pkgs.dash}/bin/dash"
     localBinInPath = true;
     homeBinInPath = false;
@@ -305,36 +310,25 @@
       extraConfig = ''
         Defaults env_keep += "EDITOR" # PATH DISPLAY
         Defaults lecture = never
-        Defaults pwfeedback # makes typed passwords visible
         Defaults passprompt = "sudo (%p@%h) password: "
       '';
 
       extraRules = let
-        sudoRules = with pkgs; [
-          {
-            package = nixos-rebuild;
-            command = "nixos-rebuild";
-          }
-          {
-            package = coreutils;
-            command = "sync";
-          }
-          {
-            package = systemd;
-            command = "systemctl";
-          }
-        ];
-
-        mkSudoRule = rule: {
-          command = lib.getExe' rule.package rule.command;
+        mkNopassRule = command: {
+          command = "/run/current-system/sw/bin/${command}";
           options = ["NOPASSWD"];
         };
-
-        sudoCommands = map mkSudoRule sudoRules;
       in [
         {
           groups = ["wheel"];
-          commands = sudoCommands;
+          commands = map mkNopassRule [
+            "nixos-rebuild"
+            "systemctl"
+            "sync"
+            "dmesg"
+            "pmount"
+            "pumount"
+          ];
         }
       ];
     };

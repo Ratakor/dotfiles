@@ -4,12 +4,14 @@
   ];
 
   home.packages = [
+    # convert markdown to pdf with pandoc
+    # assuming that first argument is the markdown file
     (pkgs.writeShellApplication {
       name = "pdfmd";
       runtimeInputs = with pkgs; [pandoc gnused];
       # '-V geometry:margin=1in' is probably good but I forgot what it does
       text = ''
-        pandoc "$1" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g')"
+        pandoc "$@" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g')"
       '';
     })
 
