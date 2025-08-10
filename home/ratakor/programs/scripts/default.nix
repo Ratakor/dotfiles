@@ -1,22 +1,49 @@
 {
   colors,
+  config,
   pkgs,
   ...
 }: {
-  imports = [
-    ./bin.nix # TODO: merge it here
-  ];
+  # TODO:
+  # dmenurecord: replace with wf-recorder
+  # dmenusearch: split into different package since it has so many dependencies?
+  # ex: merge with plumber?
+  # hole: remove?
+  # icstocal: merge with quand?
+  # mail: replace with a better mail client
+  # music/musiccmd: ...
+  # plumber: ...
+  # randwp: ...
+  # screenshot: ... depends on dmenurecord
+  # ytdl: ...
+  home.file."${config.home.homeDirectory}/.local/bin" = {
+    source = ./bin;
+    recursive = true;
+    executable = true;
+  };
 
   xdg.dataFile.emoji.source = ./src/emoji;
 
   home.packages = [
-    (import ./ocr.nix {inherit pkgs;})
     (import ./shutdown-menu.nix {inherit colors pkgs;})
 
     (pkgs.writeShellApplication {
       name = "glitchlock";
       runtimeInputs = with pkgs; [grim imagemagick coreutils swaylock];
       text = builtins.readFile ./src/glitchlock.sh;
+    })
+
+    (pkgs.writeShellApplication {
+      name = "battery";
+      runtimeInputs = with pkgs; [coreutils libnotify];
+      text = builtins.readFile ./src/battery.sh;
+    })
+
+    # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/cli/wayland.nix
+    (pkgs.writeShellApplication {
+      name = "ocr";
+      runtimeInputs = with pkgs; [tesseract grim slurp libnotify coreutils];
+      text = builtins.readFile ./src/ocr.sh;
     })
 
     # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/dev/default.nix
@@ -44,6 +71,15 @@
       runtimeInputs = [pkgs.bat];
       text = ''
         "$@" --help 2>&1 | bat -p -l help
+      '';
+    })
+
+    (pkgs.writeShellApplication {
+      name = "real";
+      runtimeInputs = [pkgs.coreutils];
+      text = ''
+        # shellcheck disable=SC2046
+        realpath $(where "$1")
       '';
     })
   ];
