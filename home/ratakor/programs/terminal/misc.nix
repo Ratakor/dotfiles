@@ -58,12 +58,6 @@
       # extraConfig = "";
     };
 
-    # fuzzy finder
-    fzf = {
-      enable = true;
-      # TODO: config?
-    };
-
     fastfetch = {
       enable = true;
       # TODO: settings

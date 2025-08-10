@@ -246,7 +246,7 @@
       # VISUAL = "nvim";
     };
 
-    # binsh = "${pkgs.dash}/bin/dash"
+    # binsh = "${pkgs.dash}/bin/dash";
     localBinInPath = true;
     homeBinInPath = false;
     # memoryAllocator.provider = "graphene-hardened";

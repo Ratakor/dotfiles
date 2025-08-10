@@ -5,6 +5,7 @@
     ./dev.nix
     ./editor
     ./file-manager
+    ./fzf
     ./git
     ./irc.nix
     ./misc.nix

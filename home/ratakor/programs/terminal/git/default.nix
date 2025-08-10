@@ -53,6 +53,12 @@
         # rerere.enabled = true;
       };
 
+      ignores = [
+        "result"
+        "result-*"
+        ".direnv/"
+      ];
+
       includes = [
         {
           condition = "hasconfig:remote.*.url:*epita.fr:**/**";
