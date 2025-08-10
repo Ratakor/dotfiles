@@ -113,7 +113,7 @@ in {
       l = "ll -a";
       lr = "ls -R";
       tree = "ls -T";
-      cat = "bat --style=numbers,changes --tabs 8"; # --theme=${colors.theme}";
+      cat = "bat --style=numbers,changes --tabs 8";
       du = "dust -r";
       duf = "duf -hide special";
       fd = "fd -HI --color=always";

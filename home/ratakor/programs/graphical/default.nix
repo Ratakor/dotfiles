@@ -2,7 +2,7 @@
   imports = [
     ./browser.nix
     ./document.nix
-    ./dynamic-menu
+    ./dynamic-menu.nix
     ./image.nix
     ./misc.nix
     ./notification.nix

@@ -5,9 +5,7 @@
 }: {
   programs.tofi = {
     enable = true;
-    package = pkgs.tofi.overrideAttrs (oldAttrs: {
-      patches = (oldAttrs.patches or []) ++ [./tofi-dmenu-20240910.diff];
-    });
+    package = pkgs.tofi-dmenu;
     settings = {
       width = "100%";
       height = "100%";

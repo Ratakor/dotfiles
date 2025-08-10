@@ -24,7 +24,7 @@
     bat = {
       enable = true;
       config = {
-        inherit (colors) theme;
+        inherit (colors.bat) theme;
         style = "plain";
         tabs = "0";
       };

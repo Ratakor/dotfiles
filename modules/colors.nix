@@ -1,7 +1,8 @@
 # This probably shouldn't be in modules/
+# TODO: neovim river
 {
   gruvbox-dark = {
-    theme = "gruvbox-dark";
+    bat.theme = "gruvbox-dark";
 
     gtk = {
       name = "Gruvbox-Dark";
@@ -31,7 +32,7 @@
   };
 
   gruvbox-light = {
-    theme = "gruvbox-light";
+    bat.theme = "gruvbox-light";
 
     gtk = {
       name = "Gruvbox-Light";
@@ -61,12 +62,11 @@
   };
 
   dracula = {
-    theme = "dracula";
+    bat.theme = "Dracula";
 
-    # TODO: no dracula gtk theme in nixpkgs
     gtk = {
-      name = "Gruvbox-Dark";
-      packageName = "gruvbox-gtk-theme";
+      name = "Dracula";
+      packageName = "dracula-theme";
     };
 
     foreground = "f8f8f2";

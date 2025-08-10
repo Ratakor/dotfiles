@@ -1,18 +1,22 @@
-{pkgs, ...}: {
+{
+  colors,
+  pkgs,
+  ...
+}: {
   imports = [
     ./bin.nix # TODO: merge it here
   ];
 
+  xdg.dataFile.emoji.source = ./src/emoji;
+
   home.packages = [
-    # convert markdown to pdf with pandoc
-    # assuming that first argument is the markdown file
+    (import ./ocr.nix {inherit pkgs;})
+    (import ./shutdown-menu.nix {inherit colors pkgs;})
+
     (pkgs.writeShellApplication {
-      name = "pdfmd";
-      runtimeInputs = with pkgs; [pandoc gnused];
-      # '-V geometry:margin=1in' is probably good but I forgot what it does
-      text = ''
-        pandoc "$@" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g')"
-      '';
+      name = "glitchlock";
+      runtimeInputs = with pkgs; [grim imagemagick coreutils swaylock];
+      text = builtins.readFile ./src/glitchlock.sh;
     })
 
     # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/dev/default.nix
@@ -24,28 +28,22 @@
       '';
     })
 
-    # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/cli/wayland.nix
+    # convert markdown to pdf with pandoc
+    # assuming that first argument is the markdown file
     (pkgs.writeShellApplication {
-      name = "ocr";
-      runtimeInputs = with pkgs; [tesseract grim slurp libnotify coreutils];
+      name = "pdfmd";
+      runtimeInputs = with pkgs; [pandoc gnused];
+      # '-V geometry:margin=1in' is probably good but I forgot what it does
       text = ''
-        echo "Generating a random ID..."
-        id=$(tr -dc 'a-zA-Z0-9' </dev/urandom | fold -w 6 | head -n 1 || true)
-        echo "Image ID: $id"
+        pandoc "$@" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g')"
+      '';
+    })
 
-        echo "Taking screenshot..."
-        grim -g "$(slurp -w 0 -b eebebed2)" /tmp/ocr-"$id".png
-
-        echo "Running OCR..."
-        tesseract /tmp/ocr-"$id".png - | wl-copy
-        echo -en "File saved to /tmp/ocr-'$id'.png\n"
-
-        echo "Sending notification..."
-        notify-send "OCR " "Text copied!"
-
-        echo "Cleaning up..."
-        rm /tmp/ocr-"$id".png -vf
-
+    (pkgs.writeShellApplication {
+      name = "help";
+      runtimeInputs = [pkgs.bat];
+      text = ''
+        "$@" --help 2>&1 | bat -p -l help
       '';
     })
   ];

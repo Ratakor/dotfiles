@@ -1,5 +1,5 @@
 # TODO: I don't know if I like that, at least css is good
-# also change orange color
+# also change orange color & fix background color
 {
   pkgs,
   config,

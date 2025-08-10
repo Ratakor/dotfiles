@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # based on https://github.com/xero/glitchlock
 
 grim /tmp/lock.png

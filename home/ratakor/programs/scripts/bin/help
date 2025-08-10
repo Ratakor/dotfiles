@@ -1,2 +1,0 @@
-#!/bin/sh
-"$@" --help 2>&1 | bat -p -l help
