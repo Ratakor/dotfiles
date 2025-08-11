@@ -46,6 +46,9 @@
     # openssh.authorizedKeys.keys = [];
   };
 
+  # remove nix-channel related tools & configs in favour of flakes
+  nix.channel.enable = false;
+
   # customise /etc/nix/nix.conf declaratively via `nix.settings`
   nix.settings = {
     # given the users in this list the right to specify additional substituters via:

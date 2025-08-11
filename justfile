@@ -38,7 +38,7 @@ clean:
 
 # List all generations of the system profile
 [group('nix')]
-history:
+info:
     @# nix profile history --profile /nix/var/nix/profiles/system
     nh os info
 
@@ -58,6 +58,7 @@ build-vm:
 fmt:
     alejandra .
 
+# TODO: add typos & make this CI
 # Lint all nix files
 [group('nix')]
 lint:
