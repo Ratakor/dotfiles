@@ -56,6 +56,8 @@
     alejandra # formatter
     statix # linter
     deadnix # find and remove unused code in .nix source files
+    nh # nix helper # TODO: programs.nh
+    # comma
   ];
 
   programs = {

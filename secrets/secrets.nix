@@ -13,8 +13,8 @@ let
     X200 = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPdrAk60QJLPaLTb9VPDJQZHi/Hibey1LwoqyM7lvAM"];
   };
 
-  servers = concatLists (map (host: hosts.${host}) []);
-  workstations = concatLists (map (host: hosts.${host}) ["X200"]);
+  # servers = concatLists (map (host: hosts.${host}) []);
+  # workstations = concatLists (map (host: hosts.${host}) ["X200"]);
   all = concatLists ((attrValues users) ++ (attrValues hosts));
 in {
   "irc.age".publicKeys = all;

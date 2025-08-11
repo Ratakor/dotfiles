@@ -56,9 +56,6 @@
     # enable flakes globally
     experimental-features = ["nix-command" "flakes"];
 
-    # TODO?
-    # system-features = ["kvm" "big-parrallel"];
-
     substituters = [
       # TODO
       # cache mirror located in China
@@ -322,8 +319,8 @@
         {
           groups = ["wheel"];
           commands = map mkNopassRule [
-            "nixos-rebuild"
-            "systemctl"
+            # "nixos-rebuild"
+            # "systemctl"
             "sync"
             "dmesg"
             "pmount"

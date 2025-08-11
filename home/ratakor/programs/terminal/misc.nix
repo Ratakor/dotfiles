@@ -22,6 +22,7 @@
     trash-cli # rm replacement kinda
     detox # cli to cleanup filenames
     yq # jq wrapper for yaml, xml and toml
+    typos # spell checker
 
     # mount removable devices as normal user
     (pmount.overrideAttrs (oldAttrs: {

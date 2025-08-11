@@ -35,7 +35,7 @@ download() {
 	notify-send "Downloading '$title' to '$1'"
 	if yt-dlp -f "ba" -x --embed-thumbnail --audio-format mp3\
 			-o"%(title)s [%(id)s].%(ext)s" -P "$1" "$path"; then
-		notify-send "'$title' successfuly downloaded to '$1'"
+		notify-send "'$title' successfully downloaded to '$1'"
 		return 0
 	else
 		notify-send "Error: '$title' couldn't be downloaded"

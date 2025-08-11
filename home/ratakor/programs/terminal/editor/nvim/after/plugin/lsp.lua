@@ -37,8 +37,8 @@ local on_attach = function(_, bufnr)
     nmap("<leader>ds", telescope.lsp_document_symbols, "[d]ocument [s]ymbols")
     nmap("<leader>ws", telescope.lsp_dynamic_workspace_symbols, "[w]orkspace [s]ymbols")
 
-    nmap("K", vim.lsp.buf.hover, "Hover documenation")
-    nmap("<C-k>", vim.lsp.buf.signature_help, "Signature documenation")
+    nmap("K", vim.lsp.buf.hover, "Hover documentation")
+    nmap("<C-k>", vim.lsp.buf.signature_help, "Signature documentation")
 
     nmap("<leader>do", vim.diagnostic.open_float, "[d]iagnostics [o]pen")
     nmap("<leader>dp", vim.diagnostic.goto_prev, "[d]iagnostics [p]revious")

@@ -76,10 +76,9 @@
 
     (pkgs.writeShellApplication {
       name = "real";
-      runtimeInputs = [pkgs.coreutils];
+      runtimeInputs = with pkgs; [coreutils which];
       text = ''
-        # shellcheck disable=SC2046
-        realpath $(where "$1")
+        realpath "$(which "$1")"
       '';
     })
   ];

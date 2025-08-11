@@ -1,0 +1,66 @@
+# deploy:
+# nix-shell -p just nh
+# just switch
+
+default:
+    @just --list
+
+# Rebuild and switch to the new configuration
+[group('nix')]
+switch:
+    @# nixos-rebuild switch --sudo --flake .
+    nh os switch .
+
+# Rebuild and switch to the new configuration with debug output
+[group('nix')]
+debug:
+    @# nixos-rebuild switch --sudo --flake . --show-trace --verbose
+    nh os switch --verbose --ask .
+
+# Update all the flake inputs and switch to the new configuration
+[group('nix')]
+update:
+    @# nix flake update --commit-lock-file
+    @# nixos-rebuild switch --sudo --flake .
+    nh os switch --update --ask .
+
+# Garabage collect all unused nix store entries & remove old generations
+[group('nix')]
+clean:
+    @# # remove all generations older than 7 days
+    @# sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d
+    @# # garbage collect all unused nix store entries(system-wide)
+    @# sudo nix-collect-garbage --delete-older-than 7d
+    @# # garbage collect all unused nix store entries(for the user - home-manager)
+    @# # https://github.com/NixOS/nix/issues/8508
+    @# nix-collect-garbage --delete-older-than 7d
+    nh clean all --ask --keep-since 7d
+
+# List all generations of the system profile
+[group('nix')]
+history:
+    @# nix profile history --profile /nix/var/nix/profiles/system
+    nh os info
+
+# Open a nix shell with the flake's nixpkgs
+[group('nix')]
+repl:
+    nix repl -f flake:nixpkgs
+    @# nh os repl .
+
+# Build a `NixOS` VM image
+[group('nix')]
+build-vm:
+    nh os build-vm
+
+# Format all nix files
+[group('nix')]
+fmt:
+    alejandra .
+
+# Lint all nix files
+[group('nix')]
+lint:
+    alejandra --check .
+    -statix check
+    deadnix
