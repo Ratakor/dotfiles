@@ -29,6 +29,9 @@
     bright_magenta = "d3869b";
     bright_cyan = "8ec07c";
     bright_white = "ebdbb2";
+
+    orange = "d65d0e";
+    bright_orange = "fe8019";
   };
 
   gruvbox-light = {
@@ -59,6 +62,9 @@
     bright_magenta = "8f3f71";
     bright_cyan = "427b58";
     bright_white = "3c3836";
+
+    orange = "d65d0e";
+    bright_orange = "af3a03";
   };
 
   dracula = {
@@ -89,5 +95,8 @@
     bright_magenta = "ff92df";
     bright_cyan = "a4ffff";
     bright_white = "ffffff";
+
+    orange = "ffb86c";
+    bright_orange = "ffb86c"; # missing from spec
   };
 }

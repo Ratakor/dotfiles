@@ -36,12 +36,19 @@ clean:
     @# nix-collect-garbage --delete-older-than 7d
     nh clean all --ask --keep-since 7d
 
+# Rollback to a previous generation
+[group('nix')]
+rollback:
+    @# nix profile rollback --profile /nix/var/nix/profiles/system
+    nh os rollback --ask
+
 # List all generations of the system profile
 [group('nix')]
 info:
     @# nix profile history --profile /nix/var/nix/profiles/system
     nh os info
 
+# TODO: use nh (it's too slow)
 # Open a nix shell with the flake's nixpkgs
 [group('nix')]
 repl:

@@ -1,5 +1,5 @@
 # TODO: I don't know if I like that, at least css is good
-# also change orange color & fix background color
+# TODO: fix background color
 {
   pkgs,
   config,
@@ -146,7 +146,7 @@
       @define-color magenta #${colors.magenta};
       @define-color cyan    #${colors.cyan};
       @define-color white   #${colors.white};
-      @define-color orange  #d65d0e;
+      @define-color orange  #${colors.orange};
 
       @define-color bright_black   #${colors.bright_black};
       @define-color bright_red     #${colors.bright_red};
@@ -156,7 +156,7 @@
       @define-color bright_magenta #${colors.bright_magenta};
       @define-color bright_cyan    #${colors.bright_cyan};
       @define-color bright_white   #${colors.bright_white};
-      @define-color bright_orange  #fe8010;
+      @define-color bright_orange  #${colors.bright_orange};
 
       * {
           padding: 0;

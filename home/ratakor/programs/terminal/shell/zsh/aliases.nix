@@ -95,6 +95,7 @@ in {
       z = "zellij --layout welcome";
       zac = "zellij attach --create";
       timestamp = "date +%Y-%m-%dT%H:%M:%S%z";
+      j = "just";
 
       # verbosity and colors
       rm = "trash -v"; # "rm -vI"
