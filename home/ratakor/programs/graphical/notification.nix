@@ -18,15 +18,15 @@
 
       # e6 is 0.9 alpha btw
       background-color = "#${colors.background}e6";
-      text-color = "#${colors.foreground}e6";
-      border-color = "#${colors.cyan}e6";
+      text-color = "#${colors.foreground}ff";
+      border-color = "#${colors.blue}ff";
     };
     extraConfig = ''
       [urgency=low]
-      border-color=#${colors.green}e6
+      border-color=#${colors.green}ff
 
       [urgency=high]
-      border-color=#${colors.red}e6
+      border-color=#${colors.red}ff
       default-timeout=0
     '';
   };

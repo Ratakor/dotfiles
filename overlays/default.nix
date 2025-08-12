@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }: let
@@ -38,6 +37,10 @@ in {
       tofi-dmenu = super.tofi.overrideAttrs (oldAttrs: {
         patches = (oldAttrs.patches or []) ++ [./patches/tofi-dmenu-20240910.diff];
       });
+    }))
+
+    (const (super: {
+      cromite = super.callPackage ./cromite.nix {};
     }))
   ];
 }

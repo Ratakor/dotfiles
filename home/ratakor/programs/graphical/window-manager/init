@@ -1,21 +1,6 @@
 #!/bin/sh
 # shellcheck disable=SC2016
 
-### WM config
-
-riverctl focus-follows-cursor normal
-riverctl attach-mode bottom
-riverctl hide-cursor when-typing enabled
-riverctl set-cursor-warp on-output-change
-riverctl set-repeat 50 300
-riverctl keyboard-layout "fr(us)"
-riverctl default-layout rivertile
-
-riverctl background-color 0x282828
-riverctl border-color-focused 0x458588
-riverctl border-color-unfocused 0x3c3836
-riverctl border-color-urgent 0xcc241d
-
 ### WM bindings
 
 riverctl map normal Super F toggle-fullscreen
@@ -159,8 +144,8 @@ spawn gammastep
 #spawn mako
 spawn waybar --log-level warning
 spawn rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55
-# spawn swayidle -w \
-# 	timeout 300 "glitchlock" \
-# 	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'"
+spawn swayidle -w \
+	timeout 300 "glitchlock" \
+	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'"
 #spawn librespot-cfg
 #spawn syncthing --no-browser

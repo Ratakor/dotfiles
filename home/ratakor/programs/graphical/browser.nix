@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   # # ungoogled-chromium required to `pacman -Rdd your-freedom`
   # #aur/ungoogled-chromium-bin
   # #aur/ungoogled-chromium-xdg-bin # ungoogled chromium but without ~/.pki
@@ -11,7 +7,7 @@
   programs = {
     chromium = {
       enable = true;
-      package = pkgs.ungoogled-chromium; # TODO: cromite
+      package = pkgs.ungoogled-chromium; # TODO: pkgs.cromite;
       extensions = [
         {id = "dbepggeogbaibhgnhhndojpepiihcmeb";} # Vimium
         # TODO: add UBO, ...

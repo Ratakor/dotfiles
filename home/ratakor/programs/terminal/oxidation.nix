@@ -45,7 +45,19 @@
     # grep replacement
     ripgrep = {
       enable = true;
-      # arguments = []; # TODO
+      arguments = [
+        # prevent rg from printing long lines & show a preview instead
+        "--max-columns=100"
+        "--max-columns-preview"
+
+        # exclude .git files
+        "--glob=!.git/*"
+        # "--exclude=.git"
+
+        "--follow" # follow symlinks
+        "--hidden" # search hidden files
+        "--smart-case" # case insensitive search if no uppercase letters are present
+      ];
     };
 
     # TODO

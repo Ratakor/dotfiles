@@ -1,9 +1,7 @@
-# TODO: I don't know if I like that, at least css is good
-# TODO: fix background color
 {
-  pkgs,
-  config,
   colors,
+  lib,
+  pkgs,
   ...
 }: {
   programs.waybar = {
@@ -134,9 +132,17 @@
       };
     };
 
-    style = ''
+    style = let
+      inherit (lib.trivial) fromHexString;
+      inherit (builtins) substring;
+
+      r = toString (fromHexString (substring 0 2 colors.background));
+      g = toString (fromHexString (substring 2 2 colors.background));
+      b = toString (fromHexString (substring 4 2 colors.background));
+      background = "rgba(${r}, ${g}, ${b}, 0.85)";
+    in ''
       @define-color foreground #${colors.foreground};
-      @define-color background rgba(40, 40, 40, 0.85); /* #282828 */
+      @define-color background ${background};
 
       @define-color black   #${colors.black};
       @define-color red     #${colors.red};
