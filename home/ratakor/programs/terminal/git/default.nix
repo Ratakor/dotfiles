@@ -29,12 +29,15 @@
         color.ui = true;
         core.sshCommand = "${pkgs.openssh_gssapi}/bin/ssh";
         url = {
-          "ssh://git@github.com" = {
-            insteadOf = "https://github.com";
+          "ssh://git@github.com/" = {
+            pushInsteadOf = "https://github.com/";
           };
-          "ssh://git@ratakor.com" = {
-            insteadOf = "https://git.ratakor.com";
+          "https://github.com/" = {
+            insteadOf = "github:";
           };
+          # "ssh://git@ratakor.com/" = {
+          #   insteadOf = "https://git.ratakor.com/";
+          # };
         };
         commit = {
           # verbose = true;

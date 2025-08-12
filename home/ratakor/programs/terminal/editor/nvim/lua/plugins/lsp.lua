@@ -6,6 +6,7 @@ return {
             { "folke/neodev.nvim", config = true },
             {
                 "mason-org/mason-lspconfig.nvim",
+                -- match after/plugin/lsp.lua
                 opts = {
                     ensure_installed = {
                         "bashls",
@@ -16,6 +17,7 @@ return {
                         "jedi_language_server",
                         "lua_ls",
                         "marksman",
+                        "nil_ls",
                         "rust_analyzer",
                         "sqls",
                         "texlab",

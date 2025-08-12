@@ -88,4 +88,9 @@
       # config = {};
     };
   };
+
+  # home.file."${cargoHome}/cargo.toml".text = ''
+  #   [net]
+  #   git-fetch-with-cli = true
+  # '';
 }
