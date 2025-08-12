@@ -13,7 +13,7 @@
     isNormalUser = true;
     shell = pkgs.zsh;
     description = "Ratakor";
-    # password = TODO
+    initialPassword = "password"; # very secure
     extraGroups = [
       "wheel"
       # "audio"
@@ -40,12 +40,12 @@
       # enable flakes globally
       experimental-features = ["nix-command" "flakes"];
 
+      # TODO
       substituters = [
-        # TODO
-        # cache mirror located in China
-        # status: https://mirror.sjtu.edu.cn/
+        # # cache mirror located in China
+        # # status: https://mirror.sjtu.edu.cn/
         # "https://mirror.sjtu.edu.cn/nix-channels/store"
-        # status: https://mirrors.ustc.edu.cn/status/
+        # # status: https://mirrors.ustc.edu.cn/status/
         # "https://mirrors.ustc.edu.cn/nix-channels/store"
 
         "https://cache.nixos.org"
@@ -63,7 +63,7 @@
 
       builders-use-substitutes = true;
 
-      # TODO
+      # TODO: useless with zfs dedup
       # Optimize storage
       # You can also manually optimize the store via:
       #    nix-store --optimise
@@ -93,17 +93,19 @@
   time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    #   LC_ADDRESS = "fr_FR.UTF-8";
-    #   LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    #   LC_MONETARY = "fr_FR.UTF-8";
-    #   LC_NAME = "fr_FR.UTF-8";
-    #   LC_NUMERIC = "fr_FR.UTF-8";
-    #   LC_PAPER = "fr_FR.UTF-8";
-    #   LC_TELEPHONE = "fr_FR.UTF-8";
-    #   LC_TIME = "fr_FR.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      #   LC_ADDRESS = "fr_FR.UTF-8";
+      #   LC_IDENTIFICATION = "fr_FR.UTF-8";
+      LC_MEASUREMENT = "fr_FR.UTF-8";
+      #   LC_MONETARY = "fr_FR.UTF-8";
+      #   LC_NAME = "fr_FR.UTF-8";
+      #   LC_NUMERIC = "fr_FR.UTF-8";
+      #   LC_PAPER = "fr_FR.UTF-8";
+      #   LC_TELEPHONE = "fr_FR.UTF-8";
+      #   LC_TIME = "fr_FR.UTF-8";
+    };
   };
 
   console.colors = [
@@ -175,33 +177,70 @@
       neovim # editor
       yazi # file manager
       git
+      less
       wget
       curl
+      rsync
 
       cryptsetup
       sysfsutils
       #ntfs3g
       #xfsprogs xfsdump
       killall
-
-      file
-      which
-      gnused
-      gnutar
-      gawk
-      gnupg
-
       dash
+      gnupg
+      pkg-config
+      xdg-utils
 
-      # Linux man pages
+      ## system tools
+      # sysstat
+      lm_sensors # sensors
+      pciutils # lspci
+      usbutils # lsusb
+      dnsutils # dig, host, nslookup
+
+      ## parabola base
+      file
+      findutils
+      gawk
+      gcc
+      gettext
+      glibc
+      gnugrep
+      gzip
+      iproute2
+      iputils
+      procps
+      psmisc
+      gnused
+      shadow
+      gnutar
+      util-linux
+      xz
+
+      ## parabola base-devel
+      autoconf
+      automake
+      binutils
+      bison
+      debugedit
+      fakeroot
+      flex
+      groff
+      libtool
+      m4
+      gnumake
+      patch
+      pkgconf
+      texinfo
+      which
+
+      ## Linux man pages
       man-pages
       man-pages-posix
 
+      ## secrets management
       inputs.agenix.packages.${system}.default
-
-      # TODO: these probably don't belong here
-      sysstat
-      lm_sensors
     ];
 
     shells = with pkgs; [
@@ -281,24 +320,29 @@
     };
 
     # used by gammastep
-    geoclue2 = {
-      enable = true;
-      # TODO: config
-    };
+    geoclue2.enable = true;
 
-    # TODO: what is that?
     # Whether to enable power-profiles-daemon, a DBus daemon that allows changing
     # system behavior based upon user-selected power profiles.
-    # power-profiles-daemon.enable = true;
+    power-profiles-daemon.enable = false;
 
-    # TODO: what is that?
     # Enable touchpad support (enabled default in most desktopManager).
-    # libinput.enable = true;
+    libinput = {
+      # enable = true;
+    };
 
     # laptop power saving settings
     tlp = {
       enable = true;
       # settings ...
+    };
+
+    # enable NTP client to sync time
+    ntp.enable = true;
+
+    # antivirus
+    clamav = {
+      # TODO
     };
 
     # Enable sound with pipewire

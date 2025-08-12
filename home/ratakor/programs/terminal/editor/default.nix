@@ -19,6 +19,10 @@ in {
     # withNodeJs = true;
     # withPython3 = true;
     # withRuby = true;
+
+    extraPackages = with pkgs; [
+      tree-sitter
+    ];
   };
 
   xdg.configFile.nvim.source = mkOutOfStoreSymlink nvimPath;

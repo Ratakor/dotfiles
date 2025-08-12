@@ -1,5 +1,4 @@
 # file sync
-# TODO + this shouldn't be in terminal imo
 {pkgs, ...}: {
   services.syncthing = {
     enable = false;

@@ -3,13 +3,14 @@
     rustup # rust
     nasm # x86 compiler
     gcc # gnu compiler collection
-    # clang # another cc + clangd C lsp (TODO: idk nixpkgs)
+    # clang # another cc + clangd C lsp
     tinycc # tiny c compiler
     # mingw-w64-gcc # windows cc (NOT IN NIX?)
     musl # another libc
     libbsd # Common functions found on BSD systems
-    # zigup # TODO: use zig-overlay? (zigup not in nix repos)
+    zig # use zig-overlay per project for a specific version
     python3
+    pipx # python package manager
     astyle # C formatter
     shellcheck # there is also shellcheck-minimal in nixpkgs
     cmake
@@ -23,19 +24,22 @@
     ntfs3g # ntfs filesystem (windows compatibility)
     xfsprogs # xfs filesystem
     xfsdump # xfs snapshots
-    # jdk17-openjdk # java (TODO: idk nixpkgs)
+    # jdk17-openjdk # java (this is the wrong package btw)
+    # perf # performance analysis tool (wrong package)
     hyperfine # benchmarking tool
     # poop # Performance Optimizer Observation Platform
-    superhtml # html LSP # TODO: vimPlugins.nvim-treesitter-parsers.superhtml?
-    # nodejs # javascript (TODO: idk nixpkgs)
+    # nodePackages.nodejs # javascript (I have no clude about all these nodePacakges)
     nodePackages.npm
     nodePackages.pnpm
     lua
-    luarocks
+    luarocks # lua package manager
     just # command runner (like make)
     cloc # counts lines of code
     checkbashisms # checks for bashisms in scripts
     # love # lua 2D game engine (Balatro)
+    strace # system call monitoring
+    ltrace # library call monitoring
+    lsof # list open files
 
     ## archives
     bzip2
@@ -52,8 +56,9 @@
     alejandra # formatter
     statix # linter
     deadnix # find and remove unused code in .nix source files
-    nh # nix helper # TODO: programs.nh
+    nh # nix helper # TODO: programs.nh (system wide)
     # comma
+    # nix-output-monitor # replace `nix` with `nom`
   ];
 
   programs = {

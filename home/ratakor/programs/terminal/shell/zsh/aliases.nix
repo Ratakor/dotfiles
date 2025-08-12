@@ -97,6 +97,11 @@ in {
       timestamp = "date +%Y-%m-%dT%H:%M:%S%z";
       j = "just";
 
+      # <https://unix.stackexchange.com/a/81699>
+      myip = "dig @resolver4.opendns.com myip.opendns.com +short";
+      myip4 = "dig @resolver4.opendns.com myip.opendns.com +short -4";
+      myip6 = "dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +short -6";
+
       # verbosity and colors
       rm = "trash -v"; # "rm -vI"
       rmdir = "rmdir -v"; # -p

@@ -33,11 +33,11 @@
 
   comment = "928374"; # gray
   selection = "504945"; # bg2
-  unfocused = "3x3836"; # bg1
+  unfocused = "3c3836"; # bg1
 
   # bg0_h = "1d2021";
   # bg0 = "282828"; # background
-  # bg1 = "3x3836"; # unfocused
+  # bg1 = "3c3836"; # unfocused
   # bg2 = "504945"; # selection
   # bg3 = "665c54";
   # bg4 = "7c6f64";

@@ -23,6 +23,9 @@
     detox # cli to cleanup filenames
     yq # jq wrapper for yaml, xml and toml
     typos # spell checker
+    # nmap # utility for network discovery and security auditing
+    # aria2 #  lightweight, multi-protocol, multi-source command-line download utility
+    # ipcalc # simple IP network calculator
 
     # mount removable devices as normal user
     (pmount.overrideAttrs (oldAttrs: {

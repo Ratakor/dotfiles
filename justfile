@@ -71,4 +71,4 @@ fmt:
 lint:
     -alejandra --check .
     -statix check
-    deadnix
+    deadnix --no-lambda-pattern-names

@@ -1,6 +1,5 @@
 {
   imports = [
-    ./backup.nix
     ./calendar
     ./dev.nix
     ./editor
@@ -12,7 +11,6 @@
     ./oxidation.nix
     ./rss
     ./shell
-    ./syncthing.nix
     ./zellij
   ];
 }
