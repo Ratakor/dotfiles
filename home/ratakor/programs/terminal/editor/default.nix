@@ -2,7 +2,12 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  inherit (config.lib.file) mkOutOfStoreSymlink;
+
+  # TODO: this is ugly
+  nvimPath = "${config.home.homeDirectory}/nixos/home/ratakor/programs/terminal/editor/nvim";
+in {
   programs.neovim = {
     enable = true;
 
@@ -16,8 +21,5 @@
     # withRuby = true;
   };
 
-  home.file."${config.xdg.configHome}/nvim" = {
-    source = ./nvim;
-    recursive = true;
-  };
+  xdg.configFile.nvim.source = mkOutOfStoreSymlink nvimPath;
 }

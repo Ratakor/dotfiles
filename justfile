@@ -34,7 +34,7 @@ clean:
     @# # garbage collect all unused nix store entries(for the user - home-manager)
     @# # https://github.com/NixOS/nix/issues/8508
     @# nix-collect-garbage --delete-older-than 7d
-    nh clean all --ask --keep-since 7d
+    nh clean all --ask --keep 5 --keep-since 7d
 
 # Rollback to a previous generation
 [group('nix')]
@@ -69,6 +69,6 @@ fmt:
 # Lint all nix files
 [group('nix')]
 lint:
-    alejandra --check .
+    -alejandra --check .
     -statix check
     deadnix

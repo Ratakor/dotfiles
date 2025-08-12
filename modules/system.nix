@@ -9,26 +9,6 @@
     ./secrets.nix
   ];
 
-  # TODO
-  programs.hyprland.enable = false;
-  programs.river.enable = true;
-  # services.displayManager = {
-  #   enable = true;
-  #   # defaultSession = "none";
-  #   # defaultSession = "none+river";
-  #   autoLogin = {
-  #     enable = true;
-  #     user = "ratakor";
-  #   };
-  # };
-  services.xserver = {
-    enable = true;
-    desktopManager.xterm.enable = false;
-    displayManager = {
-      lightdm.enable = false;
-    };
-  };
-
   users.users.ratakor = {
     isNormalUser = true;
     shell = pkgs.zsh;
@@ -46,57 +26,59 @@
     # openssh.authorizedKeys.keys = [];
   };
 
-  # remove nix-channel related tools & configs in favour of flakes
-  nix.channel.enable = false;
+  nix = {
+    # remove nix-channel related tools & configs in favour of flakes
+    channel.enable = false;
 
-  # customise /etc/nix/nix.conf declaratively via `nix.settings`
-  nix.settings = {
-    # given the users in this list the right to specify additional substituters via:
-    #    1. `nixConfig.substituers` in `flake.nix`
-    #    2. command line args `--options substituers http://xxx`
-    trusted-users = ["@wheel"];
+    # customise /etc/nix/nix.conf declaratively via `nix.settings`
+    settings = {
+      # given the users in this list the right to specify additional substituters via:
+      #    1. `nixConfig.substituers` in `flake.nix`
+      #    2. command line args `--options substituers http://xxx`
+      trusted-users = ["@wheel"];
 
-    # enable flakes globally
-    experimental-features = ["nix-command" "flakes"];
+      # enable flakes globally
+      experimental-features = ["nix-command" "flakes"];
 
-    substituters = [
+      substituters = [
+        # TODO
+        # cache mirror located in China
+        # status: https://mirror.sjtu.edu.cn/
+        # "https://mirror.sjtu.edu.cn/nix-channels/store"
+        # status: https://mirrors.ustc.edu.cn/status/
+        # "https://mirrors.ustc.edu.cn/nix-channels/store"
+
+        "https://cache.nixos.org"
+        # "https://s3.cri.epita.fr/cri-nix-cache.s3.cri.epita.fr"
+        # "https://nix-community.cachix.org"
+        # "https://nix-gaming.cachix.org"
+      ];
+
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        # "cache.nix.cri.epita.fr:qDIfJpZWGBWaGXKO3wZL1zmC+DikhMwFRO4RVE6VVeo="
+        # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+      ];
+
+      builders-use-substitutes = true;
+
       # TODO
-      # cache mirror located in China
-      # status: https://mirror.sjtu.edu.cn/
-      # "https://mirror.sjtu.edu.cn/nix-channels/store"
-      # status: https://mirrors.ustc.edu.cn/status/
-      # "https://mirrors.ustc.edu.cn/nix-channels/store"
+      # Optimize storage
+      # You can also manually optimize the store via:
+      #    nix-store --optimise
+      # Refer to the following link for more details:
+      # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
+      # auto-optimise-store = true;
+    };
 
-      "https://cache.nixos.org"
-      # "https://s3.cri.epita.fr/cri-nix-cache.s3.cri.epita.fr"
-      # "https://nix-community.cachix.org"
-      # "https://nix-gaming.cachix.org"
-    ];
-
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      # "cache.nix.cri.epita.fr:qDIfJpZWGBWaGXKO3wZL1zmC+DikhMwFRO4RVE6VVeo="
-      # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-    ];
-
-    builders-use-substitutes = true;
-
-    # TODO
-    # Optimize storage
-    # You can also manually optimize the store via:
-    #    nix-store --optimise
-    # Refer to the following link for more details:
-    # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
-    # auto-optimise-store = true;
-  };
-
-  # Perform garbage collection weekly to maintain low disk usage
-  # TODO: see programs.nh too
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 1w";
+    # Perform garbage collection weekly to maintain low disk usage
+    # handled by programs.nh.clean
+    # gc = {
+    #   automatic = true;
+    #   dates = "weekly";
+    #   options = "--delete-older-than 1w";
+    # };
   };
 
   # Allow unfree packages
@@ -143,9 +125,6 @@
     colors.bright_white
   ];
 
-  # Enable CUPS to print documents
-  services.printing.enable = true;
-
   fonts = {
     packages = with pkgs; [
       # icon fonts
@@ -185,17 +164,6 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings = {
-      # X11Forwarding = true;
-      PermitRootLogin = "prohibit-password"; # disable root login with password
-      PasswordAuthentication = false; # disable password login
-    };
-    openFirewall = true;
-  };
 
   environment = {
     # List packages installed in system profile.
@@ -255,45 +223,102 @@
     extraOutputsToInstall = []; # enable it per package instead like `pkg.dev`
   };
 
-  programs.zsh.enable = true;
+  programs = {
+    zsh.enable = true;
 
-  # Enable sound with pipewire
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
+    # TODO
+    hyprland.enable = false;
+    river.enable = true;
 
-    wireplumber = {
+    gnupg.agent = {
       enable = true;
+      enableSSHSupport = true;
+      # pinentryPackage = pkgs.pinentry-curses;
+    };
+
+    # nix helper
+    nh = {
+      enable = true;
+      clean = {
+        enable = true;
+        extraArgs = "--keep 5 --keep-size 7d";
+        dates = "weekly";
+      };
     };
   };
 
-  # used by gammastep
-  services.geoclue2 = {
-    enable = true;
-    # TODO: config
-  };
+  services = {
+    # Enable the OpenSSH daemon.
+    openssh = {
+      enable = true;
+      settings = {
+        # X11Forwarding = true;
+        PermitRootLogin = "prohibit-password"; # disable root login with password
+        PasswordAuthentication = false; # disable password login
+      };
+      openFirewall = true;
+    };
 
-  # TODO: what is that?
-  # Whether to enable power-profiles-daemon, a DBus daemon that allows changing
-  # system behavior based upon user-selected power profiles.
-  # services.power-profiles-daemon.enable = true;
+    # Enable CUPS to print documents
+    printing.enable = true;
 
-  # TODO: what is that?
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
+    # TODO
+    # displayManager = {
+    #   enable = true;
+    #   # defaultSession = "none";
+    #   # defaultSession = "none+river";
+    #   autoLogin = {
+    #     enable = true;
+    #     user = "ratakor";
+    #   };
+    # };
+    xserver = {
+      enable = true;
+      desktopManager.xterm.enable = false;
+      displayManager = {
+        lightdm.enable = false;
+      };
+    };
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    # pinentryPackage = pkgs.pinentry-curses;
+    # used by gammastep
+    geoclue2 = {
+      enable = true;
+      # TODO: config
+    };
+
+    # TODO: what is that?
+    # Whether to enable power-profiles-daemon, a DBus daemon that allows changing
+    # system behavior based upon user-selected power profiles.
+    # power-profiles-daemon.enable = true;
+
+    # TODO: what is that?
+    # Enable touchpad support (enabled default in most desktopManager).
+    # libinput.enable = true;
+
+    # laptop power saving settings
+    tlp = {
+      enable = true;
+      # settings ...
+    };
+
+    # Enable sound with pipewire
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+
+      wireplumber = {
+        enable = true;
+      };
+    };
   };
 
   security = {
+    rtkit.enable = true; # needed by pipewire
+
     pam.services.swaylock = {
       fprintAuth = false;
     };
@@ -355,11 +380,5 @@
       enable = true;
       # includeAllModules = true;
     };
-  };
-
-  # laptop power saving settings
-  services.tlp = {
-    enable = true;
-    # settings ...
   };
 }
