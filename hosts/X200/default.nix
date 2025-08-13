@@ -21,7 +21,7 @@
     # systemd-boot = {
     #   enable = true;
     #   zfsSupport = true;
-    #   configurationLimit = 10;
+    #   configurationLimit = 50;
     # }
     grub = {
       enable = true;
@@ -41,7 +41,7 @@
     #   canTouchEfiVariables = true;
     #   efiSysMountPoint = "/boot/efi";
     # }
-    # timeout = 10; # TODO
+    # timeout = 0; # TODO
   };
 
   networking = {

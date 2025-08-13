@@ -337,6 +337,9 @@
       # settings ...
     };
 
+    # Enable fprintd to use fingerprint readers
+    fprintd.enable = true;
+
     # enable NTP client to sync time
     ntp.enable = true;
 

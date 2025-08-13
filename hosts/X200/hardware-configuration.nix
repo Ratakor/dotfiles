@@ -13,6 +13,8 @@
   ];
 
   boot = {
+    # we're not using pkgs.linuxPackages_latest-libre because of zfs
+    # kernelPackages = pkgs.linuxPackages-libre;
     initrd = {
       availableKernelModules = ["uhci_hcd" "ehci_pci" "ahci" "usb_storage" "sd_mod"];
       kernelModules = [];
