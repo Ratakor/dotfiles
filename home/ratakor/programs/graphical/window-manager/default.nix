@@ -4,7 +4,7 @@
       enable = true;
       xwayland.enable = true;
       systemd = {
-        enable = true;
+        enable = true; # TODO
         variables = ["--all"];
       };
 
@@ -29,7 +29,7 @@
         border-color-urgent = "0x${colors.red}";
       };
 
-      extraConfig = builtins.readFile ./init;
+      extraConfig = builtins.readFile ./river-init.sh;
     };
 
     hyprland = {
@@ -46,4 +46,7 @@
       # settings = {}; # TODO
     };
   };
+
+  # TODO: currently using a hard link because it's quite obvious niri's config should be impure
+  # xdg.configFile."niri/config.kdl".source = ./niri-config.kdl;
 }

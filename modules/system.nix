@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./secrets.nix
+    ./login.nix
   ];
 
   users.users.ratakor = {
@@ -198,6 +199,7 @@
       pciutils # lspci
       usbutils # lsusb
       dnsutils # dig, host, nslookup
+      brightnessctl # brightness control
 
       ## parabola base
       file
@@ -266,8 +268,10 @@
     zsh.enable = true;
 
     # TODO
-    hyprland.enable = false;
+    # Window Manager
     river.enable = true;
+    hyprland.enable = true;
+    niri.enable = true;
 
     gnupg.agent = {
       enable = true;
@@ -301,23 +305,8 @@
     # Enable CUPS to print documents
     printing.enable = true;
 
-    # TODO
-    # displayManager = {
-    #   enable = true;
-    #   # defaultSession = "none";
-    #   # defaultSession = "none+river";
-    #   autoLogin = {
-    #     enable = true;
-    #     user = "ratakor";
-    #   };
-    # };
-    xserver = {
-      enable = true;
-      desktopManager.xterm.enable = false;
-      displayManager = {
-        lightdm.enable = false;
-      };
-    };
+    # Enable the X11 windowing system (still needed for wayland iirc)
+    xserver.enable = true;
 
     # used by gammastep
     geoclue2.enable = true;
@@ -328,7 +317,7 @@
 
     # Enable touchpad support (enabled default in most desktopManager).
     libinput = {
-      # enable = true;
+      # enable = true; # defaults to services.xserver.enable
     };
 
     # laptop power saving settings
@@ -361,6 +350,8 @@
         enable = true;
       };
     };
+
+    # TODO zfs/btrfs
   };
 
   security = {

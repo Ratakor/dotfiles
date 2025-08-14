@@ -1,4 +1,3 @@
-#!/bin/sh
 # shellcheck disable=SC2016
 
 ### WM bindings
@@ -129,23 +128,22 @@ riverctl map normal Super+Shift B spawn 'kill -USR1 $(pidof waybar)'
 #riverctl map normal Control P spawn 'killall picom || picom -b'
 
 ### Start programs
+## TODO: separate log output -> custom systemd user services
 
 spawn() {
 	pidof -q "$1" || riverctl spawn "$*"
 }
 
-# TODO: separate log output
-
 spawn randwp
-#spawn pipewire
-spawn foot --server
-#spawn crond -f "$XDG_CONFIG_HOME/crontab" -n
-spawn gammastep
-#spawn mako
-spawn waybar --log-level warning
 spawn rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55
-spawn swayidle -w \
-	timeout 300 "glitchlock" \
-	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'"
-#spawn librespot-cfg
-#spawn syncthing --no-browser
+
+spawn gammastep # see services.gammastep
+spawn mako # see services.mako
+spawn foot --server # see programs.foot.server.enable
+spawn waybar --log-level warning # see programs.waybar.systemd.enable
+# spawn swayidle -w \
+# 	timeout 300 "glitchlock" \
+# 	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'" # see services.swayidle
+
+# spawn librespot-cfg # see services.librespot
+# spawn syncthing --no-browser

@@ -23,7 +23,6 @@
     # hunspellDicts.en_US
     # hunspellDicts.fr-any
     # gajim # XMPP client (see python-axolotl & python-gnupg)
-    swayidle # idle manager (see services.swayidle)
 
     # anki # TODO: install + configure + which version?
   ];
@@ -43,7 +42,7 @@
 
     # idle manager
     swayidle = {
-      enable = true; # TODO: not started automatically when starting river (same for waybar)
+      enable = true;
       extraArgs = ["-w"];
       timeouts = [
         {

@@ -43,7 +43,7 @@
       "RM_STAR_SILENT" # disable double verification with rm -I *
       "VI" # vim mode
       "IGNORE_EOF" # do not exit on EoF <C-d>
-      # "PROMPT_SUBST" # used for git integration
+      # "PROMPT_SUBST" # used below for prompt with git integration
       # "CORRECT"
       # "CORRECT_ALL"
     ];
@@ -83,19 +83,14 @@
     profileExtra = ''
       # Automatically start River on tty1 if not already running.
       if [ "$(tty)" = "/dev/tty1" ]  && ! pidof -s river >/dev/null 2>&1; then
-          #rm "$XDG_CONFIG_HOME/chromium/SingletonLock" >/dev/null 2>&1
-
-          export XDG_SESSION_TYPE=wayland
-          export XDG_CURRENT_DESKTOP=river
-
-          timestamp=$(date +%F-%R)
+          timestamp=$(date +%Y-%m-%dT%H:%M:%S%z)
           RIVER_LOG_DIR="${config.xdg.stateHome}/river"
           mkdir -p "$RIVER_LOG_DIR"
           exec dbus-run-session river -log-level warning > "''${RIVER_LOG_DIR}/river-''${timestamp}.log" 2>&1
       fi
     '';
 
-    # TODO: improve that
+    # TODO: improve that, it's a massive slowdown & it could be more ergonomic
     completionInit = ''
       autoload -U compinit
       zstyle ':completion:*' menu select
@@ -105,54 +100,55 @@
 
     # TODO: clean this mess
     initContent = let
-      zshConfigBefore = lib.mkBefore (''
-          # disable C-S/C-Q
-          setopt noflowcontrol
+      inherit (lib.modules) mkBefore mkAfter mkOrder mkMerge;
 
-          # Some basic settings
-          autoload -U colors && colors # Load colors
-          stty stop undef # Disable ctrl-s to freeze terminal.
-          KEYTIMEOUT=1 # with vi mode: make switching modes faster
+      zshProfiling = mkMerge [
+        (mkOrder 0 "zmodload zsh/zprof")
+        (mkOrder 2000 "zprof")
+      ];
 
-          # Basic auto/tab complete
-          autoload -U compinit
-          zstyle ':completion:*' menu select
-          compinit
-          _comp_options+=(globdots) # Include hidden files.
+      zshConfigBefore = mkBefore ''
+        # disable C-S/C-Q
+        setopt noflowcontrol
 
-          # Use vim keys in tab complete menu:
-          zmodload zsh/complist
-          bindkey -M menuselect 'h' vi-backward-char
-          bindkey -M menuselect 'k' vi-up-line-or-history
-          bindkey -M menuselect 'l' vi-forward-char
-          bindkey -M menuselect 'j' vi-down-line-or-history
-          bindkey -v '^?' backward-delete-char
+        # Some basic settings
+        autoload -U colors && colors # Load colors
+        stty stop undef # Disable ctrl-s to freeze terminal.
+        KEYTIMEOUT=1 # with vi mode: make switching modes faster
 
-          # Change cursor shape for different vi modes.
-          function zle-keymap-select() {
-              case $KEYMAP in
-                  vicmd)
-                  echo -ne "\x1b[2 q" ;; # block
-              viins|main)
-                  echo -ne "\x1b[6 q" ;; # beam
-              esac
-          }
-          function zle-line-init() {
-              echo -ne "\x1b[6 q"
-          }
-          zle -N zle-keymap-select
-          zle -N zle-line-init
+        # Use vim keys in tab complete menu:
+        zmodload zsh/complist
+        bindkey -M menuselect 'h' vi-backward-char
+        bindkey -M menuselect 'k' vi-up-line-or-history
+        bindkey -M menuselect 'l' vi-forward-char
+        bindkey -M menuselect 'j' vi-down-line-or-history
+        bindkey -v '^?' backward-delete-char
 
-          # git integration
-          autoload -Uz vcs_info
-          precmd_functions+=( vcs_info )
-          setopt PROMPT_SUBST
-        ''
-        + "RPROMPT='\${vcs_info_msg_0_}'\n" # who thought '' was a good idea
-        + ''
-          zstyle ':vcs_info:git:*' formats '%F{cyan}(%b)%f'
-          zstyle ':vcs_info:*' enable git
-        '');
+        # Change cursor shape for different vi modes.
+        function zle-keymap-select() {
+            case $KEYMAP in
+                vicmd)
+                echo -ne "\x1b[2 q" ;; # block
+            viins|main)
+                echo -ne "\x1b[6 q" ;; # beam
+            esac
+        }
+        function zle-line-init() {
+            echo -ne "\x1b[6 q"
+        }
+        zle -N zle-keymap-select
+        zle -N zle-line-init
+
+        # git integration
+        autoload -Uz vcs_info
+        precmd_functions+=( vcs_info )
+        setopt PROMPT_SUBST
+        # who thought two ' was a good idea
+        # RPROMPT='${"\${vcs_info_msg_0_}"}'
+        RPROMPT=''\'''${vcs_info_msg_0_}'
+        zstyle ':vcs_info:git:*' formats '%F{cyan}(%b)%f'
+        zstyle ':vcs_info:*' enable git
+      '';
 
       zshConfig = ''
         # Prompt
@@ -188,12 +184,13 @@
         }
       '';
 
-      zshConfigAfter = lib.mkAfter ''
+      zshConfigAfter = mkAfter ''
         #quand
         ls -a
       '';
     in
-      lib.mkMerge [
+      mkMerge [
+        # zshProfiling
         zshConfigBefore
         zshConfig
         zshConfigAfter

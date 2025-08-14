@@ -6,16 +6,19 @@
 }: {
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
+    systemd.enable = false;
 
     settings.mainBar = {
       layer = "top";
       spacing = 0;
+
       modules-left = [
         "river/tags"
+        "niri/workspaces"
       ];
       modules-center = [
         # "river/window"
+        # "niri/window"
         # "image"
         "custom/spotify"
         "custom/music"
@@ -178,6 +181,7 @@
 
       #window,
       #tags,
+      #workspaces,
       #custom-spotify,
       #custom-music,
       #temperature,
@@ -193,19 +197,18 @@
           padding-bottom: 0px;
       }
 
-      #tags {
+      #tags, #workspaces {
           padding-left: 0px;
       }
 
       /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-      #tags button:hover {
+      #tags button:hover, #workspaces button:hover {
           box-shadow: inherit;
           text-shadow: inherit;
           background: @bright_black;
       }
 
-
-      #tags button {
+      #tags button, #workspaces button {
           /* Disable animation on click */
           transition-property: none;
 
@@ -221,25 +224,18 @@
           /* transition: 100ms; */
       }
 
-      #tags button.occupied {
-          border: 2px solid @foreground;
-          /* background-color: @foreground; */
-      }
-
-      #tags button.occupied.focused {
-          border: 2px solid @foreground;
-      }
-
-      #tags button.focused {
+      #tags button.focused, #workspaces button.active {
           min-width: 28px;
           border: 2px solid @blue;
           background: @blue;
           /* transition: 100ms; */
       }
 
-      #tags button.urgent
-      #tags button.focused.urgent
-      #tags button.occupied.urgent {
+      #tags button.occupied, #workspaces button:not(.empty) {
+          border: 2px solid @foreground;
+      }
+
+      #tags button.urgent {
           border: 2px solid @red;
       }
 

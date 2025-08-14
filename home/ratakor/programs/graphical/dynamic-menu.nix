@@ -1,3 +1,4 @@
+# TODO: chose one :P
 # opacity:
 # ff = 100%
 # e6 = 90%
@@ -29,7 +30,7 @@
     };
 
     fuzzel = {
-      enable = false;
+      enable = true;
       settings = {
         main = {
           font = "monospace";

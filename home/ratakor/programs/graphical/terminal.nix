@@ -1,7 +1,7 @@
 {colors, ...}: {
   programs.foot = {
     enable = true;
-    # server.enable = true; # TODO
+    server.enable = false;
 
     settings = {
       main = {
