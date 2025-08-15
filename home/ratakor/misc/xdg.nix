@@ -1,11 +1,32 @@
+# https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe
 {config, ...}: {
   xdg = {
     enable = true;
 
-    cacheHome = "${config.home.homeDirectory}/.local/var/cache";
     configHome = "${config.home.homeDirectory}/.local/etc";
     dataHome = "${config.home.homeDirectory}/.local/share";
-    stateHome = "${config.home.homeDirectory}/.local/var/state";
+    stateHome = "${config.home.homeDirectory}/.local/var/state"; # could be named log or lib too
+    cacheHome = "${config.home.homeDirectory}/.local/var/cache";
+
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+
+      download = "${config.home.homeDirectory}/tmp";
+      desktop = null; # "${config.home.homeDirectory}/tmp";
+      publicShare = null; # "${config.home.homeDirectory}/tmp";
+      templates = null; # "${config.home.homeDirectory}/tmp";
+
+      documents = "${config.home.homeDirectory}/media/doc";
+      music = "${config.home.homeDirectory}/media/music";
+      pictures = "${config.home.homeDirectory}/media/pictures";
+      videos = "${config.home.homeDirectory}/media/videos";
+
+      extraConfig = {
+        XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/screenshots";
+        XDG_MAIL_DIR = "${config.home.homeDirectory}/.local/var/mail";
+      };
+    };
 
     # Make npm and python respect XDG directories
     configFile = {
@@ -48,26 +69,6 @@
 
             atexit.register(write_history)
       '';
-    };
-
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-
-      download = "${config.home.homeDirectory}/tmp";
-      desktop = null; # "${config.home.homeDirectory}/tmp";
-      publicShare = null; # "${config.home.homeDirectory}/tmp";
-      templates = null; # "${config.home.homeDirectory}/tmp";
-
-      documents = "${config.home.homeDirectory}/media/doc";
-      music = "${config.home.homeDirectory}/media/music";
-      pictures = "${config.home.homeDirectory}/media/pic";
-      videos = "${config.home.homeDirectory}/media/vid";
-
-      extraConfig = {
-        XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/screenshots";
-        # XDG_MAIL_DIR = "${config.home.homeDirectory}/mail";
-      };
     };
 
     desktopEntries = {

@@ -1,9 +1,11 @@
 {
   colors,
-  lib,
+  muhlib,
   pkgs,
   ...
-}: {
+}: let
+  inherit (muhlib) hexToRgba;
+in {
   programs.waybar = {
     enable = true;
     systemd.enable = false;
@@ -135,17 +137,9 @@
       };
     };
 
-    style = let
-      inherit (lib.trivial) fromHexString;
-      inherit (builtins) substring;
-
-      r = toString (fromHexString (substring 0 2 colors.background));
-      g = toString (fromHexString (substring 2 2 colors.background));
-      b = toString (fromHexString (substring 4 2 colors.background));
-      background = "rgba(${r}, ${g}, ${b}, 0.85)";
-    in ''
+    style = ''
       @define-color foreground #${colors.foreground};
-      @define-color background ${background};
+      @define-color background ${hexToRgba colors.background 0.85};
 
       @define-color black   #${colors.black};
       @define-color red     #${colors.red};

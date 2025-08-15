@@ -72,7 +72,7 @@ riverctl map normal Super D spawn 'exec $(tofi-run)'
 riverctl map normal None XF86ScreenSaver spawn 'glitchlock'
 riverctl map normal Super+Shift X spawn 'glitchlock'
 riverctl map normal None XF86Battery spawn 'battery'
-riverctl map normal Super+Shift R spawn 'randwp'
+riverctl map normal Super+Shift W spawn 'randwp'
 riverctl map normal None Print spawn 'screenshot'
 
 #riverctl map normal None F7 spawn "$TERMINAL -e dmenurecord"
@@ -106,7 +106,7 @@ riverctl map normal Super Y spawn 'dmenusearch youtube'
 riverctl map normal Super W spawn 'dmenusearch man'
 riverctl map normal Super E spawn 'dmenusearch emoji'
 
-riverctl map normal Super+Shift E spawn 'shutdown-menu'
+riverctl map normal Super+Shift E spawn 'wlogout'
 riverctl map normal Super U spawn 'plumber --dmenu "$(wl-paste)"'
 riverctl map normal Super+Shift U spawn 'plumber "$(wl-paste)"'
 #riverctl map-pointer normal None BTN_MIDDLE spawn 'plumber'

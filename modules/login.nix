@@ -26,6 +26,7 @@ in {
         };
 
         # fallback
+        # TODO: doesn't work correctly with .zprofile
         default_session = {
           command = concatStringsSep " " [
             (getExe pkgs.tuigreet)

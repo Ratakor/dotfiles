@@ -8,8 +8,6 @@
     "iftop"
     # "mount" # handled below
     "umount"
-    "pmount"
-    "pumount"
     "fdisk"
     "cryptsetup"
     "modprobe"
@@ -85,7 +83,6 @@ in {
       gb = "go build";
       zb = "zig build";
       cb = "cargo build";
-      g = "grep -RIn --exclude-dir=.git";
       cfmt = "astyle -A3 -t8 -p -xg -H -xB -U -n";
       gofmt = "gofmt -s -w";
       javafmt = "astyle --mode=java --style=google -n";
@@ -101,50 +98,6 @@ in {
       myip = "dig @resolver4.opendns.com myip.opendns.com +short";
       myip4 = "dig @resolver4.opendns.com myip.opendns.com +short -4";
       myip6 = "dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +short -6";
-
-      # verbosity and colors
-      rm = "trash -v"; # "rm -vI"
-      rmdir = "rmdir -v"; # -p
-      cp = "cp -riv"; # --reflink=always
-      mv = "mv -iv";
-      mkdir = "mkdir -pv";
-      grep = "grep --color=always -n";
-      diff = "diff --color=always";
-      ip = "ip --color=always";
-      ls = "eza --color=always --group-directories-first --hyperlink";
-      sl = "ls";
-      ll = "ls -lgho --git";
-      la = "ls -a";
-      laa = "ls -aa";
-      l = "ll -a";
-      lr = "ls -R";
-      tree = "ls -T";
-      cat = "bat --style=numbers,changes --tabs 8";
-      du = "dust -r";
-      duf = "duf -hide special";
-      fd = "fd -HI --color=always";
-      less = "less -R";
-      # readlink = "readlink -f"; # use realpath instead
-
-      # git
-      G = "gitui";
-      gs = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gca = "git commit --all";
-      gcv = "git commit --verbose";
-      gcm = "git commit --message";
-      gam = "git commit --amend";
-      gp = "git push"; # --follow-tags"; # --tags
-      gpl = "git pull";
-      gr = "git restore";
-      grs = "git restore --staged";
-      gd = "git diff";
-      gac = "ga . && gc";
-      gacv = "ga . && gcv";
-      gcp = "gc && gp";
-      gacp = "ga . && gc && gp";
-      gacpv = "ga . && gcv && gp";
 
       # music
       pause = "musiccmd pause";

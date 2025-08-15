@@ -11,11 +11,34 @@
       duf # df replacement
       procs # ps replacement
       socat # netcat replacement
+      trash-cli # rm replacement (kinda)
     ];
 
-    # TODO: move other aliases here too
     shellAliases = {
+      rm = "trash -v"; # "rm -vI"
+      rmdir = "rmdir -v"; # -p
+      cp = "cp -riv"; # --reflink=always
+      mv = "mv -iv";
+      mkdir = "mkdir -pv";
+      grep = "grep -RIn --exclude-dir=.git --color=auto";
+      diff = "diff --color=auto";
+      ip = "ip --color=auto";
+      less = "less -R";
+      # readlink = "readlink -f"; # use realpath instead
+
       ps = "procs";
+      duf = "duf -hide special";
+      du = "dust -r";
+      cat = "bat --style=numbers,changes --tabs 8";
+
+      ls = "eza";
+      sl = "ls";
+      la = "ls -a";
+      laa = "ls -aa";
+      lr = "ls --recurse";
+      tree = "ls --tree";
+      ll = "ls --long --group --header --octal-permissions --git";
+      l = "ll -a";
     };
   };
 
@@ -30,16 +53,34 @@
       };
     };
 
-    # ls replacement
+    # ls & tree replacement
     eza = {
       enable = true;
-      # TODO: config
+      enableZshIntegration = false; # we handle that ourselves (replace ls with eza)
+      # git = true; # long format only so we enable it manually
+      colors = "auto";
+      # icons = "auto";
+      # theme = {};
+      extraOptions = [
+        "--group-directories-first"
+        "--hyperlink" # display entries as hyperlinks
+      ];
     };
 
     # find replacement
     fd = {
       enable = true;
-      # TODO: config
+      hidden = true; # show hidden files
+      ignores = [
+        ".git/"
+      ];
+      extraOptions = [
+        # "--no-ignore" # don't ignore files in .gitignore, .ignore, .fdignore, ...
+        "--no-ignore-vcs" # don't ignore files in .gitignore
+        # "--absolute-path" # print absolute paths
+        # "--follow" # follow symlinks
+        # "--color=always" # always use colors
+      ];
     };
 
     # grep replacement

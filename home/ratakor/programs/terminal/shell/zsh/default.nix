@@ -59,7 +59,7 @@
       append = true;
 
       # save timestamp into the history file
-      extended = true;
+      extended = false;
 
       # avoid duplicates
       save = 100000; # SAVEHIST

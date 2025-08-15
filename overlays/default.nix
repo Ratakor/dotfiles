@@ -40,6 +40,65 @@ in {
     }))
 
     (const (super: {
+      # https://github.com/NixOS/nixpkgs/pull/433847
+      # https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/pm/pmount/package.nix
+      pmount = super.pmount.overrideAttrs (oldAttrs: {
+        configureFlags =
+          (oldAttrs.configureFlags or [])
+          ++ [
+            "--with-cryptsetup-prog=${super.cryptsetup}/bin/cryptsetup"
+          ];
+        # nixpkgs patches are too old
+        patches = let
+          # https://salsa.debian.org/debian/pmount/-/tree/debian/master/debian/patches
+          # https://salsa.debian.org/debian/pmount/-/tree/430e4634aa7a2e6a5a91852c5b0fd3698b186000/debian/patches
+          fetchDebPatch = {
+            name,
+            hash,
+          }:
+            super.fetchpatch {
+              inherit name hash;
+              url = "https://salsa.debian.org/debian/pmount/-/raw/430e4634aa7a2e6a5a91852c5b0fd3698b186000/debian/patches/${name}";
+            };
+        in
+          map fetchDebPatch [
+            {
+              name = "02-fix-spelling-binary-errors.patch";
+              hash = "sha256-ukGHDqsG3Eo/0bhv2GPwX0N6uZOI+3BowMY+l1wtd9o=";
+            }
+            {
+              name = "03-fix-spelling-manpage-error.patch";
+              hash = "sha256-rsa3t165+yWBOnRV3SnOMmYSuNuydZtnOdydUzcjDaQ=";
+            }
+            {
+              name = "04-fix-implicit-function-declaration.patch";
+              hash = "sha256-Le8gVIW72oZGymN7gM5uOGNEhrzOTirnilNedUkSpco=";
+            }
+            {
+              name = "05-exfat-support.patch";
+              hash = "sha256-Yl9QuA8tMIej4nQIbYibcUVFJdgnVaN+34/xoJp5NbU=";
+            }
+            {
+              name = "06-C99-implicit-function-declaration-fixes.patch";
+              hash = "sha256-xFFfl9BkBqbUSAKaJwvKNgHyWbxUO5wKyEpwz3anwdM=";
+            }
+            {
+              name = "07-Add-probing-for-Btrfs.patch";
+              hash = "sha256-9SKyLAVmZTGgsAi9aCxkw1OzWVcegoZy2DaupiS9kPA=";
+            }
+            {
+              name = "08-Support-btlkOpen-alongside-of-luksOpen.patch";
+              hash = "sha256-2PJky3lRUKkOB2Js86XN8gqmYMxpsUbLJ39XnrirCDw=";
+            }
+            {
+              name = "09-Probe-for-f2fs.patch";
+              hash = "sha256-VMnrSEaIPwEfbUi+Q88vQdSBQgq4+jJ19Bjc/ueemnw=";
+            }
+          ];
+      });
+    }))
+
+    (const (super: {
       cromite = super.callPackage ./cromite.nix {};
     }))
   ];

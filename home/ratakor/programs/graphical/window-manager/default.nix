@@ -17,10 +17,10 @@
       settings = {
         focus-follows-cursor = "normal";
         attach-mode = "bottom";
-        hide-cursor = {when-typing = "enabled";};
+        hide-cursor = ["when-typing enabled"];
         set-cursor-warp = "on-output-change";
         set-repeat = "50 300";
-        keyboard-layout = "\"fr(us)\"";
+        keyboard-layout = "-variant us -options caps:none fr";
         default-layout = "rivertile";
 
         background-color = "0x${colors.background}";

@@ -41,7 +41,7 @@
     #   canTouchEfiVariables = true;
     #   efiSysMountPoint = "/boot/efi";
     # }
-    # timeout = 0; # TODO
+    timeout = 1;
   };
 
   networking = {

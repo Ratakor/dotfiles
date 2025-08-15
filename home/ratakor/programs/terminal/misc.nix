@@ -19,22 +19,12 @@
     mat2 # metadata removal tool
     bc # calculation
     termdown # timer on the terminal
-    trash-cli # rm replacement kinda
     detox # cli to cleanup filenames
     yq # jq wrapper for yaml, xml and toml
     typos # spell checker
     # nmap # utility for network discovery and security auditing
     # aria2 #  lightweight, multi-protocol, multi-source command-line download utility
     # ipcalc # simple IP network calculator
-
-    # mount removable devices as normal user
-    (pmount.overrideAttrs (oldAttrs: {
-      configureFlags =
-        (oldAttrs.configureFlags or [])
-        ++ [
-          "--with-cryptsetup-prog=${cryptsetup}/bin/cryptsetup"
-        ];
-    }))
 
     inputs.zig-2048.packages.${system}.default
     inputs.zpotify.packages.${system}.default # CLI for spotify

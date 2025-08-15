@@ -104,7 +104,7 @@
     gtk3.extraCss = ''
       /* No (default) titlebar on wayland */
       .titlebar, .css, headerbar {
-          background-image:none;
+          background-image: none;
           background-color: transparent;
           margin-top: -100px;
           margin-bottom: 50px;

@@ -1,5 +1,4 @@
 {
-  colors,
   config,
   pkgs,
   ...
@@ -25,8 +24,6 @@
   xdg.dataFile.emoji.source = ./src/emoji;
 
   home.packages = [
-    (import ./shutdown-menu.nix {inherit colors pkgs;})
-
     (pkgs.writeShellApplication {
       name = "glitchlock";
       runtimeInputs = with pkgs; [grim imagemagick coreutils swaylock];

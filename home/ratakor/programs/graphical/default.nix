@@ -11,5 +11,6 @@
     ./terminal.nix
     ./video
     ./window-manager
+    ./wlogout.nix
   ];
 }

@@ -192,6 +192,7 @@
       gnupg
       pkg-config
       xdg-utils
+      pmount # mount removable devices (setuid wrappers below)
 
       ## system tools
       # sysstat
@@ -288,6 +289,10 @@
         dates = "weekly";
       };
     };
+
+    gdk-pixbuf.modulePackages = with pkgs; [
+      librsvg # add svg support to gdk-pixbuf (wlogout)
+    ];
   };
 
   services = {
@@ -361,6 +366,18 @@
       fprintAuth = false;
     };
 
+    wrappers = let
+      mkSetuidWrapper = package: command: {
+        setuid = true;
+        owner = "root";
+        group = "root";
+        source = lib.getExe' package command;
+      };
+    in {
+      pmount = mkSetuidWrapper pkgs.pmount "pmount";
+      pumount = mkSetuidWrapper pkgs.pmount "pumount";
+    };
+
     # https://github.com/NixOS/nixpkgs/pull/256491
     sudo-rs.enable = lib.mkForce false;
 
@@ -389,8 +406,6 @@
             # "systemctl"
             "sync"
             "dmesg"
-            "pmount"
-            "pumount"
           ];
         }
       ];
@@ -398,9 +413,8 @@
   };
 
   # this is for pmount
-  # change user to root with mode 0775?
   systemd.tmpfiles.rules = [
-    "d /media 0755 ratakor users"
+    "d /media 0755 root root"
   ];
 
   documentation = {

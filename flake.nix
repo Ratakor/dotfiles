@@ -62,7 +62,7 @@
   } @ inputs: let
     system = "x86_64-linux";
     theme = "gruvbox-dark"; # gruvbox-dark gruvbox-light dracula
-    mylib = import ./lib {inherit (nixpkgs) lib;};
+    muhlib = import ./lib {inherit (nixpkgs) lib;};
   in {
     # Systems for which attributes of perSystem will be built. As
     # a rule of thumb, only systems provided by available hosts
@@ -76,7 +76,7 @@
         inherit system;
 
         specialArgs = {
-          inherit inputs mylib;
+          inherit inputs muhlib;
 
           colors = (import ./modules/colors).${theme};
 

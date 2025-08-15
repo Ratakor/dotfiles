@@ -1,4 +1,4 @@
-# TODO: chose one :P
+# TODO: replace tofi with fuzzel
 # opacity:
 # ff = 100%
 # e6 = 90%
@@ -23,7 +23,7 @@
         num-results = 10;
         font = "monospace";
         require-match = false;
-        background-color = colors.background + "e6"; # "#000a";
+        background-color = colors.background + "d9"; # "#000a";
         text-color = colors.foreground;
         selection-color = colors.cyan;
       };
@@ -39,13 +39,13 @@
         };
 
         colors = rec {
-          background = colors.background + "e6";
+          background = colors.background + "d9";
           text = colors.foreground + "ff";
           prompt = text;
           placeholder = colors.comment + "ff";
           input = text;
           match = colors.orange + "ff"; # or cyan
-          selection = colors.selection + "e6";
+          selection = colors.selection + "d9";
           selection-text = text;
           selection-match = match;
           counter = placeholder;
