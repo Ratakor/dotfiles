@@ -3,7 +3,7 @@
   stdenvNoCC,
   fetchzip,
 }:
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation {
   pname = "luciole-fonts";
   version = "1";
 

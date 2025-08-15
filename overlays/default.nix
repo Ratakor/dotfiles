@@ -8,6 +8,9 @@
   systemNix = config.nix.package;
 in {
   nixpkgs.overlays = [
+    # custom packages not available in nixpkgs
+    (const (super: import ../pkgs {pkgs = super;}))
+
     # from notashelf/nyx
     # Some packages provide their own instances of Nix by adding `nix` to the argset
     # of a derivation. While in most cases a simple `.override` will allow you to easily
@@ -28,19 +31,15 @@ in {
       };
     }))
 
-    (const (super: {
-      luciole-fonts = super.callPackage ./luciole-fonts.nix {};
-    }))
-
-    # needed in overlay because tofi is used in a lot of my scripts
+    # add compatibility patches to tofi
     (const (super: {
       tofi-dmenu = super.tofi.overrideAttrs (oldAttrs: {
         patches = (oldAttrs.patches or []) ++ [./patches/tofi-dmenu-20240910.diff];
       });
     }))
 
+    # remove when https://github.com/NixOS/nixpkgs/pull/433847 gets merged
     (const (super: {
-      # https://github.com/NixOS/nixpkgs/pull/433847
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/pm/pmount/package.nix
       pmount = super.pmount.overrideAttrs (oldAttrs: {
         configureFlags =
@@ -96,10 +95,6 @@ in {
             }
           ];
       });
-    }))
-
-    (const (super: {
-      cromite = super.callPackage ./cromite.nix {};
     }))
   ];
 }
