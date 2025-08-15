@@ -51,8 +51,6 @@ in {
       CUDA_CACHE_PATH = "${XDG_CACHE_HOME}/nv";
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
       GRADLE_USER_HOME = "${XDG_DATA_HOME}/gradle";
-      ZELLIJ_CONFIG_DIR = "${XDG_CONFIG_HOME}/zellij";
-      ZELLIJ_CONFIG_FILE = "${XDG_CONFIG_HOME}/zellij/config.kdl";
       WINEPREFIX = "${XDG_DATA_HOME}/wine";
 
       # Disable telemetry (https://consoledonottrack.com)

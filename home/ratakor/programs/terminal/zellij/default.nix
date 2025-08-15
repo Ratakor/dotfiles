@@ -1,9 +1,5 @@
 # terminal multiplexer & session manager
-{
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   programs.zellij = {
     enable = true;
     # package = # TODO: patch for zsh completions
@@ -26,11 +22,10 @@
     # };
   };
 
-  # TODO: I don't know if this should be here or in home/ratakor/programs/terminal/shell/zsh/variables.nix
-  # home.sessionVariables = {
-  #   ZELLIJ_CONFIG_DIR = "${config.xdg.configHome}/zellij";
-  #   ZELLIJ_CONFIG_FILE = "${config.xdg.configHome}/zellij/config.kdl";
-  # };
+  home.sessionVariables = {
+    ZELLIJ_CONFIG_DIR = "${config.xdg.configHome}/zellij";
+    ZELLIJ_CONFIG_FILE = "${config.xdg.configHome}/zellij/config.kdl";
+  };
 
   xdg.configFile."zellij/config.kdl".source = ./config.kdl;
 }

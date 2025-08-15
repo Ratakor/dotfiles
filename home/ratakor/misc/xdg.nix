@@ -1,5 +1,7 @@
 # https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe
 {config, ...}: {
+  home.preferXdgDirectories = true; # doesn't do much
+
   xdg = {
     enable = true;
 

@@ -1,19 +1,33 @@
 {
-  description = "NixOS configuration";
+  description = "Ratakor's basic NixOS configuration";
 
   inputs = {
-    systems.url = "github:nix-systems/default-linux";
+    # Nixpkgs channels:
+    # nixos-stable is the latest LTS channel.
+    # nixos-unstable is the rolling release channel for NixOS.
+    # nixos-unstable-small is like nixos-unstable but with a smaller set of packages.
+    # nixpkgs-unstable is the rolling release channel for Nix-as-a-package-manager.
+    nixos-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small"; # moves faster, has less packages
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    # The actual nixpkgs channels we use.
+    nixpkgs.follows = "nixos-unstable";
+    nixpkgs-small.follows = "nixos-unstable-small";
 
+    # We only care about x86_64-linux (for now).
+    systems.url = "github:nix-systems/x86_64-linux";
+
+    # This is not a dotfiles manager it's a whole kitchen sink to manage
+    # home configurations, hjem or basic stow implementation might be better
+    # for raw dotfiles. Note that there is a stable version of home-manager.
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # secrets management
+    # Secrets management.
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
@@ -60,30 +74,16 @@
     home-manager,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
     theme = "gruvbox-dark"; # gruvbox-dark gruvbox-light dracula
-    muhlib = import ./lib {inherit (nixpkgs) lib;};
   in {
-    # Systems for which attributes of perSystem will be built. As
-    # a rule of thumb, only systems provided by available hosts
-    # should go in this list. More systems will increase evaluation
-    # duration.
-    # TODO: though I don't think it works as intended rn
-    # systems = import inputs.systems;
-
     nixosConfigurations = {
       X200 = nixpkgs.lib.nixosSystem rec {
-        inherit system;
+        system = "x86_64-linux";
 
         specialArgs = {
-          inherit inputs muhlib;
-
+          inherit inputs;
           colors = (import ./modules/colors).${theme};
-
-          pkgs-stable = import inputs.nixpkgs-stable {
-            inherit system;
-            config.allowUnfree = true;
-          };
+          muhlib = import ./lib {pkgs = nixpkgs;};
         };
 
         modules = [

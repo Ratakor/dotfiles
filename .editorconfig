@@ -1,0 +1,19 @@
+root = true
+
+[*]
+tab_width = 8
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.sh]
+indent_style = tab
+
+[*.{lua,py}]
+indent_style = space
+indent_size = 4
+
+[*.nix]
+indent_style = space
+indent_size = 2
