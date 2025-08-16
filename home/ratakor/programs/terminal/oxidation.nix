@@ -28,7 +28,7 @@
 
       ps = "procs";
       duf = "duf -hide special";
-      du = "dust -r";
+      du = "dust --reverse";
       cat = "bat --style=numbers,changes --tabs 8";
 
       ls = "eza";

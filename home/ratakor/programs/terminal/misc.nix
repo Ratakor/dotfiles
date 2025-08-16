@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   pkgs,
   ...
 }: {
@@ -26,14 +25,14 @@
     # aria2 #  lightweight, multi-protocol, multi-source command-line download utility
     # ipcalc # simple IP network calculator
 
-    inputs.zig-2048.packages.${system}.default
-    inputs.zpotify.packages.${system}.default # CLI for spotify
+    zpotify # A CLI/TUI for Spotify
+    zig-2048 # 2048 game in terminal
   ];
 
   programs = {
     # corrects your last command
     pay-respects = {
-      enable = true;
+      enable = false;
       enableZshIntegration = true; # adds the `f` alias
     };
 

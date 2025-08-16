@@ -38,30 +38,6 @@
       };
     };
 
-    # zig2nix dependency
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "systems";
-    };
-
-    # custom zig packages dependency
-    zig2nix = {
-      url = "github:Cloudef/zig2nix";
-      inputs.nixpkgs.follows = "nixpkgs-small";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-
-    ## custom packages
-    zig-2048 = {
-      url = "github:ratakor/2048.zig";
-      inputs.zig2nix.follows = "zig2nix";
-    };
-
-    zpotify = {
-      url = "github:ratakor/zpotify";
-      inputs.zig2nix.follows = "zig2nix";
-    };
-
     wallpapers = {
       url = "github:ratakor/wallpapers";
       flake = false;
