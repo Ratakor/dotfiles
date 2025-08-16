@@ -1,4 +1,8 @@
-{colors, ...}: {
+{
+  colors,
+  config,
+  ...
+}: {
   wayland.windowManager = {
     river = {
       enable = true;
@@ -47,6 +51,10 @@
     };
   };
 
-  # TODO: currently using a hard link because it's quite obvious niri's config should be impure
-  # xdg.configFile."niri/config.kdl".source = ./niri-config.kdl;
+  # so this is quite ugly but:
+  # - niri is not yet available in home-manager (I know about niri-flake but
+  #   it's different from the above WMs config)
+  # - niri has hot reloading so it's better if the config is mutable
+  # - tbh it wouldn't be ugly if mkOutOfStoreSymlink worked with relative paths
+  xdg.configFile."niri/config.kdl".source = "${config.home.dotfiles}/programs/graphical/window-manager/niri-config.kdl";
 }

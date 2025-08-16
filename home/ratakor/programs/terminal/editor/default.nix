@@ -2,12 +2,7 @@
   config,
   pkgs,
   ...
-}: let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
-
-  # TODO: this is ugly
-  nvimPath = "${config.home.homeDirectory}/nixos/home/ratakor/programs/terminal/editor/nvim";
-in {
+}: {
   programs.neovim = {
     enable = true;
 
@@ -25,5 +20,7 @@ in {
     ];
   };
 
-  xdg.configFile.nvim.source = mkOutOfStoreSymlink nvimPath;
+  # TODO: manage nix config with nixvim or nvf or whatever instead of doing
+  # impure out of store symlinks even though I like mutable configs
+  xdg.configFile.nvim.source = "${config.home.dotfiles}/programs/terminal/editor/nvim";
 }
