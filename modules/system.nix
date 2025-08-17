@@ -28,10 +28,11 @@
   };
 
   nix = {
-    # remove nix-channel related tools & configs in favour of flakes
+    # remove nix-channel related tools & configs in favor of flakes
     channel.enable = false;
 
-    # customise /etc/nix/nix.conf declaratively via `nix.settings`
+    # customise /etc/nix/nix.conf declaratively
+    # see nix.conf(5)
     settings = {
       # given the users in this list the right to specify additional substituters via:
       #    1. `nixConfig.substituers` in `flake.nix`
@@ -49,14 +50,14 @@
         # # status: https://mirrors.ustc.edu.cn/status/
         # "https://mirrors.ustc.edu.cn/nix-channels/store"
 
-        "https://cache.nixos.org"
+        # "https://cache.nixos.org"
         # "https://s3.cri.epita.fr/cri-nix-cache.s3.cri.epita.fr"
         # "https://nix-community.cachix.org"
         # "https://nix-gaming.cachix.org"
       ];
 
       trusted-public-keys = [
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         # "cache.nix.cri.epita.fr:qDIfJpZWGBWaGXKO3wZL1zmC+DikhMwFRO4RVE6VVeo="
         # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
@@ -71,6 +72,10 @@
       # Refer to the following link for more details:
       # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
       # auto-optimise-store = true;
+
+      # Move dotfiles in $HOME to $XDG_STATE_HOME/nix.
+      # https://github.com/NixOS/nix/pull/5588
+      use-xdg-base-directories = true;
     };
 
     # Perform garbage collection weekly to maintain low disk usage
@@ -85,7 +90,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # TODO;
+  # TODO: this or setup a CI that update flake.lock once a week
   system.autoUpgrade = {
     enable = false;
   };
@@ -254,6 +259,12 @@
     variables = {
       EDITOR = "nvim";
       # VISUAL = "nvim";
+
+      # https://github.con/NixOS/nixpkgs/issues/224525
+      XDG_CONFIG_HOME = "$HOME/.local/etc";
+      XDG_DATA_HOME = "$HOME/.local/share";
+      XDG_CACHE_HOME = "$HOME/.local/var/cache";
+      XDG_STATE_HOME = "$HOME/.local/var/state";
     };
 
     # binsh = "${pkgs.dash}/bin/dash";

@@ -59,6 +59,7 @@
     nh # nix helper # TODO: programs.nh (system wide)
     # comma
     # nix-output-monitor # replace `nix` with `nom`
+    # nurl
   ];
 
   programs = {
