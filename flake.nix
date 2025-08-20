@@ -19,6 +19,7 @@
     # We only care about x86_64-linux (for now).
     systems.url = "github:nix-systems/x86_64-linux";
 
+    # Flake builder.
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     # This is not a dotfiles manager it's a whole kitchen sink to manage
@@ -40,6 +41,12 @@
       };
     };
 
+    # Formatter multiplexer.
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs-small";
+    };
+
     wallpapers = {
       url = "github:ratakor/wallpapers";
       flake = false;
@@ -52,6 +59,7 @@
       systems = import inputs.systems;
 
       imports = [
+        ./parts
         ./hosts
       ];
     };
