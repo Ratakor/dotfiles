@@ -1,3 +1,4 @@
+# shellcheck shell=sh
 # based on https://github.com/xero/glitchlock
 
 grim /tmp/lock.png
@@ -5,7 +6,7 @@ magick /tmp/lock.png /tmp/lock.jpg
 file=/tmp/lock.jpg
 
 datamosh() {
-	file_size=$(wc -c < "$file")
+	file_size=$(wc -c <"$file")
 	header_size=1000
 	skip=$(shuf -i "$header_size"-"$file_size" -n 1)
 	count=$(shuf -i 1-10 -n 1)
@@ -27,4 +28,4 @@ rm /tmp/lock.jpg
 file=/tmp/lock.png
 
 timestamp=$(date +%F-%R:%S)
-swaylock -i "$file" > "/tmp/swaylock-$timestamp.log" 2>&1
+swaylock -i "$file" >"/tmp/swaylock-$timestamp.log" 2>&1

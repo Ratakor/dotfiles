@@ -42,7 +42,11 @@ function M:peek(job)
 
     -- Handle pagination and upper bounds
     if job.skip > 0 and #collected_lines == 0 then
-        ya.manager_emit("peek", { math.max(0, job.skip - max_lines), only_if = job.file.url, upper_bound = false })
+        ya.manager_emit("peek", {
+            math.max(0, job.skip - max_lines),
+            only_if = job.file.url,
+            upper_bound = false,
+        })
         return
     end
 

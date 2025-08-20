@@ -28,7 +28,7 @@
     # perf # performance analysis tool (wrong package)
     hyperfine # benchmarking tool
     # poop # Performance Optimizer Observation Platform
-    # nodePackages.nodejs # javascript (I have no clude about all these nodePacakges)
+    # nodePackages.nodejs # javascript (I have no clue about all these nodePackages)
     nodePackages.npm
     nodePackages.pnpm
     lua

@@ -8,10 +8,10 @@ strip() {
 	printf '%s\n' "${tmp%%\",\"request_id\":0,\"error\":\"success\"\}}"
 }
 
-pause=$(strip "$(printf '{ "command": ["get_property_string", "pause"] }\n'\
-	| socat - "$SOCKET" 2> /dev/null)")
-title=$(strip "$(printf '{ "command": ["get_property", "media-title"] }\n'\
-	| socat - "$SOCKET" 2> /dev/null)")
+pause=$(strip "$(printf '{ "command": ["get_property_string", "pause"] }\n' |
+	socat - "$SOCKET" 2>/dev/null)")
+title=$(strip "$(printf '{ "command": ["get_property", "media-title"] }\n' |
+	socat - "$SOCKET" 2>/dev/null)")
 
 if [ "$pause" = "yes" ]; then
 	printf ' %s' "$title"

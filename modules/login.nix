@@ -76,7 +76,7 @@ in {
       };
     };
 
-    # disable auto-installation of unneeded softwares
+    # disable auto-installation of unneeded software
     xserver = {
       desktopManager.xterm.enable = false;
       displayManager.lightdm.enable = false;

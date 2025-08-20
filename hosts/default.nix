@@ -37,7 +37,7 @@ in {
   flake.nixosConfigurations = let
     # Flake inputs modules
     agenix = inputs.agenix.nixosModules.default;
-    home-manager = inputs.home-manager.nixosModules.home-manager;
+    inherit (inputs.home-manager.nixosModules) home-manager;
 
     homeConfig = ../home;
     home = [home-manager homeConfig];

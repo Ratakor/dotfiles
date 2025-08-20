@@ -1,9 +1,11 @@
+# shellcheck shell=sh
+
 status=$(cat /sys/class/power_supply/BAT0/status)
 capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 
 if [ "$status" = "Charging" ]; then
 	case $capacity in
-	99|100) icon=󰂅 ;;
+	99 | 100) icon=󰂅 ;;
 	9[0-8]) icon=󰂋 ;;
 	8[0-9]) icon=󰂊 ;;
 	7[0-9]) icon=󰢞 ;;
@@ -13,11 +15,11 @@ if [ "$status" = "Charging" ]; then
 	3[0-9]) icon=󰂇 ;;
 	2[0-9]) icon=󰂆 ;;
 	1[0-9]) icon=󰢜 ;;
-	[0-9])  icon=󰢟 ;;
+	[0-9]) icon=󰢟 ;;
 	esac
 else
 	case $capacity in
-	99|100) icon=󰁹 ;;
+	99 | 100) icon=󰁹 ;;
 	9[0-8]) icon=󰂂 ;;
 	8[0-9]) icon=󰂁 ;;
 	7[0-9]) icon=󰂀 ;;
@@ -27,7 +29,7 @@ else
 	3[0-9]) icon=󰁼 ;;
 	2[0-9]) icon=󰁻 ;;
 	1[0-9]) icon=󰁺 ;;
-	[0-9])  icon=󰂎 ;;
+	[0-9]) icon=󰂎 ;;
 	esac
 fi
 

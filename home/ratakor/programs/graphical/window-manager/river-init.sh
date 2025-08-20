@@ -1,4 +1,4 @@
-# shellcheck disable=SC2016
+# shellcheck shell=sh disable=SC2016
 
 ### WM bindings
 
@@ -89,7 +89,7 @@ riverctl map normal None XF86Launch1 spawn 'wpctl set-mute @DEFAULT_AUDIO_SINK@ 
 riverctl map normal None F6 spawn 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'
 
 #riverctl map normal Super+Shift P spawn 'librespot-cfg'
-riverctl map normal Super M spawn 'zpotify play playlist' # 'music'
+riverctl map normal Super M spawn 'zpotify play playlist'    # 'music'
 riverctl map normal Super+Shift M spawn 'zpotify play album' # 'musiccmd'
 riverctl map normal None XF86AudioPrev spawn 'musiccmd prev || zpotify prev >/dev/null'
 riverctl map normal None XF86AudioNext spawn 'musiccmd next || zpotify next >/dev/null'
@@ -137,9 +137,9 @@ spawn() {
 spawn randwp
 spawn rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55
 
-spawn gammastep # see services.gammastep
-spawn mako # see services.mako
-spawn foot --server # see programs.foot.server.enable
+spawn gammastep                  # see services.gammastep
+spawn mako                       # see services.mako
+spawn foot --server              # see programs.foot.server.enable
 spawn waybar --log-level warning # see programs.waybar.systemd.enable
 # spawn swayidle -w \
 # 	timeout 300 "glitchlock" \

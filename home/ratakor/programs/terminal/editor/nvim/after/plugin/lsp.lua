@@ -14,7 +14,7 @@ local on_attach = function(_, bufnr)
         if desc then
             desc = "LSP: " .. desc
         end
-        vim.keymap.set('n', keys, func, {
+        vim.keymap.set("n", keys, func, {
             noremap = true,
             silent = true,
             buffer = bufnr,
@@ -51,9 +51,9 @@ local on_attach = function(_, bufnr)
     --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     -- end, '[w]orkspace [l]ist Folders')
 
-    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+    vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
         vim.lsp.buf.format()
-    end, { desc = 'Format current buffer with LSP' })
+    end, { desc = "Format current buffer with LSP" })
 end
 
 -- https://github.com/mason-org/mason-lspconfig.nvim/tree/5c142464ea29ceca3b4d77d2c80b9e8e3fca02d9?tab=readme-ov-file#available-lsp-servers
@@ -101,14 +101,14 @@ end
 -- Load snippets
 require("luasnip.loaders.from_snipmate").lazy_load()
 
-local luasnip = require("luasnip")
 local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 cmp.setup({
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
-        end
+        end,
     },
 
     window = {
@@ -132,7 +132,7 @@ cmp.setup({
             else
                 fallback()
             end
-        end, { 'i', 's' }),
+        end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -141,7 +141,7 @@ cmp.setup({
             else
                 fallback()
             end
-        end, { 'i', 's' }),
+        end, { "i", "s" }),
     }),
 
     sources = {
@@ -163,21 +163,21 @@ vim.diagnostic.config({
         enabled = true,
         text = {
             [vim.diagnostic.severity.ERROR] = " ",
-            [vim.diagnostic.severity.WARN]  = " ",
-            [vim.diagnostic.severity.HINT]  = " ",
-            [vim.diagnostic.severity.INFO]  = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.HINT] = " ",
+            [vim.diagnostic.severity.INFO] = " ",
         },
         texthl = {
             [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-            [vim.diagnostic.severity.WARN]  = "DiagnosticSignWarn",
-            [vim.diagnostic.severity.HINT]  = "DiagnosticSignHint",
-            [vim.diagnostic.severity.INFO]  = "DiagnosticSignInfo",
+            [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+            [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+            [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
         },
         numhl = {
             [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-            [vim.diagnostic.severity.WARN]  = "DiagnosticSignWarn",
-            [vim.diagnostic.severity.HINT]  = "DiagnosticSignHint",
-            [vim.diagnostic.severity.INFO]  = "DiagnosticSignInfo",
+            [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+            [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+            [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
         },
     },
 })

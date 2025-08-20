@@ -61,7 +61,7 @@ return {
             {
                 "OXY2DEV/markview.nvim",
                 config = function()
-                    local presets = require("markview.presets");
+                    local presets = require("markview.presets")
 
                     require("markview").setup({
                         preview = {
@@ -74,8 +74,8 @@ return {
                             headings = presets.headings.glow,
                             tables = presets.tables.single,
                             -- horizontal_rules = presets.horizontal_rules.thin,
-                        }
-                    });
+                        },
+                    })
                 end,
             },
         },

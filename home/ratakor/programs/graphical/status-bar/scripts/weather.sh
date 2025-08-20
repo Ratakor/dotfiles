@@ -13,7 +13,7 @@ for _ in 1 2 3 4 5; do
 		text=$(trimall "$text")
 		if tooltip=$(curl -s "https://wttr.in?format=4&m"); then
 			tooltip=$(trimall "$tooltip")
-			printf "{\"text\":\"%s\",\"tooltip\":\"%s\"}" "$text" "$tooltip"
+			printf '{"text":"%s","tooltip":"%s"}' "$text" "$tooltip"
 			exit 0
 		fi
 	fi

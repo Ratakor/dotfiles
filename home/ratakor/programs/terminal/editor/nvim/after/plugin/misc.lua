@@ -1,19 +1,21 @@
 local map = vim.keymap.set
 
 -- lazy
-map('n', "<leader>lz", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
+map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
 
 -- Telescope
 local telescope = require("telescope.builtin")
-map('n', "<leader>f", telescope.find_files, { desc = "Find files" })
-map('n', "<C-g>", telescope.git_files)
+map("n", "<leader>f", telescope.find_files, { desc = "Find files" })
+map("n", "<C-g>", telescope.git_files)
 
 -- NERDTree (see their README)
-map('n', "<F2>", ":NERDTreeToggle<CR>")
-vim.cmd("autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif")
+map("n", "<F2>", ":NERDTreeToggle<CR>")
+vim.cmd(
+    "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif"
+)
 
 -- Undotree
-map('n', "<F3>", ":UndotreeToggle<CR>")
+map("n", "<F3>", ":UndotreeToggle<CR>")
 
 -- Disable auto-format on save for zig, too slow
 vim.g.zig_fmt_autosave = 0
@@ -50,7 +52,7 @@ require("neotest").setup({
     },
 })
 
-map('n', "<C-t>", function()
+map("n", "<C-t>", function()
     -- require("neotest").run.run()
     require("neotest").summary.toggle()
     local win = vim.fn.bufwinid("Neotest Summary")

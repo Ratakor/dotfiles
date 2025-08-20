@@ -24,7 +24,7 @@ update:
     @# nixos-rebuild switch --sudo --flake .
     nh os switch --update --ask .
 
-# Garabage collect all unused nix store entries & remove old generations
+# Garbage collect all unused nix store entries & remove old generations
 [group('nix')]
 clean:
     @# # remove all generations older than 7 days
@@ -60,10 +60,9 @@ repl:
 build-vm:
     nh os build-vm
 
-# Format all nix files
-[group('nix')]
+# Format all files
 fmt:
-    alejandra .
+    nix fmt .
 
 # TODO: add typos & make this CI
 # Lint all nix files

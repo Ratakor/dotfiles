@@ -1,5 +1,5 @@
-local mp = require "mp"
-local utils = require "mp.utils"
+local mp = require("mp")
+local utils = require("mp.utils")
 
 local id = 0
 

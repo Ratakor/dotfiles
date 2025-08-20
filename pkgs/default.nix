@@ -1,9 +1,10 @@
 {pkgs ? import <nixpkgs> {}}: let
-  inherit (pkgs) lib callPackage;
+  inherit (pkgs) newScope;
+  inherit (pkgs.lib) makeScope;
 in
-  lib.makeScope pkgs.newScope (self: {
-    luciole-fonts = callPackage ./luciole-fonts {};
-    cromite = callPackage ./cromite {};
-    zpotify = callPackage ./zpotify {};
-    zig-2048 = callPackage ./zig-2048 {};
+  makeScope newScope (self: {
+    luciole-fonts = self.callPackage ./luciole-fonts {};
+    cromite = self.callPackage ./cromite {};
+    zpotify = self.callPackage ./zpotify {};
+    zig-2048 = self.callPackage ./zig-2048 {};
   })

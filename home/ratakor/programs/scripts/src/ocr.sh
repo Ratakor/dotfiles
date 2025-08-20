@@ -1,16 +1,18 @@
-echo "Generating a random ID..."
+# shellcheck shell=sh
+
+printf 'Generating a random ID...\n'
 id=$(tr -dc 'a-zA-Z0-9' </dev/urandom | fold -w 6 | head -n 1 || true)
-echo "Image ID: $id"
+printf 'Image ID: %s\n' "$id"
 
-echo "Taking screenshot..."
-grim -g "$(slurp -w 0 -b eebebed2)" /tmp/ocr-"$id".png
+printf 'Taking screenshot...\n'
+grim -g "$(slurp -w 0 -b eebebed2)" "/tmp/ocr-$id.png"
 
-echo "Running OCR..."
-tesseract /tmp/ocr-"$id".png - | wl-copy
-echo -en "File saved to /tmp/ocr-'$id'.png\n"
+printf 'Running OCR...\n'
+tesseract "/tmp/ocr-$id.png" - | wl-copy
+printf 'File saved to /tmp/ocr-%s.png\n' "$id"
 
-echo "Sending notification..."
+printf 'Sending notification...\n'
 notify-send "OCR " "Text copied!"
 
-echo "Cleaning up..."
-rm /tmp/ocr-"$id".png -vf
+printf 'Cleaning up...\n'
+rm -vf "/tmp/ocr-$id.png"

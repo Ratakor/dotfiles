@@ -22,15 +22,15 @@ return {
 
     -- HUD for git in vim
     {
-        'lewis6991/gitsigns.nvim',
+        "lewis6991/gitsigns.nvim",
         opts = {
             signs = {
-                add = { text = '+' },
-                change = { text = '~' },
-                delete = { text = '_' },
-                topdelete = { text = '‾' },
-                changedelete = { text = '~' },
-                untracked = { text = '' },
+                add = { text = "+" },
+                change = { text = "~" },
+                delete = { text = "_" },
+                topdelete = { text = "‾" },
+                changedelete = { text = "~" },
+                untracked = { text = "" },
             },
         },
     },
@@ -141,7 +141,7 @@ return {
         enabled = false,
         config = function()
             vim.api.nvim_set_hl(0, "GaslightingUnderline", { fg = "#d79921" })
-            require('syntax-gaslighting').setup({})
+            require("syntax-gaslighting").setup({})
         end,
     },
 }
