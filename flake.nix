@@ -19,6 +19,8 @@
     # We only care about x86_64-linux (for now).
     systems.url = "github:nix-systems/x86_64-linux";
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     # This is not a dotfiles manager it's a whole kitchen sink to manage
     # home configurations, hjem or basic stow implementation might be better
     # for raw dotfiles. Note that there is a stable version of home-manager.
@@ -44,43 +46,13 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    theme = "gruvbox-dark"; # gruvbox-dark gruvbox-light dracula
-  in {
-    nixosConfigurations = {
-      X200 = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      # Systems for which attributes of `perSystem` will be built.
+      systems = import inputs.systems;
 
-        specialArgs = {
-          inherit inputs;
-          colors = (import ./modules/colors).${theme};
-          muhlib = import ./lib {pkgs = nixpkgs;};
-        };
-
-        modules = [
-          ./hosts/X200
-
-          (import ./overlays)
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = inputs // specialArgs;
-              backupFileExtension = "hm.bak";
-              users.ratakor = import ./home/ratakor;
-            };
-          }
-
-          inputs.agenix.nixosModules.default
-        ];
-      };
+      imports = [
+        ./hosts
+      ];
     };
-  };
 }

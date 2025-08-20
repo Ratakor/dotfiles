@@ -256,6 +256,11 @@
       zsh
     ];
 
+    # TODO: use that or `environment.variables`?
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1"; # enable ozone wayland for chromium and electron based apps
+    };
+
     variables = rec {
       EDITOR = "nvim";
       # VISUAL = "nvim";
@@ -390,8 +395,11 @@
   };
 
   security = {
+    # polkit.enable = true; # TODO: what is it for except niri?
+
     rtkit.enable = true; # needed by pipewire
 
+    # keep the set even if empty to make swaylock work
     pam.services.swaylock = {
       fprintAuth = false;
     };
