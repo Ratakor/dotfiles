@@ -15,8 +15,8 @@
       settings = {
         global.excludes = [
           "*.age"
+          ".envrc"
           # "*.diff"
-          # ".envrc"
         ];
       };
 

@@ -246,9 +246,6 @@
       ## Linux man pages
       man-pages
       man-pages-posix
-
-      ## secrets management
-      inputs.agenix.packages.${system}.default
     ];
 
     shells = with pkgs; [
