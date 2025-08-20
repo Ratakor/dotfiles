@@ -52,8 +52,6 @@
         url = {
           "ssh://git@github.com/" = {
             pushInsteadOf = "https://github.com/";
-          };
-          "https://github.com/" = {
             insteadOf = "github:";
           };
           # "ssh://git@ratakor.com/" = {

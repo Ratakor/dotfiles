@@ -1,12 +1,11 @@
 {
   config,
-  pkgs,
-  lib,
   ...
 }: let
   XDG_CONFIG_HOME = config.xdg.configHome;
   XDG_DATA_HOME = config.xdg.dataHome;
   XDG_CACHE_HOME = config.xdg.cacheHome;
+  XDG_STATE_HOME = config.xdg.stateHome;
 
   CARGO_HOME = "${XDG_DATA_HOME}/cargo";
   GOPATH = "${XDG_DATA_HOME}/go";
@@ -45,9 +44,9 @@ in {
       DOTNET_CLI_HOME = "${XDG_DATA_HOME}/dotnet";
       NUGET_PACKAGES = "${XDG_CACHE_HOME}/NuGetPackages";
       NPM_CONFIG_USERCONFIG = "${XDG_CONFIG_HOME}/npm/npmrc";
-      PYTHONSTARTUP = "${XDG_CONFIG_HOME}/python/pythonrc";
+      PYTHON_HISTORY = "${XDG_STATE_HOME}/python_history";
       PASSWORD_STORE_DIR = "${XDG_DATA_HOME}/pass";
-      # W3M_DIR = "${XDG_STATE_HOME}/w3m";
+      W3M_DIR = "${XDG_STATE_HOME}/w3m";
       CUDA_CACHE_PATH = "${XDG_CACHE_HOME}/nv";
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
       GRADLE_USER_HOME = "${XDG_DATA_HOME}/gradle";

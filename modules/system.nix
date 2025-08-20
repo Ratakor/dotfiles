@@ -256,15 +256,20 @@
       zsh
     ];
 
-    variables = {
+    variables = rec {
       EDITOR = "nvim";
       # VISUAL = "nvim";
 
       # https://github.con/NixOS/nixpkgs/issues/224525
+      # TODO:
+      # ~/.config/dconf/user
+      # ~/.config/pulse/cookie
+      # ~/.gnupg
       XDG_CONFIG_HOME = "$HOME/.local/etc";
       XDG_DATA_HOME = "$HOME/.local/share";
       XDG_CACHE_HOME = "$HOME/.local/var/cache";
       XDG_STATE_HOME = "$HOME/.local/var/state";
+      GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
     };
 
     # binsh = "${pkgs.dash}/bin/dash";
@@ -304,6 +309,13 @@
     gdk-pixbuf.modulePackages = with pkgs; [
       librsvg # add svg support to gdk-pixbuf (wlogout)
     ];
+
+    ssh = {
+      # ssh client with gssapi support, also set in home-manager programs.ssh
+      # and git (should it be only set system wide?)
+      # package = pkgs.openssh_gssapi;
+      startAgent = false; # handled by gnupg
+    };
   };
 
   services = {
@@ -368,6 +380,13 @@
     };
 
     # TODO zfs/btrfs
+
+    gnome = {
+      # Disabled by default, but re-enabled by some packages:
+      # niri: https://github.com/YaLTeR/niri/wiki/Important-Software#portals
+      gnome-keyring.enable = lib.mkForce false;
+      # gcr-ssh-agent.enable = false; # config.services.gnome.gnome-keyring.enable
+    };
   };
 
   security = {
