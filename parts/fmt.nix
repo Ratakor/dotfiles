@@ -15,8 +15,7 @@
       settings = {
         global.excludes = [
           "*.age"
-          ".envrc"
-          # "*.diff"
+          "*.diff"
         ];
       };
 
@@ -56,7 +55,10 @@
           enable = true;
           indent_size = null; # n for spaces, 0 for tabs, null for .editorconfig
         };
-        shellcheck.enable = true;
+        shellcheck = {
+          enable = true;
+          includes = ["*.sh" "*.bash"];
+        };
 
         # js / css / html / markdown
         prettier = {

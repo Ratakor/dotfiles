@@ -161,6 +161,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix",
+        "vega": "vega",
         "wallpapers": "wallpapers"
       }
     },
@@ -198,6 +199,28 @@
         "repo": "treefmt-nix",
         "type": "github"
       }
+    },
+    "vega": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "path": "vega",
+        "type": "path"
+      },
+      "original": {
+        "path": "vega",
+        "type": "path"
+      },
+      "parent": []
     },
     "wallpapers": {
       "flake": false,

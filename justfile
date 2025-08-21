@@ -52,6 +52,7 @@ info:
 # Open a nix shell with the flake's nixpkgs
 [group('nix')]
 repl:
+    # Load the flake with `:lf .`
     nix repl -f flake:nixpkgs
     @# nh os repl .
 

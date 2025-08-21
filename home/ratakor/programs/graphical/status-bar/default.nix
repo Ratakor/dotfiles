@@ -1,10 +1,10 @@
 {
   colors,
-  muhlib,
   pkgs,
+  vega,
   ...
 }: let
-  inherit (muhlib) hexToRgba;
+  inherit (vega.lib.trivial) hexToRgba;
 in {
   programs.waybar = {
     enable = true;

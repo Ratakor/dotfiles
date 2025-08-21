@@ -5,12 +5,12 @@ show_startup_tips false
 // default_layout "compact"
 
 keybinds {
-    // Detach instead of of Quit for "Ctrl q"
+    /// Detach instead of of Quit for "Ctrl q"
     shared_except "locked" {
         bind "Ctrl q" { Detach; }
-        bind "Ctrl Shift q" { Quit; }
+        // bind "Ctrl Shift q" { Quit; }
     }
-    // rebind "Ctrl h" to "Ctrl m"
+    /// rebind "Ctrl h" to "Ctrl m"
     move {
         unbind "Ctrl h"
         bind "Ctrl m" { SwitchToMode "normal"; }
@@ -19,7 +19,7 @@ keybinds {
         unbind "Ctrl h"
         bind "Ctrl m" { SwitchToMode "move"; }
     }
-    // rebind "Ctrl o" to "Ctrl y"
+    /// rebind "Ctrl o" to "Ctrl y"
     session {
         unbind "Ctrl o"
         bind "Ctrl y" { SwitchToMode "normal"; }
@@ -28,7 +28,7 @@ keybinds {
         unbind "Ctrl o"
         bind "Ctrl y" { SwitchToMode "session"; }
     }
-    // More keybinds
+    /// More keybinds
     shared_except "locked" {
         bind "Alt Shift j" { ScrollDown; }
         bind "Alt Shift k" { ScrollUp; }

@@ -1,13 +1,14 @@
 {
-  inputs,
   pkgs,
   lib,
   colors,
+  vega,
   ...
 }: {
   imports = [
     ./secrets.nix
     ./login.nix
+    ./nixpkgs.nix
   ];
 
   users.users.ratakor = {
@@ -87,9 +88,6 @@
     # };
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # TODO: this or setup a CI that update flake.lock once a week
   system.autoUpgrade = {
     enable = false;
@@ -144,7 +142,7 @@
       # noto-fonts-monochrome-emoji
       noto-fonts-color-emoji
       noto-fonts-emoji-blob-bin
-      luciole-fonts
+      vega.pkgs.luciole-fonts
 
       # nerdfonts
       # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerd-fonts/manifests/fonts.json
@@ -197,7 +195,7 @@
       gnupg
       pkg-config
       xdg-utils
-      pmount # mount removable devices (setuid wrappers below)
+      vega.pkgs.pmount # mount removable devices (setuid wrappers below)
 
       ## system tools
       # sysstat
@@ -306,6 +304,7 @@
         extraArgs = "--keep 5 --keep-size 7d";
         dates = "weekly";
       };
+      # flake = "/home/ratakor/nixos";
     };
 
     gdk-pixbuf.modulePackages = with pkgs; [
@@ -409,8 +408,8 @@
         source = lib.getExe' package command;
       };
     in {
-      pmount = mkSetuidWrapper pkgs.pmount "pmount";
-      pumount = mkSetuidWrapper pkgs.pmount "pumount";
+      pmount = mkSetuidWrapper vega.pkgs.pmount "pmount";
+      pumount = mkSetuidWrapper vega.pkgs.pmount "pumount";
     };
 
     # https://github.com/NixOS/nixpkgs/pull/256491

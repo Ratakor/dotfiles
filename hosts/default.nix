@@ -14,23 +14,21 @@
   } @ args:
     withSystem system (
       {
-        inputs',
         self',
+        inputs',
         ...
       }:
         lib.nixosSystem {
           specialArgs = {
-            inherit inputs;
+            inherit inputs inputs';
             colors = (import ../modules/colors).${theme};
-            muhlib = import ../lib {pkgs = inputs.nixpkgs;};
+            vega = {
+              inherit (inputs.vega) lib;
+              pkgs = inputs'.vega.packages;
+            };
           };
 
-          modules =
-            [
-              ./${hostname}
-              (import ../overlays)
-            ]
-            ++ args.modules;
+          modules = [./${hostname}] ++ args.modules;
         }
     );
 in {

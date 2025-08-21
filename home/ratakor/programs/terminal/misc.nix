@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  vega,
   ...
 }: {
   home.packages = with pkgs; [
@@ -25,8 +26,8 @@
     # aria2 #  lightweight, multi-protocol, multi-source command-line download utility
     # ipcalc # simple IP network calculator
 
-    zpotify # A CLI/TUI for Spotify
-    zig-2048 # 2048 game in terminal
+    vega.pkgs.zpotify # A CLI/TUI for Spotify
+    vega.pkgs.zig-2048 # 2048 game in terminal
   ];
 
   programs = {
