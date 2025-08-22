@@ -8,7 +8,7 @@
   home = {
     packages = with pkgs; [
       dust # du replacement
-      duf # df replacement
+      duf # df replacement, see dysk too
       procs # ps replacement
       socat # netcat replacement
       trash-cli # rm replacement (kinda)

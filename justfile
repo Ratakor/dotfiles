@@ -66,9 +66,9 @@ fmt:
     nix fmt .
 
 # TODO: add typos & make this CI
-# Lint all nix files
-[group('nix')]
-lint:
-    -alejandra --check .
-    -statix check
-    deadnix --no-lambda-pattern-names
+# Run checks
+check:
+    @# -alejandra --check .
+    @# -statix check
+    @# deadnix --no-lambda-pattern-names
+    nix flake check

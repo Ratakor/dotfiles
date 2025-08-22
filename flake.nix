@@ -47,12 +47,20 @@
       inputs.nixpkgs.follows = "nixpkgs-small";
     };
 
+    # https://pre-commit.com git hooks with nix.
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs-small";
+    };
+
     # Nixpkgs lib & packages extension.
     vega = {
       url = ./vega;
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.systems.follows = "systems";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
     };
 
     # This take 900MB on /nix/store btw.
