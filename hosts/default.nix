@@ -37,8 +37,8 @@ in {
     agenix = inputs.agenix.nixosModules.default;
     inherit (inputs.home-manager.nixosModules) home-manager;
 
-    homeConfig = ../home;
-    home = [home-manager homeConfig];
+    users = ../users;
+    home = [home-manager users];
 
     shared = [agenix];
   in {

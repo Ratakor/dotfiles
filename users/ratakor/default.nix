@@ -28,7 +28,7 @@
       homeDirectory = "/home/${username}";
       stateVersion = "25.05";
 
-      dotfiles = "${homeDirectory}/nixos/home/ratakor";
+      dotfiles = "${homeDirectory}/nixos/users/ratakor";
     };
 
     # Allow HM to manage itself when in standalone mode.
