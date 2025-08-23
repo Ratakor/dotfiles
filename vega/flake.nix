@@ -1,5 +1,6 @@
 # Based on https://github.com/notashelf/nyxexprs and https://github.com/diniamo/niqspkgs
 # TODO: setup cachix: see https://github.com/diniamo/niqspkgs/blob/main/.github/workflows/cachix.yaml
+# TODO: setup automatic flake.lock update too
 {
   description = "Nixpkgs lib & packages extension";
 
@@ -76,7 +77,7 @@
 
           mappedPkgs = listToAttrs (map (input: {
               name = input;
-              value = inputs'.${input}.packages.default or (throw "Input '${input}' does not provide default package");
+              value = inputs'.${input}.packages.default or (throw "Input '${input}' does not provide a default package");
             })
             fromInputs);
         in

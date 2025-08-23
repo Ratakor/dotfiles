@@ -22,14 +22,14 @@ in {
       {
         label = "logout";
         action = "loginctl terminate-user $USER";
-        text = "logOut";
-        keybind = "o";
+        text = "Exit";
+        keybind = "e";
       }
       {
         label = "suspend";
         action = "systemctl suspend";
-        text = "sUspend";
-        keybind = "u";
+        text = "Suspend";
+        keybind = "s";
       }
       {
         label = "hibernate";
@@ -40,8 +40,8 @@ in {
       {
         label = "shutdown";
         action = "systemctl poweroff";
-        text = "Shutdown";
-        keybind = "s";
+        text = "Poweroff";
+        keybind = "p";
       }
       {
         label = "reboot";

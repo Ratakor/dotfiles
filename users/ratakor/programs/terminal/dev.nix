@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  vega,
+  ...
+}: {
   home.packages = with pkgs; [
     rustup # rust
     nasm # x86 compiler
@@ -60,6 +64,7 @@
     # comma
     # nix-output-monitor # replace `nix` with `nom`
     # nurl
+    vega.pkgs.flint # flake linter
   ];
 
   programs = {
