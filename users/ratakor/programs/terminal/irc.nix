@@ -1,14 +1,17 @@
 {
-  config,
+  lib,
+  osConfig,
   pkgs,
   ...
-}: {
+}: let
+  cat = lib.getExe' pkgs.coreutils "cat";
+in {
   programs.senpai = {
     enable = true;
     config = {
       nickname = "Ratakor";
       address = "irctoday.com"; # "libera.chat:6697";
-      password-cmd = ["cat" "/run/agenix/irc"]; # config.age.secrets.irc.path
+      password-cmd = [cat osConfig.age.secrets.irc.path];
     };
   };
 }

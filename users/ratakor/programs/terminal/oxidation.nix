@@ -11,11 +11,11 @@
       duf # df replacement, see dysk too
       procs # ps replacement
       socat # netcat replacement
-      trash-cli # rm replacement (kinda)
+      # trash-cli # rm replacement (kinda) # TODO: no need for trash-cli if using zfs/btrfs snapshots
     ];
 
     shellAliases = {
-      rm = "trash -v"; # "rm -vI"
+      rm = "rm -rv"; # "trash -v"
       rmdir = "rmdir -v"; # -p
       cp = "cp -riv"; # --reflink=always
       mv = "mv -iv";

@@ -1,5 +1,5 @@
 {
-  config,
+  osConfig,
   pkgs,
   ...
 }: {
@@ -84,7 +84,7 @@
       includes = [
         {
           condition = "hasconfig:remote.*.url:*epita.fr:**/**";
-          path = "/run/agenix/git-epita";
+          path = osConfig.age.secrets.git-epita.path;
         }
       ];
     };

@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   lib,
   ...
@@ -71,7 +70,7 @@ in {
       }))
 
       # I could use the default overlay from vega and have all packages
-      # available through `pkgs` but that's not consistent with how we acccess
+      # available through `pkgs` but that's not consistent with how we access
       # the library (`vega.lib`) and I like to have a specific namespace for
       # non-nixpkgs packages.
       # inputs.vega.overlays.default

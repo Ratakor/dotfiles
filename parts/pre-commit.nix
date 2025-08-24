@@ -59,11 +59,10 @@
             };
           };
 
-          # inlcudes = ["*.sh" "*.bash"];
           # shellcheck = mkHook "shellcheck" {
           #   enable = true;
           #   # settings.version = "0.9.0";
-          #   excludes = [".direnv" "npins"];
+          #   includes = ["*.sh" "*.bash"];
           # };
 
           # locale = "en-us"

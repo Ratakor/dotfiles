@@ -3,6 +3,8 @@
   lib,
   ...
 }: let
+  inherit (lib.modules) mkIf;
+
   # based on notashelf/nyx lib
   mkAgenixSecret = enableCondition: {
     file,
@@ -10,7 +12,7 @@
     group ? "root",
     mode ? "400",
   }:
-    lib.mkIf enableCondition {
+    mkIf enableCondition {
       file = "${inputs.self}/secrets/${file}";
       inherit group owner mode;
     };
