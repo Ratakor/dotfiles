@@ -37,7 +37,8 @@ in {
       ];
 
     # Make legacy nix commands consistent with flakes
-    nixPath = mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
+    # nixPath = mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
+    nixPath = mapAttrsToList (name: value: "${name}=${value.to.path}") config.nix.registry;
 
     # Customise /etc/nix/nix.conf declaratively
     # See nix.conf(5)
@@ -79,6 +80,8 @@ in {
 
       # Remove warning about dirty VCS tree
       warn-dirty = false;
+
+      nix-path = config.nix.nixPath;
     };
 
     # Perform garbage collection weekly to maintain low disk usage

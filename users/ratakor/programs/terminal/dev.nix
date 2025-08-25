@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; [
-    rustup # rust
+    rustup # rust # TODO: use cargo + rustc instead
     nasm # x86 compiler
     gcc # gnu compiler collection
     # clang # another cc + clangd C lsp

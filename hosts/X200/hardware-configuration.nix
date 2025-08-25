@@ -22,10 +22,15 @@
   };
 
   # zpool options:
-  #   compression=lz4
-  #   dedup=on
-  #   atime=off
-  #   com.sun:auto-snapshot=true
+  #   ashift=12 (depends on the drive & cannot be changed)
+  #
+  #   compression=on (maybe swap to zstd for /nix)
+  #   dedup=on (maybe only on for /nix)
+  #   atime=off (or relatime=on atime=on for mixed perf)
+  #   xattr=sa
+  #   acltype=posixacl
+  #   com.sun:auto-snapshot=true (only on /, /home and /var)
+  #   recordsize=... currently keeping default, but maybe 1M for HDDs where storing large files
 
   # TODO: move this to notes or disko or idk but please this line is too long,
   # also where is the quick install guide for the rest of the partitions
