@@ -4,12 +4,12 @@
   ...
 }: {
   home.packages = with pkgs; [
-    rustup # rust # TODO: use cargo + rustc instead
+    rustup # rust toolchain
     nasm # x86 compiler
     gcc # gnu compiler collection
     # clang # another cc + clangd C lsp
     tinycc # tiny c compiler
-    # mingw-w64-gcc # windows cc (NOT IN NIX?)
+    # windows.mingw_w64 # windows cc (mingw-w64-gcc)
     musl # another libc
     libbsd # Common functions found on BSD systems
     zig # use zig-overlay per project for a specific version
@@ -28,13 +28,12 @@
     ntfs3g # ntfs filesystem (windows compatibility)
     xfsprogs # xfs filesystem
     xfsdump # xfs snapshots
-    # jdk17-openjdk # java (this is the wrong package btw)
+    # jdk17 # java 17
     # perf # performance analysis tool (wrong package)
     hyperfine # benchmarking tool
     # poop # Performance Optimizer Observation Platform
-    # nodePackages.nodejs # javascript (I have no clue about all these nodePackages)
-    nodePackages.npm
-    nodePackages.pnpm
+    nodejs # javascript
+    pnpm # additional js package manager
     lua
     luarocks # lua package manager
     just # command runner (like make)

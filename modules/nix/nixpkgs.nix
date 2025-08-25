@@ -44,7 +44,7 @@ in {
       # break compatibility with the stable Nixpkgs releases.
       #
       # Default: true
-      allowAliases = true; # TODO: set to false when we are ready to remove aliases
+      allowAliases = false;
     };
 
     # This is the only allowed overlay, see vega for custom packages.

@@ -4,32 +4,6 @@ return {
         dependencies = {
             -- LSP for neovim, must be loaded before lspconfig
             { "folke/neodev.nvim", config = true },
-            {
-                "mason-org/mason-lspconfig.nvim",
-                -- match after/plugin/lsp.lua
-                opts = {
-                    ensure_installed = {
-                        "bashls",
-                        "clangd",
-                        "cssls",
-                        "gopls",
-                        "jedi_language_server",
-                        "lua_ls",
-                        "marksman",
-                        "nil_ls",
-                        "rust_analyzer",
-                        "sqls",
-                        "superhtml",
-                        "texlab",
-                        "vtsls",
-                        "zls",
-                    },
-                    automatic_enable = false,
-                },
-                dependencies = {
-                    { "mason-org/mason.nvim", config = true },
-                },
-            },
         },
     },
     {

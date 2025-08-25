@@ -59,6 +59,7 @@ return {
     "mbbill/undotree",
 
     -- Evil AI
+    -- TODO: cpuburn when no internet
     {
         "zbirenbaum/copilot.lua",
         enabled = true,

@@ -17,6 +17,23 @@
 
     extraPackages = with pkgs; [
       tree-sitter
+
+      # LSPs
+      # https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+      bash-language-server # bashls
+      clang # clangd
+      vscode-css-languageserver # cssls
+      gopls # gopls
+      python313Packages.jedi-language-server # jedi_language_server
+      lua-language-server # lua_ls
+      marksman # marksman
+      nil # nil_ls (TODO: see nixd)
+      rust-analyzer # rust_analyzer
+      sqls # sqls
+      superhtml # superhtml
+      texlab # texlab
+      vtsls # vtsls
+      zls # zls
     ];
   };
 

@@ -56,8 +56,7 @@ local on_attach = function(_, bufnr)
     end, { desc = "Format current buffer with LSP" })
 end
 
--- https://github.com/mason-org/mason-lspconfig.nvim/tree/5c142464ea29ceca3b4d77d2c80b9e8e3fca02d9?tab=readme-ov-file#available-lsp-servers
--- match lua/plugins/lsp.lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 local servers = {
     "bashls",
     "clangd",
