@@ -18,19 +18,22 @@ searchwp() {
 	fi
 }
 
-searchwp
+# searchwp
+# OLD_PID=$(cat "$TMPDIR/swaybg.pid" 2>/dev/null)
+# swaybg -m fill -i "$wp" 2>/dev/null &
+# echo $! > "$TMPDIR/swaybg.pid"
+# (sleep 3 && kill "$OLD_PID" 2>/dev/null || exit 0) &
+
+# multiple screens
+# for output in $(wlr-randr --json | jq -r '.[] | select(.enabled) | .name') do
+for output in $(xrandr | awk '$2=="connected" {print $1}'); do
+	searchwp
+	args="$args -o $output -m fill -i $wp"
+	# swaybg -o "$output" -m fill -i "$wp"
+done
 OLD_PID=$(cat "$TMPDIR/swaybg.pid" 2>/dev/null)
-swaybg -m fill -i "$wp" 2>/dev/null &
+# doing this speedup a lot, there must be no space in wallpaper filename
+# shellcheck disable=SC2086
+swaybg $args &
 echo $! > "$TMPDIR/swaybg.pid"
 (sleep 3 && kill "$OLD_PID" 2>/dev/null || exit 0) &
-
-# multiple screens (TODO: kill and pid)
-# killall swaybg
-# for output in $(xrandr | awk '$2=="connected" {print $1}'); do
-# 	searchwp
-# 	args="$args -o $output -m fill -i $wp"
-# 	# swaybg -o "$output" -m fill -i "$wp"
-# done
-# # doing this speedup a lot, there must be no space in wallpaper filename
-# # shellcheck disable=SC2086
-# swaybg $args &

@@ -141,6 +141,7 @@ spawn gammastep                  # see services.gammastep
 spawn mako                       # see services.mako
 spawn foot --server              # see programs.foot.server.enable
 spawn waybar --log-level warning # see programs.waybar.systemd.enable
+spawn kanshi                     # see services.kanshi
 # spawn swayidle -w \
 # 	timeout 300 "glitchlock" \
 # 	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'" # see services.swayidle
