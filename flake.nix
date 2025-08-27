@@ -46,14 +46,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Nixpkgs lib & packages extension.
-    vega = {
-      url = ./vega;
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        systems.follows = "systems";
-      };
+    # Modern CPU frequency and power management utility for Linux.
+    watt = {
+      url = "github:NotAShelf/watt";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Flake input linter.
+    flint = {
+      url = "github:NotAShelf/flint";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # This take 900MB on /nix/store btw.

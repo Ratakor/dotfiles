@@ -1,9 +1,12 @@
 {
+  self,
   inputs,
   withSystem,
   ...
 }: let
   inherit (inputs.nixpkgs) lib;
+  inherit (lib.attrsets) recursiveUpdate;
+  inherit (lib.lists) flatten;
 
   mkNixosSystem = {
     system,
@@ -19,14 +22,10 @@
         ...
       }:
         lib.nixosSystem {
-          specialArgs = {
-            inherit inputs inputs';
+          specialArgs = recursiveUpdate {
+            inherit inputs inputs' self self';
             colors = (import ../modules/colors).${theme};
-            vega = {
-              inherit (inputs.vega) lib;
-              pkgs = inputs'.vega.packages;
-            };
-          };
+          } {self.pkgs = self'.packages;};
 
           modules = [./${hostname}] ++ args.modules;
         }
@@ -46,7 +45,7 @@ in {
       system = "x86_64-linux";
       hostname = "X200";
       theme = "gruvbox-dark";
-      modules = lib.lists.flatten [
+      modules = flatten [
         home
         shared
       ];

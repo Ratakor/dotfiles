@@ -64,7 +64,6 @@
     "flint": {
       "inputs": {
         "nixpkgs": [
-          "vega",
           "nixpkgs"
         ]
       },
@@ -180,13 +179,14 @@
       "inputs": {
         "agenix": "agenix",
         "flake-parts": "flake-parts",
+        "flint": "flint",
         "git-hooks": "git-hooks",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix",
-        "vega": "vega",
-        "wallpapers": "wallpapers"
+        "wallpapers": "wallpapers",
+        "watt": "watt"
       }
     },
     "systems": {
@@ -224,30 +224,6 @@
         "type": "github"
       }
     },
-    "vega": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "flint": "flint",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": [
-          "systems"
-        ],
-        "watt": "watt"
-      },
-      "locked": {
-        "path": "vega",
-        "type": "path"
-      },
-      "original": {
-        "path": "vega",
-        "type": "path"
-      },
-      "parent": []
-    },
     "wallpapers": {
       "flake": false,
       "locked": {
@@ -267,7 +243,6 @@
     "watt": {
       "inputs": {
         "nixpkgs": [
-          "vega",
           "nixpkgs"
         ]
       },

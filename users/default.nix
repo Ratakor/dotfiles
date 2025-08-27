@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   specialArgs,
   ...
@@ -14,7 +13,7 @@ in {
     verbose = true;
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = inputs // specialArgs; # is this correct?
+    extraSpecialArgs = specialArgs;
     backupFileExtension = "hm.bak";
     users = genAttrs usernames (name: ./${name});
 

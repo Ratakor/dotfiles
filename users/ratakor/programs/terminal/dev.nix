@@ -1,6 +1,6 @@
 {
   pkgs,
-  vega,
+  self,
   ...
 }: {
   home.packages = with pkgs; [
@@ -65,7 +65,7 @@
     # comma
     # nix-output-monitor # replace `nix` with `nom`
     nurl
-    vega.pkgs.flint # flake linter
+    self.pkgs.flint # flake linter
   ];
 
   programs = {

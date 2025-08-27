@@ -4,10 +4,10 @@
 {
   colors,
   pkgs,
-  vega,
+  self,
   ...
 }: let
-  inherit (vega.lib.trivial) hexToRgba;
+  inherit (self.lib.trivial) hexToRgba;
 in {
   programs.wlogout = {
     enable = true;

@@ -1,6 +1,6 @@
 {
   lib,
-  vega,
+  pkgs,
   ...
 }: let
   inherit (lib.meta) getExe';
@@ -24,8 +24,8 @@ in {
         source = getExe' package command;
       };
     in {
-      pmount = mkSetuidWrapper vega.pkgs.pmount "pmount";
-      pumount = mkSetuidWrapper vega.pkgs.pmount "pumount";
+      pmount = mkSetuidWrapper pkgs.pmount "pmount";
+      pumount = mkSetuidWrapper pkgs.pmount "pumount";
     };
 
     # https://github.com/NixOS/nixpkgs/pull/256491

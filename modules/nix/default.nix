@@ -7,7 +7,7 @@
 }: let
   inherit (lib.trivial) pipe;
   inherit (lib.types) isType;
-  inherit (lib.attrsets) mapAttrsToList filterAttrs mapAttrs' nameValuePair;
+  inherit (lib.attrsets) mapAttrsToList filterAttrs mapAttrs;
 in {
   imports = [
     ./documentation.nix
@@ -23,18 +23,11 @@ in {
     # Pin the registry to avoid downloading and evaluating
     # a new nixpkgs version on each command causing a re-eval.
     # Also make flakes from this repo available with the nix CLI e.g.
-    # `nix run config#custom-pkg` or `nix shell agenix`
-    registry = let
-      renameSelf = name:
-        if name == "self"
-        then "config"
-        else name;
-    in
-      pipe inputs [
-        (filterAttrs (_: isType "flake"))
-        # (mapAttrs (_: flake: {inherit flake;}))
-        (mapAttrs' (name: flake: nameValuePair (renameSelf name) {inherit flake;}))
-      ];
+    # `nix run self#custom-pkg` or `nix shell agenix`
+    registry = pipe inputs [
+      (filterAttrs (_: isType "flake"))
+      (mapAttrs (_: flake: {inherit flake;}))
+    ];
 
     # Make legacy nix commands consistent with flakes
     # nixPath = mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;

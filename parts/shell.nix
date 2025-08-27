@@ -10,9 +10,10 @@
       #   ${config.pre-commit.installationScript}
       # '';
 
-      packages = [
+      packages = with pkgs; [
         inputs'.agenix.packages.default # agenix CLI for managing secrets
-        pkgs.git
+        git
+        npins
       ];
     };
   };

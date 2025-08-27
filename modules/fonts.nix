@@ -1,6 +1,6 @@
 {
   pkgs,
-  vega,
+  self,
   ...
 }: {
   fonts = {
@@ -14,7 +14,7 @@
       # Normal fonts
       noto-fonts
       noto-fonts-cjk-sans
-      vega.pkgs.luciole-fonts
+      self.pkgs.luciole-fonts
 
       # nerdfonts
       # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerd-fonts/manifests/fonts.json

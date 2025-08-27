@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  self,
   ...
 }: let
   inherit (lib.trivial) const;
@@ -47,7 +48,7 @@ in {
       allowAliases = false;
     };
 
-    # This is the only allowed overlay, see vega for custom packages.
+    # This is the only allowed overlay, see self.pkgs for custom packages.
     overlays = [
       # from notashelf/nyx
       # Some packages provide their own instances of Nix by adding `nix` to the argset
@@ -69,11 +70,15 @@ in {
         };
       }))
 
-      # I could use the default overlay from vega and have all packages
-      # available through `pkgs` but that's not consistent with how we access
-      # the library (`vega.lib`) and I like to have a specific namespace for
-      # non-nixpkgs packages.
-      # inputs.vega.overlays.default
+      # Same as `lib`, I could merge nixpkgs and this flake packages by using
+      # the exposed overlay but I prefer to have a separate namespace.
+      # self.pkgs is an alias for self'.packages provided by flake-parts.
+      # inputs.self.overlays.default
+
+      # https://github.com/NixOS/nixpkgs/pull/433847
+      (const (prev: {
+        pmount = self.pkgs.pmount;
+      }))
     ];
   };
 }

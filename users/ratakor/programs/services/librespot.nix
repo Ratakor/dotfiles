@@ -3,7 +3,7 @@
   config,
   osConfig,
   pkgs,
-  vega,
+  self,
   ...
 }: let
   inherit (builtins) toJSON;
@@ -25,7 +25,7 @@
 in {
   home.packages = [
     # pkgs.librespot
-    vega.pkgs.librespot-cfg
+    self.pkgs.librespot-cfg
   ];
 
   xdg.configFile."librespot/config.json".text = toJSON librespotOptions;

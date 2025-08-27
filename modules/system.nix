@@ -2,7 +2,6 @@
   pkgs,
   lib,
   colors,
-  vega,
   ...
 }: {
   imports = [
@@ -104,7 +103,7 @@
       gnupg
       pkg-config
       xdg-utils
-      vega.pkgs.pmount # mount removable devices (see security.nix for setuid wrappers)
+      pmount # mount removable devices (see security.nix for setuid wrappers)
 
       ## system tools
       # sysstat
@@ -173,6 +172,7 @@
       # TODO:
       # ~/.config/dconf/user
       # ~/.gnupg
+      # ~/.zshenv (this is from home-manager)
       XDG_CONFIG_HOME = "$HOME/.local/etc";
       XDG_DATA_HOME = "$HOME/.local/share";
       XDG_CACHE_HOME = "$HOME/.local/var/cache";

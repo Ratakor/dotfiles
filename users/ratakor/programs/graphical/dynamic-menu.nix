@@ -5,13 +5,13 @@
 # d9 = 85%
 {
   colors,
-  vega,
+  self,
   ...
 }: {
   programs = {
     tofi = {
       enable = true;
-      package = vega.pkgs.tofi-dmenu;
+      package = self.pkgs.tofi-dmenu;
       settings = {
         width = "100%";
         height = "100%";
