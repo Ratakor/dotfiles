@@ -4,7 +4,9 @@
   ...
 }: {
   home.packages = with pkgs; [
-    rustup # rust toolchain
+    # rustup # rust toolchain
+    cargo # rust package manager
+    rustc # rust compiler
     nasm # x86 compiler
     gcc # gnu compiler collection
     # clang # another cc + clangd C lsp
@@ -62,7 +64,7 @@
     nh # nix helper # TODO: programs.nh (system wide)
     # comma
     # nix-output-monitor # replace `nix` with `nom`
-    # nurl
+    nurl
     vega.pkgs.flint # flake linter
   ];
 

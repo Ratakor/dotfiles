@@ -142,9 +142,9 @@ spawn mako                       # see services.mako
 spawn foot --server              # see programs.foot.server.enable
 spawn waybar --log-level warning # see programs.waybar.systemd.enable
 spawn kanshi                     # see services.kanshi
+spawn librespot-cfg              # see librespot-cfg & services.librespot
 # spawn swayidle -w \
 # 	timeout 300 "glitchlock" \
 # 	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'" # see services.swayidle
 
-# spawn librespot-cfg # see services.librespot
 # spawn syncthing --no-browser

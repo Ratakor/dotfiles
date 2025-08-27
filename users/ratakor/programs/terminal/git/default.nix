@@ -89,10 +89,48 @@
       ];
     };
 
+    # now idk if I prefer gitui v0.22.1 or the latest one
+    # smh gitui is not building atm so let's keep v0.22.1
     gitui = {
       enable = true;
-      # package = # use v0.22.1?
-      keyConfig = ./key_bindings.ron;
+      # keyConfig = ./key_bindings.ron;
+      # theme = # default
+
+      package = pkgs.stdenv.mkDerivation (finalAttrs: {
+        pname = "gitui";
+        version = "0.22.1";
+
+        src = pkgs.fetchzip {
+          url = "https://github.com/extrawurst/gitui/releases/download/v${finalAttrs.version}/gitui-linux-musl.tar.gz";
+          hash = "sha256-a4u38ywgA3IB4Or3Cr5JCrUfF6R9cWQKEF/0hk9tLO8=";
+        };
+
+        installPhase = ''
+          install -Dm755 gitui $out/bin/gitui
+        '';
+
+        inherit (pkgs.gitui) meta;
+      });
+      # package = pkgs.gitui.overrideAttrs (finalAttrs: prevAttrs: {
+      #   name = "${prevAttrs.pname}-${finalAttrs.version}";
+      #   version = "0.22.1";
+
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "extrawurst";
+      #     repo = "gitui";
+      #     rev = "v${finalAttrs.version}";
+      #     hash = "sha256-K6xWTPu2a5NKYAYBt/sCWQOmuw9TCoKPA4ZxkoLWmeY=";
+      #   };
+
+      #   cargoDeps = prevAttrs.cargoDeps.overrideAttrs (const {
+      #     name = "${finalAttrs.name}-vendor.tar.gz";
+      #     inherit (finalAttrs) src;
+      #     outputHash = "sha256-MZrx72poA6uOIulWIQkfOr9gy5qr5f61UtLITfES/rk=";
+      #   });
+
+      #   postPatch = "rm .cargo/config";
+      # });
+      keyConfig = ./key_bindings_0.22.1.ron;
       # theme = # default
     };
   };

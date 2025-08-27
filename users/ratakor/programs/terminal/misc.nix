@@ -77,27 +77,6 @@
     };
   };
 
-  services = {
-    # spotify client
-    librespot = {
-      enable = false; # TODO: org.freedesktop.systemd1.NoSuchUnit: Unit librespot.service not found.
-      # https://github.com/librespot-org/librespot/wiki/Options
-      settings = {
-        quiet = true;
-        cache = "${config.xdg.cacheHome}/librespot";
-        autoplay = "on";
-        enable-volume-normalisation = true;
-        name = "librespot"; # TODO: "librespot@$(hostname)";
-        bitrate = 320;
-        format = "F32";
-        backend = "pulseaudio";
-        enable-oauth = true;
-        initial-volume = 100;
-        volume-ctrl = "fixed";
-      };
-    };
-  };
-
   xdg.configFile."glow/glow.yml".text = ''
     # style name or JSON path (default "auto")
     style: "auto"

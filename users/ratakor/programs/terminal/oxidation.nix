@@ -27,7 +27,7 @@
       # readlink = "readlink -f"; # use realpath instead
 
       ps = "procs";
-      duf = "duf -hide special";
+      duf = "duf -hide special -hide-fs zfs";
       du = "dust --reverse";
       cat = "bat --style=numbers,changes --tabs 8";
 

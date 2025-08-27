@@ -29,7 +29,7 @@
   #   atime=off (or relatime=on atime=on for mixed perf)
   #   xattr=sa
   #   acltype=posixacl
-  #   com.sun:auto-snapshot=true (only on /, /home and /var)
+  #   com.sun:auto-snapshot=true (only on /home and /var)
   #   recordsize=... currently keeping default, but maybe 1M for HDDs where storing large files
 
   # TODO: move this to notes or disko or idk but please this line is too long,

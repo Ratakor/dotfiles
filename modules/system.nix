@@ -172,7 +172,6 @@
       # https://github.con/NixOS/nixpkgs/issues/224525
       # TODO:
       # ~/.config/dconf/user
-      # ~/.config/pulse/cookie
       # ~/.gnupg
       XDG_CONFIG_HOME = "$HOME/.local/etc";
       XDG_DATA_HOME = "$HOME/.local/share";
