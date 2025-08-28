@@ -1,0 +1,21 @@
+name: Check flake
+
+on:
+  pull_request:
+  push:
+    branches:
+      - nixos
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: "Set up Nix"
+        uses: DeterminateSystems/nix-installer-action@main
+      - name: "Magic Nix Cache"
+        uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: "Check Nix flake inputs"
+        uses: DeterminateSystems/flake-checker-action@main
+      - name: "Check Nix flake outputs"
+        run: nix flake check --keep-going --print-build-logs --verbose
