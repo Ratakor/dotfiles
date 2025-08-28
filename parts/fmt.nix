@@ -70,6 +70,9 @@
           };
         };
 
+        # zig
+        zig.enable = true;
+
         # english
         typos = {
           enable = false; # TODO: use in pre-commit / CI instead, same for statix/deadnix (& shellcheck?)
