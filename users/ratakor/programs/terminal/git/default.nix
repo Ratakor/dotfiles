@@ -51,8 +51,7 @@
         core.sshCommand = "${pkgs.openssh_gssapi}/bin/ssh";
         url = {
           "ssh://git@github.com/" = {
-            pushInsteadOf = "https://github.com/";
-            insteadOf = "github:";
+            insteadOf = ["https://github.com/" "github:"];
           };
           # "ssh://git@ratakor.com/" = {
           #   insteadOf = "https://git.ratakor.com/";

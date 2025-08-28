@@ -6,14 +6,15 @@
   zig_0_15,
   librespot,
   releaseMode ? "ReleaseFast",
+  alias ? true,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "librespot-cfg";
   version = librespot.version;
 
   src = fetchurl {
-    url = "https://gist.githubusercontent.com/Ratakor/7dab4b17311a5c60d3b36ad34a02388a/raw/e51aa5725778e52cc9f53faa978f53c5908b51f4/librespot-cfg.zig";
-    hash = "sha256-NhdPQOiAbW3W4XWxcILC7wZTODHyq2gRDWe3GcAHz3I=";
+    url = "https://gist.githubusercontent.com/Ratakor/7dab4b17311a5c60d3b36ad34a02388a/raw/fe2d7ebe9e9980a63f4d1b788b2565cf6b56bcf4/librespot-cfg.zig";
+    hash = "sha256-onfTcfVzwTmJYJ/+GeYTwUCL9lo4UXYEQfDkURYoEQY=";
   };
 
   nativeBuildInputs = [
@@ -34,11 +35,15 @@ stdenv.mkDerivation (finalAttrs: {
     zig build-exe -O ${releaseMode} $src --name librespot-cfg
   '';
 
-  installPhase = ''
-    install -Dm755 librespot-cfg $out/bin/librespot-cfg
-    wrapProgram $out/bin/librespot-cfg \
-      --suffix PATH : ${lib.makeBinPath [librespot]}
-  '';
+  installPhase =
+    ''
+      install -Dm755 librespot-cfg $out/bin/librespot-cfg
+      wrapProgram $out/bin/librespot-cfg \
+        --prefix PATH : ${lib.makeBinPath [librespot]}
+    ''
+    + lib.optionalString alias ''
+      ln -s librespot-cfg $out/bin/librespot
+    '';
 
   meta = {
     description = "A wrapper around librespot to support file configuration";

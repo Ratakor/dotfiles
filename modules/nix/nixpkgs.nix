@@ -71,13 +71,22 @@ in {
       }))
 
       # Same as `lib`, I could merge nixpkgs and this flake packages by using
-      # the exposed overlay but I prefer to have a separate namespace.
-      # self.pkgs is an alias for self'.packages provided by flake-parts.
+      # the exposed overlay but:
+      # - I prefer to have a separate namespace. self.pkgs is an alias for
+      #   self'.packages provided by flake-parts.
+      # - It is not recommended to self-consume the overlay produced by
+      #   flake-parts easyOverlay.
+      # - It is inconsistant to use this overlay. For example, if custom
+      #   package X depends on package Y, but Y is outdated in nixpkgs. So we
+      #   add an up-to-date custom package Y. pkgs.X will reference the old Y
+      #   but self.pkgs.X will work as expected.
       # inputs.self.overlays.default
 
-      # https://github.com/NixOS/nixpkgs/pull/433847
       (const (prev: {
+        # https://github.com/NixOS/nixpkgs/pull/433847
         pmount = self.pkgs.pmount;
+        # https://github.com/NixOS/nixpkgs/pull/437539
+        librespot = self.pkgs.librespot;
       }))
     ];
   };

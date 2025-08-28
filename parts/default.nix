@@ -1,5 +1,6 @@
 {
   imports = [
+    ./args.nix # arguments overrides for flake-parts
     ./fmt.nix # nix fmt
     ./lib # custom lib exposed by the flake
     ./packages # custom packages exposed by the flake

@@ -10,7 +10,7 @@
 
   # https://github.com/librespot-org/librespot/wiki/Options
   librespotOptions = {
-    quiet = true;
+    # quiet = true;
     cache = "${config.xdg.cacheHome}/librespot";
     autoplay = "on";
     enable-volume-normalisation = true;
@@ -25,7 +25,7 @@
 in {
   home.packages = [
     # pkgs.librespot
-    self.pkgs.librespot-cfg
+    self.pkgs.librespot-cfg # provides an alias for librespot too
   ];
 
   xdg.configFile."librespot/config.json".text = toJSON librespotOptions;
