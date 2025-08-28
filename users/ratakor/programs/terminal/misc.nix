@@ -28,6 +28,7 @@
 
     self.pkgs.zpotify # A CLI/TUI for Spotify
     self.pkgs.zig-2048 # 2048 game in terminal
+    self.pkgs.zfs-restore # trash-restore but for ZFS snapshots
   ];
 
   programs = {

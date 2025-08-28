@@ -58,6 +58,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # A CLI tool to restore files from ZFS snapshots.
+    # I know about that duplicate gitignore entry from zls in flake.lock dw.
+    zfs-restore = {
+      url = "github:ratakor/zfs-restore";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # This take 900MB on /nix/store btw.
     wallpapers = {
       url = "github:ratakor/wallpapers";

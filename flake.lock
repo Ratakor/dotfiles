@@ -124,6 +124,28 @@
         "type": "github"
       }
     },
+    "gitignore_2": {
+      "inputs": {
+        "nixpkgs": [
+          "zfs-restore",
+          "zls",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1709087332,
+        "narHash": "sha256-HG2cCnktfHsKV0s4XW83gU3F57gaTljL9KNSuG6bnQs=",
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "rev": "637db329424fd7e46cf4185293b9cc8c88c95394",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -186,7 +208,8 @@
         "systems": "systems",
         "treefmt-nix": "treefmt-nix",
         "wallpapers": "wallpapers",
-        "watt": "watt"
+        "watt": "watt",
+        "zfs-restore": "zfs-restore"
       }
     },
     "systems": {
@@ -257,6 +280,76 @@
       "original": {
         "owner": "NotAShelf",
         "repo": "watt",
+        "type": "github"
+      }
+    },
+    "zfs-restore": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "zig": "zig",
+        "zls": "zls"
+      },
+      "locked": {
+        "lastModified": 1756398458,
+        "narHash": "sha256-DA1MTH0VocwZzL8FA6Uq4Az5yMqf5y2elEh+qZCO6xU=",
+        "owner": "ratakor",
+        "repo": "zfs-restore",
+        "rev": "8b3e36622e9dd0c4ed89130719263f0a466f7a87",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ratakor",
+        "repo": "zfs-restore",
+        "type": "github"
+      }
+    },
+    "zig": {
+      "inputs": {
+        "nixpkgs": [
+          "zfs-restore",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756330304,
+        "narHash": "sha256-3cFWHqCb5PjqU/KQH37PBUhlkSZcF/sIU9wXA4FBr0c=",
+        "owner": "silversquirl",
+        "repo": "zig-flake",
+        "rev": "a3a96f86e0a5c218ae40e4e822a235a0ef7d6052",
+        "type": "github"
+      },
+      "original": {
+        "owner": "silversquirl",
+        "repo": "zig-flake",
+        "type": "github"
+      }
+    },
+    "zls": {
+      "inputs": {
+        "gitignore": "gitignore_2",
+        "nixpkgs": [
+          "zfs-restore",
+          "nixpkgs"
+        ],
+        "zig-flake": [
+          "zfs-restore",
+          "zig"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756379486,
+        "narHash": "sha256-ngOu6aGF9qAWw2BwU3RTZPxWZRee+9NcsNTfn3vPmYU=",
+        "owner": "Ratakor",
+        "repo": "zls",
+        "rev": "fb9ee50c3e4c9deaecd4cd50c3c620df0cb49cc7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Ratakor",
+        "ref": "older-versions",
+        "repo": "zls",
         "type": "github"
       }
     }

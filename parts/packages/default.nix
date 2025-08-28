@@ -39,6 +39,7 @@
         "agenix"
         "flint"
         "watt"
+        "zfs-restore"
       ];
 
       mappedPkgs = listToAttrs (map (input: {
