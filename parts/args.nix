@@ -1,4 +1,10 @@
-{inputs, ...}: {
+{inputs, ...}: let
+  # My SSH keys, exposed here to the flake & to flake-parts modules.
+  keys = import ./keys.nix;
+
+  # Pinned sources, exposed here to the flake & to flake-parts modules.
+  pins = import ./npins;
+in {
   perSystem = {
     config,
     system,
@@ -26,8 +32,15 @@
 
     # Override flake-parts' perSystem args
     _module.args = {
+      inherit keys pins;
+
       # https://github.com/hercules-ci/flake-parts/issues/106#issuecomment-1399041045
       pkgs = config.legacyPackages;
     };
+  };
+
+  # Expose stuff to the flake itself so they can be referenced using `self`.
+  flake = {
+    inherit keys pins;
   };
 }

@@ -2,17 +2,18 @@
 # TODO: setup cachix: see https://github.com/diniamo/niqspkgs/blob/main/.github/workflows/cachix.yaml
 # TODO: setup automatic flake.lock update too
 {
-  self,
   inputs,
+  self,
   ...
 }: {
   imports = [inputs.flake-parts.flakeModules.easyOverlay];
 
   perSystem = {
-    inputs',
     config,
-    pkgs,
+    inputs',
     lib,
+    pins,
+    pkgs,
     ...
   }: let
     inherit (builtins) concatStringsSep match listToAttrs;
@@ -20,7 +21,6 @@
     inherit (lib.filesystem) packagesFromDirectoryRecursive;
     inherit (lib.customisation) callPackageWith;
 
-    pins = import ../npins;
     date = concatStringsSep "-" (match "(.{4})(.{2})(.{2}).*" self.lastModifiedDate);
   in {
     # Add all packages to the default overlay which can be consumed as follows:

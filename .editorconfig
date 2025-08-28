@@ -17,3 +17,9 @@ indent_size = 4
 [*.nix]
 indent_style = space
 indent_size = 2
+
+[*.{lock,diff,patch,age}]
+charset = unset
+end_of_line = unset
+trim_trailing_whitespace = unset
+insert_final_newline = unset

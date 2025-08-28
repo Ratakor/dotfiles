@@ -1,7 +1,8 @@
 {
-  pkgs,
-  lib,
   colors,
+  keys,
+  lib,
+  pkgs,
   ...
 }: {
   imports = [
@@ -18,6 +19,7 @@
     uid = 1000;
     shell = pkgs.zsh;
     description = "Ratakor";
+    # TODO: change to initialHashedPassword
     initialPassword = "password"; # very secure
     extraGroups = [
       "wheel"
@@ -28,7 +30,7 @@
       "networkmanager"
       # "kvm"
     ];
-    # openssh.authorizedKeys.keys = [];
+    openssh.authorizedKeys.keys = keys.ratakor;
   };
 
   # TODO: setup a CI that update flake.lock once a week(?)

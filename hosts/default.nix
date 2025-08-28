@@ -12,7 +12,6 @@
     system,
     hostname,
     theme ? "gruvbox-dark", # gruvbox-dark gruvbox-light dracula
-    modules,
     ...
   } @ args:
     withSystem system (
@@ -23,11 +22,12 @@
       }:
         lib.nixosSystem {
           specialArgs = recursiveUpdate {
+            inherit (self) keys;
             inherit inputs inputs' self self';
             colors = (import ../modules/colors).${theme};
           } {self.pkgs = self'.packages;};
 
-          modules = [./${hostname}] ++ args.modules;
+          modules = [./${hostname}] ++ (args.modules or []);
         }
     );
 in {
@@ -42,8 +42,8 @@ in {
     shared = [agenix];
   in {
     X200 = mkNixosSystem {
-      system = "x86_64-linux";
       hostname = "X200";
+      system = "x86_64-linux";
       theme = "gruvbox-dark";
       modules = flatten [
         home
