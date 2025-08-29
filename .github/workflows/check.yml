@@ -18,4 +18,4 @@ jobs:
       - name: "Check Nix flake inputs"
         uses: DeterminateSystems/flake-checker-action@main
       - name: "Check Nix flake outputs"
-        run: nix flake check --keep-going
+        run: nix flake check --accept-flake-config --keep-going

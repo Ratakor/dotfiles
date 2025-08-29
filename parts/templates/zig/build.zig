@@ -1,10 +1,13 @@
+//! Based on https://github.com/zigtools/zls/blob/master/build.zig under MIT License.
+
 const std = @import("std");
 const builtin = @import("builtin");
 
 const program_name = "zig-template";
 
-// Must match the `version` in `build.zig.zon`.
-const version: std.SemanticVersion = .{ .major = 0, .minor = 0, .patch = 0 };
+/// Must match the `version` in `build.zig.zon`.
+/// Remove `.pre` when tagging a new release and add it back on the next development cycle.
+const version: std.SemanticVersion = .{ .major = 0, .minor = 1, .patch = 0, .pre = "dev" };
 
 const release_targets = [_]std.Target.Query{
     .{ .cpu_arch = .aarch64, .os_tag = .macos },
@@ -22,10 +25,13 @@ pub fn build(b: *std.Build) void {
     const strip = b.option(bool, "strip", "Strip executable");
     const use_llvm = b.option(bool, "use-llvm", "Use Zig's llvm code backend");
 
+    const resolved_version = getVersion(b);
+
     const build_options = blk: {
         const options = b.addOptions();
-        options.addOption(std.SemanticVersion, "version", version);
-        options.addOption([]const u8, "version_string", b.fmt("{f}", .{version}));
+        options.addOption([]const u8, "program_name", program_name);
+        options.addOption(std.SemanticVersion, "version", resolved_version);
+        options.addOption([]const u8, "version_string", b.fmt("{f}", .{resolved_version}));
         break :blk options.createModule();
     };
 
@@ -53,7 +59,7 @@ pub fn build(b: *std.Build) void {
             .use_lld = use_llvm,
         });
     }
-    release(b, &release_artifacts);
+    release(b, &release_artifacts, resolved_version);
 
     const exe_module = b.createModule(.{
         .root_source_file = b.path("src/main.zig"),
@@ -96,14 +102,82 @@ pub fn build(b: *std.Build) void {
     fmt_step.dependOn(&b.addFmt(.{ .paths = &.{ "build.zig", "src" } }).step);
 }
 
-/// Original from https://github.com/zigtools/zls/blob/master/build.zig
+/// Returns `MAJOR.MINOR.PATCH-dev` when `git describe` failed.
+fn getVersion(b: *std.Build) std.SemanticVersion {
+    const version_string = b.option([]const u8, "version-string", "Override the version of this build. Must be a semantic version.");
+    if (version_string) |semver_string| {
+        return std.SemanticVersion.parse(semver_string) catch |err| {
+            std.debug.panic("Expected -Dversion-string={s} to be a semantic version: {}", .{ semver_string, err });
+        };
+    }
+
+    if (version.pre == null and version.build == null) return version;
+
+    const argv: []const []const u8 = &.{
+        "git", "-C", b.pathFromRoot("."), "--git-dir", ".git", "describe", "--match", "*.*.*", "--tags",
+    };
+    var code: u8 = undefined;
+    const git_describe_untrimmed = b.runAllowFail(argv, &code, .Ignore) catch |err| {
+        const argv_joined = std.mem.join(b.allocator, " ", argv) catch @panic("OOM");
+        std.log.warn(
+            \\Failed to run git describe to resolve version: {}
+            \\command: {s}
+            \\
+            \\Consider passing the -Dversion-string flag to specify the version.
+        , .{ err, argv_joined });
+        return version;
+    };
+
+    const git_describe = std.mem.trim(u8, git_describe_untrimmed, " \n\r");
+
+    switch (std.mem.count(u8, git_describe, "-")) {
+        0 => {
+            // Tagged release version (e.g. 0.10.0).
+            std.debug.assert(std.mem.eql(u8, git_describe, b.fmt("{f}", .{version}))); // tagged release must match version string
+            return version;
+        },
+        2 => {
+            // Untagged development build (e.g. 0.10.0-dev.216+34ce200).
+            var it = std.mem.splitScalar(u8, git_describe, '-');
+            var tagged_ancestor = it.first();
+            if (tagged_ancestor[0] == 'v') {
+                tagged_ancestor = tagged_ancestor[1..];
+            }
+            const commit_height = it.next().?;
+            const commit_id = it.next().?;
+
+            const ancestor_ver = std.SemanticVersion.parse(tagged_ancestor) catch unreachable;
+            if (version.order(ancestor_ver) != .gt) {
+                std.debug.panic("Version in build.zig ({f}) must be greater than the latest git tag ({s})", .{ version, tagged_ancestor });
+            }
+            std.debug.assert(std.mem.startsWith(u8, commit_id, "g")); // commit hash is prefixed with a 'g'
+
+            return .{
+                .major = version.major,
+                .minor = version.minor,
+                .patch = version.patch,
+                .pre = b.fmt("dev.{s}", .{commit_height}),
+                .build = commit_id[1..],
+            };
+        },
+        else => {
+            std.debug.panic("Unexpected 'git describe' output: '{s}'\n", .{git_describe});
+        },
+    }
+}
+
 /// - compile binaries with different targets
 /// - compress them (.tar.xz or .zip)
 /// - install artifacts to `./zig-out`
-fn release(b: *std.Build, release_artifacts: []const *std.Build.Step.Compile) void {
-    const release_step = b.step("release", "Build all release artifacts. (requires tar and 7z)");
+fn release(b: *std.Build, release_artifacts: []const *std.Build.Step.Compile, release_version: std.SemanticVersion) void {
+    const release_step = b.step("release", "Build and compress all release artifacts");
     const install_dir: std.Build.InstallDir = .{ .custom = "artifacts" };
     const FileExtension = enum { zip, @"tar.xz" };
+
+    if (release_version.pre != null and release_version.build == null) {
+        release_step.addError("Cannot build release because the version could not be resolved", .{}) catch @panic("OOM");
+        return;
+    }
 
     for (release_artifacts) |exe| {
         const resolved_target = exe.root_module.resolved_target.?.result;
@@ -115,7 +189,7 @@ fn release(b: *std.Build, release_artifacts: []const *std.Build.Step.Compile) vo
         const file_name = b.fmt(program_name ++ "-{t}-{s}-{f}.{t}", .{
             resolved_target.os.tag,
             cpu_arch_name,
-            version,
+            release_version,
             extension,
         });
         var file_path: std.Build.LazyPath = undefined;

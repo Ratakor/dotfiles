@@ -4,14 +4,8 @@
   # Additional binary caches to use for this flake.
   # This doesn't affect the system configuration.
   nixConfig = {
-    extra-substituters = [
-      "https://ratakor.cachix.org"
-      # "https://nix-community.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "ratakor.cachix.org-1:9hOGzHtnKDJ1i9FQN87XFnOOpRBebSKWECswk17glP0="
-      # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
+    extra-substituters = ["https://ratakor.cachix.org"];
+    extra-trusted-public-keys = ["ratakor.cachix.org-1:9hOGzHtnKDJ1i9FQN87XFnOOpRBebSKWECswk17glP0="];
   };
 
   inputs = {

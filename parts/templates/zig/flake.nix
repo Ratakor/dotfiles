@@ -30,6 +30,7 @@
     devShells = forAllSystems (system: pkgs: {
       default = pkgs.mkShellNoCC {
         packages = with pkgs; [
+          git
           bash
           zig.packages.${system}.zig_0_15_1
           zls.packages.${system}.zls_0_15_0
@@ -45,7 +46,7 @@
     packages = forAllSystems (system: pkgs: {
       default = zig.packages.${system}.zig_0_15_1.makePackage {
         pname = "zig-template";
-        version = "0.0.0";
+        version = "0.1.0-dev";
 
         src = ./.;
         zigReleaseMode = "fast";

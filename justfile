@@ -62,13 +62,11 @@ build-vm:
     nh os build-vm
 
 # Format all files
+[group('nix')]
 fmt:
     nix fmt .
 
-# TODO: add typos & make this CI
 # Run checks
+[group('nix')]
 check:
-    @# -alejandra --check .
-    @# -statix check
-    @# deadnix --no-lambda-pattern-names
     nix flake check

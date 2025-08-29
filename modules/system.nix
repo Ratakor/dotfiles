@@ -33,7 +33,7 @@
     openssh.authorizedKeys.keys = keys.ratakor;
   };
 
-  # TODO: setup a CI that update flake.lock once a week(?)
+  # See .github/workflows/update.yml
   system.autoUpgrade.enable = false;
 
   # Set your time zone
