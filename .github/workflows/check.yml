@@ -13,8 +13,6 @@ jobs:
       - uses: actions/checkout@v5
       - name: "Set up Nix"
         uses: DeterminateSystems/nix-installer-action@main
-      - name: "Magic Nix Cache"
-        uses: DeterminateSystems/magic-nix-cache-action@main
       - name: "Check Nix flake inputs"
         uses: DeterminateSystems/flake-checker-action@main
       - name: "Check Nix flake outputs"

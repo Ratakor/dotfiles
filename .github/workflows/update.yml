@@ -1,54 +1,37 @@
-name: Update flake.lock
+name: Update flake
 
 on:
   workflow_dispatch: # allows manual triggering
-    schedule:
-    - cron: '0 0 * * 5' # Every week on Friday.
+  schedule:
+    - cron: "0 0 * * 5" # Every week on Friday.
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v5
         with:
           ref: nixos
+          token: "${{ secrets.FLAKE_UPDATE_PAT }}"
       - name: "Set up Nix"
         uses: DeterminateSystems/nix-installer-action@main
-      - name: "Update flake.lock"
-        uses: DeterminateSystems/update-flake-lock@main
+      - name: "Set up Cachix"
+        uses: cachix/cachix-action@v16
         with:
-          token: ${{ secrets.FLAKE_LOCK_PAT }}
-          branch: flake-update
-          commit-msg: "flake.lock: Update"
-          pr-title: "flake.lock: Update"
-          pr-body: |
-            ```
-            {{ env.GIT_COMMIT_MESSAGE }}
-            ```
+          name: ratakor
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-  # update:
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     contents: write
-  #   steps:
-  #     - uses: actions/checkout@v5
-  #     - name: "Set up Nix"
-  #       uses: DeterminateSystems/nix-installer-action@main
-  #     - name: "Set up Cachix"
-  #       uses: cachix/cachix-action@v16
-  #       with:
-  #         name: ratakor
-  #         authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - name: "Update flake.lock"
+        run: nix flake update
+      - uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "[CI]: Update flake inputs"
 
-  #     - name: "Update flake"
-  #       run: nix flake update
-  #     - uses: stefanzweifel/git-auto-commit-action@v6
-  #       with:
-  #         commit_message: "[CI]: Update flake inputs"
-
-  #     - name: "Update npins"
-  #       working-directory: parts
-  #       run: nix run nixpkgs#npins update
-  #     - uses: stefanzweifel/git-auto-commit-action@v6
-  #       with:
-  #         commit_message: "[CI]: Update npins"
+      - name: "Update npins"
+        working-directory: parts
+        run: nix run nixpkgs#npins update
+      - uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "[CI]: Update npins"
