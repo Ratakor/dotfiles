@@ -47,9 +47,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Dependency for git-hooks & zfs-restore (zls).
+    gitignore = {
+      url = "github:hercules-ci/gitignore.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # https://pre-commit.com git hooks with nix.
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        gitignore.follows = "gitignore";
+      };
+    };
+
+    # The Zig programming language.
+    zig = {
+      url = "github:silversquirl/zig-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -66,10 +81,13 @@
     };
 
     # A CLI tool to restore files from ZFS snapshots.
-    # I know about that duplicate gitignore entry from zls in flake.lock dw.
     zfs-restore = {
       url = "github:ratakor/zfs-restore";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        zig.follows = "zig";
+        zls.inputs.gitignore.follows = "gitignore";
+      };
     };
 
     # This take 900MB on /nix/store btw.
