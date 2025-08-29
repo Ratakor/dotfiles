@@ -15,6 +15,7 @@ in {
   ];
 
   nix = {
+    # why tho?
     package = pkgs.nixVersions.latest; # pkgs.lix;
 
     # Remove nix-channel related tools & configs in favor of flakes

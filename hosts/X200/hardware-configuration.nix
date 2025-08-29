@@ -26,7 +26,8 @@
   #
   #   compression=on (maybe swap to zstd for /nix)
   #   dedup=on (maybe only on for /nix)
-  #   atime=off (or relatime=on atime=on for mixed perf)
+  #   atime=off
+  #   relatime=off (note that relatime=on requires atime=on)
   #   xattr=sa
   #   acltype=posixacl
   #   com.sun:auto-snapshot=true (only on /home and /var)

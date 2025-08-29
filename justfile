@@ -1,5 +1,6 @@
-# deploy:
-# nix-shell -p just nh
+# $XDG_CONFIG_HOME/nix/nix.conf
+# extra-experimental-features = nix-command flakes
+# nix shell nixpkgs#just nixpkgs#nh
 # just switch
 
 default:
@@ -23,6 +24,11 @@ update:
     @# nix flake update --commit-lock-file
     @# nixos-rebuild switch --sudo --flake .
     nh os switch --update --ask .
+
+# Build a `NixOS` VM image
+[group('nix')]
+build-vm:
+    nh os build-vm .
 
 # Garbage collect all unused nix store entries & remove old generations
 [group('nix')]
@@ -48,18 +54,13 @@ info:
     @# nix profile history --profile /nix/var/nix/profiles/system
     nh os info
 
-# TODO: use nh (it's too slow)
+# `nh os repl` is bugged
 # Open a nix shell with the flake's nixpkgs
 [group('nix')]
 repl:
     # Load the flake with `:lf .`
-    nix repl -f flake:nixpkgs
+    nix repl
     @# nh os repl .
-
-# Build a `NixOS` VM image
-[group('nix')]
-build-vm:
-    nh os build-vm
 
 # Format all files
 [group('nix')]
