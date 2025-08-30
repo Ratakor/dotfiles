@@ -10,6 +10,7 @@
   # https://github.com/librespot-org/librespot/wiki/Options
   librespotOptions = {
     quiet = true;
+    # disable-audio-cache = true;
     cache = "${config.xdg.cacheHome}/librespot";
     autoplay = "on";
     enable-volume-normalisation = true;

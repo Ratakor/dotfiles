@@ -12,6 +12,10 @@
 
     gtk2.enable = false; # .gtkrc-2.0 symlink in $HOME
 
+    # TODO:
+    # - does this work as intended on X11?
+    # - iirc it was causing issue with lutris on wayland
+    # - try to only remove titlebar for specific apps (terminal, dragon-drop, ...)
     gtk3.extraCss = ''
       /* No (default) titlebar on wayland */
       .titlebar, .css, headerbar {

@@ -37,6 +37,7 @@ macro v set browser "setsid -f mpv" ; open-in-browser ; set browser "plumber --u
 macro w set browser "$BROWSER" ; open-in-browser ; set browser "plumber --url"
 macro d set browser "plumber --dmenu" ; open-in-browser ; set browser "plumber --url"
 macro c set browser "wl-copy" ; open-in-browser ; set browser "plumber --url"
+#macro c set browser "echo %u | xclip -r -sel c" ; open-in-browser ; set browser "plumber --link"
 
 highlight all "---.*---" yellow
 highlight feedlist ".*(0/0))" black

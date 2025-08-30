@@ -89,6 +89,14 @@
           exec dbus-run-session river -log-level warning > "''${RIVER_LOG_DIR}/river-''${timestamp}.log" 2>&1
       fi
     '';
+    # X11 / artix / AuroraR7 .zprofile:
+    #profileExtra= ''
+    #if [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1; then
+    #    doas modprobe dell-smm-hwmon ignore_dmi=1
+    #    rm "$XDG_CONFIG_HOME/chromium/SingletonLock" >/dev/null 2>&1
+    #    exec sx
+    #fi
+    #'';
 
     # TODO: improve that, it's a massive slowdown & it could be more ergonomic
     completionInit = ''

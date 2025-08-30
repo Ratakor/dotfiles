@@ -26,6 +26,7 @@
     sudoCommands
   );
 
+  ZDOTDIR = config.programs.zsh.dotDir or "$HOME";
   XDG_CONFIG_HOME = config.xdg.configHome;
   XDG_DATA_HOME = config.xdg.dataHome;
   XDG_CACHE_HOME = config.xdg.cacheHome;
@@ -37,19 +38,11 @@ in {
       # edit config files and stuff
       cf = "cd ${XDG_CONFIG_HOME}";
       cfv = "cd ${XDG_CONFIG_HOME}/nvim";
-      cfy = "cd ${XDG_CONFIG_HOME}/yazi";
-      cfz = "$EDITOR $ZDOTDIR/.zshrc";
-      cfe = "$EDITOR $ZDOTDIR/.zshenv";
-      cfa = "$EDITOR $ZDOTDIR/aliasrc";
-      cfr = "$EDITOR ${XDG_CONFIG_HOME}/river/init";
-      cfn = "$EDITOR ${XDG_CONFIG_HOME}/newsboat/config";
+      cfz = "$EDITOR ${ZDOTDIR}/.zshrc";
+      cfe = "$EDITOR ${ZDOTDIR}/.zshenv";
       cfu = "$EDITOR ${XDG_CONFIG_HOME}/newsboat/urls";
-      cfq = "$EDITOR ${XDG_CONFIG_HOME}/quand/config";
-      cfb = "cd ${XDG_CONFIG_HOME}/waybar";
-      cft = "$EDITOR ${XDG_CONFIG_HOME}/foot/foot.ini";
-      cfc = "$EDITOR ${XDG_CONFIG_HOME}/crontab";
       dt = "cd ${XDG_DATA_HOME}";
-      pkg = "$EDITOR ${XDG_DATA_HOME}/packages";
+      # pkg = "$EDITOR ${XDG_DATA_HOME}/packages";
       d = "cd $XDG_DOWNLOAD_DIR";
       D = "cd $XDG_DOCUMENTS_DIR";
       mm = "cd $XDG_MUSIC_DIR";
@@ -63,6 +56,17 @@ in {
       sc = "cd $HOME/.local/bin";
       sta = "cd ${XDG_STATE_HOME}";
       cac = "cd ${XDG_CACHE_HOME}";
+
+      ## wayland
+      cfr = "$EDITOR ${XDG_CONFIG_HOME}/river/init";
+      cfb = "cd ${XDG_CONFIG_HOME}/waybar";
+      cft = "$EDITOR ${XDG_CONFIG_HOME}/foot/foot.ini";
+
+      ## X11
+      # cfx = "$EDITOR ${XDG_CONFIG_HOME}/sx/sxrc";
+      # cfh = "$EDITOR ${XDG_CONFIG_HOME}/sxhkd/sxhkdrc";
+      # cfsb = "$EDITOR ${XDG_CONFIG_HOME}/sb/config";
+      # soff = "exec xset dpms force off";
 
       # shorter name and basic stuff changed
       e = "$EDITOR";

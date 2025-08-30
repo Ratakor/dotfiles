@@ -95,6 +95,7 @@
       inherit ouch;
       inherit smart-paste;
       inherit toggle-pane;
+      # hexyl: https://github.com/Reledia/hexyl.yazi
       man = ./plugins/man.yazi;
       text = ./plugins/text.yazi;
     };

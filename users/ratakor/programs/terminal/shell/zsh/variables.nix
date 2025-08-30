@@ -1,4 +1,11 @@
-{config, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib.meta) getExe;
+
   XDG_CONFIG_HOME = config.xdg.configHome;
   XDG_DATA_HOME = config.xdg.dataHome;
   XDG_CACHE_HOME = config.xdg.cacheHome;
@@ -16,18 +23,27 @@ in {
     ];
 
     # prepend extra directories to arbitrary PATH-like environment variables
-    # sessionSearchVariables = {
-    #   MANPATH = ["$HOME/.local/share/man"];
-    #   LD_LIBRARY_PATH = ["$HOME/.local/lib"];
-    # };
+    sessionSearchVariables = {
+      # smh this overwrite default MANPATH
+      # MANPATH = ["${XDG_DATA_HOME}/man"];
+
+      # LD_LIBRARY_PATH = ["$HOME/.local/lib"];
+      # TERMINFO_DIRS = ["${XDG_DATA_HOME}/terminfo" "/usr/share/terminfo"]
+    };
 
     sessionVariables = {
       # Default programs
       EDITOR = "nvim";
-      # VISUAL = "nvim";
+      # VISUAL = "nvim"; # nvim is not a visual editor
+      BROWSER = "chromium --new-window"; # cromite
+
+      ## Wayland
       TERMINAL = "footclient";
-      # BROWSER = "cromite --new-window";
       DMENU = "tofi";
+
+      ## X11
+      # TERMINAL = "st";
+      # DMENU = "dmenu -i";
 
       # ~/ Clean-up
       FFMPEG_DATADIR = "${XDG_CONFIG_HOME}/ffmpeg";
@@ -48,6 +64,8 @@ in {
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
       GRADLE_USER_HOME = "${XDG_DATA_HOME}/gradle";
       WINEPREFIX = "${XDG_DATA_HOME}/wine";
+      # TERMINFO = "${XDG_DATA_HOME}/terminfo";
+      DOOMWADDIR = "${XDG_DATA_HOME}/gzdoom";
 
       # Disable telemetry (https://consoledonottrack.com)
       AZURE_CORE_COLLECT_TELEMETRY = "0";
@@ -63,7 +81,7 @@ in {
       MANWIDTH = "80";
       LESS = "-R";
       WEBKIT_DISABLE_DMABUF_RENDERER = "1";
-      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+      MANPAGER = "sh -c 'col -bx | ${getExe pkgs.bat} -l man -p'";
       MANROFFOPT = "-c";
     };
   };
