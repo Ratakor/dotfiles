@@ -27,8 +27,8 @@
     '';
 
     gtk4 = {
-      # TODO: config
-      enable = false;
+      enable = true;
+      # TODO: config, remove ugly titlebar on whatever pinentry app I'm using
     };
   };
 }

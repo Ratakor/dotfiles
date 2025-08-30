@@ -25,6 +25,11 @@ update:
     @# nixos-rebuild switch --sudo --flake .
     nh os switch --update --ask .
 
+# Rebuild and switch to the new home-manager configuration
+[group('nix')]
+home-switch:
+    nh home switch .
+
 # Build a `NixOS` VM image
 [group('nix')]
 build-vm:
