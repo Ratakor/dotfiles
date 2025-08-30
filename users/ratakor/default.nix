@@ -6,7 +6,7 @@
   imports = [
     ./programs
     ./misc
-    ./services # TODO: move stuff from programs there
+    ./services # TODO: move all services in ./programs there
   ];
 
   home = {
