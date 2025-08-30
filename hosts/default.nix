@@ -39,6 +39,9 @@ in {
     users = ../users;
     home = [home-manager users];
 
+    # TODO
+    system = [../modules/system.nix];
+
     shared = [agenix];
   in {
     X200 = mkNixosSystem {
@@ -48,7 +51,17 @@ in {
       modules = flatten [
         home
         shared
+        system
       ];
     };
+    # AuroraR7 = mkNixosSystem {
+    #   hostname = "AuroraR7";
+    #   system = "x86_64-linux";
+    #   theme = "gruvbox-dark";
+    #   modules = flatten [
+    #     home
+    #     shared
+    #   ];
+    # };
   };
 }

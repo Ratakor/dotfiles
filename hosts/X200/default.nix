@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
   config,
   lib,
@@ -9,13 +6,12 @@
   ...
 }: {
   imports = [
-    ../../modules/system.nix
-
-    # Include the results of the hardware scan.
+    # hardware-configuration.nix should probably be merged here or sorted e.g.
+    # filesystem.nix with all zfs stuff, etc...
     ./hardware-configuration.nix
   ];
 
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.05";
 
   boot.loader = {
     # systemd-boot = {
@@ -47,11 +43,6 @@
   networking = {
     hostName = "X200";
     hostId = "90431314"; # needed by ZFS
-    stevenblack.enable = true;
-
-    # Pick only one of the below networking options.
-    # wireless.enable = true; # Enables wireless support via wpa_supplicant.
-    networkmanager.enable = true;
   };
 
   hardware.bluetooth = {

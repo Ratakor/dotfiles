@@ -11,9 +11,11 @@
       # '';
 
       packages = with pkgs; [
-        inputs'.agenix.packages.default # agenix CLI for managing secrets
         git
+        inputs'.agenix.packages.default # agenix CLI for managing secrets
         npins
+        just
+        nh
       ];
     };
   };
