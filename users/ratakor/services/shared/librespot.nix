@@ -1,4 +1,4 @@
-# spotify client
+# Spotify client
 {
   config,
   osConfig,

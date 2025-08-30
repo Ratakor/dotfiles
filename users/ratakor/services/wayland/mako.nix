@@ -1,3 +1,4 @@
+# Notification daemon
 {
   colors,
   pkgs,
