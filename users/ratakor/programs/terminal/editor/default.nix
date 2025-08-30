@@ -24,7 +24,7 @@
       clang # clangd
       vscode-css-languageserver # cssls
       gopls # gopls
-      # python313Packages.jedi-language-server # jedi_language_server
+      # python313Packages.jedi-language-server # jedi_language_server # TODO: fails to build
       lua-language-server # lua_ls
       marksman # marksman
       nil # nil_ls (TODO: see nixd)

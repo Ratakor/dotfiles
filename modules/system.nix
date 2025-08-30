@@ -305,6 +305,9 @@
       gnome-keyring.enable = lib.mkForce false;
       # gcr-ssh-agent.enable = false; # config.services.gnome.gnome-keyring.enable
     };
+
+    # TODO: is userborn useful?
+    userborn.enable = false;
   };
 
   # this is for pmount

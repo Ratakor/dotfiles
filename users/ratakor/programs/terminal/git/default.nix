@@ -110,25 +110,6 @@
 
         inherit (pkgs.gitui) meta;
       });
-      # package = pkgs.gitui.overrideAttrs (finalAttrs: prevAttrs: {
-      #   name = "${prevAttrs.pname}-${finalAttrs.version}";
-      #   version = "0.22.1";
-
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "extrawurst";
-      #     repo = "gitui";
-      #     rev = "v${finalAttrs.version}";
-      #     hash = "sha256-K6xWTPu2a5NKYAYBt/sCWQOmuw9TCoKPA4ZxkoLWmeY=";
-      #   };
-
-      #   cargoDeps = prevAttrs.cargoDeps.overrideAttrs (const {
-      #     name = "${finalAttrs.name}-vendor.tar.gz";
-      #     inherit (finalAttrs) src;
-      #     outputHash = "sha256-MZrx72poA6uOIulWIQkfOr9gy5qr5f61UtLITfES/rk=";
-      #   });
-
-      #   postPatch = "rm .cargo/config";
-      # });
       keyConfig = ./key_bindings_0.22.1.ron;
       # theme = # default
     };
