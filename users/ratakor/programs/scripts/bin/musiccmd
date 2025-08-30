@@ -1,7 +1,8 @@
 #!/bin/sh
 # helper for the music script
 # dependencies: music, mpv, socat, yt-dlp, ffmpeg, imagemagick, $DMENU
-# optional dependencies: waybar, notify-send, imv
+# optional dependencies: waybar, libnotify, imv
+# replace `kill -35 $(pidof waybar)` with `kill -34 $(pidof sb)` for sb
 # shellcheck disable=SC2046
 
 FAVDIR=${XDG_MUSIC_DIR:-$HOME/Music}/favorite

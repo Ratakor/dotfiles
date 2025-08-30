@@ -1,10 +1,10 @@
 {pkgs, ...}: {
-  # # ungoogled-chromium required to `pacman -Rdd your-freedom`
-  # #aur/ungoogled-chromium-bin
-  # #aur/ungoogled-chromium-xdg-bin # ungoogled chromium but without ~/.pki
-  # aur/cromite-bin
-
   programs = {
+    # See some hardening args here
+    # https://github.com/Ratakor/dotfiles/blob/artix/.local/bin/browser
+    # See here for additional patches
+    # https://github.com/noahvogt/chromium-patches
+    # UC Flags needs to be configured for it to be as good as cromite
     chromium = {
       enable = true;
       package = pkgs.ungoogled-chromium; # TODO: pkgs.cromite;

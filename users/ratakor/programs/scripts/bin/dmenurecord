@@ -2,10 +2,12 @@
 # simple menu for recordings with ffmpeg
 # dependencies: pipewire-pulse/pulseaudio, ffmpeg, $DMENU, slurp
 # Original: https://github.com/whoisYoges/record-with-ffmpeg
+# if using x11 replace slurp with slop
 # TODO: change to use wf-recorder -a
 
 set -e
 
+# xrandr | sed -n 's/\s*\([0-9]\+x[0-9]\+\).*\*.*/\1/p'
 getResolution() {
 	if [ ! -d "/sys/class/drm" ]; then
 		printf "No DRM found\n" >&2
@@ -23,11 +25,11 @@ getResolution() {
 videodir="${XDG_VIDEOS_DIR:-$HOME/Videos}/ffmpeg/"
 audiodir="$videodir"
 title="$(date +ffmpeg-"%Y-%m-%d-%H-%M-%S")"
-recordingresolution="$(getResolution)"
-outputresolution="$recordingresolution"
+recordingresolution="$(getResolution)" # 2560x1440
+outputresolution="$recordingresolution" # 1920x1080
 display="$DISPLAY"
-fps="30"
-crf="22" # 18
+fps="30" # 60
+crf="32" # 18 (0-51, lower is better quality)
 codecvideo="libx264"
 codecaudio="libmp3lame"
 preset="veryfast"
@@ -141,6 +143,7 @@ setSelectionVal() {
 }
 
 videosel() {
+	# coord=$(slop -q -f "%x %y %w %h") || return 1
 	coord=$(slurp -f "%x %y %w %h") || return 1
 	# shellcheck disable=SC2086
 	setSelectionVal $coord

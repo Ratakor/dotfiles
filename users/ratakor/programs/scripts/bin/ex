@@ -1,5 +1,6 @@
 #!/bin/sh
 # a simple utility to extract files based on extension
+# TODO: replace with ouch
 
 [ -z "$1" ] && printf "You need to provide file(s) to extract\n" 1>&2 && exit 1
 

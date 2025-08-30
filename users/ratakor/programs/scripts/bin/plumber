@@ -1,16 +1,24 @@
 #!/bin/sh --
 # plumber 🪠
 # Copyright © 2025 Ratakor. Under ISC License.
+# Check https://github.com/Ratakor/dotfiles/blob/artix/.local/bin/plumber
+# for a cursed version that transform your terminal into a full fledged file
+# manager with mouse support when using my version of st
 # shellcheck disable=SC2086
 
 # default programs:
 # use open for gui and openterm for terminal applications
 # currently assuming that WEB, VIDEO and AUDIO handle URLs
+# NOTE to self: if going full nix:
+# - add a home-manager options or options to set these variables
+# - or add an options like config.browser, config.editor etc
+# - or both
+# - or setup xdg-mime correctly (plumber > xdg-open though, I swear)
 WEB="open ${BROWSER:-"xdg-open"}"
-TEXT="openterm $EDITOR"
-VIDEO="open mpv --loop" #--ytdl-format=22
-AUDIO="open music"
-PIC="open imv"
+TEXT="openterm $EDITOR" # replace with `if $VISUAL then open $VISUAL else openterm $EDITOR`?
+VIDEO="open mpv --loop" # --ytdl-format=bv+ba
+AUDIO="open music" # --shuffle
+PIC="open imv" # nsxiv -a
 DOC="open zathura"
 DIR="openterm yazi"
 DMENU=${DMENU:-"dmenu -i"}
@@ -150,7 +158,7 @@ Options:
   no option [args]    | Try to guess what to do
   -u|--url [urls]     | Open URLs
   -f|--file [files]   | Open files or directories
-  -d|--dmenu [arg]    | Use dmenu to select how to handle the argument
+  -d|--dmenu [arg]    | Use \$DMENU to select how to handle the argument
   -h|--help           │ Print this help message
 
 Config:

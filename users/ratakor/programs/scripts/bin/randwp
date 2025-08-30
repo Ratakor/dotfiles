@@ -1,7 +1,9 @@
 #!/bin/sh
-# set a random wallpaper
-# to ignore a folder or a file put it in IGNORE after the - like below
-# IGNORE=${IGNORE-file1|folder|file2}
+# Set a random wallpaper.
+# Requires: swaybg (wayland) or hsetroot/xwallpaper (X11).
+# There must be no space in wallpaper filename.
+# To ignore a folder or a file put it in IGNORE after the - like below
+# IGNORE=${IGNORE-file1|folder|file2|.ext}
 # IGNORE can be an env variable (useful for yazi)
 
 TMPDIR=${XDG_RUNTIME_DIR:-/tmp}
@@ -18,22 +20,34 @@ searchwp() {
 	fi
 }
 
-# searchwp
-# OLD_PID=$(cat "$TMPDIR/swaybg.pid" 2>/dev/null)
-# swaybg -m fill -i "$wp" 2>/dev/null &
-# echo $! > "$TMPDIR/swaybg.pid"
-# (sleep 3 && kill "$OLD_PID" 2>/dev/null || exit 0) &
+# Single screen on wayland with swaybg
+#searchwp
+#OLD_PID=$(cat "$TMPDIR/swaybg.pid" 2>/dev/null)
+#swaybg -m fill -i "$wp" 2>/dev/null &
+#echo $! > "$TMPDIR/swaybg.pid"
+#(sleep 3 && kill "$OLD_PID" 2>/dev/null || exit 0) &
 
-# multiple screens
-# for output in $(wlr-randr --json | jq -r '.[] | select(.enabled) | .name') do
+# Multiple screens on wayland with swaybg
+#for output in $(wlr-randr --json | jq -r '.[] | select(.enabled) | .name') do
 for output in $(xrandr | awk '$2=="connected" {print $1}'); do
 	searchwp
 	args="$args -o $output -m fill -i $wp"
-	# swaybg -o "$output" -m fill -i "$wp"
 done
 OLD_PID=$(cat "$TMPDIR/swaybg.pid" 2>/dev/null)
-# doing this speedup a lot, there must be no space in wallpaper filename
 # shellcheck disable=SC2086
 swaybg $args &
 echo $! > "$TMPDIR/swaybg.pid"
 (sleep 3 && kill "$OLD_PID" 2>/dev/null || exit 0) &
+
+# Single screen on X11 with hsetroot
+#searchwp
+#hsetroot -cover "$wp" 1>/dev/null
+
+# Multiple screens on X11 with xwallpaper
+#for output in $(xrandr | awk '$2=="connected" {print $1}'); do
+#	searchwp
+#	args="$args --output $output --zoom $wp"
+#done
+## doing this speedup a lot, there must be no space in wallpaper filename
+## shellcheck disable=SC2086
+#xwallpaper $args

@@ -46,11 +46,13 @@
     desktopEntries = {
       file = {
         name = "File Manager";
-        exec = "footclient -D %f";
+        exec = "footclient -D %f"; # TODO: use config.terminal or something
+        # exec = "st -d %u";
       };
       git = {
         name = "git";
         exec = "footclient -e git clone %u";
+        # exec = "st -e git clone %u";
       };
       mail = {
         name = "Mail Client";
@@ -59,6 +61,7 @@
       text = {
         name = "Text Editor";
         exec = "footclient -e nvim %u";
+        # exec = "st -e nvim %u";
       };
       torrent = {
         name = "Torrent Client";
@@ -73,7 +76,7 @@
       in {
         "audio/*" = ["mpv.desktop"];
         "video/*" = ["mpv.desktop"];
-        "image/*" = ["imv.desktop"];
+        "image/*" = ["imv.desktop"]; # nsxiv -a %f
         "text/x-shellscript" = ["text.desktop"];
         "text/plain" = ["text.desktop"];
         "application/postscript" = ["org.pwmt.zathura.desktop"];

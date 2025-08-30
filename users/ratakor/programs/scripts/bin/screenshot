@@ -1,5 +1,10 @@
 #!/bin/sh
-# take a screenshot with grim
+# take a screenshot
+# dependencies:
+# - wayland: grim, slurp, wl-copy
+# - X11: maim, slop(?), xclip
+# - dmenurecord (custom script for video recording)
+
 # TODO:
 #   - use swappy
 #   - add a way to stop dmenurecord / use wf-recorder instead
@@ -12,5 +17,9 @@ case "$(printf "save select\nsave screen\ncopy select\ncopy screen\nvideo" | $DM
 	"save screen") grim "$OUTPUT" ;;
 	"copy select") grim -g "$(slurp)" - | wl-copy ;;
 	"copy screen") grim - | wl-copy ;;
+	# "save select") maim -u -s "$OUTPUT" ;;
+	# "save screen") maim -q -u -d 0.5 "$OUTPUT" ;;
+	# "copy select") maim -u -s | xclip -sel clip -t image/png ;;
+	# "copy screen") maim -q -u -d 0.5 | xclip -sel clip -t image/png ;;
 	"video") dmenurecord ;;
 esac

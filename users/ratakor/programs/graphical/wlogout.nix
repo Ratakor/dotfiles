@@ -1,6 +1,7 @@
 # Wayland logout menu with wleave icons
-# see https://github.com/ArtsyMacaw/wlogout/pull/59 for alternative icons
-# requires glitchlock
+# Requires glitchlock
+# Alternative icons: https://github.com/ArtsyMacaw/wlogout/pull/59
+# X11 alternative (kinda): https://github.com/Ratakor/dotfiles/blob/artix/.local/bin/shutdown-menu
 {
   colors,
   pkgs,

@@ -4,6 +4,7 @@
 # youtube dependency: ytfzf
 # man dependencies: mandoc/man-db, zathura
 # emoji dependency: wl-clipboard
+# replace wl-clipboard with xclip for X11
 
 set -e
 
@@ -47,6 +48,7 @@ emoji() {
 	chosen=$(cut -d ';' -f1 "$XDG_DATA_HOME/emoji" | $DMENU -i -l 10 | sed "s/ .*//")
 	[ -z "$chosen" ] && return 1
 	printf '%s' "$chosen" | wl-copy
+	# printf '%s' "$chosen" | xclip -selection clipboard
 	notify-send "'$chosen' copied to clipboard."
 }
 

@@ -1,7 +1,7 @@
 #!/bin/sh
 # Simple music selector with a $DMENU that uses and interacts with mpv.
 # Have a look at musiccmd, .local/etc/mpv/music/ and
-# .local/etc/waybar/scripts/music.sh
+# .local/etc/waybar/scripts/music.sh or sb (statusbar)
 # shellcheck disable=SC2012
 
 MUSICDIR=${XDG_MUSIC_DIR:-$HOME/Music}
@@ -29,5 +29,6 @@ if [ -z "$shuffle" ] && [ -d "$music" ] || printf '%s' "$music" | grep -q playli
 fi
 
 printf 'stop\n' | socat - "$SOCKET" 2> /dev/null
+# --volume=60 on AuroraR7
 mpv --vid=no --input-ipc-server="$SOCKET" --loop-playlist\
 	--ytdl-format=ba --script="$script" --shuffle="$shuffle" "$music"

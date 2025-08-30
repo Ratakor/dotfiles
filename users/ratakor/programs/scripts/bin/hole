@@ -4,9 +4,10 @@
 # instead of nc "$HOST" "$PORT"
 # gpg -e -r keyid and gpg -d can be used instead of openssl
 # TODO: use socat instead of openbsd-netcat
+# TODO: hole.ratakor.com is down, use termbin.com instead? (need to curl to retrieve data)
 
 DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hole"
-HOST="hole.ratakor.com"
+HOST="hole.ratakor.com" # termbin.com
 PORT="9999"
 
 encode() {

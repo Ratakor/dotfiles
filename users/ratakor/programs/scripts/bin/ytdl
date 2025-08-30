@@ -17,7 +17,7 @@ case $TYPE in
 v)
 	mkdir -p "$VIDEODIR"
 	notify-send "Video download started"
-	yt-dlp -f '22' -o '%(title)s [%(id)s].%(ext)s'\
+	yt-dlp -f 'bv+ba' -o '%(title)s [%(id)s].%(ext)s'\
 	--embed-metadata -P "$VIDEODIR" "$URL" &&
 	notify-send "Video downloaded" ||
 		(notify-send "Error: Download failed"; exit 1) ;;
