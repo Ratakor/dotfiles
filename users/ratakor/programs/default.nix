@@ -1,8 +1,8 @@
 {
   imports = [
     ./graphical
-    ./misc
-    ./scripts
     ./terminal
+
+    ./keepassxc.nix # Password Manager
   ];
 }

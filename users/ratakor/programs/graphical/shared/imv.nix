@@ -1,3 +1,4 @@
+# Image Viewer
 {
   programs.imv = {
     enable = true;

@@ -1,3 +1,4 @@
+# Editor
 {
   config,
   pkgs,
@@ -39,5 +40,5 @@
 
   # TODO: manage nvim config with nixvim or nvf or whatever instead of doing
   # impure out of store symlinks even though I like mutable config
-  xdg.configFile.nvim.source = "${config.home.dotfiles}/programs/terminal/editor/nvim";
+  xdg.configFile.nvim.source = "${config.home.dotfiles}/programs/terminal/neovim/nvim";
 }

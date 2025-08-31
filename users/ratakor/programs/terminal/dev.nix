@@ -71,8 +71,9 @@
   programs = {
     # LaTeX
     texlive = {
-      enable = true;
-      # package = pkgs.texliveMinimal; # pkgs.texliveFull;
+      enable = false;
+      # package = pkgs.texliveMinimal;
+      # package = pkgs.texliveFull;
     };
 
     # Conversion between documentation formats
@@ -93,7 +94,6 @@
       nix-direnv.enable = true;
       enableZshIntegration = true; # adds a hook to enable direnv with zsh
       silent = true;
-      # config = {};
     };
   };
 

@@ -1,4 +1,4 @@
-# terminal multiplexer & session manager
+# Terminal multiplexer & session manager
 {config, ...}: {
   programs.zellij = {
     enable = true;

@@ -1,3 +1,4 @@
+# File Manager
 {pkgs, ...}: {
   # yazi dependencies
   home.packages = with pkgs; [

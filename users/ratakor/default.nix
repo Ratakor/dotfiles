@@ -6,6 +6,7 @@
   imports = [
     ./programs
     ./misc
+    ./scripts
     ./services # TODO: move all services in ./programs there
   ];
 

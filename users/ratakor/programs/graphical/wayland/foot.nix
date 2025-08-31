@@ -1,3 +1,4 @@
+# Terminal Emulator
 {colors, ...}: {
   programs.foot = {
     enable = true;

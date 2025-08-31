@@ -1,16 +1,18 @@
 {
   imports = [
-    ./calendar
-    ./dev.nix
-    ./editor
-    ./file-manager
-    ./fzf
-    ./git
-    ./irc.nix
-    ./misc.nix
-    ./oxidation.nix
-    ./rss
-    ./shell
-    ./zellij
+    ./dev.nix # Development tools
+    ./misc.nix # Miscellaneous tools
+    ./oxidation.nix # Replacement of various shell utilities
+
+    ./git # VCS Client + TUI
+    ./quand.nix # Calendar CLI
+    ./neovim # Editor
+    ./newsboat # RSS Reader
+    ./senpai.nix # IRC Client
+    ./yazi # File Manager
+    ./zellij # Terminal Multiplexer
+    ./zsh # Shell
+
+    ./fzf # TODO: remove
   ];
 }

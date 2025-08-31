@@ -158,6 +158,7 @@
         zstyle ':vcs_info:*' enable git
       '';
 
+      # There is only prompt config here btw switch to starship?
       zshConfig = ''
         # Prompt
         timer=$(print -P %D{%s%3.})

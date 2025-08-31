@@ -1,3 +1,4 @@
+# Document Viewer
 {
   programs.zathura = {
     enable = true;
