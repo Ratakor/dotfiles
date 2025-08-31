@@ -15,6 +15,7 @@
       XDG_SESSION_TYPE = "wayland";
       XDG_CURRENT_DESKTOP = "river";
       MOZ_ENABLE_WAYLAND = "1";
+      NIXOS_OZONE_WL = "1"; # enable ozone wayland for chromium and electron based apps
     };
 
     settings = {

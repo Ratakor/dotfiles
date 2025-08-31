@@ -83,9 +83,9 @@ in {
       # inputs.self.overlays.default
 
       (const (prev: {
-        # https://github.com/NixOS/nixpkgs/pull/433847
+        # https://nixpk.gs/pr-tracker.html?pr=433847
         pmount = self.pkgs.pmount;
-        # https://github.com/NixOS/nixpkgs/pull/437539
+        # https://nixpk.gs/pr-tracker.html?pr=437539
         librespot = self.pkgs.librespot;
       }))
     ];

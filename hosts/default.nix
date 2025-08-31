@@ -64,7 +64,7 @@ in {
     home = [home-manager users];
 
     # TODO
-    system = [../modules/system.nix];
+    all = [../modules];
 
     shared = [agenix];
   in {
@@ -75,7 +75,7 @@ in {
       modules = flatten [
         home
         shared
-        system
+        all
       ];
     };
     # AuroraR7 = mkNixosSystem {
