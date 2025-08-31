@@ -5,6 +5,19 @@
       "name": "nixpkgs-unstable",
       "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre853059.aca2499b7917/nixexprs.tar.xz",
       "hash": "1sd5yfsaq6y7nz972gni63akpr99apzqbhzis1gvbxfw23djm677"
+    },
+    "wallpapers": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ratakor",
+        "repo": "wallpapers"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "285cfb00f957a5e32cda5902959dba4e01e9d180",
+      "url": "https://github.com/ratakor/wallpapers/archive/285cfb00f957a5e32cda5902959dba4e01e9d180.tar.gz",
+      "hash": "105lyp88pzwzmjsyg4awiffa2m8azj1x70dl4xz5jkh0njnihp30"
     }
   },
   "version": 5

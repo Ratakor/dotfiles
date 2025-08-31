@@ -89,12 +89,6 @@
         zls.inputs.gitignore.follows = "gitignore";
       };
     };
-
-    # This take 900MB on /nix/store btw.
-    wallpapers = {
-      url = "github:ratakor/wallpapers";
-      flake = false;
-    };
   };
 
   outputs = inputs:

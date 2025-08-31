@@ -1,6 +1,8 @@
 {
   config,
+  lib,
   pkgs,
+  self,
   ...
 }: {
   # TODO:
@@ -24,6 +26,8 @@
   xdg.dataFile.emoji.source = ./src/emoji;
 
   home.packages = [
+    (import ./randwp.nix {inherit lib pkgs self;})
+
     (pkgs.writeShellApplication {
       name = "glitchlock";
       runtimeInputs = with pkgs; [grim imagemagick coreutils swaylock];

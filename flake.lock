@@ -187,7 +187,6 @@
         "nixpkgs": "nixpkgs",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix",
-        "wallpapers": "wallpapers",
         "watt": "watt",
         "zfs-restore": "zfs-restore",
         "zig": "zig"
@@ -225,22 +224,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "wallpapers": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1756024695,
-        "narHash": "sha256-YFwYrbQATll+J7SB04P8ClWhnItckee1rJ//i9D1tIA=",
-        "owner": "ratakor",
-        "repo": "wallpapers",
-        "rev": "285cfb00f957a5e32cda5902959dba4e01e9d180",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ratakor",
-        "repo": "wallpapers",
         "type": "github"
       }
     },
