@@ -8,12 +8,17 @@
     chromium = {
       enable = true;
       package = pkgs.ungoogled-chromium; # TODO: pkgs.cromite;
+      dictionaries = with pkgs.hunspellDictsChromium; [ en-us fr-fr ];
       extensions = [
         {id = "dbepggeogbaibhgnhhndojpepiihcmeb";} # Vimium
-        # TODO: add UBO, ...
+        # {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # uBlock Origin
+        {id = "ddkjiahejlhfcafbddmgiahcphecmpfh";} # uBlock Origin Lite
+        # is it time to switch to another browser?
       ];
+      commandLineArgs = []; # TODO
     };
 
+    # check out celenityy/phoenix
     firefox = {
       enable = false;
       # profiles.${username} = {};

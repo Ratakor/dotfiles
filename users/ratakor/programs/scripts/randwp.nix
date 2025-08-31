@@ -16,6 +16,7 @@ in
   pkgs.writeShellApplication {
     name = "randwp";
     runtimeInputs = with pkgs; [findutils coreutils gnugrep];
+    bashOptions = []; # errexit sucks
     inheritPath = false;
     text =
       ''
@@ -51,7 +52,6 @@ in
             jq = getExe pkgs.jq;
           in ''
             # Multiple screens on wayland with swaybg
-            args=""
             for output in $(${wlr-randr} --json | ${jq} -r '.[] | select(.enabled) | .name'); do
             	searchwp
             	args="$args -o $output -m fill -i $wp"
@@ -80,7 +80,6 @@ in
           in ''
             # Multiple screens on X11 with xwallpaper
             IGNORE="$IGNORE|.webp" # xwallpaper doesn't support webp
-            args=""
             for output in $(${xrandr} | ${awk} '$2=="connected" {print $1}'); do
             	searchwp
             	args="$args --output $output --zoom $wp"

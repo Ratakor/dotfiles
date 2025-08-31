@@ -27,5 +27,5 @@ magick /tmp/lock.jpg /tmp/lock.png >/dev/null 2>&1
 rm /tmp/lock.jpg
 file=/tmp/lock.png
 
-timestamp=$(date +%F-%R:%S)
+timestamp=$(date %Y-%m-%dT%H:%M:%S%z)
 swaylock -i "$file" >"/tmp/swaylock-$timestamp.log" 2>&1
