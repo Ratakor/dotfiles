@@ -1,3 +1,4 @@
+# TODO: should thes be exposed by the flake as a package output
 {
   config,
   lib,
@@ -5,6 +6,10 @@
   self,
   ...
 }: {
+  imports = [
+    ./music
+  ];
+
   # TODO:
   # dmenurecord: replace with wf-recorder
   # dmenusearch: split into different package since it has so many dependencies?
@@ -12,7 +17,6 @@
   # hole: remove?
   # icstocal: merge with quand?
   # mail: replace with a better mail client
-  # music/musiccmd: ...
   # plumber: ...
   # randwp: ...
   # screenshot: ... depends on dmenurecord

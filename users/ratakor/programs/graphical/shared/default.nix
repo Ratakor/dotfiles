@@ -5,7 +5,7 @@
 
     ./gtk.nix
     ./imv.nix # Image Viewer
-    ./mpv # Media Player
+    ./mpv.nix # Media Player
     ./obs.nix # Screen Recorder
     ./zathura.nix # Document Viewer
   ];
