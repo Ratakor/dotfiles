@@ -14,7 +14,7 @@ indent_style = tab
 indent_style = space
 indent_size = 4
 
-[*.nix]
+[*.{nix,yml,yaml}]
 indent_style = space
 indent_size = 2
 
