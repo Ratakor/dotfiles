@@ -1,5 +1,4 @@
 {
-  colors,
   keys,
   lib,
   pkgs,
@@ -138,22 +137,9 @@
     hyprland.enable = true;
     niri.enable = true;
 
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      # pinentryPackage = pkgs.pinentry-curses;
-    };
-
     gdk-pixbuf.modulePackages = with pkgs; [
       librsvg # add svg support to gdk-pixbuf (wlogout)
     ];
-
-    ssh = {
-      # ssh client with gssapi support, also set in home-manager programs.ssh
-      # and git (should it be only set system wide?)
-      # package = pkgs.openssh_gssapi;
-      startAgent = false; # handled by gnupg
-    };
   };
 
   services = {

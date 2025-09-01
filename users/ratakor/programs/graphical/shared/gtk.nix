@@ -16,6 +16,7 @@
     # - does this work as intended on X11?
     # - iirc it was causing issue with lutris on wayland
     # - try to only remove titlebar for specific apps (terminal, dragon-drop, ...)
+    # - idk if it's because of this or odd gtk4 config but chromium looses its bar when fullscreen
     gtk3.extraCss = ''
       /* No (default) titlebar on wayland */
       .titlebar, .css, headerbar {
@@ -28,7 +29,7 @@
 
     gtk4 = {
       enable = true;
-      # TODO: config, remove ugly titlebar on whatever pinentry app I'm using
+      # TODO: config
     };
   };
 }

@@ -11,6 +11,7 @@ in {
     callLib = path: import path {inherit lib self;};
   in {
     trivial = callLib ./trivial.nix;
+    time = callLib ./time.nix;
 
     inherit (self.trivial) capitalize hexToRgba;
   });

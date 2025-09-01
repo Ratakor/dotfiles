@@ -4,9 +4,10 @@
 
 https://github.con/NixOS/nixpkgs/issues/224525
 
--  ~/.config/dconf/user
--  ~/.gnupg
--  ~\~/.zshenv~ home-manager
+- ~/.cache/dconf
+- ~/.config/dconf/user
+- ~/.gnupg
+- ~\~/.zshenv~ home-manager
 - ~\~/.ssh~ ssh (duh)
 - ~\~/.pki~ chromium, see [xdg-basedir.patch](https://github.com/noahvogt/chromium-patches/blob/master/xdg-basedir.patch)
 

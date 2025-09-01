@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   self,
   ...
@@ -61,21 +60,6 @@
     # json processor
     jq = {
       enable = true;
-    };
-
-    # this should probably be somewhere else
-    ssh = {
-      enable = true;
-      package = pkgs.openssh_gssapi; # use `null` for system default
-      enableDefaultConfig = false; # deprecated
-      matchBlocks = {
-        "ssh.cri.epita.fr" = {
-          extraOptions = {
-            GSSAPIAuthentication = "yes";
-            GSSAPIDelegateCredentials = "yes";
-          };
-        };
-      };
     };
   };
 

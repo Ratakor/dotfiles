@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   networking = {
     # https://github.com/StevenBlack/hosts
     stevenblack = {

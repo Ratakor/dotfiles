@@ -47,7 +47,6 @@ in {
 
       # ~/ Clean-up
       FFMPEG_DATADIR = "${XDG_CONFIG_HOME}/ffmpeg";
-      GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
       inherit GOPATH;
       GOMODCACHE = "${XDG_CACHE_HOME}/go/mod";
       inherit CARGO_HOME;
@@ -76,7 +75,6 @@ in {
       SAM_CLI_TELEMETRY = "0";
 
       # Misc
-      # GPG_TTY = "$(tty)";
       MOZ_ENABLE_WAYLAND = "1";
       MANWIDTH = "80";
       LESS = "-R";
