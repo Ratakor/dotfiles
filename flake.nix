@@ -22,11 +22,9 @@
     # Flake builder.
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    # This is not a dotfiles manager it's a whole kitchen sink to manage
-    # home configurations, hjem or basic stow implementation might be better
-    # for raw dotfiles. Note that there is a stable version of home-manager.
-    home-manager = {
-      url = "github:nix-community/home-manager";
+    # Dotfiles management.
+    hjem = {
+      url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -35,7 +33,7 @@
       url = "github:ryantm/agenix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
+        # home-manager.follows = "home-manager"; # TODO
         darwin.follows = "";
         systems.follows = "systems";
       };
