@@ -1,8 +1,10 @@
 {
-  colors,
+  osConfig,
   self,
   ...
-}: {
+}: let
+  inherit (osConfig) colors;
+in {
   programs.tofi = {
     enable = true;
     package = self.pkgs.tofi-dmenu;

@@ -1,5 +1,7 @@
 # Terminal Emulator
-{colors, ...}: {
+{osConfig, ...}: let
+  inherit (osConfig) colors;
+in {
   programs.foot = {
     enable = true;
     server.enable = false;

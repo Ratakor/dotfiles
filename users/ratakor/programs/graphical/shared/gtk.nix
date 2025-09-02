@@ -1,13 +1,16 @@
 {
-  colors,
+  osConfig,
   pkgs,
   ...
 }: {
   gtk = {
     enable = true;
+
+    # TODO
+    # inherit (osConfig.colors.gtk) theme;
     theme = {
-      inherit (colors.gtk) name;
-      package = pkgs.${colors.gtk.packageName};
+      inherit (osConfig.colors.gtk) name;
+      package = pkgs.${osConfig.colors.gtk.packageName};
     };
 
     gtk2.enable = false; # .gtkrc-2.0 symlink in $HOME

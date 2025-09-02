@@ -1,4 +1,7 @@
-{colors, ...}: {
+{osConfig, ...}: let
+  inherit (builtins) readFile;
+  inherit (osConfig) colors;
+in {
   wayland.windowManager.river = {
     enable = true;
     xwayland.enable = true;
@@ -29,6 +32,6 @@
       border-color-urgent = "0x${colors.red}";
     };
 
-    extraConfig = builtins.readFile ./river-init.sh;
+    extraConfig = readFile ./river-init.sh;
   };
 }

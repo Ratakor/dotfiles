@@ -1,4 +1,5 @@
 {
+  config,
   self,
   inputs,
   withSystem,
@@ -18,12 +19,9 @@
   # Root path for local modules
   modulePath = ../modules;
 
-  coreModules = modulePath + /core;
+  core = modulePath + /core;
   options = modulePath + /options;
   roles = modulePath + /roles;
-
-  # Common modules for all systems
-  common = coreModules + /common;
 
   # Roles
   graphical = roles + /graphical; # Currently only provide an X server
@@ -41,7 +39,7 @@
     );
 
   mkModulesFor = hostname: {
-    moduleTrees ? [common options],
+    moduleTrees ? [core options],
     roles ? [],
     extraModules ? [],
   }:
@@ -73,10 +71,10 @@
       }:
         lib.nixosSystem {
           inherit modules;
-          specialArgs = recursiveUpdate {
-            inherit inputs inputs' self self';
-            colors = (import ../modules/options/colors).gruvbox-dark; # TODO: remove
-          } {self.pkgs = self'.packages;};
+          specialArgs =
+            recursiveUpdate
+            {inherit inputs inputs' self self';}
+            {self.pkgs = self'.packages;};
         }
     );
 in {

@@ -1,9 +1,11 @@
 # Notification daemon
 {
-  colors,
+  osConfig,
   pkgs,
   ...
-}: {
+}: let
+  inherit (osConfig) colors;
+in {
   home.packages = [pkgs.libnotify];
 
   services.mako = {
