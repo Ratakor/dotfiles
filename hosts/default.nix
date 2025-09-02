@@ -5,15 +5,66 @@
   ...
 }: let
   inherit (inputs.nixpkgs) lib;
+  inherit (builtins) filter;
   inherit (lib.attrsets) recursiveUpdate;
-  inherit (lib.lists) flatten;
+  inherit (lib.filesystem) listFilesRecursive;
+  inherit (lib.lists) flatten concatLists singleton;
+  inherit (lib.strings) hasSuffix;
+
+  # Flake inputs modules
+  agenix = inputs.agenix.nixosModules.default; # TODO: use npins + move to modules/core
+  inherit (inputs.home-manager.nixosModules) home-manager;
+
+  # Root path for local modules
+  modulePath = ../modules;
+
+  coreModules = modulePath + /core;
+  options = modulePath + /options;
+  roles = modulePath + /roles;
+
+  # Common modules for all systems
+  common = coreModules + /common;
+
+  # Roles
+  graphical = roles + /graphical; # Currently only provide an X server
+  # workstation = roles + /workstation;
+  # laptop = roles + /laptop;
+  # server = roles + /server;
+
+  users = ../users; # home-manager user configurations
+  home = [home-manager users];
+
+  # Recursively find all `module.nix` files in a given path
+  mkModuleTree = path:
+    filter (hasSuffix "module.nix") (
+      map toString (listFilesRecursive path)
+    );
+
+  mkModulesFor = hostname: {
+    moduleTrees ? [common options],
+    roles ? [],
+    extraModules ? [],
+  }:
+    flatten (
+      concatLists [
+        # Host-specific configuration
+        (singleton ./${hostname})
+
+        # Recursively import all module trees (i.e. directories with a `module.nix`)
+        # for given moduleTree directories, and in addition, roles.
+        (map (path: mkModuleTree path) (concatLists [moduleTrees roles]))
+
+        # Age encryption, should be available on all systems
+        (singleton agenix)
+
+        extraModules
+      ]
+    );
 
   mkNixosSystem = {
-    system,
-    hostname,
-    theme ? "gruvbox-dark", # gruvbox-dark gruvbox-light dracula
-    ...
-  } @ args:
+    system ? "x86_64-linux",
+    modules,
+  }:
     withSystem system (
       {
         self',
@@ -21,99 +72,26 @@
         ...
       }:
         lib.nixosSystem {
+          inherit modules;
           specialArgs = recursiveUpdate {
             inherit inputs inputs' self self';
-            colors = (import ../modules/options/colors).${theme};
-          } {self.pkgs = self'.packages;};
-
-          modules = [./${hostname}] ++ (args.modules or []);
-        }
-    );
-
-  # merge this with mkNixosSystem?
-  mkHomeConfig = {
-    system,
-    modules,
-    theme ? "gruvbox-dark", # gruvbox-dark gruvbox-light dracula
-    ...
-  } @ args:
-    withSystem system (
-      {
-        self',
-        inputs',
-        pkgs,
-        ...
-      }:
-        inputs.home-manager.lib.homeManagerConfiguration {
-          inherit modules pkgs;
-          extraSpecialArgs = recursiveUpdate {
-            inherit inputs inputs' self self';
-            colors = (import ../modules/options/colors).${theme};
+            colors = (import ../modules/options/colors).gruvbox-dark; # TODO: remove
           } {self.pkgs = self'.packages;};
         }
     );
 in {
-  flake.nixosConfigurations = let
-    # Flake inputs modules
-    agenix = inputs.agenix.nixosModules.default;
-    inherit (inputs.home-manager.nixosModules) home-manager;
-
-    # Local modules, based on notashelf/nyx/hosts, need more docs + incomplete
-    modulePath = ../modules;
-
-    coreModules = modulePath + /core;
-    # extraModules = modulePath + /extra;
-    # options = modulePath + /options;
-
-    # extraHomeModules = extraModules + /home; # set in ../users/default.nix
-    users = ../users;
-    home = [home-manager users];
-
-    shared = [agenix coreModules];
-  in {
+  flake.nixosConfigurations = {
     X200 = mkNixosSystem {
-      hostname = "X200";
-      system = "x86_64-linux";
-      theme = "gruvbox-dark";
-      modules = flatten [
-        home
-        shared
-      ];
+      modules = mkModulesFor "X200" {
+        roles = [graphical];
+        extraModules = [home];
+      };
     };
     # AuroraR7 = mkNixosSystem {
-    #   hostname = "AuroraR7";
-    #   system = "x86_64-linux";
-    #   theme = "gruvbox-dark";
-    #   modules = flatten [
-    #     home
-    #     shared
-    #   ];
+    #   modules = mkModulesFor "AuroraR7" {
+    #     roles = [graphical];
+    #     extraModules = [home];
+    #   };
     # };
-  };
-
-  # apparently this is needed
-  # https://flake.parts/options/home-manager.html
-  imports = [
-    inputs.home-manager.flakeModules.home-manager
-  ];
-
-  # TODO: requires homeModules configuration
-  # could regular flake parts modules be used instead?
-  # https://flake.parts/options/flake-parts-modules.html
-  flake.homeConfigurations = {
-    "ratakor@AuroraR7" = mkHomeConfig {
-      system = "x86_64-linux";
-      theme = "gruvbox-dark";
-      modules = [
-        {
-          home = {
-            username = "ratakor";
-            homeDirectory = "/home/ratakor";
-            stateVersion = "25.05";
-          };
-        }
-        # (import ../users)
-      ];
-    };
   };
 }

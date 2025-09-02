@@ -9,9 +9,7 @@
     ./fonts.nix
     ./login.nix
     ./networking.nix
-    ./nix
     ./security.nix
-    ./secrets.nix
     ./system.nix
   ];
 
@@ -166,9 +164,6 @@
 
     # Enable CUPS to print documents
     printing.enable = true;
-
-    # Enable the X11 windowing system (still needed for wayland iirc)
-    xserver.enable = true;
 
     # used by gammastep
     geoclue2.enable = true;
