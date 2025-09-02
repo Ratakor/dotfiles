@@ -1,7 +1,9 @@
 # Idle manager
 {pkgs, ...}: {
+  home.packages = [pkgs.swayidle];
+
   services.swayidle = {
-    enable = true;
+    enable = false; # This shit doesn't work
     extraArgs = ["-w"];
     timeouts = [
       {

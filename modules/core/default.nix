@@ -1,7 +1,7 @@
 {
-  keys,
   lib,
   pkgs,
+  self,
   ...
 }: {
   imports = [
@@ -32,7 +32,7 @@
       "networkmanager"
       # "kvm"
     ];
-    openssh.authorizedKeys.keys = keys.ratakor;
+    openssh.authorizedKeys.keys = self.keys.ratakor;
   };
 
   environment = {
@@ -136,6 +136,16 @@
     river.enable = true;
     hyprland.enable = true;
     niri.enable = true;
+
+    # uwsm = {
+    #   enable = true;
+    #   waylandCompositors = {
+    #     river = {
+    #       prettyName = "River";
+    #       binPath = "/run/current-system/sw/bin/river";
+    #     };
+    #   };
+    # };
 
     gdk-pixbuf.modulePackages = with pkgs; [
       librsvg # add svg support to gdk-pixbuf (wlogout)

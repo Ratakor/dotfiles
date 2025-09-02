@@ -22,9 +22,8 @@
       }:
         lib.nixosSystem {
           specialArgs = recursiveUpdate {
-            inherit (self) keys;
             inherit inputs inputs' self self';
-            colors = (import ../modules/colors).${theme};
+            colors = (import ../modules/options/colors).${theme};
           } {self.pkgs = self'.packages;};
 
           modules = [./${hostname}] ++ (args.modules or []);
@@ -48,9 +47,8 @@
         inputs.home-manager.lib.homeManagerConfiguration {
           inherit modules pkgs;
           extraSpecialArgs = recursiveUpdate {
-            inherit (self) keys;
             inherit inputs inputs' self self';
-            colors = (import ../modules/colors).${theme};
+            colors = (import ../modules/options/colors).${theme};
           } {self.pkgs = self'.packages;};
         }
     );
@@ -60,13 +58,18 @@ in {
     agenix = inputs.agenix.nixosModules.default;
     inherit (inputs.home-manager.nixosModules) home-manager;
 
+    # Local modules, based on notashelf/nyx/hosts, need more docs + incomplete
+    modulePath = ../modules;
+
+    coreModules = modulePath + /core;
+    # extraModules = modulePath + /extra;
+    # options = modulePath + /options;
+
+    # extraHomeModules = extraModules + /home; # set in ../users/default.nix
     users = ../users;
     home = [home-manager users];
 
-    # TODO
-    all = [../modules];
-
-    shared = [agenix];
+    shared = [agenix coreModules];
   in {
     X200 = mkNixosSystem {
       hostname = "X200";
@@ -75,7 +78,6 @@ in {
       modules = flatten [
         home
         shared
-        all
       ];
     };
     # AuroraR7 = mkNixosSystem {

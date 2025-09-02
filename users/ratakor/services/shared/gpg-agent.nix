@@ -1,5 +1,4 @@
 {
-  keys, # TODO: add to gpg to parts/keys.nix for default-key and sshKeys
   pkgs,
   self,
   ...
@@ -11,7 +10,7 @@ in {
     verbose = false; # default: false
     enableZshIntegration = true; # set $GPG_TTY=$(tty)
     enableSshSupport = true;
-    # sshKeys = [""];
+    # sshKeys = [""]; # TODO: use self.keys
     defaultCacheTtl = 6 * secPerHour; # 6 hours
     defaultCacheTtlSsh = 6 * secPerHour; # 6 hours
     maxCacheTtl = 1 * secPerYear; # 1 year (default: 2 hours)

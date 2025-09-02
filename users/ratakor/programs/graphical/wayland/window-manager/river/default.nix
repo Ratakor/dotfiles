@@ -1,13 +1,9 @@
-{
-  colors,
-  config,
-  ...
-}: {
+{colors, ...}: {
   wayland.windowManager.river = {
     enable = true;
     xwayland.enable = true;
     systemd = {
-      enable = true; # TODO
+      enable = true;
       variables = ["--all"];
     };
 

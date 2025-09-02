@@ -1,11 +1,14 @@
 # Spotify client
 {
   config,
+  lib,
   osConfig,
+  pkgs,
   self,
   ...
 }: let
-  inherit (builtins) toJSON;
+  inherit (lib.attrsets) mapAttrsToList;
+  inherit (lib.strings) escapeShellArgs;
 
   # https://github.com/librespot-org/librespot/wiki/Options
   librespotOptions = {
@@ -23,16 +26,29 @@
     volume-ctrl = "fixed";
   };
 in {
-  home.packages = [
-    self.pkgs.librespot-cfg # provides an alias for librespot too
+  home.packages = let
+    args =
+      mapAttrsToList (
+        k: v:
+          if v == null || v == false
+          then ""
+          else if v == true
+          then "--${k}"
+          else "--${k}=${toString v}"
+      )
+      librespotOptions;
+
+    librespot = pkgs.writeShellApplication {
+      name = "librespot";
+      text = "exec ${self.pkgs.librespot}/bin/librespot ${escapeShellArgs args}";
+    };
+  in [
+    librespot
   ];
 
-  xdg.configFile."librespot/config.json".text = toJSON librespotOptions;
-
-  services = {
-    librespot = {
-      enable = false; # TODO: org.freedesktop.systemd1.NoSuchUnit: Unit librespot.service not found.
-      settings = librespotOptions;
-    };
+  # This one works well if $XDG_CONFIG_HOME is set to ~/.config
+  services.librespot = {
+    enable = false;
+    settings = librespotOptions;
   };
 }

@@ -1,4 +1,3 @@
-# https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe
 {config, ...}: let
   inherit (builtins) listToAttrs;
 in {
@@ -7,6 +6,9 @@ in {
   xdg = {
     enable = true;
 
+    # I follow the .local convention: https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe
+    # Setting these variables to something different than their default causes
+    # issue when a program that uses them start before they have been sourced.
     configHome = "${config.home.homeDirectory}/.local/etc";
     dataHome = "${config.home.homeDirectory}/.local/share";
     stateHome = "${config.home.homeDirectory}/.local/var/state"; # could be named log or lib too

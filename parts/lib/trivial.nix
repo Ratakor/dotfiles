@@ -1,4 +1,7 @@
-{lib, ...}: {
+{lib, ...}: let
+  inherit (builtins) substring stringLength;
+  inherit (lib.trivial) fromHexString;
+in {
   /**
   Capitalize the first letter of a word.
   If the word is empty, it returns an empty string.
@@ -7,8 +10,8 @@
     if word == ""
     then ""
     else let
-      head = builtins.substring 0 1 word;
-      tail = builtins.substring 1 (builtins.stringLength word - 1) word;
+      head = substring 0 1 word;
+      tail = substring 1 (stringLength word - 1) word;
     in "${lib.toUpper head}${tail}";
 
   /**
@@ -17,10 +20,10 @@
   # Inputs
 
   `hex`
-  : a string in the format "RRGGBB"
+  : String in the format "RRGGBB"
 
   `alpha`
-  : a float between 0 and 1
+  : Float between 0 and 1
 
   # Type
 
@@ -29,9 +32,6 @@
   ```
   */
   hexToRgba = hex: alpha: let
-    inherit (lib.trivial) fromHexString;
-    inherit (builtins) substring;
-
     r = toString (fromHexString (substring 0 2 hex));
     g = toString (fromHexString (substring 2 2 hex));
     b = toString (fromHexString (substring 4 2 hex));

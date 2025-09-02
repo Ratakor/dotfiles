@@ -1,5 +1,4 @@
 # Simple music selector that uses and interacts with mpv.
-# Have a look at musiccmd, .local/etc/mpv/music/ and .local/etc/waybar/scripts/music.sh or sb (statusbar)
 # non-nix version of this script:
 # https://raw.githubusercontent.com/Ratakor/dotfiles/ec0dc5e5240d2fef94afaa3cbe7f2cb9d5dcfce3/users/ratakor/programs/scripts/bin/music
 {
