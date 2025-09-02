@@ -13,6 +13,6 @@ in {
     time = callLib ./time.nix;
     trivial = callLib ./trivial.nix;
 
-    inherit (self.trivial) capitalize hexToRgba;
+    inherit (self.trivial) capitalize hexToRgba isx86Linux;
   });
 }

@@ -1,6 +1,8 @@
+# TODO: maybe remove graphical and instead use an option since it doesn't do much rn
 {
   imports = [
-    ./services/xserver.nix
+    ./login.nix
+    ./xserver.nix
   ];
 
   system.nixos.tags = ["graphical"];

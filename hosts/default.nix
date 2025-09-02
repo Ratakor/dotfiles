@@ -25,8 +25,8 @@
 
   # Roles
   graphical = roles + /graphical; # Currently only provide an X server
-  # workstation = roles + /workstation;
-  # laptop = roles + /laptop;
+  workstation = roles + /workstation;
+  laptop = roles + /laptop;
   # server = roles + /server;
 
   users = ../users; # home-manager user configurations
@@ -81,13 +81,13 @@ in {
   flake.nixosConfigurations = {
     X200 = mkNixosSystem {
       modules = mkModulesFor "X200" {
-        roles = [graphical];
+        roles = [graphical workstation laptop];
         extraModules = [home];
       };
     };
     # AuroraR7 = mkNixosSystem {
     #   modules = mkModulesFor "AuroraR7" {
-    #     roles = [graphical];
+    #     roles = [graphical workstation];
     #     extraModules = [home];
     #   };
     # };

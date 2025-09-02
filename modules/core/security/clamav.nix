@@ -1,0 +1,6 @@
+{
+  # antivirus
+  services.clamav = {
+    # TODO
+  };
+}

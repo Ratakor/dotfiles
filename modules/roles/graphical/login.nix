@@ -1,3 +1,6 @@
+# TODO: need configuration:
+# - config.login.autologin = { enable, user, command }
+# - config.login.manager
 # https://kl.wtf/posts/2022/03/12/login-managers-an-introduction.html
 {
   lib,
