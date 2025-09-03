@@ -85,8 +85,6 @@ in {
       (const (prev: {
         # https://nixpk.gs/pr-tracker.html?pr=433847
         pmount = self.pkgs.pmount;
-        # https://nixpk.gs/pr-tracker.html?pr=437539
-        librespot = self.pkgs.librespot;
       }))
     ];
   };

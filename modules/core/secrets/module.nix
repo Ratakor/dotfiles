@@ -17,7 +17,7 @@
       inherit group owner mode;
     };
 in {
-  imports = ["${self.pins.agenix}/modules/age.nix"]
+  imports = ["${self.pins.agenix}/modules/age.nix"];
 
   age.secrets = {
     irc = mkAgenixSecret true {

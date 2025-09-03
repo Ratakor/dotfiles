@@ -4,11 +4,11 @@
   lib,
   osConfig,
   pkgs,
-  self,
   ...
 }: let
   inherit (lib.attrsets) mapAttrsToList;
   inherit (lib.strings) escapeShellArgs;
+  inherit (lib.meta) getExe;
 
   # https://github.com/librespot-org/librespot/wiki/Options
   librespotOptions = {
@@ -40,7 +40,7 @@ in {
 
     librespot = pkgs.writeShellApplication {
       name = "librespot";
-      text = "exec ${self.pkgs.librespot}/bin/librespot ${escapeShellArgs args}";
+      text = "exec ${getExe pkgs.librespot} ${escapeShellArgs args}";
     };
   in [
     librespot
