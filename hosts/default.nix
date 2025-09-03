@@ -12,10 +12,6 @@
   inherit (lib.lists) flatten concatLists singleton;
   inherit (lib.strings) hasSuffix;
 
-  # Flake inputs modules
-  agenix = inputs.agenix.nixosModules.default; # TODO: use npins + move to modules/core
-  inherit (inputs.home-manager.nixosModules) home-manager;
-
   # Root path for local modules
   modulePath = ../modules;
 
@@ -29,6 +25,7 @@
   laptop = roles + /laptop;
   # server = roles + /server;
 
+  inherit (inputs.home-manager.nixosModules) home-manager;
   users = ../users; # home-manager user configurations
   home = [home-manager users];
 
@@ -51,9 +48,6 @@
         # Recursively import all module trees (i.e. directories with a `module.nix`)
         # for given moduleTree directories, and in addition, roles.
         (map (path: mkModuleTree path) (concatLists [moduleTrees roles]))
-
-        # Age encryption, should be available on all systems
-        (singleton agenix)
 
         extraModules
       ]

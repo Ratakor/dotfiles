@@ -34,7 +34,6 @@
       };
 
       fromInputs = [
-        "agenix"
         "flint"
         "watt"
         "zfs-restore"

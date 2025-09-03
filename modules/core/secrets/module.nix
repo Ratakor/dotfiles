@@ -1,6 +1,6 @@
 {
-  inputs,
   lib,
+  self,
   ...
 }: let
   inherit (lib.modules) mkIf;
@@ -13,10 +13,12 @@
     mode ? "400",
   }:
     mkIf enableCondition {
-      file = "${inputs.self}/secrets/${file}";
+      file = "${self}/secrets/${file}";
       inherit group owner mode;
     };
 in {
+  imports = ["${self.pins.agenix}/modules/age.nix"]
+
   age.secrets = {
     irc = mkAgenixSecret true {
       file = "irc.age";

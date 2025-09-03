@@ -1,7 +1,7 @@
 {
   perSystem = {
-    inputs',
     config,
+    pins,
     pkgs,
     ...
   }: {
@@ -12,7 +12,7 @@
 
       packages = with pkgs; [
         git
-        inputs'.agenix.packages.default # agenix CLI for managing secrets
+        (pkgs.callPackage "${pins.agenix}/pkgs/agenix.nix" {}) # agenix CLI for managing secrets
         npins
         just
         nh
