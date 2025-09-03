@@ -63,12 +63,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Flake input linter.
-    flint = {
-      url = "github:NotAShelf/flint";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # A CLI tool to restore files from ZFS snapshots.
     zfs-restore = {
       url = "github:ratakor/zfs-restore";

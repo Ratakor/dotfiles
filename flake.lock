@@ -34,26 +34,6 @@
         "type": "github"
       }
     },
-    "flint": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1750323573,
-        "narHash": "sha256-sMyzD5H3iqmwehJ6K+RFLto0bGi6OQKzYa3zmDbhukQ=",
-        "owner": "NotAShelf",
-        "repo": "flint",
-        "rev": "4de5e2f5bf3a6aa34087437065e1e5c099f8fefb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NotAShelf",
-        "repo": "flint",
-        "type": "github"
-      }
-    },
     "git-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -152,7 +132,6 @@
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "flint": "flint",
         "git-hooks": "git-hooks",
         "gitignore": "gitignore",
         "home-manager": "home-manager",

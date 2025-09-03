@@ -14,7 +14,7 @@
     pkgs,
     ...
   }: let
-    inherit (builtins) concatStringsSep match listToAttrs;
+    inherit (builtins) concatStringsSep match;
     inherit (lib.attrsets) recursiveUpdate;
     inherit (lib.filesystem) packagesFromDirectoryRecursive;
     inherit (lib.customisation) callPackageWith;
@@ -33,18 +33,20 @@
         directory = ./pkgs;
       };
 
-      fromInputs = [
-        "flint"
-        "watt"
-        "zfs-restore"
-      ];
+      fromInputs = {
+        # Automatic CPU speed & power optimizer for Linux
+        watt = inputs'.watt.packages.default;
+        # A CLI tool to restore files from ZFS snapshots
+        zfs-restore = inputs'.zfs-restore.packages.default;
+      };
 
-      mappedPkgs = listToAttrs (map (input: {
-          name = input;
-          value = inputs'.${input}.packages.default or (throw "Input '${input}' does not provide a default package");
-        })
-        fromInputs);
+      fromPins = {
+        # age-encrypted secrets for NixOS
+        agenix = pkgs.callPackage "${pins.agenix}/pkgs/agenix.nix" {};
+        # Stupid simple utility for linting your flake inputs
+        flint = pkgs.callPackage "${pins.flint}/nix/package.nix" {};
+      };
     in
-      base // mappedPkgs;
+      base // fromInputs // fromPins;
   };
 }

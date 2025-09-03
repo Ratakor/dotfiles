@@ -13,6 +13,19 @@
       "url": "https://github.com/ryantm/agenix/archive/9edb1787864c4f59ae5074ad498b6272b3ec308d.tar.gz",
       "hash": "06w2dxnf8qxwcmqvgyxnrrx62ca5x1cw3lminpgs112md17wa3rl"
     },
+    "flint": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NotAShelf",
+        "repo": "flint"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "4de5e2f5bf3a6aa34087437065e1e5c099f8fefb",
+      "url": "https://github.com/NotAShelf/flint/archive/4de5e2f5bf3a6aa34087437065e1e5c099f8fefb.tar.gz",
+      "hash": "0i5sw4v9iwxdc6rh4fdsd1n39nif8pj2nyhjgaqak2ppj47v7k5h"
+    },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",

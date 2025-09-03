@@ -88,14 +88,9 @@
       ];
     };
 
-    # now idk if I prefer gitui v0.22.1 or the latest one
-    # smh gitui is not building atm so let's keep v0.22.1
-    gitui = {
-      enable = true;
-      # keyConfig = ./key_bindings.ron;
-      # theme = # default
-
-      package = pkgs.stdenv.mkDerivation (finalAttrs: {
+    # gitui v0.22.1 got better controls but recent versions are more performant
+    gitui = let
+      gitui_0_22_1 = pkgs.stdenv.mkDerivation (finalAttrs: {
         pname = "gitui";
         version = "0.22.1";
 
@@ -110,7 +105,13 @@
 
         inherit (pkgs.gitui) meta;
       });
-      keyConfig = ./key_bindings_0.22.1.ron;
+    in {
+      enable = true;
+
+      # package = gitui_0_22_1;
+      # keyConfig = ./key_bindings_0.22.1.ron;
+      keyConfig = ./key_bindings.ron;
+
       # theme = # default
     };
   };

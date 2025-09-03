@@ -1,8 +1,8 @@
 {
   perSystem = {
     config,
-    pins,
     pkgs,
+    self',
     ...
   }: {
     devShells.default = pkgs.mkShellNoCC {
@@ -12,7 +12,7 @@
 
       packages = with pkgs; [
         git
-        (pkgs.callPackage "${pins.agenix}/pkgs/agenix.nix" {}) # agenix CLI for managing secrets
+        self'.packages.agenix
         npins
         just
         nh
