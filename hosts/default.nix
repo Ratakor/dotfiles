@@ -14,7 +14,6 @@
 
   # Flake inputs modules
   agenix = inputs.agenix.nixosModules.default; # TODO: use npins + move to modules/core
-  inherit (inputs.home-manager.nixosModules) home-manager;
 
   # Root path for local modules
   modulePath = ../modules;
@@ -30,7 +29,7 @@
   # server = roles + /server;
 
   users = ../users; # home-manager user configurations
-  home = [home-manager users];
+  home = [users];
 
   # Recursively find all `module.nix` files in a given path
   mkModuleTree = path:

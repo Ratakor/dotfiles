@@ -22,12 +22,6 @@
     # Flake builder.
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    # Dotfiles management.
-    hjem = {
-      url = "github:feel-co/hjem";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Secrets management.
     agenix = {
       url = "github:ryantm/agenix";
