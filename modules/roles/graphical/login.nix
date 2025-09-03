@@ -19,6 +19,7 @@ in {
     # TODO: doesn't work with river/hyprland
     greetd = {
       enable = false;
+      useTextGreeter = true;
       settings = {
         vt = 1;
 
