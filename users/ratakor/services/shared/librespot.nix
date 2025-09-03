@@ -38,10 +38,9 @@ in {
       )
       librespotOptions;
 
-    librespot = pkgs.writeShellApplication {
-      name = "librespot";
-      text = "exec ${getExe pkgs.librespot} ${escapeShellArgs args}";
-    };
+    librespot = pkgs.writeShellScriptBin "librespot" ''
+      exec ${getExe pkgs.librespot} ${escapeShellArgs args} "$@"
+    '';
   in [
     librespot
   ];
