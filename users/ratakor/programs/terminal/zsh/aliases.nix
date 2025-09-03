@@ -1,9 +1,5 @@
 # TODO: paliasrc
-{
-  colors,
-  config,
-  ...
-}: let
+{config, ...}: let
   sudoCommands = [
     "iftop"
     # "mount" # handled below

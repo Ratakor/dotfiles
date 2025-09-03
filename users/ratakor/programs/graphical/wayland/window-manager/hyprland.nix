@@ -1,8 +1,4 @@
-{
-  colors,
-  config,
-  ...
-}: {
+{config, ...}: {
   wayland.windowManager.hyprland = {
     enable = false; # TODO
     xwayland.enable = true;

@@ -36,4 +36,7 @@ in {
     g = toString (fromHexString (substring 2 2 hex));
     b = toString (fromHexString (substring 4 2 hex));
   in "rgba(${r}, ${g}, ${b}, ${toString alpha})";
+
+  # check if the host platform is linux and x86
+  isx86Linux = pkgs: with pkgs.stdenv; hostPlatform.isLinux && hostPlatform.isx86;
 }

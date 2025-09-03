@@ -1,7 +1,7 @@
 # replacement of various shell utilities
 # most of them are bloated and written in rust hence oxidation
 {
-  colors,
+  osConfig,
   pkgs,
   ...
 }: {
@@ -47,7 +47,7 @@
     bat = {
       enable = true;
       config = {
-        inherit (colors.bat) theme;
+        inherit (osConfig.colors.bat) theme;
         style = "plain";
         tabs = "0";
       };

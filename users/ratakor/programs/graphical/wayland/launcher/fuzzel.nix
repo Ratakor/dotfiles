@@ -2,7 +2,9 @@
 # ff = 100%
 # e6 = 90%
 # d9 = 85%
-{colors, ...}: {
+{osConfig, ...}: let
+  inherit (osConfig) colors;
+in {
   programs.fuzzel = {
     enable = true;
     settings = {

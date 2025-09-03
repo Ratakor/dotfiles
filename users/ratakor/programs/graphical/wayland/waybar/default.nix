@@ -1,10 +1,11 @@
 {
-  colors,
+  osConfig,
   pkgs,
   self,
   ...
 }: let
   inherit (self.lib.trivial) hexToRgba;
+  inherit (osConfig) colors;
 in {
   programs.waybar = {
     enable = true;

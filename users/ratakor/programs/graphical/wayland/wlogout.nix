@@ -3,12 +3,13 @@
 # Alternative icons: https://github.com/ArtsyMacaw/wlogout/pull/59
 # X11 alternative (kinda): https://github.com/Ratakor/dotfiles/blob/artix/.local/bin/shutdown-menu
 {
-  colors,
+  osConfig,
   pkgs,
   self,
   ...
 }: let
   inherit (self.lib.trivial) hexToRgba;
+  inherit (osConfig) colors;
 in {
   programs.wlogout = {
     enable = true;

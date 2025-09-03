@@ -1,6 +1,26 @@
-{colors, ...}: {
+{config, lib, osConfig, pkgs, ...}: let
+  inherit (builtins) readFile;
+  inherit (lib.meta) getExe;
+  inherit (osConfig) colors;
+in {
   wayland.windowManager.river = {
     enable = true;
+    # TODO: maybe wrap all programs with their configs, currently this doesn't
+    # work because XDG_CONFIG_HOME is not set but if all programs are wrapped
+    # there should be no issue, tbh I kinda like this idea, it's really nix way
+    # but that would require to get rid of home-manager, also it's kinda a
+    # .local convention replacement so we can go back to use .config for
+    # programs that sucks
+
+    # package = let
+    #   RIVER_LOG_DIR = "${config.xdg.stateHome}/river";
+    #   RIVER_CONFIG = "${config.xdg.configHome}/river/init";
+    #   river = getExe pkgs.river;
+    # in pkgs.writeShellScriptBin "river" ''
+    #   timestamp=$(date +%Y-%m-%dT%H:%M:%S%z)
+    #   mkdir -p "${RIVER_LOG_DIR}"
+    #   exec dbus-run-session ${river} -c ${RIVER_CONFIG} -log-level warning > "${RIVER_LOG_DIR}/river-$timestamp.log" 2>&1
+    # '';
     xwayland.enable = true;
     systemd = {
       enable = true;
@@ -29,6 +49,6 @@
       border-color-urgent = "0x${colors.red}";
     };
 
-    extraConfig = builtins.readFile ./river-init.sh;
+    extraConfig = readFile ./river-init.sh;
   };
 }

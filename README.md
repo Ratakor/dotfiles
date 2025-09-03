@@ -15,6 +15,6 @@ https://github.con/NixOS/nixpkgs/issues/224525
 
 - [NotAShelf/nyx](https://github.com/NotAShelf/nyx/)
 - [foo-dogsquared/nixos-config](https://github.com/foo-dogsquared/nixos-config/)
+- [fazzi/nixoshess](https://gitlab.com/fazzi/nixoshess)
 - [diniamo/niqspkgs](https://github.com/diniamo/niqspkgs/)
-- [maeve-oake/nixos-config](https://github.com/maeve-oake/nixos-config/)
-- [ryan4yin/nix-config](https://github.com/ryan4yin/nix-config/)
+- [ryan4yin/nixos-and-flakes](https://nixos-and-flakes.thiscute.world/)

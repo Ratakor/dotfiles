@@ -1,7 +1,4 @@
 {
-  # See .github/workflows/update.yml
-  system.autoUpgrade.enable = false;
-
   # Set your time zone
   time.timeZone = "Europe/Paris";
 

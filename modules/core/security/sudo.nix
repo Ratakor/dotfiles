@@ -1,33 +1,7 @@
-{
-  lib,
-  pkgs,
-  ...
-}: let
-  inherit (lib.meta) getExe';
+{lib, ...}: let
   inherit (lib.modules) mkForce;
 in {
   security = {
-    # polkit.enable = true; # TODO: what is it for except niri?
-
-    rtkit.enable = true; # needed by pipewire
-
-    # keep the set even if empty to make swaylock work
-    pam.services.swaylock = {
-      fprintAuth = false;
-    };
-
-    wrappers = let
-      mkSetuidWrapper = package: command: {
-        setuid = true;
-        owner = "root";
-        group = "root";
-        source = getExe' package command;
-      };
-    in {
-      pmount = mkSetuidWrapper pkgs.pmount "pmount";
-      pumount = mkSetuidWrapper pkgs.pmount "pumount";
-    };
-
     # https://github.com/NixOS/nixpkgs/pull/256491
     sudo-rs.enable = mkForce false;
 

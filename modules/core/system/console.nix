@@ -1,5 +1,5 @@
-{colors, ...}: {
-  console.colors = with colors; [
+{config, ...}: {
+  console.colors = with config.colors; [
     black
     red
     green
