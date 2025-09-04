@@ -1,5 +1,8 @@
-{inputs, ...}: {
-  imports = [inputs.treefmt-nix.flakeModule];
+{
+  imports = let
+    pins = import ./npins;
+  in ["${pins.treefmt-nix}/flake-module.nix"];
+
   perSystem = {
     config,
     pkgs,

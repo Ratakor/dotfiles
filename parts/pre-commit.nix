@@ -3,8 +3,12 @@
 # I don't know if I like it tho, maybe it's better to setup `nix flake check`
 # instead and run a CI with it.
 # Also remember to uncomment shellHook in ./shell.nix & enable this in ./default.nix.
-{inputs, ...}: {
-  imports = [inputs.git-hooks.flakeModule];
+# https://github.com/cachix/git-hooks.nix
+{
+  imports = let
+    pins = import ./npins;
+  in ["${pins.git-hooks}/flake-module.nix"];
+
   perSystem = {
     config,
     pkgs,

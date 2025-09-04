@@ -33,18 +33,19 @@
         directory = ./pkgs;
       };
 
-      fromInputs = {
-        # Automatic CPU speed & power optimizer for Linux
-        watt = inputs'.watt.packages.default;
-        # A CLI tool to restore files from ZFS snapshots
-        zfs-restore = inputs'.zfs-restore.packages.default;
-      };
+      fromInputs = {};
 
       fromPins = {
         # age-encrypted secrets for NixOS
         agenix = pkgs.callPackage "${pins.agenix}/pkgs/agenix.nix" {};
         # Stupid simple utility for linting your flake inputs
         flint = pkgs.callPackage "${pins.flint}/nix/package.nix" {};
+        # Automatic CPU speed & power optimizer for Linux
+        watt = pkgs.callPackage "${pins.watt}/nix/package.nix" {};
+        # CLI tool to restore files from ZFS snapshots
+        zfs-restore = pkgs.callPackage "${pins.zfs-restore}/nix/package.nix" {
+          zigPlatform = inputs'.zig.packages.zig_0_15_1;
+        };
       };
     in
       base // fromInputs // fromPins;

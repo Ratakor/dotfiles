@@ -32,6 +32,19 @@
       "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre855444.aaff8c16d7fc/nixexprs.tar.xz",
       "hash": "16yibd3f5n670ng36a6py957vk13rl1bpb55i2mxxxh00zjb236l"
     },
+    "treefmt-nix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "numtide",
+        "repo": "treefmt-nix"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "1aabc6c05ccbcbf4a635fb7a90400e44282f61c4",
+      "url": "https://github.com/numtide/treefmt-nix/archive/1aabc6c05ccbcbf4a635fb7a90400e44282f61c4.tar.gz",
+      "hash": "16fqra97334hnn770c7hapdvc9h2ikznlfcgyjwls03mbryhanhp"
+    },
     "wallpapers": {
       "type": "Git",
       "repository": {
@@ -44,6 +57,32 @@
       "revision": "285cfb00f957a5e32cda5902959dba4e01e9d180",
       "url": "https://github.com/ratakor/wallpapers/archive/285cfb00f957a5e32cda5902959dba4e01e9d180.tar.gz",
       "hash": "105lyp88pzwzmjsyg4awiffa2m8azj1x70dl4xz5jkh0njnihp30"
+    },
+    "watt": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NotAShelf",
+        "repo": "watt"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "f68a9795616699870d213dc9e641dab655aa434a",
+      "url": "https://github.com/NotAShelf/watt/archive/f68a9795616699870d213dc9e641dab655aa434a.tar.gz",
+      "hash": "0i5yy4w9p86ma7siw7yc6dl0bmzqpli2fgp1crv53w1ybgyf4i54"
+    },
+    "zfs-restore": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ratakor",
+        "repo": "zfs-restore"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "36a8f29cb1ff9dd4d83cc5e721ccc9ef59527183",
+      "url": "https://github.com/ratakor/zfs-restore/archive/36a8f29cb1ff9dd4d83cc5e721ccc9ef59527183.tar.gz",
+      "hash": "11w8186gi0zp7j9sn52xjdpfpsbhh9ksyf0yly7dbd4bl4lzri73"
     }
   },
   "version": 5

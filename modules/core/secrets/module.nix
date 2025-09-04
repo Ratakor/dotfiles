@@ -5,6 +5,8 @@
 }: let
   inherit (lib.modules) mkIf;
 
+  module = import "${self.pins.agenix}/modules/age.nix";
+
   # based on notashelf/nyx lib
   mkAgenixSecret = enableCondition: {
     file,
@@ -17,7 +19,7 @@
       inherit group owner mode;
     };
 in {
-  imports = ["${self.pins.agenix}/modules/age.nix"];
+  imports = [module];
 
   age.secrets = {
     irc = mkAgenixSecret true {

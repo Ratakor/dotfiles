@@ -30,7 +30,7 @@
   programs = {
     # TODO
     # Window Manager
-    river.enable = true;
+    river-classic.enable = true; # river mop when?
     hyprland.enable = true;
     niri.enable = true;
 
@@ -63,18 +63,8 @@
       openFirewall = true;
     };
 
-    # Enable CUPS to print documents
-    printing.enable = true;
-
     # used by gammastep
     geoclue2.enable = true;
-
-    # Whether to enable power-profiles-daemon, a DBus daemon that allows changing
-    # system behavior based upon user-selected power profiles.
-    power-profiles-daemon.enable = false;
-
-    # enable NTP client to sync time
-    ntp.enable = true;
 
     gnome = {
       # Disabled by default, but re-enabled by some packages:
@@ -82,8 +72,5 @@
       gnome-keyring.enable = lib.mkForce false;
       # gcr-ssh-agent.enable = false; # config.services.gnome.gnome-keyring.enable
     };
-
-    # TODO: is userborn useful?
-    userborn.enable = false;
   };
 }

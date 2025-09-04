@@ -30,47 +30,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Formatter multiplexer.
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Dependency for git-hooks & zfs-restore (zls).
-    gitignore = {
-      url = "github:hercules-ci/gitignore.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # https://pre-commit.com git hooks with nix.
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        gitignore.follows = "gitignore";
-      };
-    };
-
     # The Zig programming language.
     zig = {
       url = "github:silversquirl/zig-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Modern CPU frequency and power management utility for Linux.
-    watt = {
-      url = "github:NotAShelf/watt";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # A CLI tool to restore files from ZFS snapshots.
-    zfs-restore = {
-      url = "github:ratakor/zfs-restore";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        zig.follows = "zig";
-        zls.inputs.gitignore.follows = "gitignore";
-      };
     };
   };
 

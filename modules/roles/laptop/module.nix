@@ -1,7 +1,7 @@
 {
   imports = [
     ./services/libinput.nix
-    ./services/tlp.nix
+    ./services/watt.nix
   ];
 
   system.nixos.tags = ["laptop"];

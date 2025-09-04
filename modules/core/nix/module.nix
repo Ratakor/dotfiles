@@ -1,8 +1,8 @@
 {
   config,
   inputs,
-  pkgs,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib.trivial) pipe;
@@ -15,8 +15,7 @@ in {
   ];
 
   nix = {
-    # why tho?
-    package = pkgs.nixVersions.latest; # pkgs.lix;
+    # package = pkgs.lix; # pkgs.nixVersions.latest;
 
     # Remove nix-channel related tools & configs in favor of flakes
     channel.enable = false;
@@ -65,19 +64,17 @@ in {
       # Optimize storage
       # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
       # Increases build time & useless with zfs dedup according to [insert forum link I forgot]
-      auto-optimise-store = false; # TODO: set this to !config.zfs.enable or something
+      auto-optimise-store = config.fileSystems."/nix".fsType != "zfs";
 
       # Move dotfiles in $HOME to $XDG_STATE_HOME/nix.
       # https://github.com/NixOS/nix/pull/5588
       use-xdg-base-directories = true;
 
-      # Disable global flake registry
+      # Disable global flake registry.
       flake-registry = "";
 
       # Remove warning about dirty VCS tree
       warn-dirty = false;
-
-      nix-path = config.nix.nixPath;
     };
 
     # Perform garbage collection weekly to maintain low disk usage
