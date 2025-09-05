@@ -23,7 +23,7 @@ stdenv.mkDerivation (finalAttrs: {
     description = "A terminal version of the 2048 game";
     homepage = "https://github.com/ratakor/2048.zig";
     licence = lib.licenses.isc;
-    maintainers = [];
+    maintainers = [lib.maintainers.ratakor];
     mainProgram = "2048";
   };
 })

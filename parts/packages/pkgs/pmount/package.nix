@@ -99,6 +99,7 @@ assert lib.hasSuffix "/" mediaDir;
       homepage = "https://bazaar.launchpad.net/~fourmond/pmount/main/files";
       description = "Mount removable devices as normal user";
       license = lib.licenses.gpl2Only;
+      maintainers = [lib.maintainers.ratakor];
       platforms = lib.platforms.linux;
     };
   }

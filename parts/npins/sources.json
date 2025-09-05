@@ -83,6 +83,19 @@
       "revision": "36a8f29cb1ff9dd4d83cc5e721ccc9ef59527183",
       "url": "https://github.com/ratakor/zfs-restore/archive/36a8f29cb1ff9dd4d83cc5e721ccc9ef59527183.tar.gz",
       "hash": "11w8186gi0zp7j9sn52xjdpfpsbhh9ksyf0yly7dbd4bl4lzri73"
+    },
+    "zpotify": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ratakor",
+        "repo": "zpotify"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "62d117a71cf9c4e3936aceadbc38c493ec2ed934",
+      "url": "https://github.com/ratakor/zpotify/archive/62d117a71cf9c4e3936aceadbc38c493ec2ed934.tar.gz",
+      "hash": "18wqg32mla13qqfn8q9xxsigm24mj69xsk8zwp2x2d1lnj3xwazh"
     }
   },
   "version": 5

@@ -46,6 +46,11 @@
         zfs-restore = pkgs.callPackage "${pins.zfs-restore}/nix/package.nix" {
           zigPlatform = inputs'.zig.packages.zig_0_15_1;
         };
+        # CLI/TUI for Spotify
+        zpotify = pkgs.callPackage "${pins.zpotify}/nix/package.nix" {
+          zigPlatform = inputs'.zig.packages.zig_0_15_1;
+          image-support = false; # smh can't build with nix
+        };
       };
     in
       base // fromInputs // fromPins;

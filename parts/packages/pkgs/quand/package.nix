@@ -30,6 +30,7 @@ in
       description = "Simple calendar written in POSIX sh";
       homepage = "https://github.com/ratakor/quand";
       license = lib.licenses.gpl3Plus;
+      maintainers = [lib.maintainers.ratakor];
       mainProgram = "quand";
     };
   })

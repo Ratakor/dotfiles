@@ -23,6 +23,7 @@ stdenvNoCC.mkDerivation {
     description = "A typeface developed explicitly for visually impaired people";
     homepage = "https://luciole-vision.com";
     license = lib.licenses.cc-by-40;
+    maintainers = [lib.maintainers.ratakor];
     platforms = lib.platforms.all;
   };
 }
