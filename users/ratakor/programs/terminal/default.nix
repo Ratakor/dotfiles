@@ -12,7 +12,7 @@
     ./senpai.nix # IRC Client
     ./ssh.nix # SSH Client
     ./yazi # File Manager
-    ./zellij # Terminal Multiplexer
+    # ./zellij # Terminal Multiplexer
     ./zsh # Shell
 
     ./fzf # TODO: remove

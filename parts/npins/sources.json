@@ -71,6 +71,19 @@
       "url": "https://github.com/NotAShelf/watt/archive/f68a9795616699870d213dc9e641dab655aa434a.tar.gz",
       "hash": "0i5yy4w9p86ma7siw7yc6dl0bmzqpli2fgp1crv53w1ybgyf4i54"
     },
+    "wrapper-manager": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "viperML",
+        "repo": "wrapper-manager"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "8ad2484b485acad0632cb0af15b5eb704e3c1d0a",
+      "url": "https://github.com/viperML/wrapper-manager/archive/8ad2484b485acad0632cb0af15b5eb704e3c1d0a.tar.gz",
+      "hash": "11kcrkrnajzbhbyg5w2jhy5h5dw3ffn604pm37ikyird5z2r37cy"
+    },
     "zfs-restore": {
       "type": "Git",
       "repository": {

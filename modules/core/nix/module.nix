@@ -42,7 +42,11 @@ in {
       trusted-users = ["@wheel"];
 
       # Enable flakes globally
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "pipe-operators"
+      ];
 
       extra-substituters = [
         "https://ratakor.cachix.org"

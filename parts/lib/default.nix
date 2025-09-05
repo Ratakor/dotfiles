@@ -10,9 +10,13 @@ in {
   flake.lib = lib.makeExtensible (self: let
     callLib = path: import path {inherit lib self;};
   in {
+    args = callLib ./args.nix;
+    filesystem = callLib ./filesystem.nix;
     time = callLib ./time.nix;
     trivial = callLib ./trivial.nix;
 
+    inherit (self.args) mapShellArgsToList;
+    inherit (self.filesystem) listFiles;
     inherit (self.trivial) capitalize hexToRgba isx86Linux;
   });
 }

@@ -18,6 +18,7 @@
   core = modulePath + /core;
   options = modulePath + /options;
   roles = modulePath + /roles;
+  wrappers = modulePath + /wrappers;
 
   # Roles
   graphical = roles + /graphical; # Currently only provide an X server
@@ -36,7 +37,7 @@
     );
 
   mkModulesFor = hostname: {
-    moduleTrees ? [core options],
+    moduleTrees ? [core options wrappers],
     roles ? [],
     extraModules ? [],
   }:
