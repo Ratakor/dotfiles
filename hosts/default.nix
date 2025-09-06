@@ -25,12 +25,12 @@
   # server = profiles + /server;
 
   wrapModule = modulePath + /wrap;
-  wrapHome = modulePath + /home;
-  home-v2 = [wrapModule wrapHome];
-
   inherit (inputs.home-manager.nixosModules) home-manager;
-  users = ../users; # home-manager user configurations
-  home = [home-manager users];
+  home = [
+    home-manager
+    wrapModule
+    (modulePath + /home)
+  ];
 
   # Recursively find all `module.nix` files in a given path
   mkModuleTree = path:
@@ -79,7 +79,7 @@ in {
     X200 = mkNixosSystem {
       modules = mkModulesFor "X200" {
         profiles = [graphical workstation laptop];
-        extraModules = [home home-v2];
+        extraModules = [home];
       };
     };
     # AuroraR7 = mkNixosSystem {

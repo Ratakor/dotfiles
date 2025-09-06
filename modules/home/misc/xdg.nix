@@ -1,49 +1,46 @@
 {config, ...}: let
   inherit (builtins) listToAttrs;
-in {
-  home.preferXdgDirectories = true; # doesn't do much
 
-  xdg = {
+  inherit (config.hm.home) homeDirectory;
+in {
+  hm.xdg = {
     enable = true;
 
-    # I follow the .local convention: https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe
-    # Setting these variables to something different than their default causes
-    # issue when a program that uses them start before they have been sourced.
-    configHome = "${config.home.homeDirectory}/.local/etc";
-    dataHome = "${config.home.homeDirectory}/.local/share";
-    stateHome = "${config.home.homeDirectory}/.local/var/state"; # could be named log or lib too
-    cacheHome = "${config.home.homeDirectory}/.local/var/cache";
+    configHome = "${homeDirectory}/${config.xdg.config}";
+    dataHome = "${homeDirectory}/${config.xdg.data}";
+    stateHome = "${homeDirectory}/${config.xdg.state}";
+    cacheHome = "${homeDirectory}/${config.xdg.cache}";
 
     userDirs = {
       enable = true;
       createDirectories = true;
 
-      download = "${config.home.homeDirectory}/tmp";
-      desktop = null; # "${config.home.homeDirectory}/tmp";
-      publicShare = null; # "${config.home.homeDirectory}/tmp";
-      templates = null; # "${config.home.homeDirectory}/tmp";
+      download = "${homeDirectory}/tmp";
+      desktop = null; # "${homeDirectory}/tmp";
+      publicShare = null; # "${homeDirectory}/tmp";
+      templates = null; # "${homeDirectory}/tmp";
 
-      documents = "${config.home.homeDirectory}/media/doc";
-      music = "${config.home.homeDirectory}/media/music";
-      pictures = "${config.home.homeDirectory}/media/pictures";
-      videos = "${config.home.homeDirectory}/media/videos";
+      documents = "${homeDirectory}/media/doc";
+      music = "${homeDirectory}/media/music";
+      pictures = "${homeDirectory}/media/pictures";
+      videos = "${homeDirectory}/media/videos";
 
       extraConfig = {
-        XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/screenshots";
-        XDG_MAIL_DIR = "${config.home.homeDirectory}/.local/var/mail";
+        XDG_SCREENSHOTS_DIR = "${config.hm.xdg.userDirs.pictures}/screenshots";
+        XDG_MAIL_DIR = "${homeDirectory}/.local/var/mail";
       };
     };
 
     # Make some software respect XDG directories
     configFile = {
       "npm/npmrc".text = ''
-        prefix=${config.xdg.dataHome}/npm
-        cache=${config.xdg.cacheHome}/npm
-        init-module=${config.xdg.configHome}/npm/config/npm-init.js
+        prefix=${config.hm.xdg.dataHome}/npm
+        cache=${config.hm.xdg.cacheHome}/npm
+        init-module=${config.hm.xdg.configHome}/npm/config/npm-init.js
       '';
 
       "pulse/client.conf".text = ''
-        cookie-file = ${config.xdg.configHome}/pulse/cookie
+        cookie-file = ${config.hm.xdg.configHome}/pulse/cookie
       '';
     };
 
