@@ -7,15 +7,15 @@
   inherit (lib.options) mkOption mkEnableOption mkPackageOption;
   inherit (lib.modules) mkIf;
 
-  cfg = config.programs.glow;
+  yaml = pkgs.formats.yaml {};
 
-  yamlFormat = pkgs.formats.yaml {};
+  cfg = config.programs.glow;
 in {
   options.programs.glow = {
     enable = mkEnableOption "Glow";
     package = mkPackageOption pkgs "glow" {};
     settings = mkOption {
-      type = yamlFormat.type;
+      type = yaml.type;
       default = {};
     };
   };
@@ -25,7 +25,7 @@ in {
       basePackage = cfg.package;
       prependFlags = [
         "--config"
-        (yamlFormat.generate "glow.yml" cfg.settings)
+        (yaml.generate "glow.yml" cfg.settings)
       ];
     };
   };

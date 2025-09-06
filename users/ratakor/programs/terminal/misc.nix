@@ -26,6 +26,7 @@
     jq # json processor
     fastfetch # system information tool
     htop-vim # process viewer with vim keybindings
+    fzf # fuzzy finder
 
     self.pkgs.zpotify # A CLI/TUI for Spotify
     self.pkgs.zig-2048 # 2048 game in terminal

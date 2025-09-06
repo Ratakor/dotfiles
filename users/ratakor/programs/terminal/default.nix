@@ -14,7 +14,5 @@
     ./yazi # File Manager
     # ./zellij # Terminal Multiplexer
     ./zsh # Shell
-
-    ./fzf # TODO: remove
   ];
 }

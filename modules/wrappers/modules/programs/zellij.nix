@@ -16,6 +16,7 @@ in {
     package = mkPackageOption pkgs "zellij" {};
     config = mkOption {
       type = types.nullOr types.path;
+      default = null;
       description = "Path to zellij config file.";
     };
     # theme = mkOption {
