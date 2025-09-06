@@ -6,6 +6,8 @@
     ...
   }: {
     devShells.default = pkgs.mkShellNoCC {
+      name = "dotfiles";
+
       # shellHook = ''
       #   ${config.pre-commit.installationScript}
       # '';
