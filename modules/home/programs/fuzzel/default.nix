@@ -1,11 +1,12 @@
+# App Launcher / Dynamic Menu for Wayland
 # opacity:
 # ff = 100%
 # e6 = 90%
 # d9 = 85%
-{osConfig, ...}: let
-  inherit (osConfig) colors;
+{config, ...}: let
+  inherit (config) colors;
 in {
-  programs.fuzzel = {
+  wrap.programs.fuzzel = {
     enable = true;
     settings = {
       main = {

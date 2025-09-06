@@ -27,5 +27,13 @@ magick /tmp/lock.jpg /tmp/lock.png >/dev/null 2>&1
 rm /tmp/lock.jpg
 file=/tmp/lock.png
 
-timestamp=$(date %Y-%m-%dT%H:%M:%S%z)
-swaylock -i "$file" >"/tmp/swaylock-$timestamp.log" 2>&1
+timestamp=$(date +%Y-%m-%dT%H:%M:%S%z)
+swaylock \
+	--daemonize \
+	--font=monospace \
+	--ignore-empty-password \
+	--indicator-caps-lock \
+	--indicator-radius=100 \
+	--scaling=fill \
+	--show-failed-attempt \
+	--image "$file" >"/tmp/swaylock-$timestamp.log" 2>&1

@@ -12,12 +12,15 @@
   dev = callPkgs ./dev.nix;
   # Terminal applications
   terminal = callPkgs ./terminal.nix;
+  # Graphical applications
+  graphical = callPkgs ./graphical.nix;
   # Password managers
   password = singleton pkgs.keepassxc;
 in {
   users.users.ratakor.packages = flatten (concatLists [
     dev
     terminal
+    graphical
     password
   ]);
 }

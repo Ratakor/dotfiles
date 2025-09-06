@@ -1,12 +1,13 @@
+# App Launcher / Dynamic Menu for Wayland
 {
-  osConfig,
+  config,
   self,
   ...
 }: let
-  inherit (osConfig) colors;
+  inherit (config) colors;
 in {
-  programs.tofi = {
-    enable = true;
+  wrap.programs.tofi = {
+    enable = true; # TODO: replace with fuzzel
     package = self.pkgs.tofi-dmenu;
     settings = {
       width = "100%";

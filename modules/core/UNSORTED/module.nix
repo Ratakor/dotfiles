@@ -12,6 +12,8 @@
     isNormalUser = true;
     uid = 1000;
     shell = pkgs.zsh;
+    createHome = true;
+    home = "/home/ratakor";
     description = "Ratakor";
     # TODO: change to initialHashedPassword
     initialPassword = "password"; # very secure
