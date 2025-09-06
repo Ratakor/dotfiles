@@ -1,5 +1,7 @@
 {inputs, ...}: let
   inherit (inputs.nixpkgs) lib;
+  pins = import ../npins;
+  wrapper-manager = import pins.wrapper-manager;
 in {
   # Expose the lib via the flake using flake-parts.
   # I could merge this lib with nixpkgs.lib but I chose not to because
@@ -18,5 +20,7 @@ in {
     inherit (self.args) mapShellArgsToList;
     inherit (self.filesystem) listFiles;
     inherit (self.trivial) capitalize hexToRgba isx86Linux;
+
+    inherit (wrapper-manager.lib) wrapWith;
   });
 }

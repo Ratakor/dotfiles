@@ -1,7 +1,6 @@
 {
   imports = [
     ./dev.nix # Development tools
-    ./misc.nix # Miscellaneous tools
     ./oxidation.nix # Replacement of various shell utilities
 
     ./gpg.nix # GNU Privacy Guard

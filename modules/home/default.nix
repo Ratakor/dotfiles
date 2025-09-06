@@ -6,7 +6,7 @@
   inherit (lib.lists) singleton;
   inherit (self.lib.filesystem) listFiles;
 
-  packages = []; #singleton ./packages.nix;
+  packages = singleton ./packages;
   programs = listFiles ./programs;
   services = []; #listFiles ./services;
 in {

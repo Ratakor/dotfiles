@@ -2,8 +2,8 @@
   pkgs,
   self,
   ...
-}: {
-  home.packages = with pkgs; [
+}: let
+  unsorted = with pkgs; [
     sc-im # spreadsheet
     iftop # display bandwidth usage
     simple-mtpfs # mount phone easily
@@ -27,25 +27,10 @@
     fastfetch # system information tool
     htop-vim # process viewer with vim keybindings
     fzf # fuzzy finder
+    yt-dlp # download any video/audio from the web
 
     self.pkgs.zpotify # A CLI/TUI for Spotify
     self.pkgs.zig-2048 # 2048 game in terminal
     self.pkgs.zfs-restore # trash-restore but for ZFS snapshots
   ];
-
-  programs = {
-    # corrects your last command
-    pay-respects = {
-      enable = false;
-      enableZshIntegration = true; # adds the `f` alias
-    };
-
-    # download any video/audio from the web
-    yt-dlp = {
-      enable = true;
-      # TODO: config?
-      # settings = {};
-      # extraConfig = "";
-    };
-  };
-}
+in [unsorted]

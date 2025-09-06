@@ -1,6 +1,6 @@
 # markdown viewer, imo bat or markview.nvim are better
 {
-  programs.glow = {
+  wrap.programs.glow = {
     enable = false;
     settings = {
       # style name or JSON path (default "auto")

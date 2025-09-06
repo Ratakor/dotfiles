@@ -1,8 +1,8 @@
-# Terminal Emulator
-{osConfig, ...}: let
-  inherit (osConfig) colors;
+# Wayland Terminal Emulator
+{config, ...}: let
+  inherit (config) colors;
 in {
-  programs.foot = {
+  wrap.programs.foot = {
     enable = true;
     server.enable = false;
 

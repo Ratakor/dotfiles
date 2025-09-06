@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }: let
   inherit (lib) types;
@@ -9,11 +10,12 @@
   inherit (lib.modules) mkIf;
   inherit (lib.lists) optionals;
 
-  cfg = config.programs.zellij;
+  cfg = config.wrap.programs.zellij;
 in {
-  options.programs.zellij = {
+  options.wrap.programs.zellij = {
     enable = mkEnableOption "Zellij";
     package = mkPackageOption pkgs "zellij" {};
+
     config = mkOption {
       type = types.nullOr types.path;
       default = null;
@@ -21,12 +23,16 @@ in {
     };
     # theme = mkOption {
     #   type = types.nullOr types.str;
-    #   description = "Set the zellij theme.";
     # };
+
+    wrapped = mkOption {
+      type = types.package;
+      readOnly = true;
+    };
   };
 
   config = mkIf cfg.enable {
-    wrappers.zellij = {
+    wrap.programs.zellij.wrapped = self.lib.wrapWith pkgs {
       basePackage = cfg.package;
       prependFlags = optionals (cfg.config != null) [
         "--config"

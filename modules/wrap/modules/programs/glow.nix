@@ -2,26 +2,34 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }: let
+  inherit (lib) types;
   inherit (lib.options) mkOption mkEnableOption mkPackageOption;
   inherit (lib.modules) mkIf;
 
   yaml = pkgs.formats.yaml {};
 
-  cfg = config.programs.glow;
+  cfg = config.wrap.programs.glow;
 in {
-  options.programs.glow = {
+  options.wrap.programs.glow = {
     enable = mkEnableOption "Glow";
     package = mkPackageOption pkgs "glow" {};
+
     settings = mkOption {
       type = yaml.type;
       default = {};
     };
+
+    wrapped = mkOption {
+      type = types.package;
+      readOnly = true;
+    };
   };
 
   config = mkIf cfg.enable {
-    wrappers.glow = {
+    wrap.programs.glow.wrapped = self.lib.wrapWith pkgs {
       basePackage = cfg.package;
       prependFlags = [
         "--config"

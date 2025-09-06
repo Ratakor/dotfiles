@@ -1,15 +1,14 @@
 {
-  config,
   self,
   inputs,
   withSystem,
   ...
 }: let
   inherit (inputs.nixpkgs) lib;
-  inherit (builtins) filter;
+  inherit (builtins) filter concatLists;
   inherit (lib.attrsets) recursiveUpdate;
   inherit (lib.filesystem) listFilesRecursive;
-  inherit (lib.lists) flatten concatLists singleton;
+  inherit (lib.lists) flatten singleton;
   inherit (lib.strings) hasSuffix;
 
   # Root path for local modules
@@ -18,13 +17,16 @@
   core = modulePath + /core;
   options = modulePath + /options;
   roles = modulePath + /roles;
-  wrappers = modulePath + /wrappers;
 
   # Roles
   graphical = roles + /graphical; # Currently only provide an X server
   workstation = roles + /workstation;
   laptop = roles + /laptop;
   # server = roles + /server;
+
+  wrapModule = modulePath + /wrap;
+  wrapHome = modulePath + /home;
+  home-v2 = [wrapModule wrapHome];
 
   inherit (inputs.home-manager.nixosModules) home-manager;
   users = ../users; # home-manager user configurations
@@ -37,7 +39,7 @@
     );
 
   mkModulesFor = hostname: {
-    moduleTrees ? [core options wrappers],
+    moduleTrees ? [core options],
     roles ? [],
     extraModules ? [],
   }:
@@ -77,7 +79,7 @@ in {
     X200 = mkNixosSystem {
       modules = mkModulesFor "X200" {
         roles = [graphical workstation laptop];
-        extraModules = [home];
+        extraModules = [home home-v2];
       };
     };
     # AuroraR7 = mkNixosSystem {
