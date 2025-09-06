@@ -1,11 +1,9 @@
-{
+{config, ...}: {
   programs.zsh = {
     enable = true;
 
-    # I'm not sure about setting that here since it's my very own preference
     shellInit = ''
-      export ZDOTDIR=$HOME/.local/etc/zsh
-      # export ZDOTDIR=$HOME/.config/zsh
+      export ZDOTDIR=$HOME/${config.xdg.config}/zsh
     '';
 
     # From NotAShelf:

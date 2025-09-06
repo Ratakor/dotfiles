@@ -30,4 +30,11 @@ in {
     ];
     openssh.authorizedKeys.keys = self.keys.ratakor;
   };
+
+  xdg = {
+    config = ".local/etc";
+    data = ".local/share";
+    cache = ".local/var/cache";
+    state = ".local/var/state";
+  };
 }

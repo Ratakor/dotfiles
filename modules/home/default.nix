@@ -9,7 +9,7 @@
 
   packages = singleton ./packages;
   programs = listFiles ./programs;
-  services = []; #listFiles ./services;
+  services = listFiles ./services;
 in {
   imports = concatLists [
     packages
