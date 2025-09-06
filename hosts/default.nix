@@ -14,15 +14,15 @@
   # Root path for local modules
   modulePath = ../modules;
 
-  core = modulePath + /core;
+  nixos = modulePath + /nixos;
   options = modulePath + /options;
-  roles = modulePath + /roles;
+  profiles = modulePath + /profiles;
 
-  # Roles
-  graphical = roles + /graphical; # Currently only provide an X server
-  workstation = roles + /workstation;
-  laptop = roles + /laptop;
-  # server = roles + /server;
+  # Profiles
+  graphical = profiles + /graphical;
+  workstation = profiles + /workstation;
+  laptop = profiles + /laptop;
+  # server = profiles + /server;
 
   wrapModule = modulePath + /wrap;
   wrapHome = modulePath + /home;
@@ -39,8 +39,8 @@
     );
 
   mkModulesFor = hostname: {
-    moduleTrees ? [core options],
-    roles ? [],
+    moduleTrees ? [nixos options],
+    profiles ? [],
     extraModules ? [],
   }:
     flatten (
@@ -49,8 +49,8 @@
         (singleton ./${hostname})
 
         # Recursively import all module trees (i.e. directories with a `module.nix`)
-        # for given moduleTree directories, and in addition, roles.
-        (map (path: mkModuleTree path) (concatLists [moduleTrees roles]))
+        # for given moduleTree directories, and in addition, profiles.
+        (map (path: mkModuleTree path) (concatLists [moduleTrees profiles]))
 
         extraModules
       ]
@@ -78,13 +78,13 @@ in {
   flake.nixosConfigurations = {
     X200 = mkNixosSystem {
       modules = mkModulesFor "X200" {
-        roles = [graphical workstation laptop];
+        profiles = [graphical workstation laptop];
         extraModules = [home home-v2];
       };
     };
     # AuroraR7 = mkNixosSystem {
     #   modules = mkModulesFor "AuroraR7" {
-    #     roles = [graphical workstation];
+    #     profiles = [graphical workstation];
     #     extraModules = [home];
     #   };
     # };

@@ -17,7 +17,7 @@
   # Password managers
   password = singleton pkgs.keepassxc;
 in {
-  users.users.ratakor.packages = flatten (concatLists [
+  user.packages = flatten (concatLists [
     dev
     terminal
     graphical

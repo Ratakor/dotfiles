@@ -3,6 +3,7 @@
   self,
   ...
 }: let
+  inherit (builtins) concatLists;
   inherit (lib.lists) singleton;
   inherit (self.lib.filesystem) listFiles;
 
@@ -10,5 +11,9 @@
   programs = listFiles ./programs;
   services = []; #listFiles ./services;
 in {
-  imports = packages ++ programs ++ services;
+  imports = concatLists [
+    packages
+    programs
+    services
+  ];
 }
