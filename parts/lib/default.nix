@@ -18,7 +18,7 @@ in {
     trivial = callLib ./trivial.nix;
 
     inherit (self.args) mapShellArgsToList;
-    inherit (self.filesystem) listFiles;
+    inherit (self.filesystem) listFiles listDirs;
     inherit (self.trivial) capitalize hexToRgba isx86Linux;
 
     inherit (wrapper-manager.lib) wrapWith;

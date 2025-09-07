@@ -17,20 +17,13 @@
   nixos = modulePath + /nixos;
   options = modulePath + /options;
   profiles = modulePath + /profiles;
+  home = modulePath + /home;
 
   # Profiles
   graphical = profiles + /graphical;
   workstation = profiles + /workstation;
   laptop = profiles + /laptop;
   # server = profiles + /server;
-
-  wrapModule = modulePath + /wrap;
-  inherit (inputs.home-manager.nixosModules) home-manager;
-  home = [
-    home-manager
-    wrapModule
-    (modulePath + /home)
-  ];
 
   # Recursively find all `module.nix` files in a given path
   mkModuleTree = path:

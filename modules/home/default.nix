@@ -10,22 +10,33 @@
   inherit (lib.lists) singleton;
   inherit (lib.modules) mkAliasOptionModule mkForce;
   inherit (self.lib.filesystem) listFiles;
+  inherit (self.lib.trivial) capitalize;
 
+  username = "ratakor";
+
+  extraModules = [
+    (import "${self.pins.home-manager}/nixos")
+    (import "${self}/modules/wrap")
+  ];
   moduleAliases = [
-    (mkAliasOptionModule ["user"] ["users" "users" "ratakor"])
-    (mkAliasOptionModule ["hm"] ["home-manager" "users" "ratakor"])
+    (mkAliasOptionModule ["user"] ["users" "users" username])
+    (mkAliasOptionModule ["hm"] ["home-manager" "users" username])
   ];
 
   packages = singleton ./packages;
   programs = listFiles ./programs;
   services = listFiles ./services;
+  scripts = singleton ./scripts;
   misc = listFiles ./misc;
 in {
   imports = concatLists [
+    extraModules
     moduleAliases
+
     packages
     programs
     services
+    scripts
     misc
   ];
 
@@ -34,8 +45,8 @@ in {
     uid = 1000;
     shell = pkgs.zsh;
     createHome = true;
-    home = "/home/ratakor";
-    description = "Ratakor";
+    home = "/home/${username}";
+    description = capitalize username;
     # TODO: change to initialHashedPassword
     initialPassword = "password"; # very secure
     extraGroups = [
@@ -47,7 +58,7 @@ in {
       "networkmanager"
       # "kvm"
     ];
-    openssh.authorizedKeys.keys = self.keys.ratakor;
+    openssh.authorizedKeys.keys = self.keys.${username};
   };
 
   # I follow the .local convention: https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe
@@ -60,12 +71,20 @@ in {
     state = ".local/var/state"; # could be named log or lib too
   };
 
+  # This is not a dotfiles manager it's a whole kitchen sink to manage
+  # home configurations, hjem or basic stow implementation might be better
+  # for raw dotfiles. Note that there is a stable version of home-manager.
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = specialArgs;
     backupFileExtension = "hm.bak";
-    users.ratakor = ../../users/ratakor;
+
+    users.${username}.home = {
+      inherit username;
+      homeDirectory = config.user.home;
+      stateVersion = "25.05";
+    };
 
     # Shared configuration applied to all users
     sharedModules = [

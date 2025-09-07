@@ -2,6 +2,7 @@
   inherit (lib.types) str;
   inherit (lib.options) mkOption;
 in {
+  # rename to options.self.xdg once there is actual features?
   options.xdg = {
     config = mkOption {
       type = str;

@@ -1,9 +1,9 @@
 # Wayland Terminal Emulator
 {config, ...}: let
-  inherit (config) colors;
+  inherit (config.self) colors;
 in {
   wrap.programs.foot = {
-    enable = true;
+    enable = config.self.displayServer == "wayland";
     server.enable = false;
 
     settings = {

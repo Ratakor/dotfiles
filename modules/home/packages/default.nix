@@ -14,13 +14,10 @@
   terminal = callPkgs ./terminal.nix;
   # Graphical applications
   graphical = callPkgs ./graphical.nix;
-  # Password managers
-  password = singleton pkgs.keepassxc;
 in {
   user.packages = flatten (concatLists [
     dev
     terminal
     graphical
-    password
   ]);
 }

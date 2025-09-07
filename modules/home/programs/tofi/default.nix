@@ -4,10 +4,10 @@
   self,
   ...
 }: let
-  inherit (config) colors;
+  inherit (config.self) colors;
 in {
   wrap.programs.tofi = {
-    enable = true; # TODO: replace with fuzzel
+    enable = true && config.self.displayServer == "wayland"; # TODO: replace with fuzzel
     package = self.pkgs.tofi-dmenu;
     settings = {
       width = "100%";

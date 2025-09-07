@@ -22,14 +22,6 @@
     # Flake builder.
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    # This is not a dotfiles manager it's a whole kitchen sink to manage
-    # home configurations, hjem or basic stow implementation might be better
-    # for raw dotfiles. Note that there is a stable version of home-manager.
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # The Zig programming language.
     zig = {
       url = "github:silversquirl/zig-flake";

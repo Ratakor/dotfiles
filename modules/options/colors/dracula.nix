@@ -1,10 +1,10 @@
-{
+pkgs: {
   bat.theme = "Dracula";
   theme-sh = "dracula";
 
-  gtk = {
+  gtk.theme = {
     name = "Dracula";
-    packageName = "dracula-theme";
+    package = pkgs.dracula-theme;
   };
 
   foreground = "f8f8f2";

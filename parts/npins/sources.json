@@ -26,6 +26,19 @@
       "url": "https://github.com/NotAShelf/flint/archive/4de5e2f5bf3a6aa34087437065e1e5c099f8fefb.tar.gz",
       "hash": "0i5sw4v9iwxdc6rh4fdsd1n39nif8pj2nyhjgaqak2ppj47v7k5h"
     },
+    "home-manager": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "home-manager"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "f56bf065f9abedc7bc15e1f2454aa5c8edabaacf",
+      "url": "https://github.com/nix-community/home-manager/archive/f56bf065f9abedc7bc15e1f2454aa5c8edabaacf.tar.gz",
+      "hash": "0r6skg17si9x8spfkcp9jafvrxjlwmh1pli7hyzgjwkdbqd4rqvb"
+    },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",

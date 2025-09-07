@@ -1,10 +1,10 @@
-{
+pkgs: {
   bat.theme = "gruvbox-dark";
   theme-sh = "gruvbox-dark";
 
-  gtk = {
+  gtk.theme = {
     name = "Gruvbox-Dark";
-    packageName = "gruvbox-gtk-theme";
+    package = pkgs.gruvbox-gtk-theme;
   };
 
   foreground = "ebdbb2";

@@ -4,10 +4,10 @@
 # e6 = 90%
 # d9 = 85%
 {config, ...}: let
-  inherit (config) colors;
+  inherit (config.self) colors;
 in {
   wrap.programs.fuzzel = {
-    enable = true;
+    enable = config.self.displayServer == "wayland";
     settings = {
       main = {
         font = "monospace";
