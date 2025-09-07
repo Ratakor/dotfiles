@@ -1,4 +1,4 @@
-# Simple Hotkey Daemon
+# Simple Hotkey Daemon for X11
 # TODO
 # see hm.services.sxhkd
 {

@@ -21,6 +21,7 @@ in {
       curl
       rsync
 
+      lvm2
       cryptsetup
       sysfsutils
       #ntfs3g

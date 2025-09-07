@@ -1,12 +1,13 @@
 {
+  config,
   lib,
   pkgs,
   self,
   ...
 }: let
   inherit (builtins) concatLists;
-  inherit (lib.lists) singleton flatten;
-  callPkgs = path: import path {inherit pkgs self;};
+  inherit (lib.lists) flatten;
+  callPkgs = path: import path {inherit config lib pkgs self;};
 
   # Development tools
   dev = callPkgs ./dev.nix;
@@ -14,10 +15,13 @@
   terminal = callPkgs ./terminal.nix;
   # Graphical applications
   graphical = callPkgs ./graphical.nix;
+  # Games
+  games = callPkgs ./games.nix;
 in {
   user.packages = flatten (concatLists [
     dev
     terminal
     graphical
+    # games # should be enabled with an option
   ]);
 }

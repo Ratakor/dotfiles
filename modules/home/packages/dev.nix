@@ -22,15 +22,18 @@
     pnpm # additional js package manager
     lua
     luarocks # lua package manager
-    cmake
-    just # command runner (like make)
-    # qemu_full
-    # love # lua 2D game engine (Balatro)
     # guile # GNU scheme (lisp)
     # janet # embeddable lisp that looks cool
+    # android-tools # adb, fastboot
+    # wasmtime # WebAssembly runtime
+    # dotnet-sdk # C#
   ];
 
   tools = with pkgs; [
+    cmake
+    just # command runner (like make)
+    # go-task # yet another make alternative
+    qemu_full
     # astyle # C formatter
     checkbashisms # checks for bashisms in scripts
     shellcheck # there is also shellcheck-minimal in nixpkgs
@@ -44,6 +47,7 @@
     lsof # list open files
     # texliveMinimal # latex, see `texliveFull` too
     pandoc # document converter
+    # tinyxxd # hexdump utility, see `hexyl` too
   ];
 
   fs = with pkgs; [
@@ -55,6 +59,10 @@
     ntfs3g # ntfs filesystem (windows compatibility)
     xfsprogs # xfs filesystem
     xfsdump # xfs snapshots
+    simple-mtpfs # mount phone easily
+    btrfs-progs # btrfs filesystem
+    # btrfs-snap # btrfs snapshot management tool
+    # btrfs-list # `zfs list` for btrfs
   ];
 
   archives = with pkgs; [
@@ -80,4 +88,10 @@
     nurl
     self.pkgs.flint # flake linter
   ];
-in [toolchains tools fs archives nix]
+in [
+  toolchains
+  tools
+  fs
+  archives
+  nix
+]

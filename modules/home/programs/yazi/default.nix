@@ -8,6 +8,7 @@
     poppler # pdf preview
     mediainfo
     ffmpegthumbnailer
+    # ueberzugpp # image preview on terminal emulators that don't have it built-in
   ];
 
   hm.programs.yazi = {

@@ -11,6 +11,11 @@
     ./hardware-configuration.nix
   ];
 
+  self = {
+    colorscheme = "gruvbox-dark";
+    displayServer = "wayland";
+  };
+
   system.stateVersion = "25.05";
 
   boot.loader = {

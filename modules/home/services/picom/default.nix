@@ -1,3 +1,4 @@
+# X11 Compositor (window transparency and stuff)
 # TODO
 {
   config,
