@@ -6,7 +6,7 @@
 {config, ...}: let
   inherit (config.self) colors;
 in {
-  wrap.programs.fuzzel = {
+  hm.programs.fuzzel = {
     enable = config.self.displayServer == "wayland";
     settings = {
       main = {

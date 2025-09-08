@@ -6,7 +6,7 @@
 }: let
   inherit (config.self) colors;
 in {
-  wrap.programs.tofi = {
+  hm.programs.tofi = {
     enable = true && config.self.displayServer == "wayland"; # TODO: replace with fuzzel
     package = self.pkgs.tofi-dmenu;
     settings = {

@@ -1,11 +1,19 @@
 # Spotify client
-{config, ...}: {
-  wrap.services.librespot = {
-    enable = true;
-    service.enable = true;
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  ...
+}: let
+  inherit (lib.meta) getExe;
+  inherit (self.lib) wrapWith mapShellArgsToList;
+
+  librespot = wrapWith pkgs {
+    basePackage = pkgs.librespot;
 
     # https://github.com/librespot-org/librespot/wiki/Options
-    settings = {
+    prependFlags = mapShellArgsToList {
       quiet = true;
       # disable-audio-cache = true;
       cache = "${config.user.home}/${config.xdg.cache}/librespot";
@@ -18,6 +26,21 @@
       enable-oauth = true;
       initial-volume = 100;
       volume-ctrl = "fixed";
+    };
+  };
+in {
+  user.packages = [librespot];
+
+  systemd.user.services.librespot = {
+    enable = true;
+
+    description = "Librespot (an open source Spotify client)";
+    wantedBy = ["default.target"];
+
+    serviceConfig = {
+      ExecStart = getExe librespot;
+      Restart = "always";
+      RestartSec = 12;
     };
   };
 }

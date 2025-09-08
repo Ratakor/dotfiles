@@ -16,7 +16,6 @@
 
   extraModules = [
     (import "${self.pins.home-manager}/nixos")
-    (import "${self}/modules/wrap")
   ];
   moduleAliases = [
     (mkAliasOptionModule ["user"] ["users" "users" username])

@@ -59,7 +59,7 @@ info:
     @# nix profile history --profile /nix/var/nix/profiles/system
     nh os info
 
-# `nh os repl` is bugged
+# `nh os repl` sucks
 # Open a nix shell with the flake's nixpkgs
 [group('nix')]
 repl:

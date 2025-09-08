@@ -2,7 +2,7 @@
 {config, ...}: let
   inherit (config.self) colors;
 in {
-  wrap.programs.foot = {
+  hm.programs.foot = {
     enable = config.self.displayServer == "wayland";
     server.enable = false;
 
