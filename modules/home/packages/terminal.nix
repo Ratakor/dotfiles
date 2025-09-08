@@ -24,7 +24,6 @@
     iftop # display bandwidth usage
     # gomuks # matrix client
     # iamb # Matrix Client
-    self.pkgs.zig-2048 # 2048 game in terminal
     fzf # fuzzy finder
     htop-vim # process viewer with vim keybindings
     # micro # normie text editor

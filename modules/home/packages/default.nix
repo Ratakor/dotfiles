@@ -22,6 +22,6 @@ in {
     dev
     terminal
     graphical
-    # games # should be enabled with an option
+    games
   ]);
 }

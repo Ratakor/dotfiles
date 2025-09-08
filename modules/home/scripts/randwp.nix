@@ -2,15 +2,16 @@
 # non-nix version of this script:
 # https://raw.githubusercontent.com/Ratakor/dotfiles/ec0dc5e5240d2fef94afaa3cbe7f2cb9d5dcfce3/users/ratakor/programs/scripts/bin/randwp
 {
+  config,
   lib,
   pkgs,
   self,
 }: let
   inherit (lib.meta) getExe;
   inherit (self.pins) wallpapers;
+  inherit (self.lib.trivial) unreachable;
 
-  # TODO: make these options configurable from outside
-  windowSystem = "wayland"; # "wayland" "x11"
+  inherit (config.self) displayServer;
   supportMultipleMonitors = true;
 in
   pkgs.writeShellApplication {
@@ -42,7 +43,7 @@ in
 
       ''
       + (
-        if windowSystem == "wayland"
+        if displayServer == "wayland"
         then let
           swaybg = getExe pkgs.swaybg;
         in
@@ -70,7 +71,7 @@ in
             echo $! > "$TMPDIR/swaybg.pid"
             (sleep 3 && kill "$OLD_PID" 2>/dev/null || exit 0) &
           ''
-        else if windowSystem == "x11"
+        else if displayServer == "x11"
         then
           if supportMultipleMonitors
           then let
@@ -95,6 +96,6 @@ in
             searchwp
             ${hsetroot} -cover "$wp" 1>/dev/null
           ''
-        else throw "windowSystem must be 'wayland' or 'x11'"
+        else unreachable
       );
   }

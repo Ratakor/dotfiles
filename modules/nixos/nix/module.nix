@@ -15,7 +15,8 @@ in {
   ];
 
   nix = {
-    # package = pkgs.lix; # pkgs.nixVersions.latest;
+    # package = pkgs.lix; # lix doesn't support pipe operators
+    package = pkgs.nixVersions.latest;
 
     # Remove nix-channel related tools & configs in favor of flakes
     channel.enable = false;

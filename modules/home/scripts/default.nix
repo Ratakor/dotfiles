@@ -1,11 +1,14 @@
-# TODO: should thes be exposed by the flake as a package output
+# TODO: should this be exposed by the flake as a package output?
 {
   config,
   lib,
   pkgs,
   self,
   ...
-}: {
+}: let
+  inherit (builtins) readFile;
+  inherit (pkgs) writeShellApplication;
+in {
   imports = [
     ./music
   ];
@@ -21,7 +24,7 @@
   # randwp: ...
   # screenshot: ... depends on dmenurecord
   # ytdl: ...
-  hm.home.file."${config.hm.home.homeDirectory}/.local/bin" = {
+  hm.home.file."${config.user.home}/.local/bin" = {
     source = ./bin;
     recursive = true;
     executable = true;
@@ -31,29 +34,29 @@
   hm.xdg.dataFile.emoji.source = ./src/emoji;
 
   user.packages = [
-    (import ./randwp.nix {inherit lib pkgs self;})
+    (import ./randwp.nix {inherit config lib pkgs self;})
 
-    (pkgs.writeShellApplication {
+    (writeShellApplication {
       name = "glitchlock";
       runtimeInputs = with pkgs; [grim imagemagick coreutils swaylock];
-      text = builtins.readFile ./src/glitchlock.sh;
+      text = readFile ./src/glitchlock.sh;
     })
 
-    (pkgs.writeShellApplication {
+    (writeShellApplication {
       name = "battery";
       runtimeInputs = with pkgs; [coreutils libnotify];
-      text = builtins.readFile ./src/battery.sh;
+      text = readFile ./src/battery.sh;
     })
 
     # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/cli/wayland.nix
-    (pkgs.writeShellApplication {
+    (writeShellApplication {
       name = "ocr";
       runtimeInputs = with pkgs; [tesseract grim slurp libnotify coreutils];
-      text = builtins.readFile ./src/ocr.sh;
+      text = readFile ./src/ocr.sh;
     })
 
     # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/dev/default.nix
-    (pkgs.writeShellApplication {
+    (writeShellApplication {
       name = "pdflatexmk";
       runtimeInputs = [pkgs.texlivePackages.latexmk];
       text = ''
@@ -63,7 +66,7 @@
 
     # convert markdown to pdf with pandoc
     # assuming that first argument is the markdown file
-    (pkgs.writeShellApplication {
+    (writeShellApplication {
       name = "pdfmd";
       runtimeInputs = with pkgs; [pandoc gnused];
       # '-V geometry:margin=1in' is probably good but I forgot what it does
@@ -72,7 +75,7 @@
       '';
     })
 
-    (pkgs.writeShellApplication {
+    (writeShellApplication {
       name = "help";
       runtimeInputs = [pkgs.bat];
       text = ''
@@ -80,7 +83,7 @@
       '';
     })
 
-    (pkgs.writeShellApplication {
+    (writeShellApplication {
       name = "real";
       runtimeInputs = with pkgs; [coreutils which];
       text = ''

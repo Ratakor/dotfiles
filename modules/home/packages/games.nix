@@ -60,14 +60,33 @@
 #lib32-vulkan-icd-loader
 #xdg-desktop-portal-gtk
 #lutris
-{pkgs, ...}: let
-  unsorted = with pkgs; [
-    rili # Train Game
-    love # lua 2D game engine (Balatro)
+{
+  pkgs,
+  self,
+  ...
+}: let
+  terminal = with pkgs; [
     nbsdgames # 18 text-based modern games from bsd
+    self.pkgs.zig-2048 # 2048 game in terminal
+  ];
+
+  star-citizen = with pkgs; [
     lug-helper # Script to manage and optimize Star Citizen on Linux
+  ];
+
+  wow = with pkgs; [
     wowup-cf # World of Warcraft addon updater with CurseForge support
     #warcraftlogsuploader # not in nixpkgs
     #raiderio-client # not in nixpkgs
   ];
-in [unsorted]
+
+  unsorted = with pkgs; [
+    rili # Train Game
+    love # lua 2D game engine (Balatro)
+  ];
+in [
+  terminal
+  # star-citizen
+  # wow
+  # unsorted
+]

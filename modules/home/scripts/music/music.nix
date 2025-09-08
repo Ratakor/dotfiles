@@ -14,16 +14,6 @@
   # TODO: allow to configure that
   DMENU = "${getExe self.pkgs.tofi-dmenu} --padding-left 25%";
 
-  local-script = pkgs.writeTextFile {
-    name = "local.lua";
-    text = readFile ./local.lua;
-  };
-
-  online-script = pkgs.writeTextFile {
-    name = "online.lua";
-    text = readFile ./online.lua;
-  };
-
   music = pkgs.writeShellApplication {
     name = "music";
     runtimeInputs = with pkgs; [coreutils gnugrep socat mpv];
@@ -40,12 +30,12 @@
 
       # shellcheck disable=SC2012
       music="''${1:-$MUSICDIR/$(ls "$MUSICDIR" | cut -c 1-50 | ${DMENU} -p "Play")}"
-      script=${local-script}
+      script=${./local.lua}
 
       if [ "$music" = "$MUSICDIR/urls" ]; then
       	# shellcheck disable=SC2012
       	music="$(cat "$MUSICDIR/urls/$(ls "$MUSICDIR/urls" | ${DMENU} -p "Play")")"
-      	script=${online-script}
+      	script=${./online.lua}
       fi
 
       [ "$music" = "$MUSICDIR/" ] || [ -z "$music" ] && exit 1

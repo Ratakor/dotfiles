@@ -52,7 +52,7 @@ in {
         max-length = 40;
       };
       "custom/music" = {
-        exec = pkgs.writeShellScript "waybar-music" (builtins.readFile ./scripts/music.sh);
+        exec = ./scripts/waybar-music.sh;
         interval = "once";
         signal = 1;
         max-length = 40;
@@ -120,7 +120,7 @@ in {
         on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
       };
       "custom/weather" = {
-        exec = pkgs.writeShellScript "waybar-weather" (builtins.readFile ./scripts/weather.sh);
+        exec = ./scripts/waybar-weather.sh;
         return-type = "json";
         format = "{}";
         max-length = 10;

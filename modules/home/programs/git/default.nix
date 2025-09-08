@@ -59,7 +59,7 @@
       };
       commit = {
         # verbose = true;
-        template = "${pkgs.writeText "commit" (builtins.readFile ./commit)}";
+        template = "${./commit}";
       };
       # rebase = {
       #   autoSquash = true;

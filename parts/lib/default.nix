@@ -19,7 +19,7 @@ in {
 
     inherit (self.args) mapShellArgsToList;
     inherit (self.filesystem) listFiles listDirs;
-    inherit (self.trivial) capitalize hexToRgba isx86Linux;
+    inherit (self.trivial) capitalize hexToRgba isx86Linux unreachable;
 
     inherit (wrapper-manager.lib) wrapWith;
   });

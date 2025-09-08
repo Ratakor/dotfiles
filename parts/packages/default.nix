@@ -38,9 +38,8 @@
       wrappers = let
         wrapper-manager = import pins.wrapper-manager;
         wm-eval = wrapper-manager.lib.eval {
-          # Using `pkgs` would cause an infinite recursion because wrappers are
-          # included in the overlay
-          pkgs = import inputs.nixpkgs {inherit system;};
+          # Using `pkgs` causes an infinite recursion
+          pkgs = inputs'.nixpkgs.legacyPackages;
           modules = listFiles ./wrappers;
         };
       in
