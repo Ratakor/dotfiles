@@ -17,7 +17,6 @@ in {
     time = callLib ./time.nix;
     trivial = callLib ./trivial.nix;
 
-    inherit (self.args) mapShellArgsToList;
     inherit (self.filesystem) listFiles listDirs;
     inherit (self.trivial) capitalize hexToRgba isx86Linux unreachable;
 
