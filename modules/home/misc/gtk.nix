@@ -21,9 +21,9 @@
       }
     '';
 
-    gtk4 = {
-      enable = true;
-      # TODO: config
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+      gtk-decoration-layout = "appmenu:none";
     };
   };
 }

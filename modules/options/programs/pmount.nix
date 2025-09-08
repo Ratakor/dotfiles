@@ -8,7 +8,7 @@
   inherit (lib.modules) mkIf;
   inherit (lib.meta) getExe';
 
-  cfg = config.self.programs.pmount;
+  cfg = config.programs.pmount;
 
   mkSetuidWrapper = package: command: {
     setuid = true;
@@ -17,7 +17,7 @@
     source = getExe' package command;
   };
 in {
-  options.self.programs.pmount = {
+  options.programs.pmount = {
     enable = mkEnableOption "pmount (policy mount)";
   };
 

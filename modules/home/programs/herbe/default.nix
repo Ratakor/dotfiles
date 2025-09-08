@@ -1,9 +1,10 @@
 # Daemon-less notifications without D-Bus
-{ pkgs, ... }: let
+{pkgs, ...}: let
   herbe = pkgs.herbe.override {
     patches = [./herbe.diff];
+    extraLibs = [pkgs.xorg.libXrandr];
   };
 in {
-  # TODO: options
+  # TODO: this segfaults, idk why and I cba looking into it rn
   # user.packages = [herbe];
 }
