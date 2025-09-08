@@ -20,11 +20,7 @@ in
       hash = "sha256-PbBadaunDCaey52C2ZVtdM84mC1iDXKGmSQmDqVe0zQ=";
     };
 
-    preBuild = ''
-      makeFlagsArray+=(
-        "PREFIX=$out"
-      )
-    '';
+    installFlags = [ "PREFIX=$(out)" ];
 
     meta = {
       description = "Simple calendar written in POSIX sh";

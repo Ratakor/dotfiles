@@ -1,0 +1,558 @@
+From d0eedc4afad357439c025f5a790031e0e6985110 Mon Sep 17 00:00:00 2001
+From: Ratakor <ratakor@disroot.org>
+Date: Mon, 17 Apr 2023 12:27:35 +0200
+Subject: [PATCH] patches added:
+	- notify-send #10
+	- Xresources #11
+	- WM_CLASS #45
+	- Vertical Stacking + Dynamic content #30
+	- primary monitor with xrandr #21
+
+
+---
+ Makefile     |  13 ++-
+ config.def.h |  21 ++--
+ herbe.c      | 272 +++++++++++++++++++++++++++++++++++++++++----------
+ notify-send  |  81 +++++++++++++++
+ 4 files changed, 323 insertions(+), 64 deletions(-)
+ create mode 100755 notify-send
+
+diff --git a/Makefile b/Makefile
+index 3225e36..130687e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,7 +1,6 @@
+-CFLAGS = -Wall -Wextra -pedantic -lX11 -lXft -I/usr/include/freetype2 -pthread
+-
++CFLAGS += -Wall -Wextra -pedantic -lX11 -lXft -I/usr/include/freetype2 -pthread
+ PREFIX ?= /usr/local
+-CC ?= cc
++CC     ?= cc
+ 
+ all: herbe
+ 
+@@ -9,14 +8,18 @@ config.h: config.def.h
+ 	cp config.def.h config.h
+ 
+ herbe: herbe.c config.h
+-	$(CC) herbe.c $(CFLAGS) -o herbe
++	$(CC) herbe.c $(CFLAGS) -o herbe -lXrandr
+ 
+ install: herbe
+ 	mkdir -p ${DESTDIR}${PREFIX}/bin
+ 	cp -f herbe ${DESTDIR}${PREFIX}/bin
++	chmod 755 ${DESTDIR}${PREFIX}/bin/herbe
++	cp -f notify-send ${DESTDIR}${PREFIX}/bin
++	chmod 755 ${DESTDIR}${PREFIX}/bin/notify-send
+ 
+ uninstall:
+-	rm -f ${DESTDIR}${PREFIX}/bin/herbe
++	rm -f ${DESTDIR}${PREFIX}/bin/herbe\
++		${DESTDIR}${PREFIX}/bin/notify-send
+ 
+ clean:
+ 	rm -f herbe
+diff --git a/config.def.h b/config.def.h
+index 86b7e76..a06fe93 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,19 +1,20 @@
+-static const char *background_color = "#3e3e3e";
+-static const char *border_color = "#ececec";
+-static const char *font_color = "#ececec";
++static const char *background   = "#3e3e3e";
++static const char *border       = "#ececec";
++static const char *foreground   = "#ececec";
+ static const char *font_pattern = "monospace:size=10";
+-static const unsigned line_spacing = 5;
+-static const unsigned int padding = 15;
++static unsigned line_spacing = 5;
++static unsigned int padding = 15;
++static const int use_primary_monitor = 1;
+ 
+-static const unsigned int width = 450;
+-static const unsigned int border_size = 2;
+-static const unsigned int pos_x = 30;
+-static const unsigned int pos_y = 60;
++static unsigned int width = 450;
++static unsigned int border_size = 2;
++static unsigned int pos_x = 30;
++static unsigned int pos_y = 60;
+ 
+ enum corners { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT };
+ enum corners corner = TOP_RIGHT;
+ 
+-static const unsigned int duration = 5; /* in seconds */
++static unsigned int duration = 5; /* in seconds */
+ 
+ #define DISMISS_BUTTON Button1
+ #define ACTION_BUTTON Button3
+diff --git a/herbe.c b/herbe.c
+index 51d3990..22151be 100644
+--- a/herbe.c
++++ b/herbe.c
+@@ -1,13 +1,20 @@
+ #include <X11/Xlib.h>
+ #include <X11/Xft/Xft.h>
++#include <X11/Xresource.h>
++#include <X11/extensions/Xrandr.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <signal.h>
+-#include <unistd.h>
+-#include <string.h>
+-#include <stdarg.h>
++#include <errno.h>
++#include <fcntl.h>
+ #include <fcntl.h>
+-#include <semaphore.h>
++#include <mqueue.h>
++#include <stdarg.h>
++#include <string.h>
++#include <sys/file.h>
++#include <sys/ipc.h>
++#include <sys/shm.h>
++#include <unistd.h>
+ 
+ #include "config.h"
+ 
+@@ -15,10 +22,27 @@
+ #define EXIT_FAIL 1
+ #define EXIT_DISMISS 2
+ 
++#define XRES_STR(name)                                        \
++	if (XrmGetResource(db, "herbe." #name, "*", &type, &val)) \
++	name = val.addr
++#define XRES_INT(name)                                        \
++	if (XrmGetResource(db, "herbe." #name, "*", &type, &val)) \
++	name = strtoul(val.addr, 0, 10)
++
+ Display *display;
++XftFont *font;
+ Window window;
++int num_of_lines;
++char **lines;
+ int exit_code = EXIT_DISMISS;
+ 
++struct mq_object {
++	pid_t pid;
++	long timestamp;
++	char  buffer[1024];
++};
++long lastTimestamp;
++
+ static void die(const char *format, ...)
+ {
+ 	va_list ap;
+@@ -29,6 +53,19 @@ static void die(const char *format, ...)
+ 	exit(EXIT_FAIL);
+ }
+ 
++void read_y_offset(unsigned int **offset, int *id) {
++	int shm_id = shmget(8432, sizeof(unsigned int), IPC_CREAT | 0660);
++	if (shm_id == -1) die("shmget failed");
++
++	*offset = (unsigned int *)shmat(shm_id, 0, 0);
++	if (*offset == (unsigned int *)-1) die("shmat failed\n");
++	*id = shm_id;
++}
++
++void free_y_offset(int id) {
++	shmctl(id, IPC_RMID, NULL);
++}
++
+ int get_max_len(char *string, XftFont *font, int max_text_width)
+ {
+ 	int eol = strlen(string);
+@@ -70,6 +107,81 @@ int get_max_len(char *string, XftFont *font, int max_text_width)
+ 		return ++eol;
+ }
+ 
++void freeLines(void) {
++	if(lines) {
++		for (int i = 0; i < num_of_lines; i++)
++			free(lines[i]);
++		free(lines);
++	}
++}
++
++void constructLines(char* strList[], int numberOfStrings) {
++	freeLines();
++	int max_text_width = width - 2 * padding;
++	num_of_lines = 0;
++	int lines_size = 5;
++	lines = malloc(lines_size * sizeof(char *));
++	if (!lines)
++		die("malloc failed");
++
++	for (int i = 0; i < numberOfStrings; i++)
++	{
++		for (unsigned int eol = get_max_len(strList[i], font, max_text_width); eol; strList[i] += eol, num_of_lines++, eol = get_max_len(strList[i], font, max_text_width))
++		{
++			if (lines_size <= num_of_lines)
++			{
++				lines = realloc(lines, (lines_size += 5) * sizeof(char *));
++				if (!lines)
++					die("realloc failed");
++			}
++			lines[num_of_lines] = malloc((eol + 1) * sizeof(char));
++			if (!lines[num_of_lines])
++				die("malloc failed");
++
++			strncpy(lines[num_of_lines], strList[i], eol);
++			lines[num_of_lines][eol] = '\0';
++		}
++	}
++}
++
++void reload(union sigval sv);
++void readAllEvents(mqd_t mqd) {
++
++	struct sigevent event = {.sigev_notify=SIGEV_THREAD, .sigev_signo=SIGHUP, .sigev_value.sival_int=mqd, .sigev_notify_function=reload};
++	if(mq_notify(mqd, &event) == -1) {
++		perror("mq_notify failed");
++		exit(1);
++	}
++	struct mq_object object;
++	while(1) {
++		int ret = mq_receive(mqd, (char*)&object, sizeof(object), NULL);
++		if(ret==-1) {
++			if(errno == EAGAIN)
++				return;
++			perror("mq_receive");
++			exit(1);
++		}
++		if(object.timestamp && lastTimestamp > object.timestamp)
++			return;
++		if(object.timestamp)
++			lastTimestamp = object.timestamp;
++		char *buffer = object.buffer;
++
++		constructLines(&buffer, 1);
++		kill(object.pid, SIGTERM);
++	}
++}
++void reload(union sigval sv) {
++	// we've already timed out
++	if(alarm(duration) == 0)
++		return;
++	readAllEvents(sv.sival_int);
++	XEvent event;
++	event.type = Expose;
++	XSendEvent(display, window, 0, 0, &event);
++	XFlush(display);
++}
++
+ void expire(int sig)
+ {
+ 	XEvent event;
+@@ -79,14 +191,56 @@ void expire(int sig)
+ 	XFlush(display);
+ }
+ 
++
++void exitSuccess(int unused) {
++	exit(0);
++}
++
+ int main(int argc, char *argv[])
+ {
+ 	if (argc == 1)
+ 	{
+-		sem_unlink("/herbe");
+ 		die("Usage: %s body", argv[0]);
+ 	}
+ 
++	const char* id = getenv("HERBE_ID");
++	mqd_t mqd=-1;
++	if(id) {
++		struct mq_attr attr = { .mq_maxmsg = 10, .mq_msgsize = sizeof(struct mq_object) };
++		mqd = mq_open(id, O_RDWR|O_CREAT|O_NONBLOCK, 0722, &attr);
++		if(mqd==-1){
++			perror("mq_open");
++			die("mq_open");
++		}
++		while (1) {
++			if(flock(mqd, LOCK_EX|LOCK_NB) == 0) {
++				// if we get the lock, register for events
++				break;
++			}
++			if(errno != EWOULDBLOCK) {
++				perror("flock");
++				exit(1);
++			}
++			// someone else is listening for events
++			char* ts_str = getenv("NOTIFICATION_ID");
++			lastTimestamp = ts_str?atol(ts_str):0;
++			struct mq_object object = {getpid(), lastTimestamp, {0}};
++			char *buffer=object.buffer;
++			for(int i=1;i<argc;i++) {
++				strcat(buffer, argv[i]);
++				strcat(buffer, "\n");
++			}
++			signal(SIGTERM, exitSuccess);
++			if(mq_send(mqd, (char*)&object, sizeof(object), 1)==-1) {
++				perror("mq_send");
++				exit(1);
++			}
++			signal(SIGALRM, SIG_IGN);
++			alarm(1);
++			pause();
++		}
++	}
++
+ 	struct sigaction act_expire, act_ignore;
+ 
+ 	act_expire.sa_handler = expire;
+@@ -107,79 +261,98 @@ int main(int argc, char *argv[])
+ 	if (!(display = XOpenDisplay(0)))
+ 		die("Cannot open display");
+ 
++	XrmInitialize();
++
++	char *res_man = XResourceManagerString(display);
++	XrmDatabase db = XrmGetStringDatabase(res_man);
++
++	char *type;
++	XrmValue val;
++
++	XRES_STR(background);
++	XRES_STR(border);
++	XRES_STR(foreground);
++	XRES_STR(font_pattern);
++
++	XRES_INT(line_spacing);
++	XRES_INT(padding);
++	XRES_INT(width);
++	XRES_INT(border_size);
++	XRES_INT(pos_x);
++	XRES_INT(pos_y);
++	XRES_INT(corner);
++	XRES_INT(duration);
++
+ 	int screen = DefaultScreen(display);
+ 	Visual *visual = DefaultVisual(display, screen);
+ 	Colormap colormap = DefaultColormap(display, screen);
+ 
++	int screen_x = 0;
++	int screen_y = 0;
+ 	int screen_width = DisplayWidth(display, screen);
+ 	int screen_height = DisplayHeight(display, screen);
++	if(use_primary_monitor) {
++		int nMonitors;
++		XRRMonitorInfo* info = XRRGetMonitors(display, RootWindow(display, screen), 1, &nMonitors);
++		for(int i = 0; i < nMonitors; i++) {
++			if(info[i].primary) {
++				screen_x = info[i].x;
++				screen_y = info[i].y;
++				screen_width = info[i].width;
++				screen_height = info[i].height;
++			}
++		}
++	}
+ 
+ 	XSetWindowAttributes attributes;
+ 	attributes.override_redirect = True;
+ 	XftColor color;
+-	XftColorAllocName(display, visual, colormap, background_color, &color);
++	XftColorAllocName(display, visual, colormap, background, &color);
+ 	attributes.background_pixel = color.pixel;
+-	XftColorAllocName(display, visual, colormap, border_color, &color);
++	XftColorAllocName(display, visual, colormap, border, &color);
+ 	attributes.border_pixel = color.pixel;
++	font = XftFontOpenName(display, screen, font_pattern);
+ 
+-	int num_of_lines = 0;
+-	int max_text_width = width - 2 * padding;
+-	int lines_size = 5;
+-	char **lines = malloc(lines_size * sizeof(char *));
+-	if (!lines)
+-		die("malloc failed");
++	constructLines(argv+1, argc-1);
+ 
+-	XftFont *font = XftFontOpenName(display, screen, font_pattern);
++	int y_offset_id;
++	unsigned int *y_offset;
++	read_y_offset(&y_offset, &y_offset_id);
+ 
+-	for (int i = 1; i < argc; i++)
+-	{
+-		for (unsigned int eol = get_max_len(argv[i], font, max_text_width); eol; argv[i] += eol, num_of_lines++, eol = get_max_len(argv[i], font, max_text_width))
+-		{
+-			if (lines_size <= num_of_lines)
+-			{
+-				lines = realloc(lines, (lines_size += 5) * sizeof(char *));
+-				if (!lines)
+-					die("realloc failed");
+-			}
+-
+-			lines[num_of_lines] = malloc((eol + 1) * sizeof(char));
+-			if (!lines[num_of_lines])
+-				die("malloc failed");
+-
+-			strncpy(lines[num_of_lines], argv[i], eol);
+-			lines[num_of_lines][eol] = '\0';
+-		}
+-	}
+-
+-	unsigned int x = pos_x;
+-	unsigned int y = pos_y;
+ 	unsigned int text_height = font->ascent - font->descent;
+ 	unsigned int height = (num_of_lines - 1) * line_spacing + num_of_lines * text_height + 2 * padding;
++	unsigned int x = screen_x + pos_x;
++	unsigned int y = screen_y + pos_y + *y_offset;
++	unsigned int used_y_offset = (*y_offset) += height + padding;
+ 
+ 	if (corner == TOP_RIGHT || corner == BOTTOM_RIGHT)
+-		x = screen_width - width - border_size * 2 - pos_x;
++		x = screen_x + screen_width - width - border_size * 2 - pos_x;
+ 
+ 	if (corner == BOTTOM_LEFT || corner == BOTTOM_RIGHT)
+-		y = screen_height - height - border_size * 2 - pos_y;
++		y = screen_y + screen_height - height - border_size * 2 - pos_y;
+ 
+ 	window = XCreateWindow(display, RootWindow(display, screen), x, y, width, height, border_size, DefaultDepth(display, screen),
+ 						   CopyFromParent, visual, CWOverrideRedirect | CWBackPixel | CWBorderPixel, &attributes);
+ 
+ 	XftDraw *draw = XftDrawCreate(display, window, visual, colormap);
+-	XftColorAllocName(display, visual, colormap, font_color, &color);
++	XftColorAllocName(display, visual, colormap, foreground, &color);
++
++	XClassHint classhint = { "herbe", "herbe" };
++	XSetClassHint(display, window, &classhint);
+ 
+ 	XSelectInput(display, window, ExposureMask | ButtonPress);
+ 	XMapWindow(display, window);
+ 
+-	sem_t *mutex = sem_open("/herbe", O_CREAT, 0644, 1);
+-	sem_wait(mutex);
+-
+ 	sigaction(SIGUSR1, &act_expire, 0);
+ 	sigaction(SIGUSR2, &act_expire, 0);
+ 
+ 	if (duration != 0)
+ 		alarm(duration);
+ 
++	if(id) {
++		readAllEvents(mqd);
++	}
++
+ 	for (;;)
+ 	{
+ 		XEvent event;
+@@ -204,17 +377,18 @@ int main(int argc, char *argv[])
+ 		}
+ 	}
+ 
+-	sem_post(mutex);
+-	sem_close(mutex);
+-
+-	for (int i = 0; i < num_of_lines; i++)
+-		free(lines[i]);
++	if (used_y_offset == *y_offset) free_y_offset(y_offset_id);
++	freeLines();
+ 
+-	free(lines);
+ 	XftDrawDestroy(draw);
+ 	XftColorFree(display, visual, colormap, &color);
+ 	XftFontClose(display, font);
++	XrmDestroyDatabase(db);
+ 	XCloseDisplay(display);
+ 
++	if(id) {
++		mq_close(mqd);
++	}
++
+ 	return exit_code;
+-}
+\ No newline at end of file
++}
+diff --git a/notify-send b/notify-send
+new file mode 100755
+index 0000000..3a3872b
+--- /dev/null
++++ b/notify-send
+@@ -0,0 +1,81 @@
++#!/bin/sh
++# Shell script to redirect notify-send calls to herbe. The purpose is to ignore
++# options passed to notify-send.
++#
++# Option parser generated by getoptions
++# URL: https://github.com/ko1nksm/getoptions
++# LICENSE: Creative Commons Zero v1.0 Universal
++
++usage() {
++    printf '%s\n' "${0##*/}: notify-send replacement for herbe" "accepts but ignores all notify-send options."
++}
++
++REST=''
++parse() {
++  OPTIND=$(($#+1))
++  while [ $# -gt 0 ] && OPTARG=; do
++    case $1 in
++      --?*=*) OPTARG=$1; shift
++        eval 'set -- "${OPTARG%%\=*}" "${OPTARG#*\=}"' ${1+'"$@"'}
++        ;;
++      -[utich]?*) OPTARG=$1; shift
++        eval 'set -- "${OPTARG%"${OPTARG#??}"}" "${OPTARG#??}"' ${1+'"$@"'}
++        ;;
++      -[!-]?*) OPTARG=$1; shift
++        eval 'set -- "${OPTARG%"${OPTARG#??}"}" "-${OPTARG#??}"' ${1+'"$@"'}
++        OPTARG= ;;
++    esac
++    case $1 in
++      -u | --urgency)
++        [ $# -le 1 ] && set -- "$1" required && break
++        OPTARG=$2
++        _=$OPTARG
++        shift ;;
++      -t | --expire-time)
++        [ $# -le 1 ] && set -- "$1" required && break
++        OPTARG=$2
++        _=$OPTARG
++        shift ;;
++      -i | --icon)
++        [ $# -le 1 ] && set -- "$1" required && break
++        OPTARG=$2
++        _=$OPTARG
++        shift ;;
++      -c | --category)
++        [ $# -le 1 ] && set -- "$1" required && break
++        OPTARG=$2
++        _=$OPTARG
++        shift ;;
++      -h | --hint)
++        [ $# -le 1 ] && set -- "$1" required && break
++        OPTARG=$2
++        _=$OPTARG
++        shift ;;
++      -? | --help)
++        usage
++        exit 0 ;;
++      --) shift
++        while [ $# -gt 0 ]; do
++          REST="${REST} \"\${$(($OPTIND-$#))}\""
++          shift
++        done
++        break ;;
++      [-]?*) set -- "$1" unknown && break ;;
++      *) REST="${REST} \"\${$(($OPTIND-$#))}\""
++    esac
++    shift
++  done
++  [ $# -eq 0 ] && return 0
++  case $2 in
++    unknown) echo "unrecognized option '$1'" ;;
++    noarg) echo "option '$1' doesn't allow an argument" ;;
++    required) echo "option '$1' requires an argument" ;;
++    pattern) echo "option '$1' does not match the pattern ($3)" ;;
++    *) echo "option '$1' validation error: $2"
++  esac >&2
++  exit 1
++}
++
++parse "$@"
++eval set -- "$REST"
++herbe "$@" &
+-- 
+2.40.0
