@@ -27,7 +27,17 @@
   };
 
   librespot = wrapWith pkgs {
-    basePackage = pkgs.librespot;
+    basePackage = pkgs.librespot.overrideAttrs {
+      # Override postFixup to prevent double wrapping
+      # This little maneuver is gonna cost us 22 minutes
+      postFixup = "";
+    };
+
+    # This is what postFixup would normally do, hopefully we're using the same alsa-plugins
+    env.ALSA_PLUGIN_DIR = {
+      force = true;
+      value = "${pkgs.alsa-plugins}/lib/alsa-lib";
+    };
 
     # https://github.com/librespot-org/librespot/wiki/Options
     prependFlags =
