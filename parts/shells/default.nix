@@ -1,6 +1,5 @@
 {
   perSystem = {
-    config,
     pkgs, # this has an overlay with all my packages btw
     self',
     ...

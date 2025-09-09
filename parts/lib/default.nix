@@ -1,7 +1,10 @@
-{inputs, ...}: let
+{
+  inputs,
+  self,
+  ...
+}: let
   inherit (inputs.nixpkgs) lib;
-  pins = import ../npins;
-  wrapper-manager = import pins.wrapper-manager;
+  wrapper-manager = import self.pins.wrapper-manager;
 in {
   # Expose the lib via the flake using flake-parts.
   # I could merge this lib with nixpkgs.lib but I chose not to because

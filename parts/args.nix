@@ -24,7 +24,7 @@ in {
     legacyPackages = import inputs.nixpkgs {
       inherit system;
       config = {
-        allowUnfree = true;
+        allowUnfree = false;
         allowUnsupportedSystem = true;
       };
       overlays = [inputs.self.overlays.default];

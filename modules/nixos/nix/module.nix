@@ -80,6 +80,10 @@ in {
 
       # Remove warning about dirty VCS tree
       warn-dirty = false;
+
+      # Whether  to  accept  Nix  configuration settings from a flake without prompting.
+      # Default: false
+      accept-flake-config = false; # I really want to set this to true
     };
 
     # Perform garbage collection weekly to maintain low disk usage
@@ -99,6 +103,7 @@ in {
       extraArgs = "--keep 5 --keep-size 7d";
       dates = "weekly";
     };
+    # Set NH_FLAKE env variable for the default flake path.
     # flake = "/home/ratakor/nixos";
   };
 }
