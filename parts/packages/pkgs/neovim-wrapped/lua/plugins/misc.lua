@@ -16,7 +16,9 @@ return {
     -- gc/gcc magic comment
     {
         "comment.nvim",
-        opts = { ignore = "^$" },
+        after = function()
+            require("Comment").setup({ ignore = "^$" })
+        end,
     },
 
     -- FixWhitespace
@@ -25,16 +27,18 @@ return {
     -- HUD for git in vim
     {
         "gitsigns.nvim",
-        opts = {
-            signs = {
-                add = { text = "+" },
-                change = { text = "~" },
-                delete = { text = "_" },
-                topdelete = { text = "‾" },
-                changedelete = { text = "~" },
-                untracked = { text = "" },
-            },
-        },
+        after = function()
+            require("gitsigns").setup({
+                signs = {
+                    add = { text = "+" },
+                    change = { text = "~" },
+                    delete = { text = "_" },
+                    topdelete = { text = "‾" },
+                    changedelete = { text = "~" },
+                    untracked = { text = "" },
+                },
+            })
+        end,
     },
 
     -- git in vim
@@ -44,7 +48,6 @@ return {
     -- Fuzzy finder
     {
         "telescope.nvim",
-        branch = "0.1.x",
         dependencies = {
             "plenary.nvim",
             -- {
@@ -66,38 +69,40 @@ return {
         "copilot.lua",
         enabled = false,
         build = ":Copilot auth",
-        opts = {
-            panel = { enabled = false },
-            suggestion = {
-                enabled = true,
-                auto_trigger = true,
-                keymap = {
-                    accept = "<C-h>",
-                    dismiss = "<C-l>",
+        after = function()
+            require("copilot").setup({
+                panel = { enabled = false },
+                suggestion = {
+                    enabled = true,
+                    auto_trigger = true,
+                    keymap = {
+                        accept = "<C-h>",
+                        dismiss = "<C-l>",
+                    },
                 },
-            },
-        },
+            })
+        end,
     },
 
     -- Testing inside vim
-    {
-        "neotest",
-        dependencies = {
-            "nvim-nio",
-            "plenary-nvim",
-            "FixCursorHold-nvim",
-            "neotest-zig",
-        },
-    },
+    -- {
+    --     "neotest",
+    --     dependencies = {
+    --         "nvim-nio",
+    --         "plenary-nvim",
+    --         "FixCursorHold-nvim",
+    --         "neotest-zig",
+    --     },
+    -- },
 
     {
         "which-key.nvim",
-        -- event = "VeryLazy",
-        init = function()
+        event = "DeferredUIEnter", -- VeryLazy
+        after = function()
             vim.opt.timeout = true
             vim.opt.timeoutlen = 300
+            require("which-key").setup({})
         end,
-        config = true,
     },
 
     -- TODO: switch to chadtree?

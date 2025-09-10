@@ -68,8 +68,11 @@ in
 
       start = with vimPlugins; [
         lz-n
+
+        # deps
         nvim-web-devicons
         plenary-nvim
+        nui-nvim
       ];
 
       opt = with vimPlugins; [
@@ -103,11 +106,11 @@ in
         plenary-nvim
         undotree
         copilot-lua
-        neotest
-        nvim-nio
-        plenary-nvim
-        FixCursorHold-nvim
-        neotest-zig
+        # neotest
+        # nvim-nio
+        # plenary-nvim
+        # FixCursorHold-nvim
+        # neotest-zig
         which-key-nvim
         nerdtree
         vim-abolish

@@ -1,6 +1,11 @@
 return {
     -- Put a print statement with g?p or g?v
-    { "debugprint.nvim", config = true },
+    {
+        "debugprint.nvim",
+        after = function()
+            require("debugprint").setup({})
+        end,
+    },
 
     -- TODO
     --[[
