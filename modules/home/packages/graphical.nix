@@ -28,6 +28,9 @@
 
   # what about xorg-server and xorg-server-devel from archlinux?
   x11 = {
+    # dmenu, dwm, sb, slock, st
+    core = [self.pkgs.suckless];
+
     unsorted = with pkgs; [
       maim # screenshot
       slop # region selection

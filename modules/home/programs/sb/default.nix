@@ -12,7 +12,7 @@
   inherit (lib.modules) mkIf;
 in {
   config = mkIf (config.self.displayServer == "x11") {
-    # user.packages = [self.pkgs.sb];
+    user.packages = [self.pkgs.suckless];
     hm.xdg.configFile."sb/config".source = ./config;
   };
 }

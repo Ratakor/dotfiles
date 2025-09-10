@@ -1,14 +1,14 @@
 # Simple Terminal for X11
-# TODO
 {
   config,
   lib,
+  self,
   ...
 }: let
   inherit (lib.modules) mkIf;
 in {
   config = mkIf (config.self.terminal.program == "st") {
-    # user.packages = [st];
+    user.packages = [self.pkgs.suckless];
 
     self.terminal = {
       cmd = "st";
