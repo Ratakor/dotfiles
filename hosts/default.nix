@@ -23,7 +23,7 @@
   graphical = profiles + /graphical;
   workstation = profiles + /workstation;
   laptop = profiles + /laptop;
-  # server = profiles + /server;
+  server = profiles + /server;
 
   # Recursively find all `module.nix` files in a given path
   mkModuleTree = path:

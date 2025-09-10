@@ -48,6 +48,7 @@
     # texliveMinimal # latex, see `texliveFull` too
     pandoc # document converter
     # tinyxxd # hexdump utility, see `hexyl` too
+    # self.pkgs.neocities-zig # TODO: not packaged
   ];
 
   fs = with pkgs; [
@@ -63,6 +64,7 @@
     btrfs-progs # btrfs filesystem
     # btrfs-snap # btrfs snapshot management tool
     # btrfs-list # `zfs list` for btrfs
+    self.pkgs.zfs-restore # trash-restore but for ZFS snapshots
   ];
 
   archives = with pkgs; [

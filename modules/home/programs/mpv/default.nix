@@ -17,6 +17,12 @@
       # skipsilence
       # mpv-notify-send
     ];
+    profiles = {
+      # mpv --profile=yt <url>
+      yt = {
+        ytdl-raw-options = "cookies-from-browser=chromium";
+      };
+    };
   };
 
   hm.xdg.configFile."mpv/scripts/copy_path.lua".text = ''

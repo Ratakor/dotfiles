@@ -6,7 +6,6 @@
   cli = with pkgs; [
     pastel # CLI for color manipulation
     acpi # battery status, -i is good
-    self.pkgs.zfs-restore # trash-restore but for ZFS snapshots
     yt-dlp # download any video/audio from the web
     jq # json processor
     yq # jq wrapper for yaml, xml and toml

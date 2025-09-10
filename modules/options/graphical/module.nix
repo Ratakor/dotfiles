@@ -67,4 +67,8 @@ in {
       };
     };
   };
+
+  config = {
+    system.nixos.tags = [cfg.displayServer];
+  };
 }

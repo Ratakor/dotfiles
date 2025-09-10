@@ -5,6 +5,4 @@
     ./services/login.nix
     ./services/xserver.nix
   ];
-
-  system.nixos.tags = ["graphical"];
 }
