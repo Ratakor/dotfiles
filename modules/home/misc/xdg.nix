@@ -47,18 +47,15 @@ in {
     desktopEntries = {
       terminal-directory = {
         name = "File Manager";
-        exec = "footclient -D %f"; # TODO: use config.terminal or something, same for below
-        # exec = "st -d %u";
+        exec = "${config.self.terminal.cmdDir} %f";
       };
       git = {
         name = "git";
-        exec = "footclient -e git clone %u";
-        # exec = "st -e git clone %u";
+        exec = "${config.self.terminal.cmd} -e git clone %u";
       };
       text = {
         name = "Text Editor";
-        exec = "footclient -e nvim %u";
-        # exec = "st -e nvim %u";
+        exec = "${config.self.terminal.cmd} -e nvim %u";
       };
       nsxiv-a = {
         name = "Image Viewer";

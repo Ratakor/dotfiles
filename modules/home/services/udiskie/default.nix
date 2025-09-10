@@ -1,5 +1,5 @@
 # USB device manager (auto-mounting)
-{
+{config, ...}: {
   hm.services.udiskie = {
     enable = false; # TODO: not configured yet
     automount = true;
@@ -7,7 +7,7 @@
 
     settings = {
       program_options = {
-        terminal = "footclient -D";
+        terminal = config.self.terminal.cmdDir;
       };
     };
   };

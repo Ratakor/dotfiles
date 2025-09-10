@@ -28,14 +28,14 @@
   };
 
   tofi = wrapWith pkgs {
-    basePackage = pkgs.tofi-dmenu;
+    basePackage = self.pkgs.tofi-dmenu;
     prependFlags = [
       "--config"
       (pkgs.writeText "tofi-config" (toINIWithGlobalSection {} {globalSection = settings;}))
     ];
   };
 in {
-  config = mkIf (false && config.self.displayServer == "wayland") {
+  config = mkIf (config.self.menu.program == "tofi") {
     user.packages = [tofi];
 
     self.menu = {

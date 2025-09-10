@@ -14,6 +14,8 @@
   self = {
     colorscheme = "gruvbox-dark";
     displayServer = "wayland";
+    menu.program = "tofi";
+    terminal.program = "foot";
   };
 
   system.stateVersion = "25.05";

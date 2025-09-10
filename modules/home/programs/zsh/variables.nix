@@ -37,12 +37,7 @@ in {
       # VISUAL = "nvim"; # nvim is not a visual editor
       BROWSER = "chromium --new-window"; # cromite
       DMENU = config.self.menu.dynamic;
-
-      ## Wayland
-      TERMINAL = "footclient";
-
-      ## X11
-      # TERMINAL = "st";
+      TERMINAL = config.self.terminal.cmd;
 
       # ~/ Clean-up
       FFMPEG_DATADIR = "${XDG_CONFIG_HOME}/ffmpeg";

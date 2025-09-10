@@ -53,7 +53,7 @@
     prependFlags = ["--config" (ini.generate "fuzzel.ini" settings)];
   };
 in {
-  config = mkIf (config.self.displayServer == "wayland") {
+  config = mkIf (config.self.menu.program == "fuzzel") {
     user.packages = [fuzzel];
 
     self.menu = {

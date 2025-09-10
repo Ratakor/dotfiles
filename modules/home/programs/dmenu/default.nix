@@ -7,7 +7,7 @@
 }: let
   inherit (lib.modules) mkIf;
 in {
-  config = mkIf (config.self.displayServer == "x11") {
+  config = mkIf (config.self.menu.program == "dmenu") {
     # user.packages = [dmenu];
 
     self.menu = {
