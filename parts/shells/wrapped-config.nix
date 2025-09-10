@@ -1,11 +1,26 @@
 # TODO: add oxidation?
 {
   mkShellNoCC,
+  neovim-wrapped,
   zellij-wrapped,
   yazi-wrapped,
+  ripgrep,
+  fd,
 }:
 mkShellNoCC {
   name = "wrapped-config";
+
+  packages = [
+    neovim-wrapped
+    zellij-wrapped
+    yazi-wrapped
+    ripgrep
+    fd
+  ];
+
+  env = {
+    EDITOR = "nvim";
+  };
 
   # This work only for bash
   shellHook = ''
@@ -24,14 +39,4 @@ mkShellNoCC {
 
     # zellij
   '';
-
-  packages = [
-    # neovim-wrapped # TODO: soon
-    zellij-wrapped
-    yazi-wrapped
-  ];
-
-  env = {
-    EDITOR = "nvim";
-  };
 }
