@@ -25,7 +25,7 @@
     # gomuks # matrix client
     # iamb # Matrix Client
     fzf # fuzzy finder
-    htop-vim # process viewer with vim keybindings
+    # htop-vim # process viewer with vim keybindings
     # micro # normie text editor
     # discordo # discord client
   ];
@@ -59,5 +59,7 @@
 in [
   cli
   tui
+  # rice
+  # cast
   unsorted
 ]

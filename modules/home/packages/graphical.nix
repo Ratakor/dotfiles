@@ -62,7 +62,7 @@
     # libreoffice # office suite (there are many variant in nixpkgs)
     # blender # 3D modeling and animation
     # monero-gui # Monero wallet
-    # teams # Microsoft Teams
+    # teams-for-linux # Microsoft Teams
     # songrec # Open-source Shazam client
     # kiwix # # bruh why do I have the whole wikipedia locally installed
     # discord # see vencord & vesktop too
