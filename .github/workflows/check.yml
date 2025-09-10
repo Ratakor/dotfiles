@@ -15,12 +15,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+
       - name: "Set up Nix"
         uses: DeterminateSystems/nix-installer-action@main
         with:
+          logger: pretty
           extra-conf: |
             experimental-features = nix-command flakes pipe-operators
+
       - name: "Check Nix flake inputs"
         uses: DeterminateSystems/flake-checker-action@main
+
       - name: "Check Nix flake outputs"
         run: nix flake check --accept-flake-config
