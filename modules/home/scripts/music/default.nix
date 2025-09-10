@@ -1,12 +1,10 @@
 {
   config,
-  lib,
   pkgs,
-  self,
   ...
 }: {
   user.packages = [
-    (import ./music.nix {inherit config lib pkgs self;})
-    (import ./musiccmd.nix {inherit config lib pkgs self;})
+    (import ./music.nix {inherit config pkgs;})
+    (import ./musiccmd.nix {inherit config pkgs;})
   ];
 }

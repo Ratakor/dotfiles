@@ -62,6 +62,13 @@ in {
       border-color-focused = "0x${colors.blue}";
       border-color-unfocused = "0x${colors.unfocused}";
       border-color-urgent = "0x${colors.red}";
+
+      map = {
+        normal = {
+          "Super D" = "spawn '${config.self.menu.drun}'";
+          "Super+Shift D" = "spawn '${config.self.menu.run}'";
+        };
+      };
     };
 
     extraConfig = readFile ./river-init.sh;

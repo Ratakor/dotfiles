@@ -14,7 +14,7 @@ DMENU=${DMENU:-"dmenu -i"}
 web() {
 	SEARCH_ENGINE="https://4get.ca/web?s="
 	# SEARCH_ENGINE="https://duckduckgo.com/?q="
-	query=${1:-$(true | $DMENU -p "Search:" -l 0)}
+	query=${1:-$(true | $DMENU -p "Search: " -l 0)}
 	if [ -z "$query" ]; then
 		exit 1
 	elif [ "$query" = '!!' ]; then
@@ -30,14 +30,14 @@ web() {
 
 aur() {
 	AURSITE="https://aur.archlinux.org/packages?O=0&K="
-	query="$AURSITE$(true | $DMENU -p "AUR:" -l 0)"
+	query="$AURSITE$(true | $DMENU -p "AUR: " -l 0)"
 }
 
 manpdf() {
 	[ "$DMENU" = "tofi" ] && DMENU="tofi --padding-left 0% --padding-top 0%"
 	if [ -z "$1" ]; then
 		# shellcheck disable=SC2046
-		set -- $(man -k . | cut -c 1-80 | $DMENU -i -l 20 -p "man:" | awk -F'[()]' '{print $1, $2}')
+		set -- $(man -k . | cut -c 1-80 | $DMENU -i -l 20 -p "man: " | awk -F'[()]' '{print $1, $2}')
 		[ -z "$1" ] && return 1
 	fi
 	man -Tpdf "$2" "$(man -w "$1")" | zathura -

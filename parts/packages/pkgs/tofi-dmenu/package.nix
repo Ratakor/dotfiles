@@ -1,5 +1,5 @@
-{tofi, ...}:
-tofi.overrideAttrs (oldAttrs: {
+{tofi}:
+tofi.overrideAttrs (prevAttrs: {
   pname = "tofi-dmenu";
-  patches = (oldAttrs.patches or []) ++ [./tofi-dmenu-20240910.diff];
+  patches = (prevAttrs.patches or []) ++ [./tofi-dmenu-0.9.1.diff];
 })

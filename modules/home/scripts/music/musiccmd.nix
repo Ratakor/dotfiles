@@ -3,18 +3,14 @@
 # https://raw.githubusercontent.com/Ratakor/dotfiles/ec0dc5e5240d2fef94afaa3cbe7f2cb9d5dcfce3/users/ratakor/programs/scripts/bin/musiccmd
 {
   config,
-  lib,
   pkgs,
-  self,
 }: let
-  inherit (lib.meta) getExe;
-
   XDG_MUSIC_DIR = config.hm.xdg.userDirs.music;
   XDG_CACHE_HOME = config.hm.xdg.cacheHome;
 
   # TODO: allow to configure that and waybar/sb, imv
   # replace `kill -35 $(pidof waybar)` with `kill -34 $(pidof sb)` for sb
-  DMENU = getExe self.pkgs.tofi-dmenu;
+  DMENU = config.self.menu.dynamic;
 in
   pkgs.writeShellApplication {
     name = "musiccmd";
@@ -31,7 +27,7 @@ in
       ]
       ++ [imv];
     bashOptions = [];
-    inheritPath = false;
+    inheritPath = true; # needed for DMENU
     text = ''
       FAVDIR=${XDG_MUSIC_DIR}/favorite
       DLDIR=${XDG_MUSIC_DIR}/download
@@ -109,7 +105,7 @@ in
       		return 1
       	fi
 
-      	cmd=''${1:-$(printf '⏯️ pause/play\n⏭️ next\n⏮️ prev\n📢 volume\n🔳 stop\n⭐ favorite\n⬇️ download\n🖼️ thumbnail' | ${DMENU} -p "musiccmd")}
+      	cmd=''${1:-$(printf '⏯️ pause/play\n⏭️ next\n⏮️ prev\n📢 volume\n🔳 stop\n⭐ favorite\n⬇️ download\n🖼️ thumbnail' | ${DMENU})}
 
       	case "$cmd" in
       	cycle|*pause|*play)
@@ -122,7 +118,7 @@ in
       		printf 'playlist-prev\n' | socat - "$SOCKET" ;;
       	*volume)
       		printf '{ "command": ["set_property", "volume", %s] }\n'\
-      			"''${2:-$(true | ${DMENU} -p "Current volume: $(getvol) ->")}"\
+      			"''${2:-$(true | ${DMENU} -p "Current volume: $(getvol) -> ")}"\
       			| socat - "$SOCKET" 1> /dev/null ;;
       	*stop)
       		printf 'stop\n' | socat - "$SOCKET"

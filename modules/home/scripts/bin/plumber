@@ -103,7 +103,7 @@ openfile() {
 # TODO: ytdl + randwp
 opendmenu() {
 	case "$(printf '%s\nbrowser\naudio\nvideo\nimage\ndocument\neditor
-yt-dlp\nmusic-dlp\nsetbg' "$1" | $DMENU -p "Open with")" in
+yt-dlp\nmusic-dlp\nsetbg' "$1" | $DMENU -p 'Open with: ')" in
 	"$1")
 		wl-copy "$1" 2>/dev/null ||\
 			printf '%s' "$1" | xclip 2>/dev/null ||\
@@ -135,7 +135,7 @@ yt-dlp\nmusic-dlp\nsetbg' "$1" | $DMENU -p "Open with")" in
 	yt-dlp)
 		open ytdl v "$1" ;;
 	music-dlp)
-		if [ "$(printf 'no\nyes' | $DMENU -p 'Playlist?')" = "yes" ]; then
+		if [ "$(printf 'no\nyes' | $DMENU -p 'Playlist? ')" = "yes" ]; then
 			open ytdl p "$1"
 		else
 			open ytdl m "$1"
@@ -205,6 +205,7 @@ main() {
 		done ;;
 	-d|--dmenu)
 		shift
+		# --prompt-only with fuzzel?
 		arg=${1:-$(true | $DMENU -p 'Paste URL or file path')}
 		[ -z "$arg" ] && return
 		printf '%s\n' "$arg" >> "$HISTFILE"

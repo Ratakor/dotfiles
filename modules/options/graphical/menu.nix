@@ -1,4 +1,3 @@
-# TODO: config dmenu, fuzzel, tofi
 {lib, ...}: let
   inherit (lib.options) mkOption;
   inherit (lib.types) str nullOr;

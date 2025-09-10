@@ -1,0 +1,74 @@
+From 890433969c9e70076852a45de09624c77740966a Mon Sep 17 00:00:00 2001
+From: Ratakor <ratakor@disroot.org>
+Date: Wed, 10 Sep 2025 11:21:44 +0200
+Subject: [PATCH] Add more compatibility with dmenu
+
+---
+ src/input.c |  4 ++++
+ src/main.c  | 14 ++++++++++++--
+ 2 files changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/src/input.c b/src/input.c
+index 1049fa9..def8c47 100644
+--- a/src/input.c
++++ b/src/input.c
+@@ -306,6 +306,10 @@ void select_next_result(struct tofi *tofi)
+ {
+ 	struct entry *entry = &tofi->window.entry;
+ 
++	if (entry->first_result + entry->selection == entry->results.count - 1) {
++		return;
++	}
++
+ 	uint32_t nsel = MAX(MIN(entry->num_results_drawn, entry->results.count), 1);
+ 
+ 	entry->selection++;
+diff --git a/src/main.c b/src/main.c
+index a59ac78..9cde49c 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -828,7 +828,7 @@ static void usage(bool err)
+ "Basic options:\n"
+ "  -h, --help                           Print this message and exit.\n"
+ "  -c, --config <path>                  Specify a config file.\n"
+-"      --prompt-text <string>           Prompt text.\n"
++"  -p, --prompt-text <string>           Prompt text.\n"
+ "      --width <px|%>                   Width of the window.\n"
+ "      --height <px|%>                  Height of the window.\n"
+ "      --output <name>                  Name of output to display window on.\n"
+@@ -927,7 +927,7 @@ const struct option long_options[] = {
+ 	{"late-keyboard-init", optional_argument, NULL, 'k'},
+ 	{NULL, 0, NULL, 0}
+ };
+-const char *short_options = ":hc:";
++const char *short_options = ":hc:il:p:";
+ 
+ static void parse_args(struct tofi *tofi, int argc, char *argv[])
+ {
+@@ -948,6 +948,8 @@ static void parse_args(struct tofi *tofi, int argc, char *argv[])
+ 		} else if (opt == 'c') {
+ 			config_load(tofi, optarg);
+ 			load_default_config = false;
++		} else if (opt == 'i') {
++			// Ignore -i for compatibility with dmenu.
+ 		} else if (opt == ':') {
+ 			log_error("Option %s requires an argument.\n", argv[optind - 1]);
+ 			usage(true);
+@@ -987,6 +989,14 @@ static void parse_args(struct tofi *tofi, int argc, char *argv[])
+ 			} else {
+ 				tofi->late_keyboard_init = true;
+ 			}
++		} else if (opt == 'p') {
++			if (!config_apply(tofi, "prompt-text", optarg)) {
++				exit(EXIT_FAILURE);
++			}
++		} else if (opt == 'l') {
++			if (!config_apply(tofi, "num-results", optarg)) {
++				exit(EXIT_FAILURE);
++			}
+ 		}
+ 		opt = getopt_long(argc, argv, short_options, long_options, &option_index);
+ 	}
+-- 
+2.50.1
+

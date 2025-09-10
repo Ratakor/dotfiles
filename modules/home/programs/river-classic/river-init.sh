@@ -68,7 +68,6 @@ riverctl map-pointer normal Super BTN_RIGHT resize-view
 ### Custom bindings
 
 riverctl map normal Super Return spawn "$TERMINAL"
-riverctl map normal Super D spawn 'exec $(tofi-run)'
 riverctl map normal None XF86ScreenSaver spawn 'glitchlock'
 riverctl map normal Super+Shift X spawn 'glitchlock'
 riverctl map normal None XF86Battery spawn 'battery'

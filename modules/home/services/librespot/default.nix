@@ -30,6 +30,7 @@
     basePackage = pkgs.librespot.overrideAttrs {
       # Override postFixup to prevent double wrapping
       # This little maneuver is gonna cost us 22 minutes
+      # Maybe add `librespot-unwrapped` to packages so CI build it into cachix
       postFixup = "";
     };
 

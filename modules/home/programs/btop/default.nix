@@ -1,4 +1,8 @@
-{ pkgs, self, ...}: let
+{
+  pkgs,
+  self,
+  ...
+}: let
   inherit (self.lib) wrapWith;
 
   btop = wrapWith pkgs {
