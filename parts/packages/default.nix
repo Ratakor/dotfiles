@@ -56,12 +56,12 @@
         watt = pkgs.callPackage "${pins.watt}/nix/package.nix" {};
         # CLI tool to restore files from ZFS snapshots
         zfs-restore = pkgs.callPackage "${pins.zfs-restore}/nix/package.nix" {
-          zigPlatform = inputs'.zig.packages.zig_0_15_1;
+          zig = pkgs.zig_0_15;
         };
         # CLI/TUI for Spotify
         zpotify = pkgs.callPackage "${pins.zpotify}/nix/package.nix" {
-          zigPlatform = inputs'.zig.packages.zig_0_15_1;
-          image-support = false; # smh can't build with nix
+          zig = pkgs.zig_0_15;
+          image-support = true;
         };
       };
     in

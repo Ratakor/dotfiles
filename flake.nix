@@ -16,17 +16,11 @@
     # nixpkgs-unstable is the rolling release channel for Nix-as-a-package-manager.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # We only care about x86_64-linux (for now).
+    # This allows building my packages on other platforms by overriding this input.
     systems.url = "github:nix-systems/x86_64-linux";
 
     # Flake builder.
     flake-parts.url = "github:hercules-ci/flake-parts";
-
-    # The Zig programming language.
-    zig = {
-      url = "github:silversquirl/zig-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs:

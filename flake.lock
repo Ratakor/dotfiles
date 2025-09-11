@@ -53,8 +53,7 @@
       "inputs": {
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs",
-        "systems": "systems",
-        "zig": "zig"
+        "systems": "systems"
       }
     },
     "systems": {
@@ -69,26 +68,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "x86_64-linux",
-        "type": "github"
-      }
-    },
-    "zig": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1757076199,
-        "narHash": "sha256-9Pitwgseb2CnXxPVaXr+jwM/7z2OzZgBOrkze6pzQsI=",
-        "owner": "silversquirl",
-        "repo": "zig-flake",
-        "rev": "a8a59daacdacc35b42aa77de4ba524fce29547e8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "silversquirl",
-        "repo": "zig-flake",
         "type": "github"
       }
     }

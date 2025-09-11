@@ -113,9 +113,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "36a8f29cb1ff9dd4d83cc5e721ccc9ef59527183",
-      "url": "https://github.com/ratakor/zfs-restore/archive/36a8f29cb1ff9dd4d83cc5e721ccc9ef59527183.tar.gz",
-      "hash": "11w8186gi0zp7j9sn52xjdpfpsbhh9ksyf0yly7dbd4bl4lzri73"
+      "revision": "90bbd917b7f59465d2b8693cbb222f47cb2397e2",
+      "url": "https://github.com/ratakor/zfs-restore/archive/90bbd917b7f59465d2b8693cbb222f47cb2397e2.tar.gz",
+      "hash": "0waws7x36583irnm12ihswpj30hxbibvkfjka8x2dc6x09gk3lya"
     },
     "zpotify": {
       "type": "Git",
@@ -126,9 +126,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "62d117a71cf9c4e3936aceadbc38c493ec2ed934",
-      "url": "https://github.com/ratakor/zpotify/archive/62d117a71cf9c4e3936aceadbc38c493ec2ed934.tar.gz",
-      "hash": "18wqg32mla13qqfn8q9xxsigm24mj69xsk8zwp2x2d1lnj3xwazh"
+      "revision": "d19cbd6c9a74fa38f56e2fb89ad5748fb92f1239",
+      "url": "https://github.com/ratakor/zpotify/archive/d19cbd6c9a74fa38f56e2fb89ad5748fb92f1239.tar.gz",
+      "hash": "1hkll2hxnyycrlli65i5rihxhjv5ihcw46f9iv86yr2q7fcsybmx"
     }
   },
   "version": 5
