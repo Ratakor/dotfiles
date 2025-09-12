@@ -4,7 +4,8 @@
   lib,
   self,
   ...
-}: let
+}:
+let
   inherit (builtins) concatStringsSep;
   inherit (lib.modules) mkIf;
 
@@ -17,9 +18,10 @@
     "steam"
     "monero-wallet-gui"
   ];
-in {
+in
+{
   config = mkIf (config.self.menu.program == "dmenu") {
-    user.packages = [self.pkgs.suckless];
+    user.packages = [ self.pkgs.suckless ];
 
     self.menu = {
       dynamic = "dmenu -i";

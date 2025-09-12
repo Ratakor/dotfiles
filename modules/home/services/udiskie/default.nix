@@ -1,5 +1,6 @@
 # USB device manager (auto-mounting)
-{config, ...}: {
+{ config, ... }:
+{
   hm.services.udiskie = {
     enable = false; # TODO: not configured yet
     automount = true;

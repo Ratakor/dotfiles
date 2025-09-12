@@ -1,7 +1,9 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   inherit (lib.types) str;
   inherit (lib.options) mkOption;
-in {
+in
+{
   # rename to options.self.xdg once there is actual features?
   options.xdg = {
     config = mkOption {

@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     # hardware-configuration.nix should probably be merged here or sorted e.g.
     # filesystem.nix with all zfs stuff, etc...
@@ -70,7 +71,7 @@
 
     autoScrub = {
       enable = true;
-      pools = ["zpool"];
+      pools = [ "zpool" ];
       interval = "monthly";
     };
 

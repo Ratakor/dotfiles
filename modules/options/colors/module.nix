@@ -6,15 +6,21 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib.options) mkOption;
   inherit (lib.types) enum;
 
   cfg = config.self;
-in {
+in
+{
   options.self = {
     colorscheme = mkOption {
-      type = enum ["gruvbox-dark" "gruvbox-light" "dracula"];
+      type = enum [
+        "gruvbox-dark"
+        "gruvbox-light"
+        "dracula"
+      ];
       description = "The colorscheme that should be used globally.";
       default = "gruvbox-dark";
     };

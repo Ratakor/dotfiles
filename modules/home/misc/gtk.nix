@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   hm.gtk = {
     enable = true;
 

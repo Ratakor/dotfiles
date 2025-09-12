@@ -2,8 +2,10 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkForce;
-in {
+in
+{
   services.pulseaudio.enable = mkForce (!config.services.pipewire.enable);
 }

@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib.options) mkEnableOption;
   inherit (lib.modules) mkIf;
   inherit (lib.meta) getExe';
@@ -16,13 +17,14 @@
     group = "root";
     source = getExe' package command;
   };
-in {
+in
+{
   options.programs.pmount = {
     enable = mkEnableOption "pmount (policy mount)";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [pkgs.pmount];
+    environment.systemPackages = [ pkgs.pmount ];
 
     security.wrappers = {
       pmount = mkSetuidWrapper pkgs.pmount "pmount";

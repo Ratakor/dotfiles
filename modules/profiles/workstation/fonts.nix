@@ -2,7 +2,8 @@
   pkgs,
   self,
   ...
-}: {
+}:
+{
   fonts = {
     packages = with pkgs; [
       # Icon / emoji fonts
@@ -27,10 +28,26 @@
 
     # User defined fonts
     fontconfig.defaultFonts = {
-      serif = ["Noto Serif" "Blobmoji" "Noto Color Emoji"];
-      sansSerif = ["Luciole" "Noto Sans" "Blobmoji" "Noto Color Emoji"];
-      monospace = ["Agave Nerd Font Mono" "Blobmoji" "Noto Color Emoji"];
-      emoji = ["Blobmoji" "Noto Color Emoji"];
+      serif = [
+        "Noto Serif"
+        "Blobmoji"
+        "Noto Color Emoji"
+      ];
+      sansSerif = [
+        "Luciole"
+        "Noto Sans"
+        "Blobmoji"
+        "Noto Color Emoji"
+      ];
+      monospace = [
+        "Agave Nerd Font Mono"
+        "Blobmoji"
+        "Noto Color Emoji"
+      ];
+      emoji = [
+        "Blobmoji"
+        "Noto Color Emoji"
+      ];
     };
   };
 }

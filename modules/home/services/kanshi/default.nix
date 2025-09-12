@@ -1,5 +1,6 @@
 # Handle multiple displays gracefully
-{config, ...}: {
+{ config, ... }:
+{
   # see wlr-randr too
   # TODO: add exec option to profiles to move workspace to the right output
   hm.services.kanshi = {

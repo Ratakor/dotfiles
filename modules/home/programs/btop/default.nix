@@ -2,13 +2,18 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   inherit (self.lib) wrapWith;
 
   btop = wrapWith pkgs {
     basePackage = pkgs.btop;
-    prependFlags = ["--config" ./btop.config];
+    prependFlags = [
+      "--config"
+      ./btop.config
+    ];
   };
-in {
-  user.packages = [btop];
+in
+{
+  user.packages = [ btop ];
 }

@@ -8,11 +8,13 @@
   lib,
   self,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkIf;
-in {
+in
+{
   config = mkIf (config.self.displayServer == "x11") {
-    user.packages = [self.pkgs.suckless];
+    user.packages = [ self.pkgs.suckless ];
     hm.xdg.configFile."sb/config".source = ./config;
   };
 }

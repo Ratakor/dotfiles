@@ -6,11 +6,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkIf;
-in {
+in
+{
   config = mkIf (config.self.displayServer == "x11") {
-    user.packages = [pkgs.sxhkd];
+    user.packages = [ pkgs.sxhkd ];
     hm.xdg.configFile."sxhkd/sxhkdrc".source = ./sxhkdrc;
   };
 }

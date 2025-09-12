@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   hm.programs.zsh.plugins = [
     {
       # Must be before plugins that wrap widgets

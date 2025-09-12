@@ -1,3 +1,3 @@
 {
-  system.nixos.tags = ["server"];
+  system.nixos.tags = [ "server" ];
 }

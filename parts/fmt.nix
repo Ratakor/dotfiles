@@ -1,87 +1,94 @@
 {
-  imports = let
-    pins = import ./npins;
-  in ["${pins.treefmt-nix}/flake-module.nix"];
+  imports =
+    let
+      pins = import ./npins;
+    in
+    [ "${pins.treefmt-nix}/flake-module.nix" ];
 
-  perSystem = {
-    config,
-    pkgs,
-    ...
-  }: {
-    formatter = config.treefmt.build.wrapper;
+  perSystem =
+    {
+      config,
+      pkgs,
+      ...
+    }:
+    {
+      formatter = config.treefmt.build.wrapper;
 
-    # https://flake.parts/options/treefmt-nix.html
-    treefmt = {
-      projectRootFile = "flake.nix";
-      enableDefaultExcludes = true;
+      # https://flake.parts/options/treefmt-nix.html
+      treefmt = {
+        projectRootFile = "flake.nix";
+        enableDefaultExcludes = true;
 
-      settings = {
-        global.excludes = [
-          "*.age"
-          "*.diff"
-        ];
-      };
-
-      # https://github.com/numtide/treefmt-nix#supported-programs
-      programs = {
-        # nix
-        alejandra.enable = true;
-        deadnix = {
-          enable = false; # I don't want it to make changes
-          no-lambda-pattern-names = true;
-        };
-        statix = {
-          enable = false; # I don't want it to make changes
-          disabled-lints = []; # see `statix list`
+        settings = {
+          global.excludes = [
+            "*.age"
+            "*.diff"
+          ];
         };
 
-        # lua
-        stylua = {
-          enable = true;
-          settings = {
-            call_parentheses = "Always";
-            collapse_simple_statement = "Never";
-            column_width = 120; # try to stay between 80 and 100 though
-            indent_type = "Spaces";
-            indent_width = 4;
-            line_endings = "Unix";
-            quote_style = "AutoPreferDouble";
-            sort_requires.enabled = true;
+        # https://github.com/numtide/treefmt-nix#supported-programs
+        programs = {
+          # nix
+          nixfmt.enable = true;
+          deadnix = {
+            enable = false; # I don't want it to make changes
+            no-lambda-pattern-names = true;
           };
-        };
-
-        # python
-        black.enable = true;
-
-        # shell
-        shfmt = {
-          enable = true;
-          indent_size = null; # n for spaces, 0 for tabs, null for .editorconfig
-        };
-        shellcheck = {
-          enable = true;
-          includes = ["*.sh" "*.bash"];
-        };
-
-        # js / css / html / markdown
-        prettier = {
-          enable = false; # I don't see its use atm
-          package = pkgs.prettierd;
-          settings = {
-            editorconfig = true;
-            # rest of settings ...
+          statix = {
+            enable = false; # I don't want it to make changes
+            disabled-lints = [ ]; # see `statix list`
           };
-        };
 
-        # zig
-        zig.enable = true;
+          # lua
+          stylua = {
+            enable = true;
+            settings = {
+              call_parentheses = "Always";
+              collapse_simple_statement = "Never";
+              column_width = 120; # try to stay between 80 and 100 though
+              indent_type = "Spaces";
+              indent_width = 4;
+              line_endings = "Unix";
+              quote_style = "AutoPreferDouble";
+              sort_requires.enabled = true;
+            };
+          };
 
-        # english
-        typos = {
-          enable = false; # TODO: use in pre-commit / CI instead, same for statix/deadnix (& shellcheck?)
-          locale = "en-us";
+          # python
+          black.enable = true;
+
+          # shell
+          shfmt = {
+            enable = true;
+            indent_size = null; # n for spaces, 0 for tabs, null for .editorconfig
+          };
+          shellcheck = {
+            enable = true;
+            includes = [
+              "*.sh"
+              "*.bash"
+            ];
+          };
+
+          # js / css / html / markdown
+          prettier = {
+            enable = false; # I don't see its use atm
+            package = pkgs.prettierd;
+            settings = {
+              editorconfig = true;
+              # rest of settings ...
+            };
+          };
+
+          # zig
+          zig.enable = true;
+
+          # english
+          typos = {
+            enable = false; # TODO: use in pre-commit / CI instead, same for statix/deadnix (& shellcheck?)
+            locale = "en-us";
+          };
         };
       };
     };
-  };
 }

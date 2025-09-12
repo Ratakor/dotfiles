@@ -1,4 +1,5 @@
 # Terminal multiplexer & session manager
-{self, ...}: {
-  user.packages = [self.pkgs.zellij-wrapped];
+{ self, ... }:
+{
+  user.packages = [ self.pkgs.zellij-wrapped ];
 }

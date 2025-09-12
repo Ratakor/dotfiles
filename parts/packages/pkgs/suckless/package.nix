@@ -17,7 +17,11 @@ stdenv.mkDerivation (finalAttrs: {
   pname = "suckless";
   version = "r4.771c89c";
 
-  outputs = ["out" "man" "terminfo"];
+  outputs = [
+    "out"
+    "man"
+    "terminfo"
+  ];
 
   src = fetchFromGitHub {
     owner = "ratakor";
@@ -87,8 +91,11 @@ stdenv.mkDerivation (finalAttrs: {
   meta = {
     description = "Ratakor's unmaintained suckless softwares";
     homepage = "https://github.com/ratakor/suckless";
-    license = with lib.licenses; [mit isc];
-    maintainers = with lib.maintainers; [ratakor];
+    license = with lib.licenses; [
+      mit
+      isc
+    ];
+    maintainers = with lib.maintainers; [ ratakor ];
     platforms = lib.platforms.linux;
   };
 })

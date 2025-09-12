@@ -1,5 +1,6 @@
 # SSH Client
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   hm.programs.ssh = {
     enable = true;
     package = pkgs.openssh_gssapi; # use `null` for system default

@@ -2,7 +2,8 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   toolchains = with pkgs; [
     cargo # rust package manager
     rustc # rust compiler
@@ -81,7 +82,7 @@
 
   # Nix tools
   nix = with pkgs; [
-    alejandra # formatter
+    # nixfmt # formatter
     statix # linter
     deadnix # find and remove unused code in .nix source files
     nh # nix helper
@@ -90,7 +91,8 @@
     nurl
     self.pkgs.flint # flake linter
   ];
-in [
+in
+[
   toolchains
   tools
   fs

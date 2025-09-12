@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   hm.programs.neovim = {
     enable = true;
 
@@ -44,6 +45,5 @@
   # https://github.com/nix-community/home-manager/issues/2085#issuecomment-2022239332
   # https://foodogsquared.one/posts/2023-03-24-managing-mutable-files-in-nixos/
   hm.xdg.configFile.nvim.source =
-    config.hm.lib.file.mkOutOfStoreSymlink
-    "${config.user.home}/nixos/modules/home/programs/neovim/nvim";
+    config.hm.lib.file.mkOutOfStoreSymlink "${config.user.home}/nixos/modules/home/programs/neovim/nvim";
 }

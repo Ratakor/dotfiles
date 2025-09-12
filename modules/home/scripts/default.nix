@@ -5,10 +5,12 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   inherit (builtins) readFile;
   inherit (pkgs) writeShellApplication;
-in {
+in
+{
   imports = [
     ./music
   ];
@@ -34,31 +36,52 @@ in {
   hm.xdg.dataFile.emoji.source = ./src/emoji;
 
   user.packages = [
-    (import ./randwp.nix {inherit config lib pkgs self;})
+    (import ./randwp.nix {
+      inherit
+        config
+        lib
+        pkgs
+        self
+        ;
+    })
 
     (writeShellApplication {
       name = "glitchlock";
-      runtimeInputs = with pkgs; [grim imagemagick coreutils swaylock];
+      runtimeInputs = with pkgs; [
+        grim
+        imagemagick
+        coreutils
+        swaylock
+      ];
       text = readFile ./src/glitchlock.sh;
     })
 
     (writeShellApplication {
       name = "battery";
-      runtimeInputs = with pkgs; [coreutils libnotify];
+      runtimeInputs = with pkgs; [
+        coreutils
+        libnotify
+      ];
       text = readFile ./src/battery.sh;
     })
 
     # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/cli/wayland.nix
     (writeShellApplication {
       name = "ocr";
-      runtimeInputs = with pkgs; [tesseract grim slurp libnotify coreutils];
+      runtimeInputs = with pkgs; [
+        tesseract
+        grim
+        slurp
+        libnotify
+        coreutils
+      ];
       text = readFile ./src/ocr.sh;
     })
 
     # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/dev/default.nix
     (writeShellApplication {
       name = "pdflatexmk";
-      runtimeInputs = [pkgs.texlivePackages.latexmk];
+      runtimeInputs = [ pkgs.texlivePackages.latexmk ];
       text = ''
         latexmk -pdf "$@" && latexmk -c "$@"
       '';
@@ -68,7 +91,10 @@ in {
     # assuming that first argument is the markdown file
     (writeShellApplication {
       name = "pdfmd";
-      runtimeInputs = with pkgs; [pandoc gnused];
+      runtimeInputs = with pkgs; [
+        pandoc
+        gnused
+      ];
       # '-V geometry:margin=1in' is probably good but I forgot what it does
       text = ''
         pandoc "$@" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g')"
@@ -77,7 +103,7 @@ in {
 
     (writeShellApplication {
       name = "help";
-      runtimeInputs = [pkgs.bat];
+      runtimeInputs = [ pkgs.bat ];
       text = ''
         "$@" --help 2>&1 | bat -p -l help
       '';
@@ -85,7 +111,10 @@ in {
 
     (writeShellApplication {
       name = "real";
-      runtimeInputs = with pkgs; [coreutils which];
+      runtimeInputs = with pkgs; [
+        coreutils
+        which
+      ];
       text = ''
         realpath "$(which "$1")"
       '';

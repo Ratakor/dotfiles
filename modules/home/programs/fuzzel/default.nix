@@ -9,12 +9,13 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkIf;
   inherit (self.lib) wrapWith;
   inherit (config.self) colors;
 
-  ini = pkgs.formats.ini {};
+  ini = pkgs.formats.ini { };
 
   settings = {
     main = {
@@ -50,11 +51,15 @@
 
   fuzzel = wrapWith pkgs {
     basePackage = pkgs.fuzzel;
-    prependFlags = ["--config" (ini.generate "fuzzel.ini" settings)];
+    prependFlags = [
+      "--config"
+      (ini.generate "fuzzel.ini" settings)
+    ];
   };
-in {
+in
+{
   config = mkIf (config.self.menu.program == "fuzzel") {
-    user.packages = [fuzzel];
+    user.packages = [ fuzzel ];
 
     self.menu = {
       dynamic = "fuzzel --dmenu";

@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib.meta) getExe;
 
   XDG_CONFIG_HOME = config.hm.xdg.configHome;
@@ -13,7 +14,8 @@
 
   CARGO_HOME = "${XDG_DATA_HOME}/cargo";
   GOPATH = "${XDG_DATA_HOME}/go";
-in {
+in
+{
   hm.home = {
     # prepend extra directories to $PATH
     sessionPath = [

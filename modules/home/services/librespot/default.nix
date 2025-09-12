@@ -5,7 +5,8 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   inherit (lib.attrsets) mapAttrsToList;
   inherit (lib.meta) getExe';
   inherit (self.lib) wrapWith;
@@ -45,21 +46,23 @@
       settings
       |> mapAttrsToList (
         k: v:
-          if v == null || v == false
-          then ""
-          else if v == true
-          then "--${k}"
-          else "--${k}=${toString v}"
+        if v == null || v == false then
+          ""
+        else if v == true then
+          "--${k}"
+        else
+          "--${k}=${toString v}"
       );
   };
-in {
-  user.packages = [librespot];
+in
+{
+  user.packages = [ librespot ];
 
   systemd.user.services.librespot = {
     enable = true;
 
     description = "Librespot (an open source Spotify client)";
-    wantedBy = ["default.target"];
+    wantedBy = [ "default.target" ];
 
     serviceConfig = {
       ExecStart = getExe' librespot "librespot";

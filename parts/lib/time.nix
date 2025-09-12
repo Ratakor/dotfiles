@@ -1,6 +1,7 @@
-{self, ...}: {
+{ self, ... }:
+{
   /**
-  Time constants in seconds.
+    Time constants in seconds.
   */
   secPerMin = 60;
   secPerHour = 60 * self.time.secPerMin;

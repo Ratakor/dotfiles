@@ -1,41 +1,50 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   inherit (builtins) substring stringLength;
   inherit (lib.trivial) fromHexString;
-in {
+  inherit (lib.strings) toUpper;
+in
+{
   /**
-  Capitalize the first letter of a word.
-  If the word is empty, it returns an empty string.
+    Capitalize the first letter of a word.
+    If the word is empty, it returns an empty string.
   */
-  capitalize = word:
-    if word == ""
-    then ""
-    else let
-      head = substring 0 1 word;
-      tail = substring 1 (stringLength word - 1) word;
-    in "${lib.toUpper head}${tail}";
+  capitalize =
+    word:
+    if word == "" then
+      ""
+    else
+      let
+        head = substring 0 1 word;
+        tail = substring 1 (stringLength word - 1) word;
+      in
+      "${toUpper head}${tail}";
 
   /**
-  Convert a hex color string to an rgba string.
+    Convert a hex color string to an rgba string.
 
-  # Inputs
+    # Inputs
 
-  `hex`
-  : String in the format "RRGGBB"
+    `hex`
+    : String in the format "RRGGBB"
 
-  `alpha`
-  : Float between 0 and 1
+    `alpha`
+    : Float between 0 and 1
 
-  # Type
+    # Type
 
-  ```
-  hexToRgba :: String -> Float -> String
-  ```
+    ```
+    hexToRgba :: String -> Float -> String
+    ```
   */
-  hexToRgba = hex: alpha: let
-    r = toString (fromHexString (substring 0 2 hex));
-    g = toString (fromHexString (substring 2 2 hex));
-    b = toString (fromHexString (substring 4 2 hex));
-  in "rgba(${r}, ${g}, ${b}, ${toString alpha})";
+  hexToRgba =
+    hex: alpha:
+    let
+      r = toString (fromHexString (substring 0 2 hex));
+      g = toString (fromHexString (substring 2 2 hex));
+      b = toString (fromHexString (substring 4 2 hex));
+    in
+    "rgba(${r}, ${g}, ${b}, ${toString alpha})";
 
   # check if the host platform is linux and x86
   isx86Linux = pkgs: with pkgs.stdenv; hostPlatform.isLinux && hostPlatform.isx86;

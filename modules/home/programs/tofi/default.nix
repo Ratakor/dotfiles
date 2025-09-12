@@ -5,7 +5,8 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkIf;
   inherit (lib.generators) toINIWithGlobalSection;
   inherit (self.lib) wrapWith;
@@ -31,12 +32,13 @@
     basePackage = self.pkgs.tofi-dmenu;
     prependFlags = [
       "--config"
-      (pkgs.writeText "tofi-config" (toINIWithGlobalSection {} {globalSection = settings;}))
+      (pkgs.writeText "tofi-config" (toINIWithGlobalSection { } { globalSection = settings; }))
     ];
   };
-in {
+in
+{
   config = mkIf (config.self.menu.program == "tofi") {
-    user.packages = [tofi];
+    user.packages = [ tofi ];
 
     self.menu = {
       dynamic = "tofi";

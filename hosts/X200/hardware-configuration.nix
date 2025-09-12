@@ -5,7 +5,8 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -14,11 +15,17 @@
     # we're not using pkgs.linuxPackages_latest-libre because of zfs
     # kernelPackages = pkgs.linuxPackages-libre;
     initrd = {
-      availableKernelModules = ["uhci_hcd" "ehci_pci" "ahci" "usb_storage" "sd_mod"];
-      kernelModules = [];
+      availableKernelModules = [
+        "uhci_hcd"
+        "ehci_pci"
+        "ahci"
+        "usb_storage"
+        "sd_mod"
+      ];
+      kernelModules = [ ];
     };
-    kernelModules = ["kvm-intel"];
-    extraModulePackages = [];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
 
     kernelParams = [
       "zfs.zfs_arc_max=${3 * 1024 * 1024 * 1024 |> toString}" # 3GiB

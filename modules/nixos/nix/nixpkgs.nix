@@ -3,13 +3,15 @@
   lib,
   self,
   ...
-}: let
+}:
+let
   inherit (builtins) warn;
   inherit (lib.trivial) const;
   inherit (lib.strings) getName;
 
   systemNix = config.nix.package;
-in {
+in
+{
   nixpkgs = {
     # Global nixpkgs configuration.
     # https://nixos.org/manual/nixpkgs/unstable/#chap-packageconfig

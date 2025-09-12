@@ -1,5 +1,6 @@
 # GNU Privacy Guard
-{config, ...}: {
+{ config, ... }:
+{
   hm.programs.gpg = {
     enable = true;
     homedir = "${config.hm.xdg.dataHome}/gnupg"; # set $GNUPGHOME

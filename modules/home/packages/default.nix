@@ -4,10 +4,20 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   inherit (builtins) concatLists;
   inherit (lib.lists) flatten;
-  callPkgs = path: import path {inherit config lib pkgs self;};
+  callPkgs =
+    path:
+    import path {
+      inherit
+        config
+        lib
+        pkgs
+        self
+        ;
+    };
 
   # Development tools
   dev = callPkgs ./dev.nix;
@@ -17,7 +27,8 @@
   graphical = callPkgs ./graphical.nix;
   # Games
   games = callPkgs ./games.nix;
-in {
+in
+{
   user.packages = flatten (concatLists [
     dev
     terminal

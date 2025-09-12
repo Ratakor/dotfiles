@@ -4,15 +4,17 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkIf;
-in {
+in
+{
   config = mkIf (config.self.displayServer == "wayland") {
-    user.packages = [pkgs.swayidle];
+    user.packages = [ pkgs.swayidle ];
 
     hm.services.swayidle = {
       enable = false; # This shit doesn't work
-      extraArgs = ["-w"];
+      extraArgs = [ "-w" ];
       timeouts = [
         {
           timeout = 300;

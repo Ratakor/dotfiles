@@ -5,7 +5,8 @@
   self,
   specialArgs,
   ...
-}: let
+}:
+let
   inherit (builtins) concatLists;
   inherit (lib.lists) singleton;
   inherit (lib.modules) mkAliasOptionModule mkForce;
@@ -18,8 +19,8 @@
     (import "${self.pins.home-manager}/nixos")
   ];
   moduleAliases = [
-    (mkAliasOptionModule ["user"] ["users" "users" username])
-    (mkAliasOptionModule ["hm"] ["home-manager" "users" username])
+    (mkAliasOptionModule [ "user" ] [ "users" "users" username ])
+    (mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
   ];
 
   packages = singleton ./packages;
@@ -27,7 +28,8 @@
   services = listFiles ./services;
   scripts = singleton ./scripts;
   misc = listFiles ./misc;
-in {
+in
+{
   imports = concatLists [
     extraModules
     moduleAliases

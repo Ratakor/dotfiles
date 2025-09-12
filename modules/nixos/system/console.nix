@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   console.colors = with config.self.colors; [
     black
     red

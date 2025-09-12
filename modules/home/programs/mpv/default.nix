@@ -1,5 +1,6 @@
 # Media Player
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   hm.programs.mpv = {
     enable = true;
     # defaultProfiles = ["gpu-hq"];

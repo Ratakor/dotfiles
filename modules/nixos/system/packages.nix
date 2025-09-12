@@ -2,12 +2,14 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkForce;
-in {
+in
+{
   environment = {
     # Disable NixOS default packages.
-    defaultPackages = mkForce [];
+    defaultPackages = mkForce [ ];
 
     # List packages installed in system profile.
     # You can use https://search.nixos.org/ to find more packages (and options).

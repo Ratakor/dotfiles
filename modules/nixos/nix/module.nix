@@ -4,11 +4,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib.trivial) pipe;
   inherit (lib.types) isType;
   inherit (lib.attrsets) mapAttrsToList filterAttrs mapAttrs;
-in {
+in
+{
   imports = [
     ./documentation.nix
     ./nixpkgs.nix
@@ -27,7 +29,7 @@ in {
     # `nix run self#custom-pkg` or `nix shell agenix`
     registry = pipe inputs [
       (filterAttrs (_: isType "flake"))
-      (mapAttrs (_: flake: {inherit flake;}))
+      (mapAttrs (_: flake: { inherit flake; }))
     ];
 
     # Make legacy nix commands consistent with flakes
@@ -40,7 +42,7 @@ in {
       # Give the users in this list the right to specify additional substituters via:
       #    1. `nixConfig.substituers` in `flake.nix`
       #    2. command line args `--options substituers http://xxx`
-      trusted-users = ["@wheel"];
+      trusted-users = [ "@wheel" ];
 
       # Enable flakes globally
       experimental-features = [

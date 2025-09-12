@@ -64,7 +64,8 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   terminal = with pkgs; [
     nbsdgames # 18 text-based modern games from bsd
     self.pkgs."2048-zig" # 2048 game in terminal
@@ -84,7 +85,8 @@
     rili # Train Game
     love # lua 2D game engine (Balatro)
   ];
-in [
+in
+[
   terminal
   # star-citizen
   # wow

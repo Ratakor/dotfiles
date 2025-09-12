@@ -11,7 +11,7 @@ let
 
   # using /etc/ssh/ssh_host_ed25519_key.pub
   hosts = {
-    X200 = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPdrAk60QJLPaLTb9VPDJQZHi/Hibey1LwoqyM7lvAM"];
+    X200 = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPdrAk60QJLPaLTb9VPDJQZHi/Hibey1LwoqyM7lvAM" ];
   };
 
   # servers = concatLists (map (host: hosts.${host}) []);
@@ -19,8 +19,15 @@ let
   users' = concatLists (attrValues users);
   hosts' = concatLists (attrValues hosts);
   all = users' ++ hosts';
-in {
+in
+{
   inherit (users) ratakor;
   inherit (hosts) X200;
-  inherit users hosts users' hosts' all;
+  inherit
+    users
+    users'
+    hosts
+    hosts'
+    all
+    ;
 }

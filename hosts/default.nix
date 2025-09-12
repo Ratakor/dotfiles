@@ -3,7 +3,8 @@
   inputs,
   withSystem,
   ...
-}: let
+}:
+let
   inherit (inputs.nixpkgs) lib;
   inherit (builtins) filter concatLists;
   inherit (lib.attrsets) recursiveUpdate;
@@ -26,53 +27,66 @@
   server = profiles + /server;
 
   # Recursively find all `module.nix` files in a given path
-  mkModuleTree = path:
-    filter (hasSuffix "module.nix") (
-      map toString (listFilesRecursive path)
-    );
+  mkModuleTree = path: filter (hasSuffix "module.nix") (map toString (listFilesRecursive path));
 
-  mkModulesFor = hostname: {
-    moduleTrees ? [nixos options],
-    profiles ? [],
-    extraModules ? [],
-  }:
-    flatten (
-      concatLists [
-        # Host-specific configuration
-        (singleton ./${hostname})
+  mkModulesFor =
+    hostname:
+    {
+      moduleTrees ? [
+        nixos
+        options
+      ],
+      profiles ? [ ],
+      extraModules ? [ ],
+    }:
+    flatten (concatLists [
+      # Host-specific configuration
+      (singleton ./${hostname})
 
-        # Recursively import all module trees (i.e. directories with a `module.nix`)
-        # for given moduleTree directories, and in addition, profiles.
-        (map (path: mkModuleTree path) (concatLists [moduleTrees profiles]))
+      # Recursively import all module trees (i.e. directories with a `module.nix`)
+      # for given moduleTree directories, and in addition, profiles.
+      (map (path: mkModuleTree path) (concatLists [
+        moduleTrees
+        profiles
+      ]))
 
-        extraModules
-      ]
-    );
+      extraModules
+    ]);
 
-  mkNixosSystem = {
-    system ? "x86_64-linux",
-    modules,
-  }:
+  mkNixosSystem =
+    {
+      system ? "x86_64-linux",
+      modules,
+    }:
     withSystem system (
       {
         self',
         inputs',
         ...
       }:
-        lib.nixosSystem {
-          inherit modules;
-          specialArgs =
-            recursiveUpdate
-            {inherit inputs inputs' self self';}
-            {self.pkgs = self'.packages;};
-        }
+      lib.nixosSystem {
+        inherit modules;
+        specialArgs = recursiveUpdate {
+          inherit
+            inputs
+            inputs'
+            self
+            self'
+            ;
+        } { self.pkgs = self'.packages; };
+      }
     );
-in {
+in
+{
   flake.nixosConfigurations = {
     X200 = mkNixosSystem {
       modules = mkModulesFor "X200" {
-        profiles = [graphical workstation laptop];
-        extraModules = [home];
+        profiles = [
+          graphical
+          workstation
+          laptop
+        ];
+        extraModules = [ home ];
       };
     };
     # AuroraR7 = mkNixosSystem {

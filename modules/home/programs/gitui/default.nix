@@ -1,5 +1,6 @@
 # Guess what this is
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   # gitui v0.22.1 got better controls but recent versions are more performant
   gitui_0_22_1 = pkgs.stdenv.mkDerivation (finalAttrs: {
     pname = "gitui";
@@ -16,7 +17,8 @@
 
     inherit (pkgs.gitui) meta;
   });
-in {
+in
+{
   hm.programs.gitui = {
     enable = true;
 

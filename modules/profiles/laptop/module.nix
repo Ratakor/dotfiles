@@ -4,5 +4,5 @@
     ./services/watt.nix
   ];
 
-  system.nixos.tags = ["laptop"];
+  system.nixos.tags = [ "laptop" ];
 }

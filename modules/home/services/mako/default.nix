@@ -4,12 +4,14 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkIf;
   inherit (config.self) colors;
-in {
+in
+{
   config = mkIf (config.self.displayServer == "wayland") {
-    user.packages = [pkgs.libnotify];
+    user.packages = [ pkgs.libnotify ];
 
     hm.services.mako = {
       enable = true;

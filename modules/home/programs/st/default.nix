@@ -4,11 +4,13 @@
   lib,
   self,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkIf;
-in {
+in
+{
   config = mkIf (config.self.terminal.program == "st") {
-    user.packages = [self.pkgs.suckless];
+    user.packages = [ self.pkgs.suckless ];
 
     self.terminal = {
       cmd = "st";

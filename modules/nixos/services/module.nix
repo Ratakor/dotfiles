@@ -1,6 +1,8 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   inherit (lib.modules) mkForce;
-in {
+in
+{
   imports = [
     ./openssh.nix
   ];

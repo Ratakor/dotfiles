@@ -1,5 +1,6 @@
 # File synchronization tool
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   hm.services.syncthing = {
     enable = false;
     # overrideDevices = false;

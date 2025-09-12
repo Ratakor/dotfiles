@@ -4,9 +4,11 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   mkAlias = cmd: args: cmd + " " + (builtins.concatStringsSep " " args);
-in {
+in
+{
   user.packages = with pkgs; [
     eza # ls & tree replacement
     fd # find replacement
@@ -91,7 +93,7 @@ in {
     # cd replacement
     zoxide = {
       enable = true;
-      options = ["--cmd cd"];
+      options = [ "--cmd cd" ];
       enableZshIntegration = true; # replaces cd & add `cdi` command
     };
   };

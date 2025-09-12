@@ -8,37 +8,40 @@
   ueberzugpp,
   dragon-drop,
   ...
-}: let
+}:
+let
   fromTOML = file: builtins.readFile file |> builtins.fromTOML;
 in
-  yazi.override {
-    initLua = ./init.lua;
+yazi.override {
+  initLua = ./init.lua;
 
-    settings = {
-      keymap = fromTOML ./keymap.toml;
-      yazi = fromTOML ./yazi.toml;
-    };
+  settings = {
+    keymap = fromTOML ./keymap.toml;
+    yazi = fromTOML ./yazi.toml;
+  };
 
-    plugins = {
-      inherit (yaziPlugins) bypass;
-      inherit (yaziPlugins) mediainfo;
-      inherit (yaziPlugins) ouch;
-      inherit (yaziPlugins) smart-paste;
-      inherit (yaziPlugins) toggle-pane;
-      # hexyl: https://github.com/Reledia/hexyl.yazi
-      man = ./plugins/man.yazi;
-      text = ./plugins/text.yazi;
-    };
-
-    extraPackages = [
-      bat # needed for man & text plugins
-      ouch
+  plugins = {
+    inherit (yaziPlugins)
+      bypass
       mediainfo
-      ueberzugpp # image preview on terminal emulators that don't have it built-in
-      dragon-drop # <C-n>
+      ouch
+      smart-paste
+      toggle-pane
+      ;
+    man = ./plugins/man.yazi;
+    text = ./plugins/text.yazi;
+    # hexyl: https://github.com/Reledia/hexyl.yazi
+  };
 
-      # TODO: custom scripts
-      # randwp
-      # plumber
-    ];
-  }
+  extraPackages = [
+    bat # needed for man & text plugins
+    ouch
+    mediainfo
+    ueberzugpp # image preview on terminal emulators that don't have it built-in
+    dragon-drop # <C-n>
+
+    # TODO: custom scripts
+    # randwp
+    # plumber
+  ];
+}

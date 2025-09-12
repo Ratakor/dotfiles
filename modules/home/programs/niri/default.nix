@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkIf;
-in {
+in
+{
   # so this is quite ugly but:
   # - niri is not yet available in home-manager (I know about niri-flake but
   #   it's different from the above WMs config)
@@ -17,7 +19,6 @@ in {
   # https://foodogsquared.one/posts/2023-03-24-managing-mutable-files-in-nixos/
   config = mkIf (config.self.displayServer == "wayland") {
     hm.xdg.configFile."niri/config.kdl".source =
-      config.hm.lib.file.mkOutOfStoreSymlink
-      "${config.user.home}/nixos/modules/home/programs/niri/niri-config.kdl";
+      config.hm.lib.file.mkOutOfStoreSymlink "${config.user.home}/nixos/modules/home/programs/niri/niri-config.kdl";
   };
 }

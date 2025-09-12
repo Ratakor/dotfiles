@@ -6,10 +6,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (builtins) concatStringsSep;
   inherit (lib.meta) getExe getExe';
-in {
+in
+{
   services = {
     getty = {
       autologinOnce = true;
@@ -48,23 +50,25 @@ in {
     displayManager = {
       # enable = lib.mkForce false; # causes a bunch of errors
 
-      ly = let
-        brightnessctl = getExe pkgs.brightnessctl;
-      in {
-        enable = false;
-        x11Support = false;
-        settings = {
-          clear_password = true;
-          vi_mode = true;
-          vi_default_mode = "insert";
-          brightness_down_cmd = "${brightnessctl} -q set 10%-";
-          brightness_up_cmd = "${brightnessctl} -q set +10%";
-          animation = "colormix"; # none, doom, matrix, colormix, gameoflife
-          bigclock = "en";
-          bigclock_seconds = true; # doesn't work
-          clock = "%c";
+      ly =
+        let
+          brightnessctl = getExe pkgs.brightnessctl;
+        in
+        {
+          enable = false;
+          x11Support = false;
+          settings = {
+            clear_password = true;
+            vi_mode = true;
+            vi_default_mode = "insert";
+            brightness_down_cmd = "${brightnessctl} -q set 10%-";
+            brightness_up_cmd = "${brightnessctl} -q set +10%";
+            animation = "colormix"; # none, doom, matrix, colormix, gameoflife
+            bigclock = "en";
+            bigclock_seconds = true; # doesn't work
+            clock = "%c";
+          };
         };
-      };
 
       gdm = {
         enable = false;

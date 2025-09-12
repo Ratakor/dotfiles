@@ -1,6 +1,7 @@
 # Terminal File Manager
-{self, ...}: {
-  user.packages = [self.pkgs.yazi-wrapped];
+{ self, ... }:
+{
+  user.packages = [ self.pkgs.yazi-wrapped ];
 
   # Add a shell wrapper (`y`) that changes cwd when exiting yazi
   hm.programs.zsh.initContent = ''

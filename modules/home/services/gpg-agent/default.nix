@@ -3,9 +3,11 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   inherit (self.lib.time) secPerHour secPerYear;
-in {
+in
+{
   hm.services.gpg-agent = {
     enable = true;
     verbose = false; # default: false

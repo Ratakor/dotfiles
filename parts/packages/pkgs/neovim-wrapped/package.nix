@@ -3,132 +3,133 @@
   pkgs,
   lib,
   vimPlugins,
-}: let
+}:
+let
   fs = lib.fileset;
   mnw = import pins.mnw;
 in
-  mnw.lib.wrap pkgs {
-    appName = "nvim-ratakor-mnw";
+mnw.lib.wrap pkgs {
+  appName = "nvim-ratakor-mnw";
 
-    desktopEntry = true;
+  desktopEntry = true;
 
-    initLua = ''
-      #vim.loader.enable(true)
-      require("settings")
-      require("lz.n").load("plugins")
-    '';
+  initLua = ''
+    #vim.loader.enable(true)
+    require("settings")
+    require("lz.n").load("plugins")
+  '';
 
-    providers = {
-      nodeJs.enable = true;
-      perl.enable = false;
-      python3.enable = false;
-      ruby.enable = false;
+  providers = {
+    nodeJs.enable = true;
+    perl.enable = false;
+    python3.enable = false;
+    ruby.enable = false;
+  };
+
+  extraBinPath = with pkgs; [
+    # idk if these are needed
+    tree-sitter
+    fzf
+    fd
+    ripgrep
+
+    # Language servers
+    # https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+    # TODO: yaml-language-server
+    # TODO: taplo (toml)
+    # TODO: vscode-json-languageserver (json)
+    bash-language-server # bashls
+    clang-tools # clangd
+    vscode-css-languageserver # cssls
+    gopls # gopls
+    python313Packages.jedi-language-server # jedi_language_server
+    lua-language-server # lua_ls
+    marksman # marksman
+    nil # nil_ls (TODO: see nixd)
+    rust-analyzer # rust_analyzer
+    sqls # sqls
+    superhtml # superhtml
+    texlab # texlab
+    vtsls # vtsls
+    zls # zls
+
+    # Formatters
+    nixfmt
+  ];
+
+  plugins = {
+    dev.ratakor = {
+      pure = fs.toSource {
+        root = ./.;
+        # fileset = fs.unions [ ./lua ];
+        fileset = fs.fileFilter (file: file.hasExt "lua") ./.;
+      };
+      impure = null; # unused for exposed package
     };
 
-    extraBinPath = with pkgs; [
-      # idk if these are needed
-      tree-sitter
-      fzf
-      fd
-      ripgrep
+    start = with vimPlugins; [
+      lz-n
 
-      # Language servers
-      # https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-      # TODO: yaml-language-server
-      # TODO: taplo (toml)
-      # TODO: vscode-json-languageserver (json)
-      bash-language-server # bashls
-      clang # clangd
-      vscode-css-languageserver # cssls
-      gopls # gopls
-      python313Packages.jedi-language-server # jedi_language_server
-      lua-language-server # lua_ls
-      marksman # marksman
-      nil # nil_ls (TODO: see nixd)
-      rust-analyzer # rust_analyzer
-      sqls # sqls
-      superhtml # superhtml
-      texlab # texlab
-      vtsls # vtsls
-      zls # zls
-
-      # Formatters
-      alejandra
+      # deps
+      nvim-web-devicons
+      plenary-nvim
+      nui-nvim
     ];
 
-    plugins = {
-      dev.ratakor = {
-        pure = fs.toSource {
-          root = ./.;
-          # fileset = fs.unions [ ./lua ];
-          fileset = fs.fileFilter (file: file.hasExt "lua") ./.;
-        };
-        impure = null; # unused for exposed package
-      };
+    opt = with vimPlugins; [
+      # lua/plugins/colorscheme.lua
+      gruvbox-nvim
 
-      start = with vimPlugins; [
-        lz-n
+      # lua/plugins/debug.lua
+      debugprint-nvim
 
-        # deps
-        nvim-web-devicons
-        plenary-nvim
-        nui-nvim
-      ];
+      # lua/plugins/lsp.lua
+      nvim-lspconfig
+      neodev-nvim
+      nvim-cmp
+      luasnip
+      cmp-nvim-lsp
+      cmp-nvim-lsp-signature-help
+      cmp-buffer
+      cmp-path
+      cmp-calc
+      cmp-treesitter
+      cmp_luasnip
 
-      opt = with vimPlugins; [
-        # lua/plugins/colorscheme.lua
-        gruvbox-nvim
+      # lua/plugins/misc.lua
+      lualine-nvim
+      nvim-web-devicons
+      vim-startify
+      comment-nvim
+      vim-trailing-whitespace
+      gitsigns-nvim
+      telescope-nvim
+      plenary-nvim
+      undotree
+      copilot-lua
+      # neotest
+      # nvim-nio
+      # plenary-nvim
+      # FixCursorHold-nvim
+      # neotest-zig
+      which-key-nvim
+      nerdtree
+      vim-abolish
+      zig-vim
+      nvim-scrollbar
+      vimtex
+      comfy-line-numbers-nvim
 
-        # lua/plugins/debug.lua
-        debugprint-nvim
+      # lua/plugins/noice.lua
+      noice-nvim
+      nui-nvim
+      nvim-notify
 
-        # lua/plugins/lsp.lua
-        nvim-lspconfig
-        neodev-nvim
-        nvim-cmp
-        luasnip
-        cmp-nvim-lsp
-        cmp-nvim-lsp-signature-help
-        cmp-buffer
-        cmp-path
-        cmp-calc
-        cmp-treesitter
-        cmp_luasnip
-
-        # lua/plugins/misc.lua
-        lualine-nvim
-        nvim-web-devicons
-        vim-startify
-        comment-nvim
-        vim-trailing-whitespace
-        gitsigns-nvim
-        telescope-nvim
-        plenary-nvim
-        undotree
-        copilot-lua
-        # neotest
-        # nvim-nio
-        # plenary-nvim
-        # FixCursorHold-nvim
-        # neotest-zig
-        which-key-nvim
-        nerdtree
-        vim-abolish
-        zig-vim
-        nvim-scrollbar
-        vimtex
-        comfy-line-numbers-nvim
-
-        # lua/plugins/noice.lua
-        noice-nvim
-        nui-nvim
-        nvim-notify
-
-        # lua/plugins/treesitter.lua
-        nvim-treesitter
-        # TODO: install parsers/grammar
-        # hlargs-nvim
-        markview-nvim
-      ];
-    };
-  }
+      # lua/plugins/treesitter.lua
+      nvim-treesitter
+      # TODO: install parsers/grammar
+      # hlargs-nvim
+      markview-nvim
+    ];
+  };
+}

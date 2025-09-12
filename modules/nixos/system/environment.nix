@@ -12,6 +12,6 @@
     # memoryAllocator.provider = "graphene-hardened";
     enableAllTerminfo = false;
     enableDebugInfo = false; # see wiki to enable debug info per package instead
-    extraOutputsToInstall = []; # enable it per package instead like `pkg.dev`
+    extraOutputsToInstall = [ ]; # enable it per package instead like `pkg.dev`
   };
 }

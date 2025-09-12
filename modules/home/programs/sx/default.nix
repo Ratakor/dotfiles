@@ -5,11 +5,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkIf;
-in {
+in
+{
   config = mkIf (config.self.displayServer == "x11") {
-    user.packages = [pkgs.sx];
+    user.packages = [ pkgs.sx ];
     hm.xdg.configFile = {
       "sx/sxrc".source = ./sxrc;
       "sx/gruvbox-dark".source = ./gruvbox-dark;

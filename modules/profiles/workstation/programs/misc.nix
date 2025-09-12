@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs = {
     # It may not look like it but this is the greatest software in existence
     pmount.enable = true;

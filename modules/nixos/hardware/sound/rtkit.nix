@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkForce;
-in {
+in
+{
   # Required by pipewire
   security.rtkit.enable = mkForce config.services.pipewire.enable;
 }

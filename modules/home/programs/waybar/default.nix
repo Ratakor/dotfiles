@@ -4,10 +4,12 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   inherit (self.lib.trivial) hexToRgba;
   inherit (config.self) colors;
-in {
+in
+{
   hm.programs.waybar = {
     enable = config.self.displayServer == "wayland";
     systemd.enable = false;
@@ -69,7 +71,19 @@ in {
       battery = {
         full-at = 99;
         format = "{icon} {capacity}%";
-        format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+        format-icons = [
+          "󰂎"
+          "󰁺"
+          "󰁻"
+          "󰁼"
+          "󰁽"
+          "󰁾"
+          "󰁿"
+          "󰂀"
+          "󰂁"
+          "󰂂"
+          "󰁹"
+        ];
         states = {
           "100" = 100;
           "90" = 90;
@@ -101,7 +115,11 @@ in {
         format-wifi = "{icon} {essid}";
         format-disconnected = "󰤯";
         tooltip-format = "{ifname}: {ipaddr}/{cidr}";
-        format-icons = ["󰤟" "󰤢" "󰤨"];
+        format-icons = [
+          "󰤟"
+          "󰤢"
+          "󰤨"
+        ];
         tooltip = true;
         on-click = "$TERMINAL -e nmtui";
       };
@@ -114,7 +132,11 @@ in {
       };
       wireplumber = {
         format = "{icon} {volume}%";
-        format-icons = ["" "" ""];
+        format-icons = [
+          ""
+          ""
+          ""
+        ];
         tooltip = false;
         max-volume = 150;
         on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";

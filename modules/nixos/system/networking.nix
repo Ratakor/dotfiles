@@ -1,9 +1,10 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   networking = {
     # https://github.com/StevenBlack/hosts
     stevenblack = {
       enable = true;
-      block = []; # Additional flavors to block
+      block = [ ]; # Additional flavors to block
     };
 
     # Pick only one of the below networking options.

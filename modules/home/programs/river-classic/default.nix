@@ -5,11 +5,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (builtins) readFile;
   inherit (lib.meta) getExe;
   inherit (config.self) colors;
-in {
+in
+{
   hm.wayland.windowManager.river = {
     enable = config.self.displayServer == "wayland";
 
@@ -39,7 +41,7 @@ in {
     xwayland.enable = true;
     systemd = {
       enable = true;
-      variables = ["--all"];
+      variables = [ "--all" ];
     };
 
     extraSessionVariables = {
@@ -52,7 +54,7 @@ in {
     settings = {
       focus-follows-cursor = "normal";
       attach-mode = "bottom";
-      hide-cursor = ["when-typing enabled"];
+      hide-cursor = [ "when-typing enabled" ];
       set-cursor-warp = "on-output-change";
       set-repeat = "50 300";
       keyboard-layout = "-variant us -options caps:none fr";

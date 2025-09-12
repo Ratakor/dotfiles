@@ -1,6 +1,8 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   inherit (lib.modules) mkForce;
-in {
+in
+{
   security = {
     # https://github.com/NixOS/nixpkgs/pull/256491
     sudo-rs.enable = mkForce false;
@@ -17,22 +19,24 @@ in {
         Defaults passprompt = "sudo (%p@%h) password: "
       '';
 
-      extraRules = let
-        mkNopassRule = command: {
-          command = "/run/current-system/sw/bin/${command}";
-          options = ["NOPASSWD"];
-        };
-      in [
-        {
-          groups = ["wheel"];
-          commands = map mkNopassRule [
-            # "nixos-rebuild"
-            # "systemctl"
-            "sync"
-            "dmesg"
-          ];
-        }
-      ];
+      extraRules =
+        let
+          mkNopassRule = command: {
+            command = "/run/current-system/sw/bin/${command}";
+            options = [ "NOPASSWD" ];
+          };
+        in
+        [
+          {
+            groups = [ "wheel" ];
+            commands = map mkNopassRule [
+              # "nixos-rebuild"
+              # "systemctl"
+              "sync"
+              "dmesg"
+            ];
+          }
+        ];
     };
   };
 }

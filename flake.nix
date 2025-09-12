@@ -4,8 +4,8 @@
   # Additional binary caches to use for this flake.
   # This doesn't affect the system configuration.
   nixConfig = {
-    extra-substituters = ["https://ratakor.cachix.org"];
-    extra-trusted-public-keys = ["ratakor.cachix.org-1:9hOGzHtnKDJ1i9FQN87XFnOOpRBebSKWECswk17glP0="];
+    extra-substituters = [ "https://ratakor.cachix.org" ];
+    extra-trusted-public-keys = [ "ratakor.cachix.org-1:9hOGzHtnKDJ1i9FQN87XFnOOpRBebSKWECswk17glP0=" ];
   };
 
   inputs = {
@@ -23,8 +23,9 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       # Systems for which attributes of `perSystem` will be built.
       systems = import inputs.systems;
 

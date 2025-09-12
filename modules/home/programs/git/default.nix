@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   hm.home.shellAliases = {
     G = "gitui";
     gs = "git status";
@@ -42,7 +43,7 @@
 
     delta = {
       enable = true;
-      options = {}; # TODO
+      options = { }; # TODO
     };
 
     extraConfig = {
@@ -51,7 +52,10 @@
       core.sshCommand = "${pkgs.openssh_gssapi}/bin/ssh";
       url = {
         "ssh://git@github.com/" = {
-          insteadOf = ["https://github.com/" "github:"];
+          insteadOf = [
+            "https://github.com/"
+            "github:"
+          ];
         };
         # "ssh://git@ratakor.com/" = {
         #   insteadOf = "https://git.ratakor.com/";

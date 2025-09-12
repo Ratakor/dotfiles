@@ -2,9 +2,11 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   inherit (self.lib.trivial) isx86Linux;
-in {
+in
+{
   imports = [
     ./wireplumber.nix
   ];
@@ -24,8 +26,8 @@ in {
     };
 
     systemd.user.services = {
-      pipewire.wantedBy = ["default.target"];
-      pipewire-pulse.wantedBy = ["default.target"];
+      pipewire.wantedBy = [ "default.target" ];
+      pipewire-pulse.wantedBy = [ "default.target" ];
     };
   };
 }

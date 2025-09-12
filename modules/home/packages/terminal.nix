@@ -2,7 +2,8 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   cli = with pkgs; [
     pastel # CLI for color manipulation
     acpi # battery status, -i is good
@@ -55,7 +56,8 @@
     # lxc # Userspace tools for Linux Containers, a lightweight virtualization system
     # dnsmasq #  Integrated DNS, DHCP and TFTP server for small networks
   ];
-in [
+in
+[
   cli
   tui
   # rice

@@ -4,25 +4,29 @@
   lib,
   self,
   ...
-}: let
+}:
+let
   inherit (builtins) isInt isString typeOf;
 
-  mkValueString = v:
-    if isInt v
-    then toString v
-    else if isString v
-    then "\"${v}\""
-    else if true == v
-    then "1"
-    else if false == v
-    then "0"
-    else throw "Unsupported value type: ${typeOf v}";
+  mkValueString =
+    v:
+    if isInt v then
+      toString v
+    else if isString v then
+      "\"${v}\""
+    else if true == v then
+      "1"
+    else if false == v then
+      "0"
+    else
+      throw "Unsupported value type: ${typeOf v}";
 
   toKeyValue = lib.generators.toKeyValue {
     mkKeyValue = k: v: "${k}=${mkValueString v}";
   };
-in {
-  user.packages = [self.pkgs.quand];
+in
+{
+  user.packages = [ self.pkgs.quand ];
 
   hm.xdg.configFile."quand/config".text = toKeyValue {
     header = false;

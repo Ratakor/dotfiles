@@ -4,7 +4,8 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   inherit (builtins) attrValues;
   inherit (lib.lists) optionals;
 
@@ -29,7 +30,7 @@
   # what about xorg-server and xorg-server-devel from archlinux?
   x11 = {
     # dmenu, dwm, sb, slock, st
-    core = [self.pkgs.suckless];
+    core = [ self.pkgs.suckless ];
 
     unsorted = with pkgs; [
       maim # screenshot
@@ -78,10 +79,10 @@
     # oneko # cute cat that chases your mouse cursor
   ];
 in
-  [
-    browsers
-    apps
-    unsorted
-  ]
-  ++ optionals (config.self.displayServer == "wayland") (attrValues wayland)
-  ++ optionals (config.self.displayServer == "x11") (attrValues x11)
+[
+  browsers
+  apps
+  unsorted
+]
+++ optionals (config.self.displayServer == "wayland") (attrValues wayland)
+++ optionals (config.self.displayServer == "x11") (attrValues x11)

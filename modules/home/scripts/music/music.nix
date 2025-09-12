@@ -4,17 +4,21 @@
 {
   config,
   pkgs,
-}: let
+}:
+let
   XDG_MUSIC_DIR = config.hm.xdg.userDirs.music;
   DMENU =
-    if config.self.menu.dynamic == "tofi"
-    then "tofi --padding-left 25%"
-    else config.self.menu.dynamic;
+    if config.self.menu.dynamic == "tofi" then "tofi --padding-left 25%" else config.self.menu.dynamic;
 
   music = pkgs.writeShellApplication {
     name = "music";
-    runtimeInputs = with pkgs; [coreutils gnugrep socat mpv];
-    bashOptions = [];
+    runtimeInputs = with pkgs; [
+      coreutils
+      gnugrep
+      socat
+      mpv
+    ];
+    bashOptions = [ ];
     inheritPath = true; # needed for DMENU
     text = ''
       MUSICDIR=${XDG_MUSIC_DIR}
@@ -49,4 +53,4 @@
     '';
   };
 in
-  music
+music

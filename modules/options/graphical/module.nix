@@ -2,28 +2,34 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib.options) mkOption;
   inherit (lib.types) enum str nullOr;
 
   cfg = config.self;
-in {
+in
+{
   # move to displayManager.wayland.enable?
   # replace profiles.graphical?
   options.self = {
     displayServer = mkOption {
-      type = enum ["x11" "wayland"];
+      type = enum [
+        "x11"
+        "wayland"
+      ];
       default = "wayland";
       description = "The display server to use.";
     };
 
     menu = {
       program = mkOption {
-        type = enum ["dmenu" "tofi" "fuzzel"];
-        default =
-          if cfg.displayServer == "wayland"
-          then "fuzzel"
-          else "dmenu";
+        type = enum [
+          "dmenu"
+          "tofi"
+          "fuzzel"
+        ];
+        default = if cfg.displayServer == "wayland" then "fuzzel" else "dmenu";
         description = "The menu program to use.";
       };
 
@@ -46,11 +52,11 @@ in {
 
     terminal = {
       program = mkOption {
-        type = enum ["foot" "st"];
-        default =
-          if cfg.displayServer == "wayland"
-          then "foot"
-          else "st";
+        type = enum [
+          "foot"
+          "st"
+        ];
+        default = if cfg.displayServer == "wayland" then "foot" else "st";
         description = "The terminal emulator to use.";
       };
 
@@ -69,6 +75,6 @@ in {
   };
 
   config = {
-    system.nixos.tags = [cfg.displayServer];
+    system.nixos.tags = [ cfg.displayServer ];
   };
 }

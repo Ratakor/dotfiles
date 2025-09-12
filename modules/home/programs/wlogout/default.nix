@@ -7,10 +7,12 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   inherit (self.lib.trivial) hexToRgba;
   inherit (config.self) colors;
-in {
+in
+{
   hm.programs.wlogout = {
     enable = true;
     # package = pkgs.wleave;
@@ -52,69 +54,71 @@ in {
         keybind = "r";
       }
     ];
-    style = let
-      iconsPath = "${pkgs.wleave}/share/wleave/icons";
-      # iconsPath = "${pkgs.wlogout}/share/wlogout/assets";
-    in ''
-      * {
-        background-image: none;
-        box-shadow: none;
-      }
+    style =
+      let
+        iconsPath = "${pkgs.wleave}/share/wleave/icons";
+        # iconsPath = "${pkgs.wlogout}/share/wlogout/assets";
+      in
+      ''
+        * {
+          background-image: none;
+          box-shadow: none;
+        }
 
-      window {
-        background-color: ${hexToRgba colors.background 0.85};
-      }
+        window {
+          background-color: ${hexToRgba colors.background 0.85};
+        }
 
-      button {
-        border-radius: 0;
-        border-color: black;
-        text-decoration-color: #${colors.foreground};
-        color: #${colors.foreground};
-        background-color: #${colors.background};
-        border-style: solid;
-        border-width: 1px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 25%;
-      }
+        button {
+          border-radius: 0;
+          border-color: black;
+          text-decoration-color: #${colors.foreground};
+          color: #${colors.foreground};
+          background-color: #${colors.background};
+          border-style: solid;
+          border-width: 1px;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 25%;
+        }
 
-      button:focus, button:active, button:hover {
-        background-color: #${colors.red};
-        outline-style: none;
-      }
+        button:focus, button:active, button:hover {
+          background-color: #${colors.red};
+          outline-style: none;
+        }
 
-      #lock,
-      #logout,
-      #suspend,
-      #hibernate,
-      #shutdown,
-      #reboot {
-        background-size: 40%;
-      }
+        #lock,
+        #logout,
+        #suspend,
+        #hibernate,
+        #shutdown,
+        #reboot {
+          background-size: 40%;
+        }
 
-      #lock {
-        background-image: image(url("${iconsPath}/lock.svg"));
-      }
+        #lock {
+          background-image: image(url("${iconsPath}/lock.svg"));
+        }
 
-      #logout {
-        background-image: image(url("${iconsPath}/logout.svg"));
-      }
+        #logout {
+          background-image: image(url("${iconsPath}/logout.svg"));
+        }
 
-      #suspend {
-        background-image: image(url("${iconsPath}/suspend.svg"));
-      }
+        #suspend {
+          background-image: image(url("${iconsPath}/suspend.svg"));
+        }
 
-      #hibernate {
-        background-image: image(url("${iconsPath}/hibernate.svg"));
-      }
+        #hibernate {
+          background-image: image(url("${iconsPath}/hibernate.svg"));
+        }
 
-      #shutdown {
-        background-image: image(url("${iconsPath}/shutdown.svg"));
-      }
+        #shutdown {
+          background-image: image(url("${iconsPath}/shutdown.svg"));
+        }
 
-      #reboot {
-        background-image: image(url("${iconsPath}/reboot.svg"));
-      }
-    '';
+        #reboot {
+          background-image: image(url("${iconsPath}/reboot.svg"));
+        }
+      '';
   };
 }

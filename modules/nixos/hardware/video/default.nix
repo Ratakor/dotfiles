@@ -4,10 +4,12 @@
   pkgs,
   self,
   ...
-}: let
+}:
+let
   inherit (lib.modules) mkIf;
   inherit (self.lib.trivial) isx86Linux;
-in {
+in
+{
   # TODO: only enable if system is graphics capable
   config = mkIf true {
     hardware.graphics = {
