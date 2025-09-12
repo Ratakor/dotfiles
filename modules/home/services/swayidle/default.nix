@@ -7,13 +7,14 @@
 }:
 let
   inherit (lib.modules) mkIf;
+  inherit (lib.meta) getExe;
 in
 {
   config = mkIf (config.self.displayServer == "wayland") {
     user.packages = [ pkgs.swayidle ];
 
     hm.services.swayidle = {
-      enable = false; # This shit doesn't work
+      enable = true;
       extraArgs = [ "-w" ];
       timeouts = [
         {
@@ -22,8 +23,8 @@ in
         }
         {
           timeout = 600;
-          command = "${pkgs.wlopm}/bin/wlopm --off '*'";
-          resumeCommand = "${pkgs.wlopm}/bin/wlopm --on '*'";
+          command = "${getExe pkgs.wlopm} --off '*'";
+          resumeCommand = "${getExe pkgs.wlopm} --on '*'";
         }
         # { timeout = 600; command = "${pkgs.systemd}/bin/systemctl suspend"; }
       ];

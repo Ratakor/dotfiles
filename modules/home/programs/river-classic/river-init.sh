@@ -122,14 +122,16 @@ spawn() {
 spawn randwp
 spawn rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55
 
-spawn gammastep                  # see services.gammastep
-spawn mako                       # see services.mako
-spawn foot --server              # see programs.foot.server.enable
-spawn waybar --log-level warning # see programs.waybar.systemd.enable
-spawn kanshi                     # see services.kanshi
-#spawn librespot                  # see services.librespot
-spawn swayidle -w \
-	timeout 300 "glitchlock" \
-	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'" # see services.swayidle
+# TODO: config
+#spawn syncthing --no-browser
 
-# spawn syncthing --no-browser
+# handled by systemd
+#spawn librespot # see services.librespot
+#spawn gammastep # see services.gammastep
+#spawn kanshi # see services.kanshi
+#spawn mako # see services.mako
+#spawn waybar --log-level warning # see programs.waybar.systemd.enable
+#spawn foot --server # see programs.foot.server.enable
+#spawn swayidle -w \
+#	timeout 300 "glitchlock" \
+#	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'"

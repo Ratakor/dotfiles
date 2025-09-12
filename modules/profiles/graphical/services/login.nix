@@ -27,8 +27,8 @@ in
 
         # autologin
         initial_session = {
-          # command = getExe' pkgs.niri "niri-session";
-          command = "river";
+          command = getExe' pkgs.niri "niri-session";
+          # command = "river";
           user = "ratakor";
         };
 
@@ -39,7 +39,8 @@ in
             "--time"
             "--asterisks"
             "--remember"
-            "--remember-user-session"
+            # "--remember-user-session" # I'm pretty sure this doesn't work
+            "--remember-session"
             # "--cmd 'zsh'"
           ];
           user = "greeter";

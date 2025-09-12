@@ -103,7 +103,7 @@ in
     };
 
     systemd.user.services.foot = {
-      enable = false;
+      enable = true;
       description = "Fast, lightweight and minimalistic Wayland terminal emulator.";
       documentation = [ "man:foot(1)" ];
       partOf = [ "graphical-session.target" ];

@@ -72,6 +72,18 @@ in
         description = "The command with which to open directories in the terminal.";
       };
     };
+
+    # TODO: currently unused
+    # why? because nsxiv -a option
+    # just make a wrapper? yes true I cba tho
+    imageViewer = mkOption {
+      type = enum [
+        "imv"
+        "nsxiv"
+      ];
+      default = if cfg.displayServer == "wayland" then "imv" else "nsxiv";
+      description = "The image viewer to use.";
+    };
   };
 
   config = {

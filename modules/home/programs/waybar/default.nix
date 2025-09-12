@@ -12,7 +12,7 @@ in
 {
   hm.programs.waybar = {
     enable = config.self.displayServer == "wayland";
-    systemd.enable = false;
+    systemd.enable = true;
 
     settings.mainBar = {
       layer = "top";
