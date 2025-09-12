@@ -19,6 +19,13 @@
     };
     kernelModules = ["kvm-intel"];
     extraModulePackages = [];
+
+    kernelParams = [
+      "zfs.zfs_arc_max=${3 * 1024 * 1024 * 1024 |> toString}" # 3GiB
+    ];
+
+    # List of zpools to import at boot time, needed if not using legacy mountpoints
+    # zfs.extraPools = ["zpool"];
   };
 
   # zpool options:
@@ -42,6 +49,8 @@
     "/" = {
       device = "zpool/root";
       fsType = "zfs";
+      # The zfsutil option is needed when mounting ZFS datasets without legacy mountpoints
+      # option = [ "zfsutil" ];
     };
 
     "/nix" = {
@@ -74,8 +83,17 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/97789291-6b48-4b1d-b2f3-b7937c0e6adb";}
+    {
+      device = "/dev/disk/by-partuuid/279e9b8b-02";
+      randomEncryption = {
+        enable = true;
+        cipher = "serpent-xts-plain64";
+        keySize = 512;
+      };
+    }
   ];
+
+  # TODO: zram
 
   # TODO: tmpfs /tmp tmpfs rw,nosuid,nodev,relatime,size=8G,mode=1777 0 0
 

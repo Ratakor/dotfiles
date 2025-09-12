@@ -28,7 +28,7 @@
     # }
     grub = {
       enable = true;
-      zfsSupport = true; # https://nixos.wiki/wiki/ZFS
+      zfsSupport = true; # https://wiki.nixos.org/wiki/ZFS
       efiSupport = false;
       default = 1; # weird ZFS bug I think
       # enableCryptodisk = true;

@@ -67,7 +67,7 @@
 }: let
   terminal = with pkgs; [
     nbsdgames # 18 text-based modern games from bsd
-    self.pkgs.zig-2048 # 2048 game in terminal
+    self.pkgs."2048-zig" # 2048 game in terminal
   ];
 
   star-citizen = with pkgs; [

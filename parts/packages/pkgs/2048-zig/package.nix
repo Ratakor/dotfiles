@@ -5,7 +5,7 @@
   zig_0_14,
 }:
 stdenv.mkDerivation (finalAttrs: {
-  pname = "zig-2048";
+  pname = "2048-zig";
   version = "0.2.4";
 
   src = fetchFromGitHub {
