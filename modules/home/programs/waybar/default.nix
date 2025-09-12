@@ -66,7 +66,7 @@ in
         format-critical = " {temperatureC}°C";
         critical-threshold = 80;
         tooltip = false;
-        on-click = "$TERMINAL -e htop";
+        on-click = "${config.self.terminal.cmd} -e htop";
       };
       battery = {
         full-at = 99;
@@ -121,14 +121,14 @@ in
           "󰤨"
         ];
         tooltip = true;
-        on-click = "$TERMINAL -e nmtui";
+        on-click = "${config.self.terminal.cmd} -e nmtui";
       };
       bluetooth = {
         format-disabled = "";
         format-connected = " {device_alias}";
         tooltip-format = "{controller_alias}\t{controller_address}";
         tooltip-format-connected = "{controller_alias}\t\t{controller_address}\n{device_alias}\t{device_address}";
-        on-click = "$TERMINAL -e bluetoothctl";
+        on-click = "${config.self.terminal.cmd} -e bluetoothctl";
       };
       wireplumber = {
         format = "{icon} {volume}%";

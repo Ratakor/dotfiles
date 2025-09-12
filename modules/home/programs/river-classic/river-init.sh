@@ -67,19 +67,6 @@ riverctl map-pointer normal Super BTN_RIGHT resize-view
 
 ### Custom bindings
 
-riverctl map normal Super Return spawn "$TERMINAL"
-riverctl map normal None XF86ScreenSaver spawn 'glitchlock'
-riverctl map normal Super+Shift X spawn 'glitchlock'
-riverctl map normal None XF86Battery spawn 'battery'
-riverctl map normal Super+Shift W spawn 'randwp'
-riverctl map normal None Print spawn 'screenshot'
-
-#riverctl map normal None F7 spawn "$TERMINAL -e dmenurecord"
-#riverctl map normal Super B spawn "$BROWSER"
-#riverctl map normal Super N spawn "$TERMINAL -e yazi $XDG_DOCUMENTS_DIR/notes"
-riverctl map normal Super N spawn "$TERMINAL -D $XDG_DOCUMENTS_DIR/notes -e zellij attach --create notes"
-riverctl map normal Super+Shift N spawn "$TERMINAL -e newsboat"
-
 riverctl map -repeat normal None XF86AudioRaiseVolume spawn 'wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+'
 riverctl map -repeat normal Super Equal spawn 'wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+'
 riverctl map -repeat normal None XF86AudioLowerVolume spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-'

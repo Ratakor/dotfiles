@@ -15,7 +15,7 @@ let
   settings = {
     quiet = true;
     # disable-audio-cache = true;
-    cache = "${config.user.home}/${config.xdg.cache}/librespot";
+    cache = "${config.hm.xdg.cacheHome}/librespot";
     autoplay = "on";
     enable-volume-normalisation = true;
     name = "librespot@${config.networking.hostName}";

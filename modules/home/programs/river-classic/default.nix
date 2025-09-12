@@ -10,33 +10,22 @@ let
   inherit (builtins) readFile;
   inherit (lib.meta) getExe;
   inherit (config.self) colors;
+
+  XDG_DOCUMENTS_DIR = config.hm.xdg.userDirs.documents;
+  RIVER_LOG_DIR = "${config.hm.xdg.stateHome}/river";
+  cfg = config.self;
 in
 {
   hm.wayland.windowManager.river = {
-    enable = config.self.displayServer == "wayland";
+    enable = cfg.displayServer == "wayland";
 
-    # TODO: maybe wrap all programs with their configs, currently this doesn't
-    # work because XDG_CONFIG_HOME is not set but if all programs are wrapped
-    # there should be no issue, tbh I kinda like this idea, it's really nix way
-    # but that would require to get rid of home-manager, also it's kinda a
-    # .local convention replacement so we can go back to use .config for
-    # programs that sucks
-
-    # package = let
-    #   RIVER_LOG_DIR = "${config.xdg.stateHome}/river";
-    #   RIVER_CONFIG = "${config.xdg.configHome}/river/init";
-    #   river = getExe pkgs.river;
-    # in pkgs.writeShellScriptBin "river" ''
-    #   timestamp=$(date +%Y-%m-%dT%H:%M:%S%z)
-    #   mkdir -p "${RIVER_LOG_DIR}"
-    #   exec dbus-run-session ${river} -c ${RIVER_CONFIG} -log-level warning > "${RIVER_LOG_DIR}/river-$timestamp.log" 2>&1
-    # '';
-
-    # This is unrelated to the above see
-    # https://codeberg.org/river/river-classic
-    # https://codeberg.org/river/river
-    # I want river 0.4.0 btw
-    package = pkgs.river-classic;
+    # I know this is a weird wrapper but we currently depend on
+    # river-session.target created by home-manager
+    package = pkgs.writeShellScriptBin "river" ''
+      timestamp=$(date +%Y-%m-%dT%H:%M:%S%z)
+      mkdir -p "${RIVER_LOG_DIR}"
+      exec dbus-run-session ${getExe pkgs.river-classic} -log-level warning > "${RIVER_LOG_DIR}/river-$timestamp.log" 2>&1
+    '';
 
     xwayland.enable = true;
     systemd = {
@@ -65,11 +54,21 @@ in
       border-color-unfocused = "0x${colors.unfocused}";
       border-color-urgent = "0x${colors.red}";
 
-      map = {
-        normal = {
-          "Super D" = "spawn '${config.self.menu.drun}'";
-          "Super+Shift D" = "spawn '${config.self.menu.run}'";
-        };
+      map.normal = {
+        "Super Return" = "spawn '${cfg.terminal.cmd}'";
+        "Super D" = "spawn '${cfg.menu.drun}'";
+        "Super+Shift D" = "spawn '${cfg.menu.run}'";
+        "None XF86ScreenSaver" = "spawn 'glitchlock'";
+        "Super+Shift X" = "spawn 'glitchlock'";
+        "None XF86Battery" = "spawn 'battery'";
+        "Super+Shift W" = "spawn 'randwp'";
+        "None Print" = "spawn 'screenshot'";
+        # "None F7" = "spawn '${config.self.terminal.cmd} -e dmenurecord'";
+        # "Super B" = "spawn '$BROWSER'";
+        # "Super N" = "spawn '${config.self.terminal.cmd} -e yazi ${XDG_DOCUMENTS_DIR}/notes'";
+        "Super N" =
+          "spawn '${cfg.terminal.cmdDir} ${XDG_DOCUMENTS_DIR}/notes -e zellij attach --create notes'";
+        "Super+Shift N" = "spawn '${cfg.terminal.cmd} -e newsboat'";
       };
     };
 

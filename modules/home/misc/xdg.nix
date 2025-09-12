@@ -8,10 +8,18 @@ in
   hm.xdg = {
     enable = true;
 
-    configHome = "${homeDirectory}/${config.xdg.config}";
-    dataHome = "${homeDirectory}/${config.xdg.data}";
-    stateHome = "${homeDirectory}/${config.xdg.state}";
-    cacheHome = "${homeDirectory}/${config.xdg.cache}";
+    # https://specifications.freedesktop.org/basedir-spec/latest
+    configHome = "${homeDirectory}/.config";
+    dataHome = "${homeDirectory}/.local/share";
+    stateHome = "${homeDirectory}/.local/state";
+    cacheHome = "${homeDirectory}/.cache";
+
+    # .local convention
+    # https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe
+    #configHome = "${homeDirectory}/.local/etc";
+    #dataHome = "${homeDirectory}/.local/share";
+    #stateHome = "${homeDirectory}/.local/var/state";
+    #cacheHome = "${homeDirectory}/.local/var/cache";
 
     userDirs = {
       enable = true;
@@ -22,14 +30,19 @@ in
       publicShare = null; # "${homeDirectory}/tmp";
       templates = null; # "${homeDirectory}/tmp";
 
-      documents = "${homeDirectory}/media/doc";
+      documents = "${homeDirectory}/documents";
+
       music = "${homeDirectory}/media/music";
       pictures = "${homeDirectory}/media/pictures";
       videos = "${homeDirectory}/media/videos";
 
+      # Non-standard
       extraConfig = {
+        # XDG_BIN_HOME = "${homeDirectory}/.local/bin";
+
         XDG_SCREENSHOTS_DIR = "${config.hm.xdg.userDirs.pictures}/screenshots";
-        XDG_MAIL_DIR = "${homeDirectory}/.local/var/mail";
+        XDG_NOTES_DIR = "${config.hm.xdg.userDirs.documents}/notes";
+        # XDG_MAIL_DIR = "${homeDirectory}/mail"; # ".local/var/mail" made sense with the .local convention
       };
     };
 

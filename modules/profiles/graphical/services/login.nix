@@ -9,30 +9,30 @@
 }:
 let
   inherit (builtins) concatStringsSep;
+  inherit (lib.modules) mkIf;
   inherit (lib.meta) getExe getExe';
 in
 {
   services = {
-    getty = {
+    getty = mkIf false {
       autologinOnce = true;
       autologinUser = "ratakor";
     };
 
-    # TODO: doesn't work with river/hyprland
     greetd = {
-      enable = false;
+      enable = true;
       useTextGreeter = true;
       settings = {
         vt = 1;
 
         # autologin
         initial_session = {
-          command = getExe' pkgs.niri "niri-session";
+          # command = getExe' pkgs.niri "niri-session";
+          command = "river";
           user = "ratakor";
         };
 
         # fallback
-        # TODO: doesn't work correctly with .zprofile
         default_session = {
           command = concatStringsSep " " [
             (getExe pkgs.tuigreet)

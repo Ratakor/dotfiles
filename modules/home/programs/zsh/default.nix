@@ -83,17 +83,7 @@
 
     # TODO: clean that
     profileExtra =
-      if config.self.displayServer == "wayland" then
-        ''
-          # Automatically start River on tty1 if not already running.
-          if [ "$(tty)" = "/dev/tty1" ]  && ! pidof -s river >/dev/null 2>&1; then
-              timestamp=$(date +%Y-%m-%dT%H:%M:%S%z)
-              RIVER_LOG_DIR="${config.hm.xdg.stateHome}/river"
-              mkdir -p "$RIVER_LOG_DIR"
-              exec dbus-run-session river -log-level warning > "''${RIVER_LOG_DIR}/river-''${timestamp}.log" 2>&1
-          fi
-        ''
-      else if config.self.displayServer == "x11" then
+      if config.self.displayServer == "x11" then
         ''
           if [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1; then
              #doas modprobe dell-smm-hwmon ignore_dmi=1
@@ -207,7 +197,8 @@
 
         zshConfigAfter = mkAfter ''
           #quand
-          ls -a
+          #ls -a
+          ls
         '';
       in
       mkMerge [

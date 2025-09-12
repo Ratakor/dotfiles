@@ -7,36 +7,18 @@ default:
     @just --list
 
 # Rebuild and switch to the new configuration
-[group('nix')]
-switch:
+[group('nh')]
+switch host="$(hostname)":
     @# nixos-rebuild switch --sudo --flake .
-    nh os switch .
-
-# Rebuild and switch to the new configuration with debug output
-[group('nix')]
-debug:
-    @# nixos-rebuild switch --sudo --flake . --show-trace --verbose
-    nh os switch --verbose --ask .
-
-# Update all the flake inputs and switch to the new configuration
-[group('nix')]
-update:
-    @# nix flake update --commit-lock-file
-    @# nixos-rebuild switch --sudo --flake .
-    nh os switch --update --ask .
-
-# Rebuild and switch to the new home-manager configuration
-[group('nix')]
-home-switch:
-    nh home switch .
+    nh os switch --hostname {{host}} .
 
 # Build a `NixOS` VM image
-[group('nix')]
-build-vm:
-    nh os build-vm .
+[group('nh')]
+build-vm host="$(hostname)":
+    nh os build-vm --hostname {{host}} .
 
 # Garbage collect all unused nix store entries & remove old generations
-[group('nix')]
+[group('nh')]
 clean:
     @# # remove all generations older than 7 days
     @# sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d
@@ -48,16 +30,25 @@ clean:
     nh clean all --ask --keep 5 --keep-since 7d
 
 # Rollback to a previous generation
-[group('nix')]
+[group('nh')]
 rollback:
     @# nix profile rollback --profile /nix/var/nix/profiles/system
-    nh os rollback --ask
+    nh os rollback --verbose --ask
 
 # List all generations of the system profile
-[group('nix')]
+[group('nh')]
 info:
     @# nix profile history --profile /nix/var/nix/profiles/system
     nh os info
+
+# Flex evaltime :D
+[group('nix')]
+evaltime host="$(hostname)":
+    @time nix eval \
+        .#nixosConfigurations.{{host}}.config.system.build.toplevel \
+        --option eval-cache false \
+        --read-only \
+        --raw
 
 # `nh os repl` sucks
 # Open a nix shell with the flake's nixpkgs
@@ -65,7 +56,6 @@ info:
 repl:
     # Load the flake with `:lf .`
     nix repl
-    @# nh os repl .
 
 # Format all files
 [group('nix')]

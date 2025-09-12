@@ -1,10 +1,9 @@
-{ config, ... }:
 {
   programs.zsh = {
     enable = true;
 
     shellInit = ''
-      export ZDOTDIR=$HOME/${config.xdg.config}/zsh
+      export ZDOTDIR=$HOME/.config/zsh
     '';
 
     # From NotAShelf:
