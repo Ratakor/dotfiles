@@ -6,7 +6,11 @@
   nixConfig = {
     extra-substituters = [ "https://ratakor.cachix.org" ];
     extra-trusted-public-keys = [ "ratakor.cachix.org-1:9hOGzHtnKDJ1i9FQN87XFnOOpRBebSKWECswk17glP0=" ];
-    experimental-features = [ "flakes" "nix-command" "pipe-operators" ];
+    experimental-features = [
+      "flakes"
+      "nix-command"
+      "pipe-operators"
+    ];
   };
 
   inputs = {

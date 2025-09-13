@@ -253,10 +253,12 @@ prefer-no-csd
 // You can also set this to null to disable saving screenshots to disk.
 screenshot-path null
 
-// TODO
 cursor {
-    // xcursor-theme "breeze_cursors"
-    // xcusor-size 48
+    xcursor-theme "Simp1e-Gruvbox-Dark"
+    // xcursor-theme "Simp1e-Gruvbox-Light"
+    // xcursor-theme "Simp1e-Dracula"
+    // xcursor-theme "Simp1e-Mix-Dark"
+    xcursor-size 24
     // hide-when-typing
     // hide-after-inactive-ms 1000
 }
