@@ -1,4 +1,5 @@
-theme "gruvbox-dark"
+// btw zellij watches config files so we're losing the hot reload feature by using nix
+
 show_startup_tips false
 // pane_frames false
 // simplified_ui true

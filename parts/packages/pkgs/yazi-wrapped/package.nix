@@ -7,7 +7,6 @@
   mediainfo,
   ueberzugpp,
   dragon-drop,
-  ...
 }:
 let
   fromTOML = file: builtins.readFile file |> builtins.fromTOML;

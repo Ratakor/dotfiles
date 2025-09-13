@@ -34,7 +34,7 @@ let
     cmake
     just # command runner (like make)
     # go-task # yet another make alternative
-    qemu_full
+    # qemu_full # uncached binaries, arrow-cpp 4 hours to build no thanks
     # astyle # C formatter
     checkbashisms # checks for bashisms in scripts
     shellcheck # there is also shellcheck-minimal in nixpkgs

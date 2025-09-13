@@ -54,6 +54,7 @@ in
 
     ## wayland
     cfr = "$EDITOR ${XDG_CONFIG_HOME}/river/init";
+    cfn = "$EDITOR ${XDG_CONFIG_HOME}/niri/config.kdl";
     cfb = "cd ${XDG_CONFIG_HOME}/waybar";
     cft = "$EDITOR ${XDG_CONFIG_HOME}/foot/foot.ini";
 

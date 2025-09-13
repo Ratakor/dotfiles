@@ -19,10 +19,9 @@
     }:
     let
       inherit (builtins) concatStringsSep match;
-      inherit (lib.attrsets) recursiveUpdate mapAttrs' nameValuePair;
+      inherit (lib.attrsets) recursiveUpdate;
       inherit (lib.filesystem) packagesFromDirectoryRecursive;
       inherit (lib.customisation) callPackageWith;
-      inherit (self.lib.filesystem) listFiles;
 
       date = concatStringsSep "-" (match "(.{4})(.{2})(.{2}).*" self.lastModifiedDate);
     in
@@ -39,17 +38,6 @@
             callPackage = callPackageWith (recursiveUpdate pkgs extraArgs);
             directory = ./pkgs;
           };
-
-          wrappers =
-            let
-              wrapper-manager = import pins.wrapper-manager;
-              wm-eval = wrapper-manager.lib.eval {
-                # Using `pkgs` causes an infinite recursion
-                pkgs = inputs'.nixpkgs.legacyPackages;
-                modules = listFiles ./wrappers;
-              };
-            in
-            mapAttrs' (n: v: nameValuePair (n + "-wrapped") v.wrapped) wm-eval.config.wrappers;
 
           fromInputs = { };
 
@@ -71,6 +59,6 @@
             };
           };
         in
-        base // wrappers // fromInputs // fromPins;
+        base // fromInputs // fromPins;
     };
 }

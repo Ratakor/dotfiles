@@ -2,17 +2,11 @@
 {
   config,
   lib,
-  pkgs,
-  self,
   ...
 }:
 let
   inherit (lib.modules) mkIf;
-  inherit (lib.meta) getExe';
-  inherit (self.lib) wrapWith;
   inherit (config.self) colors;
-
-  ini = pkgs.formats.ini { };
 
   settings = {
     main = {
@@ -82,39 +76,18 @@ let
       bright7 = colors.bright_white;
     };
   };
-
-  foot = wrapWith pkgs {
-    basePackage = pkgs.foot;
-    prependFlags = [
-      "--config"
-      (ini.generate "foot.ini" settings)
-    ];
-    # Skip footclient wrapping as it can't take a --config argument
-    programs.footclient = { };
-  };
 in
 {
   config = mkIf (config.self.terminal.program == "foot") {
-    user.packages = [ foot ];
+    hm.programs.foot = {
+      enable = true;
+      server.enable = true;
+      inherit settings;
+    };
 
     self.terminal = {
       cmd = "footclient";
       cmdDir = "footclient -D";
-    };
-
-    systemd.user.services.foot = {
-      enable = true;
-      description = "Fast, lightweight and minimalistic Wayland terminal emulator.";
-      documentation = [ "man:foot(1)" ];
-      partOf = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-
-      serviceConfig = {
-        ExecStart = "${getExe' foot "foot"} --server";
-        Restart = "on-failure";
-        OOMPolicy = "continue";
-      };
     };
   };
 }

@@ -1,5 +1,10 @@
 # Terminal multiplexer & session manager
-{ self, ... }:
+{ config, self, ... }:
+let
+  zellij = self.pkgs.zellij-wrapped.override {
+    theme = config.self.colorscheme;
+  };
+in
 {
-  user.packages = [ self.pkgs.zellij-wrapped ];
+  user.packages = [ zellij ];
 }
