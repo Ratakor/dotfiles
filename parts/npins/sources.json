@@ -35,9 +35,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "f56bf065f9abedc7bc15e1f2454aa5c8edabaacf",
-      "url": "https://github.com/nix-community/home-manager/archive/f56bf065f9abedc7bc15e1f2454aa5c8edabaacf.tar.gz",
-      "hash": "0r6skg17si9x8spfkcp9jafvrxjlwmh1pli7hyzgjwkdbqd4rqvb"
+      "revision": "a3fcc92180c7462082cd849498369591dfb20855",
+      "url": "https://github.com/nix-community/home-manager/archive/a3fcc92180c7462082cd849498369591dfb20855.tar.gz",
+      "hash": "1ywqb0w550p2q16rsfkjy2vdci031gvadhl5gpisvzj54wdwg8aj"
     },
     "mnw": {
       "type": "Git",
@@ -100,9 +100,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "8ad2484b485acad0632cb0af15b5eb704e3c1d0a",
-      "url": "https://github.com/viperML/wrapper-manager/archive/8ad2484b485acad0632cb0af15b5eb704e3c1d0a.tar.gz",
-      "hash": "11kcrkrnajzbhbyg5w2jhy5h5dw3ffn604pm37ikyird5z2r37cy"
+      "revision": "801dd9c876fcada046af45543e8c7e0bbccf20ea",
+      "url": "https://github.com/viperML/wrapper-manager/archive/801dd9c876fcada046af45543e8c7e0bbccf20ea.tar.gz",
+      "hash": "05hg8bnb3jjc95a83c0v59hjnjwf5w1kpfpj2ni12nk39r6fqr9q"
     },
     "zfs-restore": {
       "type": "Git",
