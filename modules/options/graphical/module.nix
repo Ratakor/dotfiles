@@ -22,6 +22,17 @@ in
       description = "The display server to use.";
     };
 
+    windowManager = mkOption {
+      type = enum [
+        "dwm"
+        "river"
+        "niri"
+        "hyprland"
+      ];
+      default = if cfg.displayServer == "wayland" then "niri" else "dwm";
+      description = "The window manager to use.";
+    };
+
     menu = {
       program = mkOption {
         type = enum [

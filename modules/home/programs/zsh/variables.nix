@@ -71,12 +71,11 @@ in
       SAM_CLI_TELEMETRY = "0";
 
       # Misc
-      MOZ_ENABLE_WAYLAND = "1";
-      MANWIDTH = "80";
-      LESS = "-R";
       WEBKIT_DISABLE_DMABUF_RENDERER = "1";
       MANPAGER = "sh -c 'col -bx | ${getExe pkgs.bat} -l man -p'";
       MANROFFOPT = "-c";
+      MANWIDTH = "80";
+      LESS = "-R";
     };
   };
 }

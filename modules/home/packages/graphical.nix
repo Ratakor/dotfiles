@@ -24,6 +24,7 @@ let
       wlopm # power management (black screen)
       swaylock # screen locker
       # cage # Wayland kiosk that runs a single, maximized application
+      wlr-randr # xrandr for wlroot
     ];
   };
 

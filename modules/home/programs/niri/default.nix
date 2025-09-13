@@ -8,7 +8,7 @@ let
   inherit (lib.modules) mkIf;
 in
 {
-  config = mkIf (config.self.displayServer == "wayland") {
+  config = mkIf (config.self.windowManager == "niri") {
     # btw this is NixOS's programs not home-manager's programs.
     # guess why we're using this one
     programs.niri.enable = true;

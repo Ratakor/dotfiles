@@ -17,9 +17,11 @@ let
   cfg = config.self;
 in
 {
-  config = mkIf false {
+  config = mkIf (cfg.windowManager == "river") {
+    programs.river-classic.enable = true;
+
     hm.wayland.windowManager.river = {
-      enable = cfg.displayServer == "wayland";
+      enable = true;
 
       # I know this is a weird wrapper but we currently depend on
       # river-session.target created by home-manager

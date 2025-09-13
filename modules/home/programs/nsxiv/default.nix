@@ -8,6 +8,9 @@
 let
   inherit (lib.modules) mkIf;
 
+  # TODO:
+  # - add -a patch
+  # - fetch nsxiv-extra (with npins?) for zsh completion & patches
   nsxiv = pkgs.nsxiv.overrideAttrs (prevAttrs: {
     patches = (prevAttrs.patches or [ ]) ++ [ ./image-mode-cycle-v30.diff ];
 

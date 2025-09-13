@@ -15,8 +15,10 @@
   self = {
     colorscheme = "gruvbox-dark";
     displayServer = "wayland";
-    menu.program = "tofi";
+    windowManager = "niri";
+    menu.program = "fuzzel";
     terminal.program = "foot";
+    # imageViewer = "imv";
   };
 
   system.stateVersion = "25.05";

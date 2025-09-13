@@ -3,9 +3,9 @@
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
-environemnt {
-    MOZ_ENABLE_WAYLAND 1
-    NIXOS_OZONE_WAYLAND 1
+environment {
+    MOZ_ENABLE_WAYLAND "1"
+    NIXOS_OZONE_WAYLAND "1"
 }
 
 // Input device configuration.
