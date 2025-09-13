@@ -24,6 +24,7 @@
       inherit (lib.customisation) callPackageWith;
 
       date = concatStringsSep "-" (match "(.{4})(.{2})(.{2}).*" self.lastModifiedDate);
+      craneLib = pkgs.callPackage "${pins.crane}/lib" { };
     in
     {
       # Add all packages to the default overlay which can be consumed as follows:
@@ -57,6 +58,7 @@
               zig = pkgs.zig_0_15;
               image-support = true;
             };
+            stash = pkgs.callPackage "${pins.stash}/nix/package.nix" { inherit craneLib; };
           };
         in
         base // fromInputs // fromPins;

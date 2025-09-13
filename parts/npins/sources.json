@@ -13,6 +13,19 @@
       "url": "https://github.com/ryantm/agenix/archive/9edb1787864c4f59ae5074ad498b6272b3ec308d.tar.gz",
       "hash": "06w2dxnf8qxwcmqvgyxnrrx62ca5x1cw3lminpgs112md17wa3rl"
     },
+    "crane": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ipetkov",
+        "repo": "crane"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "d599ae4847e7f87603e7082d73ca673aa93c916d",
+      "url": "https://github.com/ipetkov/crane/archive/d599ae4847e7f87603e7082d73ca673aa93c916d.tar.gz",
+      "hash": "0mx5571sapgynn7dk5zyva1fc4bd5jbf84ki6k3yy4wirc444dwi"
+    },
     "flint": {
       "type": "Git",
       "repository": {
@@ -51,6 +64,19 @@
       "revision": "ed6cc3e48557ba18266e598a5ebb6602499ada16",
       "url": "https://github.com/Gerg-L/mnw/archive/ed6cc3e48557ba18266e598a5ebb6602499ada16.tar.gz",
       "hash": "0qcw9k6rb94p6spswqwfpz3hhzdjajpr0dnxv36ahi1slkhn395z"
+    },
+    "stash": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NotAShelf",
+        "repo": "stash"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "ad808c73c7bbf3b30edc72f3a5a9fb5d1cae4e6f",
+      "url": "https://github.com/NotAShelf/stash/archive/ad808c73c7bbf3b30edc72f3a5a9fb5d1cae4e6f.tar.gz",
+      "hash": "1bzm3haf6yhwl4c84c5f83jdss25wshssq1rkjf6ajgsjl6yci49"
     },
     "treefmt-nix": {
       "type": "Git",
