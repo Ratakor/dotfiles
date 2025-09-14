@@ -7,6 +7,8 @@ pkgs: {
     package = pkgs.gruvbox-gtk-theme;
   };
 
+  cursor.theme = "Simp1e-Gruvbox-Light"; # "Simp1e-Gruvbox-Dark"
+
   foreground = "3c3836";
   background = "fbf1c7";
 

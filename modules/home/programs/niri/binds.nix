@@ -1,336 +1,12 @@
-// This config is in the KDL format: https://kdl.dev
-// "/-" comments out the following node.
-// Check the wiki for a full description of the configuration:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
-
-// stuff to replace with nix
-// - colors
-// - spawn with terminal, menu/launcher
-// - screenshot path
-// - output config
-
-environment {
-    MOZ_ENABLE_WAYLAND "1"
-    NIXOS_OZONE_WAYLAND "1"
-}
-
-// Input device configuration.
-// Find the full list of options on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
-input {
-    keyboard {
-        xkb {
-            layout "fr"
-            variant "us"
-            options "caps:none"
-        }
-
-        repeat-delay 300
-        repeat-rate 50
-        // numlock // Enable numlock on startup
-    }
-
-    // Next sections include libinput settings.
-    // Omitting settings disables them, or leaves them at their default values.
-    touchpad {
-        // off
-        tap
-        // dwt
-        // dwtp
-        // drag false
-        // drag-lock
-        natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "two-finger"
-        // disabled-on-external-mouse
-    }
-
-    mouse {
-        // off
-        // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "no-scroll"
-    }
-
-    trackpoint {
-        // off
-        // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "on-button-down"
-        // scroll-button 273
-        // middle-emulation
-    }
-
-    // disable-power-key-handling
-    // warp-mouse-to-focus
-    focus-follows-mouse max-scroll-amount="0%"
-    // workspace-auto-back-and-forth
-    mod-key "Super"
-    mod-key-nested "Alt"
-}
-
-// TODO: this should be host specific
-// You can configure outputs by their name, which you can find
-// by running `niri msg outputs` while inside a niri instance.
-// The built-in laptop monitor is usually called "eDP-1".
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
-// Remember to uncomment the node by removing "/-"!
-/-output "eDP-1" {
-    // Uncomment this line to disable this output.
-    // off
-
-    // Resolution and, optionally, refresh rate of the output.
-    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
-    // If the refresh rate is omitted, niri will pick the highest refresh rate
-    // for the resolution.
-    // If the mode is omitted altogether or is invalid, niri will pick one automatically.
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@120.030"
-
-    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 2
-
-    // Transform allows to rotate the output counter-clockwise, valid values are:
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
-    transform "normal"
-
-    // Position of the output in the global coordinate space.
-    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
-    // The cursor can only move between directly adjacent outputs.
-    // Output scale and rotation has to be taken into account for positioning:
-    // outputs are sized in logical, or scaled, pixels.
-    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
-    // so to put another output directly adjacent to it on the right, set its x to 1920.
-    // If the position is unset or results in an overlap, the output is instead placed
-    // automatically.
-    position x=1280 y=0
-}
-
-// Settings that influence how windows are positioned and sized.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
-layout {
-    // Set gaps around windows in logical pixels.
-    gaps 10
-
-    // When to center a column when changing focus, options are:
-    // - "never", default behavior, focusing an off-screen column will keep at the left
-    //   or right edge of the screen.
-    // - "always", the focused column will always be centered.
-    // - "on-overflow", focusing a column will center it if it doesn't fit
-    //   together with the previously focused column.
-    center-focused-column "never"
-    // always-center-single-column
-    // empty-workspace-above-first
-    // default-column-display "tabbed" // what?
-
-    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
-    preset-column-widths {
-        // Proportion sets the width as a fraction of the output width, taking gaps into account.
-        // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
-        // The default preset widths are 1/3, 1/2 and 2/3 of the output.
-        proportion 0.33333
-        proportion 0.5
-        proportion 0.66667
-
-        // Fixed sets the width in logical pixels exactly.
-        // fixed 1920
-    }
-
-    // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
-    preset-window-heights {
-        proportion 0.33333
-        proportion 0.5
-        proportion 0.66667
-        proportion 1.0
-    }
-
-    // You can change the default width of the new windows.
-    default-column-width { proportion 0.5; }
-    // If you leave the brackets empty, the windows themselves will decide their initial width.
-    // default-column-width {}
-
-    // By default focus ring and border are rendered as a solid background rectangle
-    // behind windows. That is, they will show up through semitransparent windows.
-    // This is because windows using client-side decorations can have an arbitrary shape.
-    //
-    // If you don't like that, you should uncomment `prefer-no-csd` below.
-    // Niri will draw focus ring and border *around* windows that agree to omit their
-    // client-side decorations.
-    //
-    // Alternatively, you can override it with a window rule called
-    // `draw-border-with-background`.
-
-    background-color "#282828" // colors.background
-
-    // border {
-    focus-ring {
-        width 2
-        active-color "#458588" // colors.blue
-        inactive-color "#3c3836" // colors.unfocused
-        urgent-color "#cc241d" // colors.red
-    }
-
-    // You can enable drop shadows for windows.
-    shadow {
-        // Uncomment the next line to enable shadows.
-        // on
-
-        // By default, the shadow draws only around its window, and not behind it.
-        // Uncomment this setting to make the shadow draw behind its window.
-        //
-        // Note that niri has no way of knowing about the CSD window corner
-        // radius. It has to assume that windows have square corners, leading to
-        // shadow artifacts inside the CSD rounded corners. This setting fixes
-        // those artifacts.
-        //
-        // However, instead you may want to set prefer-no-csd and/or
-        // geometry-corner-radius. Then, niri will know the corner radius and
-        // draw the shadow correctly, without having to draw it behind the
-        // window. These will also remove client-side shadows if the window
-        // draws any.
-        //
-        // draw-behind-window true
-
-        // You can change how shadows look. The values below are in logical
-        // pixels and match the CSS box-shadow properties.
-
-        // Softness controls the shadow blur radius.
-        softness 30
-
-        // Spread expands the shadow.
-        spread 5
-
-        // Offset moves the shadow relative to the window.
-        offset x=0 y=5
-
-        // You can also change the shadow color and opacity.
-        color "#0007"
-    }
-
-    // Struts shrink the area occupied by windows, similarly to layer-shell panels.
-    // You can think of them as a kind of outer gaps. They are set in logical pixels.
-    // Left and right struts will cause the next window to the side to always be visible.
-    // Top and bottom struts will simply add outer gaps in addition to the area occupied by
-    // layer-shell panels and regular gaps.
-    struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
-    }
-}
-
-// Animation settings.
-// The wiki explains how to configure individual animations:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
-animations {
-    // Uncomment to turn off all animations.
-    // off
-
-    // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
-    slowdown 0.9
-}
-
-// Add lines like this to spawn processes at startup.
-// Note that running niri as a session supports xdg-desktop-autostart,
-// which may be more convenient to use.
-// See the binds section below for more spawn examples.
-// spawn-at-startup "waybar"
-spawn-at-startup "randwp"
-
-// Uncomment this line to ask the clients to omit their client-side decorations if possible.
-// If the client will specifically ask for CSD, the request will be honored.
-// Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
-// This option will also fix border/focus ring drawing behind some semitransparent windows.
-// After enabling or disabling this, you need to restart the apps for this to take effect.
-prefer-no-csd
-
-// You can change the path where screenshots are saved.
-// A ~ at the front will be expanded to the home directory.
-// The path is formatted with strftime(3) to give you the screenshot date and time.
-// screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-
-// You can also set this to null to disable saving screenshots to disk.
-screenshot-path null
-
-cursor {
-    xcursor-theme "Simp1e-Gruvbox-Dark"
-    // xcursor-theme "Simp1e-Gruvbox-Light"
-    // xcursor-theme "Simp1e-Dracula"
-    // xcursor-theme "Simp1e-Mix-Dark"
-    xcursor-size 24
-    // hide-when-typing
-    // hide-after-inactive-ms 1000
-}
-
-overview {
-    zoom 0.5
-    backdrop-color "#282828" // colors.background
-    workspace-shadow {
-        // off
-    }
-}
-
-// xwayland-satellite { }
-
-clipboard {
-    disable-primary
-}
-
-hotkey-overlay {
-    skip-at-startup
-    // hide-not-bound
-}
-
-// TODO: window-rule
-// Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
-
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
-/-window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-// Open the Firefox picture-in-picture player as floating by default.
-/-window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-
-// Example: block out two password managers from screen capture.
-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-    block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
-}
-
-// https://github.com/YaLTeR/niri/issues/2153
-// https://github.com/YaLTeR/niri/discussions/2057
-/-window-rule {
-    match title="^$"
-    open-floating true
-}
-
-binds {
+# https://yalter.github.io/niri/Configuration:-Key-Bindings
+# vim: ft=kdl
+config:
+let
+  cfg = config.self;
+  inherit (config.hm.xdg.userDirs.extraConfig) XDG_NOTES_DIR;
+in
+''
+  binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
     // like wev.
@@ -343,47 +19,50 @@ binds {
 
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
+    // TODO: unclutter the list by using `hotkey-overlay-title`, null to hide entry
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Return repeat=false hotkey-overlay-title="Open a Terminal: footclient" { spawn "footclient"; }
-    Mod+D repeat=false hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Mod+Shift+D repeat=false { spawn "fuzzel" "--list-executables-in-path"; }
+    // WARNING: using `spawn` to avoid latency but that means cfg.terminal.cmd must be a single command
+    Mod+Return repeat=false hotkey-overlay-title="Open a Terminal: ${cfg.terminal.program}" { spawn "${cfg.terminal.cmd}"; }
+    Mod+D repeat=false hotkey-overlay-title="Run an Application: ${cfg.menu.program}" { spawn-sh "${cfg.menu.drun}"; }
+    Mod+Shift+D repeat=false hotkey-overlay-title=null { spawn-sh "${cfg.menu.run}"; }
     Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: glitchlock" { spawn "glitchlock"; }
     XF86ScreenSaver repeat=false { spawn "glitchlock"; }
 
-    XF86Battery repeat=false { spawn "battery"; }
+    XF86Battery repeat=false hotkey-overlay-title="Show battery informations" { spawn "battery"; }
     Mod+Shift+W repeat=false hotkey-overlay-title="Set a randwom wallpaper" { spawn "randwp"; }
-    Print repeat=false { spawn "screenshot"; }
-    // TODO
+
+    // TODO: https://github.com/Smithay/smithay/issues/1823
+    // Print repeat=false { spawn "screenshot"; }
     // Print { screenshot; }
     // Ctrl+Print { screenshot-screen; }
     // Alt+Print { screenshot-window; }
 
-    // F7 repeat=false { spawn "footclient" "-e" "dmenurecord"; }
+    // F7 repeat=false { spawn-sh "${cfg.terminal.cmd} -e dmenurecord"; }
     // Mod+B repeat=false { spawn "chromium" "--new-window"; }
-    // Mod+N repeat=false { spawn-sh "footclient -e yazi $XDG_DOCUMENTS_DIR/notes"; }
-    Mod+N repeat=false { spawn-sh "footclient -D $XDG_DOCUMENTS_DIR/notes -e zellij attach --create notes"; }
-    Mod+Shift+N repeat=false { spawn "footclient" "-e" "newsboat"; }
+    // Mod+N repeat=false { spawn-sh "${cfg.terminal.cmd} -e yazi ${XDG_NOTES_DIR}"; }
+    Mod+N repeat=false { spawn-sh "${cfg.terminal.cmdDir} ${XDG_NOTES_DIR} -e zellij attach --create notes"; }
+    Mod+Shift+N repeat=false { spawn-sh "${cfg.terminal.cmd} -e newsboat"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
-    //Mod+Equal          allow-when-locked=true { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
+    Ctrl+Equal           allow-when-locked=true { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"; }
-    //Mod+Minus          allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"; }
+    Ctrl+Minus           allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"; }
     XF86AudioMute        repeat=false allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86Launch1          repeat=false allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     repeat=false allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
     F6                   repeat=false allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
-    Mod+M repeat=false { spawn "zpotify" "play" "playlist"; } // "music"
-    Mod+Shift+M repeat=false { spawn "zpotify" "play" "album"; } // "musiccmd"
-    XF86AudioPrev repeat=false { spawn-sh "musiccmd prev || zpotify prev >/dev/null"; }
-    XF86AudioNext repeat=false { spawn-sh "musiccmd next || zpotify next >/dev/null"; }
-    XF86AudioPlay repeat=false { spawn-sh "musiccmd cycle || zpotify pause >/dev/null"; }
-    XF86AudioStop repeat=false { spawn-sh "musiccmd stop || zpotify pause >/dev/null"; }
-    Mod+Shift+Left repeat=false { spawn-sh "musiccmd prev || zpotify prev >/dev/null"; }
-    Mod+Shift+Right repeat=false { spawn-sh "musiccmd next || zpotify next >/dev/null"; }
-    Mod+Shift+Down repeat=false { spawn-sh "musiccmd cycle || zpotify pause >/dev/null"; }
-    Mod+Shift+Up repeat=false { spawn-sh "musiccmd stop || zpotify pause >/dev/null"; }
+    Mod+M           repeat=false { spawn "zpotify" "play" "playlist"; } // "music"
+    Mod+Shift+M     repeat=false { spawn "zpotify" "play" "album"; } // "musiccmd"
+    XF86AudioPrev   repeat=false allow-when-locked=true { spawn-sh "musiccmd prev || zpotify prev >/dev/null"; }
+    XF86AudioNext   repeat=false allow-when-locked=true { spawn-sh "musiccmd next || zpotify next >/dev/null"; }
+    XF86AudioPlay   repeat=false allow-when-locked=true { spawn-sh "musiccmd cycle || zpotify pause >/dev/null"; }
+    XF86AudioStop   repeat=false allow-when-locked=true { spawn-sh "musiccmd stop || zpotify pause >/dev/null"; }
+    Mod+Shift+Left  repeat=false allow-when-locked=true { spawn-sh "musiccmd prev || zpotify prev >/dev/null"; }
+    Mod+Shift+Right repeat=false allow-when-locked=true { spawn-sh "musiccmd next || zpotify next >/dev/null"; }
+    Mod+Shift+Down  repeat=false allow-when-locked=true { spawn-sh "musiccmd cycle || zpotify pause >/dev/null"; }
+    Mod+Shift+Up    repeat=false allow-when-locked=true { spawn-sh "musiccmd stop || zpotify pause >/dev/null"; }
 
     Mod+S repeat=false { spawn "dmenusearch" "web"; }
     // Mod+A repeat=false { spawn "dmenusearch" "aur"; }
@@ -400,7 +79,7 @@ binds {
     //riverctl map normal None button10 spawn 'musiccmd'
 
     // Reload config
-    Mod+Escape repeat=false { spawn-sh "kill -USR2 $(pidof waybar); makoctl reload"; }
+    Mod+Escape repeat=false { spawn-sh "kill -USR2 $(pidof waybar); makoctl reload; systemctl --user restart foot"; }
 
     // Toggle the visibility of the status bar.
     Mod+Shift+B repeat=false { spawn-sh "kill -USR1 $(pidof waybar)"; }
@@ -412,6 +91,11 @@ binds {
     //# 	'killall rivertile || rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55'
     //# TODO: toggle transparency
     //#riverctl map normal Control P spawn 'killall picom || picom -b'
+
+    // XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "+10%"; }
+    // XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "10%-"; }
+    Mod+Insert allow-when-locked=true { spawn "brightnessctl" "set" "+10%"; }
+    Mod+Delete allow-when-locked=true { spawn "brightnessctl" "set" "10%-"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
@@ -646,4 +330,5 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
-}
+  }
+''

@@ -7,6 +7,8 @@ pkgs: {
     package = pkgs.dracula-theme;
   };
 
+  cursor.theme = "Simp1e-Dracula";
+
   foreground = "f8f8f2";
   background = "282a36";
 

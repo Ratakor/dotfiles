@@ -1,0 +1,12 @@
+# https://yalter.github.io/niri/Configuration:-Animations
+# vim: ft=kdl
+''
+  animations {
+    // Uncomment to turn off all animations.
+    // off
+
+    // Slow down all animations by this factor. Values below 1 speed them up instead.
+    // slowdown 3.0
+    slowdown 0.9
+  }
+''
