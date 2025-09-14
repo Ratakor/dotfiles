@@ -3,6 +3,12 @@
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
+// stuff to replace with nix
+// - colors
+// - spawn with terminal, menu/launcher
+// - screenshot path
+// - output config
+
 environment {
     MOZ_ENABLE_WAYLAND "1"
     NIXOS_OZONE_WAYLAND "1"
@@ -341,7 +347,7 @@ binds {
 
     Mod+Return repeat=false hotkey-overlay-title="Open a Terminal: footclient" { spawn "footclient"; }
     Mod+D repeat=false hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Mod+Shift+D repeat=false { spawn "fuzzel --list-executables-in-path"; }
+    Mod+Shift+D repeat=false { spawn "fuzzel" "--list-executables-in-path"; }
     Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: glitchlock" { spawn "glitchlock"; }
     XF86ScreenSaver repeat=false { spawn "glitchlock"; }
 
@@ -355,8 +361,8 @@ binds {
 
     // F7 repeat=false { spawn "footclient" "-e" "dmenurecord"; }
     // Mod+B repeat=false { spawn "chromium" "--new-window"; }
-    // Mod+N repeat=false { spawn "footclient" "-e" "yazi" "$XDG_DOCUMENTS_DIR/notes"; }
-    Mod+N repeat=false { spawn "footclient" "-D" "$XDG_DOCUMENTS_DIR/notes" "-e" "zellij" "attach" "--create" "notes"; }
+    // Mod+N repeat=false { spawn-sh "footclient -e yazi $XDG_DOCUMENTS_DIR/notes"; }
+    Mod+N repeat=false { spawn-sh "footclient -D $XDG_DOCUMENTS_DIR/notes -e zellij attach --create notes"; }
     Mod+Shift+N repeat=false { spawn "footclient" "-e" "newsboat"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
@@ -370,14 +376,14 @@ binds {
 
     Mod+M repeat=false { spawn "zpotify" "play" "playlist"; } // "music"
     Mod+Shift+M repeat=false { spawn "zpotify" "play" "album"; } // "musiccmd"
-    XF86AudioPrev repeat=false { spawn "sh" "-c" "musiccmd prev || zpotify prev >/dev/null"; }
-    XF86AudioNext repeat=false { spawn "sh" "-c" "musiccmd next || zpotify next >/dev/null"; }
-    XF86AudioPlay repeat=false { spawn "sh" "-c" "musiccmd cycle || zpotify pause >/dev/null"; }
-    XF86AudioStop repeat=false { spawn "sh" "-c" "musiccmd stop || zpotify pause >/dev/null"; }
-    Mod+Shift+Left repeat=false { spawn "sh" "-c" "musiccmd prev || zpotify prev >/dev/null"; }
-    Mod+Shift+Right repeat=false { spawn "sh" "-c" "musiccmd next || zpotify next >/dev/null"; }
-    Mod+Shift+Down repeat=false { spawn "sh" "-c" "musiccmd cycle || zpotify pause >/dev/null"; }
-    Mod+Shift+Up repeat=false { spawn "sh" "-c" "musiccmd stop || zpotify pause >/dev/null"; }
+    XF86AudioPrev repeat=false { spawn-sh "musiccmd prev || zpotify prev >/dev/null"; }
+    XF86AudioNext repeat=false { spawn-sh "musiccmd next || zpotify next >/dev/null"; }
+    XF86AudioPlay repeat=false { spawn-sh "musiccmd cycle || zpotify pause >/dev/null"; }
+    XF86AudioStop repeat=false { spawn-sh "musiccmd stop || zpotify pause >/dev/null"; }
+    Mod+Shift+Left repeat=false { spawn-sh "musiccmd prev || zpotify prev >/dev/null"; }
+    Mod+Shift+Right repeat=false { spawn-sh "musiccmd next || zpotify next >/dev/null"; }
+    Mod+Shift+Down repeat=false { spawn-sh "musiccmd cycle || zpotify pause >/dev/null"; }
+    Mod+Shift+Up repeat=false { spawn-sh "musiccmd stop || zpotify pause >/dev/null"; }
 
     Mod+S repeat=false { spawn "dmenusearch" "web"; }
     // Mod+A repeat=false { spawn "dmenusearch" "aur"; }
@@ -386,18 +392,18 @@ binds {
     Mod+E repeat=false { spawn "dmenusearch" "emoji"; }
 
     Mod+Shift+E repeat=false { spawn "wlogout"; }
-    Mod+U repeat=false { spawn "sh" "-c" "plumber --dmenu \"$(wl-paste)\""; }
-    Mod+Shift+U repeat=false { spawn "sh" "-c" "plumber \"$(wl-paste)\""; }
+    Mod+U repeat=false { spawn-sh "plumber --dmenu \"$(wl-paste)\""; }
+    Mod+Shift+U repeat=false { spawn-sh "plumber \"$(wl-paste)\""; }
     //riverctl map-pointer normal None BTN_MIDDLE spawn 'plumber'
     //riverctl map normal None button8 spawn 'plumber "$(wl-paste)"'
     //riverctl map normal None button9 close
     //riverctl map normal None button10 spawn 'musiccmd'
 
     // Reload config
-    Mod+Escape repeat=false { spawn "sh" "-c" "kill -USR2 $(pidof waybar); makoctl reload"; }
+    Mod+Escape repeat=false { spawn-sh "kill -USR2 $(pidof waybar); makoctl reload"; }
 
     // Toggle the visibility of the status bar.
-    Mod+Shift+B repeat=false { spawn "sh" "-c" "kill -USR1 $(pidof waybar)"; }
+    Mod+Shift+B repeat=false { spawn-sh "kill -USR1 $(pidof waybar)"; }
 
     //# TODO: toggle padding (gaps)
     //#riverctl map normal Super+Shift G ...
@@ -487,7 +493,16 @@ binds {
     // Mod+Shift+U         { move-workspace-down; }
     // Mod+Shift+I         { move-workspace-up; }
 
+    // These bindings don't exist see
+    // https://github.com/YaLTeR/niri/discussions/2383
+    //Mod+MouseLeft { move-window; }
+    //Mod+Shift+MouseLeft { resize-window; }
+    //Mod+MouseRight { window-resize; }
+
     // TODO: config mouse
+    // MouseLeft MouseRight MouseMiddle MouseBack MouseForward
+    // WheelScrollUp WheelScrollDown WheelScrollLeft WheelScrollRight
+    // TouchpadScrollUp TouchpadScrollDown TouchpadScrollLeft TouchpadScrollRight
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.
     //
