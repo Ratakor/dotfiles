@@ -1,0 +1,53 @@
+-- Testing inside vim
+return {
+    -- {
+    --     "neotest",
+    --     dependencies = {
+    --         "nvim-nio",
+    --         "plenary-nvim",
+    --         "FixCursorHold-nvim",
+    --         "neotest-zig",
+    --     },
+    -- },
+
+    -- require("neotest").setup({
+    --     adapters = {
+    --         require("neotest-zig"),
+    --     },
+    --     summary = {
+    --         enabled = true,
+    --         animated = true,
+    --         follow = true,
+    --         expand_error = true,
+
+    --         mappings = {
+    --             expand = { "<CR>", "<2-LeftMouse>" },
+    --             expand_all = "e",
+    --             output = "o",
+    --             short = "O",
+    --             attach = "a",
+    --             jumpto = { "i", "<C-]>" },
+    --             stop = "u",
+    --             run = "r",
+    --             debug = "d",
+    --             mark = "m",
+    --             run_marked = "R",
+    --             debug_marked = "D",
+    --             clear_marked = "M",
+    --             target = "t",
+    --             clear_target = "T",
+    --             next_failed = "J",
+    --             prev_failed = "K",
+    --         },
+    --     },
+    -- })
+
+    -- vim.keymap.set("n", "<C-t>", function()
+    --     -- require("neotest").run.run()
+    --     require("neotest").summary.toggle()
+    --     local win = vim.fn.bufwinid("Neotest Summary")
+    --     if win > -1 then
+    --         vim.api.nvim_set_current_win(win)
+    --     end
+    -- end)
+}

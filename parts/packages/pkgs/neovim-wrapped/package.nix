@@ -16,7 +16,8 @@ mnw.lib.wrap pkgs {
   initLua = ''
     #vim.loader.enable(true)
     require("settings")
-    require("lz.n").load("plugins")
+    LZN = require("lz.n")
+    LZN.load("plugins")
   '';
 
   providers = {
@@ -73,7 +74,6 @@ mnw.lib.wrap pkgs {
       # deps
       nvim-web-devicons
       plenary-nvim
-      nui-nvim
     ];
 
     opt = with vimPlugins; [
@@ -85,7 +85,10 @@ mnw.lib.wrap pkgs {
 
       # lua/plugins/lsp.lua
       nvim-lspconfig
-      neodev-nvim
+      # neodev-nvim
+      none-ls-nvim
+      lazydev-nvim
+      blink-cmp
       nvim-cmp
       luasnip
       cmp-nvim-lsp
@@ -104,6 +107,7 @@ mnw.lib.wrap pkgs {
       vim-trailing-whitespace
       gitsigns-nvim
       telescope-nvim
+      telescope-fzf-native-nvim
       plenary-nvim
       undotree
       copilot-lua
@@ -129,6 +133,7 @@ mnw.lib.wrap pkgs {
       nvim-treesitter
       # TODO: install parsers/grammar
       # hlargs-nvim
+      rainbow-delimiters-nvim
       markview-nvim
     ];
   };

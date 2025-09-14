@@ -1,7 +1,17 @@
 return {
     {
+        "nui.nvim",
+    },
+    -- {
+    --     "nvim-notify",
+    -- },
+    {
         "noice.nvim",
         event = "DeferredUIEnter", -- VeryLazy
+        before = function()
+            LZN.trigger_load("nui.nvim")
+            LZN.trigger_load("nvim-notify")
+        end,
         after = function()
             require("noice").setup({
                 lsp = {
@@ -29,12 +39,5 @@ return {
                 },
             })
         end,
-        -- dependencies = {
-        --     "nui.nvim",
-        --     {
-        --         "nvim-notify",
-        --         opts = { background_colour = "#000000" },
-        --     },
-        -- },
     },
 }

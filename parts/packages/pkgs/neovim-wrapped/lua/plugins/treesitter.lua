@@ -1,12 +1,55 @@
 return {
     {
+        -- TODO: do not lazy load
+        -- TODO: this keep erroring because it is loaded after nvim-treesitter
+        enabled = false,
+        "markview.nvim",
+        after = function()
+            local presets = require("markview.presets")
+
+            require("markview").setup({
+                preview = {
+                    modes = { "i", "n", "no", "c" },
+                    hybrid_modes = { "i" },
+                    linewise_hybrid_mode = true,
+                    edit_range = { 0, 0 },
+                },
+                markdown = {
+                    headings = presets.headings.glow,
+                    tables = presets.tables.single,
+                    -- horizontal_rules = presets.horizontal_rules.thin,
+                },
+            })
+        end,
+        -- lazy = false,
+    },
+    -- {
+    --     "rainbow-delimiters.nvim",
+    -- },
+    -- {
+    --     "hlargs.nvim",
+    --     after = function()
+    --         local colors = require("gruvbox").palette
+
+    --         require("hlargs").setup({
+    --             color = colors.neutral_orange,
+    --         })
+    --     end,
+    -- },
+    {
         "nvim-treesitter",
-        build = ":TSUpdate",
-        keys = {
-            { "<c-n>", desc = "Increment selection" },
-            { "<c-m>", desc = "Decrement selection", mode = "x" },
-        },
-        config = function()
+        -- lazy = false,
+        -- build = ":TSUpdate",
+        -- keys = {
+        --     { "<c-n>", desc = "Increment selection" },
+        --     { "<c-m>", desc = "Decrement selection", mode = "x" },
+        -- },
+        before = function()
+            LZN.trigger_load("markview.nvim")
+            LZN.trigger_load("rainbow-delimiters.nvim")
+            -- LZN.trigger_load("hlargs-nvim")
+        end,
+        after = function()
             require("nvim-treesitter.configs").setup({
                 -- ensure_installed = {
                 --     "bash",
@@ -37,6 +80,10 @@ return {
                 --     "vimdoc",
                 --     "zig",
                 -- },
+                modules = {},
+                sync_install = false,
+                ignore_install = {},
+                ensure_installed = {},
                 auto_install = false,
                 highlight = {
                     enable = true,
@@ -55,30 +102,5 @@ return {
                 },
             })
         end,
-        dependencies = {
-            -- "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
-            -- "hlargs-nvim", -- FIXME
-            {
-                "markview-nvim",
-                config = function()
-                    local presets = require("markview.presets")
-
-                    require("markview").setup({
-                        preview = {
-                            modes = { "i", "n", "no", "c" },
-                            hybrid_modes = { "i" },
-                            linewise_hybrid_mode = true,
-                            edit_range = { 0, 0 },
-                        },
-                        markdown = {
-                            headings = presets.headings.glow,
-                            tables = presets.tables.single,
-                            -- horizontal_rules = presets.horizontal_rules.thin,
-                        },
-                    })
-                end,
-            },
-        },
-        lazy = false,
     },
 }
