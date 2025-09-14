@@ -63,17 +63,22 @@ in
       terminal-directory = {
         name = "File Manager";
         exec = "${config.self.terminal.cmdDir} %f";
+        icon = "foot";
       };
       git = {
         name = "git";
-        exec = "${config.self.terminal.cmd} -e git clone %u";
+        exec = "git clone %u";
+        terminal = true;
       };
+      # do mnw generate a neovim wrapper desktop entry?
       text = {
         name = "Text Editor";
-        exec = "${config.self.terminal.cmd} -e nvim %u";
+        exec = "nvim %F";
+        icon = "nvim";
+        terminal = true;
       };
       nsxiv-a = {
-        name = "Image Viewer";
+        name = "nsxiv";
         exec = "nsxiv -a %f";
       };
       torrent = {

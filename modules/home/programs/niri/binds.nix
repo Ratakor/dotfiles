@@ -19,16 +19,25 @@ in
 
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
-    // TODO: unclutter the list by using `hotkey-overlay-title`, null to hide entry
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // WARNING: using `spawn` to avoid latency but that means cfg.terminal.cmd must be a single command
     Mod+Return repeat=false hotkey-overlay-title="Open a Terminal: ${cfg.terminal.program}" { spawn "${cfg.terminal.cmd}"; }
+    Mod+N repeat=false hotkey-overlay-title="Open main Zellij session" {
+      spawn-sh "${cfg.terminal.cmd} -e zellij attach --create main";
+    }
+    Mod+Shift+N repeat=false hotkey-overlay-title="Open notes directory in a Zellij session" {
+      spawn-sh "${cfg.terminal.cmdDir} ${XDG_NOTES_DIR} -e zellij attach --create notes";
+      // spawn-sh "${cfg.terminal.cmd} -e yazi ${XDG_NOTES_DIR}";
+    }
+
     Mod+D repeat=false hotkey-overlay-title="Run an Application: ${cfg.menu.program}" { spawn-sh "${cfg.menu.drun}"; }
     Mod+Shift+D repeat=false hotkey-overlay-title=null { spawn-sh "${cfg.menu.run}"; }
+
+    // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${cfg.terminal.cmd} -e newsboat"; }
+    Mod+B repeat=false hotkey-overlay-title="Open browser: chromium" { spawn "chromium" "--new-window"; }
     Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: glitchlock" { spawn "glitchlock"; }
     XF86ScreenSaver repeat=false { spawn "glitchlock"; }
-
     XF86Battery repeat=false hotkey-overlay-title="Show battery informations" { spawn "battery"; }
     Mod+Shift+W repeat=false hotkey-overlay-title="Set a randwom wallpaper" { spawn "randwp"; }
 
@@ -37,40 +46,34 @@ in
     // Print { screenshot; }
     // Ctrl+Print { screenshot-screen; }
     // Alt+Print { screenshot-window; }
-
     // F7 repeat=false { spawn-sh "${cfg.terminal.cmd} -e dmenurecord"; }
-    // Mod+B repeat=false { spawn "chromium" "--new-window"; }
-    // Mod+N repeat=false { spawn-sh "${cfg.terminal.cmd} -e yazi ${XDG_NOTES_DIR}"; }
-    Mod+N repeat=false { spawn-sh "${cfg.terminal.cmdDir} ${XDG_NOTES_DIR} -e zellij attach --create notes"; }
-    Mod+Shift+N repeat=false { spawn-sh "${cfg.terminal.cmd} -e newsboat"; }
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
-    Ctrl+Equal           allow-when-locked=true { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"; }
-    Ctrl+Minus           allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"; }
-    XF86AudioMute        repeat=false allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86Launch1          repeat=false allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86AudioMicMute     repeat=false allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    F6                   repeat=false allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    XF86AudioRaiseVolume allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
+    Ctrl+Equal           allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
+    XF86AudioLowerVolume allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"; }
+    Ctrl+Minus           allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"; }
+    XF86AudioMute        repeat=false allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86Launch1          repeat=false allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute     repeat=false allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    F6                   repeat=false allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
-    Mod+M           repeat=false { spawn "zpotify" "play" "playlist"; } // "music"
-    Mod+Shift+M     repeat=false { spawn "zpotify" "play" "album"; } // "musiccmd"
-    XF86AudioPrev   repeat=false allow-when-locked=true { spawn-sh "musiccmd prev || zpotify prev >/dev/null"; }
-    XF86AudioNext   repeat=false allow-when-locked=true { spawn-sh "musiccmd next || zpotify next >/dev/null"; }
-    XF86AudioPlay   repeat=false allow-when-locked=true { spawn-sh "musiccmd cycle || zpotify pause >/dev/null"; }
-    XF86AudioStop   repeat=false allow-when-locked=true { spawn-sh "musiccmd stop || zpotify pause >/dev/null"; }
+    Mod+M           repeat=false hotkey-overlay-title="Dynamically play Spotify playlist" { spawn "zpotify" "play" "playlist"; } // "music"
+    Mod+Shift+M     repeat=false hotkey-overlay-title="Dynamically play Spotify album"{ spawn "zpotify" "play" "album"; } // "musiccmd"
+    XF86AudioPrev   repeat=false allow-when-locked=true hotkey-overlay-title="Play previous track" { spawn-sh "musiccmd prev || zpotify prev >/dev/null"; }
+    XF86AudioNext   repeat=false allow-when-locked=true hotkey-overlay-title="Play next track" { spawn-sh "musiccmd next || zpotify next >/dev/null"; }
+    XF86AudioPlay   repeat=false allow-when-locked=true hotkey-overlay-title="Toggle playback" { spawn-sh "musiccmd cycle || zpotify pause >/dev/null"; }
+    XF86AudioStop   repeat=false allow-when-locked=true hotkey-overlay-title="Stop playback" { spawn-sh "musiccmd stop || zpotify pause >/dev/null"; }
     Mod+Shift+Left  repeat=false allow-when-locked=true { spawn-sh "musiccmd prev || zpotify prev >/dev/null"; }
     Mod+Shift+Right repeat=false allow-when-locked=true { spawn-sh "musiccmd next || zpotify next >/dev/null"; }
     Mod+Shift+Down  repeat=false allow-when-locked=true { spawn-sh "musiccmd cycle || zpotify pause >/dev/null"; }
     Mod+Shift+Up    repeat=false allow-when-locked=true { spawn-sh "musiccmd stop || zpotify pause >/dev/null"; }
 
-    Mod+S repeat=false { spawn "dmenusearch" "web"; }
+    // Mod+S repeat=false { spawn "dmenusearch" "web"; }
     // Mod+A repeat=false { spawn "dmenusearch" "aur"; }
-    Mod+Y repeat=false { spawn "dmenusearch" "youtube"; }
-    Mod+W repeat=false { spawn "dmenusearch" "man"; }
-    Mod+E repeat=false { spawn "dmenusearch" "emoji"; }
+    // Mod+Y repeat=false { spawn "dmenusearch" "youtube"; }
+    // Mod+W repeat=false { spawn "dmenusearch" "man"; }
+    Mod+E repeat=false hotkey-overlay-title="Dynamically search emojis" { spawn "emojisearch"; }
 
-    Mod+Shift+E repeat=false { spawn "wlogout"; }
     Mod+U repeat=false { spawn-sh "plumber --dmenu \"$(wl-paste)\""; }
     Mod+Shift+U repeat=false { spawn-sh "plumber \"$(wl-paste)\""; }
     //riverctl map-pointer normal None BTN_MIDDLE spawn 'plumber'
@@ -78,11 +81,13 @@ in
     //riverctl map normal None button9 close
     //riverctl map normal None button10 spawn 'musiccmd'
 
-    // Reload config
-    Mod+Escape repeat=false { spawn-sh "kill -USR2 $(pidof waybar); makoctl reload; systemctl --user restart foot"; }
+    Mod+Shift+E repeat=false hotkey-overlay-title="Exit options" { spawn "wlogout"; }
 
-    // Toggle the visibility of the status bar.
-    Mod+Shift+B repeat=false { spawn-sh "kill -USR1 $(pidof waybar)"; }
+    Mod+Escape repeat=false hotkey-overlay-title="Reload config" {
+      spawn-sh "kill -USR2 $(pidof waybar); makoctl reload; systemctl --user restart foot";
+    }
+
+    Mod+Shift+B repeat=false hotkey-overlay-title="Toggle status bar" { spawn-sh "kill -USR1 $(pidof waybar)"; }
 
     //# TODO: toggle padding (gaps)
     //#riverctl map normal Super+Shift G ...
@@ -92,10 +97,10 @@ in
     //# TODO: toggle transparency
     //#riverctl map normal Control P spawn 'killall picom || picom -b'
 
-    // XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "+10%"; }
-    // XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "10%-"; }
-    Mod+Insert allow-when-locked=true { spawn "brightnessctl" "set" "+10%"; }
-    Mod+Delete allow-when-locked=true { spawn "brightnessctl" "set" "10%-"; }
+    // XF86MonBrightnessUp   allow-when-locked=true hotkey-overlay-title="Increase brightness" { spawn "brightnessctl" "set" "+10%"; }
+    // XF86MonBrightnessDown allow-when-locked=true hotkey-overlay-title="Decrease brightness" { spawn "brightnessctl" "set" "10%-"; }
+    Mod+Insert allow-when-locked=true hotkey-overlay-title=null { spawn "brightnessctl" "set" "+10%"; }
+    Mod+Delete allow-when-locked=true hotkey-overlay-title=null { spawn "brightnessctl" "set" "10%-"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
