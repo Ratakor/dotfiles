@@ -26,16 +26,16 @@ return {
     -- {
     --     "rainbow-delimiters.nvim",
     -- },
-    -- {
-    --     "hlargs.nvim",
-    --     after = function()
-    --         local colors = require("gruvbox").palette
+    {
+        "hlargs.nvim",
+        after = function()
+            local colors = require("gruvbox").palette
 
-    --         require("hlargs").setup({
-    --             color = colors.neutral_orange,
-    --         })
-    --     end,
-    -- },
+            require("hlargs").setup({
+                color = colors.neutral_orange,
+            })
+        end,
+    },
     {
         "nvim-treesitter",
         -- lazy = false,
@@ -47,7 +47,7 @@ return {
         before = function()
             LZN.trigger_load("markview.nvim")
             LZN.trigger_load("rainbow-delimiters.nvim")
-            -- LZN.trigger_load("hlargs-nvim")
+            LZN.trigger_load("hlargs-nvim")
         end,
         after = function()
             require("nvim-treesitter.configs").setup({

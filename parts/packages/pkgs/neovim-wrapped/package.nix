@@ -74,6 +74,8 @@ mnw.lib.wrap pkgs {
       # deps
       nvim-web-devicons
       plenary-nvim
+
+      nvim-treesitter.withAllGrammars # is this the right package?
     ];
 
     opt = with vimPlugins; [
@@ -130,9 +132,7 @@ mnw.lib.wrap pkgs {
       nvim-notify
 
       # lua/plugins/treesitter.lua
-      nvim-treesitter
-      # TODO: install parsers/grammar
-      # hlargs-nvim
+      hlargs-nvim
       rainbow-delimiters-nvim
       markview-nvim
     ];

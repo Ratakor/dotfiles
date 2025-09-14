@@ -6,6 +6,7 @@ return {
     --     end,
     -- },
     {
+        -- TODO: https://search.nixos.org/packages?channel=unstable&query=blink-cmp
         "blink.cmp",
         event = "DeferredUIEnter",
         before = function() end,

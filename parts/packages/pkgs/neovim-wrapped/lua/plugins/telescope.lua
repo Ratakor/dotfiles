@@ -1,11 +1,11 @@
 return {
-    -- {
-    --     "nvim-telescope/telescope-fzf-native.nvim",
-    --     build = "make",
-    --     config = function()
-    --     require("telescope").load_extension("fzf")
-    --     end,
-    -- },
+    {
+        -- "telescope-fzf-native.nvim",
+        -- -- build = "make",
+        -- -- after = function()
+        -- --     require("telescope").load_extension("fzf")
+        -- -- end,
+    },
     {
         "telescope.nvim",
         cmd = "Telescope",
@@ -25,15 +25,24 @@ return {
             local telescope = require("telescope.builtin")
             keymap.set("n", "<leader>f", telescope.find_files, { desc = "Find files" })
             keymap.set("n", "<C-g>", telescope.git_files, { desc = "Find git files" })
+
+            -- require("telescope").setup()
         end,
         -- See https://github.com/Gerg-L/nvim-flake/blob/bb92db9fd46114588a2a547e54a1a1b0f7555a86/lua/lazy/fzf.lua
         -- keys = {
         --     {
         --         "<leader>f",
         --         function()
-        --             telescope.find_files,
+        --             require("telescope.builtin").find_files()
         --         end,
         --         desc = "Find files",
+        --     },
+        --     {
+        --         "<C-g>",
+        --         function()
+        --             require("telescope.builtin").git_files()
+        --         end,
+        --         desc = "Find git files",
         --     },
         -- },
     },
