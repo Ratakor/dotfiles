@@ -13,12 +13,13 @@ mnw.lib.wrap pkgs {
 
   desktopEntry = true;
 
-  initLua = ''
-    #vim.loader.enable(true)
-    require("settings")
-    LZN = require("lz.n")
-    LZN.load("plugins")
-  '';
+  # initLua = ''
+  #   #vim.loader.enable(true)
+  #   require("settings")
+  #   LZN = require("lz.n")
+  #   LZN.load("plugins")
+  # '';
+  luaFiles = [ ./init.lua ];
 
   providers = {
     nodeJs.enable = true;
@@ -59,14 +60,14 @@ mnw.lib.wrap pkgs {
   ];
 
   plugins = {
-    dev.ratakor = {
-      pure = fs.toSource {
-        root = ./.;
-        # fileset = fs.unions [ ./lua ];
-        fileset = fs.fileFilter (file: file.hasExt "lua") ./.;
-      };
-      impure = null; # unused for exposed package
-    };
+    # dev.ratakor = {
+    #   pure = fs.toSource {
+    #     root = ./.;
+    #     # fileset = fs.unions [ ./lua ];
+    #     fileset = fs.fileFilter (file: file.hasExt "lua") ./.;
+    #   };
+    #   impure = null; # unused for exposed package
+    # };
 
     start = with vimPlugins; [
       lz-n
@@ -76,9 +77,9 @@ mnw.lib.wrap pkgs {
       plenary-nvim
 
       nvim-treesitter.withAllGrammars # is this the right package?
-    ];
+      # ];
 
-    opt = with vimPlugins; [
+      # opt = with vimPlugins; [
       # lua/plugins/colorscheme.lua
       gruvbox-nvim
 
@@ -87,7 +88,7 @@ mnw.lib.wrap pkgs {
 
       # lua/plugins/lsp.lua
       nvim-lspconfig
-      # neodev-nvim
+      neodev-nvim # TODO: replace with lazydev/none-ls idk
       none-ls-nvim
       lazydev-nvim
       blink-cmp
@@ -113,11 +114,11 @@ mnw.lib.wrap pkgs {
       plenary-nvim
       undotree
       copilot-lua
-      # neotest
-      # nvim-nio
-      # plenary-nvim
-      # FixCursorHold-nvim
-      # neotest-zig
+      neotest
+      nvim-nio
+      plenary-nvim
+      FixCursorHold-nvim
+      neotest-zig
       which-key-nvim
       nerdtree
       vim-abolish
@@ -133,8 +134,10 @@ mnw.lib.wrap pkgs {
 
       # lua/plugins/treesitter.lua
       hlargs-nvim
-      rainbow-delimiters-nvim
+      # rainbow-delimiters-nvim
       markview-nvim
+
+      vim-startuptime
     ];
   };
 }
