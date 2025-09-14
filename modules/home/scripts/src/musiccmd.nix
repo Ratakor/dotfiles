@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  ...
 }:
 let
   XDG_MUSIC_DIR = config.hm.xdg.userDirs.music;

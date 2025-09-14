@@ -6,6 +6,7 @@
   lib,
   pkgs,
   self,
+  ...
 }:
 let
   inherit (lib.meta) getExe;

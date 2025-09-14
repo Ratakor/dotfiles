@@ -1,5 +1,6 @@
 # shellcheck shell=sh
 # based on https://github.com/xero/glitchlock
+# TODO: add x11 support
 
 grim /tmp/lock.png
 magick /tmp/lock.png /tmp/lock.jpg

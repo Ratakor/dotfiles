@@ -9,21 +9,27 @@
 let
   inherit (builtins) readFile;
   inherit (pkgs) writeShellApplication;
+
+  callScript =
+    path:
+    import path {
+      inherit
+        config
+        lib
+        pkgs
+        self
+        ;
+    };
 in
 {
-  imports = [
-    ./music
-  ];
-
   # TODO:
+  # changebrightness: remove?
   # dmenurecord: replace with wf-recorder
   # dmenusearch: split into different package since it has so many dependencies?
   # ex: merge with plumber?
   # hole: remove?
   # icstocal: merge with quand?
-  # mail: replace with a better mail client
   # plumber: ...
-  # randwp: ...
   # screenshot: ... depends on dmenurecord
   # ytdl: ...
   hm.home.file."${config.user.home}/.local/bin" = {
@@ -32,18 +38,11 @@ in
     executable = true;
   };
 
-  # TODO: embed that into dmenusearch
-  hm.xdg.dataFile.emoji.source = ./src/emoji;
-
   user.packages = [
-    (import ./randwp.nix {
-      inherit
-        config
-        lib
-        pkgs
-        self
-        ;
-    })
+    (callScript ./src/emojisearch)
+    (callScript ./src/music)
+    (callScript ./src/musiccmd.nix)
+    (callScript ./src/randwp.nix)
 
     (writeShellApplication {
       name = "glitchlock";
