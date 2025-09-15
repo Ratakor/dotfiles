@@ -73,10 +73,9 @@ mnw.lib.wrap pkgs {
       nvim-web-devicons
       plenary-nvim
       nui-nvim
-      nvim-notify
 
       # treesitter
-      nvim-treesitter.withAllGrammars # is this the right package?
+      nvim-treesitter.withAllGrammars
       hlargs-nvim
       # rainbow-delimiters-nvim
       markview-nvim
@@ -129,7 +128,10 @@ mnw.lib.wrap pkgs {
       nvim-scrollbar
       vimtex
       comfy-line-numbers-nvim
+    ];
 
+    opt = with pkgs.vimPlugins; [
+      nvim-notify
       noice-nvim
     ];
   };
