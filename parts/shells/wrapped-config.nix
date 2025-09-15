@@ -37,6 +37,6 @@ mkShellNoCC {
       rm -f -- "$tmp"
     }
 
-    # zellij
+    zellij attach --create main
   '';
 }

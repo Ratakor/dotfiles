@@ -62,7 +62,7 @@ return {
     -- TODO: cpuburn when no internet
     {
         "zbirenbaum/copilot.lua",
-        enabled = true,
+        enabled = false,
         build = ":Copilot auth",
         opts = {
             panel = { enabled = false },

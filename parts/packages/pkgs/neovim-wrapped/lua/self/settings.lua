@@ -1,5 +1,8 @@
 local map = vim.keymap.set
 
+--- Enables the experimental Lua module loader (fast)
+vim.loader.enable(true)
+
 -- Set <space> as the leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -48,8 +51,8 @@ end, {})
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "asm", "make", "sh" },
     callback = function()
-        vim.opt_local.tabstop = 8
         vim.opt_local.shiftwidth = 8
+        vim.opt_local.softtabstop = 8
         vim.opt_local.expandtab = false
     end,
 })
@@ -57,8 +60,8 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "lisp", "scheme", "clojure", "html", "css", "nix" },
     callback = function()
-        vim.opt_local.tabstop = 2
         vim.opt_local.shiftwidth = 2
+        vim.opt_local.softtabstop = 2
         vim.opt_local.expandtab = true
     end,
 })

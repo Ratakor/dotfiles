@@ -1,0 +1,23 @@
+-- local map = vim.keymap.set
+-- local strudel = require("strudel")
+
+-- {
+--     "gruvw/strudel.nvim",
+--     cmd = "StrudelLaunch",
+--     build = "npm install",
+--     config = function()
+--         require("strudel").setup({
+--             update_on_save = true,
+--             -- headless = true,
+--             browser_data_dir = (os.getenv("XDG_CACHE_HOME") or "~/.cache") .. "/strudel-nvim",
+--         })
+--     end,
+-- },
+
+-- map("n", "<leader>sl", strudel.launch, { desc = "Launch Strudel" })
+-- map("n", "<leader>sq", strudel.quit, { desc = "Quit Strudel" })
+-- map("n", "<leader>st", strudel.toggle, { desc = "Strudel Toggle Play/Stop" })
+-- map("n", "<leader>su", strudel.update, { desc = "Strudel Update" })
+-- map("n", "<leader>ss", strudel.stop, { desc = "Strudel Stop Playback" })
+-- map("n", "<leader>sb", strudel.set_buffer, { desc = "Strudel set current buffer" })
+-- map("n", "<leader>sx", strudel.execute, { desc = "Strudel set current buffer and update" })

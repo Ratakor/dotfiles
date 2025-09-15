@@ -13,13 +13,9 @@ mnw.lib.wrap pkgs {
 
   desktopEntry = true;
 
-  # initLua = ''
-  #   #vim.loader.enable(true)
-  #   require("settings")
-  #   LZN = require("lz.n")
-  #   LZN.load("plugins")
-  # '';
-  luaFiles = [ ./init.lua ];
+  initLua = ''
+    require("self")
+  '';
 
   providers = {
     nodeJs.enable = true;
@@ -30,10 +26,10 @@ mnw.lib.wrap pkgs {
 
   extraBinPath = with pkgs; [
     # idk if these are needed
-    tree-sitter
-    fzf
-    fd
-    ripgrep
+    # tree-sitter
+    # fzf
+    # fd
+    # ripgrep
 
     # Language servers
     # https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
@@ -60,28 +56,33 @@ mnw.lib.wrap pkgs {
   ];
 
   plugins = {
-    # dev.ratakor = {
-    #   pure = fs.toSource {
-    #     root = ./.;
-    #     # fileset = fs.unions [ ./lua ];
-    #     fileset = fs.fileFilter (file: file.hasExt "lua") ./.;
-    #   };
-    #   impure = null; # unused for exposed package
-    # };
+    dev.self = {
+      pure = fs.toSource {
+        root = ./.;
+        # fileset = fs.unions [ ./lua ];
+        fileset = fs.fileFilter (file: file.hasExt "lua") ./.;
+      };
+      impure = null; # unused for exposed package
+    };
 
     start = with vimPlugins; [
       lz-n
+      gruvbox-nvim
 
       # deps
       nvim-web-devicons
       plenary-nvim
+      nui-nvim
+      nvim-notify
 
+      # treesitter
       nvim-treesitter.withAllGrammars # is this the right package?
+      hlargs-nvim
+      # rainbow-delimiters-nvim
+      markview-nvim
       # ];
 
       # opt = with vimPlugins; [
-      # lua/plugins/colorscheme.lua
-      gruvbox-nvim
 
       # lua/plugins/debug.lua
       debugprint-nvim
@@ -89,10 +90,10 @@ mnw.lib.wrap pkgs {
       # lua/plugins/lsp.lua
       nvim-lspconfig
       neodev-nvim # TODO: replace with lazydev/none-ls idk
-      none-ls-nvim
-      lazydev-nvim
-      blink-cmp
-      nvim-cmp
+      # none-ls-nvim
+      # lazydev-nvim
+      # blink-cmp
+      nvim-cmp # TODO: replace with blink-cmp or care.nvim
       luasnip
       cmp-nvim-lsp
       cmp-nvim-lsp-signature-help
@@ -105,10 +106,12 @@ mnw.lib.wrap pkgs {
       # lua/plugins/misc.lua
       lualine-nvim
       nvim-web-devicons
-      vim-startify
+      # vim-startify
       comment-nvim
-      vim-trailing-whitespace
+      vim-trailing-whitespace # FixWhitespace
       gitsigns-nvim
+      # vim-fugitive
+      # vim-rhubarb
       telescope-nvim
       telescope-fzf-native-nvim
       plenary-nvim
@@ -127,17 +130,7 @@ mnw.lib.wrap pkgs {
       vimtex
       comfy-line-numbers-nvim
 
-      # lua/plugins/noice.lua
       noice-nvim
-      nui-nvim
-      nvim-notify
-
-      # lua/plugins/treesitter.lua
-      hlargs-nvim
-      # rainbow-delimiters-nvim
-      markview-nvim
-
-      vim-startuptime
     ];
   };
 }
