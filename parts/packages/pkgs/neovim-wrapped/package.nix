@@ -84,9 +84,9 @@ mnw.lib.wrap pkgs {
 
       # treesitter
       nvim-treesitter.withAllGrammars
-      hlargs-nvim
-      # rainbow-delimiters-nvim
       markview-nvim
+      # hlargs-nvim
+      # rainbow-delimiters-nvim
       # ];
 
       # opt = with vimPlugins; [
@@ -115,14 +115,8 @@ mnw.lib.wrap pkgs {
       # vim-rhubarb
       telescope-nvim
       telescope-fzf-native-nvim
-      plenary-nvim
       undotree
       copilot-lua
-      neotest
-      nvim-nio
-      plenary-nvim
-      FixCursorHold-nvim
-      neotest-zig
       which-key-nvim
       nerdtree
       vim-abolish
@@ -131,7 +125,6 @@ mnw.lib.wrap pkgs {
       vimtex
       comfy-line-numbers-nvim
       debugprint-nvim
-
     ];
 
     opt = with pkgs.vimPlugins; [

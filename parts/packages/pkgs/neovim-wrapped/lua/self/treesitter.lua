@@ -1,7 +1,7 @@
-local colors = require("gruvbox").palette
-require("hlargs").setup({
-  color = colors.neutral_orange,
-})
+-- local colors = require("gruvbox").palette
+-- require("hlargs").setup({
+--   color = colors.neutral_orange,
+-- })
 
 local presets = require("markview.presets")
 require("markview").setup({
