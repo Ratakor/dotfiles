@@ -1,9 +1,9 @@
 return {
-    -- Put a print statement with g?p or g?v
-    { "andrewferrier/debugprint.nvim", config = true },
+  -- Put a print statement with g?p or g?v
+  { "andrewferrier/debugprint.nvim", config = true },
 
-    -- TODO
-    --[[
+  -- TODO
+  --[[
     {
         'mfussenegger/nvim-dap',
         dependencies = {

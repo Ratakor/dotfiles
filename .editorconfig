@@ -10,11 +10,11 @@ insert_final_newline = true
 [*.sh]
 indent_style = tab
 
-[*.{lua,py}]
+[*.py]
 indent_style = space
 indent_size = 4
 
-[*.{nix,yml,yaml,md,toml}]
+[*.{nix,lua,yml,yaml,md,toml}]
 indent_style = space
 indent_size = 2
 

@@ -33,34 +33,34 @@ vim.opt.wrap = false
 -- Toggle between tabs and spaces
 local using_space = true
 vim.api.nvim_create_user_command("ToggleIndent", function()
-    if using_space then
-        vim.opt.shiftwidth = 8
-        vim.opt.softtabstop = 8
-        vim.opt.expandtab = false
-    else
-        vim.opt.shiftwidth = 4
-        vim.opt.softtabstop = 4
-        vim.opt.expandtab = true
-    end
-    using_space = not using_space
+  if using_space then
+    vim.opt.shiftwidth = 8
+    vim.opt.softtabstop = 8
+    vim.opt.expandtab = false
+  else
+    vim.opt.shiftwidth = 4
+    vim.opt.softtabstop = 4
+    vim.opt.expandtab = true
+  end
+  using_space = not using_space
 end, {})
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "asm", "make", "sh" },
-    callback = function()
-        vim.opt_local.tabstop = 8
-        vim.opt_local.shiftwidth = 8
-        vim.opt_local.expandtab = false
-    end,
+  pattern = { "asm", "make", "sh" },
+  callback = function()
+    vim.opt_local.tabstop = 8
+    vim.opt_local.shiftwidth = 8
+    vim.opt_local.expandtab = false
+  end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "lisp", "scheme", "clojure", "html", "css", "nix" },
-    callback = function()
-        vim.opt_local.tabstop = 2
-        vim.opt_local.shiftwidth = 2
-        vim.opt_local.expandtab = true
-    end,
+  pattern = { "lisp", "scheme", "clojure", "html", "css", "nix" },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.expandtab = true
+  end,
 })
 
 -- vim.api.nvim_create_autocmd("FileType", {
@@ -71,19 +71,19 @@ vim.api.nvim_create_autocmd("FileType", {
 -- })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = "*.nov",
-    callback = function()
-        vim.opt_local.filetype = "nov"
-    end,
+  pattern = "*.nov",
+  callback = function()
+    vim.opt_local.filetype = "nov"
+  end,
 })
 
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        vim.highlight.on_yank()
-    end,
-    group = highlight_group,
-    pattern = "*",
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = "*",
 })
 
 map("n", "<C-d>", "<C-d>zz")
@@ -110,7 +110,7 @@ map("n", ";", ":")
 map("v", ";", ":")
 
 local function abbrev(mode, lhs, rhs)
-    vim.cmd(mode .. "abbrev " .. lhs .. " " .. rhs)
+  vim.cmd(mode .. "abbrev " .. lhs .. " " .. rhs)
 end
 
 abbrev("c", "Q", "q")

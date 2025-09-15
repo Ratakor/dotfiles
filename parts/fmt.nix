@@ -47,7 +47,7 @@
               collapse_simple_statement = "Never";
               column_width = 120; # try to stay between 80 and 100 though
               indent_type = "Spaces";
-              indent_width = 4;
+              indent_width = 2;
               line_endings = "Unix";
               quote_style = "AutoPreferDouble";
               sort_requires.enabled = true;

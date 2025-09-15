@@ -8,14 +8,14 @@ comment.set("nov", { ";%s" })
 
 -- HUD for git in vim
 require("gitsigns").setup({
-    signs = {
-        add = { text = "+" },
-        change = { text = "~" },
-        delete = { text = "_" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "~" },
-        untracked = { text = "" },
-    },
+  signs = {
+    add = { text = "+" },
+    change = { text = "~" },
+    delete = { text = "_" },
+    topdelete = { text = "‾" },
+    changedelete = { text = "~" },
+    untracked = { text = "" },
+  },
 })
 
 -- TODO: cpuburn when no internet
@@ -39,18 +39,18 @@ require("which-key").setup()
 vim.g.vimtex_view_method = "zathura"
 
 require("comfy-line-numbers").setup({
-    hidden_file_types = {
-        "undotree",
-        -- "NERD_tree",
-        "",
-    },
+  hidden_file_types = {
+    "undotree",
+    -- "NERD_tree",
+    "",
+  },
 })
 
 -- TODO: switch to chadtree or neo-tree?
 -- NERDTree (see their README)
 map("n", "<F2>", ":NERDTreeToggle<CR>")
 vim.cmd(
-    "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif"
+  "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif"
 )
 
 -- Undotree: History Visualizer
@@ -71,9 +71,9 @@ vim.g.zig_fmt_autosave = 0
 
 -- Starting screen
 vim.g.startify_custom_header = {
-    "   ▄▄▄   ▄▄▄· ▄▄▄▄▄ ▄▄▄· ▄ •▄       ▄▄▄  ",
-    "   ▀▄ █·▐█ ▀█ •██  ▐█ ▀█ █▌▄▌▪▪     ▀▄ █·",
-    "   ▐▀▀▄ ▄█▀▀█  ▐█.▪▄█▀▀█ ▐▀▀▄· ▄█▀▄ ▐▀▀▄ ",
-    "   ▐█•█▌▐█ ▪▐▌ ▐█▌·▐█ ▪▐▌▐█.█▌▐█▌.▐▌▐█•█▌",
-    "   .▀  ▀ ▀  ▀  ▀▀▀  ▀  ▀ ·▀  ▀ ▀█▄▀▪.▀  ▀",
+  "   ▄▄▄   ▄▄▄· ▄▄▄▄▄ ▄▄▄· ▄ •▄       ▄▄▄  ",
+  "   ▀▄ █·▐█ ▀█ •██  ▐█ ▀█ █▌▄▌▪▪     ▀▄ █·",
+  "   ▐▀▀▄ ▄█▀▀█  ▐█.▪▄█▀▀█ ▐▀▀▄· ▄█▀▄ ▐▀▀▄ ",
+  "   ▐█•█▌▐█ ▪▐▌ ▐█▌·▐█ ▪▐▌▐█.█▌▐█▌.▐▌▐█•█▌",
+  "   .▀  ▀ ▀  ▀  ▀▀▀  ▀  ▀ ·▀  ▀ ▀█▄▀▪.▀  ▀",
 }

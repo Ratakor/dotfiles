@@ -6,44 +6,44 @@ require("debugprint").setup()
 -- Testing inside neovim
 local neotest = require("neotest")
 neotest.setup({
-    adapters = {
-        require("neotest-zig"),
-    },
-    summary = {
-        enabled = true,
-        animated = true,
-        follow = true,
-        expand_error = true,
+  adapters = {
+    require("neotest-zig"),
+  },
+  summary = {
+    enabled = true,
+    animated = true,
+    follow = true,
+    expand_error = true,
 
-        mappings = {
-            expand = { "<CR>", "<2-LeftMouse>" },
-            expand_all = "e",
-            output = "o",
-            short = "O",
-            attach = "a",
-            jumpto = { "i", "<C-]>" },
-            stop = "u",
-            run = "r",
-            debug = "d",
-            mark = "m",
-            run_marked = "R",
-            debug_marked = "D",
-            clear_marked = "M",
-            target = "t",
-            clear_target = "T",
-            next_failed = "J",
-            prev_failed = "K",
-        },
+    mappings = {
+      expand = { "<CR>", "<2-LeftMouse>" },
+      expand_all = "e",
+      output = "o",
+      short = "O",
+      attach = "a",
+      jumpto = { "i", "<C-]>" },
+      stop = "u",
+      run = "r",
+      debug = "d",
+      mark = "m",
+      run_marked = "R",
+      debug_marked = "D",
+      clear_marked = "M",
+      target = "t",
+      clear_target = "T",
+      next_failed = "J",
+      prev_failed = "K",
     },
+  },
 })
 
 map("n", "<C-t>", function()
-    -- neotest.run.run()
-    neotest.summary.toggle()
-    local win = vim.fn.bufwinid("Neotest Summary")
-    if win > -1 then
-        vim.api.nvim_set_current_win(win)
-    end
+  -- neotest.run.run()
+  neotest.summary.toggle()
+  local win = vim.fn.bufwinid("Neotest Summary")
+  if win > -1 then
+    vim.api.nvim_set_current_win(win)
+  end
 end)
 
 -- TODO
