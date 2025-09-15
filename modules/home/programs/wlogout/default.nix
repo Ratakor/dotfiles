@@ -59,6 +59,7 @@ in
         iconsPath = "${pkgs.wleave}/share/wleave/icons";
         # iconsPath = "${pkgs.wlogout}/share/wlogout/assets";
       in
+      # css
       ''
         * {
           background-image: none;

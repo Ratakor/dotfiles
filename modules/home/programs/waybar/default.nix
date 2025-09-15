@@ -161,163 +161,165 @@ in
       };
     };
 
-    style = ''
-      @define-color foreground #${colors.foreground};
-      @define-color background ${hexToRgba colors.background 0.85};
+    style =
+      # css
+      ''
+        @define-color foreground #${colors.foreground};
+        @define-color background ${hexToRgba colors.background 0.85};
 
-      @define-color black   #${colors.black};
-      @define-color red     #${colors.red};
-      @define-color green   #${colors.green};
-      @define-color yellow  #${colors.yellow};
-      @define-color blue    #${colors.blue};
-      @define-color magenta #${colors.magenta};
-      @define-color cyan    #${colors.cyan};
-      @define-color white   #${colors.white};
-      @define-color orange  #${colors.orange};
+        @define-color black   #${colors.black};
+        @define-color red     #${colors.red};
+        @define-color green   #${colors.green};
+        @define-color yellow  #${colors.yellow};
+        @define-color blue    #${colors.blue};
+        @define-color magenta #${colors.magenta};
+        @define-color cyan    #${colors.cyan};
+        @define-color white   #${colors.white};
+        @define-color orange  #${colors.orange};
 
-      @define-color bright_black   #${colors.bright_black};
-      @define-color bright_red     #${colors.bright_red};
-      @define-color bright_green   #${colors.bright_green};
-      @define-color bright_yellow  #${colors.bright_yellow};
-      @define-color bright_blue    #${colors.bright_blue};
-      @define-color bright_magenta #${colors.bright_magenta};
-      @define-color bright_cyan    #${colors.bright_cyan};
-      @define-color bright_white   #${colors.bright_white};
-      @define-color bright_orange  #${colors.bright_orange};
+        @define-color bright_black   #${colors.bright_black};
+        @define-color bright_red     #${colors.bright_red};
+        @define-color bright_green   #${colors.bright_green};
+        @define-color bright_yellow  #${colors.bright_yellow};
+        @define-color bright_blue    #${colors.bright_blue};
+        @define-color bright_magenta #${colors.bright_magenta};
+        @define-color bright_cyan    #${colors.bright_cyan};
+        @define-color bright_white   #${colors.bright_white};
+        @define-color bright_orange  #${colors.bright_orange};
 
-      * {
-          padding: 0;
-          margin: 0;
-          font-family: monospace;
-          /* font-size: 14px; */
-      }
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: monospace;
+            /* font-size: 14px; */
+        }
 
-      window#waybar {
-          background: @background;
-          color: @foreground;
-      }
+        window#waybar {
+            background: @background;
+            color: @foreground;
+        }
 
-      #window,
-      #tags,
-      #workspaces,
-      #custom-spotify,
-      #custom-music,
-      #temperature,
-      #bluetooth,
-      #battery,
-      #network,
-      #wireplumber,
-      #custom-weather,
-      #clock {
-          padding-left: 5px;
-          padding-right: 5px;
-          padding-top: 0px;
-          padding-bottom: 0px;
-      }
+        #window,
+        #tags,
+        #workspaces,
+        #custom-spotify,
+        #custom-music,
+        #temperature,
+        #bluetooth,
+        #battery,
+        #network,
+        #wireplumber,
+        #custom-weather,
+        #clock {
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
 
-      #tags, #workspaces {
-          padding-left: 0px;
-      }
+        #tags, #workspaces {
+            padding-left: 0px;
+        }
 
-      /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-      #tags button:hover, #workspaces button:hover {
-          box-shadow: inherit;
-          text-shadow: inherit;
-          background: @bright_black;
-      }
+        /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+        #tags button:hover, #workspaces button:hover {
+            box-shadow: inherit;
+            text-shadow: inherit;
+            background: @bright_black;
+        }
 
-      #tags button, #workspaces button {
-          /* Disable animation on click */
-          transition-property: none;
+        #tags button, #workspaces button {
+            /* Disable animation on click */
+            transition-property: none;
 
-          font-size: 0;
-          min-width: 16px;
-          min-height: 16px;
-          margin: 3px;
-          margin-top: 3px;
-          margin-bottom: 3px;
-          border-radius: 30px;
-          border: 2px solid @bright_black;
-          background-color: @bright_black;
-          /* transition: 100ms; */
-      }
+            font-size: 0;
+            min-width: 16px;
+            min-height: 16px;
+            margin: 3px;
+            margin-top: 3px;
+            margin-bottom: 3px;
+            border-radius: 30px;
+            border: 2px solid @bright_black;
+            background-color: @bright_black;
+            /* transition: 100ms; */
+        }
 
-      #tags button.focused, #workspaces button.active {
-          min-width: 28px;
-          border: 2px solid @blue;
-          background: @blue;
-          /* transition: 100ms; */
-      }
+        #tags button.focused, #workspaces button.active {
+            min-width: 28px;
+            border: 2px solid @blue;
+            background: @blue;
+            /* transition: 100ms; */
+        }
 
-      #tags button.occupied, #workspaces button:not(.empty) {
-          border: 2px solid @foreground;
-      }
+        #tags button.occupied, #workspaces button:not(.empty) {
+            border: 2px solid @foreground;
+        }
 
-      #tags button.urgent {
-          border: 2px solid @red;
-      }
+        #tags button.urgent {
+            border: 2px solid @red;
+        }
 
-      #image, #custom-spotify, #custom-music {
-          border-bottom: 2px solid @green;
-      }
+        #image, #custom-spotify, #custom-music {
+            border-bottom: 2px solid @green;
+        }
 
-      #temperature {
-          border-bottom: 2px solid @cyan;
-      }
+        #temperature {
+            border-bottom: 2px solid @cyan;
+        }
 
-      #temperature.critical {
-          color: @red;
-          border-bottom: 2px solid @red;
-      }
+        #temperature.critical {
+            color: @red;
+            border-bottom: 2px solid @red;
+        }
 
-      #bluetooth {
-          border-bottom: 2px solid @blue;
-      }
+        #bluetooth {
+            border-bottom: 2px solid @blue;
+        }
 
-      #battery {
-          border-bottom: 2px solid @yellow;
-      }
+        #battery {
+            border-bottom: 2px solid @yellow;
+        }
 
-      #battery.charging {
-          border-bottom: 2px solid @bright_yellow;
-      }
+        #battery.charging {
+            border-bottom: 2px solid @bright_yellow;
+        }
 
-      #battery.100 {
-          border-bottom: 2px solid @bright_green;
-      }
+        #battery.100 {
+            border-bottom: 2px solid @bright_green;
+        }
 
-      #battery.20:not(.charging), #battery.10:not(.charging) {
-          color: @red;
-          border-bottom: 2px solid @red;
-          animation: blink 1s linear infinite;
-      }
+        #battery.20:not(.charging), #battery.10:not(.charging) {
+            color: @red;
+            border-bottom: 2px solid @red;
+            animation: blink 1s linear infinite;
+        }
 
-      @keyframes blink {
-          50% {
-              opacity: 0;
-          }
-      }
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
 
-      #network {
-          border-bottom: 2px solid @magenta;
-      }
+        #network {
+            border-bottom: 2px solid @magenta;
+        }
 
-      #wireplumber {
-          border-bottom: 2px solid @bright_magenta;
-      }
+        #wireplumber {
+            border-bottom: 2px solid @bright_magenta;
+        }
 
-      #wireplumber.muted {
-          color: @orange;
-          border-bottom: 2px solid @orange;
-      }
+        #wireplumber.muted {
+            color: @orange;
+            border-bottom: 2px solid @orange;
+        }
 
-      #custom-weather {
-          border-bottom: 2px solid @bright_blue;
-      }
+        #custom-weather {
+            border-bottom: 2px solid @bright_blue;
+        }
 
-      #clock {
-          border-bottom: 2px solid @bright_orange;
-      }
-    '';
+        #clock {
+            border-bottom: 2px solid @bright_orange;
+        }
+      '';
   };
 }

@@ -1,5 +1,5 @@
 # https://yalter.github.io/niri/Configuration:-Animations
-# vim: ft=kdl
+# kdl
 ''
   animations {
     // Uncomment to turn off all animations.

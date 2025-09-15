@@ -1,9 +1,9 @@
 # https://yalter.github.io/niri/Configuration:-Layout
-# vim: ft=kdl
 config:
 let
   inherit (config.self) colors;
 in
+# kdl
 ''
   layout {
     // Set gaps around windows in logical pixels.

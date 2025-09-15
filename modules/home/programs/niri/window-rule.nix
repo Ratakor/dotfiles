@@ -1,5 +1,5 @@
 # https://yalter.github.io/niri/Configuration:-Window-Rules
-# vim: ft=kdl
+# kdl
 ''
   // TODO: window-rule
   // Window rules let you adjust behavior for individual windows.

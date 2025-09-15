@@ -1,6 +1,6 @@
 # Input device configuration.
 # https://yalter.github.io/niri/Configuration:-Input
-# vim: ft=kdl
+# kdl
 ''
   input {
     keyboard {

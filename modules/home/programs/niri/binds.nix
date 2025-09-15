@@ -1,10 +1,10 @@
 # https://yalter.github.io/niri/Configuration:-Key-Bindings
-# vim: ft=kdl
 config:
 let
   cfg = config.self;
   inherit (config.hm.xdg.userDirs.extraConfig) XDG_NOTES_DIR;
 in
+# kdl
 ''
   binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name

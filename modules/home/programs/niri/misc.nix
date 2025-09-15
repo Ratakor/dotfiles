@@ -1,10 +1,10 @@
 # https://yalter.github.io/niri/Configuration:-Miscellaneous
-# vim: ft=kdl
 config:
 let
   inherit (config.self) colors;
   inherit (config.hm.xdg.userDirs.extraConfig) XDG_SCREENSHOTS_DIR;
 in
+# kdl
 ''
   environment {
     MOZ_ENABLE_WAYLAND "1"

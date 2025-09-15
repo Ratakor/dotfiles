@@ -1,5 +1,5 @@
 # https://yalter.github.io/niri/Configuration:-Outputs
-# vim: ft=kdl
+# kdl
 ''
   // TODO: this should be host specific
   // You can configure outputs by their name, which you can find
