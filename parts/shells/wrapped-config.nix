@@ -24,7 +24,7 @@ mkShellNoCC {
 
   # This work only for bash
   shellHook = ''
-    alias e='$EDITOR'
+    alias e=nvim
     alias z='zellij --layout welcome'
     alias zac='zellij attach --create'
 

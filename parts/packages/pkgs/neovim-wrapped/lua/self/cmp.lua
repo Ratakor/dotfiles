@@ -1,7 +1,17 @@
--- TODO: see blink-cmp.lua
-
--- TODO: what is neodev used for?
-require("neodev").setup()
+-- TODO: replace nvim-cmp with blink.cmp
+--[[
+require("self.lazy").add_specs({
+  {
+    -- TODO: https://search.nixos.org/packages?channel=unstable&query=blink-cmp
+    "blink.cmp",
+    event = "DeferredUIEnter",
+    before = function() end,
+    after = function()
+      require("blink.cmp").setup({})
+    end,
+  },
+})
+--]]
 
 -- Required by cmp for using tab to choose completion
 local has_words_before = function()
@@ -64,5 +74,10 @@ cmp.setup({
     { name = "nvim_lsp_signature_help" },
     { name = "path" },
     { name = "treesitter" },
+    {
+      -- Completion for require statements and modules annotations, also exist for blink
+      name = "lazydev",
+      group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+    },
   },
 })

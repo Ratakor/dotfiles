@@ -68,6 +68,7 @@ local servers = {
   { "lua_ls" },
   { "marksman" },
   { "nil_ls" },
+  -- { "nixd" },
   { "rust_analyzer" },
   { "sqls" },
   { "superhtml" },
@@ -85,7 +86,7 @@ for _, server in ipairs(servers) do
   lspconfig[server[1]].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = server.filetypes,
+    -- filetypes = server.filetypes,
   })
 end
 
@@ -113,5 +114,16 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
       [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
     },
+  },
+})
+
+require("self.lazy").add_specs({
+  {
+    -- LSP for Neovim Lua API
+    "lazydev.nvim",
+    ft = "lua",
+    after = function()
+      require("lazydev").setup({})
+    end,
   },
 })

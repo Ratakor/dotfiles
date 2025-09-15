@@ -13,9 +13,11 @@ mnw.lib.wrap pkgs {
 
   desktopEntry = true;
 
-  initLua = ''
-    require("self")
-  '';
+  initLua =
+    # lua
+    ''
+      require("self")
+    '';
 
   providers = {
     nodeJs.enable = true;
@@ -65,10 +67,10 @@ mnw.lib.wrap pkgs {
     dev.self = {
       pure = fs.toSource {
         root = ./.;
-        # fileset = fs.unions [ ./lua ];
-        fileset = fs.fileFilter (file: file.hasExt "lua") ./.;
+        fileset = fs.unions [ ./lua ];
+        # fileset = fs.fileFilter (file: file.hasExt "lua") ./.;
       };
-      impure = null; # unused for exposed package
+      impure = null; # unused
     };
 
     start = with vimPlugins; [
@@ -89,14 +91,8 @@ mnw.lib.wrap pkgs {
 
       # opt = with vimPlugins; [
 
-      # lua/plugins/debug.lua
-      debugprint-nvim
-
-      # lua/plugins/lsp.lua
       nvim-lspconfig
-      neodev-nvim # TODO: replace with lazydev/none-ls idk
       # none-ls-nvim
-      # lazydev-nvim
       # blink-cmp
       nvim-cmp # TODO: replace with blink-cmp or care.nvim
       luasnip
@@ -109,7 +105,6 @@ mnw.lib.wrap pkgs {
       cmp-treesitter
       cmp_luasnip
 
-      # lua/plugins/misc.lua
       lualine-nvim
       nvim-web-devicons
       # vim-startify
@@ -135,11 +130,14 @@ mnw.lib.wrap pkgs {
       nvim-scrollbar
       vimtex
       comfy-line-numbers-nvim
+      debugprint-nvim
+
     ];
 
     opt = with pkgs.vimPlugins; [
       nvim-notify
       noice-nvim
+      lazydev-nvim
     ];
   };
 }
