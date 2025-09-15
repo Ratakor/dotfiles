@@ -2,7 +2,6 @@
 
 -- TODO: what is neodev used for?
 require("neodev").setup()
--- TODO: ratakor/vim-snippets
 
 -- Required by cmp for using tab to choose completion
 local has_words_before = function()

@@ -26,33 +26,39 @@ mnw.lib.wrap pkgs {
 
   extraBinPath = with pkgs; [
     # idk if these are needed
-    # tree-sitter
-    # fzf
-    # fd
-    # ripgrep
+    #tree-sitter
+    #fzf
+    #fd
+    #ripgrep
 
     # Language servers
     # https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-    # TODO: yaml-language-server
-    # TODO: taplo (toml)
-    # TODO: vscode-json-languageserver (json)
-    bash-language-server # bashls
-    clang-tools # clangd
-    vscode-css-languageserver # cssls
-    gopls # gopls
-    python313Packages.jedi-language-server # jedi_language_server
-    lua-language-server # lua_ls
-    marksman # marksman
-    nil # nil_ls (TODO: see nixd)
-    rust-analyzer # rust_analyzer
-    sqls # sqls
-    superhtml # superhtml
-    texlab # texlab
-    vtsls # vtsls
-    zls # zls
+    bash-language-server # bashls (Bash)
+    clang-tools # clangd (C/C++)
+    vscode-css-languageserver # cssls (CSS)
+    gopls # gopls (Go)
+    python313Packages.jedi-language-server # jedi_language_server (Python)
+    lua-language-server # lua_ls (Lua)
+    marksman # marksman (Markdown)
+    # nixd # nixd (Nix)
+    nil # nil_ls (Nix)
+    rust-analyzer # rust_analyzer (Rust)
+    sqls # sqls (SQL)
+    superhtml # superhtml (HTML)
+    taplo # taplo (TOML)
+    texlab # texlab (LaTeX)
+    vscode-json-languageserver # jsonls (JSON)
+    vtsls # vtsls (JS/TS)
+    yaml-language-server # yamlls (YAML)
+    zls # zls (Zig)
 
     # Formatters
     nixfmt
+  ];
+
+  extraLuaPackages = lp: [
+    # LuaSnip dependency
+    lp.jsregexp
   ];
 
   plugins = {
@@ -94,6 +100,7 @@ mnw.lib.wrap pkgs {
       # blink-cmp
       nvim-cmp # TODO: replace with blink-cmp or care.nvim
       luasnip
+      vim-snippets # use https://github.com/Ratakor/vim-snippets instead?
       cmp-nvim-lsp
       cmp-nvim-lsp-signature-help
       cmp-buffer

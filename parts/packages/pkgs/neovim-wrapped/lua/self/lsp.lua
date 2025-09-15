@@ -58,39 +58,37 @@ end
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 local servers = {
-  "bashls",
-  "clangd",
-  "cssls",
-  "gopls",
-  "jdtls",
-  "jedi_language_server",
-  "lua_ls",
-  "marksman",
-  "nil_ls",
-  "rust_analyzer",
-  "sqls",
-  -- "superhtml",
-  "texlab",
-  "vtsls",
-  "zls",
+  { "bashls" },
+  { "clangd" },
+  { "cssls" },
+  { "gopls" },
+  { "jdtls" },
+  { "jedi_language_server" },
+  { "jsonls" },
+  { "lua_ls" },
+  { "marksman" },
+  { "nil_ls" },
+  { "rust_analyzer" },
+  { "sqls" },
+  { "superhtml" },
+  { "taplo" },
+  { "texlab" },
+  { "vtsls" },
+  { "yamlls" },
+  { "zls" },
 }
 
 local lspconfig = require("lspconfig")
 -- local capabilities = require("blink.cmp").get_lsp_capabilities()
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-for _, server_name in ipairs(servers) do
-  lspconfig[server_name].setup({
+for _, server in ipairs(servers) do
+  lspconfig[server[1]].setup({
     on_attach = on_attach,
     capabilities = capabilities,
+    filetypes = server.filetypes,
   })
 end
 
-lspconfig["superhtml"].setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { "superhtml", "lsp" },
-  filetypes = { "html", "shtml", "xhtml", "htm" },
-})
 -- See `:help vim.diagnostic.Opts`
 vim.diagnostic.config({
   virtual_lines = false,
