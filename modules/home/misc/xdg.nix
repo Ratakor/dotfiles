@@ -70,13 +70,6 @@ in
         exec = "git clone %u";
         terminal = true;
       };
-      # do mnw generate a neovim wrapper desktop entry?
-      text = {
-        name = "Text Editor";
-        exec = "nvim %F";
-        icon = "nvim";
-        terminal = true;
-      };
       nsxiv-a = {
         name = "nsxiv";
         exec = "nsxiv -a %f";
@@ -316,8 +309,8 @@ in
           "nsxiv-a.desktop"
         ]
         // {
-          "text/x-shellscript" = [ "text.desktop" ];
-          "text/plain" = [ "text.desktop" ];
+          "text/x-shellscript" = [ "nvim.desktop" ];
+          "text/plain" = [ "nvim.desktop" ];
           "application/postscript" = [ "org.pwmt.zathura.desktop" ];
           "application/pdf" = [ "org.pwmt.zathura.desktop" ];
           "inode/directory" = [ "terminal-directory.desktop" ];

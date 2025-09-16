@@ -1,3 +1,4 @@
+# nix develop github:ratakor/dotfiles --accept-flake-config
 # TODO: add oxidation?
 {
   mkShellNoCC,
@@ -23,6 +24,7 @@ mkShellNoCC {
   };
 
   # This work only for bash
+  # Actually I'm not sure if this works at all
   shellHook = ''
     alias e=nvim
     alias z='zellij --layout welcome'
@@ -37,6 +39,6 @@ mkShellNoCC {
       rm -f -- "$tmp"
     }
 
-    zellij attach --create main
+    #zellij attach --create main
   '';
 }

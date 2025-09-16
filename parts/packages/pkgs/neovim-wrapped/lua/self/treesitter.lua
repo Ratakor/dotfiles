@@ -1,28 +1,8 @@
--- local colors = require("gruvbox").palette
--- require("hlargs").setup({
---   color = colors.neutral_orange,
--- })
-
-local presets = require("markview.presets")
-require("markview").setup({
-  preview = {
-    modes = { "i", "n", "no", "c" },
-    hybrid_modes = { "i" },
-    linewise_hybrid_mode = true,
-    edit_range = { 0, 0 },
-  },
-  markdown = {
-    headings = presets.headings.glow,
-    tables = presets.tables.single,
-    -- horizontal_rules = presets.horizontal_rules.thin,
-  },
-})
-
 require("nvim-treesitter.configs").setup({
   modules = {},
   sync_install = false,
-  ignore_install = {},
   ensure_installed = {},
+  ignore_install = {},
   auto_install = false,
 
   highlight = {
@@ -41,3 +21,23 @@ require("nvim-treesitter.configs").setup({
     },
   },
 })
+
+local presets = require("markview.presets")
+require("markview").setup({
+  preview = {
+    modes = { "i", "n", "no", "c" },
+    hybrid_modes = { "i" },
+    linewise_hybrid_mode = true,
+    edit_range = { 0, 0 },
+  },
+  markdown = {
+    headings = presets.headings.glow,
+    tables = presets.tables.single,
+    -- horizontal_rules = presets.horizontal_rules.thin,
+  },
+})
+
+-- local colors = require("gruvbox").palette
+-- require("hlargs").setup({
+--   color = colors.neutral_orange,
+-- })

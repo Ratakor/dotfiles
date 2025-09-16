@@ -32,8 +32,8 @@ require("gitsigns").setup({
 --     },
 -- })
 
-vim.opt.timeout = true
-vim.opt.timeoutlen = 300
+vim.o.timeout = true
+vim.o.timeoutlen = 300
 require("which-key").setup()
 
 vim.g.vimtex_view_method = "zathura"
@@ -46,7 +46,6 @@ require("comfy-line-numbers").setup({
   },
 })
 
--- TODO: switch to chadtree or neo-tree?
 -- NERDTree (see their README)
 map("n", "<F2>", ":NERDTreeToggle<CR>")
 vim.cmd(

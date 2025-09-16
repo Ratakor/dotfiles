@@ -27,11 +27,16 @@ mnw.lib.wrap pkgs {
   };
 
   extraBinPath = with pkgs; [
-    # idk if these are needed
-    #tree-sitter
-    #fzf
-    #fd
-    #ripgrep
+    # Telescope deps, rg is also required by nvim
+    fd
+    ripgrep
+
+    # vimtex deps
+    #texliveMinimal # bibtex
+    #texlivePackages.biber
+    #texlivePackages.latexmk
+    #zathura
+    #xdotool
 
     # Language servers
     # https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
@@ -79,22 +84,21 @@ mnw.lib.wrap pkgs {
 
       # deps
       nvim-web-devicons
+      mini-icons
       plenary-nvim
       nui-nvim
 
       # treesitter
       nvim-treesitter.withAllGrammars
       markview-nvim
-      # hlargs-nvim
-      # rainbow-delimiters-nvim
-      # ];
+      #hlargs-nvim
+      #rainbow-delimiters-nvim
 
-      # opt = with vimPlugins; [
-
+      # lsp & completion
       nvim-lspconfig
-      # none-ls-nvim
-      # blink-cmp
-      nvim-cmp # TODO: replace with blink-cmp or care.nvim
+      #none-ls-nvim
+      #blink-cmp
+      nvim-cmp # TODO: switch to blink-cmp
       luasnip
       vim-snippets # use https://github.com/Ratakor/vim-snippets instead?
       cmp-nvim-lsp
@@ -107,18 +111,18 @@ mnw.lib.wrap pkgs {
 
       lualine-nvim
       nvim-web-devicons
-      # vim-startify
+      #vim-startify
       comment-nvim
       vim-trailing-whitespace # FixWhitespace
       gitsigns-nvim
-      # vim-fugitive
-      # vim-rhubarb
-      telescope-nvim
+      #vim-fugitive
+      #vim-rhubarb
+      telescope-nvim # TODO: switch to fzf-lua or snacks.nvim?
       telescope-fzf-native-nvim
       undotree
-      copilot-lua
+      #copilot-lua
       which-key-nvim
-      nerdtree
+      nerdtree # TODO: switch to chadtree or neo-tree?
       vim-abolish
       zig-vim
       nvim-scrollbar
