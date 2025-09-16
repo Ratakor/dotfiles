@@ -20,8 +20,14 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
--- Load snippets
-require("luasnip.loaders.from_snipmate").lazy_load()
+-- vim-snippets
+--require("luasnip.loaders.from_snipmate").lazy_load({
+-- friendly-snippets
+require("luasnip.loaders.from_vscode").lazy_load({
+  exclude = {
+    "zig",
+  },
+})
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")

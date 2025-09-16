@@ -120,6 +120,10 @@ vim.diagnostic.config({
 require("self.lazy").add_specs({
   {
     -- LSP for Neovim Lua API
+    -- TODO: afaik this doesn't work with nix or wrapped configs
+    -- either do like viper and have a .nvim.lua which configure lua_ls properly
+    -- or autogen luarc.json for devMode with something like
+    -- https://github.com/mrcjkb/nix-gen-luarc-json
     "lazydev.nvim",
     ft = "lua",
     after = function()

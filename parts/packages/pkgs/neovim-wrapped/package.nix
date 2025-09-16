@@ -98,9 +98,10 @@ mnw.lib.wrap pkgs {
       nvim-lspconfig
       #none-ls-nvim
       #blink-cmp
-      nvim-cmp # TODO: switch to blink-cmp
+      nvim-cmp # TODO: replace with blink-cmp
       luasnip
-      vim-snippets # use https://github.com/Ratakor/vim-snippets instead?
+      #vim-snippets # use https://github.com/Ratakor/vim-snippets instead?
+      friendly-snippets
       cmp-nvim-lsp
       cmp-nvim-lsp-signature-help
       cmp-buffer
@@ -111,7 +112,7 @@ mnw.lib.wrap pkgs {
 
       lualine-nvim
       nvim-web-devicons
-      #vim-startify
+      #vim-startify # TODO: replace with alpha-nvim
       comment-nvim
       vim-trailing-whitespace # FixWhitespace
       gitsigns-nvim
