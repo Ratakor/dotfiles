@@ -42,7 +42,7 @@ require("comfy-line-numbers").setup({
   hidden_file_types = {
     "undotree",
     -- "NERD_tree",
-    "",
+    -- "",
   },
 })
 

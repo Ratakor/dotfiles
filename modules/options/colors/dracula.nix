@@ -1,5 +1,6 @@
 pkgs: {
   bat.theme = "Dracula";
+  helix.theme = "dracula";
   theme-sh = "dracula";
 
   gtk.theme = {

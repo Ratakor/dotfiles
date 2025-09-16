@@ -1,5 +1,6 @@
 pkgs: {
   bat.theme = "gruvbox-light";
+  helix.theme = "gruvbox_light";
   theme-sh = "gruvbox";
 
   gtk.theme = {
