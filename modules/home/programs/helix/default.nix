@@ -17,28 +17,27 @@ in
 
     extraPackages = with pkgs; [
       # Language servers
-      # https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-      bash-language-server # bashls (Bash)
-      clang-tools # clangd (C/C++)
-      vscode-css-languageserver # cssls (CSS)
-      gopls # gopls (Go)
-      python313Packages.jedi-language-server # jedi_language_server (Python)
-      lua-language-server # lua_ls (Lua)
-      marksman # marksman (Markdown)
-      # nixd # nixd (Nix)
-      nil # nil_ls (Nix)
-      rust-analyzer # rust_analyzer (Rust)
-      sqls # sqls (SQL)
-      superhtml # superhtml (HTML)
-      taplo # taplo (TOML)
-      texlab # texlab (LaTeX)
-      vscode-json-languageserver # jsonls (JSON)
-      vtsls # vtsls (JS/TS)
-      yaml-language-server # yamlls (YAML)
-      zls # zls (Zig)
+      bash-language-server # Bash
+      clang-tools # C/C++
+      vscode-css-languageserver # CSS
+      gopls # Go
+      python313Packages.jedi-language-server # Python
+      lua-language-server # Lua
+      marksman # Markdown
+      # nixd # Nix
+      nil # Nix
+      rust-analyzer # Rust
+      sqls # SQL
+      superhtml # HTML
+      taplo # TOML
+      texlab # LaTeX
+      vscode-json-languageserver # JSON
+      vtsls # JS/TS
+      yaml-language-server # YAML
+      zls # Zig
 
       # Formatters
-      nixfmt
+      nixfmt # Nix
     ];
 
     settings = {
@@ -54,7 +53,7 @@ in
         continue-comments = false;
         bufferline = "multiple";
         color-modes = true;
-        text-width = 80; # gc is :reflow or zr
+        text-width = 80; # gq is :reflow or zq
         trim-final-newlines = true;
         trim-trailing-whitespace = true;
         end-of-line-diagnostics = "hint"; # error, warning, info, hint
@@ -96,10 +95,10 @@ in
             w = ":w";
             q = ":q";
           };
-          z.r = ":reflow";
+          z.q = ":reflow";
         };
         select = {
-          z.r = ":reflow";
+          z.q = ":reflow";
         };
       };
     };
