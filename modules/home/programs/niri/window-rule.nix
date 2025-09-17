@@ -1,11 +1,7 @@
+# Window rules let you adjust behavior for individual windows.
 # https://yalter.github.io/niri/Configuration:-Window-Rules
 # kdl
 ''
-  // TODO: window-rule
-  // Window rules let you adjust behavior for individual windows.
-  // Find more information on the wiki:
-  // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
-
   // Work around WezTerm's initial configure bug
   // by setting an empty default-column-width.
   /-window-rule {

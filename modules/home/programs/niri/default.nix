@@ -3,6 +3,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -26,6 +27,17 @@ in
     # btw this is NixOS's programs not home-manager's programs.
     # guess why we're using this one
     programs.niri.enable = true;
+
+    # File manager for the File chooser portal.
+    # https://github.com/YaLTeR/niri/wiki/Important-Software#portals
+    environment.systemPackages = [ pkgs.nautilus ];
+
+    # Disabled by default, but re-enabled by some packages:
+    # niri: https://github.com/YaLTeR/niri/wiki/Important-Software#portals
+    # services.gnome = {
+    #   gnome-keyring.enable = mkForce false;
+    #   # gcr-ssh-agent.enable = false; # config.services.gnome.gnome-keyring.enable
+    # };
 
     # This config is in the KDL format: https://kdl.dev
     # "/-" comments out the following node.
