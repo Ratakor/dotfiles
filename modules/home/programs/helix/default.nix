@@ -11,6 +11,7 @@ let
 in
 {
   # see helix-zsh / zsh-helix-mode for zsh integration
+  # idk what to do for vimium
 
   hm.programs.helix = {
     enable = true;

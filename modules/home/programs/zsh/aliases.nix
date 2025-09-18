@@ -27,36 +27,37 @@ let
   XDG_DATA_HOME = config.hm.xdg.dataHome;
   XDG_CACHE_HOME = config.hm.xdg.cacheHome;
   XDG_STATE_HOME = config.hm.xdg.stateHome;
+  inherit (config.hm.xdg.userDirs.extraConfig)
+    XDG_BIN_HOME
+    XDG_SCREENSHOTS_DIR
+    XDG_NOTES_DIR
+    ;
 in
 {
   hm.home.shellAliases = sudoAliases // {
     # edit config files and stuff
     cf = "cd ${XDG_CONFIG_HOME}";
-    cfv = "cd ${XDG_CONFIG_HOME}/nvim";
     cfz = "$EDITOR ${ZDOTDIR}/.zshrc";
     cfe = "$EDITOR ${ZDOTDIR}/.zshenv";
     cfu = "$EDITOR ${XDG_CONFIG_HOME}/newsboat/urls";
     dt = "cd ${XDG_DATA_HOME}";
-    # pkg = "$EDITOR ${XDG_DATA_HOME}/packages";
     d = "cd $XDG_DOWNLOAD_DIR";
     D = "cd $XDG_DOCUMENTS_DIR";
     mm = "cd $XDG_MUSIC_DIR";
     mu = "cd $XDG_MUSIC_DIR/urls";
     pp = "cd $XDG_PICTURES_DIR";
-    psc = "cd $XDG_PICTURES_DIR/screenshots";
+    psc = "cd ${XDG_SCREENSHOTS_DIR}";
     vv = "cd $XDG_VIDEOS_DIR";
     wp = "cd $XDG_PICTURES_DIR/wallpapers";
-    n = "yazi $XDG_DOCUMENTS_DIR/notes";
-    nn = "cd $XDG_DOCUMENTS_DIR/notes";
-    sc = "cd $HOME/.local/bin";
+    n = "yazi ${XDG_NOTES_DIR}";
+    nn = "cd ${XDG_NOTES_DIR}";
+    sc = "cd ${XDG_BIN_HOME}";
     sta = "cd ${XDG_STATE_HOME}";
     cac = "cd ${XDG_CACHE_HOME}";
 
     ## wayland
     cfr = "$EDITOR ${XDG_CONFIG_HOME}/river/init";
     cfn = "$EDITOR ${XDG_CONFIG_HOME}/niri/config.kdl";
-    cfb = "cd ${XDG_CONFIG_HOME}/waybar";
-    cft = "$EDITOR ${XDG_CONFIG_HOME}/foot/foot.ini";
 
     ## X11
     cfx = "$EDITOR ${XDG_CONFIG_HOME}/sx/sxrc";
@@ -76,7 +77,6 @@ in
     music-dlp = "ytdl m";
     playlist-dlp = "ytdl p";
     py = "python3";
-    # ho = "cat ${XDG_DATA_HOME}/hole/history";
     tmp = "cd $(mktemp -d)";
     mount = "sudo mount -o nosuid,nodev,noexec";
     o = "plumber"; # o for open
@@ -87,13 +87,11 @@ in
     gofmt = "gofmt -s -w";
     javafmt = "astyle --mode=java --style=google -n";
     fork = "setsid -f";
-    # zigup = "zigup --install-dir $XDG_DATA_HOME/zigup --path-link $HOME/.local/bin/zig";
     zpot = "zpotify";
     z = "zellij --layout welcome";
     zac = "zellij attach --create";
     timestamp = "date +%Y-%m-%dT%H:%M:%S%z";
     j = "just";
-    vimdiff = "nvim -d";
 
     # <https://unix.stackexchange.com/a/81699>
     myip = "dig @resolver4.opendns.com myip.opendns.com +short";

@@ -38,7 +38,7 @@ in
 
       # Non-standard
       extraConfig = {
-        # XDG_BIN_HOME = "${homeDirectory}/.local/bin";
+        XDG_BIN_HOME = "${homeDirectory}/.local/bin";
 
         XDG_SCREENSHOTS_DIR = "${config.hm.xdg.userDirs.pictures}/screenshots";
         XDG_NOTES_DIR = "${config.hm.xdg.userDirs.documents}/notes";
