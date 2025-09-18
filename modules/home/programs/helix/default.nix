@@ -66,7 +66,7 @@ in
           insert = "bar";
         };
 
-        auto-pairs = false;
+        # auto-pairs = false;
 
         whitespace = {
           render = {
