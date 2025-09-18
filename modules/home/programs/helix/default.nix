@@ -38,6 +38,7 @@ in
 
       # Formatters
       nixfmt # Nix
+      black # Python
     ];
 
     settings = {
@@ -48,10 +49,12 @@ in
       # https://docs.helix-editor.com/editor.html
       editor = {
         scrolloff = 0;
+        # default-yank-register = "+"; # "+y / "+p
         middle-click-paste = false;
         line-number = "relative";
         continue-comments = false;
-        bufferline = "multiple";
+        # auto-format = false;
+        # bufferline = "multiple";
         color-modes = true;
         text-width = 80; # gq is :reflow or zq
         trim-final-newlines = true;
@@ -96,21 +99,40 @@ in
             q = ":q";
           };
           z.q = ":reflow";
+          X = "extend_line_above";
         };
         select = {
           z.q = ":reflow";
+          X = "extend_line_above";
         };
       };
     };
 
     languages = {
-      # https://github.con/helix-editor/helix/blob/master/languages.toml
+      # https://github.com/helix-editor/helix/blob/master/languages.toml
+      # https://github.com/helix-editor/helix/wiki/Formatter-Configurations
       language = langAttrsToList {
         c = {
           indent = {
             tab-width = 8;
             unit = "\t";
           };
+        };
+        nix = {
+          formatter = {
+            command = "nixfmt";
+          };
+          auto-format = true;
+        };
+        python = {
+          formatter = {
+            command = "black";
+            args = [
+              "--quiet"
+              "-"
+            ];
+          };
+          auto-format = true;
         };
       };
     };

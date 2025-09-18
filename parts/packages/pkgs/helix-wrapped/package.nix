@@ -1,5 +1,5 @@
 # Subset of my own helix config but wrapped
-# As of 17 Sep 2025 the differences are:
+# As of 18 Sep 2025 the differences are:
 # - no languages settings
 # - no custom themes
 # - default theme is gruvbox
@@ -29,9 +29,6 @@
     vtsls # JS/TS
     yaml-language-server # YAML
     zls # Zig
-
-    # Formatters
-    nixfmt # Nix
   ],
 }:
 let
@@ -46,10 +43,12 @@ let
     # https://docs.helix-editor.com/editor.html
     editor = {
       scrolloff = 0;
+      # default-yank-register = "+"; # "+y / "+p
       middle-click-paste = false;
       line-number = "relative";
       continue-comments = false;
-      bufferline = "multiple";
+      # auto-format = false;
+      # bufferline = "multiple";
       color-modes = true;
       text-width = 80; # gq is :reflow or zq
       trim-final-newlines = true;
@@ -94,9 +93,11 @@ let
           q = ":q";
         };
         z.q = ":reflow";
+        X = "extend_line_above";
       };
       select = {
         z.q = ":reflow";
+        X = "extend_line_above";
       };
     };
   };
