@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d599ae4847e7f87603e7082d73ca673aa93c916d",
-      "url": "https://github.com/ipetkov/crane/archive/d599ae4847e7f87603e7082d73ca673aa93c916d.tar.gz",
-      "hash": "0mx5571sapgynn7dk5zyva1fc4bd5jbf84ki6k3yy4wirc444dwi"
+      "revision": "a669fe77a8b0cd6f11419d89ea45a16691ca5121",
+      "url": "https://github.com/ipetkov/crane/archive/a669fe77a8b0cd6f11419d89ea45a16691ca5121.tar.gz",
+      "hash": "17jpgcnlyrd4avkwyb6zbd9l9cidbiljk88m1fy3giyxys836ygj"
     },
     "flint": {
       "type": "Git",
@@ -48,9 +48,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "a3fcc92180c7462082cd849498369591dfb20855",
-      "url": "https://github.com/nix-community/home-manager/archive/a3fcc92180c7462082cd849498369591dfb20855.tar.gz",
-      "hash": "1ywqb0w550p2q16rsfkjy2vdci031gvadhl5gpisvzj54wdwg8aj"
+      "revision": "55b1f5b7b191572257545413b98e37abab2fdb00",
+      "url": "https://github.com/nix-community/home-manager/archive/55b1f5b7b191572257545413b98e37abab2fdb00.tar.gz",
+      "hash": "0i6jma7k3m4v5bg9d8gzrdywrqyi1yy2yp9gkfg2ls8s5pb07bcp"
     },
     "mnw": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "ad808c73c7bbf3b30edc72f3a5a9fb5d1cae4e6f",
-      "url": "https://github.com/NotAShelf/stash/archive/ad808c73c7bbf3b30edc72f3a5a9fb5d1cae4e6f.tar.gz",
-      "hash": "1bzm3haf6yhwl4c84c5f83jdss25wshssq1rkjf6ajgsjl6yci49"
+      "revision": "a70c7d7014e4757434e36622904de28b6b719567",
+      "url": "https://github.com/NotAShelf/stash/archive/a70c7d7014e4757434e36622904de28b6b719567.tar.gz",
+      "hash": "0qqvc6p2sfvi7rrscg6hy3qap1sp1p4x9q2gc62cp7wxpr9gcpxk"
     },
     "treefmt-nix": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "1aabc6c05ccbcbf4a635fb7a90400e44282f61c4",
-      "url": "https://github.com/numtide/treefmt-nix/archive/1aabc6c05ccbcbf4a635fb7a90400e44282f61c4.tar.gz",
-      "hash": "16fqra97334hnn770c7hapdvc9h2ikznlfcgyjwls03mbryhanhp"
+      "revision": "128222dc911b8e2e18939537bed1762b7f3a04aa",
+      "url": "https://github.com/numtide/treefmt-nix/archive/128222dc911b8e2e18939537bed1762b7f3a04aa.tar.gz",
+      "hash": "1p81chik0sb8aligng579m4h0klnndxv76z0p4gyhr4g3s9cydpw"
     },
     "wallpapers": {
       "type": "Git",
