@@ -43,24 +43,61 @@ in
     ];
 
     settings = {
-      # https://github.com/helix-editor/helix/tree/master/runtime/themes
       # inherit (config.self.colors.helix) theme;
       theme = "transparent";
 
       # https://docs.helix-editor.com/editor.html
       editor = {
         scrolloff = 0;
-        # default-yank-register = "+"; # "+y / "+p
+        # default-yank-register = "+"; # "+y / "+p / <space>y / <space>p
         middle-click-paste = false;
         line-number = "relative";
         continue-comments = false;
         # auto-format = false;
+        rulers = [
+          80
+          100
+        ];
         # bufferline = "multiple";
         color-modes = true;
         text-width = 80; # gq is :reflow or zq
         trim-final-newlines = true;
         trim-trailing-whitespace = true;
         end-of-line-diagnostics = "hint"; # error, warning, info, hint
+
+        # This is almost the same as default
+        statusline = {
+          left = [
+            "mode"
+            "spinner"
+            # "version-control"
+            "file-name"
+            "read-only-indicator"
+            "file-modification-indicator"
+          ];
+          center = [ ];
+          right = [
+            "diagnostics"
+            "selections"
+            "register"
+            # "position-percentage"
+            "position"
+            "file-encoding"
+            "file-type"
+          ];
+          separator = "│";
+          mode.normal = "NORMAL";
+          mode.insert = "INSERT";
+          mode.select = "SELECT";
+          diagnostics = [
+            "warning"
+            "error"
+          ];
+          workspace-diagnostics = [
+            "warning"
+            "error"
+          ];
+        };
 
         cursor-shape = {
           insert = "bar";
@@ -89,6 +126,8 @@ in
 
       # https://docs.helix-editor.com/keymap.html
       # https://docs.helix-editor.com/remapping.html
+      # https://docs.helix-editor.com/commands.html
+      # g [ ] m " z <space>
       keys = {
         normal = {
           esc = [
@@ -96,11 +135,15 @@ in
             "keep_primary_selection"
           ];
           space = {
-            w = ":w";
-            q = ":q";
+            w = ":write";
+            q = ":quit";
           };
           z.q = ":reflow";
           X = "extend_line_above";
+          "C-h" = "select_prev_sibling";
+          "C-j" = "shrink_selection";
+          "C-k" = "expand_selection";
+          "C-l" = "select_next_sibling";
         };
         select = {
           z.q = ":reflow";
@@ -138,10 +181,15 @@ in
       };
     };
 
+    # https://docs.helix-editor.com/themes.html
+    # https://github.com/helix-editor/helix/tree/master/runtime/themes
     themes = {
       transparent = {
         inherits = config.self.colors.helix.theme;
         "ui.background" = "none";
+        "function" = {
+          modifiers = [ "bold" ];
+        };
       };
     };
   };

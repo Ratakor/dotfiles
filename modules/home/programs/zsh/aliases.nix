@@ -92,6 +92,7 @@ in
     zac = "zellij attach --create";
     timestamp = "date +%Y-%m-%dT%H:%M:%S%z";
     j = "just";
+    ff = "nix run nixpkgs#fastfetch";
 
     # <https://unix.stackexchange.com/a/81699>
     myip = "dig @resolver4.opendns.com myip.opendns.com +short";
