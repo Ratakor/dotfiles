@@ -83,6 +83,16 @@
           # zig
           zig.enable = true;
 
+          # toml
+          taplo = {
+            enable = true;
+            settings.formatting = {
+              inline_table_expand = false;
+              compact_arrays = false;
+              align_comments = false;
+            };
+          };
+
           # english
           typos = {
             enable = false; # TODO: use in pre-commit / CI instead, same for statix/deadnix (& shellcheck?)

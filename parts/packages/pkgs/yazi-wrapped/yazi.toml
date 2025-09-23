@@ -14,8 +14,8 @@ tab_size = 8
 prepend_previewers = [
   { mime = "text/troff", run = "man" },
   { mime = "text/*", run = "text" },
-  { mime = "{image,audio,video}/*", run = "mediainfo"},
-  { mime = "application/x-subrip", run = "mediainfo"},
+  { mime = "{image,audio,video}/*", run = "mediainfo" },
+  { mime = "application/x-subrip", run = "mediainfo" },
   { mime = "application/*zip", run = "ouch" },
   { mime = "application/x-tar", run = "ouch" },
   { mime = "application/x-bzip{,2}", run = "ouch" },
