@@ -1,0 +1,152 @@
+From 17196438d1d6c06acd406e54c8b1b369e9533600 Mon Sep 17 00:00:00 2001
+From: Ratakor <ratakor@disroot.org>
+Date: Wed, 24 Sep 2025 23:04:40 +0200
+Subject: [PATCH] Dracula Theme for Neovim
+
+---
+ .../neovim-wrapped/lua/self/colorscheme.lua    | 12 +++++-------
+ .../pkgs/neovim-wrapped/lua/self/lualine.lua   | 18 +++++++++---------
+ .../pkgs/neovim-wrapped/lua/self/scrollbar.lua | 14 +++++++-------
+ .../neovim-wrapped/lua/self/treesitter.lua     |  4 ++--
+ parts/packages/pkgs/neovim-wrapped/package.nix |  2 +-
+ 5 files changed, 24 insertions(+), 26 deletions(-)
+
+diff --git a/parts/packages/pkgs/neovim-wrapped/lua/self/colorscheme.lua b/parts/packages/pkgs/neovim-wrapped/lua/self/colorscheme.lua
+index 9bf8ffe..013a685 100644
+--- a/parts/packages/pkgs/neovim-wrapped/lua/self/colorscheme.lua
++++ b/parts/packages/pkgs/neovim-wrapped/lua/self/colorscheme.lua
+@@ -1,10 +1,8 @@
+-require("gruvbox").setup({
+-  italic = {
+-    strings = false,
+-    comments = false,
+-  },
+-  transparent_mode = true,
++require("dracula").setup({
++  show_end_of_buffer = true,
++  lualine_bg_color = "44475a";
++  transparent_bg = true,
+ })
+ 
+ vim.o.background = "dark"
+-vim.cmd("colorscheme gruvbox")
++vim.cmd("colorscheme dracula")
+diff --git a/parts/packages/pkgs/neovim-wrapped/lua/self/lualine.lua b/parts/packages/pkgs/neovim-wrapped/lua/self/lualine.lua
+index e27f94a..d8378ee 100644
+--- a/parts/packages/pkgs/neovim-wrapped/lua/self/lualine.lua
++++ b/parts/packages/pkgs/neovim-wrapped/lua/self/lualine.lua
+@@ -1,7 +1,7 @@
+ -- lualine dependency
+ require("nvim-web-devicons").setup()
+ 
+-local colors = require("gruvbox").palette
++local colors = require("dracula").colors()
+ 
+ local empty = require("lualine.component"):extend()
+ function empty:draw(default_highlight)
+@@ -20,8 +20,8 @@ local function process_sections(sections)
+       table.insert(section, pos * 2, {
+         empty,
+         color = {
+-          fg = colors.light1,
+-          bg = colors.light1,
++          fg = colors.white,
++          bg = colors.white,
+         },
+       })
+     end
+@@ -45,7 +45,7 @@ local function modified()
+   return ""
+ end
+ 
+-local transparent = require("lualine.themes.gruvbox")
++local transparent = require("lualine.themes.dracula")
+ transparent.inactive.c.bg = "nil"
+ transparent.visual.c.bg = "nil"
+ transparent.replace.c.bg = "nil"
+@@ -72,8 +72,8 @@ require("lualine").setup({
+         symbols = { error = "E " },
+         diagnostics_color = {
+           error = {
+-            bg = colors.neutral_red,
+-            fg = colors.dark0,
++            bg = colors.red,
++            fg = colors.black,
+             gui = "bold",
+           },
+         },
+@@ -88,8 +88,8 @@ require("lualine").setup({
+         symbols = { warn = "W " },
+         diagnostics_color = {
+           warn = {
+-            bg = colors.neutral_orange,
+-            fg = colors.dark0,
++            bg = colors.orange,
++            fg = colors.black,
+             gui = "bold",
+           },
+         },
+@@ -97,7 +97,7 @@ require("lualine").setup({
+         --     vim.diagnostic.goto_next()
+         -- end
+       },
+-      { modified, color = { bg = colors.neutral_purple } },
++      { modified, color = { bg = colors.purple } },
+       {
+         "%w",
+         cond = function()
+diff --git a/parts/packages/pkgs/neovim-wrapped/lua/self/scrollbar.lua b/parts/packages/pkgs/neovim-wrapped/lua/self/scrollbar.lua
+index 6cc3851..6d7afc2 100644
+--- a/parts/packages/pkgs/neovim-wrapped/lua/self/scrollbar.lua
++++ b/parts/packages/pkgs/neovim-wrapped/lua/self/scrollbar.lua
+@@ -1,13 +1,13 @@
+-local colors = require("gruvbox").palette
++local colors = require("dracula").colors()
+ 
+ require("scrollbar").setup({
+   marks = {
+-    Search = { color = colors.neutral_orange },
+-    Error = { color = colors.neutral_red },
+-    Warn = { color = colors.neutral_yellow },
+-    Info = { color = colors.neutral_purple },
+-    Hint = { color = colors.neutral_aqua },
+-    Misc = { color = colors.neutral_purple },
++    Search = { color = colors.orange },
++    Error = { color = colors.red },
++    Warn = { color = colors.yellow },
++    Info = { color = colors.pink },
++    Hint = { color = colors.cyan },
++    Misc = { color = colors.purple },
+   },
+   handlers = {
+     cursor = false,
+diff --git a/parts/packages/pkgs/neovim-wrapped/lua/self/treesitter.lua b/parts/packages/pkgs/neovim-wrapped/lua/self/treesitter.lua
+index dd4f46b..1bad37c 100644
+--- a/parts/packages/pkgs/neovim-wrapped/lua/self/treesitter.lua
++++ b/parts/packages/pkgs/neovim-wrapped/lua/self/treesitter.lua
+@@ -37,7 +37,7 @@ require("markview").setup({
+   },
+ })
+ 
+--- local colors = require("gruvbox").palette
++-- local colors = require("dracula").colors()
+ -- require("hlargs").setup({
+---   color = colors.neutral_orange,
++--   color = colors.orange,
+ -- })
+diff --git a/parts/packages/pkgs/neovim-wrapped/package.nix b/parts/packages/pkgs/neovim-wrapped/package.nix
+index 48bb098..70e81dd 100644
+--- a/parts/packages/pkgs/neovim-wrapped/package.nix
++++ b/parts/packages/pkgs/neovim-wrapped/package.nix
+@@ -80,7 +80,7 @@ mnw.lib.wrap pkgs {
+ 
+     start = with vimPlugins; [
+       lz-n
+-      gruvbox-nvim
++      dracula-nvim
+ 
+       # deps
+       nvim-web-devicons
+-- 
+2.51.0
+
