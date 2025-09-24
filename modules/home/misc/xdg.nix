@@ -86,6 +86,12 @@ in
         let
           browser = [ "chromium-browser.desktop" ]; # change to cromite when it's available
 
+          # There should be an option for that, same for the $EDITOR variable
+          editor = [
+            "Helix.desktop"
+            "nvim.desktop"
+          ];
+
           # globbing is not supported in mimeapps.list
           # based on /usr/share/mime/types aka /run/current-system/sw/share/mime/types
           imageMimeTypes = [
@@ -309,8 +315,8 @@ in
           "nsxiv-a.desktop"
         ]
         // {
-          "text/x-shellscript" = [ "nvim.desktop" ];
-          "text/plain" = [ "nvim.desktop" ];
+          "text/x-shellscript" = editor;
+          "text/plain" = editor;
           "application/postscript" = [ "org.pwmt.zathura.desktop" ];
           "application/pdf" = [ "org.pwmt.zathura.desktop" ];
           "inode/directory" = [ "terminal-directory.desktop" ];

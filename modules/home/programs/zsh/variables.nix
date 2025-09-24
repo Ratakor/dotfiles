@@ -35,7 +35,8 @@ in
 
     sessionVariables = {
       # Default programs
-      EDITOR = "nvim";
+      EDITOR = "hx";
+      # EDITOR = "nvim";
       # VISUAL = "nvim"; # nvim is not a visual editor
       BROWSER = "chromium --new-window"; # cromite
       DMENU = config.self.menu.dynamic;

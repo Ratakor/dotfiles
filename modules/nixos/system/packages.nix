@@ -15,7 +15,7 @@ in
     # You can use https://search.nixos.org/ to find more packages (and options).
     # TODO: sort that
     systemPackages = with pkgs; [
-      neovim # editor
+      neovim # editor, see environment.nix for $EDITOR, what about helix?
       yazi # file manager
       git
       less
