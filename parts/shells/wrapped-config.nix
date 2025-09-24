@@ -22,15 +22,13 @@ mkShellNoCC {
   ];
 
   env = {
-    EDITOR = "nvim";
-    #EDITOR = "hx";
+    # EDITOR = "nvim";
+    EDITOR = "hx";
   };
 
   # This work only for bash
-  # Actually I'm not sure if this works at all
   shellHook = ''
-    alias e=nvim
-    #alias e=hx
+    alias e='$EDITOR'
     alias z='zellij --layout welcome'
     alias zac='zellij attach --create'
 
@@ -42,7 +40,5 @@ mkShellNoCC {
       fi
       rm -f -- "$tmp"
     }
-
-    #zellij attach --create main
   '';
 }
