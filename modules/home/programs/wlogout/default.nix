@@ -2,6 +2,10 @@
 # Requires glitchlock
 # Alternative icons: https://github.com/ArtsyMacaw/wlogout/pull/59
 # X11 alternative (kinda): https://github.com/Ratakor/dotfiles/blob/artix/.local/bin/shutdown-menu
+# TODO: switch to wleave
+# - Config layout without nix & style with a fin layer since it's css.
+# - Currently only issue is that gtk4 seems bugged with this nixos config
+#   that's why I'm still using wlogout.
 {
   config,
   pkgs,
@@ -16,6 +20,9 @@ in
   hm.programs.wlogout = {
     enable = true;
     # package = pkgs.wleave;
+
+    # l s p
+    # e h r
     layout = [
       {
         label = "lock";

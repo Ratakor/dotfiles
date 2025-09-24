@@ -1,6 +1,8 @@
 # Set a random wallpaper.
 # non-nix version of this script:
 # https://raw.githubusercontent.com/Ratakor/dotfiles/ec0dc5e5240d2fef94afaa3cbe7f2cb9d5dcfce3/users/ratakor/programs/scripts/bin/randwp
+# I don't know if there should be a timestamp when logging, anyway this should
+# be rewritten into a daemon
 {
   config,
   lib,
@@ -33,6 +35,7 @@ pkgs.writeShellApplication {
     # IGNORE can be an env variable (useful for yazi)
 
     TMPDIR=''${XDG_RUNTIME_DIR:-/tmp}
+    LOGFILE=''${XDG_STATE_HOME:-$HOME/.local/state}/randwp.log
     WPDIR=''${1:-${wallpapers}}
     IGNORE=''${IGNORE-nsfw}
     ALL=$(find -L "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md')
@@ -44,6 +47,7 @@ pkgs.writeShellApplication {
     			wp=$(printf '%s' "$ALL" | shuf -n 1)
     		done
     	fi
+    	printf '%s\n' "$wp" >> "$LOGFILE"
     }
 
   ''
