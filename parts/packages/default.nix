@@ -47,6 +47,8 @@
             agenix = pkgs.callPackage "${pins.agenix}/pkgs/agenix.nix" { };
             # Stupid simple utility for linting your flake inputs
             flint = pkgs.callPackage "${pins.flint}/nix/package.nix" { };
+            # Wayland clipboard "manager"
+            stash = pkgs.callPackage "${pins.stash}/nix/package.nix" { inherit craneLib; };
             # Automatic CPU speed & power optimizer for Linux
             watt = pkgs.callPackage "${pins.watt}/nix/package.nix" { };
             # CLI tool to restore files from ZFS snapshots
@@ -58,7 +60,8 @@
               zig = pkgs.zig_0_15;
               image-support = true;
             };
-            stash = pkgs.callPackage "${pins.stash}/nix/package.nix" { inherit craneLib; };
+            # Helix keybinds for Z Shell
+            zsh-helix-mode = pkgs.callPackage "${pins.zsh-helix-mode}/default.nix" { };
           };
         in
         base // fromInputs // fromPins;

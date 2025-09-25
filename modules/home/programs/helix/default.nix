@@ -10,8 +10,10 @@ let
   langAttrsToList = mapAttrsToList (name: conf: { inherit name; } // conf);
 in
 {
-  # see helix-zsh / zsh-helix-mode for zsh integration
-  # idk what to do for vimium
+  # - $EDITOR
+  # - mimeapps.list
+  # - ~zsh mode~
+  # - ~vimium~
 
   hm.programs.helix = {
     enable = true;

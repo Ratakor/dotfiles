@@ -43,7 +43,6 @@
     # see zshoptions(1)
     setOptions = [
       "RM_STAR_SILENT" # disable double verification with rm -I *
-      "VI" # vim mode
       "IGNORE_EOF" # do not exit on EoF <C-d>
       # "PROMPT_SUBST" # used below for prompt with git integration
       # "CORRECT"
@@ -124,30 +123,7 @@
           # Some basic settings
           autoload -U colors && colors # Load colors
           stty stop undef # Disable ctrl-s to freeze terminal.
-          KEYTIMEOUT=1 # with vi mode: make switching modes faster
-
-          # Use vim keys in tab complete menu:
-          zmodload zsh/complist
-          bindkey -M menuselect 'h' vi-backward-char
-          bindkey -M menuselect 'k' vi-up-line-or-history
-          bindkey -M menuselect 'l' vi-forward-char
-          bindkey -M menuselect 'j' vi-down-line-or-history
-          bindkey -v '^?' backward-delete-char
-
-          # Change cursor shape for different vi modes.
-          function zle-keymap-select() {
-              case $KEYMAP in
-                  vicmd)
-                  echo -ne "\x1b[2 q" ;; # block
-              viins|main)
-                  echo -ne "\x1b[6 q" ;; # beam
-              esac
-          }
-          function zle-line-init() {
-              echo -ne "\x1b[6 q"
-          }
-          zle -N zle-keymap-select
-          zle -N zle-line-init
+          KEYTIMEOUT=1 # with vi / helix mode: make switching modes faster
 
           # git integration
           autoload -Uz vcs_info
@@ -166,7 +142,6 @@
           timer=$(print -P %D{%s%3.})
           function preexec() {
               timer=$(print -P %D{%s%3.})
-              echo -ne "\x1b[6 q" # Use beam shape cursor for each new prompt.
           }
 
           function precmd() {

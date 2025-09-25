@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 {
   hm.programs.zsh.plugins = [
     {
@@ -14,6 +14,14 @@
       file = "nix-shell.plugin.zsh";
       src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
     }
+    # zsh-helix-mode looks really cool but:
+    # - cursor blinks (and is colored in normal/insert mode)
+    # - selection doesn't look good on my terminal
+    #{
+    #  name = "zsh-helix-mode";
+    #  file = "zsh-helix-mode.plugin.zsh";
+    #  src = "${self.pkgs.zsh-helix-mode}/share/zsh-helix-mode";
+    #}
     {
       name = "zsh-vi-mode";
       file = "zsh-vi-mode.plugin.zsh";

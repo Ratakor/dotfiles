@@ -155,6 +155,19 @@
       "revision": "d19cbd6c9a74fa38f56e2fb89ad5748fb92f1239",
       "url": "https://github.com/ratakor/zpotify/archive/d19cbd6c9a74fa38f56e2fb89ad5748fb92f1239.tar.gz",
       "hash": "1hkll2hxnyycrlli65i5rihxhjv5ihcw46f9iv86yr2q7fcsybmx"
+    },
+    "zsh-helix-mode": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Multirious",
+        "repo": "zsh-helix-mode"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "f9d72d23f5ce12da31967a6ecd15dcafa1355fa7",
+      "url": "https://github.com/Multirious/zsh-helix-mode/archive/f9d72d23f5ce12da31967a6ecd15dcafa1355fa7.tar.gz",
+      "hash": "17jc0i6y5mj9k625bb4i3p04w62inzqlsc9hgpvy5pikiir2h9f2"
     }
   },
   "version": 5
