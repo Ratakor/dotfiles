@@ -31,9 +31,18 @@ in
       owner = "ratakor";
       group = "users";
     };
-
     git-epita = mkAgenixSecret true {
       file = "git-epita.age";
+      owner = "ratakor";
+      group = "users";
+    };
+    anki-key = mkAgenixSecret true {
+      file = "anki-key.age";
+      owner = "ratakor";
+      group = "users";
+    };
+    anki-user = mkAgenixSecret true {
+      file = "anki-user.age";
       owner = "ratakor";
       group = "users";
     };
