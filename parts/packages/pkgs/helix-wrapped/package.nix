@@ -28,6 +28,7 @@
     vscode-json-languageserver # JSON
     vtsls # JS/TS
     yaml-language-server # YAML
+    zig # ZLS dependency
     zls # Zig
   ],
 }:

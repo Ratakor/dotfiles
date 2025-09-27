@@ -57,6 +57,7 @@ mnw.lib.wrap pkgs {
     vscode-json-languageserver # jsonls (JSON)
     vtsls # vtsls (JS/TS)
     yaml-language-server # yamlls (YAML)
+    zig # ZLS dependency
     zls # zls (Zig)
 
     # Formatters

@@ -1,5 +1,6 @@
-# nix develop github:ratakor/dotfiles --accept-flake-config
-# TODO: add oxidation?
+# nix develop github:ratakor/dotfiles --accept-flake-config --quiet --quiet
+# alias hx="nix run github:ratakor/dotfiles#helix-wrapped --accept-flake-config --quiet --quiet --"
+# TODO: add oxidation? (also add nerd fonts?)
 {
   mkShellNoCC,
   neovim-wrapped,
