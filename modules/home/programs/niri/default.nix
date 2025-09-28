@@ -28,9 +28,13 @@ in
     # guess why we're using this one
     programs.niri.enable = true;
 
-    # File manager for the File chooser portal.
-    # https://github.com/YaLTeR/niri/wiki/Important-Software#portals
-    environment.systemPackages = [ pkgs.nautilus ];
+    environment.systemPackages = with pkgs; [
+      # File manager for the File chooser portal.
+      # https://github.com/YaLTeR/niri/wiki/Important-Software#portals
+      nautilus
+      # https://github.com/YaLTeR/niri/wiki/Xwayland
+      xwayland-satellite
+    ];
 
     # Disabled by default, but re-enabled by some packages:
     # niri: https://github.com/YaLTeR/niri/wiki/Important-Software#portals

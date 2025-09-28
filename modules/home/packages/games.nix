@@ -84,6 +84,7 @@ let
   unsorted = with pkgs; [
     rili # Train Game
     love # lua 2D game engine (Balatro)
+    steam
   ];
 in
 [
