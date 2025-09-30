@@ -2,10 +2,12 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }:
 let
   inherit (lib.attrsets) mapAttrsToList;
+  inherit (self.lib.trivial) unreachable;
 
   langAttrsToList = mapAttrsToList (name: conf: { inherit name; } // conf);
 in
@@ -191,6 +193,13 @@ in
         inherits = config.self.colors.helix.theme;
         "ui.background" = "none";
         "function" = {
+          fg =
+            if config.self.colorscheme == "gruvbox-dark" || config.self.colorscheme == "gruvbox-light" then
+              "green1"
+            else if config.self.colorscheme == "dracula" then
+              "green"
+            else
+              unreachable;
           modifiers = [ "bold" ];
         };
       };
