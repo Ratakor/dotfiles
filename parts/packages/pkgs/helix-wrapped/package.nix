@@ -1,8 +1,7 @@
 # Subset of my own helix config but wrapped
-# As of 18 Sep 2025 the differences are:
+# As of 04 Oct 2025 the differences are:
 # - no languages settings
 # - no custom themes
-# - default theme is gruvbox
 {
   lib,
   pkgs,
@@ -28,8 +27,11 @@
     vscode-json-languageserver # JSON
     vtsls # JS/TS
     yaml-language-server # YAML
-    zig # ZLS dependency
     zls # Zig
+
+    # Toolchains (often needed by language servers)
+    cargo
+    zig
   ],
 }:
 let
@@ -38,7 +40,9 @@ let
   toml = pkgs.formats.toml { };
 
   settings = {
-    theme = "gruvbox";
+    # dark: gruvbox dracula
+    # light: gruvbox_light acme papercolor-light
+    theme = "acme";
 
     # https://docs.helix-editor.com/editor.html
     editor = {

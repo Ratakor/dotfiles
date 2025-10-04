@@ -39,12 +39,15 @@ in
       vscode-json-languageserver # JSON
       vtsls # JS/TS
       yaml-language-server # YAML
-      zig # ZLS dependency
       zls # Zig
 
       # Formatters
-      nixfmt # Nix
       black # Python
+      nixfmt # Nix
+
+      # Toolchains (often needed by language servers)
+      cargo
+      zig
     ];
 
     settings = {
