@@ -152,9 +152,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "66fa9829a31c95d5493b15be231d8eaf7f04eb22",
-      "url": "https://github.com/ratakor/zpotify/archive/66fa9829a31c95d5493b15be231d8eaf7f04eb22.tar.gz",
-      "hash": "05nyispdsll81c1vczmxivmv26yjvsfkzp0cz53xbcamwlwak2bf"
+      "revision": "cb54f281eb57cd129eec2bf608a14e8c89ece0ad",
+      "url": "https://github.com/ratakor/zpotify/archive/cb54f281eb57cd129eec2bf608a14e8c89ece0ad.tar.gz",
+      "hash": "0bjaywx00m3iyqsjq7xz0qwgdrh3iz2fkjk28jx6s6bw3qransdq"
     },
     "zsh-helix-mode": {
       "type": "Git",
