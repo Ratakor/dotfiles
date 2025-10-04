@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "95d528a5f54eaba0d12102249ce42f4d01f4e364",
-      "url": "https://github.com/ipetkov/crane/archive/95d528a5f54eaba0d12102249ce42f4d01f4e364.tar.gz",
-      "hash": "1ci6p7z9izshqbfg58bba6yvvhldgs4dk2gny6i5xh2z8xl5ckim"
+      "revision": "c5b48a59ccd5179ea626f47b05d2828c37fb31b7",
+      "url": "https://github.com/ipetkov/crane/archive/c5b48a59ccd5179ea626f47b05d2828c37fb31b7.tar.gz",
+      "hash": "187zzwx5r1ccj6415sxp7xh33jmyc6bc20r329lqz04ljfmq6kmr"
     },
     "flint": {
       "type": "Git",
@@ -35,9 +35,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "4de5e2f5bf3a6aa34087437065e1e5c099f8fefb",
-      "url": "https://github.com/NotAShelf/flint/archive/4de5e2f5bf3a6aa34087437065e1e5c099f8fefb.tar.gz",
-      "hash": "0i5sw4v9iwxdc6rh4fdsd1n39nif8pj2nyhjgaqak2ppj47v7k5h"
+      "revision": "d43835672958f1125ee4567ab4ddf6ecde33a965",
+      "url": "https://github.com/NotAShelf/flint/archive/d43835672958f1125ee4567ab4ddf6ecde33a965.tar.gz",
+      "hash": "1s3mdb25bqly2hdkcg4q0vypwk3ldcf01c13may0d3wkhv57w18l"
     },
     "home-manager": {
       "type": "Git",
@@ -48,9 +48,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "bc2afee55bc5d3b825287829d6592b9cc1405aad",
-      "url": "https://github.com/nix-community/home-manager/archive/bc2afee55bc5d3b825287829d6592b9cc1405aad.tar.gz",
-      "hash": "0lj94mpvn5cl9rkqnq1nxmgv90szskgbakyjfiw1x8cavxsr39k6"
+      "revision": "edafd6da1936426708f1be0b1a4288007f16639a",
+      "url": "https://github.com/nix-community/home-manager/archive/edafd6da1936426708f1be0b1a4288007f16639a.tar.gz",
+      "hash": "1003yycm2yrccf7fwhxd3zm1x3bdsdj5zc4cws2wzn36zhlfb9fi"
     },
     "mnw": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "868a4c7fca4477c3253cf5e0389e9c4fd3bc0bd9",
-      "url": "https://github.com/NotAShelf/stash/archive/868a4c7fca4477c3253cf5e0389e9c4fd3bc0bd9.tar.gz",
-      "hash": "1z8cg907i6pxjhka38j8is45g4ixscdin3iqimsrpc4v11lvf64n"
+      "revision": "dd4a9b5894458662b4a3fef77d9cce78a2927cf2",
+      "url": "https://github.com/NotAShelf/stash/archive/dd4a9b5894458662b4a3fef77d9cce78a2927cf2.tar.gz",
+      "hash": "118yh8ypd54lp48qz2a81hibx3v4n3rir4w0d6z03ls9yjdkjxy5"
     },
     "treefmt-nix": {
       "type": "Git",
@@ -152,9 +152,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d19cbd6c9a74fa38f56e2fb89ad5748fb92f1239",
-      "url": "https://github.com/ratakor/zpotify/archive/d19cbd6c9a74fa38f56e2fb89ad5748fb92f1239.tar.gz",
-      "hash": "1hkll2hxnyycrlli65i5rihxhjv5ihcw46f9iv86yr2q7fcsybmx"
+      "revision": "66fa9829a31c95d5493b15be231d8eaf7f04eb22",
+      "url": "https://github.com/ratakor/zpotify/archive/66fa9829a31c95d5493b15be231d8eaf7f04eb22.tar.gz",
+      "hash": "05nyispdsll81c1vczmxivmv26yjvsfkzp0cz53xbcamwlwak2bf"
     },
     "zsh-helix-mode": {
       "type": "Git",
