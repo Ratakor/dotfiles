@@ -13,7 +13,10 @@ in
   config = mkIf (config.self.displayServer == "x11") {
     user.packages = [ pkgs.sx ];
     hm.xdg.configFile = {
-      "sx/sxrc".source = ./sxrc;
+      "sx/sxrc" = {
+        source = ./sxrc;
+        executable = true;
+      };
       "sx/gruvbox-dark".source = ./gruvbox-dark;
     };
   };
