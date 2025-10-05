@@ -46,6 +46,12 @@
       options = { }; # TODO
     };
 
+    aliases = {
+      st = "status";
+      ci = "commit";
+      desc = "describe";
+    };
+
     extraConfig = {
       init.defaultBranch = "master";
       color.ui = true;
