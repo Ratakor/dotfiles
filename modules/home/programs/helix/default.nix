@@ -136,28 +136,33 @@ in
       # https://docs.helix-editor.com/remapping.html
       # https://docs.helix-editor.com/commands.html
       # g [ ] m " z <space>
-      keys = {
-        normal = {
-          esc = [
-            "collapse_selection"
-            "keep_primary_selection"
-          ];
-          space = {
-            w = ":write";
-            q = ":quit";
+      keys =
+        let
+          shared = {
+            z.q = ":reflow";
+            X = "extend_line_above";
+            space = {
+              # reverse f/F and e/E
+              f = "file_picker_in_current_directory";
+              F = "file_picker";
+              e = "file_explorer_in_current_buffer_directory";
+              E = "file_explorer";
+            };
+            "C-h" = "select_prev_sibling";
+            "C-j" = "shrink_selection";
+            "C-k" = "expand_selection";
+            "C-l" = "select_next_sibling";
           };
-          z.q = ":reflow";
-          X = "extend_line_above";
-          "C-h" = "select_prev_sibling";
-          "C-j" = "shrink_selection";
-          "C-k" = "expand_selection";
-          "C-l" = "select_next_sibling";
+        in
+        {
+          normal = shared // {
+            esc = [
+              "collapse_selection" # ;
+              "keep_primary_selection" # ,
+            ];
+          };
+          select = shared;
         };
-        select = {
-          z.q = ":reflow";
-          X = "extend_line_above";
-        };
-      };
     };
 
     languages = {
