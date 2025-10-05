@@ -56,6 +56,7 @@ let
       foreground = colors.foreground;
       background = colors.background;
       cursor = "${colors.background} ${colors.foreground}";
+      selection-background = colors.selection;
 
       regular0 = colors.black;
       regular1 = colors.red;
