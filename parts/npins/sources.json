@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "c5b48a59ccd5179ea626f47b05d2828c37fb31b7",
-      "url": "https://github.com/ipetkov/crane/archive/c5b48a59ccd5179ea626f47b05d2828c37fb31b7.tar.gz",
-      "hash": "187zzwx5r1ccj6415sxp7xh33jmyc6bc20r329lqz04ljfmq6kmr"
+      "revision": "1979a2524cb8c801520bd94c38bb3d5692419d93",
+      "url": "https://github.com/ipetkov/crane/archive/1979a2524cb8c801520bd94c38bb3d5692419d93.tar.gz",
+      "hash": "0g3ng8afjdhzxxkvhlc50jrz18bf0hrw2l6vz2cxi6yqsaibh368"
     },
     "flint": {
       "type": "Git",
@@ -48,9 +48,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "edafd6da1936426708f1be0b1a4288007f16639a",
-      "url": "https://github.com/nix-community/home-manager/archive/edafd6da1936426708f1be0b1a4288007f16639a.tar.gz",
-      "hash": "1003yycm2yrccf7fwhxd3zm1x3bdsdj5zc4cws2wzn36zhlfb9fi"
+      "revision": "d305eece827a3fe317a2d70138f53feccaf890a1",
+      "url": "https://github.com/nix-community/home-manager/archive/d305eece827a3fe317a2d70138f53feccaf890a1.tar.gz",
+      "hash": "0q83c34qf6wx5fsjhnwl6b774a0gz0y8qvamlysz1hsil42k18qq"
     },
     "mnw": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "dd4a9b5894458662b4a3fef77d9cce78a2927cf2",
-      "url": "https://github.com/NotAShelf/stash/archive/dd4a9b5894458662b4a3fef77d9cce78a2927cf2.tar.gz",
-      "hash": "118yh8ypd54lp48qz2a81hibx3v4n3rir4w0d6z03ls9yjdkjxy5"
+      "revision": "a59e207e76d48c6d016c7b8fe13234d864da6532",
+      "url": "https://github.com/NotAShelf/stash/archive/a59e207e76d48c6d016c7b8fe13234d864da6532.tar.gz",
+      "hash": "081w0aian5j4cirxm36dkjpcgnbzdk2hbyqsd4shj13jwjlgv9d8"
     },
     "treefmt-nix": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "5eda4ee8121f97b218f7cc73f5172098d458f1d1",
-      "url": "https://github.com/numtide/treefmt-nix/archive/5eda4ee8121f97b218f7cc73f5172098d458f1d1.tar.gz",
-      "hash": "1vqns9hjhmbnhdq2xvcmdxng11jrmcn9lpk2ncfh1f969z9lj8y9"
+      "revision": "761ae7aff00907b607125b2f57338b74177697ed",
+      "url": "https://github.com/numtide/treefmt-nix/archive/761ae7aff00907b607125b2f57338b74177697ed.tar.gz",
+      "hash": "1y0xsyj12939fg6i0f7bk5ppl06gx30vxfdlq111d699hxv6pbw2"
     },
     "wallpapers": {
       "type": "Git",
@@ -152,8 +152,8 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "cb54f281eb57cd129eec2bf608a14e8c89ece0ad",
-      "url": "https://github.com/ratakor/zpotify/archive/cb54f281eb57cd129eec2bf608a14e8c89ece0ad.tar.gz",
+      "revision": "bec3ee58c41b3a22e2ed131670cbe85708e1117e",
+      "url": "https://github.com/ratakor/zpotify/archive/bec3ee58c41b3a22e2ed131670cbe85708e1117e.tar.gz",
       "hash": "0bjaywx00m3iyqsjq7xz0qwgdrh3iz2fkjk28jx6s6bw3qransdq"
     },
     "zsh-helix-mode": {
