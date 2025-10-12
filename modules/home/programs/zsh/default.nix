@@ -21,6 +21,9 @@
       zsh-completions
       nix-zsh-completions
     ];
+
+    # Not needed, see programs.zsh.shellInit for why
+    file.".zshenv".enable = false;
   };
 
   hm.programs.zsh = {
