@@ -89,11 +89,6 @@ in
       #   add an up-to-date custom package Y. pkgs.X will reference the old Y
       #   but self.pkgs.X will work as expected.
       # inputs.self.overlays.default
-
-      (const (prev: {
-        # https://nixpk.gs/pr-tracker.html?pr=433847
-        pmount = self.pkgs.pmount;
-      }))
     ];
   };
 }
