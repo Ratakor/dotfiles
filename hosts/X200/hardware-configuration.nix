@@ -38,10 +38,10 @@
   # zpool options:
   #   ashift=12 (depends on the drive & cannot be changed)
   #
-  #   compression=on (maybe swap to zstd for /nix)
+  #   compression=on ("on" corresponds to the best algorithm aka lz4)
   #   dedup=on (maybe only on for /nix)
   #   atime=off
-  #   relatime=off (note that relatime=on requires atime=on)
+  #   relatime=on (note that relatime=on requires atime=on)
   #   xattr=sa
   #   acltype=posixacl
   #   com.sun:auto-snapshot=true (only on /home and /var)
