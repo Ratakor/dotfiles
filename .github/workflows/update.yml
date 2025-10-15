@@ -42,4 +42,4 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v6
         with:
-          commit_message: "[CI]: Update flake.lock & npins"
+          commit_message: "ci: update flake.lock & npins"
