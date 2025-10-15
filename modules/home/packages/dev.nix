@@ -49,6 +49,7 @@ let
     # texliveMinimal # latex, see `texliveFull` too
     pandoc # document converter
     # tinyxxd # hexdump utility, see `hexyl` too
+    # teehee # modal terminal hex editor
     # self.pkgs.neocities-zig # TODO: not packaged
   ];
 

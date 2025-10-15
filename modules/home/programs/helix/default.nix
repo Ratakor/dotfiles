@@ -140,13 +140,20 @@ in
         let
           shared = {
             z.q = ":reflow";
-            X = "extend_line_above";
+            x = "select_line_below"; # default: extend_line_below
+            X = "select_line_above";
             space = {
+              space = ":format";
               # reverse f/F and e/E
               f = "file_picker_in_current_directory";
               F = "file_picker";
               e = "file_explorer_in_current_buffer_directory";
               E = "file_explorer";
+            };
+            g = {
+              # reverse gs and gh
+              h = "goto_first_nonwhitespace";
+              s = "goto_line_start";
             };
             "C-h" = "select_prev_sibling";
             "C-j" = "shrink_selection";
