@@ -27,7 +27,7 @@ let
       unicode-input = "none";
       show-urls-launch = "Control+Shift+l";
       show-urls-copy = "Control+Shift+u";
-      search-start = "Mod1+s";
+      search-start = "Mod1+Shift+s";
 
       scrollback-up-half-page = "Mod1+u";
       scrollback-down-half-page = "Mod1+d";
