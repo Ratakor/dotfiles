@@ -46,7 +46,7 @@ in
         quickshare = {
           id = "6g1vc-nc3v8";
           label = "quickshare";
-          path = "~/quickshare";
+          path = "~/media/quickshare";
           type = "sendreceive";
           devices = allDevices;
         };
