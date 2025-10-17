@@ -28,6 +28,7 @@ let
     # htop-vim # process viewer with vim keybindings
     # micro # normie text editor
     # discordo # discord client
+    profanity # XMPP client
   ];
 
   # don't include that in packages
