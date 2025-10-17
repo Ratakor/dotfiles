@@ -52,6 +52,7 @@
   - [`options`](modules/options): Modules options for customising my nixos config.
   - [`profiles`](modules/profiles): Shared configurations between similar machines.
 - [`parts`](parts): Individual parts of this flake powered by [flake-parts](https://flake.parts/).
+  - [`apps`](parts/apps): Custom applications to be run with `nix run`.
   - [`lib`](parts/lib): Custom library of functions and utilities.
   - [`npins`](parts/npins): Additional dependencies managed with [npins](https://github.com/andir/npins).
   - [`packages`](parts/packages): Custom pacakges and wrapped configurations.
