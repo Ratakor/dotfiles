@@ -48,9 +48,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d305eece827a3fe317a2d70138f53feccaf890a1",
-      "url": "https://github.com/nix-community/home-manager/archive/d305eece827a3fe317a2d70138f53feccaf890a1.tar.gz",
-      "hash": "0q83c34qf6wx5fsjhnwl6b774a0gz0y8qvamlysz1hsil42k18qq"
+      "revision": "722792af097dff5790f1a66d271a47759f477755",
+      "url": "https://github.com/nix-community/home-manager/archive/722792af097dff5790f1a66d271a47759f477755.tar.gz",
+      "hash": "0h33b93cr2riwd987ii5xl28mac590fm2041c5pcz0kdad3yll4s"
     },
     "mnw": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "a59e207e76d48c6d016c7b8fe13234d864da6532",
-      "url": "https://github.com/NotAShelf/stash/archive/a59e207e76d48c6d016c7b8fe13234d864da6532.tar.gz",
-      "hash": "081w0aian5j4cirxm36dkjpcgnbzdk2hbyqsd4shj13jwjlgv9d8"
+      "revision": "a9da424e702f3e6f9a13b327ba2200b610dec6f1",
+      "url": "https://github.com/NotAShelf/stash/archive/a9da424e702f3e6f9a13b327ba2200b610dec6f1.tar.gz",
+      "hash": "1rqg1czdh1h1ycj68v3lr960xrq16i7yxm26glniylrh0li8wgic"
     },
     "treefmt-nix": {
       "type": "Git",
@@ -100,9 +100,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "285cfb00f957a5e32cda5902959dba4e01e9d180",
-      "url": "https://github.com/ratakor/wallpapers/archive/285cfb00f957a5e32cda5902959dba4e01e9d180.tar.gz",
-      "hash": "105lyp88pzwzmjsyg4awiffa2m8azj1x70dl4xz5jkh0njnihp30"
+      "revision": "29e0c21c30b6a53b8668a9698415991d4fb8aeff",
+      "url": "https://github.com/ratakor/wallpapers/archive/29e0c21c30b6a53b8668a9698415991d4fb8aeff.tar.gz",
+      "hash": "181aigyyc75l9428kmm74cyi5xrziks45y9dc9vzc8jjh2m7a2kh"
     },
     "watt": {
       "type": "Git",
