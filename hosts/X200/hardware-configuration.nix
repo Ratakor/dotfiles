@@ -12,8 +12,8 @@
   ];
 
   boot = {
-    # we're not using pkgs.linuxPackages_latest-libre because of zfs
-    # kernelPackages = pkgs.linuxPackages-libre;
+    # we're not using pkgs.linuxPackages_xanmod_latest because of zfs
+    kernelPackages = pkgs.linuxPackages_xanmod_stable;
     initrd = {
       availableKernelModules = [
         "uhci_hcd"
