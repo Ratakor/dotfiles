@@ -20,11 +20,18 @@
     let
       inherit (builtins) concatStringsSep match;
       inherit (lib.attrsets) recursiveUpdate;
-      inherit (lib.filesystem) packagesFromDirectoryRecursive;
       inherit (lib.customisation) callPackageWith;
+      inherit (lib.filesystem) packagesFromDirectoryRecursive;
+      inherit (lib.strings) optionalString;
+      inherit (lib.trivial) const;
 
       date = concatStringsSep "-" (match "(.{4})(.{2})(.{2}).*" self.lastModifiedDate);
       craneLib = pkgs.callPackage "${pins.crane}/lib" { };
+      diskoVersion =
+        let
+          versionInfo = import "${pins.disko}/version.nix";
+        in
+        versionInfo.version + (optionalString (!versionInfo.released) "-dirty");
     in
     {
       # Add all packages to the default overlay which can be consumed as follows:
@@ -45,6 +52,11 @@
           fromPins = {
             # age-encrypted secrets for NixOS
             agenix = pkgs.callPackage "${pins.agenix}/pkgs/agenix.nix" { };
+            # Declarative disk partitioning and formatting using nix
+            disko = pkgs.callPackage "${pins.disko}/package.nix" { inherit diskoVersion; };
+            disko-install = fromPins.disko.overrideAttrs (const {
+              name = "disko-install";
+            });
             # Stupid simple utility for linting your flake inputs
             flint = pkgs.callPackage "${pins.flint}/nix/package.nix" { };
             # Wayland clipboard "manager"

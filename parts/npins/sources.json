@@ -26,6 +26,19 @@
       "url": "https://github.com/ipetkov/crane/archive/1979a2524cb8c801520bd94c38bb3d5692419d93.tar.gz",
       "hash": "0g3ng8afjdhzxxkvhlc50jrz18bf0hrw2l6vz2cxi6yqsaibh368"
     },
+    "disko": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "disko"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "3a9450b26e69dcb6f8de6e2b07b3fc1c288d85f5",
+      "url": "https://github.com/nix-community/disko/archive/3a9450b26e69dcb6f8de6e2b07b3fc1c288d85f5.tar.gz",
+      "hash": "0311bakrdiv7nbsavv2z7kcj2dbdmhmcjv52xzxwlis4d6fj3dfb"
+    },
     "flint": {
       "type": "Git",
       "repository": {

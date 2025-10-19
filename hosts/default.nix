@@ -12,9 +12,13 @@ let
   inherit (lib.lists) flatten singleton;
   inherit (lib.strings) hasSuffix;
 
+  # External Modules
+  disko = import "${self.pins.disko}/module.nix";
+
   # Root path for local modules
   modulePath = ../modules;
 
+  # Local modules
   nixos = modulePath + /nixos;
   options = modulePath + /options;
   profiles = modulePath + /profiles;

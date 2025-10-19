@@ -106,4 +106,27 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  # TODO: disko
+  # https://git.disroot.org/folliehiyuki/nixconfig/src/branch/main/flake/nixos/aragorn/hardware.nix
+  # https://github.com/nix-community/disko/blob/master/example/zfs.nix
+  # disko.devices = {
+  #   nodev."/" = {
+  #     fsType = "tmpfs";
+  #     mountOptions = [
+  #       "defaults"
+  #       "size=1G"
+  #       "mode=755"
+  #     ];
+  #   };
+
+  #   disk.sda = {
+  #     device = "/dev/sda";
+  #     # device = "/dev/disk/by-id/..."
+  #     type = "disk";
+  #     content = {
+  #       type = "gpt"; # "msdos"?
+  #     };
+  #   };
+  # };
 }
