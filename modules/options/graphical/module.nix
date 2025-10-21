@@ -84,16 +84,27 @@ in
       };
     };
 
-    # TODO: currently unused
-    # why? because nsxiv -a option
-    # just make a wrapper? yes true I cba tho
-    imageViewer = mkOption {
-      type = enum [
-        "imv"
-        "nsxiv"
-      ];
-      default = if cfg.displayServer == "wayland" then "imv" else "nsxiv";
-      description = "The image viewer to use.";
+    imageViewer = {
+      program = mkOption {
+        type = enum [
+          "imv"
+          "nsxiv"
+        ];
+        default = if cfg.displayServer == "wayland" then "imv" else "nsxiv";
+        description = "The image viewer to use.";
+      };
+
+      cmd = mkOption {
+        type = nullOr str;
+        default = null;
+        description = "The image viewer command to use.";
+      };
+
+      desktopEntry = mkOption {
+        type = nullOr str;
+        default = null;
+        description = "The desktop entry of the image viewer.";
+      };
     };
   };
 

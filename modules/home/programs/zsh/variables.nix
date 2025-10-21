@@ -35,9 +35,8 @@ in
 
     sessionVariables = {
       # Default programs
-      EDITOR = "hx";
-      # EDITOR = "nvim";
-      # VISUAL = "nvim"; # nvim is not a visual editor
+      EDITOR = config.self.editor.cmd;
+      # VISUAL = config.self.editor.cmd; # config.self.editor is not a visual editor
       BROWSER = "chromium --new-window"; # cromite
       DMENU = config.self.menu.dynamic;
       TERMINAL = config.self.terminal.cmd;

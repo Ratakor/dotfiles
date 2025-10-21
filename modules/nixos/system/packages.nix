@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  self,
   ...
 }:
 let
@@ -15,7 +16,7 @@ in
     # You can use https://search.nixos.org/ to find more packages (and options).
     # TODO: sort that
     systemPackages = with pkgs; [
-      neovim # editor, see environment.nix for $EDITOR, what about helix?
+      self.pkgs.helix-wrapped # editor, see environment.nix for $EDITOR
       yazi # file manager
       git
       less

@@ -70,10 +70,6 @@ in
         exec = "git clone %u";
         terminal = true;
       };
-      nsxiv-a = {
-        name = "nsxiv";
-        exec = "nsxiv -a %f";
-      };
       torrent = {
         name = "Torrent Client";
         exec = "qbittorrent %u";
@@ -85,12 +81,6 @@ in
       defaultApplications =
         let
           browser = [ "chromium-browser.desktop" ]; # change to cromite when it's available
-
-          # There should be an option for that, same for the $EDITOR variable
-          editor = [
-            "Helix.desktop"
-            "nvim.desktop"
-          ];
 
           # globbing is not supported in mimeapps.list
           # based on /usr/share/mime/types aka /run/current-system/sw/share/mime/types
@@ -299,6 +289,11 @@ in
             "video/x-theora+ogg"
           ];
 
+          textMimeTypes = [
+            "text/x-shellscript"
+            "text/plain"
+          ];
+
           mimeToApps =
             types: apps:
             listToAttrs (
@@ -310,13 +305,9 @@ in
         in
         mimeToApps audioMimeTypes [ "mpv.desktop" ]
         // mimeToApps videoMimeTypes [ "mpv.desktop" ]
-        // mimeToApps imageMimeTypes [
-          "imv.desktop"
-          "nsxiv-a.desktop"
-        ]
+        // mimeToApps imageMimeTypes [ config.self.imageViewer.desktopEntry ]
+        // mimeToApps textMimeTypes [ config.self.editor.desktopEntry ]
         // {
-          "text/x-shellscript" = editor;
-          "text/plain" = editor;
           "application/postscript" = [ "org.pwmt.zathura.desktop" ];
           "application/pdf" = [ "org.pwmt.zathura.desktop" ];
           "inode/directory" = [ "terminal-directory.desktop" ];

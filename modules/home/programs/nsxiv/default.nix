@@ -22,7 +22,17 @@ let
   });
 in
 {
-  config = mkIf (config.self.displayServer == "x11") {
+  config = mkIf (config.self.imageViewer.program == "nsxiv") {
     user.packages = [ nsxiv ];
+
+    hm.xdg.desktopEntries.nsxiv-a = {
+      name = "nsxiv";
+      exec = "nsxiv -a %f";
+    };
+
+    self.imageViewer = {
+      cmd = "nsxiv -a";
+      desktopEntry = "nsxiv-a.desktop";
+    };
   };
 }

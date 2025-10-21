@@ -18,7 +18,7 @@
 
 ### Command Line Interface
 - Shell: [Zsh](https://github.com/zsh-users/zsh)
-- Editor: [Helix](https://helix-editor.com/) / [Neovim](https://neovim.io/)
+- Editor: [Helix](https://helix-editor.com/)
 - Terminal Workspace: [Zellij](https://zellij.dev/)
 - File Manager: [Yazi](https://github.com/sxyazi/yazi)
 - Calendar: [Quand](https://github.com/ratakor/quand)

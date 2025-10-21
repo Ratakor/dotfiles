@@ -14,11 +14,14 @@
 
   self = {
     colorscheme = "gruvbox-dark";
+
     displayServer = "wayland";
     windowManager = "niri";
     menu.program = "fuzzel";
     terminal.program = "foot";
-    # imageViewer = "imv";
+    imageViewer.program = "imv";
+
+    editor.program = "helix";
   };
 
   system.stateVersion = "25.05";
