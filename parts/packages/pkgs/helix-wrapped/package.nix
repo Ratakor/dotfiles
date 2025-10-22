@@ -141,11 +141,6 @@ let
             e = "file_explorer_in_current_buffer_directory";
             E = "file_explorer";
           };
-          g = {
-            # reverse gs and gh
-            h = "goto_first_nonwhitespace";
-            s = "goto_line_start";
-          };
           "C-h" = "select_prev_sibling";
           "C-j" = "shrink_selection";
           "C-k" = "expand_selection";
