@@ -50,6 +50,7 @@
       st = "status";
       ci = "commit";
       desc = "describe";
+      ls = "ls-files";
     };
 
     extraConfig = {
