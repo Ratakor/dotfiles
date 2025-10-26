@@ -26,13 +26,18 @@
     gacpv = "ga . && gcv && gp";
   };
 
+  # TODO: move to programs/delta
+  hm.programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = { }; # TODO
+  };
+
   hm.programs.git = {
     enable = true;
     # package = pkgs.gitFull;
     lfs.enable = true;
 
-    userName = config.user.description;
-    userEmail = "ratakor@disroot.org"; # ?
     signing = {
       key = "241B1CBE567B287E";
       format = "openpgp";
@@ -41,19 +46,17 @@
       signByDefault = true;
     };
 
-    delta = {
-      enable = true;
-      options = { }; # TODO
-    };
-
-    aliases = {
-      st = "status";
-      ci = "commit";
-      desc = "describe";
-      ls = "ls-files";
-    };
-
-    extraConfig = {
+    settings = {
+      user = {
+        name = config.user.description;
+        email = "ratakor@disroot.org"; # ?
+      };
+      alias = {
+        st = "status";
+        ci = "commit";
+        desc = "describe";
+        ls = "ls-files";
+      };
       init.defaultBranch = "master";
       color.ui = true;
       core.sshCommand = "${pkgs.openssh_gssapi}/bin/ssh";
