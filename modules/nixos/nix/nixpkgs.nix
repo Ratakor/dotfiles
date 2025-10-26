@@ -25,11 +25,11 @@ in
       # Whether to allow unfree packages.
       # See https://nixos.org/manual/nixpkgs/stable/#sec-allow-unfree.
       # Default: false || builtins.getEnv "NIXPKGS_ALLOW_UNFREE" == "1"
-      # allowUnfree = true;
+      allowUnfree = true;
 
       # This works despite printing the below warning 3 times.
       # `evaluation warning: undeclared Nixpkgs option set: config.allowUnfreePredicate`
-      allowUnfreePredicate = pkg: warn "Allowing unfree package: ${getName pkg}" true;
+      # allowUnfreePredicate = pkg: warn "Allowing unfree package: ${getName pkg}" true;
 
       # Whether to allow unsupported systems.
       # See https://nixos.org/manual/nixpkgs/stable/#sec-allow-unsupported-system.
