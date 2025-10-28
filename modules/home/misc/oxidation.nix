@@ -6,7 +6,7 @@
   ...
 }:
 let
-  mkAlias = cmd: args: cmd + " " + (builtins.concatStringsSep " " args);
+  mkAlias = cmd: args: builtins.concatStringsSep " " ([ cmd ] ++ args);
 in
 {
   user.packages = with pkgs; [
@@ -14,39 +14,73 @@ in
     fd # find replacement
     dust # du replacement
     duf # df replacement, see dysk too
-    procs # ps replacement
+    # procs # ps replacement
     socat # netcat replacement
-    # trash-cli # rm replacement (kinda) # TODO: no need for trash-cli if using zfs/btrfs snapshots
+    # trash-cli # rm replacement (kinda), -zfs/btrfs snapshots are way superior
   ];
 
   hm.home.shellAliases = {
-    rm = "rm -rv"; # "trash -v"
-    rmdir = "rmdir -v"; # -p
-    cp = "cp -riv"; # --reflink=always
-    mv = "mv -iv";
-    mkdir = "mkdir -pv";
-    grep = "grep -RIn --exclude-dir=.git --color=auto";
-    diff = "diff --color=auto";
-    ip = "ip --color=auto";
-    less = "less -R";
-    # readlink = "readlink -f"; # use realpath instead
+    # previously "trash -v"
+    rm = mkAlias "rm" [
+      "--recursive"
+      "--verbose"
+    ];
+    rmdir = mkAlias "rmdir" [
+      # "--parents"
+      "--verbose"
+    ];
+    mkdir = mkAlias "mkdir" [
+      "--parents"
+      "--verbose"
+    ];
+    cp = mkAlias "cp" [
+      "--interactive"
+      "--recursive"
+      # "--reflink=always"
+      "--verbose"
+    ];
+    mv = mkAlias "mv" [
+      "--interactive"
+      "--verbose"
+    ];
+    grep = mkAlias "grep" [
+      "--binary-files=without-match"
+      "--color=auto"
+      "--dereference-recursive"
+      "--exclude-dir=.git"
+      "--line-number"
+    ];
+    diff = mkAlias "diff" [ "--color=auto" ];
+    ip = mkAlias "ip" [ "--color=auto" ];
+    less = mkAlias "less" [ "-R" ];
 
-    ps = "procs";
-    duf = "duf -hide special -hide-fs zfs";
-    du = "dust --reverse";
-    cat = "bat --style=numbers,changes --tabs 8";
+    # ps = "procs";
+    duf = mkAlias "duf" [
+      "-hide special"
+      "-hide-fs zfs"
+    ];
+    du = mkAlias "dust" [ "--reverse" ];
+    cat = mkAlias "bat" [
+      # I believe --decorations=auto is broken
+      # "--style=numbers,changes"
+      # "--tabs 8"
+    ];
 
     fd = mkAlias "fd" [
+      # "--absolute-path" # print absolute paths
       # "--color=always" # always use colors
+      "--exclude=.git/" # exclude .git directories
+      # "--follow" # follow symlinks
       "--hidden" # show hidden files
       # "--no-ignore" # don't ignore files in .gitignore, .ignore, .fdignore, ...
       "--no-ignore-vcs" # don't ignore files in .gitignore
-      # "--absolute-path" # print absolute paths
-      # "--follow" # follow symlinks
-      "--exclude=.git/" # exclude .git directories
     ];
 
-    ls = "eza --color=auto --group-directories-first --hyperlink";
+    ls = mkAlias "eza" [
+      "--color=auto"
+      "--group-directories-first"
+      "--hyperlink"
+    ];
     sl = "ls";
     la = "ls -a";
     laa = "ls -aa";
