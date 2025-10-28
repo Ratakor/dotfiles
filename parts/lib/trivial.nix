@@ -1,6 +1,11 @@
 { lib, ... }:
 let
-  inherit (builtins) substring stringLength;
+  inherit (builtins)
+    substring
+    stringLength
+    hasAttr
+    getAttr
+    ;
   inherit (lib.trivial) fromHexString;
   inherit (lib.strings) toUpper;
 in
@@ -51,4 +56,28 @@ in
 
   # Abort with an error message if this code is ever executed.
   unreachable = abort "Reached unreachable code!";
+
+  /**
+    Returns the attribute named s from set or fallback if it doesn't exist.
+
+    # Inputs
+
+    `s`
+    : String
+
+    `set`
+    : AttrSet
+
+    `fallback`
+    : a
+
+    # Type
+
+    ```
+    getAttrOr :: String -> AttrSet -> a -> a
+    ```
+  */
+  getAttrOr =
+    s: set: fallback:
+    if hasAttr s set then getAttr s set else fallback;
 }
