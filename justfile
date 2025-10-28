@@ -66,3 +66,8 @@ fmt:
 [group('nix')]
 check:
     nix flake check
+
+# Update nixpkgs
+[group('nix')]
+update:
+    nix flake update nixpkgs
