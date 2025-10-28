@@ -17,6 +17,7 @@ in
     # procs # ps replacement
     socat # netcat replacement
     # trash-cli # rm replacement (kinda), -zfs/btrfs snapshots are way superior
+    sd # sed replacement
   ];
 
   hm.home.shellAliases = {
