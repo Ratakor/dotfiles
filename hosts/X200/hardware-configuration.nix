@@ -12,8 +12,9 @@
   ];
 
   boot = {
-    # we're not using pkgs.linuxPackages_xanmod_latest because of zfs
-    kernelPackages = pkgs.linuxPackages_xanmod_stable;
+    # We're not using pkgs.linuxPackages_xanmod_latest because of zfs.
+    # Also I don't know the diff between xandmod and xanmod_stable but the latter is broken.
+    kernelPackages = pkgs.linuxPackages_xanmod;
     initrd = {
       availableKernelModules = [
         "uhci_hcd"
