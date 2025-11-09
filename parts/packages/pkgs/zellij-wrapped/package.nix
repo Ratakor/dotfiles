@@ -1,15 +1,13 @@
 # Terminal multiplexer & session manager
 {
-  lib,
   zellij,
-  runCommand,
+  symlinkJoin,
   makeWrapper,
   writeTextFile,
   theme ? "gruvbox-dark",
 }:
 let
   inherit (builtins) readFile;
-  inherit (lib.meta) getExe';
 
   config = writeTextFile {
     name = "zellij-config.kdl";
@@ -19,16 +17,13 @@ let
     + readFile ./common.kdl;
   };
 in
-runCommand zellij.name
-  {
-    inherit (zellij) pname version meta;
-    nativeBuildInputs = [ makeWrapper ];
-  }
-  ''
-    mkdir -p "$out/bin"
-    ln -s "${zellij}/share" "$out/share"
-    makeWrapper ${getExe' zellij "zellij"} "$out/bin/zellij" \
-      --inherit-argv0 \
+symlinkJoin {
+  inherit (zellij) pname version meta;
+  paths = [ zellij ];
+  nativeBuildInputs = [ makeWrapper ];
+  postBuild = ''
+    wrapProgram "$out/bin/zellij" \
       --add-flag "--config" \
       --add-flag "${config}"
-  ''
+  '';
+}
