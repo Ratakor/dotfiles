@@ -39,6 +39,19 @@
       "url": "https://github.com/nix-community/disko/archive/af087d076d3860760b3323f6b583f4d828c1ac17.tar.gz",
       "hash": "1lyp1myii1gmvx8n6j7m1c9dvap1630hqgkp082zvnd9z600zmsf"
     },
+    "dracula-tmTheme": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "dracula",
+        "repo": "sublime"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "d490b57c08f3d110ff61a07ec6edcc1ed9e24a63",
+      "url": "https://github.com/dracula/sublime/archive/d490b57c08f3d110ff61a07ec6edcc1ed9e24a63.tar.gz",
+      "hash": "0n9g4cc5q0mc9257dnpmwskn8vixl0wr87j95bxp8nygn9b9bxzf"
+    },
     "flint": {
       "type": "Git",
       "repository": {
@@ -51,6 +64,19 @@
       "revision": "36c565edd971166718d21ae973c792b194ca737d",
       "url": "https://github.com/NotAShelf/flint/archive/36c565edd971166718d21ae973c792b194ca737d.tar.gz",
       "hash": "0yw4i8xhjda6qxdavrij47hm4h90wk2ivxcsih2fdg74mav8h3cx"
+    },
+    "gruvbox-tmTheme": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "subnut",
+        "repo": "gruvbox-tmTheme"
+      },
+      "branch": "bat-source",
+      "submodules": false,
+      "revision": "40503472826e51d87666e548a0634c4f1d74938c",
+      "url": "https://github.com/subnut/gruvbox-tmTheme/archive/40503472826e51d87666e548a0634c4f1d74938c.tar.gz",
+      "hash": "093bp8qj3v4s0i7bykkpxxk7smxr3c79rcggki7ihiicvlfpaai6"
     },
     "home-manager": {
       "type": "Git",

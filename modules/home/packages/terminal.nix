@@ -30,7 +30,6 @@ let
     # discordo # discord client
     profanity # XMPP client
     # spotify-player # zpotify but different
-    scooter # interactive find-and-replace on files
   ];
 
   # don't include that in packages
