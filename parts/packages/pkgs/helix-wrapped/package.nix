@@ -32,6 +32,8 @@
     # Toolchains (often needed by language servers)
     cargo
     zig
+
+    scooter-wrapped # interactive find-and-replace
   ],
   # dark: gruvbox dracula
   # light: gruvbox_light acme papercolor-light
@@ -140,6 +142,15 @@ let
             F = "file_picker";
             e = "file_explorer_in_current_buffer_directory";
             E = "file_explorer";
+            # replace workspace_symbol_picker with interactive find-and-replace
+            S = [
+              ":pipe scooter --print-on-exit >/dev/tty"
+              ":redraw"
+              # ":write-all"
+              # ":insert-output scooter --no-stdin >/dev/tty"
+              # ":redraw"
+              # ":reload-all"
+            ];
           };
           "C-h" = "select_prev_sibling";
           "C-j" = "shrink_selection";
