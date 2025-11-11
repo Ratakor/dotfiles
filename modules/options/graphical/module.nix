@@ -66,8 +66,9 @@ in
         type = enum [
           "foot"
           "st"
+          "ghostty"
         ];
-        default = if cfg.displayServer == "wayland" then "foot" else "st";
+        default = if cfg.displayServer == "wayland" then "foot" else "ghostty";
         description = "The terminal emulator to use.";
       };
 
