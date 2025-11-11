@@ -17,7 +17,7 @@ xrdb "$XDG_CONFIG_HOME/sx/gruvbox-dark"
 # systemd graphical
 #sxhkd &
 #gammastep &
-#picom -b
+#picom -b --backend xrender
 #sb -b
 #sh -c "sleep 3; kill -10 $(pidof sb)" &
 
