@@ -69,6 +69,7 @@ let
   terminal = with pkgs; [
     nbsdgames # 18 text-based modern games from bsd
     self.pkgs."2048-zig" # 2048 game in terminal
+    self.pkgs.binbreak # a terminal based binary number guessing game
   ];
 
   star-citizen = with pkgs; [
