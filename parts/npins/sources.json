@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "0cea393fffb39575c46b7a0318386467272182fe",
-      "url": "https://github.com/ipetkov/crane/archive/0cea393fffb39575c46b7a0318386467272182fe.tar.gz",
-      "hash": "18rr9s4d4h7qsfpd6j73iqg59c2vvk0r5yf1ykk05yw9bqzchfpk"
+      "revision": "099f9014bc8d0cd6e445470ea1df0fd691d5a548",
+      "url": "https://github.com/ipetkov/crane/archive/099f9014bc8d0cd6e445470ea1df0fd691d5a548.tar.gz",
+      "hash": "1mb0fnayvf1z1h4k7jmdrhcwfdwk22ihnchg0bs89vm3x25md9i8"
     },
     "disko": {
       "type": "Git",
@@ -35,9 +35,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "af087d076d3860760b3323f6b583f4d828c1ac17",
-      "url": "https://github.com/nix-community/disko/archive/af087d076d3860760b3323f6b583f4d828c1ac17.tar.gz",
-      "hash": "1lyp1myii1gmvx8n6j7m1c9dvap1630hqgkp082zvnd9z600zmsf"
+      "revision": "e86a89079587497174ccab6d0d142a65811a4fd9",
+      "url": "https://github.com/nix-community/disko/archive/e86a89079587497174ccab6d0d142a65811a4fd9.tar.gz",
+      "hash": "1zkj08izsxlkndnhnfli1sbblissd7swhpn20hpvdcrlpijz1yzj"
     },
     "dracula-tmTheme": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "827f2a23373a774a8805f84ca5344654c31f354b",
-      "url": "https://github.com/nix-community/home-manager/archive/827f2a23373a774a8805f84ca5344654c31f354b.tar.gz",
-      "hash": "18r687m153vzr2j98zjlhnjhkyb4i5jfkqiqbiysx3f0xzqcv0a5"
+      "revision": "d10a9b16b2a3ee28433f3d1c603f4e9f1fecb8e1",
+      "url": "https://github.com/nix-community/home-manager/archive/d10a9b16b2a3ee28433f3d1c603f4e9f1fecb8e1.tar.gz",
+      "hash": "15gqmh4jdzf3zbjxwbsmsnmp7ck7x3srknqvsamnicgp1gqkniq1"
     },
     "mnw": {
       "type": "Git",
@@ -113,9 +113,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "96089f364b976b9d97c54fc703a3a9224ed2e401",
-      "url": "https://github.com/NotAShelf/stash/archive/96089f364b976b9d97c54fc703a3a9224ed2e401.tar.gz",
-      "hash": "1zsid5mhyiksx31jg0qwjh97d4b616lmql3vcx52pm3kxcs2wd2c"
+      "revision": "bb88c89a0ff7cc35e3bc79b514c65cc448282ab4",
+      "url": "https://github.com/NotAShelf/stash/archive/bb88c89a0ff7cc35e3bc79b514c65cc448282ab4.tar.gz",
+      "hash": "0cfmw8my2mwm5k63j7v2az2f755bywvh5snk63bllbvncmwwzbdy"
     },
     "treefmt-nix": {
       "type": "Git",
