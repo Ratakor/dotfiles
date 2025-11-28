@@ -33,6 +33,7 @@ in
         clang-tools # C/C++
         vscode-css-languageserver # CSS
         gopls # Go
+        jdt-language-server # Java
         python313Packages.jedi-language-server # Python
         lua-language-server # Lua
         marksman # Markdown
