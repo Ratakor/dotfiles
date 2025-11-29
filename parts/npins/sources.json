@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "099f9014bc8d0cd6e445470ea1df0fd691d5a548",
-      "url": "https://github.com/ipetkov/crane/archive/099f9014bc8d0cd6e445470ea1df0fd691d5a548.tar.gz",
-      "hash": "1mb0fnayvf1z1h4k7jmdrhcwfdwk22ihnchg0bs89vm3x25md9i8"
+      "revision": "d9e753122e51cee64eb8d2dddfe11148f339f5a2",
+      "url": "https://github.com/ipetkov/crane/archive/d9e753122e51cee64eb8d2dddfe11148f339f5a2.tar.gz",
+      "hash": "1y61wd28hcv5ki4rwj5zf5z3myf5kfb6g0p75v80pk7qib8q3j4g"
     },
     "disko": {
       "type": "Git",
@@ -35,9 +35,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "e86a89079587497174ccab6d0d142a65811a4fd9",
-      "url": "https://github.com/nix-community/disko/archive/e86a89079587497174ccab6d0d142a65811a4fd9.tar.gz",
-      "hash": "1zkj08izsxlkndnhnfli1sbblissd7swhpn20hpvdcrlpijz1yzj"
+      "revision": "2055a08fd0e2fd41318279a5355eb8a161accf26",
+      "url": "https://github.com/nix-community/disko/archive/2055a08fd0e2fd41318279a5355eb8a161accf26.tar.gz",
+      "hash": "1yj2vk6i5h3aqdjcbjc5pn25mh14af02wa1pczjmjkmg6vrpa6p9"
     },
     "dracula-tmTheme": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d10a9b16b2a3ee28433f3d1c603f4e9f1fecb8e1",
-      "url": "https://github.com/nix-community/home-manager/archive/d10a9b16b2a3ee28433f3d1c603f4e9f1fecb8e1.tar.gz",
-      "hash": "15gqmh4jdzf3zbjxwbsmsnmp7ck7x3srknqvsamnicgp1gqkniq1"
+      "revision": "780be8ef503a28939cf9dc7996b48ffb1a3e04c6",
+      "url": "https://github.com/nix-community/home-manager/archive/780be8ef503a28939cf9dc7996b48ffb1a3e04c6.tar.gz",
+      "hash": "0k15q1vw517mqagq9nfzabbb5sv5l44d4ai2a7vv478sja1b61cf"
     },
     "mnw": {
       "type": "Git",
@@ -100,9 +100,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "5b634fd1b77b0e14b1034a4cf9bfc0bef3a22055",
-      "url": "https://github.com/Gerg-L/mnw/archive/5b634fd1b77b0e14b1034a4cf9bfc0bef3a22055.tar.gz",
-      "hash": "03r239fwfxspljgpaaw8pqynsgd03kqadwq78zilxbkxhig33and"
+      "revision": "68a22f62ca7623fcb700d4ebf225bd91125c773e",
+      "url": "https://github.com/Gerg-L/mnw/archive/68a22f62ca7623fcb700d4ebf225bd91125c773e.tar.gz",
+      "hash": "0lcsrd8x3585xsl94mnz3k6s2vhsbwb4fynwawlh6ajp2qh3j3l9"
     },
     "stash": {
       "type": "Git",
@@ -113,9 +113,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "bb88c89a0ff7cc35e3bc79b514c65cc448282ab4",
-      "url": "https://github.com/NotAShelf/stash/archive/bb88c89a0ff7cc35e3bc79b514c65cc448282ab4.tar.gz",
-      "hash": "0cfmw8my2mwm5k63j7v2az2f755bywvh5snk63bllbvncmwwzbdy"
+      "revision": "f83836531405a42b5d3ad341811736e84275c90f",
+      "url": "https://github.com/NotAShelf/stash/archive/f83836531405a42b5d3ad341811736e84275c90f.tar.gz",
+      "hash": "193i67g9mrf02m0wi18zy0xmvaf1anb4ad1dw7hb2p8hyfixg293"
     },
     "treefmt-nix": {
       "type": "Git",
