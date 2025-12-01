@@ -64,6 +64,15 @@ in
       text = readFile ./src/battery.sh;
     })
 
+    (writeShellApplication {
+      name = "sci";
+      runtimeInputs = with pkgs; [
+        git
+        coreutils
+      ];
+      text = readFile ./src/sci.sh;
+    })
+
     # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/cli/wayland.nix
     (writeShellApplication {
       name = "ocr";
