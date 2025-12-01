@@ -39,6 +39,7 @@ in
         marksman # Markdown
         # nixd # Nix
         nil # Nix
+        ocamlPackages.ocaml-lsp # OCaml
         rust-analyzer # Rust
         sqls # SQL
         superhtml # HTML
