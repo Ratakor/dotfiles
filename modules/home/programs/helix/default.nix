@@ -53,6 +53,7 @@ in
         # Formatters
         black # Python
         nixfmt # Nix
+        ocamlPackages.ocamlformat # OCaml
 
         # Toolchains (often needed by language servers)
         cargo

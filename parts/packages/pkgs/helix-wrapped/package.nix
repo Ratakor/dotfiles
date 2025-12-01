@@ -31,6 +31,9 @@
     yaml-language-server # YAML
     zls # Zig
 
+    # Formatters
+    ocamlPackages.ocamlformat
+
     # Toolchains (often needed by language servers)
     cargo
     zig
