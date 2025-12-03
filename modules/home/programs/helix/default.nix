@@ -56,8 +56,9 @@ in
         ocamlPackages.ocamlformat # OCaml
 
         # Toolchains (often needed by language servers)
-        cargo
-        zig
+        cargo # Rust
+        dune_3 # OCaml
+        zig # Zig
 
         self.pkgs.scooter-wrapped # interactive find-and-replace
       ];
