@@ -1,0 +1,6 @@
+(executable
+ (public_name template)
+ (name main)
+ (libraries template containers)
+ (flags
+  (:standard -open Containers)))

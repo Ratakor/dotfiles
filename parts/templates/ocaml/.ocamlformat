@@ -1,0 +1,8 @@
+version = 0.28.1
+profile = default
+break-cases = fit-or-vertical
+break-infix = wrap-or-vertical
+break-infix-before-func = true
+break-sequences = true
+doc-comments = before
+type-decl = sparse

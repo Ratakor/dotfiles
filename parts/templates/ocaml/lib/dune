@@ -1,0 +1,5 @@
+(library
+ (name template)
+ (libraries containers)
+ (flags
+  (:standard -open Containers)))
