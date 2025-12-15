@@ -142,14 +142,14 @@ let
           x = "select_line_below"; # default: extend_line_below
           X = "select_line_above";
           space = {
-            space = ":format";
             # reverse f/F and e/E
-            f = "file_picker_in_current_directory";
-            F = "file_picker";
+            # f = "file_picker_in_current_directory";
+            # F = "file_picker";
             e = "file_explorer_in_current_buffer_directory";
             E = "file_explorer";
             # replace workspace_symbol_picker with interactive find-and-replace
             S = [
+              "select_all"
               ":pipe scooter --print-on-exit >/dev/tty"
               ":redraw"
               # ":write-all"
