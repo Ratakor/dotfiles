@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -29,7 +30,9 @@ in
 
     self.terminal = {
       cmd = "ghostty";
-      cmdDir = "ghostty --working-directory";
+      cmdDir = "${pkgs.writeShellScript "ghostty_cmdDir" ''
+        ghostty --working-directory="$1"
+      ''}";
     };
   };
 }
