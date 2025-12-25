@@ -46,7 +46,7 @@ in
       inherit GOPATH;
       GOMODCACHE = "${XDG_CACHE_HOME}/go/mod";
       inherit CARGO_HOME;
-      CARGO_TARGET_DIR = "${XDG_CACHE_HOME}/cargo";
+      # CARGO_TARGET_DIR = "${XDG_CACHE_HOME}/cargo";
       RUSTUP_HOME = "${XDG_DATA_HOME}/rustup";
       OPAMROOT = "${XDG_DATA_HOME}/opam";
       DOTNET_CLI_HOME = "${XDG_DATA_HOME}/dotnet";
