@@ -11,7 +11,7 @@
       "submodules": false,
       "revision": "fcdea223397448d35d9b31f798479227e80183f6",
       "url": "https://github.com/ryantm/agenix/archive/fcdea223397448d35d9b31f798479227e80183f6.tar.gz",
-      "hash": "1d4m7hsq727q7ndjqmgyl8vkbkqjwps962ygmv2mcc5dbqzgn963"
+      "hash": "sha256-wyT7Pl6tMFbFrs8Lk/TlEs81N6L+VSybPfiIgzU8lbQ="
     },
     "crane": {
       "type": "Git",
@@ -24,7 +24,7 @@
       "submodules": false,
       "revision": "7d8ec2c71771937ab99790b45e6d9b93d15d9379",
       "url": "https://github.com/ipetkov/crane/archive/7d8ec2c71771937ab99790b45e6d9b93d15d9379.tar.gz",
-      "hash": "1xq6wfs2y6h2xsm7hiqaa4d1agdl1046j0bf98bs75r4km8nq0g0"
+      "hash": "sha256-4AFsUZ0kl6MXSm4BaQgItD0VGlEKR3iq7gIaL7TjBvc="
     },
     "disko": {
       "type": "Git",
@@ -37,7 +37,7 @@
       "submodules": false,
       "revision": "916506443ecd0d0b4a0f4cf9d40a3c22ce39b378",
       "url": "https://github.com/nix-community/disko/archive/916506443ecd0d0b4a0f4cf9d40a3c22ce39b378.tar.gz",
-      "hash": "1bp5hqzqqz99qgx55r50dbqz1b6x4i8q15xnxb0sj31ykbxhqj9z"
+      "hash": "sha256-P0kM+5o+DKnB6raXgFEk3azw8Wqg5FL6wyl9jD+G5a4="
     },
     "dracula-tmTheme": {
       "type": "Git",
@@ -50,7 +50,7 @@
       "submodules": false,
       "revision": "d490b57c08f3d110ff61a07ec6edcc1ed9e24a63",
       "url": "https://github.com/dracula/sublime/archive/d490b57c08f3d110ff61a07ec6edcc1ed9e24a63.tar.gz",
-      "hash": "0n9g4cc5q0mc9257dnpmwskn8vixl0wr87j95bxp8nygn9b9bxzf"
+      "hash": "sha256-7veVVrLPW3T7KkkelDmgPW5kp+b12naKSKwCXBgjL1k="
     },
     "flint": {
       "type": "Git",
@@ -63,7 +63,7 @@
       "submodules": false,
       "revision": "36c565edd971166718d21ae973c792b194ca737d",
       "url": "https://github.com/NotAShelf/flint/archive/36c565edd971166718d21ae973c792b194ca737d.tar.gz",
-      "hash": "0yw4i8xhjda6qxdavrij47hm4h90wk2ivxcsih2fdg74mav8h3cx"
+      "hash": "sha256-nQ2ItqrkvOYEjJr1HcXkIEFS4SEy5q1ax0Y1CTuKhHs="
     },
     "gruvbox-tmTheme": {
       "type": "Git",
@@ -76,7 +76,7 @@
       "submodules": false,
       "revision": "40503472826e51d87666e548a0634c4f1d74938c",
       "url": "https://github.com/subnut/gruvbox-tmTheme/archive/40503472826e51d87666e548a0634c4f1d74938c.tar.gz",
-      "hash": "093bp8qj3v4s0i7bykkpxxk7smxr3c79rcggki7ihiicvlfpaai6"
+      "hash": "sha256-Jip1Hd0sRhhPnO+xnA4buVd9Zu93Tr9OBJrsITG6ayQ="
     },
     "home-manager": {
       "type": "Git",
@@ -89,7 +89,7 @@
       "submodules": false,
       "revision": "bb35f07cc95a73aacbaf1f7f46bb8a3f40f265b5",
       "url": "https://github.com/nix-community/home-manager/archive/bb35f07cc95a73aacbaf1f7f46bb8a3f40f265b5.tar.gz",
-      "hash": "0r61fwvkjr0h1x6n1lp6p855rv26ss4vj1zvvxzi2xp2nk8ixcg3"
+      "hash": "sha256-47Ee0bTidhF/3/sHuYnWRuxcCrrm0mBNDxBkOTd3wWQ="
     },
     "mnw": {
       "type": "Git",
@@ -102,7 +102,7 @@
       "submodules": false,
       "revision": "8dd8c937e6a67fb9c1e35e1e2aa004408417c733",
       "url": "https://github.com/Gerg-L/mnw/archive/8dd8c937e6a67fb9c1e35e1e2aa004408417c733.tar.gz",
-      "hash": "04mr4nqcsrfvs01labjvn87c6z6wv1brj9ncf4sq3bl6h505x7vd"
+      "hash": "sha256-bZ9eQIGGroE1ccwmmVfY3HzDDrJbLkUD0NtlzbAluRI="
     },
     "stash": {
       "type": "Git",
@@ -115,7 +115,7 @@
       "submodules": false,
       "revision": "f83836531405a42b5d3ad341811736e84275c90f",
       "url": "https://github.com/NotAShelf/stash/archive/f83836531405a42b5d3ad341811736e84275c90f.tar.gz",
-      "hash": "193i67g9mrf02m0wi18zy0xmvaf1anb4ad1dw7hb2p8hyfixg293"
+      "hash": "sha256-I4nXo/MQXbHg4S00RZZVwaldO/AfhchBFcDlmt4xcaQ="
     },
     "treefmt-nix": {
       "type": "Git",
@@ -128,7 +128,7 @@
       "submodules": false,
       "revision": "42d96e75aa56a3f70cab7e7dc4a32868db28e8fd",
       "url": "https://github.com/numtide/treefmt-nix/archive/42d96e75aa56a3f70cab7e7dc4a32868db28e8fd.tar.gz",
-      "hash": "1hlnqdd7vq8w380ggra39r9p9dvnfn92ph3p844jvxvkybh8vjpr"
+      "hash": "sha256-+cqN4PJz9y0JQXfAK5J1drd0U05D5fcAGhzhfVrDlsI="
     },
     "wallpapers": {
       "type": "Git",
@@ -141,7 +141,7 @@
       "submodules": false,
       "revision": "29e0c21c30b6a53b8668a9698415991d4fb8aeff",
       "url": "https://github.com/ratakor/wallpapers/archive/29e0c21c30b6a53b8668a9698415991d4fb8aeff.tar.gz",
-      "hash": "181aigyyc75l9428kmm74cyi5xrziks45y9dc9vzc8jjh2m7a2kh"
+      "hash": "sha256-cAp1qoBSIvZ3Yi35QvSMP/cSPSOn1okESbQc5v2LKqA="
     },
     "watt": {
       "type": "Git",
@@ -154,7 +154,7 @@
       "submodules": false,
       "revision": "f68a9795616699870d213dc9e641dab655aa434a",
       "url": "https://github.com/NotAShelf/watt/archive/f68a9795616699870d213dc9e641dab655aa434a.tar.gz",
-      "hash": "0i5yy4w9p86ma7siw7yc6dl0bmzqpli2fgp1crv53w1ybgyf4i54"
+      "hash": "sha256-pETi/Fs+8FF2ZuE+JyK9+NcFaDPMHx71UdWgmzjxvkQ="
     },
     "wrapper-manager": {
       "type": "Git",
@@ -167,7 +167,7 @@
       "submodules": false,
       "revision": "801dd9c876fcada046af45543e8c7e0bbccf20ea",
       "url": "https://github.com/viperML/wrapper-manager/archive/801dd9c876fcada046af45543e8c7e0bbccf20ea.tar.gz",
-      "hash": "05hg8bnb3jjc95a83c0v59hjnjwf5w1kpfpj2ni12nk39r6fqr9q"
+      "hash": "sha256-OGXsTE5jWhGiFfK6OwMvjksrYSobsIFUSUzKsexCDxY="
     },
     "zfs-restore": {
       "type": "Git",
@@ -180,7 +180,7 @@
       "submodules": false,
       "revision": "90bbd917b7f59465d2b8693cbb222f47cb2397e2",
       "url": "https://github.com/ratakor/zfs-restore/archive/90bbd917b7f59465d2b8693cbb222f47cb2397e2.tar.gz",
-      "hash": "0waws7x36583irnm12ihswpj30hxbibvkfjka8x2dc6x09gk3lya"
+      "hash": "sha256-ytMxXwLdsCY6UlO6uVdcHYIhL9cwilBtjgMVM/rRXHE="
     },
     "zpotify": {
       "type": "Git",
@@ -193,7 +193,7 @@
       "submodules": false,
       "revision": "344cc41ca9583f0fba912e49424888feb9ab64ad",
       "url": "https://github.com/ratakor/zpotify/archive/344cc41ca9583f0fba912e49424888feb9ab64ad.tar.gz",
-      "hash": "1chfq9zgpi7vvxgk4gsimb0g4g31f7x7s279x60yy86i049i85s0"
+      "hash": "sha256-QBcUEwHRIO+B6ekIffpxYTzywKpRPzJf3/vE+37CDrI="
     },
     "zsh-helix-mode": {
       "type": "Git",
@@ -206,8 +206,8 @@
       "submodules": false,
       "revision": "f9d72d23f5ce12da31967a6ecd15dcafa1355fa7",
       "url": "https://github.com/Multirious/zsh-helix-mode/archive/f9d72d23f5ce12da31967a6ecd15dcafa1355fa7.tar.gz",
-      "hash": "17jc0i6y5mj9k625bb4i3p04w62inzqlsc9hgpvy5pikiir2h9f2"
+      "hash": "sha256-wiUocowz3uL3fTAxTfG3URhOwB2RrFWEmUnW4k0ETJ4="
     }
   },
-  "version": 5
+  "version": 7
 }
