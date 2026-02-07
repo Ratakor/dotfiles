@@ -9,9 +9,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "fcdea223397448d35d9b31f798479227e80183f6",
-      "url": "https://github.com/ryantm/agenix/archive/fcdea223397448d35d9b31f798479227e80183f6.tar.gz",
-      "hash": "sha256-wyT7Pl6tMFbFrs8Lk/TlEs81N6L+VSybPfiIgzU8lbQ="
+      "revision": "b027ee29d959fda4b60b57566d64c98a202e0feb",
+      "url": "https://github.com/ryantm/agenix/archive/b027ee29d959fda4b60b57566d64c98a202e0feb.tar.gz",
+      "hash": "sha256-9VnK6Oqai65puVJ4WYtCTvlJeXxMzAp/69HhQuTdl/I="
     },
     "crane": {
       "type": "Git",
@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "b2f45c3830aa96b7456a4c4bc327d04d7a43e1ba",
-      "url": "https://github.com/ipetkov/crane/archive/b2f45c3830aa96b7456a4c4bc327d04d7a43e1ba.tar.gz",
-      "hash": "sha256-DrBaNpZ+sJ4stXm+0nBX7zqZT9t9P22zbk6m5YhQxS4="
+      "revision": "2510f2cbc3ccd237f700bb213756a8f35c32d8d7",
+      "url": "https://github.com/ipetkov/crane/archive/2510f2cbc3ccd237f700bb213756a8f35c32d8d7.tar.gz",
+      "hash": "sha256-o8Vcdz6B6bkiGUYkZqFwH3Pv1JwZyXht3dMtS7RchIo="
     },
     "disko": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "475921375def3eb930e1f8883f619ff8609accb6",
-      "url": "https://github.com/nix-community/home-manager/archive/475921375def3eb930e1f8883f619ff8609accb6.tar.gz",
-      "hash": "sha256-9ABv9Lo9t6MrFjlnRnU8Zw1C6LVj2+R8PipQ/rxGLHk="
+      "revision": "471e6a065f9efed51488d7c51a9abbd387df91b8",
+      "url": "https://github.com/nix-community/home-manager/archive/471e6a065f9efed51488d7c51a9abbd387df91b8.tar.gz",
+      "hash": "sha256-yFVde8QZK7Dc0Xa8eQDsmxLX4NJNfL1NKfctSyiQgMY="
     },
     "mnw": {
       "type": "Git",
@@ -100,9 +100,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "ee5e11d0d7f6a6cda68559c1a34b5392c3b1b1eb",
-      "url": "https://github.com/Gerg-L/mnw/archive/ee5e11d0d7f6a6cda68559c1a34b5392c3b1b1eb.tar.gz",
-      "hash": "sha256-SgZOSmsbJN+oPDVZyavctrkjQYDCWtoJ3uhlzQChb6s="
+      "revision": "2aaffa8030d0b262176146adbb6b0e6374ce2957",
+      "url": "https://github.com/Gerg-L/mnw/archive/2aaffa8030d0b262176146adbb6b0e6374ce2957.tar.gz",
+      "hash": "sha256-b1XqsH7AtVf2dXmq2iyRr2NC1yG7skY7Z6N2MpWHlK4="
     },
     "stash": {
       "type": "Git",
@@ -113,9 +113,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "ded38723d4fc65f426114804ebf75cbf3b6a3386",
-      "url": "https://github.com/NotAShelf/stash/archive/ded38723d4fc65f426114804ebf75cbf3b6a3386.tar.gz",
-      "hash": "sha256-AJBhxUMQGoIG4SlofE0SHrYgvAy7/lUGRVXFO7ViaTs="
+      "revision": "2227ef7e8992943fcaa00199473fbdb4b4119356",
+      "url": "https://github.com/NotAShelf/stash/archive/2227ef7e8992943fcaa00199473fbdb4b4119356.tar.gz",
+      "hash": "sha256-okfca7cVS8sOzVWa8RSJ4P9WslZscpMYlHpmCB91Lt0="
     },
     "treefmt-nix": {
       "type": "Git",
@@ -126,9 +126,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "28b19c5844cc6e2257801d43f2772a4b4c050a1b",
-      "url": "https://github.com/numtide/treefmt-nix/archive/28b19c5844cc6e2257801d43f2772a4b4c050a1b.tar.gz",
-      "hash": "sha256-8aAYwyVzSSwIhP2glDhw/G0i5+wOrren3v6WmxkVonM="
+      "revision": "337a4fe074be1042a35086f15481d763b8ddc0e7",
+      "url": "https://github.com/numtide/treefmt-nix/archive/337a4fe074be1042a35086f15481d763b8ddc0e7.tar.gz",
+      "hash": "sha256-wQ6NJSuFqAEmIg2VMnLdCnUc0b7vslUohqqGGD+Fyxk="
     },
     "wallpapers": {
       "type": "Git",
@@ -152,9 +152,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "7c568e88208f0b06289b8dafe7491bb2aa99eb4e",
-      "url": "https://github.com/NotAShelf/watt/archive/7c568e88208f0b06289b8dafe7491bb2aa99eb4e.tar.gz",
-      "hash": "sha256-qB5TQpTvMlCHZ2nBYhqJ2fbaD0prpoiN53xwr5SFKVU="
+      "revision": "4a580db944dd9d616504756b09a6a0cc46754b79",
+      "url": "https://github.com/NotAShelf/watt/archive/4a580db944dd9d616504756b09a6a0cc46754b79.tar.gz",
+      "hash": "sha256-5rGhOyqxeEDXmMPIhNX7h6GIppcXRwJoEu/GBtlM8e0="
     },
     "wrapper-manager": {
       "type": "Git",
