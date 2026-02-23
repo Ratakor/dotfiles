@@ -2,8 +2,8 @@
   programs = {
     # TODO
     # Window Manager
-    river-classic.enable = true; # river mop when?
-    hyprland.enable = true;
+    river-classic.enable = false; # river mop when?
+    hyprland.enable = false;
     niri.enable = true;
 
     # uwsm = {

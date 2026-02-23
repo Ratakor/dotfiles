@@ -29,8 +29,8 @@ let
   XDG_STATE_HOME = config.hm.xdg.stateHome;
   inherit (config.hm.xdg.userDirs.extraConfig)
     XDG_BIN_HOME
-    XDG_SCREENSHOTS_DIR
-    XDG_NOTES_DIR
+    SCREENSHOTS
+    NOTES
     ;
 in
 {
@@ -46,11 +46,11 @@ in
     mm = "cd $XDG_MUSIC_DIR";
     mu = "cd $XDG_MUSIC_DIR/urls";
     pp = "cd $XDG_PICTURES_DIR";
-    psc = "cd ${XDG_SCREENSHOTS_DIR}";
+    psc = "cd ${SCREENSHOTS}";
     vv = "cd $XDG_VIDEOS_DIR";
     wp = "cd $XDG_PICTURES_DIR/wallpapers";
-    n = "yazi ${XDG_NOTES_DIR}";
-    nn = "cd ${XDG_NOTES_DIR}";
+    n = "yazi ${NOTES}";
+    nn = "cd ${NOTES}";
     sc = "cd ${XDG_BIN_HOME}";
     sta = "cd ${XDG_STATE_HOME}";
     cac = "cd ${XDG_CACHE_HOME}";

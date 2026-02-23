@@ -2,7 +2,7 @@
 config:
 let
   cfg = config.self;
-  inherit (config.hm.xdg.userDirs.extraConfig) XDG_NOTES_DIR;
+  inherit (config.hm.xdg.userDirs.extraConfig) NOTES;
 in
 # kdl
 ''
@@ -27,8 +27,8 @@ in
       spawn-sh "${cfg.terminal.cmd} -e zellij attach --create main";
     }
     Mod+Shift+N repeat=false hotkey-overlay-title="Open notes directory in a Zellij session" {
-      spawn-sh "${cfg.terminal.cmdDir} ${XDG_NOTES_DIR} -e zellij attach --create notes";
-      // spawn-sh "${cfg.terminal.cmd} -e yazi ${XDG_NOTES_DIR}";
+      spawn-sh "${cfg.terminal.cmdDir} ${NOTES} -e zellij attach --create notes";
+      // spawn-sh "${cfg.terminal.cmd} -e yazi ${NOTES}";
     }
 
     Mod+D repeat=false hotkey-overlay-title="Run an Application: ${cfg.menu.program}" { spawn-sh "${cfg.menu.drun}"; }

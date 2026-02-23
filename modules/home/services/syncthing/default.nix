@@ -53,7 +53,7 @@ in
         notes = {
           id = "xmywl-pqds6";
           label = "Notes";
-          path = config.hm.xdg.userDirs.extraConfig.XDG_NOTES_DIR;
+          path = config.hm.xdg.userDirs.extraConfig.NOTES;
           type = "sendreceive";
           devices = allDevices;
         };

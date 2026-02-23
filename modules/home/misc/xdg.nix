@@ -40,8 +40,8 @@ in
       extraConfig = {
         XDG_BIN_HOME = "${homeDirectory}/.local/bin";
 
-        XDG_SCREENSHOTS_DIR = "${config.hm.xdg.userDirs.pictures}/screenshots";
-        XDG_NOTES_DIR = "${config.hm.xdg.userDirs.documents}/notes";
+        SCREENSHOTS = "${config.hm.xdg.userDirs.pictures}/screenshots";
+        NOTES = "${config.hm.xdg.userDirs.documents}/notes";
         # XDG_MAIL_DIR = "${homeDirectory}/mail"; # ".local/var/mail" made sense with the .local convention
       };
     };

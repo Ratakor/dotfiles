@@ -2,7 +2,7 @@
 config:
 let
   inherit (config.self) colors;
-  inherit (config.hm.xdg.userDirs.extraConfig) XDG_SCREENSHOTS_DIR;
+  inherit (config.hm.xdg.userDirs.extraConfig) SCREENSHOTS;
 in
 # kdl
 ''
@@ -28,7 +28,7 @@ in
   // A ~ at the front will be expanded to the home directory.
   // The path is formatted with strftime(3) to give you the screenshot date and time.
   // screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-  screenshot-path "${XDG_SCREENSHOTS_DIR}/%Y-%m-%d_%H:%M:%S.png"
+  screenshot-path "${SCREENSHOTS}/%Y-%m-%d_%H:%M:%S.png"
 
   // You can also set this to null to disable saving screenshots to disk.
   // screenshot-path null
