@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "b5090e53e9d68c523a4bb9ad42b4737ee6747597",
-      "url": "https://github.com/ipetkov/crane/archive/b5090e53e9d68c523a4bb9ad42b4737ee6747597.tar.gz",
-      "hash": "sha256-nGBbXvEZVe/egCPVPFcu89RFtd8Rf6J+4RFoVCFec0A="
+      "revision": "8525580bc0316c39dbfa18bd09a1331e98c9e463",
+      "url": "https://github.com/ipetkov/crane/archive/8525580bc0316c39dbfa18bd09a1331e98c9e463.tar.gz",
+      "hash": "sha256-84W9UNtSk9DNMh43WBkOjpkbfODlmg+RDi854PnNgLE="
     },
     "disko": {
       "type": "Git",
@@ -35,9 +35,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "4707eec8d1d2db5182ea06ed48c820a86a42dc13",
-      "url": "https://github.com/nix-community/disko/archive/4707eec8d1d2db5182ea06ed48c820a86a42dc13.tar.gz",
-      "hash": "sha256-GnqdqhrguKNN3HtVfl6z+zbV9R9jhHFm3Z8nu7R6ml0="
+      "revision": "a4cb7bf73f264d40560ba527f9280469f1f081c6",
+      "url": "https://github.com/nix-community/disko/archive/a4cb7bf73f264d40560ba527f9280469f1f081c6.tar.gz",
+      "hash": "sha256-A5uE/hMium5of/QGC6JwF5TGoDAfpNtW00T0s9u/PN8="
     },
     "dracula-tmTheme": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "a913ae61bf3b9f4312f6097b68cdf0a0fa699279",
-      "url": "https://github.com/nix-community/home-manager/archive/a913ae61bf3b9f4312f6097b68cdf0a0fa699279.tar.gz",
-      "hash": "sha256-1T88/PSNKpRNtaiXATTae0hpRnBpjmIL0b1QfGO6HBA="
+      "revision": "f3a30376bb9eb2f6f61816be7d6ed954b6d2a3b9",
+      "url": "https://github.com/nix-community/home-manager/archive/f3a30376bb9eb2f6f61816be7d6ed954b6d2a3b9.tar.gz",
+      "hash": "sha256-G8nArvOTZXU8DRvrzAdz3Elcj6kA/vMtvY9mrGLATtA="
     },
     "mnw": {
       "type": "Git",
@@ -113,9 +113,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "2227ef7e8992943fcaa00199473fbdb4b4119356",
-      "url": "https://github.com/NotAShelf/stash/archive/2227ef7e8992943fcaa00199473fbdb4b4119356.tar.gz",
-      "hash": "sha256-okfca7cVS8sOzVWa8RSJ4P9WslZscpMYlHpmCB91Lt0="
+      "revision": "181edcefb1fb38bbd1ca306e91ba493bcf4014d9",
+      "url": "https://github.com/NotAShelf/stash/archive/181edcefb1fb38bbd1ca306e91ba493bcf4014d9.tar.gz",
+      "hash": "sha256-ojaPFnfWFRUi4Nc69T+ObdZ3Bxf62T3bv49qqV+wgHw="
     },
     "treefmt-nix": {
       "type": "Git",
