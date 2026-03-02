@@ -37,6 +37,7 @@ in
         python313Packages.jedi-language-server # Python
         lua-language-server # Lua
         marksman # Markdown
+        neocmakelsp # CMake
         # nixd # Nix
         nil # Nix
         ocamlPackages.ocaml-lsp # OCaml
@@ -45,6 +46,7 @@ in
         superhtml # HTML
         taplo # TOML
         texlab # LaTeX
+        tinymist # Typst
         vscode-json-languageserver # JSON
         vtsls # JS/TS
         yaml-language-server # YAML
