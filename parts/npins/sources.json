@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "6fa2fb4cf4a89ba49fc9dd5a3eb6cde99d388269",
-      "url": "https://github.com/ipetkov/crane/archive/6fa2fb4cf4a89ba49fc9dd5a3eb6cde99d388269.tar.gz",
-      "hash": "sha256-E1G/Or6MWeP+L6mpQ0iTFLpzSzlpGrITfU2220Gq47g="
+      "revision": "b556d7bbae5ff86e378451511873dfd07e4504cd",
+      "url": "https://github.com/ipetkov/crane/archive/b556d7bbae5ff86e378451511873dfd07e4504cd.tar.gz",
+      "hash": "sha256-5xsK26KRHf0WytBtsBnQYC/lTWDhQuT57HJ7SzuqZcM="
     },
     "disko": {
       "type": "Git",
@@ -35,9 +35,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "7b9f7f88ab3b339f8142dc246445abb3c370d3d3",
-      "url": "https://github.com/nix-community/disko/archive/7b9f7f88ab3b339f8142dc246445abb3c370d3d3.tar.gz",
-      "hash": "sha256-khlHllTsovXgT2GZ0WxT4+RvuMjNeR5OW0UYeEHPYQo="
+      "revision": "5ad85c82cc52264f4beddc934ba57f3789f28347",
+      "url": "https://github.com/nix-community/disko/archive/5ad85c82cc52264f4beddc934ba57f3789f28347.tar.gz",
+      "hash": "sha256-PAqwnsBSI9SVC2QugvQ3xeYCB0otOwCacB1ueQj2tgw="
     },
     "dracula-tmTheme": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "ef12a9a2b0f77c8fa3dda1e7e494fca668909056",
-      "url": "https://github.com/nix-community/home-manager/archive/ef12a9a2b0f77c8fa3dda1e7e494fca668909056.tar.gz",
-      "hash": "sha256-MPjR48roW7CUMU6lu0+qQGqj92Kuh3paIulMWFZy+NQ="
+      "revision": "9670de2921812bc4e0452f6e3efd8c859696c183",
+      "url": "https://github.com/nix-community/home-manager/archive/9670de2921812bc4e0452f6e3efd8c859696c183.tar.gz",
+      "hash": "sha256-FOnZjElEI8pqqCvB6K/1JRHTE8o4rer8driivTpq2uo="
     },
     "mnw": {
       "type": "Git",
