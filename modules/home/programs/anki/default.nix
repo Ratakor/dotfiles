@@ -11,7 +11,7 @@ in
   hm.programs.anki = {
     enable = true;
     theme = "dark";
-    sync = {
+    profiles."User 1".sync = {
       keyFile = config.age.secrets.anki-key.path;
       usernameFile = config.age.secrets.anki-user.path;
     };
