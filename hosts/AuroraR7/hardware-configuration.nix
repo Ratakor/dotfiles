@@ -13,8 +13,7 @@
   ];
 
   boot = {
-    # TODO: enable this, also use cachyos kernel?
-    # kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod;
     initrd = {
       availableKernelModules = [
         "xhci_pci"
