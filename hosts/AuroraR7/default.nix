@@ -17,7 +17,7 @@
     displayServer = "wayland";
     windowManager = "niri";
     menu.program = "fuzzel";
-    terminal.program = "foot";
+    terminal.program = "ghostty";
     imageViewer.program = "imv";
 
     editor.program = "helix";

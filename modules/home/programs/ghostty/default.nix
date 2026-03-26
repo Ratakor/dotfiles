@@ -16,7 +16,7 @@ in
         confirm-close-surface = false;
         window-decoration = "none";
         # gtk-titlebar = false;
-        font-familiy = "monospace";
+        font-family = "monospace";
         font-size = 16;
         background-opacity = 0.8;
         theme = "Gruvbox Dark"; # TODO: use config.self.colors
