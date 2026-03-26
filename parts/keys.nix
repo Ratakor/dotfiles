@@ -12,6 +12,7 @@ let
   # using /etc/ssh/ssh_host_ed25519_key.pub
   hosts = {
     X200 = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPdrAk60QJLPaLTb9VPDJQZHi/Hibey1LwoqyM7lvAM" ];
+    AuroraR7 = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILiUgEQi9QFi5sOtfjM3iah3HRt6guSz7mP5UJ0G4JSo" ];
   };
 
   # servers = concatLists (map (host: hosts.${host}) []);
