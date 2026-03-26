@@ -25,6 +25,7 @@ let
       swaylock # screen locker
       # cage # Wayland kiosk that runs a single, maximized application
       wlr-randr # xrandr for wlroot
+      # TODO: package wayclicker
     ];
   };
 
@@ -47,10 +48,11 @@ let
   };
 
   # better to configure these with hm.programs, alse I use chromium btw
-  browsers = [
+  browsers = with pkgs; [
     # firefox # check out celenityy/phoenix
     # nyxt # browser for lisp people
     # qutebrowser # "minimal" vim-like browser
+    tor-browser
   ];
 
   apps = with pkgs; [
@@ -69,7 +71,7 @@ let
     # teams-for-linux # Microsoft Teams
     # songrec # Open-source Shazam client
     # kiwix # # bruh why do I have the whole wikipedia locally installed
-    # discord # see vencord & vesktop too
+    discord # see vencord & vesktop too
   ];
 
   unsorted = with pkgs; [

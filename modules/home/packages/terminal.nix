@@ -17,6 +17,7 @@ let
     mat2 # metadata removal tool
     bc # calculation
     # shaq # CLI client for Shazam
+    gemini-cli # Gemini AI from google, pretty cool actually
   ];
 
   tui = with pkgs; [

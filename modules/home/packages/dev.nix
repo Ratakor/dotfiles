@@ -53,6 +53,7 @@ let
     # self.pkgs.neocities-zig # TODO: not packaged
     rustfmt # rust formatter
     zig-shell-completions
+    moreutils # a lot of cool additional utils
   ];
 
   fs = with pkgs; [

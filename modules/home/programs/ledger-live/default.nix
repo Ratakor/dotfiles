@@ -1,4 +1,5 @@
 # Ledger cryptocurrency hardware wallet
+# see monero-gui in packages/graphical.nix too
 {
   config,
   lib,
