@@ -2,6 +2,7 @@
 # kdl
 ''
   // TODO: this should be host specific
+
   // You can configure outputs by their name, which you can find
   // by running `niri msg outputs` while inside a niri instance.
   // The built-in laptop monitor is usually called "eDP-1".
@@ -37,5 +38,17 @@
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
     position x=1280 y=0
+  }
+
+  output "DP-2" {
+    mode "2560x1440"
+    scale 1.3
+    position x=0 y=0
+  }
+
+  output "HDMI-A-1" {
+    mode "1920x1080"
+    scale 1
+    position x=1970 y=130
   }
 ''
