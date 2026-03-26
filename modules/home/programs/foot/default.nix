@@ -51,7 +51,7 @@ let
       primary-paste = "none";
     };
 
-    colors = {
+    colors-dark = {
       alpha = "0.85";
       foreground = colors.foreground;
       background = colors.background;
