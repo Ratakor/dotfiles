@@ -95,8 +95,11 @@ in
     };
     AuroraR7 = mkNixosSystem {
       modules = mkModulesFor "AuroraR7" {
-        profiles = [graphical workstation];
-        extraModules = [home];
+        profiles = [
+          graphical
+          workstation
+        ];
+        extraModules = [ home ];
       };
     };
   };
