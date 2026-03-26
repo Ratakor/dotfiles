@@ -17,10 +17,11 @@
     displayServer = "wayland";
     windowManager = "niri";
     menu.program = "fuzzel";
-    terminal.program = "ghostty";
+    terminal.program = "foot";
     imageViewer.program = "imv";
 
     editor.program = "helix";
+    font-size = 16;
   };
 
   boot.loader = {

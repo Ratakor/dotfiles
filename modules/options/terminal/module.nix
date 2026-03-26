@@ -5,7 +5,12 @@
 }:
 let
   inherit (lib.options) mkOption;
-  inherit (lib.types) enum str nullOr;
+  inherit (lib.types)
+    enum
+    str
+    int
+    nullOr
+    ;
 
   cfg = config.self;
 in
@@ -32,6 +37,12 @@ in
         default = null;
         description = "The desktop entry of the editor.";
       };
+    };
+
+    font-size = mkOption {
+      type = int;
+      default = 10;
+      description = "Font size, mainly for terminal.";
     };
   };
 }

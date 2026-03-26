@@ -17,7 +17,7 @@ in
         window-decoration = "none";
         # gtk-titlebar = false;
         font-family = "monospace";
-        font-size = 16;
+        inherit (config.self) font-size;
         background-opacity = 0.8;
         theme = "Gruvbox Dark"; # TODO: use config.self.colors
         shell-integration-features = "no-cursor";
