@@ -1,7 +1,7 @@
 {
   imports = [
+    ./bluetooth
     ./sound
     ./video
-    # TODO: bluetooth
   ];
 }

@@ -38,7 +38,7 @@
     hostId = "2689f717"; # from /etc/machine-id
   };
 
-  # TODO: bluetooth: make it an option to avoid duplicated code
+  hardware.bluetooth.enable = false;
 
   # TODO: setup snapshots
   services.btrfs = {

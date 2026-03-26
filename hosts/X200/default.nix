@@ -58,16 +58,7 @@
     hostId = "90431314"; # needed by ZFS
   };
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    # https://github.com/bluez/bluez/blob/master/src/main.conf
-    settings = {
-      General = {
-        Experimental = true;
-      };
-    };
-  };
+  hardware.bluetooth.enable = true;
 
   services.zfs = {
     autoReplication = {
