@@ -72,6 +72,7 @@ let
     # songrec # Open-source Shazam client
     # kiwix # # bruh why do I have the whole wikipedia locally installed
     discord # see vencord & vesktop too
+    spotify
   ];
 
   unsorted = with pkgs; [
