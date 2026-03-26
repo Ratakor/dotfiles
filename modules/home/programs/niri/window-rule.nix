@@ -1,5 +1,17 @@
 # Window rules let you adjust behavior for individual windows.
 # https://yalter.github.io/niri/Configuration:-Window-Rules
+let
+  no-border =
+    # kdl
+    ''
+      focus-ring {
+        off
+      }
+      border {
+        off
+      }
+    '';
+in
 # kdl
 ''
   // Work around WezTerm's initial configure bug
@@ -12,12 +24,8 @@
     default-column-width {}
   }
 
-  // Open the Firefox picture-in-picture player as floating by default.
-  /-window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+  window-rule {
+    match title="^Picture-in-Picture$"
     open-floating true
   }
 
@@ -37,5 +45,25 @@
   /-window-rule {
     match title="^$"
     open-floating true
+  }
+
+  window-rule {
+    match title="^Path of Exile$"
+    match app-id="steam_app_238960"
+    open-on-output "DP-2"// TODO: this should be host specific
+    open-fullscreen true
+    /*
+    open-floating true
+    ${no-border}
+    */
+  }
+
+  window-rule {
+    match app-id="awakened-poe-trade"
+    /*
+    open-floating true
+    open-focused false
+    ${no-border}
+    */
   }
 ''
