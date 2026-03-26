@@ -93,11 +93,11 @@ in
         extraModules = [ home ];
       };
     };
-    # AuroraR7 = mkNixosSystem {
-    #   modules = mkModulesFor "AuroraR7" {
-    #     profiles = [graphical workstation];
-    #     extraModules = [home];
-    #   };
-    # };
+    AuroraR7 = mkNixosSystem {
+      modules = mkModulesFor "AuroraR7" {
+        profiles = [graphical workstation];
+        extraModules = [home];
+      };
+    };
   };
 }
