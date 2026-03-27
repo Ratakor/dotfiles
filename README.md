@@ -10,7 +10,7 @@
 
 ### Graphical Environment
 - Wayland Compositor: [Niri](https://github.com/YaLTeR/niri)
-- Status Bar: [Waybar](https://github.com/Alexays/Waybar)
+- Status Bar: [DMS](https://github.com/AvengeMedia/DankMaterialShell)
 - Terminal Emulator: [Foot](https://codeberg.org/dnkl/foot)
 - Launcher: [Fuzzel](https://codeberg.org/dnkl/fuzzel)
 - Web Browser: [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)
@@ -38,7 +38,7 @@
 - Image Viewer: [imv](https://sr.ht/~exec64/imv)
 - Notifications: [mako](https://github.com/emersion/mako)
 <!-- - Screenshot Tool: [grim](https://sr.ht/~emersion/grim) -->
-<!-- - Mail Client: [Claws Mail](https://www.claws-mail.org) -->
+- Mail Client: [Dove](https://dove.celenity.dev)
 - Screen Locker: [swaylock](https://github.com/swaywm/swaylock)
 - [Wallpapers](https://github.com/ratakor/wallpapers)
 

@@ -11,7 +11,7 @@ let
 in
 {
   hm.programs.waybar = {
-    enable = config.self.displayServer == "wayland";
+    enable = false; # config.self.displayServer == "wayland";
     systemd.enable = true;
 
     settings.mainBar = {

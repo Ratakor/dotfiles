@@ -43,9 +43,9 @@ in
 
     // TODO: https://github.com/Smithay/smithay/issues/1823
     // Print repeat=false { spawn "screenshot"; }
-    // Print { screenshot; }
-    // Ctrl+Print { screenshot-screen; }
-    // Alt+Print { screenshot-window; }
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
     // F7 repeat=false { spawn-sh "${cfg.terminal.cmd} -e dmenurecord"; }
 
     XF86AudioRaiseVolume allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
@@ -83,11 +83,11 @@ in
 
     Mod+Shift+E repeat=false hotkey-overlay-title="Exit options" { spawn "wlogout"; }
 
-    Mod+Escape repeat=false hotkey-overlay-title="Reload config" {
-      spawn-sh "kill -USR2 $(pidof waybar); makoctl reload; systemctl --user restart foot";
-    }
+    // Mod+Escape repeat=false hotkey-overlay-title="Reload config" {
+    //   spawn-sh "makoctl reload; systemctl --user restart dms foot";
+    // }
 
-    Mod+Shift+B repeat=false hotkey-overlay-title="Toggle status bar" { spawn-sh "kill -USR1 $(pidof waybar)"; }
+    Mod+Shift+B repeat=false hotkey-overlay-title="Toggle status bar" { spawn-sh "dms ipc call bar toggle index 0"; }
 
     //# TODO: toggle padding (gaps)
     //#riverctl map normal Super+Shift G ...
