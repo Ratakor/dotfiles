@@ -29,7 +29,7 @@ let
     # htop-vim # process viewer with vim keybindings
     # micro # normie text editor
     # discordo # discord client
-    profanity # XMPP client
+    # profanity # XMPP client (has security issue iirc)
     # spotify-player # zpotify but different
   ];
 
