@@ -9,10 +9,13 @@ in
 {
   imports = [ module ];
 
-  services.watt = {
-    enable = true;
-    package = self.pkgs.watt; # thank you for being lazy mr nix
-    # TODO
-    settings = { };
+  services = {
+    power-profiles-daemon.enable = false; # conflict with watt
+    watt = {
+      enable = true;
+      package = self.pkgs.watt; # thank you for being lazy mr nix
+      # TODO
+      settings = { };
+    };
   };
 }
