@@ -1,4 +1,6 @@
 pkgs: {
+  alt = import ./gruvbox-light.nix pkgs;
+
   bat.theme = "gruvbox-dark";
   helix.theme = "gruvbox";
   theme-sh = "gruvbox-dark";

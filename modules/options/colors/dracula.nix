@@ -1,4 +1,6 @@
 pkgs: {
+  alt = import ./dracula.nix pkgs; # see alucard
+
   bat.theme = "Dracula";
   helix.theme = "dracula";
   theme-sh = "dracula";

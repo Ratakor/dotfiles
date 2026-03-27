@@ -51,6 +51,32 @@ let
       primary-paste = "none";
     };
 
+    colors-light = {
+      alpha = "0.85";
+      foreground = colors.alt.foreground;
+      background = colors.alt.background;
+      cursor = "${colors.alt.background} ${colors.alt.foreground}";
+      selection-background = colors.alt.selection;
+
+      regular0 = colors.alt.black;
+      regular1 = colors.alt.red;
+      regular2 = colors.alt.green;
+      regular3 = colors.alt.yellow;
+      regular4 = colors.alt.blue;
+      regular5 = colors.alt.magenta;
+      regular6 = colors.alt.cyan;
+      regular7 = colors.alt.white;
+
+      bright0 = colors.alt.bright_black;
+      bright1 = colors.alt.bright_red;
+      bright2 = colors.alt.bright_green;
+      bright3 = colors.alt.bright_yellow;
+      bright4 = colors.alt.bright_blue;
+      bright5 = colors.alt.bright_magenta;
+      bright6 = colors.alt.bright_cyan;
+      bright7 = colors.alt.bright_white;
+    };
+
     colors-dark = {
       alpha = "0.85";
       foreground = colors.foreground;
