@@ -14,6 +14,7 @@ let
     detox # cli to cleanup filenames
     # xdg-ninja # Shell script which checks your $HOME for unwanted files and directories
     imagemagick # image manipulation from the terminal
+    ffmpeg # video manipulation and a lot of other stuff
     mat2 # metadata removal tool
     bc # calculation
     # shaq # CLI client for Shazam

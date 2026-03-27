@@ -28,7 +28,10 @@ let
     self.pkgs.exiled-exchange-2
   ];
 
-  steam = [ pkgs.steam ];
+  steam = [
+    pkgs.steam
+    pkgs.gamescope
+  ];
 
   lutris = [ pkgs.lutris ];
 
