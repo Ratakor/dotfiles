@@ -26,16 +26,19 @@ in
     Mod+N repeat=false hotkey-overlay-title="Open main Zellij session" {
       spawn-sh "${cfg.terminal.cmd} -e zellij attach --create main";
     }
+    // see `dms ipc notepad toggle`
     Mod+Shift+N repeat=false hotkey-overlay-title="Open notes directory in a Zellij session" {
       spawn-sh "${cfg.terminal.cmdDir} ${NOTES} -e zellij attach --create notes";
       // spawn-sh "${cfg.terminal.cmd} -e yazi ${NOTES}";
     }
 
+    // see `dms ipc spotlight toggle`
     Mod+D repeat=false hotkey-overlay-title="Run an Application: ${cfg.menu.program}" { spawn-sh "${cfg.menu.drun}"; }
     Mod+Shift+D repeat=false hotkey-overlay-title=null { spawn-sh "${cfg.menu.run}"; }
 
     // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${cfg.terminal.cmd} -e newsboat"; }
     Mod+B repeat=false hotkey-overlay-title="Open browser: chromium" { spawn "chromium" "--new-window"; }
+    // see `dms ipc lock lock`
     Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: glitchlock" { spawn "glitchlock"; }
     XF86ScreenSaver repeat=false { spawn "glitchlock"; }
     XF86Battery repeat=false hotkey-overlay-title="Show battery informations" { spawn "battery"; }
@@ -48,6 +51,7 @@ in
     Alt+Print { screenshot-window; }
     // F7 repeat=false { spawn-sh "${cfg.terminal.cmd} -e dmenurecord"; }
 
+    // see `dms ipc audio increment 2`, `dms ipc audio mute`, `dms ipc audio micmute`
     XF86AudioRaiseVolume allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
     Ctrl+Equal           allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
     XF86AudioLowerVolume allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"; }
@@ -81,13 +85,13 @@ in
     //riverctl map normal None button9 close
     //riverctl map normal None button10 spawn 'musiccmd'
 
-    Mod+Shift+E repeat=false hotkey-overlay-title="Exit options" { spawn "wlogout"; }
+    Mod+Shift+E repeat=false hotkey-overlay-title="Exit options" { spawn-sh "dms ipc powermenu toggle"; }
 
     // Mod+Escape repeat=false hotkey-overlay-title="Reload config" {
     //   spawn-sh "makoctl reload; systemctl --user restart dms foot";
     // }
 
-    Mod+Shift+B repeat=false hotkey-overlay-title="Toggle status bar" { spawn-sh "dms ipc call bar toggle index 0"; }
+    Mod+Shift+B repeat=false hotkey-overlay-title="Toggle status bar" { spawn-sh "dms ipc bar toggle index 0"; }
 
     //# TODO: toggle padding (gaps)
     //#riverctl map normal Super+Shift G ...

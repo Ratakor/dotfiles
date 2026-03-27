@@ -6,6 +6,8 @@
 # - Config layout without nix & style with a fin layer since it's css.
 # - Currently only issue is that gtk4 seems bugged with this nixos config
 #   that's why I'm still using wlogout.
+# ---
+# I switched to dms powermenu
 {
   config,
   pkgs,
@@ -18,7 +20,7 @@ let
 in
 {
   hm.programs.wlogout = {
-    enable = true;
+    enable = false;
     # package = pkgs.wleave;
 
     # l s p
