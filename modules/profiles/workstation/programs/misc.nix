@@ -7,5 +7,7 @@
     gdk-pixbuf.modulePackages = with pkgs; [
       librsvg # add svg support to gdk-pixbuf (wlogout)
     ];
+
+    kdeconnect.enable = true;
   };
 }
