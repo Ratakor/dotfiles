@@ -27,11 +27,9 @@ let
   XDG_DATA_HOME = config.hm.xdg.dataHome;
   XDG_CACHE_HOME = config.hm.xdg.cacheHome;
   XDG_STATE_HOME = config.hm.xdg.stateHome;
-  inherit (config.hm.xdg.userDirs.extraConfig)
-    XDG_BIN_HOME
-    SCREENSHOTS
-    NOTES
-    ;
+  XDG_BIN_DIR = config.hm.xdg.userDirs.extraConfig.BIN;
+  XDG_SCREENSHOTS_DIR = config.hm.xdg.userDirs.extraConfig.SCREENSHOTS;
+  XDG_NOTES_DIR = config.hm.xdg.userDirs.extraConfig.NOTES;
 in
 {
   hm.home.shellAliases = sudoAliases // {
@@ -46,12 +44,12 @@ in
     mm = "cd $XDG_MUSIC_DIR";
     mu = "cd $XDG_MUSIC_DIR/urls";
     pp = "cd $XDG_PICTURES_DIR";
-    psc = "cd ${SCREENSHOTS}";
+    psc = "cd ${XDG_SCREENSHOTS_DIR}";
     vv = "cd $XDG_VIDEOS_DIR";
     wp = "cd $XDG_PICTURES_DIR/wallpapers";
-    n = "yazi ${NOTES}";
-    nn = "cd ${NOTES}";
-    sc = "cd ${XDG_BIN_HOME}";
+    n = "yazi ${XDG_NOTES_DIR}";
+    nn = "cd ${XDG_NOTES_DIR}";
+    sc = "cd ${XDG_BIN_DIR}";
     sta = "cd ${XDG_STATE_HOME}";
     cac = "cd ${XDG_CACHE_HOME}";
 

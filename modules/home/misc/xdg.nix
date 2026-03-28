@@ -24,6 +24,7 @@ in
     userDirs = {
       enable = true;
       createDirectories = true;
+      setSessionVariables = true;
 
       download = "${homeDirectory}/tmp";
       desktop = null; # "${homeDirectory}/tmp";
@@ -38,11 +39,10 @@ in
 
       # Non-standard
       extraConfig = {
-        XDG_BIN_HOME = "${homeDirectory}/.local/bin";
-
+        BIN = "${homeDirectory}/.local/bin";
         SCREENSHOTS = "${config.hm.xdg.userDirs.pictures}/screenshots";
         NOTES = "${config.hm.xdg.userDirs.documents}/notes";
-        # XDG_MAIL_DIR = "${homeDirectory}/mail"; # ".local/var/mail" made sense with the .local convention
+        # MAIL = "${homeDirectory}/mail"; # ".local/var/mail" made sense with the .local convention
       };
     };
 

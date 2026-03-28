@@ -1,9 +1,12 @@
 { config, ... }:
+let
+  inherit (config.self.colors.gtk) theme;
+in
 {
   hm.gtk = {
     enable = true;
 
-    inherit (config.self.colors.gtk) theme;
+    inherit theme;
 
     gtk2.enable = false; # .gtkrc-2.0 symlink in $HOME
 
@@ -24,9 +27,12 @@
         }
       '';
 
-    gtk4.extraConfig = {
-      # gtk-application-prefer-dark-theme = true;
-      # gtk-decoration-layout = "appmenu:none";
+    gtk4 = {
+      inherit theme;
+      extraConfig = {
+        # gtk-application-prefer-dark-theme = true;
+        # gtk-decoration-layout = "appmenu:none";
+      };
     };
   };
 }
