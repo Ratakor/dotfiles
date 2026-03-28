@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "b556d7bbae5ff86e378451511873dfd07e4504cd",
-      "url": "https://github.com/ipetkov/crane/archive/b556d7bbae5ff86e378451511873dfd07e4504cd.tar.gz",
-      "hash": "sha256-5xsK26KRHf0WytBtsBnQYC/lTWDhQuT57HJ7SzuqZcM="
+      "revision": "3d9df76e29656c679c744968b17fbaf28f0e923d",
+      "url": "https://github.com/ipetkov/crane/archive/3d9df76e29656c679c744968b17fbaf28f0e923d.tar.gz",
+      "hash": "sha256-hy0XTQND6avzGEUFrJtYBBpFa/POiiaGBr2vpU6Y9tY="
     },
     "disko": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "9670de2921812bc4e0452f6e3efd8c859696c183",
-      "url": "https://github.com/nix-community/home-manager/archive/9670de2921812bc4e0452f6e3efd8c859696c183.tar.gz",
-      "hash": "sha256-FOnZjElEI8pqqCvB6K/1JRHTE8o4rer8driivTpq2uo="
+      "revision": "02371c05a04a2876cf92e2d67a259e8f87399068",
+      "url": "https://github.com/nix-community/home-manager/archive/02371c05a04a2876cf92e2d67a259e8f87399068.tar.gz",
+      "hash": "sha256-UNNi14XiqRWWjO8ykbFwA5wRwx7EscsC+GItOVpuGjc="
     },
     "mnw": {
       "type": "Git",
@@ -204,9 +204,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "f9d72d23f5ce12da31967a6ecd15dcafa1355fa7",
-      "url": "https://github.com/Multirious/zsh-helix-mode/archive/f9d72d23f5ce12da31967a6ecd15dcafa1355fa7.tar.gz",
-      "hash": "sha256-wiUocowz3uL3fTAxTfG3URhOwB2RrFWEmUnW4k0ETJ4="
+      "revision": "e8d4940588f9809ab5658aa7c9c664921d547879",
+      "url": "https://github.com/Multirious/zsh-helix-mode/archive/e8d4940588f9809ab5658aa7c9c664921d547879.tar.gz",
+      "hash": "sha256-YggmEZ5hRySwXR+VZFKKZ+HzH5Cvz0661QeiAjlE30E="
     }
   },
   "version": 7
