@@ -34,12 +34,14 @@ in
       description = "The window manager to use.";
     };
 
+    # see also: dms, anyrun, walker
     menu = {
       program = mkOption {
         type = enum [
           "dmenu"
           "tofi"
           "fuzzel"
+          "vicinae"
         ];
         default = if cfg.displayServer == "wayland" then "fuzzel" else "dmenu";
         description = "The menu program to use.";
