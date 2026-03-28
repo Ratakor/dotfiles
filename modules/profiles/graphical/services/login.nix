@@ -51,6 +51,12 @@ in
     displayManager = {
       # enable = lib.mkForce false; # causes a bunch of errors
 
+      # doesn't seem to work
+      dms-greeter = {
+        enable = false;
+        compositor.name = "niri";
+      };
+
       ly =
         let
           brightnessctl = getExe pkgs.brightnessctl;
