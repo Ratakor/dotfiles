@@ -21,7 +21,7 @@
     imageViewer.program = "imv";
 
     editor.program = "helix";
-    font-size = 16;
+    fontSize = 16;
   };
 
   boot.loader = {

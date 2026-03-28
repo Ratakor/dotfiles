@@ -13,13 +13,13 @@
 let
   inherit (lib.modules) mkIf;
   inherit (self.lib) wrapWith;
-  inherit (config.self) colors;
+  inherit (config.self) colors fontSize;
 
   ini = pkgs.formats.ini { };
 
   settings = {
     main = {
-      font = "monospace";
+      font = "monospace:size=${toString fontSize}";
       horizontal-pad = 5;
       vertical-pad = 5;
       width = 45;

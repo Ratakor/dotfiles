@@ -39,7 +39,7 @@ in
       };
     };
 
-    font-size = mkOption {
+    fontSize = mkOption {
       type = int;
       default = 10;
       description = "Font size, mainly for terminal.";
