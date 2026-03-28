@@ -1,10 +1,11 @@
+{ config, ... }:
 {
   programs = {
     # TODO
     # Window Manager
-    river-classic.enable = false; # river mop when?
-    hyprland.enable = false;
-    niri.enable = true;
+    river-classic.enable = config.self.windowManager == "river-classic"; # river mop when?
+    hyprland.enable = config.self.windowManager == "hyprland";
+    niri.enable = config.self.windowManager == "niri";
 
     # uwsm = {
     #   enable = true;

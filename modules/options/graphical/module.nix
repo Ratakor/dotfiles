@@ -25,7 +25,8 @@ in
     windowManager = mkOption {
       type = enum [
         "dwm"
-        "river"
+        "river-classic"
+        "river" # not implemented
         "niri"
         "hyprland"
       ];
