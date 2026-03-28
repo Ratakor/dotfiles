@@ -38,7 +38,7 @@
     hostId = "2689f717"; # from /etc/machine-id
   };
 
-  hardware.bluetooth.enable = false;
+  hardware.bluetooth.enable = true;
 
   # TODO: setup snapshots
   services.btrfs = {
