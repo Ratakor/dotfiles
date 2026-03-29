@@ -34,7 +34,7 @@ pkgs.writeShellApplication {
     # IGNORE=''${IGNORE-file1|folder|file2|.ext}
     # IGNORE can be an env variable (useful for yazi)
 
-    TMPDIR=''${XDG_RUNTIME_DIR:-/tmp}
+    PIDFILE=''${XDG_RUNTIME_DIR:-/tmp}/randwp.pid
     LOGFILE=''${XDG_STATE_HOME:-$HOME/.local/state}/randwp.log
     WPDIR=''${1:-${wallpapers}}
     IGNORE=''${IGNORE-nsfw}
@@ -67,20 +67,20 @@ pkgs.writeShellApplication {
           	searchwp
           	args="$args -o $output -m fill -i $wp"
           done
-          OLD_PID=$(cat "$TMPDIR/swaybg.pid" 2>/dev/null)
+          OLDPID=$(cat "$PIDFILE" 2>/dev/null)
           # shellcheck disable=SC2086
           ${swaybg} $args 2>/dev/null &
-          echo $! > "$TMPDIR/swaybg.pid"
-          (sleep 3 && kill "$OLD_PID" 2>/dev/null || exit 0) &
+          echo $! > "$PIDFILE"
+          (sleep 3; kill "$OLDPID" 2>/dev/null || exit 0) &
         ''
       else
         ''
           # Single screen on wayland with swaybg
           searchwp
-          OLD_PID=$(cat "$TMPDIR/swaybg.pid" 2>/dev/null)
+          OLDPID=$(cat "$PIDFILE" 2>/dev/null)
           ${swaybg} -m fill -i "$wp" 2>/dev/null &
-          echo $! > "$TMPDIR/swaybg.pid"
-          (sleep 3 && kill "$OLD_PID" 2>/dev/null || exit 0) &
+          echo $! > "$PIDFILE"
+          (sleep 3; kill "$OLDPID" 2>/dev/null || exit 0) &
         ''
     else if displayServer == "x11" then
       if supportMultipleMonitors then

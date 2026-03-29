@@ -14,7 +14,7 @@ in
   // Add lines like this to spawn processes at startup.
   // Note that running niri as a session supports xdg-desktop-autostart,
   // which may be more convenient to use.
-  spawn-sh-at-startup "sleep 1; randwp"
+  spawn-at-startup "randwp"
   spawn-sh-at-startup "sleep 1; python3 ${./niri_tile_to_n.py} -n 2"
 
   // Uncomment this line to ask the clients to omit their client-side decorations if possible.
