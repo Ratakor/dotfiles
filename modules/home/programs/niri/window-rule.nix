@@ -25,8 +25,14 @@ in
   }
 
   window-rule {
-    match title="^Picture-in-Picture$"
+    match title=r#"^Picture-in-Picture$"#
     open-floating true
+  }
+
+  window-rule {
+    // comment to match all
+    match app-id=r#"^com\.mitchellh\.ghostty$"#
+    draw-border-with-background false
   }
 
   // Example: block out two password managers from screen capture.
