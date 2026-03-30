@@ -12,8 +12,7 @@ let
   inherit (lib.modules) mkAliasOptionModule mkForce;
   inherit (self.lib.filesystem) listFiles;
   inherit (self.lib.trivial) capitalize;
-
-  username = "ratakor";
+  inherit (config.self) username;
 
   extraModules = [
     (import "${self.pins.home-manager}/nixos")

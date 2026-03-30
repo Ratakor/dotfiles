@@ -106,6 +106,6 @@ in
       dates = "weekly";
     };
     # Set NH_FLAKE env variable for the default flake path.
-    # flake = "/home/ratakor/nixos";
+    # flake = "/home/${config.self.username}/nixos";
   };
 }

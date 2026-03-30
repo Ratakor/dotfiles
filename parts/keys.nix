@@ -23,7 +23,7 @@ let
 in
 {
   inherit (users) ratakor;
-  inherit (hosts) X200;
+  inherit (hosts) X200 AuroraR7;
   inherit
     users
     users'

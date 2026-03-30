@@ -1,4 +1,5 @@
 # nix run github:ratakor/dotfiles#confloose --accept-flake-config >> ~/.bashrc
+# TODO: this is a little too much, we need to disable completion too :eyes:
 { pkgs }:
 let
   inherit (builtins) concatStringsSep;

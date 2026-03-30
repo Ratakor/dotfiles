@@ -3,6 +3,7 @@
 # - config.login.manager
 # https://kl.wtf/posts/2022/03/12/login-managers-an-introduction.html
 {
+  config,
   lib,
   pkgs,
   ...
@@ -16,7 +17,7 @@ in
   services = {
     getty = mkIf false {
       autologinOnce = true;
-      autologinUser = "ratakor";
+      autologinUser = config.self.username;
     };
 
     greetd = {
@@ -29,7 +30,7 @@ in
         initial_session = {
           command = getExe' pkgs.niri "niri-session";
           # command = "river";
-          user = "ratakor";
+          user = config.self.username;
         };
 
         # fallback
@@ -87,7 +88,7 @@ in
       defaultSession = "niri"; # used for autoLogin
       autoLogin = {
         enable = false;
-        user = "ratakor";
+        user = config.self.username;
       };
     };
 

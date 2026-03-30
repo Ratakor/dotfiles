@@ -49,7 +49,7 @@
     settings = {
       user = {
         name = config.user.description;
-        email = "ratakor@disroot.org"; # ?
+        email = "ratakor@disroot.org"; # add config.self.email?
       };
       alias = {
         st = "status";
