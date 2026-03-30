@@ -174,9 +174,10 @@
         '';
 
         zshConfigAfter = mkAfter ''
-          #quand
-          #ls -a
-          ls
+          source ${config.age.secrets.aliases.path}
+
+          quand
+          #ls
         '';
       in
       mkMerge [

@@ -46,5 +46,10 @@ in
       owner = "ratakor";
       group = "users";
     };
+    aliases = mkAgenixSecret true {
+      file = "aliases.age";
+      owner = "ratakor";
+      group = "users";
+    };
   };
 }

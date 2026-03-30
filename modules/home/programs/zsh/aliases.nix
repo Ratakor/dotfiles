@@ -1,4 +1,3 @@
-# TODO: paliasrc
 { config, ... }:
 let
   sudoCommands = [
@@ -91,6 +90,7 @@ in
     timestamp = "date +%Y-%m-%dT%H:%M:%S%z";
     j = "just";
     ff = "nix run nixpkgs#fastfetch";
+    # ask = "ollama run gemma3:12b --hidethinking"; # deepseek-r1:8b gemma3:12b
 
     # <https://unix.stackexchange.com/a/81699>
     myip = "dig @resolver4.opendns.com myip.opendns.com +short";

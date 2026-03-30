@@ -103,9 +103,8 @@ in
         pandoc
         gnused
       ];
-      # '-V geometry:margin=1in' is probably good but I forgot what it does
       text = ''
-        pandoc "$@" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g')"
+        pandoc "$@" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g') -V geometry:margin=1in"
       '';
     })
 
