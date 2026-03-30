@@ -21,6 +21,7 @@ in
         background-opacity = 0.8;
         theme = "Gruvbox Dark"; # TODO: use config.self.colors
         shell-integration-features = "no-cursor";
+        window-inherit-working-directory = false;
       };
       # I don't know what the below do
       # installVimSyntax = false;
