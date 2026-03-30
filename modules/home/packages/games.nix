@@ -1,11 +1,14 @@
-# TODO:
-## game stuff, see lutris wiki & nix-gaming ig
+# TODO: make this more configurable host wise
+# game stuff, see lutris wiki & nix-gaming ig
 {
+  lib,
   pkgs,
   self,
   ...
 }:
 let
+  inherit (lib.lists) singleton;
+
   terminal = with pkgs; [
     nbsdgames # 18 text-based modern games from bsd
     self.pkgs."2048-zig" # 2048 game in terminal
@@ -28,12 +31,14 @@ let
     self.pkgs.exiled-exchange-2
   ];
 
-  steam = [
-    pkgs.steam
-    pkgs.gamescope
-  ];
+  steam = singleton pkgs.steam;
 
-  lutris = [ pkgs.lutris ];
+  lutris = singleton pkgs.lutris;
+
+  tools = with pkgs; [
+    gamescope
+    rivalcfg
+  ];
 
   unsorted = with pkgs; [
     rili # Train Game
@@ -44,6 +49,7 @@ in
   terminal
   steam
   lutris
+  tools
   poe
   # star-citizen
   # wow
