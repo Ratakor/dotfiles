@@ -1,5 +1,45 @@
 {
   "nodes": {
+    "autoconfig": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771930362,
+        "narHash": "sha256-phTO75u5rqMvFrrNjBecfvPpLyojJvkCDWHkNFU5jK8=",
+        "owner": "thunderbird",
+        "repo": "autoconfig",
+        "rev": "ddd01002de8a037df2bed395059799bb185f5052",
+        "type": "github"
+      },
+      "original": {
+        "owner": "thunderbird",
+        "ref": "prod",
+        "repo": "autoconfig",
+        "type": "github"
+      }
+    },
+    "dove": {
+      "inputs": {
+        "autoconfig": "autoconfig",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "phoenix": "phoenix"
+      },
+      "locked": {
+        "lastModified": 1772931546,
+        "narHash": "sha256-3sXJULwjnNB+1+OLlMEC19S3N2dSgM+xtUz8grXOeT0=",
+        "ref": "pages",
+        "rev": "8ff3f4d027e4aaf3441b7fe867535d9784453db8",
+        "revCount": 736,
+        "type": "git",
+        "url": "https://gitlab.com/celenityy/Dove.git"
+      },
+      "original": {
+        "ref": "pages",
+        "type": "git",
+        "url": "https://gitlab.com/celenityy/Dove.git"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -49,8 +89,26 @@
         "type": "github"
       }
     },
+    "phoenix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771882219,
+        "narHash": "sha256-BSRt0nJOQYNVekar3y+eYerf8ELK8CC+m+sXJQ1hd5c=",
+        "ref": "pages",
+        "rev": "f972da120b774a1975f9584624402d783a66d722",
+        "revCount": 2702,
+        "type": "git",
+        "url": "https://gitlab.com/celenityy/Phoenix"
+      },
+      "original": {
+        "ref": "pages",
+        "type": "git",
+        "url": "https://gitlab.com/celenityy/Phoenix"
+      }
+    },
     "root": {
       "inputs": {
+        "dove": "dove",
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs",
         "systems": "systems"
