@@ -12,6 +12,7 @@ let
 in
 {
   imports = [
+    # ./builders.nix
     ./documentation.nix
     ./nixpkgs.nix
   ];
