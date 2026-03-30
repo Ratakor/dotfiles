@@ -26,6 +26,7 @@ in
   # https://www.kernel.org/doc/html/latest/admin-guide/sysctl/vm.html
   # https://github.com/pop-os/default-settings/pull/163
   # https://wiki.archlinux.org/title/Zram#Optimizing_swap_on_zram
+  # https://fedoraproject.org/wiki/Changes/SwapOnZRAM
   boot.kernel.sysctl = mkIf config.zramSwap.enable {
     # Higher values encourage the kernel to move memory pages to swap.
     "vm.swappiness" = 180; # 0-200
