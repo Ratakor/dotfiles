@@ -50,6 +50,7 @@ in
         "nix-command"
         "flakes"
         "pipe-operators"
+        "cgroups"
       ];
 
       extra-substituters = [
@@ -87,6 +88,9 @@ in
       # Whether  to  accept  Nix  configuration settings from a flake without prompting.
       # Default: false
       accept-flake-config = false; # I really want to set this to true
+
+      # Whether to execute builds inside cgroups.
+      use-cgroups = pkgs.stdenv.isLinux; # This is only supported on Linux.
     };
 
     # Perform garbage collection weekly to maintain low disk usage
