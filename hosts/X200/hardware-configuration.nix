@@ -4,8 +4,12 @@
   lib,
   pkgs,
   modulesPath,
+  self,
   ...
 }:
+let
+  inherit (self.lib.filesystem) GiB;
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -29,7 +33,7 @@
     extraModulePackages = [ ];
 
     kernelParams = [
-      "zfs.zfs_arc_max=${3 * 1024 * 1024 * 1024 |> toString}" # 3GiB
+      "zfs.zfs_arc_max=${3 * GiB |> toString}"
     ];
 
     # List of zpools to import at boot time, needed if not using legacy mountpoints

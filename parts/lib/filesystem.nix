@@ -1,4 +1,4 @@
-_:
+{ self, ... }:
 let
   inherit (builtins)
     readDir
@@ -45,4 +45,12 @@ in
     |> mapAttrs (name: kind: if kind == "directory" then dir + /${name} else null)
     |> attrValues
     |> filter (x: x != null);
+
+  /**
+    Size constants in bytes.
+  */
+  B = 1;
+  KiB = 1024 * self.filesystem.B;
+  MiB = 1024 * self.filesystem.KiB;
+  GiB = 1024 * self.filesystem.MiB;
 }
