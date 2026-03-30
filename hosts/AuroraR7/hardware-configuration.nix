@@ -73,15 +73,15 @@
       ];
     };
 
-    "/ssd" = {
-      device = "/dev/disk/by-uuid/278e43c9-34a9-402f-8033-d452814954fc";
-      fsType = "btrfs";
-      options = [
-        "subvol=ssd"
-        "compress=zstd"
-        "noatime"
-      ];
-    };
+    # "/ssd" = {
+    #   device = "/dev/disk/by-uuid/278e43c9-34a9-402f-8033-d452814954fc";
+    #   fsType = "btrfs";
+    #   options = [
+    #     "subvol=ssd"
+    #     "compress=zstd"
+    #     "noatime"
+    #   ];
+    # };
 
     "/storage" = {
       device = "/dev/disk/by-uuid/b1bfaa92-e9ee-483e-96b1-aaf6c123af42";
