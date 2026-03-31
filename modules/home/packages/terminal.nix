@@ -19,6 +19,7 @@ let
     bc # calculation
     # shaq # CLI client for Shazam
     gemini-cli # Gemini AI from google, pretty cool actually
+    timewarrior # Time tracking utility
   ];
 
   tui = with pkgs; [
