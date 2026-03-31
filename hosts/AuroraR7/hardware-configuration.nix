@@ -101,7 +101,11 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     # modesettings.enable = true;
-    # powerManagement.enable = true;
+    # powerManagement = {
+    #   enable = true;
+    #   kernelSuspendNotifier = true;
+    #   # finegrained = true;
+    # };
     open = false;
     nvidiaSettings = true;
     # package = config.boot.kernelPackages.nvidiaPackages.stable;
