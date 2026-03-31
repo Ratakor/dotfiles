@@ -75,7 +75,6 @@ in
       MANPAGER = "sh -c 'col -bx | ${getExe pkgs.bat} -l man -p'";
       MANROFFOPT = "-c";
       MANWIDTH = "80";
-      LESS = "-R";
     };
   };
 }

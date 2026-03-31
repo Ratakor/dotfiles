@@ -26,13 +26,6 @@
     gacpv = "ga . && gcv && gp";
   };
 
-  # TODO: move to programs/delta
-  hm.programs.delta = {
-    enable = true;
-    enableGitIntegration = true;
-    options = { }; # TODO
-  };
-
   hm.programs.git = {
     enable = true;
     # package = pkgs.gitFull;

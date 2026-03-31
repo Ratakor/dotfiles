@@ -1,4 +1,5 @@
 # Screen color temperature adjuster -- No blue light at night
+# Check out `sunsetr` for a pretty cool pure Wayland alternative
 {
   hm.services.gammastep = {
     enable = true;

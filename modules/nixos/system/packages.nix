@@ -19,7 +19,6 @@ in
       self.pkgs.helix-wrapped # editor, see environment.nix for $EDITOR
       yazi # file manager
       git
-      less
       wget
       curl
       rsync

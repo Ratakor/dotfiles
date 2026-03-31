@@ -18,7 +18,14 @@ in
     socat # netcat replacement
     # trash-cli # rm replacement (kinda), -zfs/btrfs snapshots are way superior
     sd # sed replacement
+    moor # less replacement
   ];
+
+  hm.home.sessionVariables = {
+    PAGER = "moor";
+    MOOR = "-terminal-fg";
+    LESS = "-R";
+  };
 
   hm.home.shellAliases = {
     # previously "trash -v"
@@ -51,9 +58,7 @@ in
       "--exclude-dir=.git"
       "--line-number"
     ];
-    diff = mkAlias "diff" [ "--color=auto" ];
     ip = mkAlias "ip" [ "--color=auto" ];
-    less = mkAlias "less" [ "-R" ];
 
     # ps = "procs";
     duf = mkAlias "duf" [
@@ -66,7 +71,8 @@ in
       # "--style=numbers,changes"
       # "--tabs 8"
     ];
-
+    diff = mkAlias "riff" [ ];
+    less = mkAlias "moor" [ ];
     fd = mkAlias "fd" [
       # "--absolute-path" # print absolute paths
       # "--color=always" # always use colors
@@ -130,6 +136,14 @@ in
       enable = true;
       options = [ "--cmd cd" ];
       enableZshIntegration = true; # replaces cd & add `cdi` command
+    };
+
+    # diff replacement
+    # see also: delta
+    riff = {
+      enable = true;
+      enableGitIntegration = true;
+      commandLineOptions = [ ];
     };
   };
 }
