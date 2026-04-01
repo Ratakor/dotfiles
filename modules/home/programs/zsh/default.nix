@@ -5,14 +5,21 @@
   lib,
   ...
 }:
+let
+  inherit (lib.modules)
+    mkIf
+    mkBefore
+    mkAfter
+    mkOrder
+    mkMerge
+    ;
+in
 {
   imports = [
-    ./aliases.nix
     ./plugins.nix
-    ./variables.nix
   ];
 
-  hm.home = {
+  hm.home = mkIf config.hm.programs.zsh.enable {
     # enables shell integrations for zsh from programs
     # I think it's enabled by default tho
     shell.enableZshIntegration = true;
@@ -107,13 +114,6 @@
     # TODO: clean this mess
     initContent =
       let
-        inherit (lib.modules)
-          mkBefore
-          mkAfter
-          mkOrder
-          mkMerge
-          ;
-
         zshProfiling = mkMerge [
           (mkOrder 0 "zmodload zsh/zprof")
           (mkOrder 2000 "zprof")
