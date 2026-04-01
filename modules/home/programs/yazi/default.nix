@@ -9,5 +9,6 @@
     shellWrapperName = "y";
     # Add a shell wrapper (`y`) that changes cwd when exiting yazi
     enableZshIntegration = config.hm.programs.zsh.enable;
+    enableNushellIntegration = config.hm.programs.nushell.enable;
   };
 }

@@ -5,6 +5,7 @@
       enable = true;
       # Add <C-T> for smart autocomplete & <C-R> for history search
       enableZshIntegration = config.hm.programs.zsh.enable;
+      enableNushellIntegration = config.hm.programs.nushell.enable;
       channels = { };
       settings = { };
     };

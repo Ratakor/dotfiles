@@ -6,5 +6,6 @@
     silent = true;
     # Enable direnv hook.
     enableZshIntegration = config.hm.programs.zsh.enable;
+    enableNushellIntegration = config.hm.programs.nushell.enable;
   };
 }

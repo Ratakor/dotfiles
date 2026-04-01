@@ -37,10 +37,6 @@ in
       # "--parents"
       "--verbose"
     ];
-    mkdir = mkAlias "mkdir" [
-      "--parents"
-      "--verbose"
-    ];
     cp = mkAlias "cp" [
       "--interactive"
       "--recursive"
@@ -83,21 +79,33 @@ in
       "--no-ignore-vcs" # don't ignore files in .gitignore
     ];
 
-    ls = mkAlias "eza" [
-      "--color=auto"
-      "--group-directories-first"
-      "--hyperlink"
-    ];
     sl = "ls";
     la = "ls -a";
-    laa = "ls -aa";
-    lr = "ls --recurse";
-    tree = "ls --tree";
-    ll = "ls --long --group --header --octal-permissions --git";
-    l = "ll -a";
   };
 
   hm.programs = {
+    zsh.shellAliases = {
+      mkdir = mkAlias "mkdir" [
+        "--parents"
+        "--verbose"
+      ];
+
+      ls = mkAlias "eza" [
+        "--color=auto"
+        "--group-directories-first"
+        "--hyperlink"
+      ];
+      lr = "ls --recurse";
+      tree = "ls --tree";
+      ll = "ls --long --group --header --octal-permissions --git";
+      l = "ll -a";
+    };
+
+    nushell.shellAliases = {
+      mkdir = mkAlias "mkdir" [ "--verbose" ];
+      # TODO: replace ls with eza?
+    };
+
     # cat replacement
     bat = {
       enable = true;
@@ -137,6 +145,7 @@ in
       options = [ "--cmd cd" ];
       # Replaces cd & add `cdi` command.
       enableZshIntegration = config.hm.programs.zsh.enable;
+      enableNushellIntegration = config.hm.programs.nushell.enable;
     };
 
     # diff replacement

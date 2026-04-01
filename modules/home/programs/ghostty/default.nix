@@ -27,6 +27,7 @@ in
       # installVimSyntax = false;
       # installBatSyntax = false;
       # enableZshIntegration = config.hm.programs.zsh.enable;
+      # enableNushellIntegration = config.hm.programs.nushell.enable;
     };
 
     self.terminal = {

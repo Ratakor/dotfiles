@@ -5,27 +5,6 @@
   ...
 }:
 {
-  hm.home.shellAliases = {
-    G = "gitui";
-    gs = "git status";
-    ga = "git add";
-    gc = "git commit";
-    gca = "git commit --all";
-    gcv = "git commit --verbose";
-    gcm = "git commit --message";
-    gam = "git commit --amend";
-    gp = "git push"; # --follow-tags"; # --tags
-    gpl = "git pull";
-    gr = "git restore";
-    grs = "git restore --staged";
-    gd = "git diff";
-    gac = "ga . && gc";
-    gacv = "ga . && gcv";
-    gcp = "gc && gp";
-    gacp = "ga . && gc && gp";
-    gacpv = "ga . && gcv && gp";
-  };
-
   hm.programs.git = {
     enable = true;
     # package = pkgs.gitFull;
@@ -93,5 +72,40 @@
         path = config.age.secrets.git-epita.path;
       }
     ];
+  };
+
+  hm.home.shellAliases = {
+    G = "gitui";
+    gs = "git status";
+    ga = "git add";
+    gc = "git commit";
+    gca = "git commit --all";
+    gcv = "git commit --verbose";
+    gcm = "git commit --message";
+    gam = "git commit --amend";
+    gp = "git push"; # --follow-tags"; # --tags
+    gpl = "git pull";
+    gr = "git restore";
+    grs = "git restore --staged";
+    gd = "git diff";
+  };
+
+  hm.programs = {
+    zsh.shellAliases = {
+      gac = "ga . && gc";
+      gacv = "ga . && gcv";
+      gcp = "gc && gp";
+      gacp = "ga . && gc && gp";
+      gacpv = "ga . && gcv && gp";
+    };
+    nushell.extraConfig =
+      # nu
+      ''
+        def gac [] { ga .; gc }
+        def gacv [] { ga .; gcv }
+        def gcp [] { gc; gp }
+        def gacp [] { ga .; gc; gp }
+        def gacpv [] { ga .; gcv; gp }
+      '';
   };
 }

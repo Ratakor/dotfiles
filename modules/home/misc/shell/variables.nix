@@ -77,4 +77,6 @@ in
       MANWIDTH = "80";
     };
   };
+
+  hm.programs.nushell.environmentVariables = config.hm.home.sessionVariables;
 }
