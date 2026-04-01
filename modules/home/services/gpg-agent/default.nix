@@ -1,5 +1,6 @@
 # GPG key management daemon
 {
+  config,
   pkgs,
   self,
   ...
@@ -11,7 +12,8 @@ in
   hm.services.gpg-agent = {
     enable = true;
     verbose = false; # default: false
-    enableZshIntegration = true; # set $GPG_TTY=$(tty)
+    # Set $GPG_TTY=$(tty)
+    enableZshIntegration = config.hm.programs.zsh.enable;
     enableSshSupport = true;
     # sshKeys = [""]; # TODO: use self.keys
     defaultCacheTtl = 6 * secPerHour; # 6 hours

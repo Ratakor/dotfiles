@@ -26,7 +26,7 @@ in
       # I don't know what the below do
       # installVimSyntax = false;
       # installBatSyntax = false;
-      # enableZshIntegration = false;
+      # enableZshIntegration = config.hm.programs.zsh.enable;
     };
 
     self.terminal = {

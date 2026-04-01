@@ -135,7 +135,8 @@ in
     zoxide = {
       enable = true;
       options = [ "--cmd cd" ];
-      enableZshIntegration = true; # replaces cd & add `cdi` command
+      # Replaces cd & add `cdi` command.
+      enableZshIntegration = config.hm.programs.zsh.enable;
     };
 
     # diff replacement

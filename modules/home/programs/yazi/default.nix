@@ -1,17 +1,13 @@
 # Terminal File Manager
-{ self, ... }:
+{ config, self, ... }:
 {
   user.packages = [ self.pkgs.yazi-wrapped ];
 
-  # Add a shell wrapper (`y`) that changes cwd when exiting yazi
-  hm.programs.zsh.initContent = ''
-    function y() {
-      local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-      yazi "$@" --cwd-file="$tmp"
-      if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        builtin cd -- "$cwd"
-      fi
-      rm -f -- "$tmp"
-    }
-  '';
+  hm.programs.yazi = {
+    enable = true;
+    package = null; # We use our custom wrapped package.
+    shellWrapperName = "y";
+    # Add a shell wrapper (`y`) that changes cwd when exiting yazi
+    enableZshIntegration = config.hm.programs.zsh.enable;
+  };
 }

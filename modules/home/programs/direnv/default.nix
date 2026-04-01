@@ -1,8 +1,10 @@
+{ config, ... }:
 {
   hm.programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
-    enableZshIntegration = true; # adds a hook to enable direnv with zsh
     silent = true;
+    # Enable direnv hook.
+    enableZshIntegration = config.hm.programs.zsh.enable;
   };
 }
