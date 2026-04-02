@@ -17,9 +17,11 @@ let
     ffmpeg # video manipulation and a lot of other stuff
     mat2 # metadata removal tool
     bc # calculation
+    libqalculate # better bc
     # shaq # CLI client for Shazam
     gemini-cli # Gemini AI from google, pretty cool actually
     timewarrior # Time tracking utility
+    nix-index # A file databse for nixpkgs
   ];
 
   tui = with pkgs; [

@@ -6,6 +6,7 @@
   ...
 }:
 let
+  inherit (lib.meta) getExe;
   inherit (lib.modules)
     mkIf
     mkBefore
@@ -57,6 +58,7 @@ in
       # "PROMPT_SUBST" # used below for prompt with git integration
       # "CORRECT"
       # "CORRECT_ALL"
+      "noflowcontrol" # disable C-S/C-Q
     ];
 
     history = {
@@ -111,24 +113,20 @@ in
       _comp_options+=(globdots) # Include hidden files.
     '';
 
-    # TODO: clean this mess
     initContent =
       let
-        zshProfiling = mkMerge [
+        profiling = mkMerge [
           (mkOrder 0 "zmodload zsh/zprof")
           (mkOrder 2000 "zprof")
         ];
 
-        zshConfigBefore = mkBefore ''
-          # disable C-S/C-Q
-          setopt noflowcontrol
-
-          # Some basic settings
+        basicSettings = mkBefore ''
           autoload -U colors && colors # Load colors
           stty stop undef # Disable ctrl-s to freeze terminal.
           KEYTIMEOUT=1 # with vi / helix mode: make switching modes faster
+        '';
 
-          # git integration
+        gitIntegration = mkBefore ''
           autoload -Uz vcs_info
           precmd_functions+=( vcs_info )
           setopt PROMPT_SUBST
@@ -139,9 +137,8 @@ in
           zstyle ':vcs_info:*' enable git
         '';
 
-        # There is only prompt config here btw switch to starship?
-        zshConfig = ''
-          # Prompt
+        # switch to starship?
+        prompt = ''
           timer=$(print -P %D{%s%3.})
           function preexec() {
               timer=$(print -P %D{%s%3.})
@@ -173,7 +170,36 @@ in
           }
         '';
 
-        zshConfigAfter = mkAfter ''
+        # none of this code is stupid,
+        # it was actually decently hard to make it work properly
+        calc = mkAfter ''
+          _calc_accept_line() {
+            if [[ $BUFFER =~ '^[ (]*[+-]? *(0[xX]|.)?[[:digit:]]+[^[:alnum:]]' ]]; then
+              echo
+              printf '%s\n' "$(${getExe pkgs.libqalculate} -t "$BUFFER")"
+              # printf '%s\n' "$(python3 -c "from math import *; print($BUFFER)")"
+              print -rs -- $BUFFER
+              zle -I
+              printf '\x1b[1F'
+              BUFFER=
+              return 0
+            fi
+            zle .$WIDGET
+          }
+          zle -N accept-line _calc_accept_line
+
+          typeset -A ZSH_HIGHLIGHT_REGEXP
+          ZSH_HIGHLIGHT_REGEXP+=('[0-9]' fg=cyan)
+          ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main regexp)
+        '';
+
+        commandNotFound = mkAfter ''
+          command_not_found_handler() {
+            ${getExe pkgs.comma} "$@"
+          }
+        '';
+
+        funnyStuffIMeanKindaLikeYeaIdkManItUsedToBeCalledFunnyStuffBefore = mkAfter ''
           source ${config.age.secrets.aliases.path}
 
           quand
@@ -181,10 +207,13 @@ in
         '';
       in
       mkMerge [
-        # zshProfiling
-        zshConfigBefore
-        zshConfig
-        zshConfigAfter
+        # profiling
+        basicSettings
+        gitIntegration
+        prompt
+        calc
+        commandNotFound
+        funnyStuffIMeanKindaLikeYeaIdkManItUsedToBeCalledFunnyStuffBefore
       ];
   };
 }
