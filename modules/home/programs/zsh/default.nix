@@ -175,13 +175,11 @@ in
         calc = mkAfter ''
           _calc_accept_line() {
             if [[ $BUFFER =~ '^[ (]*[+-]? *(0[xX]|.)?[[:digit:]]+[^[:alnum:]]' ]]; then
-              echo
-              printf '%s\n' "$(${getExe pkgs.libqalculate} -t "$BUFFER")"
-              # printf '%s\n' "$(python3 -c "from math import *; print($BUFFER)")"
-              print -rs -- $BUFFER
               zle -I
-              printf '\x1b[1F'
+              print -r -- "$(${getExe pkgs.libqalculate} -t -- "$BUFFER")"
+              print -rs -- $BUFFER
               BUFFER=
+              zle -R
               return 0
             fi
             zle .$WIDGET
