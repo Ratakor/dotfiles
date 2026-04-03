@@ -33,7 +33,12 @@ in
     extraModulePackages = [ ];
 
     kernelParams = [
-      "zfs.zfs_arc_max=${3 * GiB |> toString}"
+      # https://wiki.freebsd.org/ZFSTuningGuide
+      # https://docs-archive.freebsd.org/doc/8.4-RELEASE/usr/share/doc/freebsd/en_US.ISO8859-1/books/handbook/filesystems-zfs.html
+      # 1GB mininum
+      # 1GB of RAM per 1TB of storage
+      # 5GB of RAM per 1TB of storage with dedup
+      "zfs.zfs_arc_max=${2 * GiB |> toString}"
     ];
 
     # List of zpools to import at boot time, needed if not using legacy mountpoints
