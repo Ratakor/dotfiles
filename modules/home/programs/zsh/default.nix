@@ -187,7 +187,7 @@ in
           zle -N accept-line _calc_accept_line
 
           typeset -A ZSH_HIGHLIGHT_REGEXP
-          ZSH_HIGHLIGHT_REGEXP+=('[0-9]' fg=cyan)
+          ZSH_HIGHLIGHT_REGEXP+=('\b[0-9]+\b' fg=cyan)
           ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main regexp)
         '';
 
