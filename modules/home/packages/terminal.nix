@@ -21,7 +21,6 @@ let
     # shaq # CLI client for Shazam
     gemini-cli # Gemini AI from google, pretty cool actually
     timewarrior # Time tracking utility
-    nix-index # A file databse for nixpkgs
   ];
 
   tui = with pkgs; [

@@ -191,6 +191,9 @@ in
           ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main regexp)
         '';
 
+        # We could use system's comma instead of pkgs.comma because of
+        # nix-index-database but it should be alright since we got symlink to
+        # cache home.
         commandNotFound = mkAfter ''
           command_not_found_handler() {
             ${getExe pkgs.comma} "$@"

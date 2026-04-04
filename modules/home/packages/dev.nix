@@ -90,7 +90,6 @@ let
     statix # linter
     deadnix # find and remove unused code in .nix source files
     nh # nix helper
-    # comma
     # nix-output-monitor # replace `nix` with `nom`
     nurl
     self.pkgs.flint # flake linter
