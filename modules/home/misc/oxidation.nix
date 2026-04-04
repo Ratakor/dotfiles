@@ -47,13 +47,13 @@ in
       "--interactive"
       "--verbose"
     ];
-    grep = mkAlias "grep" [
-      "--binary-files=without-match"
-      "--color=auto"
-      "--dereference-recursive"
-      "--exclude-dir=.git"
-      "--line-number"
-    ];
+    # grep = mkAlias "grep" [
+    #   "--binary-files=without-match"
+    #   "--color=auto"
+    #   "--dereference-recursive"
+    #   "--exclude-dir=.git"
+    #   "--line-number"
+    # ];
     ip = mkAlias "ip" [ "--color=auto" ];
 
     # ps = "procs";
