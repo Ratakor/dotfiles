@@ -100,7 +100,7 @@
   # TODO: move to modules/nixos/hardware/video/nvidia.nix
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
-    # modesettings.enable = true;
+    modesetting.enable = true; # Required by Wayland
     # powerManagement = {
     #   enable = true;
     #   kernelSuspendNotifier = true;
@@ -108,7 +108,7 @@
     # };
     open = false;
     nvidiaSettings = true;
-    # package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
   # https://niri-wm.github.io/niri/Nvidia.html
   environment.etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json".text =
