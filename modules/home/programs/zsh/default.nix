@@ -55,7 +55,6 @@ in
     setOptions = [
       "RM_STAR_SILENT" # disable double verification with rm -I *
       "IGNORE_EOF" # do not exit on EoF <C-d>
-      # "PROMPT_SUBST" # used below for prompt with git integration
       # "CORRECT"
       # "CORRECT_ALL"
       "noflowcontrol" # disable C-S/C-Q
@@ -137,7 +136,6 @@ in
           zstyle ':vcs_info:*' enable git
         '';
 
-        # switch to starship?
         prompt = ''
           timer=$(print -P %D{%s%3.})
           function preexec() {
