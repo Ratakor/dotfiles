@@ -10,7 +10,7 @@ let
     go # golang
     nasm # x86 compiler
     gcc # gnu compiler collection
-    # clang # another cc + clangd C lsp
+    clang # another cc + clangd C lsp
     tinycc # tiny c compiler
     # windows.mingw_w64 # windows cc (mingw-w64-gcc)
     # musl # another libc
