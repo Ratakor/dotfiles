@@ -68,7 +68,7 @@ in
       # "--tabs 8"
     ];
     diff = mkAlias "riff" [ ];
-    less = mkAlias "moor" [ ];
+    # less = mkAlias "moor" [ ];
     fd = mkAlias "fd" [
       # "--absolute-path" # print absolute paths
       # "--color=always" # always use colors
