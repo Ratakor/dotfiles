@@ -32,11 +32,8 @@
     }
 
     mouse {
-      // off
-      // natural-scroll
-      // accel-speed 0.2
-      // accel-profile "flat"
-      // scroll-method "no-scroll"
+      accel-speed 0.0
+      accel-profile "flat" // disable pointer acceleration
     }
 
     trackpoint {
