@@ -1,0 +1,276 @@
+# MIT License
+# Based on https://github.com/hanyu1774/helixgelion
+# Commit 322abd6
+# Changes:
+# - Use custom coloring scheme for the statusline
+# - Format
+
+# helixgelion theme for Helix
+# Based on the exact nvimgelion colorscheme for Neovim
+# The nvimgelion colorscheme for Neovim was originally made by nyngwang
+# See: https://github.com/nyngwang/nvimgelion
+# Inspired by Neon Genesis Evangelion
+# Preserving every color from the original theme
+
+# Interface colors
+"ui.background" = { bg = "bg_primary" }
+"ui.background.separator" = "gray_ui"
+"ui.bufferline" = { fg = "gray_dark", bg = "#0c0c0f" }
+"ui.bufferline.active" = { fg = "fg_primary", bg = "bg_primary" }
+"ui.bufferline.background" = { bg = "#0c0c0f" }
+"ui.cursor" = { fg = "bg_primary", bg = "fg_primary" }
+"ui.cursor.normal" = { fg = "bg_primary", bg = "fg_primary" }
+"ui.cursor.insert" = { fg = "bg_primary", bg = "fg_primary" }
+"ui.cursor.select" = { fg = "bg_primary", bg = "fg_primary" }
+"ui.cursor.match" = { fg = "green_bright" }
+"ui.cursor.primary" = { fg = "bg_primary", bg = "fg_primary" }
+"ui.cursor.primary.normal" = { fg = "bg_primary", bg = "fg_primary" }
+"ui.cursor.primary.insert" = { fg = "bg_primary", bg = "fg_primary" }
+"ui.cursor.primary.select" = { fg = "bg_primary", bg = "fg_primary" }
+
+"ui.gutter" = { bg = "bg_primary" }
+"ui.gutter.selected" = { bg = "cursorline" }
+"ui.linenr" = "gray_dark"
+"ui.linenr.selected" = "gray_ui"
+
+# THIS IS THE DEFAULT COLORING SCHEME FOR THE STATUSLINE
+# IF YOU WANT TO USE THE CUSTOM COLORING SCHEME THEN COMMENT THIS SETTING
+# AND UNCOMMENT THE OTHER ONE.
+# FOR MORE INFO, LOOK FOR THE COMMENTED INSTRUCTION BELOW THIS CODE
+# "ui.statusline" = { fg = "gray_ui", bg = "bg_primary" }
+# "ui.statusline.inactive" = { fg = "gray_ui", bg = "bg_primary" }
+# "ui.statusline.normal" = { fg = "gray_ui", bg = "bg_primary" }
+# "ui.statusline.insert" = { fg = "gray_ui", bg = "bg_primary" }
+# "ui.statusline.select" = { fg = "gray_ui", bg = "bg_primary" }
+
+# CUSTOM COLORING SCHEME FOR THE STATUSLINE
+# THIS IS DISABLED BY DEFAULT DUE THE THE FOLLOWING BEING COMMENTED
+# REMOVE THE '#' AT THE BEGINNING TO ENABLE THE FOLLOWING CODE AND...
+# IMPORTANT: MAKE SURE TO COMMENT THE DEFAULT SETTING ABOVE BY ADDING '#' AT THE BEGINNING!
+"ui.statusline" = { fg = "#d3d3d3", bg = "#262626" }
+"ui.statusline.inactive" = { fg = "#d3d3d3", bg = "#262626" }
+"ui.statusline.normal" = { fg = "#262626", bg = "#608b4e" }
+"ui.statusline.insert" = { fg = "#262626", bg = "#569CD6" }
+"ui.statusline.select" = { fg = "#262626", bg = "#c586c0" }
+
+"ui.popup" = { bg = "bg_popup" }
+"ui.popup.info" = { bg = "bg_popup" }
+"ui.window" = { bg = "bg_primary" }
+"ui.help" = { bg = "bg_popup" }
+
+"ui.text" = "fg_primary"
+"ui.text.focus" = "green_bright"
+"ui.text.inactive" = "gray_ui"
+"ui.text.info" = "purple_light"
+"ui.text.directory" = "orange"
+
+"ui.virtual.ruler" = { bg = "bg_popup" }
+"ui.virtual.whitespace" = "gray_dark"
+"ui.virtual.indent-guide" = "indent_gray"
+"ui.virtual.inlay-hint" = "gray_ui"
+"ui.virtual.inlay-hint.parameter" = "yellow"
+"ui.virtual.inlay-hint.type" = "green"
+
+"ui.selection" = { bg = "visual" }
+"ui.selection.primary" = { bg = "visual" }
+"ui.cursorline.primary" = { bg = "cursorline" }
+"ui.cursorline.secondary" = { bg = "cursorline" }
+
+"ui.menu" = { bg = "bg_popup" }
+"ui.menu.selected" = { fg = "green_bright", bg = "menu_selected" }
+"ui.menu.scroll" = { fg = "pink_scroll", bg = "dark_scroll" }
+
+"ui.picker.header" = "green_bright"
+"ui.picker.header.column" = "green_bright"
+"ui.picker.header.column.active" = "green_bright"
+
+# Debug
+"ui.debug.breakpoint" = "pink"
+"ui.debug.active" = "yellow"
+
+# Syntax highlighting - EXACT mappings from nvimgelion
+"type" = "green"
+"type.builtin" = "green"
+"type.parameter" = "green"
+"type.enum" = "purple_magenta"
+"type.enum.variant" = "purple_magenta"
+
+# Constructor highlighting (was missing before!)
+"constructor" = "green"
+"constructor.python" = "green_builtin"
+
+# Constants with exact colors
+"constant" = "purple_magenta"
+"constant.builtin" = "purple_magenta"
+"constant.builtin.boolean" = "purple_magenta"
+"constant.character" = "purple_magenta"
+"constant.character.escape" = "purple_magenta"
+"constant.numeric" = "purple_magenta"
+"constant.numeric.integer" = "purple_magenta"
+"constant.numeric.float" = "purple_magenta"
+
+# String highlighting
+"string" = "yellow"
+"string.regexp" = "yellow"
+"string.special" = "yellow"
+"string.special.path" = "yellow"
+"string.special.url" = { fg = "purple_light", underline = { style = "line" } }
+"string.special.symbol" = "yellow"
+
+# Comments with italics (exact match from nvimgelion)
+"comment" = { fg = "gray_dark", modifiers = [ "italic" ] }
+"comment.line" = { fg = "gray_dark", modifiers = [ "italic" ] }
+"comment.block" = { fg = "gray_dark", modifiers = [ "italic" ] }
+"comment.block.documentation" = { fg = "gray_dark", modifiers = [ "italic" ] }
+
+# Variables and fields
+"variable" = "fg_primary"
+"variable.builtin" = "green_builtin"
+"variable.builtin.python" = "green_builtin"
+"variable.parameter" = "fg_primary"
+"variable.other" = "fg_primary"
+"variable.other.member" = "field_blue" # This handles object/class fields
+"variable.other.member.private" = "field_blue"
+
+# Label highlighting
+"label" = "fg_primary"
+
+# Punctuation with exact colors
+"punctuation" = "purple_operator"
+"punctuation.delimiter" = "purple_operator"
+"punctuation.bracket" = "purple_operator"
+"punctuation.special" = "purple_operator"
+
+# Keywords - exact mapping
+"keyword" = "purple_light"
+"keyword.control" = "purple_light"
+"keyword.control.conditional" = "purple_light"
+"keyword.control.repeat" = "purple_light"
+"keyword.control.import" = "purple_light"
+"keyword.control.return" = "purple_light"
+"keyword.control.exception" = "purple_light"
+"keyword.operator" = "purple_light"
+"keyword.directive" = "purple_light"
+"keyword.function" = "purple_light"
+"keyword.storage" = "purple_light"
+"keyword.storage.type" = "purple_light"
+"keyword.storage.modifier" = "purple_light"
+
+# Operators
+"operator" = "purple_operator"
+
+# Functions
+"function" = "orange"
+"function.builtin" = "orange"
+"function.method" = "orange"
+"function.method.private" = "orange"
+"function.macro" = "green_bright"
+"function.special" = "orange"
+
+# Tags (HTML, XML, etc.)
+"tag" = "green"
+"tag.builtin" = "green"
+
+# Namespaces
+"namespace" = "yellow"
+
+# Special and attributes
+"special" = "pink"
+"attribute" = "pink"
+"attribute.python" = "pink"
+
+# Markup (Markdown, etc.)
+"markup.heading" = "green"
+"markup.heading.marker" = "green"
+"markup.heading.1" = "green"
+"markup.heading.2" = "green"
+"markup.heading.3" = "green"
+"markup.heading.4" = "green"
+"markup.heading.5" = "green"
+"markup.heading.6" = "green"
+"markup.list" = "purple_operator"
+"markup.list.unnumbered" = "purple_operator"
+"markup.list.numbered" = "purple_operator"
+"markup.bold" = { modifiers = [ "bold" ] }
+"markup.italic" = { modifiers = [ "italic" ] }
+"markup.strikethrough" = { modifiers = [ "crossed_out" ] }
+"markup.link.url" = { fg = "purple_light", underline = { style = "line" } }
+"markup.link.label" = "yellow"
+"markup.link.text" = "yellow"
+"markup.quote" = "gray_ui"
+"markup.raw" = "gray_ui"
+"markup.raw.inline" = "gray_ui"
+"markup.raw.block" = "gray_ui"
+
+# Diff colors
+"diff.plus" = "green"
+"diff.plus.gutter" = "green"
+"diff.minus" = "pink"
+"diff.minus.gutter" = "pink"
+"diff.delta" = "orange"
+"diff.delta.moved" = "orange"
+
+# Diagnostics
+"error" = "pink"
+"warning" = "orange"
+"info" = "purple_light"
+"hint" = "gray_ui"
+
+"diagnostic.error" = "pink"
+"diagnostic.warning" = "orange"
+"diagnostic.info" = "purple_light"
+"diagnostic.hint" = "gray_ui"
+"diagnostic.unnecessary" = { modifiers = [ "dim" ] }
+"diagnostic.deprecated" = { modifiers = [ "crossed_out" ] }
+
+# Additional semantic highlighting for better class/object support
+"type.class" = "green"
+"type.interface" = "green"
+"type.struct" = "green"
+"constructor.java" = "green"
+"constructor.csharp" = "green"
+
+[palette]
+# Main background and foreground
+bg_primary = "#16161D" # hi Normal guibg
+fg_primary = "#d5c6e0" # hi Normal guifg
+
+# UI backgrounds
+bg_popup = "#030707" # hi Pmenu guibg, hi NoiceMini guibg, etc.
+cursorline = "#373e40" # hi CursorLine guibg
+visual = "#703871" # hi Visual guibg
+
+# Menu and selection colors - EXACT
+menu_selected = "#403d39" # hi PmenuSel guibg
+search = "#984695" # hi Search guibg, hi IncSearch guibg
+
+# Accent colors
+green_bright = "#9ef01a" # hi @text.reference, hi FzfLuaTitle, hi Macro
+green = "#7cb375" # hi Type, hi Tag, hi MoreMsg, hi Question, hi Title
+green_builtin = "#8bd450" # hi @constructor.python, hi @variable.builtin.python
+orange = "#fc735d" # hi Function, hi Directory, hi WarningMsg, hi SpellCap
+yellow = "#fcc25d" # hi String, hi @text.reference
+purple_light = "#b194fa" # hi Statement, hi Conditional, hi Repeat, hi Keyword, hi Include
+purple_magenta = "#c51af9" # hi Constant, hi Todo, hi SpellBad
+purple_operator = "#d694fa" # hi Operator, hi PreProc, hi Delimiter
+pink = "#fb3475" # hi Special, hi Error, hi ErrorMsg, hi SpellRare
+field_blue = "#b8b8ff" # hi @field.python
+
+# Gray colors
+gray_ui = "#75797a" # hi StatusLine, hi @tag.delimiter, hi DiagnosticHint
+gray_dark = "#686858" # hi Comment, hi LineNr, hi LazyDimmed, hi LazyProp
+indent_gray = "#444C55" # hi IndentBlanklineChar, hi IblIndent
+
+# Scroll colors
+pink_scroll = "#ff6392" # hi NoiceScrollbarThumb
+dark_scroll = "#212d40" # hi NoiceScrollbar
+
+# Diff background colors
+diff_add_bg = "#182822" # hi DiffAdd guibg, hi DiffChange guibg
+diff_text_bg = "#304936" # hi DiffText guibg
+
+# Additional UI colors
+end_of_buffer = "#403d39" # hi EndOfBuffer guifg
+float_border = "#75797a" # hi FloatBorder guifg
+color_column = "#030707" # hi ColorColumn guibg
+conceal = "#7b3f58" # hi Conceal guifg

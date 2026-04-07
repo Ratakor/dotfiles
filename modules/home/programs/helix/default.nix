@@ -240,6 +240,7 @@ in
             modifiers = [ "bold" ];
           };
         };
+        helixgelion = ./helixgelion.toml;
       };
     };
   };
