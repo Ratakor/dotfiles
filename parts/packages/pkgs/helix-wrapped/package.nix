@@ -22,6 +22,7 @@
     # nixd # Nix
     nil # Nix
     ocamlPackages.ocaml-lsp # OCaml
+    rPackages.languageserver
     rust-analyzer # Rust
     sqls # SQL
     superhtml # HTML
@@ -39,8 +40,10 @@
     # Toolchains (often needed by language servers)
     cargo # Rust
     dune_3 # OCaml
+    R # R
     zig # Zig
 
+    # Tools
     scooter-wrapped # interactive find-and-replace
   ],
   # dark: gruvbox dracula
