@@ -1,11 +1,10 @@
-{ config, ... }:
 {
   hm.programs = {
     television = {
       enable = true;
       # Add <C-T> for smart autocomplete & <C-R> for history search
-      enableZshIntegration = config.hm.programs.zsh.enable;
-      enableNushellIntegration = config.hm.programs.nushell.enable;
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
       channels = { };
       settings = { };
     };

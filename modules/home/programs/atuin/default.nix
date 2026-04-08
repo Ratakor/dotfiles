@@ -1,12 +1,12 @@
 # Better shell history
 # I cba for now it's too complicated
-{ config, ... }:
 {
   hm.programs.atuin = {
     enable = false;
     # Bind <C-R> and up-arrow to open the Atuin history.
-    enableZshIntegration = config.hm.programs.zsh.enable;
-    enableNushellIntegration = config.hm.programs.nushell.enable;
+    # TODO: currently using television but it doesn't seem to work on nushell
+    enableZshIntegration = false;
+    enableNushellIntegration = false;
     daemon.enable = true;
     # flags = [];
     # forceOverwriteSettings = true;

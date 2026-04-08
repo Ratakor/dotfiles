@@ -11,7 +11,7 @@ in
   config = mkIf (config.self.terminal.program == "ghostty") {
     hm.programs.ghostty = {
       enable = true;
-      systemd.enable = false; # TODO
+      systemd.enable = true;
       settings = {
         confirm-close-surface = false;
         window-decoration = "none";
@@ -23,11 +23,7 @@ in
         shell-integration-features = "no-cursor";
         window-inherit-working-directory = false;
       };
-      # I don't know what the below do
-      # installVimSyntax = false;
-      # installBatSyntax = false;
-      # enableZshIntegration = config.hm.programs.zsh.enable;
-      # enableNushellIntegration = config.hm.programs.nushell.enable;
+      enableZshIntegration = true;
     };
 
     self.terminal = {

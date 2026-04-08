@@ -1,6 +1,5 @@
 # GPG key management daemon
 {
-  config,
   pkgs,
   self,
   ...
@@ -13,8 +12,8 @@ in
     enable = true;
     verbose = false; # default: false
     # Set $GPG_TTY=$(tty)
-    enableZshIntegration = config.hm.programs.zsh.enable;
-    enableNushellIntegration = config.hm.programs.nushell.enable;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
     enableSshSupport = true;
     # sshKeys = [""]; # TODO: use self.keys
     defaultCacheTtl = 6 * secPerHour; # 6 hours

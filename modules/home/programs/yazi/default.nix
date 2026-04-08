@@ -1,5 +1,5 @@
 # Terminal File Manager
-{ config, self, ... }:
+{ self, ... }:
 {
   user.packages = [ self.pkgs.yazi-wrapped ];
 
@@ -8,7 +8,7 @@
     package = null; # We use our custom wrapped package.
     shellWrapperName = "y";
     # Add a shell wrapper (`y`) that changes cwd when exiting yazi
-    enableZshIntegration = config.hm.programs.zsh.enable;
-    enableNushellIntegration = config.hm.programs.nushell.enable;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
   };
 }

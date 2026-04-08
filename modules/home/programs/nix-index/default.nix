@@ -1,7 +1,11 @@
 {
   self,
+  lib,
   ...
 }:
+let
+  inherit (lib.modules) mkForce;
+in
 {
   hm.imports = [ "${self.pins.nix-index-database}/home-manager-module.nix" ];
 
@@ -9,12 +13,13 @@
     # A file database for nixpkgs
     nix-index = {
       enable = true;
-      # command-not-found.sh is decent but comma is better
-      # enableZshIntegration = config.hm.programs.zsh.enable;
-      # enableNushellIntegration = config.hm.programs.nushell.enable;
       symlinkToCacheHome = true;
+      enableZshIntegration = false; # We use comma instead
+      enableNushellIntegration = true;
     };
     # A combination of nix-index and nix run
     nix-index-database.comma.enable = true;
+    # afaik this uses nix-channel which we do not support
+    command-not-found.enable = mkForce false;
   };
 }

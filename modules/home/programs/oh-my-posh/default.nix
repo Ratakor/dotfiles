@@ -4,7 +4,7 @@
   hm.programs.oh-my-posh = {
     enable = config.hm.programs.nushell.enable;
     enableZshIntegration = false; # too slow & incorrect executiontime
-    enableNushellIntegration = config.hm.programs.nushell.enable;
+    enableNushellIntegration = true;
     settings = {
       "$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json";
       version = 4;

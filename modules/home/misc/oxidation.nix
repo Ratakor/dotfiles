@@ -145,8 +145,8 @@ in
       enable = true;
       options = [ "--cmd cd" ];
       # Replaces cd & add `cdi` command.
-      enableZshIntegration = config.hm.programs.zsh.enable;
-      enableNushellIntegration = config.hm.programs.nushell.enable;
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
     };
 
     # diff replacement
