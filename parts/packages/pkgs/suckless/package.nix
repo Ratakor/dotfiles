@@ -6,12 +6,16 @@
   fetchFromGitHub,
   pkg-config,
   fontconfig,
-  xorg,
   ncurses,
   freetype,
   libxext,
   libxcrypt,
   imlib2,
+  libxinerama,
+  libx11,
+  libxft,
+  libxrandr,
+  xorgproto,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "suckless";
@@ -39,15 +43,15 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [
     fontconfig
-    xorg.libXinerama
-    xorg.libX11
-    xorg.libXft
+    libxinerama
+    libx11
+    libxft
 
     libxext
     libxcrypt
     imlib2
-    xorg.libXrandr
-    xorg.xorgproto
+    libxrandr
+    xorgproto
   ];
 
   patchPhase = ''

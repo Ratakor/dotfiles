@@ -10,6 +10,7 @@
           value = {
             type = "app";
             program = import ./${app}/app.nix { inherit pkgs; };
+            meta.description = app;
           };
         })
         |> builtins.listToAttrs;
