@@ -30,7 +30,7 @@ in
     };
 
     colors = mkOption {
-      default = import ./${cfg.colorscheme}.nix pkgs;
+      default = import ./themes/${cfg.colorscheme}.nix pkgs;
       readOnly = true;
     };
   };

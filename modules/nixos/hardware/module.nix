@@ -1,8 +1,8 @@
 {
   imports = [
-    ./bluetooth
+    ./audio
+    ./bluetooth.nix
     ./fs
-    ./sound
     ./video
   ];
 }

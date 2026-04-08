@@ -1,18 +1,22 @@
 {
+  config,
+  lib,
   pkgs,
   self,
   ...
 }:
 let
   inherit (self.lib.trivial) isx86Linux;
+  inherit (lib.modules) mkIf mkForce;
+
+  cfg = config.self.system.audio;
 in
 {
   imports = [
     ./wireplumber.nix
   ];
 
-  # TODO: only enable if system has sound
-  config = {
+  config = mkIf cfg.enable {
     services.pipewire = {
       enable = true;
       audio.enable = true;
@@ -29,5 +33,8 @@ in
       pipewire.wantedBy = [ "default.target" ];
       pipewire-pulse.wantedBy = [ "default.target" ];
     };
+
+    # Required by pipewire
+    security.rtkit.enable = mkForce config.services.pipewire.enable;
   };
 }

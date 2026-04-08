@@ -1,12 +1,4 @@
 {
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}:
-
-{
   imports = [
     ./hardware-configuration.nix
   ];
@@ -22,6 +14,12 @@
 
     editor.program = "helix";
     fontSize = 16;
+
+    system = {
+      audio.enable = true;
+      video.enable = true;
+      bluetooth.enable = false;
+    };
   };
 
   boot.loader = {
@@ -37,8 +35,6 @@
     hostName = "AuroraR7";
     hostId = "2689f717"; # from /etc/machine-id
   };
-
-  hardware.bluetooth.enable = true;
 
   # TODO: setup snapshots
   services.btrfs = {

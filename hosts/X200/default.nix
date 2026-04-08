@@ -1,11 +1,4 @@
 {
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}:
-{
   imports = [
     # hardware-configuration.nix should probably be merged here or sorted e.g.
     # filesystem.nix with all zfs stuff, etc...
@@ -22,6 +15,12 @@
     imageViewer.program = "imv";
 
     editor.program = "helix";
+
+    system = {
+      audio.enable = true;
+      video.enable = true;
+      bluetooth.enable = false;
+    };
   };
 
   system.stateVersion = "25.05";
@@ -57,8 +56,6 @@
     hostName = "X200";
     hostId = "90431314"; # needed by ZFS
   };
-
-  hardware.bluetooth.enable = true;
 
   services.zfs = {
     autoReplication = {
