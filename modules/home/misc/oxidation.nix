@@ -99,12 +99,12 @@ in
       lr = "ls --recurse";
       tree = "ls --tree";
       ll = "ls --long --group --header --octal-permissions --git";
-      l = "ll -a";
     };
 
     nushell.shellAliases = {
       mkdir = mkAlias "mkdir" [ "--verbose" ];
       # TODO: replace ls with eza?
+      ll = "ls -l";
     };
 
     # cat replacement
