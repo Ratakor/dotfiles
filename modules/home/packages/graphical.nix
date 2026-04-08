@@ -10,14 +10,12 @@ let
   inherit (lib.lists) optionals;
 
   wayland = {
-    apps = with pkgs; [
-      # waydroid # Container-based approach to boot a full Android system on a regular GNU/Linux system
-    ];
+    apps = with pkgs; [ ];
 
     unsorted = with pkgs; [
       grim # screenshot
       slurp # region selection
-      # swappy # image editor for screenshots
+      # swappy # image editor for screenshots # TODO: look into gabm/satty
       wl-clipboard # clipboard management
       wf-recorder # screen recording
       swaybg # wallpaper utility
