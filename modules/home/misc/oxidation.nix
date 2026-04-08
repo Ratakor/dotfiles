@@ -62,11 +62,12 @@ in
       "-hide-fs zfs"
     ];
     du = mkAlias "dust" [ "--reverse" ];
-    cat = mkAlias "bat" [
-      # I believe --decorations=auto is broken
-      # "--style=numbers,changes"
-      # "--tabs 8"
-    ];
+    # cat = mkAlias "bat" [
+    #   # These are arguments for bat
+    #   # I believe --decorations=auto is broken
+    #   # "--style=numbers,changes"
+    #   # "--tabs 8"
+    # ];
     diff = mkAlias "riff" [ ];
     # less = mkAlias "moor" [ ];
     fd = mkAlias "fd" [
