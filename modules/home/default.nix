@@ -57,6 +57,7 @@ in
       # "network"
       "networkmanager"
       # "kvm"
+      "docker"
     ];
     openssh.authorizedKeys.keys = self.keys.${username};
   };

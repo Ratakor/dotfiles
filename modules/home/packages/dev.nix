@@ -54,6 +54,7 @@ let
     rustfmt # rust formatter
     zig-shell-completions
     moreutils # a lot of cool additional utils
+    docker
   ];
 
   fs = with pkgs; [
