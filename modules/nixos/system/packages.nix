@@ -23,6 +23,11 @@ in
       curl
       rsync
 
+      # shells
+      # They must be installed system-wide or it may cause issue when switching back-and-forth.
+      zsh
+      nushell
+
       lvm2
       cryptsetup
       sysfsutils
