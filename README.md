@@ -34,10 +34,8 @@
 ### Miscellaneous
 - Document Viewer: [zathura](https://github.com/pwmt/zathura)
 - Video Player: [mpv](https://github.com/mpv-player/mpv)
-<!-- - Music Player: [Music](.local/bin/music) -->
 - Image Viewer: [imv](https://sr.ht/~exec64/imv)
 - Notifications: [mako](https://github.com/emersion/mako)
-<!-- - Screenshot Tool: [grim](https://sr.ht/~emersion/grim) -->
 - Mail Client: [Dove](https://dove.celenity.dev)
 - Screen Locker: [swaylock](https://github.com/swaywm/swaylock)
 - [Wallpapers](https://github.com/ratakor/wallpapers)
