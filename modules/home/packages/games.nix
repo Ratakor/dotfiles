@@ -48,7 +48,7 @@ in
 [
   terminal
   steam
-  lutris
+  # lutris
   tools
   poe
   # star-citizen

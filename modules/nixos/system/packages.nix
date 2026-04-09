@@ -14,14 +14,13 @@ in
 
     # List packages installed in system profile.
     # You can use https://search.nixos.org/ to find more packages (and options).
-    # TODO: sort that
+    # TODO: sort/cleanup that
     systemPackages = with pkgs; [
       self.pkgs.helix-wrapped # editor, see environment.nix for $EDITOR
       yazi # file manager
       git
-      wget
+      # wget
       curl
-      rsync
 
       # shells
       # They must be installed system-wide or it may cause issue when switching back-and-forth.
@@ -33,10 +32,8 @@ in
       sysfsutils
       #ntfs3g
       #xfsprogs xfsdump
-      killall
       gnupg
       pkg-config
-      xdg-utils
 
       ## system tools
       # sysstat
@@ -45,37 +42,21 @@ in
       usbutils # lsusb
       dnsutils # dig, host, nslookup
       brightnessctl # brightness control
+      procps # ps
 
       ## parabola base
       file
       findutils
       gawk
-      gcc
-      gettext
       glibc
       gnugrep
-      gzip
-      iproute2
-      iputils
-      procps
-      psmisc
+      psmisc # see also the `killall` package
       gnused
-      shadow
-      gnutar
       util-linux
-      xz
 
       ## parabola base-devel
-      autoconf
-      automake
       binutils
-      bison
-      debugedit
-      fakeroot
-      flex
       groff
-      libtool
-      m4
       gnumake
       patch
       pkgconf

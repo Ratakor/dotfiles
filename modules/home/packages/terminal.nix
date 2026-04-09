@@ -21,6 +21,7 @@ let
     # shaq # CLI client for Shazam
     gemini-cli # Gemini AI from google, pretty cool actually
     timewarrior # Time tracking utility
+    rsync # a fast, versatile, remote (and local) file-copying tool
   ];
 
   tui = with pkgs; [

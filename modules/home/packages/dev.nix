@@ -51,7 +51,7 @@ let
     # tinyxxd # hexdump utility, see `hexyl` too
     # teehee # modal terminal hex editor
     # self.pkgs.neocities-zig # TODO: not packaged
-    rustfmt # rust formatter
+    # rustfmt # rust formatter
     zig-shell-completions
     moreutils # a lot of cool additional utils
     docker
@@ -83,17 +83,20 @@ let
     zstd
     lz4
     ouch # Obvious Unified Compression Helper
+    gnutar
   ];
 
   # Nix tools
   nix = with pkgs; [
     # nixfmt # formatter
-    statix # linter
-    deadnix # find and remove unused code in .nix source files
+    # statix # linter
+    # deadnix # find and remove unused code in .nix source files
     nh # nix helper
     # nix-output-monitor # replace `nix` with `nom`
-    nurl
+    # nurl # Generate Nix fetcher calls from URLs
     self.pkgs.flint # flake linter
+    # nix-tree # TUI viewer for nix derivations
+    # nix-query-tree-viewer # GTK viewer for nix derivations
   ];
 in
 [
