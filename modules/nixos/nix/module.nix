@@ -73,7 +73,7 @@ in
       # Optimize storage
       # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
       # Increases build time & useless with zfs dedup according to [insert forum link I forgot]
-      auto-optimise-store = config.fileSystems."/nix".fsType != "zfs";
+      auto-optimise-store = false; # config.fileSystems."/nix".fsType != "zfs";
 
       # Move dotfiles in $HOME to $XDG_STATE_HOME/nix.
       # https://github.com/NixOS/nix/pull/5588
@@ -99,6 +99,13 @@ in
       dates = "weekly";
       options = "--delete-older-than 1w";
       persistent = false;
+    };
+
+    # Automatically run the nix store optimiser at a specific time.
+    optimise = {
+      automatic = true;
+      dates = [ "04:00" ];
+      persistent = false; # should prevent from running at init
     };
   };
 
