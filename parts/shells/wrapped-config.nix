@@ -1,12 +1,14 @@
 # nix develop github:ratakor/dotfiles --accept-flake-config --quiet --quiet
 # alias hx="nix run github:ratakor/dotfiles#helix-wrapped --accept-flake-config --quiet --quiet --"
 # TODO: add oxidation? (also add nerd fonts?)
+# it's funny how this look like yazelix
 {
   mkShellNoCC,
-  neovim-wrapped,
+  # neovim-wrapped,
   zellij-wrapped,
   yazi-wrapped,
   helix-wrapped,
+  gitui-wrapped,
   ripgrep,
   fd,
 }:
@@ -14,10 +16,11 @@ mkShellNoCC {
   name = "wrapped-config";
 
   packages = [
-    neovim-wrapped
+    # neovim-wrapped
     zellij-wrapped
     yazi-wrapped
     helix-wrapped
+    gitui-wrapped
     ripgrep
     fd
   ];

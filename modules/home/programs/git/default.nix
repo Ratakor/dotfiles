@@ -2,9 +2,12 @@
 {
   config,
   pkgs,
+  self,
   ...
 }:
 {
+  user.packages = [ self.pkgs.gitui-wrapped ];
+
   hm.programs.git = {
     enable = true;
     # package = pkgs.gitFull;
