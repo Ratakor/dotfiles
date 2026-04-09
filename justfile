@@ -10,7 +10,7 @@ default:
 [group('nh')]
 switch host="$(hostname)":
     @# nixos-rebuild switch --sudo --flake .
-    nh os switch --hostname {{host}} .
+    nh os switch --diff always --hostname {{host}} .
 
 # Build a `NixOS` VM image
 [group('nh')]
