@@ -65,15 +65,15 @@ in
       # in certain cases. For example if the package you are overriding is a dependency to
       # or is called by other packages.
       (const (prev: {
-        nixos-rebuild = prev.nixos-rebuild.override {
-          nix = systemNix;
-        };
-
         nix-direnv = prev.nix-direnv.override {
           nix = systemNix;
         };
 
-        nix-index = prev.nix-index.override {
+        comma = prev.comma.override {
+          nix = systemNix;
+        };
+
+        nurl = prev.nurl.override {
           nix = systemNix;
         };
       }))
