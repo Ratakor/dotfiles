@@ -25,7 +25,6 @@ let
   home = modulePath + /home;
 
   # Profiles
-  graphical = profiles + /graphical;
   workstation = profiles + /workstation;
   laptop = profiles + /laptop;
   server = profiles + /server;
@@ -86,7 +85,6 @@ in
     X200 = mkNixosSystem {
       modules = mkModulesFor "X200" {
         profiles = [
-          graphical
           workstation
           laptop
         ];
@@ -96,7 +94,6 @@ in
     AuroraR7 = mkNixosSystem {
       modules = mkModulesFor "AuroraR7" {
         profiles = [
-          graphical
           workstation
         ];
         extraModules = [ home ];

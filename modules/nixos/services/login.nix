@@ -10,7 +10,7 @@
 }:
 let
   inherit (builtins) concatStringsSep;
-  inherit (lib.modules) mkIf;
+  inherit (lib.modules) mkIf mkForce;
   inherit (lib.meta) getExe getExe';
 in
 {
@@ -94,8 +94,8 @@ in
 
     # disable auto-installation of unneeded software
     xserver = {
-      desktopManager.xterm.enable = false;
-      displayManager.lightdm.enable = false;
+      desktopManager.xterm.enable = mkForce false;
+      displayManager.lightdm.enable = mkForce false;
     };
   };
 }

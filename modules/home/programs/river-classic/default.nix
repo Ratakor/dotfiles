@@ -18,7 +18,7 @@ let
 in
 {
   config = mkIf (cfg.windowManager == "river") {
-    programs.river-classic.enable = true;
+    programs.river-classic.enable = true; # river mop when?
 
     hm.wayland.windowManager.river = {
       enable = true;
