@@ -13,8 +13,5 @@
 
     # TODO: is userborn useful?
     userborn.enable = false;
-
-    # used by gammastep
-    geoclue2.enable = true;
   };
 }

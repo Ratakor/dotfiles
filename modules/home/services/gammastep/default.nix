@@ -11,4 +11,9 @@
     # latitude = 48.8;
     # longitude = 2.3;
   };
+
+  services.geoclue2.appConfig.gammastep = {
+    isAllowed = true;
+    isSystem = false;
+  };
 }

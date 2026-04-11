@@ -32,7 +32,7 @@ let
 
   buildSystems = with pkgs; [
     # cmake
-    # gnumake
+    gnumake
     just # command runner (like make)
     # go-task # yet another make alternative
   ];
@@ -69,7 +69,7 @@ let
   # Some of these should probably be available system wide
   fs = with pkgs; [
     # lvm2
-    # cryptsetup
+    cryptsetup
     dosfstools # FAT/VFAT filesystem
     # mtools # Utilities to access MS-DOS disks
     # libisoburn # xorriso
