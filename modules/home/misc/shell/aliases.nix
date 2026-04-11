@@ -87,8 +87,9 @@ in
       z = "zellij --layout welcome";
       zac = "zellij attach --create";
       j = "just";
-      ff = "nix run nixpkgs#fastfetch";
+      # ff = "nix run nixpkgs#fastfetch";
       # ask = "ollama run gemma3:12b --hidethinking"; # deepseek-r1:8b gemma3:12b
+      ex = "ouch d";
 
       # <https://unix.stackexchange.com/a/81699>
       myip = "dig @resolver4.opendns.com myip.opendns.com +short";

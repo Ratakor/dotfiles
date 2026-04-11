@@ -23,14 +23,11 @@ let
 in
 {
   # TODO:
-  # changebrightness: remove?
   # dmenurecord: replace with wf-recorder
   # dmenusearch: split into different package since it has so many dependencies?
-  # ex: merge with plumber?
-  # hole: remove?
   # icstocal: merge with quand?
-  # plumber: ...
-  # screenshot: ... depends on dmenurecord
+  # plumber: ..., support archive/compressed files
+  # screenshot: remove? rewrite using nix, depends on dmenurecord
   # ytdl: ...
   hm.home.file."${config.user.home}/.local/bin" = {
     source = ./bin;
