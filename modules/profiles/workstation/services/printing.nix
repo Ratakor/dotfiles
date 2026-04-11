@@ -1,4 +1,4 @@
-# based on notashelf/nyx/modules/core/roles/workstation/system/services/printing.nix
+# https://wiki.nixos.org/wiki/Printing
 { pkgs, ... }:
 {
   services = {
@@ -6,17 +6,18 @@
     printing = {
       enable = true;
       drivers = with pkgs; [
-        gutenprint
-        hplip
+        gutenprint # Drivers for many different printers from many different vendors
+        hplip # Drivers for HP printers
+        epson-escpr2 # Drivers for Epson AirPrint devices
+        cups-filters
+        cups-browsed
       ];
     };
 
     # Required for network discovery of printers
     avahi = {
       enable = true;
-      # Resolve .local domains for printers
       nssmdns4 = true;
-      # Pass avahi port(s) to the firewall
       openFirewall = true;
     };
   };
