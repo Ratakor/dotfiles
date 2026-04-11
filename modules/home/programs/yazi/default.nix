@@ -1,7 +1,12 @@
 # Terminal File Manager
-{ self, ... }:
+{ pkgs, self, ... }:
+let
+  yazi = self.pkgs.yazi-wrapped.override {
+    ouch = pkgs.ouch-rar;
+  };
+in
 {
-  user.packages = [ self.pkgs.yazi-wrapped ];
+  user.packages = [ yazi ];
 
   hm.programs.yazi = {
     enable = true;
