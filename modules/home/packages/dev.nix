@@ -30,10 +30,14 @@ let
     # dotnet-sdk # C#
   ];
 
-  tools = with pkgs; [
-    cmake
+  buildSystems = with pkgs; [
+    # cmake
+    # gnumake
     just # command runner (like make)
     # go-task # yet another make alternative
+  ];
+
+  tools = with pkgs; [
     # qemu_full # uncached binaries, arrow-cpp 4 hours to build no thanks
     # astyle # C formatter
     checkbashisms # checks for bashisms in scripts
@@ -41,7 +45,7 @@ let
     # perf # performance analysis tool (wrong package)
     hyperfine # benchmarking tool
     # poop # Performance Optimizer Observation Platform
-    gdb # gnu debugger
+    # gdb # gnu debugger
     cloc # counts lines of code
     strace # system call monitoring
     ltrace # library call monitoring
@@ -55,17 +59,25 @@ let
     zig-shell-completions
     moreutils # a lot of cool additional utils
     docker
+    file # Program that shows the type of files
+    findutils # find & xargs
+    gawk # GNU implementation of the Awk programming language
+    gnugrep # GNU implementation of the Unix grep command
+    gnused # GNU sed, a batch stream editor
   ];
 
+  # Some of these should probably be available system wide
   fs = with pkgs; [
-    dosfstools
-    mtools
-    libisoburn # xorriso
+    # lvm2
+    # cryptsetup
+    dosfstools # FAT/VFAT filesystem
+    # mtools # Utilities to access MS-DOS disks
+    # libisoburn # xorriso
     gptfdisk
     sshfs # mount drive over ssh
     ntfs3g # ntfs filesystem (windows compatibility)
-    xfsprogs # xfs filesystem
-    xfsdump # xfs snapshots
+    # xfsprogs # xfs filesystem
+    # xfsdump # xfs snapshots
     simple-mtpfs # mount phone easily
     btrfs-progs # btrfs filesystem
     # btrfs-snap # btrfs snapshot management tool
@@ -74,16 +86,16 @@ let
   ];
 
   archives = with pkgs; [
-    bzip2
-    gzip
-    zip
-    unzip
-    p7zip
-    xz
-    zstd
-    lz4
-    ouch # Obvious Unified Compression Helper
-    gnutar
+    ouch-rar # Obvious Unified Compression Helper
+    # bzip2
+    # gzip
+    # zip
+    # unzip
+    # p7zip
+    # xz
+    # zstd
+    # lz4
+    # gnutar
   ];
 
   # Nix tools
@@ -98,11 +110,23 @@ let
     # nix-tree # TUI viewer for nix derivations
     # nix-query-tree-viewer # GTK viewer for nix derivations
   ];
+
+  idkProbablyUsefulTho = with pkgs; [
+    pkgconf # Package compiler and linker metadata toolkit
+    pkg-config # Tool that allows packages to find out information about other packages
+    binutils # Tools for manipulating binaries (linker, assembler, etc.)
+    groff # Luke Smith propaganda
+    gnupatch # A program to apply differences to files
+    texinfo # GNU documentation system
+    which # Shows the full path of (shell) commands (builtin in zsh/nushell)
+  ];
 in
 [
   toolchains
+  buildSystems
   tools
   fs
   archives
   nix
+  # idkProbablyUsefulTho
 ]
