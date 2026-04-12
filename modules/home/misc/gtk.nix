@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config.self.colors.gtk) theme;
+  inherit (config.self.colors.default.gtk) theme;
 in
 {
   hm.gtk = {

@@ -10,8 +10,8 @@ let
   inherit (builtins) readFile;
   inherit (lib.modules) mkIf;
   inherit (lib.meta) getExe;
-  inherit (config.self) colors;
 
+  colors = config.self.colors.default;
   XDG_DOCUMENTS_DIR = config.hm.xdg.userDirs.documents;
   RIVER_LOG_DIR = "${config.hm.xdg.stateHome}/river";
   cfg = config.self.programs;

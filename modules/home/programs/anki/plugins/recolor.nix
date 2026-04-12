@@ -2,7 +2,7 @@
 # I think the first color is for light theme.
 { config, pkgs, ... }:
 let
-  inherit (config.self) colors;
+  colors = config.self.colors.default;
 in
 pkgs.ankiAddons.recolor.withConfig {
   config = {
@@ -151,13 +151,13 @@ pkgs.ankiAddons.recolor.withConfig {
       FG_DISABLED = [
         "Text (disabled)"
         "#858585"
-        "#${colors.bright_black}"
+        "#${colors.bright.black}"
         "--fg-disabled"
       ];
       FG_FAINT = [
         "Text (faint)"
         "#afafaf"
-        "#${colors.bright_black}"
+        "#${colors.bright.black}"
         "--fg-faint"
       ];
       FG_LINK = [
@@ -169,43 +169,43 @@ pkgs.ankiAddons.recolor.withConfig {
       FG_SUBTLE = [
         "Text (subtle)"
         "#737373"
-        "#${colors.bright_black}"
+        "#${colors.bright.black}"
         "--fg-subtle"
       ];
       FLAG_1 = [
         "Flag 1"
         "#ef4444"
-        "#${colors.bright_red}"
+        "#${colors.bright.red}"
         "--flag-1"
       ];
       FLAG_2 = [
         "Flag 2"
         "#fb923c"
-        "#${colors.bright_orange}"
+        "#${colors.bright.orange}"
         "--flag-2"
       ];
       FLAG_3 = [
         "Flag 3"
         "#4ade80"
-        "#${colors.bright_green}"
+        "#${colors.bright.green}"
         "--flag-3"
       ];
       FLAG_4 = [
         "Flag 4"
         "#3b82f6"
-        "#${colors.bright_blue}"
+        "#${colors.bright.blue}"
         "--flag-4"
       ];
       FLAG_5 = [
         "Flag 5"
         "#e879f9"
-        "#${colors.bright_magenta}"
+        "#${colors.bright.magenta}"
         "--flag-5"
       ];
       FLAG_6 = [
         "Flag 6"
         "#2dd4bf"
-        "#${colors.bright_cyan}"
+        "#${colors.bright.cyan}"
         "--flag-6"
       ];
       FLAG_7 = [
@@ -313,7 +313,7 @@ pkgs.ankiAddons.recolor.withConfig {
       STATE_SUSPENDED = [
         "Suspended"
         "#facc15"
-        "#${colors.bright_black}"
+        "#${colors.bright.black}"
         "--state-suspended"
       ];
     };

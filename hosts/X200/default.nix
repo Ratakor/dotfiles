@@ -6,7 +6,10 @@
   ];
 
   self = {
-    colorscheme = "gruvbox-dark";
+    colors = {
+      theme = "gruvbox";
+      variant = "dark";
+    };
 
     system = {
       displayServer = "wayland";

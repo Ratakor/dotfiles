@@ -1,8 +1,10 @@
 pkgs: {
-  alt = import ./gruvbox-light.nix pkgs;
-
   bat.theme = "gruvbox-dark";
   helix.theme = "gruvbox";
+  ghostty.theme = "Gruvbox Dark";
+  vicinae.theme = "gruvbox-dark";
+  zellij.theme = "gruvbox-dark";
+  scooter.theme = "gruvbox-dark";
   theme-sh = "gruvbox-dark";
 
   gtk.theme = {
@@ -24,17 +26,17 @@ pkgs: {
   cyan = "689d6a";
   white = "a89984";
 
-  bright_black = "928374";
-  bright_red = "fb4934";
-  bright_green = "b8bb26";
-  bright_yellow = "fabd2f";
-  bright_blue = "83a598";
-  bright_magenta = "d3869b";
-  bright_cyan = "8ec07c";
-  bright_white = "ebdbb2"; # foreground
+  bright.black = "928374";
+  bright.red = "fb4934";
+  bright.green = "b8bb26";
+  bright.yellow = "fabd2f";
+  bright.blue = "83a598";
+  bright.magenta = "d3869b";
+  bright.cyan = "8ec07c";
+  bright.white = "ebdbb2"; # foreground
 
   orange = "d65d0e";
-  bright_orange = "fe8019";
+  bright.orange = "fe8019";
 
   comment = "928374"; # gray
   selection = "504945"; # bg2

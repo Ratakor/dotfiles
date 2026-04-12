@@ -4,7 +4,10 @@
   ];
 
   self = {
-    colorscheme = "gruvbox-dark";
+    colors = {
+      theme = "gruvbox";
+      variant = "dark";
+    };
     fontSize = 16;
 
     system = {

@@ -10,7 +10,8 @@ let
   inherit (lib.modules) mkIf;
   inherit (lib.generators) toINIWithGlobalSection;
   inherit (self.lib) wrapWith;
-  inherit (config.self) colors;
+
+  colors = config.self.colors.default;
 
   settings = {
     width = "100%";

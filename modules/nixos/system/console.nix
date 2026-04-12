@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  console.colors = with config.self.colors; [
+  console.colors = with config.self.colors.default; [
     black
     red
     green
@@ -9,13 +9,13 @@
     magenta
     cyan
     white
-    bright_black
-    bright_red
-    bright_green
-    bright_yellow
-    bright_blue
-    bright_magenta
-    bright_cyan
-    bright_white
+    bright.black
+    bright.red
+    bright.green
+    bright.yellow
+    bright.blue
+    bright.magenta
+    bright.cyan
+    bright.white
   ];
 }

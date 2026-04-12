@@ -2,7 +2,7 @@
 { config, self, ... }:
 let
   zellij = self.pkgs.zellij-wrapped.override {
-    theme = config.self.colorscheme;
+    inherit (config.self.colors.default.zellij) theme;
   };
 in
 {

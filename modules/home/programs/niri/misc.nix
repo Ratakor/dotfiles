@@ -1,7 +1,7 @@
 # https://yalter.github.io/niri/Configuration:-Miscellaneous
 config:
 let
-  inherit (config.self) colors;
+  colors = config.self.colors.default;
   XDG_SCREENSHOTS_DIR = config.hm.xdg.userDirs.extraConfig.SCREENSHOTS;
 in
 # kdl

@@ -60,7 +60,7 @@
             {
               type = "git";
               style = "plain";
-              foreground = "#${config.self.colors.orange}"; # "yellow";
+              foreground = "#${config.self.colors.default.orange}"; # "yellow";
               options = {
                 disable_with_jj = false; # TODO: https://ohmyposh.dev/docs/segments/scm/jujutsu
               };

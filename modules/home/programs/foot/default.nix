@@ -53,54 +53,54 @@ let
 
     colors-light = {
       alpha = "0.85";
-      foreground = colors.alt.foreground;
-      background = colors.alt.background;
-      cursor = "${colors.alt.background} ${colors.alt.foreground}";
-      selection-background = colors.alt.selection;
+      foreground = colors.alternative.foreground;
+      background = colors.alternative.background;
+      cursor = "${colors.alternative.background} ${colors.alternative.foreground}";
+      selection-background = colors.alternative.selection;
 
-      regular0 = colors.alt.black;
-      regular1 = colors.alt.red;
-      regular2 = colors.alt.green;
-      regular3 = colors.alt.yellow;
-      regular4 = colors.alt.blue;
-      regular5 = colors.alt.magenta;
-      regular6 = colors.alt.cyan;
-      regular7 = colors.alt.white;
+      regular0 = colors.alternative.black;
+      regular1 = colors.alternative.red;
+      regular2 = colors.alternative.green;
+      regular3 = colors.alternative.yellow;
+      regular4 = colors.alternative.blue;
+      regular5 = colors.alternative.magenta;
+      regular6 = colors.alternative.cyan;
+      regular7 = colors.alternative.white;
 
-      bright0 = colors.alt.bright_black;
-      bright1 = colors.alt.bright_red;
-      bright2 = colors.alt.bright_green;
-      bright3 = colors.alt.bright_yellow;
-      bright4 = colors.alt.bright_blue;
-      bright5 = colors.alt.bright_magenta;
-      bright6 = colors.alt.bright_cyan;
-      bright7 = colors.alt.bright_white;
+      bright0 = colors.alternative.bright.black;
+      bright1 = colors.alternative.bright.red;
+      bright2 = colors.alternative.bright.green;
+      bright3 = colors.alternative.bright.yellow;
+      bright4 = colors.alternative.bright.blue;
+      bright5 = colors.alternative.bright.magenta;
+      bright6 = colors.alternative.bright.cyan;
+      bright7 = colors.alternative.bright.white;
     };
 
     colors-dark = {
       alpha = "0.85";
-      foreground = colors.foreground;
-      background = colors.background;
-      cursor = "${colors.background} ${colors.foreground}";
-      selection-background = colors.selection;
+      foreground = colors.default.foreground;
+      background = colors.default.background;
+      cursor = "${colors.default.background} ${colors.default.foreground}";
+      selection-background = colors.default.selection;
 
-      regular0 = colors.black;
-      regular1 = colors.red;
-      regular2 = colors.green;
-      regular3 = colors.yellow;
-      regular4 = colors.blue;
-      regular5 = colors.magenta;
-      regular6 = colors.cyan;
-      regular7 = colors.white;
+      regular0 = colors.default.black;
+      regular1 = colors.default.red;
+      regular2 = colors.default.green;
+      regular3 = colors.default.yellow;
+      regular4 = colors.default.blue;
+      regular5 = colors.default.magenta;
+      regular6 = colors.default.cyan;
+      regular7 = colors.default.white;
 
-      bright0 = colors.bright_black;
-      bright1 = colors.bright_red;
-      bright2 = colors.bright_green;
-      bright3 = colors.bright_yellow;
-      bright4 = colors.bright_blue;
-      bright5 = colors.bright_magenta;
-      bright6 = colors.bright_cyan;
-      bright7 = colors.bright_white;
+      bright0 = colors.default.bright.black;
+      bright1 = colors.default.bright.red;
+      bright2 = colors.default.bright.green;
+      bright3 = colors.default.bright.yellow;
+      bright4 = colors.default.bright.blue;
+      bright5 = colors.default.bright.magenta;
+      bright6 = colors.default.bright.cyan;
+      bright7 = colors.default.bright.white;
     };
   };
 in

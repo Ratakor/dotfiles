@@ -1,13 +1,13 @@
 # Status bar for Wayland
 {
   config,
-  pkgs,
   self,
   ...
 }:
 let
   inherit (self.lib.trivial) hexToRgba;
-  inherit (config.self) colors;
+
+  colors = config.self.colors.default;
 in
 {
   hm.programs.waybar = {
@@ -177,15 +177,15 @@ in
         @define-color white   #${colors.white};
         @define-color orange  #${colors.orange};
 
-        @define-color bright_black   #${colors.bright_black};
-        @define-color bright_red     #${colors.bright_red};
-        @define-color bright_green   #${colors.bright_green};
-        @define-color bright_yellow  #${colors.bright_yellow};
-        @define-color bright_blue    #${colors.bright_blue};
-        @define-color bright_magenta #${colors.bright_magenta};
-        @define-color bright_cyan    #${colors.bright_cyan};
-        @define-color bright_white   #${colors.bright_white};
-        @define-color bright_orange  #${colors.bright_orange};
+        @define-color bright_black   #${colors.bright.black};
+        @define-color bright_red     #${colors.bright.red};
+        @define-color bright_green   #${colors.bright.green};
+        @define-color bright_yellow  #${colors.bright.yellow};
+        @define-color bright_blue    #${colors.bright.blue};
+        @define-color bright_magenta #${colors.bright.magenta};
+        @define-color bright_cyan    #${colors.bright.cyan};
+        @define-color bright_white   #${colors.bright.white};
+        @define-color bright_orange  #${colors.bright.orange};
 
         * {
             padding: 0;

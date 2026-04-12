@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  inherit (config.self) colors;
+  colors = config.self.colors.default;
 
   button-colours = pkgs.anki-utils.buildAnkiAddon (finalAttrs: {
     pname = "button-colours";

@@ -1,7 +1,7 @@
 # https://yalter.github.io/niri/Configuration:-Layout
 config:
 let
-  inherit (config.self) colors;
+  colors = config.self.colors.default;
 in
 # kdl
 ''

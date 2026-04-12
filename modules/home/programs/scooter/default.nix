@@ -2,7 +2,7 @@
 { config, self, ... }:
 let
   scooter = self.pkgs.scooter-wrapped.override {
-    theme = config.self.colorscheme;
+    inherit (config.self.colors.default.scooter) theme;
   };
 in
 {

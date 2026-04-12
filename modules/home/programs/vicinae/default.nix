@@ -6,6 +6,7 @@
 }:
 let
   inherit (lib.modules) mkIf;
+  inherit (config.self) colors;
 
   cfg = config.self.programs.menu;
 in
@@ -16,9 +17,8 @@ in
       systemd.enable = true;
       settings = {
         theme = {
-          # TODO: use config.self.colors
-          light.name = "gruvbox-light";
-          dark.name = "gruvbox-dark";
+          light.name = colors.light.vicinae.theme;
+          dark.name = colors.dark.vicinae.theme;
         };
         # TODO: rest of config
       };

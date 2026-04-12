@@ -7,8 +7,8 @@
 }:
 let
   inherit (lib.modules) mkIf;
-  inherit (config.self) colors;
 
+  colors = config.self.colors.default;
   sys = config.self.system;
 in
 {

@@ -1,8 +1,11 @@
+# TODO: use alucard theme as light theme for this one
 pkgs: {
-  alt = import ./dracula.nix pkgs; # see alucard
-
   bat.theme = "Dracula";
   helix.theme = "dracula";
+  ghostty.theme = "Dracula";
+  vicinae.theme = "dracula";
+  zellij.theme = "dracula";
+  scooter.theme = "dracula";
   theme-sh = "dracula";
 
   gtk.theme = {
@@ -24,17 +27,17 @@ pkgs: {
   cyan = "8be9fd";
   white = "f8f8f2";
 
-  bright_black = "6272a4";
-  bright_red = "ff6e6e";
-  bright_green = "69ff94";
-  bright_yellow = "ffffa5";
-  bright_blue = "d6acff";
-  bright_magenta = "ff92df";
-  bright_cyan = "a4ffff";
-  bright_white = "ffffff";
+  bright.black = "6272a4";
+  bright.red = "ff6e6e";
+  bright.green = "69ff94";
+  bright.yellow = "ffffa5";
+  bright.blue = "d6acff";
+  bright.magenta = "ff92df";
+  bright.cyan = "a4ffff";
+  bright.white = "ffffff";
 
   orange = "ffb86c";
-  bright_orange = "ffb86c"; # missing from spec
+  bright.orange = "ffb86c"; # missing from spec
 
   comment = "6272a4";
   selection = "44475a";

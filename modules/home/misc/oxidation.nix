@@ -111,7 +111,7 @@ in
     bat = {
       enable = true;
       config = {
-        inherit (config.self.colors.bat) theme;
+        inherit (config.self.colors.default.bat) theme;
         style = "plain";
         tabs = "0";
       };

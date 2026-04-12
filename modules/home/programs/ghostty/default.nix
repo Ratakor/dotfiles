@@ -19,7 +19,7 @@ in
         font-family = "monospace";
         font-size = config.self.fontSize;
         background-opacity = 0.8;
-        theme = "Gruvbox Dark"; # TODO: use config.self.colors
+        inherit (config.self.colors.default.ghostty) theme;
         shell-integration-features = "no-cursor";
         window-inherit-working-directory = false;
       };

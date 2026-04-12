@@ -69,7 +69,6 @@ in
       ];
 
       settings = {
-        # inherit (config.self.colors.helix) theme;
         theme = "transparent";
 
         # https://docs.helix-editor.com/editor.html
@@ -227,13 +226,13 @@ in
       # https://github.com/helix-editor/helix/tree/master/runtime/themes
       themes = {
         transparent = {
-          inherits = config.self.colors.helix.theme;
+          inherits = config.self.colors.default.helix.theme;
           "ui.background" = "none";
           "function" = {
             fg =
-              if config.self.colorscheme == "gruvbox-dark" || config.self.colorscheme == "gruvbox-light" then
+              if config.self.colors.theme == "gruvbox" then
                 "green1"
-              else if config.self.colorscheme == "dracula" then
+              else if config.self.colors.theme == "dracula" then
                 "green"
               else
                 unreachable;
