@@ -1,13 +1,7 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ lib, ... }:
 let
-  inherit (lib.options) mkOption;
+  inherit (lib.options) mkOption mkEnableOption;
   inherit (lib.types) str int;
-
-  cfg = config.self;
 in
 {
   options.self = {
@@ -22,5 +16,7 @@ in
       default = 10;
       description = "Font size, mainly used by terminal emulator.";
     };
+
+    docs.enable = mkEnableOption "generation of internal module documentation to `/etc/nixos/docs`";
   };
 }

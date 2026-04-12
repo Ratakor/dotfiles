@@ -104,6 +104,19 @@
       "url": "https://github.com/Gerg-L/mnw/archive/6bd6ab9968c2432c78db4a91c9b1e84dd84fe6b3.tar.gz",
       "hash": "sha256-mR8GDvGPu1QcI5Ft5lV2CIIh5Og7zRylts+XY3fa/K4="
     },
+    "ndg": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "feel-co",
+        "repo": "ndg"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "3f35db16e655503eb1b0c3fba8e3f003199720a4",
+      "url": "https://github.com/feel-co/ndg/archive/3f35db16e655503eb1b0c3fba8e3f003199720a4.tar.gz",
+      "hash": "sha256-FfRAANlGiF3oxq4aOO4BeyfAHRITsVg9tFdpSGgX/8c="
+    },
     "nix-index-database": {
       "type": "Git",
       "repository": {

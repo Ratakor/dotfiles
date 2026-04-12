@@ -55,6 +55,7 @@ in
     alternative = mkOption {
       default = cfg.${if cfg.variant == "dark" then "light" else "dark"};
       description = "Alternative variant of the chosen colorscheme based on the chosen default variant.";
+      readOnly = true;
     };
   };
 }
