@@ -7,9 +7,9 @@
   ...
 }:
 let
+  prg = config.self.programs;
   XDG_MUSIC_DIR = config.hm.xdg.userDirs.music;
-  DMENU =
-    if config.self.menu.program == "tofi" then "tofi --padding-left 25%" else config.self.menu.dynamic;
+  DMENU = if prg.menu.program == "tofi" then "tofi --padding-left 25%" else prg.menu.dynamic;
 in
 pkgs.writeShellApplication {
   name = "music";

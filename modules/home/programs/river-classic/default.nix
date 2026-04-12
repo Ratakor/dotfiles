@@ -14,7 +14,7 @@ let
 
   XDG_DOCUMENTS_DIR = config.hm.xdg.userDirs.documents;
   RIVER_LOG_DIR = "${config.hm.xdg.stateHome}/river";
-  cfg = config.self;
+  cfg = config.self.programs;
 in
 {
   config = mkIf (cfg.windowManager == "river") {

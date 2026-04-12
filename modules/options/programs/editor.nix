@@ -1,21 +1,10 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ lib, ... }:
 let
   inherit (lib.options) mkOption;
-  inherit (lib.types)
-    enum
-    str
-    int
-    nullOr
-    ;
-
-  cfg = config.self;
+  inherit (lib.types) enum str nullOr;
 in
 {
-  options.self = {
+  options.self.programs = {
     editor = {
       program = mkOption {
         type = enum [
@@ -37,12 +26,6 @@ in
         default = null;
         description = "The desktop entry of the editor.";
       };
-    };
-
-    fontSize = mkOption {
-      type = int;
-      default = 10;
-      description = "Font size, mainly for terminal.";
     };
   };
 }

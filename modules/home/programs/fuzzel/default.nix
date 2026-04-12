@@ -58,10 +58,10 @@ let
   };
 in
 {
-  config = mkIf (config.self.menu.program == "fuzzel") {
+  config = mkIf (config.self.programs.menu.program == "fuzzel") {
     user.packages = [ fuzzel ];
 
-    self.menu = {
+    self.programs.menu = {
       dynamic = "fuzzel --dmenu";
       drun = "fuzzel";
       run = "fuzzel --list-executables-in-path";

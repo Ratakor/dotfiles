@@ -8,17 +8,18 @@
 let
   inherit (self.lib.trivial) unreachable;
 
-  cfg = config.self;
+  sys = config.self.system;
+  prg = config.self.programs;
 
   copyCommand =
-    if cfg.displayServer == "x11" then
+    if sys.displayServer == "x11" then
       "xclip -selection clipboard"
-    else if cfg.displayServer == "wayland" then
+    else if sys.displayServer == "wayland" then
       "wl-copy"
     else
       unreachable;
   emojiDisplayed = 30;
-  DMENU = cfg.menu.dynamic;
+  DMENU = prg.menu.dynamic;
 in
 pkgs.writeShellApplication {
   name = "emojisearch";

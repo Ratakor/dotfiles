@@ -15,8 +15,8 @@ let
   inherit (self.pins) wallpapers;
   inherit (self.lib.trivial) unreachable;
 
-  inherit (config.self) displayServer;
-  supportMultipleMonitors = true;
+  inherit (config.self.system) displayServer;
+  supportMultipleMonitors = true; # TODO: config.self.monitors
 in
 pkgs.writeShellApplication {
   name = "randwp";

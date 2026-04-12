@@ -6,9 +6,11 @@
 }:
 let
   inherit (lib.modules) mkIf;
+
+  cfg = config.self.programs.menu;
 in
 {
-  config = mkIf (config.self.menu.program == "vicinae") {
+  config = mkIf (cfg.program == "vicinae") {
     hm.programs.vicinae = {
       enable = true;
       systemd.enable = true;
@@ -22,7 +24,7 @@ in
       };
     };
 
-    self.menu = {
+    self.programs.menu = {
       dynamic = "vicinae dmenu";
       drun = "vicinae toggle";
       run = "vicinae toggle"; # no equivalent

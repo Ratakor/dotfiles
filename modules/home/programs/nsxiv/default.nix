@@ -22,7 +22,7 @@ let
   });
 in
 {
-  config = mkIf (config.self.imageViewer.program == "nsxiv") {
+  config = mkIf (config.self.programs.imageViewer.program == "nsxiv") {
     user.packages = [ nsxiv ];
 
     hm.xdg.desktopEntries.nsxiv-a = {
@@ -30,7 +30,7 @@ in
       exec = "nsxiv -a %f";
     };
 
-    self.imageViewer = {
+    self.programs.imageViewer = {
       cmd = "nsxiv -a";
       desktopEntry = "nsxiv-a.desktop";
     };

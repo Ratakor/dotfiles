@@ -9,9 +9,11 @@
 }:
 let
   inherit (lib.modules) mkIf;
+
+  sys = config.self.system;
 in
 {
-  config = mkIf (config.self.displayServer == "x11") {
+  config = mkIf (sys.displayServer == "x11") {
     user.packages = [ pkgs.sxhkd ];
     hm.xdg.configFile."sxhkd/sxhkdrc".source = ./sxhkdrc;
   };

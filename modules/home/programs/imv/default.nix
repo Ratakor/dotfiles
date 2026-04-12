@@ -7,7 +7,7 @@ let
   inherit (lib.modules) mkIf;
 in
 {
-  config = mkIf (config.self.imageViewer.program == "imv") {
+  config = mkIf (config.self.programs.imageViewer.program == "imv") {
     hm.programs.imv = {
       enable = true;
       settings.binds = {
@@ -17,7 +17,7 @@ in
       };
     };
 
-    self.imageViewer = {
+    self.programs.imageViewer = {
       cmd = "imv";
       desktopEntry = "imv.desktop";
     };

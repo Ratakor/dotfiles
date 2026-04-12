@@ -105,14 +105,14 @@ let
   };
 in
 {
-  config = mkIf (config.self.terminal.program == "foot") {
+  config = mkIf (config.self.programs.terminal.program == "foot") {
     hm.programs.foot = {
       enable = true;
       server.enable = true;
       inherit settings;
     };
 
-    self.terminal = {
+    self.programs.terminal = {
       cmd = "footclient";
       cmdDir = "footclient -D";
     };

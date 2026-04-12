@@ -9,10 +9,10 @@ let
   inherit (lib.modules) mkIf;
 in
 {
-  config = mkIf (config.self.terminal.program == "st") {
+  config = mkIf (config.self.programs.terminal.program == "st") {
     user.packages = [ self.pkgs.suckless ];
 
-    self.terminal = {
+    self.programs.terminal = {
       cmd = "st";
       cmdDir = "st -d";
     };

@@ -7,10 +7,12 @@
 }:
 let
   inherit (builtins) attrValues;
-  inherit (lib.lists) optionals;
+  inherit (lib.lists) optionals singleton;
+
+  sys = config.self.system;
 
   wayland = {
-    apps = with pkgs; [ ];
+    apps = [ ];
 
     unsorted = with pkgs; [
       grim # screenshot
@@ -30,7 +32,7 @@ let
   # what about xorg-server and xorg-server-devel from archlinux?
   x11 = {
     # dmenu, dwm, sb, slock, st
-    core = [ self.pkgs.suckless ];
+    core = singleton self.pkgs.suckless;
 
     unsorted = with pkgs; [
       maim # screenshot
@@ -85,5 +87,5 @@ in
   apps
   unsorted
 ]
-++ optionals (config.self.displayServer == "wayland") (attrValues wayland)
-++ optionals (config.self.displayServer == "x11") (attrValues x11)
+++ optionals (sys.displayServer == "wayland") (attrValues wayland)
+++ optionals (sys.displayServer == "x11") (attrValues x11)

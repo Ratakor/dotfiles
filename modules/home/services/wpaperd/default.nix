@@ -4,10 +4,13 @@
 { config, self, ... }:
 let
   inherit (self.pins) wallpapers;
+
+  cfg = config.self.programs;
 in
 {
   hm.services.wpaperd = {
-    enable = false; # config.self.displayServer == "wayland";
+    # inherit (cfg.displayServer.wayland) enable;
+    enable = false;
 
     settings = {
       default = {

@@ -20,10 +20,10 @@ let
   ];
 in
 {
-  config = mkIf (config.self.menu.program == "dmenu") {
+  config = mkIf (config.self.programs.menu.program == "dmenu") {
     user.packages = [ self.pkgs.suckless ];
 
-    self.menu = {
+    self.programs.menu = {
       dynamic = "dmenu -i";
       drun = "dmenu_run -hp '${highPriority}";
       run = "dmenu_run";

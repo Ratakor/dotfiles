@@ -8,9 +8,11 @@
 let
   inherit (lib.modules) mkIf;
   inherit (config.self) colors;
+
+  sys = config.self.system;
 in
 {
-  config = mkIf (config.self.displayServer == "wayland") {
+  config = mkIf (sys.displayServer == "wayland") {
     user.packages = [ pkgs.libnotify ];
 
     hm.services.mako = {

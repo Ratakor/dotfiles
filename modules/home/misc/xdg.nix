@@ -2,47 +2,48 @@
 let
   inherit (builtins) listToAttrs;
 
-  inherit (config.hm.home) homeDirectory;
+  HOME = config.hm.home.homeDirectory;
+  prg = config.self.programs;
 in
 {
   hm.xdg = {
     enable = true;
 
     # https://specifications.freedesktop.org/basedir-spec/latest
-    configHome = "${homeDirectory}/.config";
-    dataHome = "${homeDirectory}/.local/share";
-    stateHome = "${homeDirectory}/.local/state";
-    cacheHome = "${homeDirectory}/.cache";
+    configHome = "${HOME}/.config";
+    dataHome = "${HOME}/.local/share";
+    stateHome = "${HOME}/.local/state";
+    cacheHome = "${HOME}/.cache";
 
     # .local convention
     # https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe
-    #configHome = "${homeDirectory}/.local/etc";
-    #dataHome = "${homeDirectory}/.local/share";
-    #stateHome = "${homeDirectory}/.local/var/state";
-    #cacheHome = "${homeDirectory}/.local/var/cache";
+    #configHome = "${HOME}/.local/etc";
+    #dataHome = "${HOME}/.local/share";
+    #stateHome = "${HOME}/.local/var/state";
+    #cacheHome = "${HOME}/.local/var/cache";
 
     userDirs = {
       enable = true;
       createDirectories = true;
       setSessionVariables = true;
 
-      download = "${homeDirectory}/tmp";
-      desktop = null; # "${homeDirectory}/tmp";
-      publicShare = null; # "${homeDirectory}/tmp";
-      templates = null; # "${homeDirectory}/tmp";
+      download = "${HOME}/tmp";
+      desktop = null; # "${HOME}/tmp";
+      publicShare = null; # "${HOME}/tmp";
+      templates = null; # "${HOME}/tmp";
 
-      documents = "${homeDirectory}/documents";
+      documents = "${HOME}/documents";
 
-      music = "${homeDirectory}/media/music";
-      pictures = "${homeDirectory}/media/pictures";
-      videos = "${homeDirectory}/media/videos";
+      music = "${HOME}/media/music";
+      pictures = "${HOME}/media/pictures";
+      videos = "${HOME}/media/videos";
 
       # Non-standard
       extraConfig = {
-        BIN = "${homeDirectory}/.local/bin";
+        BIN = "${HOME}/.local/bin";
         SCREENSHOTS = "${config.hm.xdg.userDirs.pictures}/screenshots";
         NOTES = "${config.hm.xdg.userDirs.documents}/notes";
-        # MAIL = "${homeDirectory}/mail"; # ".local/var/mail" made sense with the .local convention
+        # MAIL = "${HOME}/mail"; # ".local/var/mail" made sense with the .local convention
       };
     };
 
@@ -62,7 +63,7 @@ in
     desktopEntries = {
       terminal-directory = {
         name = "File Manager";
-        exec = "${config.self.terminal.cmdDir} %f";
+        exec = "${prg.terminal.cmdDir} %f";
         icon = "foot";
       };
       git = {
@@ -305,8 +306,8 @@ in
         in
         mimeToApps audioMimeTypes [ "mpv.desktop" ]
         // mimeToApps videoMimeTypes [ "mpv.desktop" ]
-        // mimeToApps imageMimeTypes [ config.self.imageViewer.desktopEntry ]
-        // mimeToApps textMimeTypes [ config.self.editor.desktopEntry ]
+        // mimeToApps imageMimeTypes [ prg.imageViewer.desktopEntry ]
+        // mimeToApps textMimeTypes [ prg.editor.desktopEntry ]
         // {
           "application/postscript" = [ "org.pwmt.zathura.desktop" ];
           "application/pdf" = [ "org.pwmt.zathura.desktop" ];

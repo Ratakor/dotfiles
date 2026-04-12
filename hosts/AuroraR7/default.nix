@@ -5,21 +5,22 @@
 
   self = {
     colorscheme = "gruvbox-dark";
-
-    displayServer = "wayland";
-    windowManager = "niri";
-    menu.program = "fuzzel";
-    terminal.program = "ghostty";
-    imageViewer.program = "imv";
-    locker.program = "dms";
-
-    editor.program = "helix";
     fontSize = 16;
 
     system = {
+      displayServer = "wayland";
       audio.enable = true;
       video.enable = true;
       bluetooth.enable = false;
+    };
+
+    programs = {
+      windowManager = "niri";
+      menu.program = "fuzzel";
+      terminal.program = "ghostty";
+      imageViewer.program = "imv";
+      locker.program = "dms";
+      editor.program = "helix";
     };
   };
 

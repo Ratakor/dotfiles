@@ -1,8 +1,8 @@
 # https://yalter.github.io/niri/Configuration:-Key-Bindings
 config:
 let
-  cfg = config.self;
   inherit (config.hm.xdg.userDirs.extraConfig) NOTES;
+  prg = config.self.programs;
 in
 # kdl
 ''
@@ -22,24 +22,24 @@ in
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // WARNING: using `spawn` to avoid latency but that means cfg.terminal.cmd must be a single command
-    Mod+Return repeat=false hotkey-overlay-title="Open a Terminal: ${cfg.terminal.program}" { spawn "${cfg.terminal.cmd}"; }
+    Mod+Return repeat=false hotkey-overlay-title="Open a Terminal: ${prg.terminal.program}" { spawn "${prg.terminal.cmd}"; }
     Mod+N repeat=false hotkey-overlay-title="Open main Zellij session" {
-      spawn-sh "${cfg.terminal.cmd} -e zellij attach --create main";
+      spawn-sh "${prg.terminal.cmd} -e zellij attach --create main";
     }
     // see `dms ipc notepad toggle`
     Mod+Shift+N repeat=false hotkey-overlay-title="Open notes directory in a Zellij session" {
-      spawn-sh "${cfg.terminal.cmdDir} ${NOTES} -e zellij attach --create notes";
-      // spawn-sh "${cfg.terminal.cmd} -e yazi ${NOTES}";
+      spawn-sh "${prg.terminal.cmdDir} ${NOTES} -e zellij attach --create notes";
+      // spawn-sh "${prg.terminal.cmd} -e yazi ${NOTES}";
     }
 
     // see `dms ipc spotlight toggle`
-    Mod+D repeat=false hotkey-overlay-title="Run an Application: ${cfg.menu.program}" { spawn-sh "${cfg.menu.drun}"; }
-    Mod+Shift+D repeat=false hotkey-overlay-title=null { spawn-sh "${cfg.menu.run}"; }
+    Mod+D repeat=false hotkey-overlay-title="Run an Application: ${prg.menu.program}" { spawn-sh "${prg.menu.drun}"; }
+    Mod+Shift+D repeat=false hotkey-overlay-title=null { spawn-sh "${prg.menu.run}"; }
 
-    // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${cfg.terminal.cmd} -e newsboat"; }
+    // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${prg.terminal.cmd} -e newsboat"; }
     Mod+B repeat=false hotkey-overlay-title="Open browser: chromium" { spawn "chromium" "--new-window"; }
-    Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${cfg.locker.program}" { spawn-sh "${cfg.locker.cmd}"; }
-    XF86ScreenSaver repeat=false { spawn-sh "${cfg.locker.cmd}"; }
+    Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${prg.locker.program}" { spawn-sh "${prg.locker.cmd}"; }
+    XF86ScreenSaver repeat=false { spawn-sh "${prg.locker.cmd}"; }
     XF86Battery repeat=false hotkey-overlay-title="Show battery informations" { spawn "battery"; }
     Mod+Shift+W repeat=false hotkey-overlay-title="Set a randwom wallpaper" { spawn "randwp"; }
 
@@ -48,7 +48,7 @@ in
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
-    // F7 repeat=false { spawn-sh "${cfg.terminal.cmd} -e dmenurecord"; }
+    // F7 repeat=false { spawn-sh "${prg.terminal.cmd} -e dmenurecord"; }
 
     // see `dms ipc audio increment 2`, `dms ipc audio mute`, `dms ipc audio micmute`
     XF86AudioRaiseVolume allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }

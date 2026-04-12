@@ -6,7 +6,7 @@ let
   inherit (lib.modules) mkIf;
 in
 {
-  config = mkIf (config.self.windowManager == "hyprland") {
+  config = mkIf (config.self.programs.windowManager == "hyprland") {
     programs.hyprland.enable = true;
 
     hm.wayland.windowManager.hyprland = {

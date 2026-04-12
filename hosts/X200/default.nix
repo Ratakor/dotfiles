@@ -8,19 +8,20 @@
   self = {
     colorscheme = "gruvbox-dark";
 
-    displayServer = "wayland";
-    windowManager = "niri";
-    menu.program = "fuzzel";
-    terminal.program = "foot";
-    imageViewer.program = "imv";
-    locker.program = "dms";
-
-    editor.program = "helix";
-
     system = {
+      displayServer = "wayland";
       audio.enable = true;
       video.enable = true;
       bluetooth.enable = false;
+    };
+
+    programs = {
+      windowManager = "niri";
+      menu.program = "fuzzel";
+      terminal.program = "foot";
+      imageViewer.program = "imv";
+      locker.program = "dms";
+      editor.program = "helix";
     };
   };
 

@@ -37,10 +37,10 @@ let
   };
 in
 {
-  config = mkIf (config.self.menu.program == "tofi") {
+  config = mkIf (config.self.programs.menu.program == "tofi") {
     user.packages = [ tofi ];
 
-    self.menu = {
+    self.programs.menu = {
       dynamic = "tofi";
       drun = "exec $(tofi-drun)";
       run = "exec $(tofi-run)";

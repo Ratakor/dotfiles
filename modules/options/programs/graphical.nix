@@ -7,33 +7,24 @@ let
   inherit (lib.options) mkOption;
   inherit (lib.types) enum str nullOr;
 
-  cfg = config.self;
+  cfg = config.self.programs;
+  sys = config.self.system;
 in
 {
-  # move to displayManager.wayland.enable?
-  # replace profiles.graphical?
-  options.self = {
-    displayServer = mkOption {
-      type = enum [
-        "x11"
-        "wayland"
-      ];
-      default = "wayland";
-      description = "The display server to use.";
-    };
-
+  options.self.programs = {
     windowManager = mkOption {
-      type = enum [
+      type = nullOr (enum [
         "dwm"
         "river-classic"
         "river" # not implemented
         "niri"
         "hyprland"
-      ];
-      default = if cfg.displayServer == "wayland" then "niri" else "dwm";
+      ]);
+      default = if sys.displayServer == "wayland" then "niri" else "dwm";
       description = "The window manager to use.";
     };
 
+    # TODO: rename launcher
     # see also: dms, anyrun, walker
     menu = {
       program = mkOption {
@@ -43,7 +34,7 @@ in
           "fuzzel"
           "vicinae"
         ];
-        default = if cfg.displayServer == "wayland" then "fuzzel" else "dmenu";
+        default = if sys.displayServer == "wayland" then "fuzzel" else "dmenu";
         description = "The menu program to use.";
       };
 
@@ -76,7 +67,7 @@ in
           "st"
           "ghostty"
         ];
-        default = if cfg.displayServer == "wayland" then "foot" else "ghostty";
+        default = if sys.displayServer == "wayland" then "foot" else "ghostty";
         description = "The terminal emulator to use.";
       };
 
@@ -101,7 +92,7 @@ in
           "imv"
           "nsxiv"
         ];
-        default = if cfg.displayServer == "wayland" then "imv" else "nsxiv";
+        default = if sys.displayServer == "wayland" then "imv" else "nsxiv";
         description = "The image viewer to use.";
       };
 
@@ -128,7 +119,7 @@ in
           "dms"
           "slock"
         ];
-        default = if cfg.displayServer == "wayland" then "dms" else "slock";
+        default = if sys.displayServer == "wayland" then "dms" else "slock";
         description = "The screen locker to use.";
       };
 
@@ -140,9 +131,5 @@ in
         description = "The screen locker command to use.";
       };
     };
-  };
-
-  config = {
-    system.nixos.tags = [ cfg.displayServer ];
   };
 }

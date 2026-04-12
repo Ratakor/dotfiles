@@ -8,7 +8,7 @@ let
   inherit (lib.modules) mkIf;
 in
 {
-  config = mkIf (config.self.terminal.program == "ghostty") {
+  config = mkIf (config.self.programs.terminal.program == "ghostty") {
     hm.programs.ghostty = {
       enable = true;
       systemd.enable = true;
@@ -26,7 +26,7 @@ in
       enableZshIntegration = true;
     };
 
-    self.terminal = {
+    self.programs.terminal = {
       cmd = "ghostty";
       cmdDir = "${pkgs.writeShellScript "ghostty_cmdDir" ''
         ghostty --working-directory="$1"

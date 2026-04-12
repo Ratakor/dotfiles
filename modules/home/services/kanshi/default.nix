@@ -3,8 +3,10 @@
 {
   # see wlr-randr too
   # TODO: add exec option to profiles to move workspace to the right output
+  # TODO: add config.self.services.kanshi.enable
+  # TODO: add config.self.services.kanshi.settings
   hm.services.kanshi = {
-    enable = config.self.displayServer == "wayland";
+    enable = config.self.system.displayServer == "wayland";
     settings = [
       {
         profile = {

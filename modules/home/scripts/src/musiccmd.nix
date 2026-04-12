@@ -12,7 +12,7 @@ let
 
   # TODO: allow to configure that and waybar/sb, imv
   # replace `kill -35 $(pidof waybar)` with `kill -34 $(pidof sb)` for sb
-  DMENU = config.self.menu.dynamic;
+  DMENU = config.self.programs.menu.dynamic;
 in
 pkgs.writeShellApplication {
   name = "musiccmd";

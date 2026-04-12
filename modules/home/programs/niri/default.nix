@@ -23,7 +23,7 @@ let
   gestures = import ./gestures.nix;
 in
 {
-  config = mkIf (config.self.windowManager == "niri") {
+  config = mkIf (config.self.programs.windowManager == "niri") {
     # btw this is NixOS's programs not home-manager's programs.
     # guess why we're using this one
     programs.niri.enable = true;

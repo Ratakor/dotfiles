@@ -7,6 +7,8 @@
 let
   inherit (lib.meta) getExe;
 
+  prg = config.self.programs;
+
   XDG_CONFIG_HOME = config.hm.xdg.configHome;
   XDG_DATA_HOME = config.hm.xdg.dataHome;
   XDG_CACHE_HOME = config.hm.xdg.cacheHome;
@@ -35,11 +37,11 @@ in
 
     sessionVariables = {
       # Default programs
-      EDITOR = config.self.editor.cmd;
-      # VISUAL = config.self.editor.cmd; # config.self.editor is not a visual editor
+      EDITOR = prg.editor.cmd;
+      # VISUAL = prg.editor.cmd; # config.self.editor is not a visual editor
       BROWSER = "chromium --new-window"; # cromite
-      DMENU = config.self.menu.dynamic;
-      TERMINAL = config.self.terminal.cmd;
+      DMENU = prg.menu.dynamic;
+      TERMINAL = prg.terminal.cmd;
 
       # ~/ Clean-up
       FFMPEG_DATADIR = "${XDG_CONFIG_HOME}/ffmpeg";

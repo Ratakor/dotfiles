@@ -16,6 +16,8 @@
 let
   inherit (self.lib.trivial) hexToRgba;
   inherit (config.self) colors;
+
+  cfg = config.self.programs;
 in
 {
   hm.programs.wlogout = {
@@ -27,7 +29,7 @@ in
     layout = [
       {
         label = "lock";
-        action = "${config.self.locker.cmd}";
+        action = "${cfg.locker.cmd}";
         text = "Lock";
         keybind = "l";
       }

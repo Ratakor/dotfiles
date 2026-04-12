@@ -18,8 +18,8 @@ in
   # - ~zsh mode~
   # - ~vimium~
 
-  config = mkIf (config.self.editor.program == "helix") {
-    self.editor = {
+  config = mkIf (config.self.programs.editor.program == "helix") {
+    self.programs.editor = {
       cmd = "hx";
       desktopEntry = "Helix.desktop";
     };
