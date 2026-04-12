@@ -11,6 +11,7 @@
     menu.program = "fuzzel";
     terminal.program = "ghostty";
     imageViewer.program = "imv";
+    locker.program = "dms";
 
     editor.program = "helix";
     fontSize = 16;

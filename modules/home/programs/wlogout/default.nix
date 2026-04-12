@@ -1,5 +1,4 @@
 # Wayland logout menu with wleave icons
-# Requires glitchlock
 # Alternative icons: https://github.com/ArtsyMacaw/wlogout/pull/59
 # X11 alternative (kinda): https://github.com/Ratakor/dotfiles/blob/artix/.local/bin/shutdown-menu
 # TODO: switch to wleave
@@ -28,7 +27,7 @@ in
     layout = [
       {
         label = "lock";
-        action = "glitchlock";
+        action = "${config.self.locker.cmd}";
         text = "Lock";
         keybind = "l";
       }

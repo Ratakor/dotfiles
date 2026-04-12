@@ -62,8 +62,8 @@ in
           "Super Return" = "spawn '${cfg.terminal.cmd}'";
           "Super D" = "spawn '${cfg.menu.drun}'";
           "Super+Shift D" = "spawn '${cfg.menu.run}'";
-          "None XF86ScreenSaver" = "spawn 'glitchlock'";
-          "Super+Shift X" = "spawn 'glitchlock'";
+          "None XF86ScreenSaver" = "spawn '${cfg.locker.cmd}'";
+          "Super+Shift X" = "spawn '${cfg.locker.cmd}'";
           "None XF86Battery" = "spawn 'battery'";
           "Super+Shift W" = "spawn 'randwp'";
           "None Print" = "spawn 'screenshot'";

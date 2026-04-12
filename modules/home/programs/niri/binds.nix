@@ -38,9 +38,8 @@ in
 
     // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${cfg.terminal.cmd} -e newsboat"; }
     Mod+B repeat=false hotkey-overlay-title="Open browser: chromium" { spawn "chromium" "--new-window"; }
-    // see `dms ipc lock lock`
-    Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: glitchlock" { spawn "glitchlock"; }
-    XF86ScreenSaver repeat=false { spawn "glitchlock"; }
+    Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${cfg.locker.program}" { spawn-sh "${cfg.locker.cmd}"; }
+    XF86ScreenSaver repeat=false { spawn-sh "${cfg.locker.cmd}"; }
     XF86Battery repeat=false hotkey-overlay-title="Show battery informations" { spawn "battery"; }
     Mod+Shift+W repeat=false hotkey-overlay-title="Set a randwom wallpaper" { spawn "randwp"; }
 

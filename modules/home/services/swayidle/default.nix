@@ -8,10 +8,12 @@
 let
   inherit (lib.modules) mkIf;
   inherit (lib.meta) getExe;
+
+  cfg = config.self;
 in
 {
-  config = mkIf (config.self.displayServer == "wayland") {
-    user.packages = [ pkgs.swayidle ];
+  config = mkIf (cfg.displayServer == "wayland") {
+    # user.packages = [ pkgs.swayidle ];
 
     hm.services.swayidle = {
       enable = true;
@@ -19,7 +21,7 @@ in
       timeouts = [
         {
           timeout = 300;
-          command = "glitchlock";
+          command = cfg.locker.cmd;
         }
         {
           timeout = 600;
