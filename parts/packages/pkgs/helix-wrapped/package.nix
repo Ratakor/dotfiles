@@ -51,7 +51,7 @@
   theme ? "gruvbox",
 }:
 let
-  inherit (lib.strings) makeBinPath;
+  inherit (lib.strings) makeBinPath optionalString;
 
   toml = pkgs.formats.toml { };
 
@@ -186,7 +186,7 @@ symlinkJoin {
   nativeBuildInputs = [ makeWrapper ];
   postBuild = ''
     wrapProgram $out/bin/hx \
-      --suffix PATH : ${makeBinPath extraPackages} \
+      ${optionalString (extraPackages != [ ]) "--suffix PATH : ${makeBinPath extraPackages}"} \
       --add-flag "--config" \
       --add-flag ${toml.generate "helix-config.toml" settings}
   '';
