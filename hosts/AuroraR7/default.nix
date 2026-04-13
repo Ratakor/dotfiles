@@ -24,6 +24,9 @@
       imageViewer.program = "imv";
       locker.program = "dms";
       editor.program = "helix";
+      gaming = {
+        enable = true;
+      };
     };
   };
 

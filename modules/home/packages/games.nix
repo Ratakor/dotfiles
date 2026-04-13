@@ -1,13 +1,15 @@
-# TODO: make this more configurable host wise
 # game stuff, see lutris wiki & nix-gaming ig
 {
+  config,
   lib,
   pkgs,
   self,
   ...
 }:
 let
-  inherit (lib.lists) singleton;
+  inherit (lib.lists) singleton optionals;
+
+  cfg = config.self.programs.gaming;
 
   terminal = with pkgs; [
     nbsdgames # 18 text-based modern games from bsd
@@ -37,21 +39,23 @@ let
 
   tools = with pkgs; [
     gamescope
+    gamemode
     rivalcfg
   ];
 
   unsorted = with pkgs; [
-    rili # Train Game
+    # rili # Train Game (removed from nixpkgs?)
     love # lua 2D game engine (Balatro)
   ];
 in
 [
   terminal
-  steam
-  # lutris
   tools
-  poe
-  # star-citizen
-  # wow
   # unsorted
 ]
+++ optionals cfg.star-citizen.enable star-citizen
+++ optionals cfg.wow.enable wow
+++ optionals cfg.poe.enable poe
+++ optionals cfg.steam.enable steam
+++ optionals cfg.lutris.enable lutris
+|> optionals cfg.enable
