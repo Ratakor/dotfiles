@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -13,7 +14,13 @@
     system = {
       displayServer = "wayland";
       audio.enable = true;
-      video.enable = true;
+      video = {
+        enable = true;
+        nvidia = {
+          enable = true;
+          package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+        };
+      };
       bluetooth.enable = false;
     };
 

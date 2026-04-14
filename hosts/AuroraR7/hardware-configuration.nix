@@ -96,44 +96,4 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  # TODO: move to modules/nixos/hardware/video/nvidia.nix
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    modesetting.enable = true; # Required by Wayland
-    # powerManagement = {
-    #   enable = true;
-    #   kernelSuspendNotifier = true;
-    #   # finegrained = true;
-    # };
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
-  };
-  # https://niri-wm.github.io/niri/Nvidia.html
-  environment.etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json".text =
-    ''
-      {
-        "rules": [
-          {
-            "pattern": {
-              "feature": "procname",
-              "matches": "niri"
-            },
-            "profile": "Limit Free Buffer Pool On Wayland Compositors"
-          }
-        ],
-        "profiles": [
-          {
-            "name": "Limit Free Buffer Pool On Wayland Compositors",
-            "settings": [
-              {
-                "key": "GLVidHeapReuseRatio",
-                "value": 0
-              }
-            ]
-          }
-        ]
-      }
-    '';
 }
