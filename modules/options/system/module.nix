@@ -16,15 +16,7 @@ in
 
     video = {
       enable = mkEnableOption "video drivers and related programs";
-      nvidia = {
-        enable = mkEnableOption "nvidia drivers and related programs";
-        package = mkOption {
-          # Based on default for `hardware.nvidia.package`.
-          # See also datacenter package.
-          default = config.boot.kernelPackages.nvidiaPackages.stable;
-          description = "The nvidia driver package to use.";
-        };
-      };
+      nvidia.enable = mkEnableOption "nvidia drivers and related programs";
     };
 
     bluetooth.enable = mkEnableOption "bluetooth drivers and related programs";

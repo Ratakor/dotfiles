@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -16,10 +15,7 @@
       audio.enable = true;
       video = {
         enable = true;
-        nvidia = {
-          enable = true;
-          package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
-        };
+        nvidia.enable = true;
       };
       bluetooth.enable = false;
     };

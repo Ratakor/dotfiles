@@ -1,4 +1,3 @@
-# WARNING: Probably incomplete but works for AuroraR7
 {
   config,
   lib,
@@ -6,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib.modules) mkIf;
+  inherit (lib.modules) mkIf mkDefault;
 
   cfg = config.self.system.video.nvidia;
 in
@@ -18,16 +17,18 @@ in
 
     hardware = {
       nvidia = {
-        inherit (cfg) package;
-        # TODO: add an option for that(?)
-        # powerManagement = {
-        #   enable = true;
-        #   kernelSuspendNotifier = true;
-        #   # finegrained = true;
-        # };
-        # open = false;
+        open = mkDefault true;
+        modesetting.enable = mkDefault true;
         nvidiaSettings = false;
         # nvidiaPersistenced = true; # is this useful?
+
+        powerManagement = {
+          enable = mkDefault true;
+          finegrained = mkDefault false;
+          # kernelSuspendNotifier = true; # nixos enable it based on open / package version
+        };
+
+        # see prime.offload for hybrid gpu
       };
 
       graphics = {

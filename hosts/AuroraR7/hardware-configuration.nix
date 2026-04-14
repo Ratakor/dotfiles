@@ -8,7 +8,9 @@
   modulesPath,
   ...
 }:
-
+let
+  inherit (lib.modules) mkDefault mkForce;
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -94,6 +96,12 @@
 
   swapDevices = [ ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  nixpkgs.hostPlatform = mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = mkDefault config.hardware.enableRedistributableFirmware;
+
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+    open = mkForce false;
+    powerManagement.enable = mkForce false; # not supported
+  };
 }
