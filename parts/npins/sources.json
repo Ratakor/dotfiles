@@ -117,6 +117,19 @@
       "url": "https://github.com/feel-co/ndg/archive/3f35db16e655503eb1b0c3fba8e3f003199720a4.tar.gz",
       "hash": "sha256-FfRAANlGiF3oxq4aOO4BeyfAHRITsVg9tFdpSGgX/8c="
     },
+    "niri": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "niri-wm",
+        "repo": "niri"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "71d7fa9a61ef56d2afa1fd5523089b96c1c5fc0f",
+      "url": "https://github.com/niri-wm/niri/archive/71d7fa9a61ef56d2afa1fd5523089b96c1c5fc0f.tar.gz",
+      "hash": "sha256-D5ME/gcvzCqr2pqd8iw3Nx7v31CBdQLt5iFfF0PZKDw="
+    },
     "nix-index-database": {
       "type": "Git",
       "repository": {
