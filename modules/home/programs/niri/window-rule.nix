@@ -24,6 +24,13 @@ in
     default-column-width {}
   }
 
+  // Enable rounded corners for all windows
+  // I'm only enabling this because chromium got weird rounded corner by default
+  window-rule {
+    geometry-corner-radius 8 // 12 is also decent
+    clip-to-geometry true
+  }
+
   window-rule {
     match title=r#"^Picture-in-Picture$"#
     open-floating true
@@ -33,6 +40,17 @@ in
     // comment to match all
     match app-id=r#"^com\.mitchellh\.ghostty$"#
     draw-border-with-background false
+  }
+
+  /-window-rule {
+    match app-id=r#"^com\.mitchellh\.ghostty$"#
+
+    background-effect {
+      blur true
+      // xray true
+      // saturation true
+      // noise true
+    }
   }
 
   // Example: block out two password managers from screen capture.

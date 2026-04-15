@@ -4,6 +4,7 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }:
 let
@@ -26,7 +27,10 @@ in
   config = mkIf (config.self.programs.windowManager == "niri") {
     # btw this is NixOS's programs not home-manager's programs.
     # guess why we're using this one
-    programs.niri.enable = true;
+    programs.niri = {
+      enable = true;
+      # package = self.pkgs.niri-git;
+    };
 
     environment.systemPackages = with pkgs; [
       # File manager for the File chooser portal.

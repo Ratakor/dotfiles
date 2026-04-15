@@ -28,7 +28,7 @@ in
 
         # autologin
         initial_session = {
-          command = getExe' pkgs.niri "niri-session";
+          command = getExe' config.programs.niri.package "niri-session";
           # command = "river";
           user = config.self.username;
         };
