@@ -21,10 +21,9 @@ jobs:
           token: "${{ secrets.FLAKE_UPDATE_PAT }}"
 
       - name: "Set up Nix"
-        uses: DeterminateSystems/nix-installer-action@main
+        uses: cachix/install-nix-action@v31
         with:
-          logger: pretty
-          extra-conf: |
+          extra_nix_config: |
             experimental-features = nix-command flakes pipe-operators
 
       - name: "Set up Cachix"
