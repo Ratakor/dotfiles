@@ -47,9 +47,7 @@ in
 
     background-effect {
       blur true
-      // xray true
-      // saturation true
-      // noise true
+      // xray false
     }
   }
 

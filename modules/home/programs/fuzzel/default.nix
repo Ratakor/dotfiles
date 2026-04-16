@@ -1,8 +1,4 @@
 # App Launcher / Dynamic Menu for Wayland
-# opacity:
-# ff = 100%
-# e6 = 90%
-# d9 = 85%
 {
   config,
   lib,
@@ -13,6 +9,15 @@
 let
   inherit (lib.modules) mkIf;
   inherit (self.lib) wrapWith;
+
+  # ff = 100%
+  # e6 = 90%
+  # d9 = 85%
+  # c0 = 75%
+  opacity = {
+    fg = "ff";
+    bg = "c0";
+  };
 
   colors = config.self.colors.default;
 
@@ -27,13 +32,13 @@ let
     };
 
     colors = rec {
-      background = colors.background + "d9";
-      text = colors.foreground + "ff";
+      background = colors.background + opacity.bg;
+      text = colors.foreground + opacity.fg;
       prompt = text;
-      placeholder = colors.comment + "ff";
+      placeholder = colors.comment + opacity.fg;
       input = text;
-      match = colors.orange + "ff"; # or cyan
-      selection = colors.selection + "d9";
+      match = colors.orange + opacity.fg; # or cyan
+      selection = colors.selection + opacity.bg;
       selection-text = text;
       selection-match = match;
       counter = placeholder;
@@ -42,7 +47,7 @@ let
 
     border = {
       width = 2;
-      radius = 0;
+      radius = 0; # rounded doesn't look good, at least on niri
     };
 
     # key-bindings = {

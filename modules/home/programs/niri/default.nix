@@ -29,7 +29,7 @@ in
     # guess why we're using this one
     programs.niri = {
       enable = true;
-      # package = self.pkgs.niri-git;
+      package = self.pkgs.niri-git;
     };
 
     environment.systemPackages = with pkgs; [
