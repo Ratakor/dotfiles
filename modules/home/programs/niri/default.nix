@@ -19,7 +19,7 @@ let
   workspace = import ./workspace.nix;
   misc = import ./misc.nix config;
   window-rule = import ./window-rule.nix;
-  layer-rule = import ./layer-rule.nix;
+  layer-rule = import ./layer-rule.nix config;
   animations = import ./animations.nix;
   gestures = import ./gestures.nix;
 in
