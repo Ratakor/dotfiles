@@ -33,6 +33,7 @@ in
 
   window-rule {
     match title=r#"^Picture-in-Picture$"#
+    match title=r#"^Picture in picture$"#
     open-floating true
   }
 
