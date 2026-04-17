@@ -19,7 +19,7 @@
     # nixos-unstable is the rolling release channel for NixOS.
     # nixos-unstable-small is like nixos-unstable but with fewer binaries.
     # nixpkgs-unstable is the rolling release channel for Nix-as-a-package-manager.
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
     # This allows building my packages on other platforms by overriding this input.
     systems.url = "github:nix-systems/x86_64-linux";
