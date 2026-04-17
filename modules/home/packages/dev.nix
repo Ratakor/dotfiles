@@ -28,6 +28,7 @@ let
     # android-tools # adb, fastboot
     # wasmtime # WebAssembly runtime
     # dotnet-sdk # C#
+    # R # R
   ];
 
   buildSystems = with pkgs; [
