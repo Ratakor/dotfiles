@@ -6,11 +6,15 @@
   fetchFromGitHub,
 }:
 let
+  inherit (builtins) substring;
+
+  # why aren't we using npins?
+  # well idk but I won't update this until quand is rewritten in a proper language
   rev = "5894842960a09e2d3b35eba3900c548a781001e5";
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "quand";
-  version = "0.4-${rev}";
+  version = "0.4-${substring 0 7 rev}";
 
   outputs = [
     "out"

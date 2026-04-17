@@ -19,14 +19,12 @@
       ...
     }:
     let
-      inherit (builtins) concatStringsSep match;
       inherit (lib.attrsets) recursiveUpdate;
       inherit (lib.customisation) callPackageWith;
       inherit (lib.filesystem) packagesFromDirectoryRecursive;
       inherit (lib.strings) optionalString;
       inherit (lib.trivial) const;
 
-      date = concatStringsSep "-" (match "(.{4})(.{2})(.{2}).*" self.lastModifiedDate);
       craneLib = pkgs.callPackage "${pins.crane}/lib" { };
       diskoVersion =
         let
@@ -41,7 +39,7 @@
 
       packages =
         let
-          extraArgs = { inherit pins date wlib; };
+          extraArgs = { inherit pins wlib; };
 
           base = packagesFromDirectoryRecursive {
             callPackage = callPackageWith (recursiveUpdate pkgs extraArgs);
