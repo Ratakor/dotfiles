@@ -65,6 +65,7 @@ let
       {
         self',
         inputs',
+        wlib,
         ...
       }:
       lib.nixosSystem {
@@ -75,6 +76,7 @@ let
             inputs'
             self
             self'
+            wlib
             ;
         } { self.pkgs = self'.packages; };
       }

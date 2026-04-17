@@ -1,19 +1,23 @@
 {
+  lib,
   pkgs,
-  self,
+  wlib,
   ...
 }:
 let
-  inherit (self.lib) wrapWith;
+  inherit (lib.trivial) const;
 
-  btop = wrapWith pkgs {
-    basePackage = pkgs.btop;
-    prependFlags = [
-      "--config"
-      ./btop.config
-    ];
-  };
+  package = wlib.evalPackage (const {
+    inherit pkgs;
+    imports = [ wlib.wrapperModules.btop ];
+    settings = {
+      color_theme = "TTY";
+      theme_background = false;
+      vim_keys = true;
+      rounded_corners = false;
+    };
+  });
 in
 {
-  user.packages = [ btop ];
+  user.packages = [ package ];
 }

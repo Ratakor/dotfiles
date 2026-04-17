@@ -1,12 +1,4 @@
-{
-  inputs,
-  self,
-  ...
-}:
-let
-  inherit (inputs.nixpkgs) lib;
-  wrapper-manager = import self.pins.wrapper-manager;
-in
+{ lib, ... }:
 {
   # Expose the lib via the flake using flake-parts.
   # I could merge this lib with nixpkgs.lib but I chose not to because
@@ -20,7 +12,6 @@ in
       callLib = path: import path { inherit lib self; };
     in
     {
-      args = callLib ./args.nix;
       filesystem = callLib ./filesystem.nix;
       time = callLib ./time.nix;
       trivial = callLib ./trivial.nix;
@@ -32,8 +23,6 @@ in
         isx86Linux
         unreachable
         ;
-
-      inherit (wrapper-manager.lib) wrapWith;
     }
   );
 }

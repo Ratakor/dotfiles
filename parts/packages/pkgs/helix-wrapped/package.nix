@@ -222,6 +222,6 @@ wlib.evalPackage (const {
     overload = themeOverride // {
       inherits = theme;
     };
-    helixgelion = ./helixgelion.toml;
+    # helixgelion = ./helixgelion.toml; # wlib only support set of TOML values
   };
 })
