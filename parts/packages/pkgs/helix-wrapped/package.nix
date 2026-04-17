@@ -1,13 +1,19 @@
-# Subset of my own helix config but wrapped
-# As of 04 Oct 2025 the differences are:
-# - no languages settings
-# - no custom themes
 {
   lib,
+  wlib,
   pkgs,
-  helix,
-  symlinkJoin,
-  makeWrapper,
+
+  # dark: gruvbox dracula
+  # light: gruvbox_light acme papercolor-light
+  theme ? "gruvbox",
+  themeOverride ? {
+    "ui.background" = "none"; # transparent
+    "function" = {
+      fg = if lib.strings.hasPrefix "gruvbox" theme then "green1" else "green";
+      modifiers = [ "bold" ];
+    };
+  },
+
   extraPackages ? with pkgs; [
     # Language servers
     bash-language-server # Bash
@@ -35,6 +41,8 @@
     zls # Zig
 
     # Formatters
+    black # Python
+    nixfmt # Nix
     ocamlPackages.ocamlformat
 
     # Toolchains (often needed by language servers)
@@ -46,17 +54,19 @@
     # Tools
     scooter-wrapped # interactive find-and-replace
   ],
-  # dark: gruvbox dracula
-  # light: gruvbox_light acme papercolor-light
-  theme ? "gruvbox",
 }:
 let
-  inherit (lib.strings) makeBinPath optionalString;
+  inherit (lib.trivial) const;
+  inherit (lib.attrsets) mapAttrsToList;
 
-  toml = pkgs.formats.toml { };
+  langAttrsToList = mapAttrsToList (name: conf: { inherit name; } // conf);
+in
+wlib.evalPackage (const {
+  inherit pkgs extraPackages;
+  imports = [ wlib.wrapperModules.helix ];
 
   settings = {
-    inherit theme;
+    theme = "overload";
 
     # https://docs.helix-editor.com/editor.html
     editor = {
@@ -114,8 +124,6 @@ let
       cursor-shape = {
         insert = "bar";
       };
-
-      # auto-pairs = false;
 
       whitespace = {
         render = {
@@ -179,15 +187,41 @@ let
         select = shared;
       };
   };
-in
-symlinkJoin {
-  inherit (helix) pname version meta;
-  paths = [ helix ];
-  nativeBuildInputs = [ makeWrapper ];
-  postBuild = ''
-    wrapProgram $out/bin/hx \
-      ${optionalString (extraPackages != [ ]) "--suffix PATH : ${makeBinPath extraPackages}"} \
-      --add-flag "--config" \
-      --add-flag ${toml.generate "helix-config.toml" settings}
-  '';
-}
+
+  languages = {
+    # https://github.com/helix-editor/helix/blob/master/languages.toml
+    # https://github.com/helix-editor/helix/wiki/Formatter-Configurations
+    language = langAttrsToList {
+      c = {
+        indent = {
+          tab-width = 8;
+          unit = "\t";
+        };
+      };
+      nix = {
+        formatter = {
+          command = "nixfmt";
+        };
+        auto-format = true;
+      };
+      python = {
+        formatter = {
+          command = "black";
+          args = [
+            "--quiet"
+            "-"
+          ];
+        };
+        auto-format = true;
+      };
+    };
+  };
+  # https://docs.helix-editor.com/themes.html
+  # https://github.com/helix-editor/helix/tree/master/runtime/themes
+  themes = {
+    overload = themeOverride // {
+      inherits = theme;
+    };
+    helixgelion = ./helixgelion.toml;
+  };
+})

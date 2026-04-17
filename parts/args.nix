@@ -1,10 +1,13 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 let
   # My SSH keys, exposed here to the flake & to flake-parts modules.
   keys = import ./keys.nix;
 
   # Pinned sources, exposed here to the flake & to flake-parts modules.
   pins = import ./npins;
+
+  # Wrappers library, exposed here to flake-parts modules.
+  wlib = import "${pins.nix-wrapper-modules}/lib" { inherit lib; };
 in
 {
   perSystem =
@@ -36,7 +39,7 @@ in
 
       # Override flake-parts' perSystem args
       _module.args = {
-        inherit keys pins;
+        inherit keys pins wlib;
 
         # https://github.com/hercules-ci/flake-parts/issues/106#issuecomment-1399041045
         pkgs = config.legacyPackages;

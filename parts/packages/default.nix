@@ -15,6 +15,7 @@
       lib,
       pins,
       pkgs,
+      wlib,
       ...
     }:
     let
@@ -40,7 +41,7 @@
 
       packages =
         let
-          extraArgs = { inherit pins date; };
+          extraArgs = { inherit pins date wlib; };
 
           base = packagesFromDirectoryRecursive {
             callPackage = callPackageWith (recursiveUpdate pkgs extraArgs);

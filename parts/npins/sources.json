@@ -143,6 +143,19 @@
       "url": "https://github.com/nix-community/nix-index-database/archive/cef5cf82671e749ac87d69aadecbb75967e6f6c3.tar.gz",
       "hash": "sha256-DgH5mveLoau20CuTnaU5RXZWgFQWn56onQ4Du2CqYoI="
     },
+    "nix-wrapper-modules": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "BirdeeHub",
+        "repo": "nix-wrapper-modules"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "f11469ca69068bac13d9e163b2bd268cc06dff57",
+      "url": "https://github.com/BirdeeHub/nix-wrapper-modules/archive/f11469ca69068bac13d9e163b2bd268cc06dff57.tar.gz",
+      "hash": "sha256-/SSAR77Brr9fbapsh1cb2K47JXCbvwS1GjM4yyDxle8="
+    },
     "stash": {
       "type": "Git",
       "repository": {
