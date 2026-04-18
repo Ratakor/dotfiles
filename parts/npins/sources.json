@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "7cf72d978629469c4bd4206b95c402514c1f6000",
-      "url": "https://github.com/ipetkov/crane/archive/7cf72d978629469c4bd4206b95c402514c1f6000.tar.gz",
-      "hash": "sha256-SPm9ck7jh3Un9nwPuMGbRU04UroFmOHjLP56T10MOeM="
+      "revision": "3fbd73bdd9eb572209fdf094abad19d9b6d147b4",
+      "url": "https://github.com/ipetkov/crane/archive/3fbd73bdd9eb572209fdf094abad19d9b6d147b4.tar.gz",
+      "hash": "sha256-P7TLDtRgAxmo0Bdw8fkJrrBpX/8/WhO6Bm/uCfl6jXY="
     },
     "disko": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "e35c39fca04fee829cecdf839a50eb9b54d8a701",
-      "url": "https://github.com/nix-community/home-manager/archive/e35c39fca04fee829cecdf839a50eb9b54d8a701.tar.gz",
-      "hash": "sha256-L5yKTpR+alrZU2XYYvIxCeCP4LBHU5jhwSj7H1VAavg="
+      "revision": "565e5349208fe7d0831ef959103c9bafbeac0681",
+      "url": "https://github.com/nix-community/home-manager/archive/565e5349208fe7d0831ef959103c9bafbeac0681.tar.gz",
+      "hash": "sha256-7zSUFWsU0+jlD7WB3YAxQ84Z/iJurA5hKPm8EfEyGJk="
     },
     "mnw": {
       "type": "Git",
@@ -113,9 +113,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "3f35db16e655503eb1b0c3fba8e3f003199720a4",
-      "url": "https://github.com/feel-co/ndg/archive/3f35db16e655503eb1b0c3fba8e3f003199720a4.tar.gz",
-      "hash": "sha256-FfRAANlGiF3oxq4aOO4BeyfAHRITsVg9tFdpSGgX/8c="
+      "revision": "6c3864361ebe9c3458a52e0c692d1d66cdbfadb2",
+      "url": "https://github.com/feel-co/ndg/archive/6c3864361ebe9c3458a52e0c692d1d66cdbfadb2.tar.gz",
+      "hash": "sha256-hKqVIM2g8pJDVKgR561fEuw/TtbtK/8ukmZgRrgJt88="
     },
     "niri": {
       "type": "Git",
@@ -126,9 +126,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "71d7fa9a61ef56d2afa1fd5523089b96c1c5fc0f",
-      "url": "https://github.com/niri-wm/niri/archive/71d7fa9a61ef56d2afa1fd5523089b96c1c5fc0f.tar.gz",
-      "hash": "sha256-D5ME/gcvzCqr2pqd8iw3Nx7v31CBdQLt5iFfF0PZKDw="
+      "revision": "c814c656c53ea9d69f5afb45c88f4dc4d25338cd",
+      "url": "https://github.com/niri-wm/niri/archive/c814c656c53ea9d69f5afb45c88f4dc4d25338cd.tar.gz",
+      "hash": "sha256-Pq1ZVvRGq/IFiFH6vkNwMfZEpWk23NjgGdX50COdj/c="
     },
     "nix-index-database": {
       "type": "Git",
@@ -139,9 +139,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "cef5cf82671e749ac87d69aadecbb75967e6f6c3",
-      "url": "https://github.com/nix-community/nix-index-database/archive/cef5cf82671e749ac87d69aadecbb75967e6f6c3.tar.gz",
-      "hash": "sha256-DgH5mveLoau20CuTnaU5RXZWgFQWn56onQ4Du2CqYoI="
+      "revision": "bedba5989b04614fc598af9633033b95a937933f",
+      "url": "https://github.com/nix-community/nix-index-database/archive/bedba5989b04614fc598af9633033b95a937933f.tar.gz",
+      "hash": "sha256-7jt9Vpm48Yy5yAWigYpde+HxtYEpEuyzIQJF4VYehhk="
     },
     "nix-wrapper-modules": {
       "type": "Git",
@@ -152,9 +152,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "f11469ca69068bac13d9e163b2bd268cc06dff57",
-      "url": "https://github.com/BirdeeHub/nix-wrapper-modules/archive/f11469ca69068bac13d9e163b2bd268cc06dff57.tar.gz",
-      "hash": "sha256-/SSAR77Brr9fbapsh1cb2K47JXCbvwS1GjM4yyDxle8="
+      "revision": "75febede14a0845f4ef429da692a0698bf433600",
+      "url": "https://github.com/BirdeeHub/nix-wrapper-modules/archive/75febede14a0845f4ef429da692a0698bf433600.tar.gz",
+      "hash": "sha256-XwLFfJDz71vIF7BAhnbLhrzQjmDC2uXdo7N0oHUrYzA="
     },
     "stash": {
       "type": "Git",
@@ -165,9 +165,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "f139bda7b296e66998cc3077026cf18abfc9709d",
-      "url": "https://github.com/NotAShelf/stash/archive/f139bda7b296e66998cc3077026cf18abfc9709d.tar.gz",
-      "hash": "sha256-aN31z1Pf0Aaz1r0PgtHFYBBM3QFDtnd7hiL7xGGpQLM="
+      "revision": "3c61cc19f662759601d11e0faa1553cb6eaafc5f",
+      "url": "https://github.com/NotAShelf/stash/archive/3c61cc19f662759601d11e0faa1553cb6eaafc5f.tar.gz",
+      "hash": "sha256-CY+9xOh62hu8c56ov4s03GjTi0xrtbs1lcDWfQqG+Vc="
     },
     "treefmt-nix": {
       "type": "Git",
@@ -204,9 +204,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "3e6786e855104c33e6b74176549d80f43416f682",
-      "url": "https://github.com/NotAShelf/watt/archive/3e6786e855104c33e6b74176549d80f43416f682.tar.gz",
-      "hash": "sha256-a/XTJdlfRvQD+X4vWL4A6k2el3+WpVY6EZQVbmaGKqM="
+      "revision": "62812397a503ea2340cd8ae8cbb56601d2e8b4d8",
+      "url": "https://github.com/NotAShelf/watt/archive/62812397a503ea2340cd8ae8cbb56601d2e8b4d8.tar.gz",
+      "hash": "sha256-O6fA/iZd5PpgE2Byeh1PhsGm4IEp1lqwNhclZmxj5Pc="
     },
     "zfs-restore": {
       "type": "Git",
