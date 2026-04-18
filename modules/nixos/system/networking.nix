@@ -1,6 +1,13 @@
-{ lib, ... }:
+{ config, lib, ... }:
+let
+  inherit (builtins) substring hashString;
+  inherit (lib.modules) mkForce;
+in
 {
   networking = {
+    # needed by ZFS, also need to be unique among all hosts
+    hostId = substring 0 8 (hashString "md5" config.networking.hostName);
+
     # https://github.com/StevenBlack/hosts
     stevenblack = {
       enable = true;
@@ -11,13 +18,9 @@
     # wireless.enable = true; # Enables wireless support via wpa_supplicant.
     networkmanager.enable = true;
 
-    # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-    # (the default) this is the recommended approach. When using systemd-networkd it's
-    # still possible to use this option, but it's recommended to use it in conjunction
-    # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-    useDHCP = lib.mkDefault true;
-    # interfaces.eno0.useDHCP = lib.mkDefault true;
-    # interfaces.wlp2s0.useDHCP = lib.mkDefault true;
+    # I've heard that networkd > dhcp
+    useDHCP = mkForce false;
+    useNetworkd = mkForce true;
 
     firewall = {
       enable = true;
@@ -27,8 +30,17 @@
     };
 
     nameservers = [
-      "9.9.9.9" # Quad9
-      "1.1.1.1" # Cloudflare
+      # Quad9
+      "9.9.9.9"
+      "149.112.112.112"
+      "2620:fe::fe"
+      "2620:fe::9"
+
+      # Cloudflare
+      "1.1.1.1"
+      "1.0.0.1"
+      "2606:4700:4700::1111"
+      "2606:4700:4700::1001"
     ];
   };
 }

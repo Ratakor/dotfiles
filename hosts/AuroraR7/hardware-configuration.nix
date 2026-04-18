@@ -96,7 +96,6 @@ in
 
   swapDevices = [ ];
 
-  nixpkgs.hostPlatform = mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.nvidia = {

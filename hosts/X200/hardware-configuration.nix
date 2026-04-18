@@ -112,7 +112,6 @@ in
 
   # TODO: tmpfs /tmp tmpfs rw,nosuid,nodev,relatime,size=8G,mode=1777 0 0
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # TODO: disko

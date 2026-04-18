@@ -57,11 +57,6 @@
     timeout = 1;
   };
 
-  networking = {
-    hostName = "X200";
-    hostId = "90431314"; # needed by ZFS
-  };
-
   services.zfs = {
     autoReplication = {
       enable = false;

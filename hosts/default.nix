@@ -7,9 +7,10 @@
 let
   inherit (inputs.nixpkgs) lib;
   inherit (builtins) filter concatLists;
+  inherit (lib.modules) mkDefault;
   inherit (lib.attrsets) recursiveUpdate;
   inherit (lib.filesystem) listFilesRecursive;
-  inherit (lib.lists) flatten singleton;
+  inherit (lib.lists) flatten;
   inherit (lib.strings) hasSuffix;
 
   # External Modules
@@ -32,19 +33,26 @@ let
   # Recursively find all `module.nix` files in a given path
   mkModuleTree = path: filter (hasSuffix "module.nix") (map toString (listFilesRecursive path));
 
-  mkModulesFor =
-    hostname:
+  mkModules =
     {
-      moduleTrees ? [
-        nixos
-        options
-      ],
+      hostname,
+      system,
+      moduleTrees ? [ ],
       profiles ? [ ],
       extraModules ? [ ],
     }:
     flatten (concatLists [
       # Host-specific configuration
-      (singleton ./${hostname})
+      [
+        ./${hostname}
+        {
+          networking.hostName = hostname;
+          nixpkgs = {
+            hostPlatform = mkDefault system;
+            flake.source = inputs.nixpkgs.outPath;
+          };
+        }
+      ]
 
       # Recursively import all module trees (i.e. directories with a `module.nix`)
       # for given moduleTree directories, and in addition, profiles.
@@ -58,8 +66,10 @@ let
 
   mkNixosSystem =
     {
+      hostname,
       system ? "x86_64-linux",
-      modules,
+      profiles ? [ ],
+      extraModules ? [ ],
     }:
     withSystem system (
       {
@@ -69,7 +79,18 @@ let
         ...
       }:
       lib.nixosSystem {
-        inherit modules;
+        modules = mkModules {
+          inherit
+            hostname
+            system
+            profiles
+            extraModules
+            ;
+          moduleTrees = [
+            nixos
+            options
+          ];
+        };
         specialArgs = recursiveUpdate {
           inherit
             inputs
@@ -85,21 +106,19 @@ in
 {
   flake.nixosConfigurations = {
     X200 = mkNixosSystem {
-      modules = mkModulesFor "X200" {
-        profiles = [
-          workstation
-          laptop
-        ];
-        extraModules = [ home ];
-      };
+      hostname = "X200";
+      profiles = [
+        workstation
+        laptop
+      ];
+      extraModules = [ home ];
     };
     AuroraR7 = mkNixosSystem {
-      modules = mkModulesFor "AuroraR7" {
-        profiles = [
-          workstation
-        ];
-        extraModules = [ home ];
-      };
+      hostname = "AuroraR7";
+      profiles = [
+        workstation
+      ];
+      extraModules = [ home ];
     };
   };
 }

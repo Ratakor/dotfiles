@@ -42,11 +42,6 @@
     timeout = 1;
   };
 
-  networking = {
-    hostName = "AuroraR7";
-    hostId = "2689f717"; # from /etc/machine-id
-  };
-
   # TODO: setup snapshots
   services.btrfs = {
     autoScrub = {
