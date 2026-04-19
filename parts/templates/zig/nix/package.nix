@@ -1,15 +1,16 @@
 {
   lib,
   stdenv,
+  callPackage,
   zig,
+  releaseMode ? "safe",
 }:
 let
   fs = lib.fileset;
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "zig-template";
-  # Must match the `version` in `build.zig.zon`.
-  version = "0.1.0-dev";
+  inherit (import ./version.nix lib) version;
 
   src = fs.toSource {
     root = ../.;
@@ -20,15 +21,32 @@ stdenv.mkDerivation (finalAttrs: {
     ];
   };
 
-  # deps = callPackage ./deps.nix { };
-
-  zigBuildFlags = [
-    # "--system"
-    # "${finalAttrs.deps}"
-    "-Dversion-string=${finalAttrs.version}"
-  ];
-
   nativeBuildInputs = [
-    zig.hook
+    zig
   ];
+
+  configurePhase = ''
+    export ZIG_GLOBAL_CACHE_DIR=$TEMP/.cache
+    PACKAGE_DIR=${callPackage ./deps.nix { }}
+  '';
+
+  buildPhase = ''
+    zig build install \
+      --system $PACKAGE_DIR \
+      --release=${releaseMode} \
+      -Dversion-string=${finalAttrs.version} \
+      --color off
+  '';
+
+  doCheck = true;
+  checkPhase = ''
+    zig build test \
+      --system $PACKAGE_DIR \
+      -Dversion-string=${finalAttrs.version} \
+      --color off
+  '';
+
+  meta = {
+    mainProgram = "zig-template";
+  };
 })

@@ -1,31 +1,44 @@
 {
-  description = "Zig Template";
-
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    zig = {
+      url = "github:silversquirl/zig-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
   outputs =
-    { nixpkgs, ... }:
+    {
+      nixpkgs,
+      self,
+      zig,
+    }:
     let
-      forAllSystems = f: builtins.mapAttrs f nixpkgs.legacyPackages;
+      inherit (import ./nix/version.nix nixpkgs.lib) zigVersion;
+      forAllSystems =
+        f:
+        builtins.mapAttrs (
+          system: pkgs: f pkgs zig.packages.${system}."zig_${zigVersion}"
+        ) nixpkgs.legacyPackages;
     in
     {
       packages = forAllSystems (
-        system: pkgs: {
+        pkgs: zig: {
           default = pkgs.callPackage ./nix/package.nix {
-            zig = pkgs.zig_0_15;
+            inherit zig;
           };
         }
       );
 
       devShells = forAllSystems (
-        system: pkgs: {
+        pkgs: zig: {
           default = pkgs.callPackage ./nix/shell.nix {
-            zig = pkgs.zig_0_15;
-            zls = pkgs.zls_0_15;
+            inherit zig;
+            inherit (zig) zls;
           };
         }
       );
 
-      formatter = forAllSystems (_: pkgs: pkgs.nixfmt-tree);
+      formatter = forAllSystems (pkgs: zig: pkgs.nixfmt-tree);
     };
 }
