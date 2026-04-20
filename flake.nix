@@ -15,9 +15,9 @@
 
   inputs = {
     # Nixpkgs channels:
-    # nixos-25.05 is the latest stable channel.
+    # nixos-25.11 is the latest stable channel.
     # nixos-unstable is the rolling release channel for NixOS.
-    # nixos-unstable-small is like nixos-unstable but with fewer binaries.
+    # nixos-unstable-small is like nixos-unstable but with fewer binaries and more bleeding edge.
     # nixpkgs-unstable is the rolling release channel for Nix-as-a-package-manager.
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
