@@ -43,7 +43,6 @@ in
     XF86Battery repeat=false hotkey-overlay-title="Show battery informations" { spawn "battery"; }
     Mod+Shift+W repeat=false hotkey-overlay-title="Set a randwom wallpaper" { spawn "randwp"; }
 
-    // TODO: https://github.com/Smithay/smithay/issues/1823
     // Print repeat=false { spawn "screenshot"; }
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
@@ -156,8 +155,6 @@ in
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
     // Mod+Shift+Comma      { move-column-to-monitor-left; }
     // Mod+Shift+Period     { move-column-to-monitor-right; }
-
-    // TODO: look into these alternatives
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }

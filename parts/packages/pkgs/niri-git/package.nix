@@ -5,20 +5,24 @@
   rustPlatform,
 }:
 let
-  inherit (builtins) substring;
-
   pin = pins.niri;
+  shortRev = builtins.substring 0 7 pin.revision;
 in
 niri.overrideAttrs (
   finalAttrs: prevAttrs: {
-    version = "0-unstable-${substring 0 7 pin.revision}";
+    version = "0-unstable-${shortRev}-0";
 
     src = fetchFromGitHub {
-      owner = "niri-wm";
-      repo = "niri";
-      rev = pin.revision;
       inherit (pin) hash;
+      inherit (pin.repository) owner repo;
+      rev = pin.revision;
     };
+
+    outputs = [ "out" ];
+
+    preCheck = ''
+      export XDG_RUNTIME_DIR="$(mktemp -d)"
+    '';
 
     postPatch = ''
       patchShebangs resources/niri-session
@@ -30,6 +34,8 @@ niri.overrideAttrs (
       lockFile = "${finalAttrs.src}/Cargo.lock";
       allowBuiltinFetchGit = true;
     };
+
+    env.NIRI_BUILD_COMMIT = shortRev;
 
     doInstallCheck = false; # fail version check
   }
