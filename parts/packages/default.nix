@@ -19,12 +19,14 @@
       ...
     }:
     let
+      inherit (builtins) substring;
       inherit (lib.attrsets) recursiveUpdate;
       inherit (lib.customisation) callPackageWith;
       inherit (lib.filesystem) packagesFromDirectoryRecursive;
       inherit (lib.strings) optionalString;
       inherit (lib.trivial) const;
 
+      pinToFlake = pin: (import "${pin}/flake.nix").outputs;
       craneLib = pkgs.callPackage "${pins.crane}/lib" { };
       diskoVersion =
         let
@@ -58,6 +60,15 @@
             });
             # Stupid simple utility for linting your flake inputs
             flint = pkgs.callPackage "${pins.flint}/nix/package.nix" { };
+            # A scrollable-tiling Wayland compositior. Git version. Peak usage of flake btw.
+            niri-git =
+              (pinToFlake pins.niri {
+                inherit (inputs) nixpkgs;
+                self = {
+                  shortRev = substring 0 7 pins.niri.revision;
+                };
+                rust-overlay = { };
+              }).packages.${system}.default;
             # Wayland clipboard "manager"
             stash = pkgs.callPackage "${pins.stash}/nix/package.nix" { inherit craneLib; };
             # Automatic CPU speed & power optimizer for Linux
