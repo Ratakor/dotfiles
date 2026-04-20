@@ -62,6 +62,28 @@
   - [`pre-commit`](parts/pre-commit.nix): Pre-commit hooks via [git-hooks.nix](https://github.com/cachix/git-hooks.nix).
 - [`secrets`](secrets): Agenix secrets.
 
+## Commit Convention
+
+```git-commit
+<scope>: <message>
+```
+
+### Scopes:
+
+- `{path}`: Modification to a specific file or directory. Extension can be omitted if it makes sense.
+- `{program}`: Modification to a program located in `modules/home/{programs,services}`.
+- `hosts[/{host}]`: Modification to `hosts`.
+- `home/packages[/{scope,package}]`: Modification to `modules/home/packages`.
+- `home[/{scope}]`: Modification to `modules/home`.
+- `nixos[/{scope}]`: Modification to `modules/nixos`.
+- `options[/{option-group}]`: Modification to `modules/options`.
+- `profiles[/{profile}]`: Modification to `modules/profiles`.
+- `apps[/{app}]`: Modification to `parts/apps`.
+- `lib`: Modification to `parts/lib`.
+- `packages[/{package}]`: Modification to `parts/packages`.
+- `shells[/{devShell}]`: Modification to `parts/shells`.
+- `templates[/{template}]`: Modification to `parts/templates`.
+
 ## Credits
 
 - [NotAShelf/nyx](https://github.com/NotAShelf/nyx/)
