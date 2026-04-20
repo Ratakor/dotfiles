@@ -106,7 +106,7 @@ let
     # deadnix # find and remove unused code in .nix source files
     nh # nix helper
     # nix-output-monitor # replace `nix` with `nom`
-    # nurl # Generate Nix fetcher calls from URLs
+    nurl # Generate Nix fetcher calls from URLs
     self.pkgs.flint # flake linter
     # nix-tree # TUI viewer for nix derivations
     # nix-query-tree-viewer # GTK viewer for nix derivations
