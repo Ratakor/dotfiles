@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   inherit (builtins) substring hashString;
-  inherit (lib.modules) mkForce;
+  inherit (lib.modules) mkDefault;
 in
 {
   networking = {
@@ -19,8 +19,10 @@ in
     networkmanager.enable = true;
 
     # I've heard that networkd > dhcp
-    useDHCP = mkForce false;
-    useNetworkd = mkForce true;
+    # That was _probably_ fake news, it's only better for servers
+    # https://wiki.nixos.org/wiki/Systemd/networkd
+    useDHCP = mkDefault true;
+    useNetworkd = mkDefault false; # check out systemd.network.enable too
 
     firewall = {
       enable = true;
