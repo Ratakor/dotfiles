@@ -19,7 +19,6 @@ let
     bc # calculation
     libqalculate # better bc
     # shaq # CLI client for Shazam
-    gemini-cli # Gemini AI from google, pretty cool actually
     timewarrior # Time tracking utility
     rsync # a fast, versatile, remote (and local) file-copying tool
   ];
@@ -51,6 +50,13 @@ let
     pychromecast
   ];
 
+  ai = with pkgs; [
+    gemini-cli # Google AI
+    # copilot-cli # Microsoft AI
+    # claude-code # Anthropic AI
+    # ollama # My GPU is too old for this and I cba compiling it from scratch or using vulkan
+  ];
+
   unsorted = with pkgs; [
     chafa # image in terminal
     caligula # TUI for burning disks
@@ -70,5 +76,6 @@ in
   tui
   # rice
   # cast
+  ai
   unsorted
 ]
