@@ -1,4 +1,12 @@
-{ lib, ... }:
+{
+  inputs,
+  lib,
+  self,
+  ...
+}:
+let
+  inherit (self) pins;
+in
 {
   # Expose the lib via the flake using flake-parts.
   # I could merge this lib with nixpkgs.lib but I chose not to because
@@ -9,16 +17,27 @@
   flake.lib = lib.makeExtensible (
     self:
     let
-      callLib = path: import path { inherit lib self; };
+      callLib =
+        path:
+        import path {
+          inherit
+            inputs
+            lib
+            pins
+            self
+            ;
+        };
     in
     {
       filesystem = callLib ./filesystem.nix;
+      flake = callLib ./flake.nix;
       options = callLib ./options.nix;
       time = callLib ./time.nix;
       trivial = callLib ./trivial.nix;
       types = callLib ./types.nix;
 
       inherit (self.filesystem) listFiles listDirs;
+      inherit (self.flake) compat compat' package;
       inherit (self.options)
         enumOptionValues
         enumOptionValues'

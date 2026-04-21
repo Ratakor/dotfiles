@@ -26,12 +26,6 @@
 
     # Flake builder.
     flake-parts.url = "github:hercules-ci/flake-parts";
-
-    # Configuration for the Thunderbird mail client.
-    dove = {
-      url = "git+https://gitlab.com/celenityy/Dove.git?ref=pages";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =

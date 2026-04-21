@@ -3,8 +3,11 @@
   self,
   ...
 }:
+let
+  dove = self.lib.flake.compat' self.pins.dove;
+in
 {
-  imports = [ self.inputs.dove.nixosModules.default ];
+  imports = [ dove.nixosModules.default ];
   user.packages = [ pkgs.thunderbird ];
 
   # doesn't work the way I want it to work so we going full imperative (almost)

@@ -39,6 +39,20 @@
       "url": "https://github.com/nix-community/disko/archive/5ad85c82cc52264f4beddc934ba57f3789f28347.tar.gz",
       "hash": "sha256-PAqwnsBSI9SVC2QugvQ3xeYCB0otOwCacB1ueQj2tgw="
     },
+    "dove": {
+      "type": "Git",
+      "repository": {
+        "type": "Forgejo",
+        "server": "https://codeberg.org/",
+        "owner": "celenity",
+        "repo": "dove"
+      },
+      "branch": "pages",
+      "submodules": false,
+      "revision": "bce32c5bf2108ad42a741affd949545224409a8d",
+      "url": "https://codeberg.org/celenity/dove/archive/bce32c5bf2108ad42a741affd949545224409a8d.tar.gz",
+      "hash": "sha256-7gHmRi5g7L4sGYw8MZ4s2dMi9Pd+RItyhefR4cR3tAY="
+    },
     "dracula-tmTheme": {
       "type": "Git",
       "repository": {
@@ -51,6 +65,19 @@
       "revision": "d490b57c08f3d110ff61a07ec6edcc1ed9e24a63",
       "url": "https://github.com/dracula/sublime/archive/d490b57c08f3d110ff61a07ec6edcc1ed9e24a63.tar.gz",
       "hash": "sha256-7veVVrLPW3T7KkkelDmgPW5kp+b12naKSKwCXBgjL1k="
+    },
+    "flake-compat": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ratakor",
+        "repo": "flake-compat"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "d187bee2a53453ea72417e9b638544382b3fb029",
+      "url": "https://github.com/ratakor/flake-compat/archive/d187bee2a53453ea72417e9b638544382b3fb029.tar.gz",
+      "hash": "sha256-uY3gWlQLehaRFW399OMqyvGECOUbHK0EpFPoQU4LPmc="
     },
     "flint": {
       "type": "Git",
