@@ -11,7 +11,7 @@
 let
   inherit (builtins) concatStringsSep;
   inherit (lib.modules) mkIf mkForce;
-  inherit (lib.meta) getExe getExe';
+  inherit (lib.meta) getExe;
 in
 {
   services = {
@@ -28,8 +28,7 @@ in
 
         # autologin
         initial_session = {
-          command = getExe' config.programs.niri.package "niri-session";
-          # command = "river";
+          command = config.self.programs.default.windowManager.cmd;
           user = config.self.username;
         };
 

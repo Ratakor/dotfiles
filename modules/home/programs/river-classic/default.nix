@@ -18,7 +18,11 @@ let
   dprg = prg.default;
 in
 {
-  config = mkIf (prg.windowManager == "river") {
+  config = mkIf prg.windowManager.river-classic.enable {
+    self.programs.default.windowManager = mkIf (dprg.windowManager.name == "river-classic") {
+      cmd = getExe config.hm.wayland.windowManager.river.package;
+    };
+
     programs.river-classic.enable = true; # river mop when?
 
     hm.wayland.windowManager.river = {

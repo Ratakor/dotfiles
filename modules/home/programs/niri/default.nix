@@ -10,6 +10,9 @@
 let
   inherit (builtins) concatStringsSep;
   inherit (lib.modules) mkIf;
+  inherit (lib.meta) getExe';
+
+  prg = config.self.programs;
 
   input = import ./input.nix;
   output = import ./output.nix;
@@ -24,7 +27,11 @@ let
   gestures = import ./gestures.nix;
 in
 {
-  config = mkIf (config.self.programs.windowManager == "niri") {
+  config = mkIf prg.windowManager.niri.enable {
+    self.programs.default.windowManager = mkIf (prg.default.windowManager.name == "niri") {
+      cmd = getExe' config.programs.niri.package "niri-session";
+    };
+
     # btw this is NixOS's programs not home-manager's programs.
     # guess why we're using this one
     programs.niri = {

@@ -1,12 +1,24 @@
 # Hyprland is an independent, highly customizable, dynamic tiling Wayland
 # compositor that doesn't sacrifice on its looks.
 # TODO
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  self,
+  ...
+}:
 let
   inherit (lib.modules) mkIf;
+  inherit (self.lib.trivial) unreachable;
+
+  prg = config.self.programs;
 in
 {
-  config = mkIf (config.self.programs.windowManager == "hyprland") {
+  config = mkIf prg.windowManager.hyprland.enable {
+    self.programs.default.windowManager = mkIf (prg.default.windowManager.name == "hyprland") {
+      cmd = unreachable; # unimplemented
+    };
+
     programs.hyprland.enable = true;
 
     hm.wayland.windowManager.hyprland = {
