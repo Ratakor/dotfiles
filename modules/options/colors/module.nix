@@ -1,7 +1,6 @@
-# This is kind of barebones atm maybe set everything into a single namespace and
-# improve type system for colors. Also move specific programs theme to their own options?
-# The comment above is maybe lying.
-# Maybe revert this into a global module without options
+# TODO:
+# - Improve type system for colors?
+# - Move specific programs theme to their own options?
 {
   config,
   lib,

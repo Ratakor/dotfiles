@@ -8,6 +8,7 @@ let
   inherit (lib.meta) getExe;
 
   prg = config.self.programs;
+  dprg = config.self.programs.default;
 
   XDG_CONFIG_HOME = config.hm.xdg.configHome;
   XDG_DATA_HOME = config.hm.xdg.dataHome;
@@ -37,10 +38,10 @@ in
 
     sessionVariables = {
       # Default programs
-      EDITOR = prg.default.editor.cmd;
+      EDITOR = dprg.editor.cmd;
       # VISUAL = prg.editor.cmd; # config.self.editor is not a visual editor
       BROWSER = "chromium --new-window"; # cromite
-      DMENU = prg.menu.dynamic;
+      DMENU = dprg.launcher.dmenu;
       TERMINAL = prg.terminal.cmd;
 
       # ~/ Clean-up

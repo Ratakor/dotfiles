@@ -8,10 +8,16 @@ let
   inherit (lib.modules) mkIf;
   inherit (config.self) colors;
 
-  cfg = config.self.programs.menu;
+  prg = config.self.programs;
 in
 {
-  config = mkIf (cfg.program == "vicinae") {
+  config = mkIf prg.launcher.vicinae.enable {
+    self.programs.default.launcher = mkIf (prg.default.launcher.name == "vicinae") {
+      dmenu = "vicinae dmenu";
+      drun = "vicinae toggle";
+      run = "vicinae toggle"; # no equivalent
+    };
+
     hm.programs.vicinae = {
       enable = true;
       systemd.enable = true;
@@ -22,12 +28,6 @@ in
         };
         # TODO: rest of config
       };
-    };
-
-    self.programs.menu = {
-      dynamic = "vicinae dmenu";
-      drun = "vicinae toggle";
-      run = "vicinae toggle"; # no equivalent
     };
   };
 }

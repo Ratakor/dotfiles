@@ -9,6 +9,8 @@ let
   inherit (builtins) concatStringsSep;
   inherit (lib.modules) mkIf;
 
+  prg = config.self.programs;
+
   highPriority = concatStringsSep "," [
     "chromium"
     "thunderbird"
@@ -20,13 +22,13 @@ let
   ];
 in
 {
-  config = mkIf (config.self.programs.menu.program == "dmenu") {
-    user.packages = [ self.pkgs.suckless ];
-
-    self.programs.menu = {
-      dynamic = "dmenu -i";
-      drun = "dmenu_run -hp '${highPriority}";
+  config = mkIf prg.launcher.dmenu.enable {
+    self.programs.default.launcher = mkIf (prg.default.launcher.name == "dmenu") {
+      dmenu = "dmenu -i";
+      drun = "dmenu_run -hp '${highPriority}'";
       run = "dmenu_run";
     };
+
+    user.packages = [ self.pkgs.suckless ];
   };
 }

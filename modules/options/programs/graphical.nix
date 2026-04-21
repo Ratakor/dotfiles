@@ -24,42 +24,6 @@ in
       description = "The window manager to use.";
     };
 
-    # TODO: rename launcher
-    # see also: dms, anyrun, walker
-    menu = {
-      program = mkOption {
-        type = enum [
-          "dmenu"
-          "tofi"
-          "fuzzel"
-          "vicinae"
-        ];
-        default = if sys.displayServer == "wayland" then "fuzzel" else "dmenu";
-        description = "The menu program to use.";
-      };
-
-      dynamic = mkOption {
-        type = nullOr str;
-        default = null;
-        internal = true;
-        description = "A dynamic menu like dmenu.";
-      };
-
-      drun = mkOption {
-        type = nullOr str;
-        default = null;
-        internal = true;
-        description = "A dynamic menu to use for launching applications from desktop files.";
-      };
-
-      run = mkOption {
-        type = nullOr str;
-        default = null;
-        internal = true;
-        description = "A dynamic menu to use for launching applications from $PATH.";
-      };
-    };
-
     terminal = {
       program = mkOption {
         type = enum [

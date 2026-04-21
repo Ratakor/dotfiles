@@ -4,6 +4,7 @@ let
 
   HOME = config.hm.home.homeDirectory;
   prg = config.self.programs;
+  dprg = config.self.programs.default;
 in
 {
   hm.xdg = {
@@ -307,7 +308,7 @@ in
         mimeToApps audioMimeTypes [ "mpv.desktop" ]
         // mimeToApps videoMimeTypes [ "mpv.desktop" ]
         // mimeToApps imageMimeTypes [ prg.imageViewer.desktopEntry ]
-        // mimeToApps textMimeTypes [ prg.default.editor.desktopEntry ]
+        // mimeToApps textMimeTypes [ dprg.editor.desktopEntry ]
         // {
           "application/postscript" = [ "org.pwmt.zathura.desktop" ];
           "application/pdf" = [ "org.pwmt.zathura.desktop" ];

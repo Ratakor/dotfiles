@@ -11,6 +11,7 @@ let
   inherit (lib.trivial) const;
 
   colors = config.self.colors.default;
+  prg = config.self.programs;
 
   # ff = 100%
   # e6 = 90%
@@ -64,9 +65,9 @@ let
   });
 in
 {
-  config = mkIf (config.self.programs.menu.program == "fuzzel") {
-    self.programs.menu = {
-      dynamic = "fuzzel --dmenu";
+  config = mkIf prg.launcher.fuzzel.enable {
+    self.programs.default.launcher = mkIf (prg.default.launcher.name == "fuzzel") {
+      dmenu = "fuzzel --dmenu";
       drun = "fuzzel";
       run = "fuzzel --list-executables-in-path";
     };

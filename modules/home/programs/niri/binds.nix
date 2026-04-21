@@ -3,6 +3,7 @@ config:
 let
   inherit (config.hm.xdg.userDirs.extraConfig) NOTES;
   prg = config.self.programs;
+  dprg = config.self.programs.default;
 in
 # kdl
 ''
@@ -33,8 +34,8 @@ in
     }
 
     // see `dms ipc spotlight toggle`
-    Mod+D repeat=false hotkey-overlay-title="Run an Application: ${prg.menu.program}" { spawn-sh "${prg.menu.drun}"; }
-    Mod+Shift+D repeat=false hotkey-overlay-title=null { spawn-sh "${prg.menu.run}"; }
+    Mod+D repeat=false hotkey-overlay-title="Run an Application: ${dprg.launcher.name}" { spawn-sh "${dprg.launcher.drun}"; }
+    Mod+Shift+D repeat=false hotkey-overlay-title=null { spawn-sh "${dprg.launcher.run}"; }
 
     // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${prg.terminal.cmd} -e newsboat"; }
     Mod+B repeat=false hotkey-overlay-title="Open browser: chromium" { spawn "chromium" "--new-window"; }
