@@ -20,8 +20,8 @@ in
     default.editor = {
       name = mkOption {
         type = enum [
-          "neovim"
           "helix"
+          "neovim"
         ];
         default = "helix";
         description = "The default editor to use.";

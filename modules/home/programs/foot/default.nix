@@ -8,6 +8,8 @@ let
   inherit (lib.modules) mkIf;
   inherit (config.self) colors fontSize;
 
+  prg = config.self.programs;
+
   settings = {
     main = {
       font = "monospace:size=${toString fontSize}";
@@ -105,16 +107,16 @@ let
   };
 in
 {
-  config = mkIf (config.self.programs.terminal.program == "foot") {
+  config = mkIf prg.terminal.foot.enable {
+    self.programs.default.terminal = mkIf (prg.default.terminal.name == "foot") {
+      cmd = "footclient";
+      cmdDir = "footclient -D";
+    };
+
     hm.programs.foot = {
       enable = true;
       server.enable = true;
       inherit settings;
-    };
-
-    self.programs.terminal = {
-      cmd = "footclient";
-      cmdDir = "footclient -D";
     };
   };
 }

@@ -9,7 +9,7 @@ let
   inherit (self.lib.trivial) unreachable;
 
   sys = config.self.system;
-  prg = config.self.programs;
+  dprg = config.self.programs.default;
 
   copyCommand =
     if sys.displayServer == "x11" then
@@ -19,7 +19,7 @@ let
     else
       unreachable;
   emojiDisplayed = 30;
-  DMENU = prg.menu.dynamic;
+  DMENU = dprg.launcher.dmenu;
 in
 pkgs.writeShellApplication {
   name = "emojisearch";

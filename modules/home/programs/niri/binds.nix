@@ -23,21 +23,22 @@ in
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // WARNING: using `spawn` to avoid latency but that means cfg.terminal.cmd must be a single command
-    Mod+Return repeat=false hotkey-overlay-title="Open a Terminal: ${prg.terminal.program}" { spawn "${prg.terminal.cmd}"; }
+    // -> add a nix assertion?
+    Mod+Return repeat=false hotkey-overlay-title="Open a Terminal: ${dprg.terminal.name}" { spawn "${dprg.terminal.cmd}"; }
     Mod+N repeat=false hotkey-overlay-title="Open main Zellij session" {
-      spawn-sh "${prg.terminal.cmd} -e zellij attach --create main";
+      spawn-sh "${dprg.terminal.cmd} -e zellij attach --create main";
     }
     // see `dms ipc notepad toggle`
     Mod+Shift+N repeat=false hotkey-overlay-title="Open notes directory in a Zellij session" {
-      spawn-sh "${prg.terminal.cmdDir} ${NOTES} -e zellij attach --create notes";
-      // spawn-sh "${prg.terminal.cmd} -e yazi ${NOTES}";
+      spawn-sh "${dprg.terminal.cmdDir} ${NOTES} -e zellij attach --create notes";
+      // spawn-sh "${dprg.terminal.cmd} -e yazi ${NOTES}";
     }
 
     // see `dms ipc spotlight toggle`
     Mod+D repeat=false hotkey-overlay-title="Run an Application: ${dprg.launcher.name}" { spawn-sh "${dprg.launcher.drun}"; }
     Mod+Shift+D repeat=false hotkey-overlay-title=null { spawn-sh "${dprg.launcher.run}"; }
 
-    // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${prg.terminal.cmd} -e newsboat"; }
+    // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${dprg.terminal.cmd} -e newsboat"; }
     Mod+B repeat=false hotkey-overlay-title="Open browser: chromium" { spawn "chromium" "--new-window"; }
     Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${prg.locker.program}" { spawn-sh "${prg.locker.cmd}"; }
     XF86ScreenSaver repeat=false { spawn-sh "${prg.locker.cmd}"; }
@@ -48,7 +49,7 @@ in
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
-    // F7 repeat=false { spawn-sh "${prg.terminal.cmd} -e dmenurecord"; }
+    // F7 repeat=false { spawn-sh "${dprg.terminal.cmd} -e dmenurecord"; }
 
     // see `dms ipc audio increment 2`, `dms ipc audio mute`, `dms ipc audio micmute`
     XF86AudioRaiseVolume allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }

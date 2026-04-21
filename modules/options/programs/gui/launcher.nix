@@ -23,8 +23,8 @@ in
       name = mkOption {
         type = enum [
           "dmenu"
-          "tofi"
           "fuzzel"
+          "tofi"
           "vicinae"
         ];
         default = if sys.displayServer == "wayland" then "fuzzel" else "dmenu";

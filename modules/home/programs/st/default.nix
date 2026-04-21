@@ -7,14 +7,16 @@
 }:
 let
   inherit (lib.modules) mkIf;
+
+  prg = config.self.programs;
 in
 {
-  config = mkIf (config.self.programs.terminal.program == "st") {
-    user.packages = [ self.pkgs.suckless ];
-
-    self.programs.terminal = {
+  config = mkIf prg.terminal.st.enable {
+    self.programs.default.terminal = mkIf (prg.default.terminal.name == "st") {
       cmd = "st";
       cmdDir = "st -d";
     };
+
+    user.packages = [ self.pkgs.suckless ];
   };
 }

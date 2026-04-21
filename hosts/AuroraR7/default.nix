@@ -22,9 +22,11 @@
 
     programs = {
       windowManager = "niri";
-      terminal.program = "ghostty";
       imageViewer.program = "imv";
       locker.program = "dms";
+      default = {
+        terminal.name = "ghostty";
+      };
       gaming = {
         enable = true;
       };

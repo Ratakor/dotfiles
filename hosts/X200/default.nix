@@ -20,7 +20,6 @@
 
     programs = {
       windowManager = "niri";
-      terminal.program = "foot";
       imageViewer.program = "imv";
       locker.program = "dms";
     };

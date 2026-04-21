@@ -15,39 +15,13 @@ in
     windowManager = mkOption {
       type = nullOr (enum [
         "dwm"
-        "river-classic"
-        "river" # not implemented
-        "niri"
         "hyprland"
+        "niri"
+        "river" # not implemented
+        "river-classic"
       ]);
       default = if sys.displayServer == "wayland" then "niri" else "dwm";
       description = "The window manager to use.";
-    };
-
-    terminal = {
-      program = mkOption {
-        type = enum [
-          "foot"
-          "st"
-          "ghostty"
-        ];
-        default = if sys.displayServer == "wayland" then "foot" else "ghostty";
-        description = "The terminal emulator to use.";
-      };
-
-      cmd = mkOption {
-        type = nullOr str;
-        default = null;
-        internal = true;
-        description = "The terminal command to use.";
-      };
-
-      cmdDir = mkOption {
-        type = nullOr str;
-        default = null;
-        internal = true;
-        description = "The command with which to open directories in the terminal.";
-      };
     };
 
     imageViewer = {
@@ -78,10 +52,10 @@ in
     locker = {
       program = mkOption {
         type = enum [
-          "swaylock"
-          "glitchlock"
           "dms"
+          "glitchlock"
           "slock"
+          "swaylock"
         ];
         default = if sys.displayServer == "wayland" then "dms" else "slock";
         description = "The screen locker to use.";

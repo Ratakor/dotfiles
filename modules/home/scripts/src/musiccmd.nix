@@ -7,12 +7,14 @@
   ...
 }:
 let
+  dprg = config.self.programs.default;
+
   XDG_MUSIC_DIR = config.hm.xdg.userDirs.music;
   XDG_CACHE_HOME = config.hm.xdg.cacheHome;
 
   # TODO: allow to configure that and waybar/sb, imv
   # replace `kill -35 $(pidof waybar)` with `kill -34 $(pidof sb)` for sb
-  DMENU = config.self.programs.menu.dynamic;
+  DMENU = dprg.launcher.dmenu;
 in
 pkgs.writeShellApplication {
   name = "musiccmd";

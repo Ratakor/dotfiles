@@ -7,7 +7,6 @@
 let
   inherit (lib.meta) getExe;
 
-  prg = config.self.programs;
   dprg = config.self.programs.default;
 
   XDG_CONFIG_HOME = config.hm.xdg.configHome;
@@ -42,7 +41,7 @@ in
       # VISUAL = prg.editor.cmd; # config.self.editor is not a visual editor
       BROWSER = "chromium --new-window"; # cromite
       DMENU = dprg.launcher.dmenu;
-      TERMINAL = prg.terminal.cmd;
+      TERMINAL = dprg.terminal.cmd;
 
       # ~/ Clean-up
       FFMPEG_DATADIR = "${XDG_CONFIG_HOME}/ffmpeg";

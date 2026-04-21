@@ -64,8 +64,8 @@ in
     desktopEntries = {
       terminal-directory = {
         name = "File Manager";
-        exec = "${prg.terminal.cmdDir} %f";
-        icon = "foot";
+        exec = "${dprg.terminal.cmdDir} %f";
+        icon = dprg.terminal.name; # hopefully it's right one
       };
       git = {
         name = "git";

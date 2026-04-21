@@ -6,9 +6,18 @@
 }:
 let
   inherit (lib.modules) mkIf;
+
+  prg = config.self.programs;
 in
 {
-  config = mkIf (config.self.programs.terminal.program == "ghostty") {
+  config = mkIf prg.terminal.ghostty.enable {
+    self.programs.default.terminal = mkIf (prg.default.terminal.name == "ghostty") {
+      cmd = "ghostty";
+      cmdDir = "${pkgs.writeShellScript "ghostty_cmdDir" ''
+        ghostty --working-directory="$1"
+      ''}";
+    };
+
     hm.programs.ghostty = {
       enable = true;
       systemd.enable = true;
@@ -24,13 +33,6 @@ in
         window-inherit-working-directory = false;
       };
       enableZshIntegration = true;
-    };
-
-    self.programs.terminal = {
-      cmd = "ghostty";
-      cmdDir = "${pkgs.writeShellScript "ghostty_cmdDir" ''
-        ghostty --working-directory="$1"
-      ''}";
     };
   };
 }
