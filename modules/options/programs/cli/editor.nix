@@ -8,14 +8,14 @@
 let
   inherit (lib.options) mkOption;
   inherit (lib.types) enum str;
-  inherit (self.lib.options) mkEnableOptions';
+  inherit (self.lib.options) mkEnableOptions;
 
   opt = options.self.programs;
   cfg = config.self.programs;
 in
 {
   options.self.programs = {
-    editor = mkEnableOptions' opt.default.editor.name;
+    editor = mkEnableOptions opt.default.editor.name;
 
     default.editor = {
       name = mkOption {

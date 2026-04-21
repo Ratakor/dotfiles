@@ -8,7 +8,7 @@
 let
   inherit (lib.options) mkOption;
   inherit (lib.types) enum str;
-  inherit (self.lib.options) mkEnableOptions';
+  inherit (self.lib.options) mkEnableOptions;
 
   opt = options.self.programs;
   cfg = config.self.programs;
@@ -16,7 +16,7 @@ let
 in
 {
   options.self.programs = {
-    locker = mkEnableOptions' opt.default.locker.name;
+    locker = mkEnableOptions opt.default.locker.name;
 
     default.locker = {
       name = mkOption {

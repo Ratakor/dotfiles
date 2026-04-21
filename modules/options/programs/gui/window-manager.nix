@@ -8,7 +8,7 @@
 let
   inherit (lib.options) mkOption;
   inherit (lib.types) enum str;
-  inherit (self.lib.options) mkEnableOptions';
+  inherit (self.lib.options) mkEnableOptions;
 
   opt = options.self.programs;
   cfg = config.self.programs;
@@ -16,7 +16,7 @@ let
 in
 {
   options.self.programs = {
-    windowManager = mkEnableOptions' opt.default.windowManager.name;
+    windowManager = mkEnableOptions opt.default.windowManager.name;
 
     default.windowManager = {
       name = mkOption {

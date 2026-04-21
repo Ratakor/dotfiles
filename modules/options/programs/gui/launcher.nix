@@ -9,7 +9,7 @@
 let
   inherit (lib.options) mkOption;
   inherit (lib.types) enum str;
-  inherit (self.lib.options) mkEnableOptions';
+  inherit (self.lib.options) mkEnableOptions;
 
   opt = options.self.programs;
   cfg = config.self.programs;
@@ -17,7 +17,7 @@ let
 in
 {
   options.self.programs = {
-    launcher = mkEnableOptions' opt.default.launcher.name;
+    launcher = mkEnableOptions opt.default.launcher.name;
 
     default.launcher = {
       name = mkOption {

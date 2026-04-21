@@ -2,14 +2,8 @@
 let
   inherit (builtins) listToAttrs;
   inherit (lib.options) mkEnableOption;
-  inherit (self.types) enumValues;
-  inherit (self.options) enumOptionValues mkEnableOptions;
-in
-{
-  /**
-    Return the values of an option which type is an enum.
-  */
-  enumOptionValues = option: enumValues option.type;
+  inherit (self.types) enumValues unwrapNullOr;
+  inherit (self.options) enumOptionValues enumOptionValues';
 
   /**
     Create multiple enable options based on the given list of values.
@@ -23,8 +17,10 @@ in
           b.enable = mkEnableOption "b";
           c.enable = mkEnableOption "c";
         }
+
+    Originaly included in the library as `mkEnableOptions`.
   */
-  mkEnableOptions =
+  mkEnableOptionsImplem =
     values:
     values
     |> map (value: {
@@ -32,9 +28,26 @@ in
       value.enable = mkEnableOption value;
     })
     |> listToAttrs;
+in
+{
+  /**
+    Return the values of an option which type is an enum.
+  */
+  enumOptionValues = option: enumValues option.type;
+
+  /**
+    Return the values of an option which type is a nullOr enum.
+    `null` is not included.
+  */
+  enumOptionValues' = option: enumValues (unwrapNullOr option.type);
 
   /**
     Create multiple enable options based on the given enum option.
   */
-  mkEnableOptions' = option: mkEnableOptions (enumOptionValues option);
+  mkEnableOptions = option: mkEnableOptionsImplem (enumOptionValues option);
+
+  /**
+    Create multiple enable options based on the given nullOr enum option.
+  */
+  mkEnableOptions' = option: mkEnableOptionsImplem (enumOptionValues' option);
 }
