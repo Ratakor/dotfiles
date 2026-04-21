@@ -5,15 +5,25 @@
   ...
 }@args:
 let
+  sourceInfo =
+    let
+      info = builtins.fetchGit ./.;
+    in
+    if info.rev == "0000000000000000000000000000000000000000" then
+      removeAttrs info [
+        "rev"
+        "shortRev"
+      ]
+    else
+      info;
+
+  self = args.self or (sourceInfo // outputs);
+
   outputs =
     (import "${sources.flake-parts}/lib.nix" { inherit lib; }).mkFlake
       {
-        inputs = {
-          self = args.self or outputs; # TODO: self is more than outputs
-        };
-        specialArgs = {
-          inherit sources;
-        };
+        inputs = { inherit self; };
+        specialArgs = { inherit sources; };
       }
       {
         inherit systems;
@@ -23,4 +33,4 @@ let
         ];
       };
 in
-outputs
+if args ? self then outputs else self
