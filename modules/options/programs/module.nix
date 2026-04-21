@@ -1,8 +1,8 @@
 {
   imports = [
-    ./editor.nix
-    ./gaming.nix
+    ./cli
+    ./gui
+    ./misc
     ./graphical.nix
-    ./launcher.nix
   ];
 }
