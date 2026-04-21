@@ -27,7 +27,7 @@ local function notify_current_media()
     end
   end
 
-  mp.command("run pkill -RTMIN+1 waybar")
+  mp.command("run pkill -RTMIN+1 waybar") -- TODO: use dprg.statusBar
   local cmd = "notify-send -p -r " .. tostring(id) .. " '" .. title .. "' '" .. origin .. "'"
   local handle = io.popen(cmd)
   if handle then

@@ -12,10 +12,10 @@
 let
   inherit (lib.modules) mkIf;
 
-  sys = config.self.system;
+  prg = config.self.programs;
 in
 {
-  config = mkIf sys.displayServer.x11 {
+  config = mkIf prg.statusBar.sb.enable {
     user.packages = [ self.pkgs.suckless ];
     hm.xdg.configFile."sb/config".source = ./config;
   };

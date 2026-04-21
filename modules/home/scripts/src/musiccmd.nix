@@ -12,7 +12,7 @@ let
   XDG_MUSIC_DIR = config.hm.xdg.userDirs.music;
   XDG_CACHE_HOME = config.hm.xdg.cacheHome;
 
-  # TODO: allow to configure that and waybar/sb, imv
+  # TODO: use dprg.{statusBar,imageViewer}
   # replace `kill -35 $(pidof waybar)` with `kill -34 $(pidof sb)` for sb
   DMENU = dprg.launcher.dmenu;
 in

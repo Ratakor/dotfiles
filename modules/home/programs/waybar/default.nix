@@ -8,11 +8,12 @@ let
   inherit (self.lib.trivial) hexToRgba;
 
   colors = config.self.colors.default;
+  prg = config.self.programs;
 in
 {
   hm.programs.waybar = {
-    enable = false; # config.self.displayServer == "wayland";
-    systemd.enable = true;
+    enable = prg.statusBar.waybar.enable;
+    systemd.enable = prg.default.statusBar.name == "waybar";
 
     settings.mainBar = {
       layer = "top";
@@ -47,7 +48,7 @@ in
         # TODO
       };
       "custom/spotify" = {
-        exec = "zpotify waybar";
+        exec = "zpotify waybar"; # TODO: this was removed
         return-type = "json";
         tooltip = true;
         on-click = "zpotify pause >/dev/null";
