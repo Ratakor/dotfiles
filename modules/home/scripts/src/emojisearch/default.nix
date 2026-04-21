@@ -12,9 +12,9 @@ let
   dprg = config.self.programs.default;
 
   copyCommand =
-    if sys.displayServer == "x11" then
+    if sys.displayServer.x11 then
       "xclip -selection clipboard"
-    else if sys.displayServer == "wayland" then
+    else if sys.displayServer.wayland then
       "wl-copy"
     else
       unreachable;

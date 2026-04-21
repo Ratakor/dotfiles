@@ -13,7 +13,7 @@ let
   sys = config.self.system;
 in
 {
-  config = mkIf (sys.displayServer == "x11") {
+  config = mkIf sys.displayServer.x11 {
     user.packages = [ pkgs.sxhkd ];
     hm.xdg.configFile."sxhkd/sxhkdrc".source = ./sxhkdrc;
   };

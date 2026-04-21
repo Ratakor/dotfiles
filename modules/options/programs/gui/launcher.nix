@@ -27,7 +27,7 @@ in
           "tofi"
           "vicinae"
         ];
-        default = if sys.displayServer == "wayland" then "fuzzel" else "dmenu";
+        default = if sys.displayServer.wayland then "fuzzel" else "dmenu";
         description = "The default launcher to use.";
       };
 

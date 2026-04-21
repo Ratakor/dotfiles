@@ -4,9 +4,8 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOption;
-  inherit (lib.types) enum;
-  inherit (lib.lists) optional;
+  inherit (lib.options) mkEnableOption;
+  inherit (lib.lists) singleton;
 
   cfg = config.self.system;
 in
@@ -21,18 +20,27 @@ in
 
     bluetooth.enable = mkEnableOption "bluetooth drivers and related programs";
 
-    displayServer = mkOption {
-      type = enum [
-        "x11"
-        "wayland"
-        "none"
-      ];
-      default = "none";
-      description = "The display server to use.";
+    # .enable is too verbose for this
+    displayServer = {
+      wayland = mkEnableOption "Wayland display server";
+      x11 = mkEnableOption "X11 display server";
     };
   };
 
   config = {
-    system.nixos.tags = optional (cfg.displayServer != "none") cfg.displayServer;
+    assertions = [
+      {
+        assertion = !(cfg.displayServer.wayland && cfg.displayServer.x11);
+        message = "You cannot enable both Wayland and X11 display servers simultaneously.";
+      }
+    ];
+
+    system.nixos.tags =
+      if cfg.displayServer.wayland then
+        singleton "wayland"
+      else if cfg.displayServer.x11 then
+        singleton "x11"
+      else
+        [ ];
   };
 }

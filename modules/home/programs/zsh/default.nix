@@ -93,7 +93,7 @@ in
 
     # TODO: clean that
     profileExtra =
-      if config.self.system.displayServer == "x11" then
+      if config.self.system.displayServer.x11 then
         ''
           if [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1; then
              #doas modprobe dell-smm-hwmon ignore_dmi=1

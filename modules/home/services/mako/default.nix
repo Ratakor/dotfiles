@@ -12,7 +12,7 @@ let
   sys = config.self.system;
 in
 {
-  config = mkIf (sys.displayServer == "wayland") {
+  config = mkIf sys.displayServer.wayland {
     user.packages = [ pkgs.libnotify ];
 
     hm.services.mako = {

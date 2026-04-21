@@ -52,7 +52,7 @@ pkgs.writeShellApplication {
 
   ''
   + (
-    if displayServer == "wayland" then
+    if displayServer.wayland then
       let
         swaybg = getExe pkgs.swaybg;
       in
@@ -82,7 +82,7 @@ pkgs.writeShellApplication {
           echo $! > "$PIDFILE"
           (sleep 3; kill "$OLDPID" 2>/dev/null || exit 0) &
         ''
-    else if displayServer == "x11" then
+    else if displayServer.x11 then
       if supportMultipleMonitors then
         let
           xwallpaper = getExe pkgs.xwallpaper;

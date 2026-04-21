@@ -25,7 +25,7 @@ in
           "ghostty"
           "st"
         ];
-        default = if sys.displayServer == "wayland" then "foot" else "ghostty";
+        default = if sys.displayServer.wayland then "foot" else "ghostty";
         description = "The default terminal emulator to use.";
       };
 

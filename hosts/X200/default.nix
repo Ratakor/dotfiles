@@ -12,7 +12,7 @@
     };
 
     system = {
-      displayServer = "wayland";
+      displayServer.wayland = true;
       audio.enable = true;
       video.enable = true;
       bluetooth.enable = false;

@@ -13,7 +13,7 @@ let
 in
 {
   hm.services.swayidle = {
-    enable = sys.displayServer == "wayland";
+    enable = sys.displayServer.wayland;
     extraArgs = [ "-w" ];
     timeouts = [
       {

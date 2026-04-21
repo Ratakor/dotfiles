@@ -8,9 +8,11 @@
 }:
 let
   inherit (lib.modules) mkIf;
+
+  sys = config.self.system;
 in
 {
-  config = mkIf (config.self.system.displayServer == "x11") {
+  config = mkIf sys.displayServer.x11 {
     user.packages = [ pkgs.picom ];
     hm.xdg.configFile."picom.conf".source = ./picom.conf;
   };

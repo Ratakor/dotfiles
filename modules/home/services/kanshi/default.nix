@@ -6,7 +6,7 @@
   # TODO: add config.self.services.kanshi.enable
   # TODO: add config.self.services.kanshi.settings
   hm.services.kanshi = {
-    enable = config.self.system.displayServer == "wayland";
+    enable = config.self.system.displayServer.wayland;
     settings = [
       {
         profile = {

@@ -24,7 +24,7 @@ in
           "imv"
           "nsxiv"
         ];
-        default = if sys.displayServer == "wayland" then "imv" else "nsxiv";
+        default = if sys.displayServer.wayland then "imv" else "nsxiv";
         description = "The default image viewer to use.";
       };
 

@@ -27,7 +27,7 @@ in
           # "river"
           "river-classic"
         ];
-        default = if sys.displayServer == "wayland" then "niri" else "dwm";
+        default = if sys.displayServer.wayland then "niri" else "dwm";
         description = "The default window manager to use.";
       };
 

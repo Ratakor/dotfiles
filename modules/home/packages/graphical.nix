@@ -87,5 +87,5 @@ in
   apps
   unsorted
 ]
-++ optionals (sys.displayServer == "wayland") (attrValues wayland)
-++ optionals (sys.displayServer == "x11") (attrValues x11)
+++ optionals (sys.displayServer.wayland) (attrValues wayland)
+++ optionals (sys.displayServer.x11) (attrValues x11)

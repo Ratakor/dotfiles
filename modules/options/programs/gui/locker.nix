@@ -26,7 +26,7 @@ in
           "slock"
           "swaylock"
         ];
-        default = if sys.displayServer == "wayland" then "dms" else "slock";
+        default = if sys.displayServer.wayland then "dms" else "slock";
         description = "The default screen locker to use.";
       };
 
