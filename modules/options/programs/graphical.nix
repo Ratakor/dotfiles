@@ -24,31 +24,6 @@ in
       description = "The window manager to use.";
     };
 
-    imageViewer = {
-      program = mkOption {
-        type = enum [
-          "imv"
-          "nsxiv"
-        ];
-        default = if sys.displayServer == "wayland" then "imv" else "nsxiv";
-        description = "The image viewer to use.";
-      };
-
-      cmd = mkOption {
-        type = nullOr str;
-        default = null;
-        internal = true;
-        description = "The image viewer command to use.";
-      };
-
-      desktopEntry = mkOption {
-        type = nullOr str;
-        default = null;
-        internal = true;
-        description = "The desktop entry of the image viewer.";
-      };
-    };
-
     locker = {
       program = mkOption {
         type = enum [

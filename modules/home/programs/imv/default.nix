@@ -5,9 +5,16 @@
 }:
 let
   inherit (lib.modules) mkIf;
+
+  prg = config.self.programs;
 in
 {
-  config = mkIf (config.self.programs.imageViewer.program == "imv") {
+  config = mkIf prg.imageViewer.imv.enable {
+    self.programs.default.imageViewer = mkIf (prg.default.imageViewer.name == "imv") {
+      cmd = "imv";
+      desktopEntry = "imv.desktop";
+    };
+
     hm.programs.imv = {
       enable = true;
       settings.binds = {
@@ -15,11 +22,6 @@ in
         p = "prev";
         "<Ctrl+p>" = "exec echo $imv_current_file";
       };
-    };
-
-    self.programs.imageViewer = {
-      cmd = "imv";
-      desktopEntry = "imv.desktop";
     };
   };
 }

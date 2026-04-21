@@ -8,10 +8,12 @@
 let
   inherit (lib.modules) mkIf;
 
+  prg = config.self.programs;
+
   # TODO:
   # - add -a patch
   # - fetch nsxiv-extra (with npins?) for zsh completion & patches
-  nsxiv = pkgs.nsxiv.overrideAttrs (prevAttrs: {
+  package = pkgs.nsxiv.overrideAttrs (prevAttrs: {
     patches = (prevAttrs.patches or [ ]) ++ [ ./image-mode-cycle-v30.diff ];
 
     nativeBuildInputs = (prevAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.installShellFiles ];
@@ -22,17 +24,17 @@ let
   });
 in
 {
-  config = mkIf (config.self.programs.imageViewer.program == "nsxiv") {
-    user.packages = [ nsxiv ];
+  config = mkIf prg.imageViewer.nsxiv.enable {
+    self.programs.default.imageViewer = mkIf (prg.default.imageViewer.name == "nsxiv") {
+      cmd = "nsxiv -a";
+      desktopEntry = "nsxiv-a.desktop";
+    };
+
+    user.packages = [ package ];
 
     hm.xdg.desktopEntries.nsxiv-a = {
       name = "nsxiv";
       exec = "nsxiv -a %f";
-    };
-
-    self.programs.imageViewer = {
-      cmd = "nsxiv -a";
-      desktopEntry = "nsxiv-a.desktop";
     };
   };
 }

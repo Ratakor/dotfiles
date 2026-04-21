@@ -3,7 +3,6 @@ let
   inherit (builtins) listToAttrs;
 
   HOME = config.hm.home.homeDirectory;
-  prg = config.self.programs;
   dprg = config.self.programs.default;
 in
 {
@@ -307,7 +306,7 @@ in
         in
         mimeToApps audioMimeTypes [ "mpv.desktop" ]
         // mimeToApps videoMimeTypes [ "mpv.desktop" ]
-        // mimeToApps imageMimeTypes [ prg.imageViewer.desktopEntry ]
+        // mimeToApps imageMimeTypes [ dprg.imageViewer.desktopEntry ]
         // mimeToApps textMimeTypes [ dprg.editor.desktopEntry ]
         // {
           "application/postscript" = [ "org.pwmt.zathura.desktop" ];

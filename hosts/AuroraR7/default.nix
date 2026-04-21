@@ -22,7 +22,6 @@
 
     programs = {
       windowManager = "niri";
-      imageViewer.program = "imv";
       locker.program = "dms";
       default = {
         terminal.name = "ghostty";
