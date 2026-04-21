@@ -1,11 +1,7 @@
 # Based on https://github.com/notashelf/nyxexprs and https://github.com/diniamo/niqspkgs
+{ self, sources, ... }:
 {
-  inputs,
-  self,
-  ...
-}:
-{
-  imports = [ inputs.flake-parts.flakeModules.easyOverlay ];
+  imports = [ "${sources.flake-parts}/extras/easyOverlay.nix" ];
 
   perSystem =
     {
@@ -13,7 +9,6 @@
       config,
       inputs',
       lib,
-      pins,
       pkgs,
       wlib,
       ...
@@ -26,10 +21,10 @@
       inherit (lib.strings) optionalString;
       inherit (lib.trivial) const;
 
-      craneLib = pkgs.callPackage "${pins.crane}/lib" { };
+      craneLib = pkgs.callPackage "${sources.crane}/lib" { };
       diskoVersion =
         let
-          versionInfo = import "${pins.disko}/version.nix";
+          versionInfo = import "${sources.disko}/version.nix";
         in
         versionInfo.version + (optionalString (!versionInfo.released) "-dirty");
     in
@@ -40,48 +35,46 @@
 
       packages =
         let
-          extraArgs = { inherit pins wlib; };
+          extraArgs = { inherit sources wlib; };
 
           base = packagesFromDirectoryRecursive {
             callPackage = callPackageWith (recursiveUpdate pkgs extraArgs);
             directory = ./pkgs;
           };
 
-          fromInputs = { };
-
-          fromPins = {
+          fromSources = {
             # age-encrypted secrets for NixOS
-            agenix = pkgs.callPackage "${pins.agenix}/pkgs/agenix.nix" { };
+            agenix = pkgs.callPackage "${sources.agenix}/pkgs/agenix.nix" { };
             # Declarative disk partitioning and formatting using nix
-            disko = pkgs.callPackage "${pins.disko}/package.nix" { inherit diskoVersion; };
-            disko-install = fromPins.disko.overrideAttrs (const {
+            disko = pkgs.callPackage "${sources.disko}/package.nix" { inherit diskoVersion; };
+            disko-install = fromSources.disko.overrideAttrs (const {
               name = "disko-install";
             });
             # Stupid simple utility for linting your flake inputs
-            flint = pkgs.callPackage "${pins.flint}/nix/package.nix" { };
+            flint = pkgs.callPackage "${sources.flint}/nix/package.nix" { };
             # A scrollable-tiling Wayland compositior. Git version. Peak usage of flake btw.
-            niri-git = (self.lib.flake.package pins.niri system { rust-overlay = { }; }).overrideAttrs {
+            niri-git = (self.lib.flake.package sources.niri system { rust-overlay = { }; }).overrideAttrs {
               # well flake-compat isn't perfect but I love it
-              version = substring 0 7 pins.niri.revision;
+              version = substring 0 7 sources.niri.revision;
               __intentionallyOverridingVersion = true;
             };
             # Wayland clipboard "manager"
-            stash = pkgs.callPackage "${pins.stash}/nix/package.nix" { inherit craneLib; };
+            stash = pkgs.callPackage "${sources.stash}/nix/package.nix" { inherit craneLib; };
             # Automatic CPU speed & power optimizer for Linux
-            watt = pkgs.callPackage "${pins.watt}/nix/package.nix" { };
+            watt = pkgs.callPackage "${sources.watt}/nix/package.nix" { };
             # CLI tool to restore files from ZFS snapshots
-            zfs-restore = pkgs.callPackage "${pins.zfs-restore}/nix/package.nix" {
+            zfs-restore = pkgs.callPackage "${sources.zfs-restore}/nix/package.nix" {
               zig = pkgs.zig_0_15;
             };
             # CLI/TUI for Spotify
-            zpotify = pkgs.callPackage "${pins.zpotify}/nix/package.nix" {
+            zpotify = pkgs.callPackage "${sources.zpotify}/nix/package.nix" {
               zig = pkgs.zig_0_15;
               image-support = true;
             };
             # Helix keybinds for Z Shell
-            zsh-helix-mode = pkgs.callPackage "${pins.zsh-helix-mode}/default.nix" { };
+            zsh-helix-mode = pkgs.callPackage "${sources.zsh-helix-mode}/default.nix" { };
           };
         in
-        base // fromInputs // fromPins;
+        base // fromSources;
     };
 }

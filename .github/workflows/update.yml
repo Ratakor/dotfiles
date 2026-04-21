@@ -32,13 +32,9 @@ jobs:
           name: ratakor
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - name: "Update flake.lock"
-        run: nix flake update
-
-      - name: "Update npins"
-        working-directory: parts
-        run: nix run nixpkgs#npins update
+      - name: "Update sources"
+        run: nix run nixpkgs#npins -- update
 
       - uses: stefanzweifel/git-auto-commit-action@v6
         with:
-          commit_message: "ci: update flake.lock & npins"
+          commit_message: "ci: update sources"

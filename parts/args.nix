@@ -1,13 +1,15 @@
-{ inputs, lib, ... }:
+{
+  lib,
+  self,
+  sources,
+  ...
+}:
 let
   # My SSH keys, exposed here to the flake & to flake-parts modules.
   keys = import ./keys.nix;
 
-  # Pinned sources, exposed here to the flake & to flake-parts modules.
-  pins = import ./npins;
-
   # Wrappers library, exposed here to flake-parts modules.
-  wlib = import "${pins.nix-wrapper-modules}/lib" { inherit lib; };
+  wlib = import "${sources.nix-wrapper-modules}/lib" { inherit lib; };
 in
 {
   perSystem =
@@ -28,26 +30,28 @@ in
       # can refer to it using this package instance.
       # Note that this isn't the same pkgs instance that is passed to other parts
       # of the flake like hosts/ or users/, it's only for flake-parts modules.
-      legacyPackages = import inputs.nixpkgs {
+      legacyPackages = import sources.nixpkgs {
         inherit system;
         config = {
-          allowUnfree = false;
+          allowUnfree = true;
           allowUnsupportedSystem = true;
         };
-        overlays = [ inputs.self.overlays.default ];
+        overlays = [ self.overlays.default ];
       };
 
       # Override flake-parts' perSystem args
       _module.args = {
-        inherit keys pins wlib;
+        inherit keys wlib;
 
         # https://github.com/hercules-ci/flake-parts/issues/106#issuecomment-1399041045
         pkgs = config.legacyPackages;
       };
     };
 
-  # Expose stuff to the flake itself so they can be referenced using `self`.
+  # Expose useful stuff to the flake outputs.
+  # That also means that they can be referenced using `self`.
   flake = {
-    inherit keys pins;
+    inherit keys sources;
+    pins = sources; # TODO: remove that
   };
 }

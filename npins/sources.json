@@ -79,6 +79,19 @@
       "url": "https://github.com/ratakor/flake-compat/archive/d187bee2a53453ea72417e9b638544382b3fb029.tar.gz",
       "hash": "sha256-uY3gWlQLehaRFW399OMqyvGECOUbHK0EpFPoQU4LPmc="
     },
+    "flake-parts": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "hercules-ci",
+        "repo": "flake-parts"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "3107b77cd68437b9a76194f0f7f9c55f2329ca5b",
+      "url": "https://github.com/hercules-ci/flake-parts/archive/3107b77cd68437b9a76194f0f7f9c55f2329ca5b.tar.gz",
+      "hash": "sha256-91qqW8lhL7TLwgQWijoGBbiD4t7/q75KTi8NxjVmSmA="
+    },
     "flint": {
       "type": "Git",
       "repository": {
@@ -182,6 +195,11 @@
       "revision": "75febede14a0845f4ef429da692a0698bf433600",
       "url": "https://github.com/BirdeeHub/nix-wrapper-modules/archive/75febede14a0845f4ef429da692a0698bf433600.tar.gz",
       "hash": "sha256-XwLFfJDz71vIF7BAhnbLhrzQjmDC2uXdo7N0oHUrYzA="
+    },
+    "nixpkgs": {
+      "type": "Tarball",
+      "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz",
+      "hash": "sha256-qH3mBrZnNsPdwpAgvG2Olgzsp5kt+Sibpm1tx1pxkcQ="
     },
     "stash": {
       "type": "Git",

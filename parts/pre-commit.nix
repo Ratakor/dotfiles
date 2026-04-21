@@ -4,12 +4,9 @@
 # instead and run a CI with it.
 # Also remember to uncomment shellHook in ./shell.nix & enable this in ./default.nix.
 # https://github.com/cachix/git-hooks.nix
+{ sources, ... }:
 {
-  imports =
-    let
-      pins = import ./npins;
-    in
-    [ "${pins.git-hooks}/flake-module.nix" ];
+  imports = [ "${sources.git-hooks}/flake-module.nix" ];
 
   perSystem =
     {

@@ -13,30 +13,5 @@
     ];
   };
 
-  inputs = {
-    # Nixpkgs channels:
-    # nixos-25.11 is the latest stable channel.
-    # nixos-unstable is the rolling release channel for NixOS.
-    # nixos-unstable-small is like nixos-unstable but with fewer binaries and more bleeding edge.
-    # nixpkgs-unstable is the rolling release channel for Nix-as-a-package-manager.
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
-
-    # This allows building my packages on other platforms by overriding this input.
-    systems.url = "github:nix-systems/x86_64-linux";
-
-    # Flake builder.
-    flake-parts.url = "github:hercules-ci/flake-parts";
-  };
-
-  outputs =
-    inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      # Systems for which attributes of `perSystem` will be built.
-      systems = import inputs.systems;
-
-      imports = [
-        ./parts
-        ./hosts
-      ];
-    };
+  outputs = inputs: import ./. inputs;
 }

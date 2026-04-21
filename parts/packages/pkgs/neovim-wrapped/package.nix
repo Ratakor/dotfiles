@@ -1,12 +1,12 @@
 {
-  pins,
+  sources,
   pkgs,
   lib,
   vimPlugins,
 }:
 let
   fs = lib.fileset;
-  mnw = import pins.mnw;
+  mnw = import sources.mnw;
 in
 mnw.lib.wrap pkgs {
   appName = "nvim-ratakor-mnw";

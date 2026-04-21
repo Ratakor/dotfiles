@@ -1,9 +1,6 @@
+{ sources, ... }:
 {
-  imports =
-    let
-      pins = import ./npins;
-    in
-    [ "${pins.treefmt-nix}/flake-module.nix" ];
+  imports = [ "${sources.treefmt-nix}/flake-module.nix" ];
 
   perSystem =
     {

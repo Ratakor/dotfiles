@@ -1,11 +1,12 @@
 {
-  self,
   inputs,
+  lib,
+  self,
+  sources,
   withSystem,
   ...
 }:
 let
-  inherit (inputs.nixpkgs) lib;
   inherit (builtins) filter concatLists;
   inherit (lib.modules) mkDefault;
   inherit (lib.attrsets) recursiveUpdate;
@@ -14,7 +15,7 @@ let
   inherit (lib.strings) hasSuffix;
 
   # External Modules
-  disko = import "${self.pins.disko}/module.nix";
+  disko = import "${sources.disko}/module.nix";
 
   # Root path for local modules
   modulePath = ../modules;
@@ -49,7 +50,7 @@ let
           networking.hostName = hostname;
           nixpkgs = {
             hostPlatform = mkDefault system;
-            flake.source = inputs.nixpkgs.outPath;
+            flake.source = sources.nixpkgs.outPath;
           };
         }
       ]
@@ -63,6 +64,16 @@ let
 
       extraModules
     ]);
+
+  mkSystem =
+    args:
+    import "${sources.nixpkgs}/nixos/lib/eval-config.nix" (
+      {
+        inherit lib;
+        system = null; # set config.nixpkgs.hostPlatform instead.
+      }
+      // args
+    );
 
   mkNixosSystem =
     {
@@ -78,7 +89,7 @@ let
         wlib,
         ...
       }:
-      lib.nixosSystem {
+      mkSystem {
         modules = mkModules {
           inherit
             hostname

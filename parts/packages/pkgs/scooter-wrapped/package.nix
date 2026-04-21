@@ -1,6 +1,6 @@
 {
   pkgs,
-  pins,
+  sources,
   scooter,
   runCommandLocal,
   symlinkJoin,
@@ -8,7 +8,7 @@
   theme ? "gruvbox-dark",
 }:
 let
-  inherit (pins) gruvbox-tmTheme dracula-tmTheme;
+  inherit (sources) gruvbox-tmTheme dracula-tmTheme;
 
   toml = pkgs.formats.toml { };
 

@@ -1,14 +1,8 @@
-{
-  inputs,
-  pins,
-  self,
-  ...
-}:
+{ self, sources, ... }:
 let
-  inherit (inputs) nixpkgs;
   inherit (self.flake) compat;
 
-  fc = import pins.flake-compat;
+  flake-compat = import sources.flake-compat;
 in
 {
   /**
@@ -21,10 +15,10 @@ in
       inputsOverrides ? { },
       system ? builtins.currentSystem or "unknown-system",
     }:
-    (fc {
+    (flake-compat {
       inherit src system;
       impureOverrides = inputsOverrides // {
-        inherit nixpkgs;
+        inherit (sources) nixpkgs;
       };
     }).defaultNix;
 
