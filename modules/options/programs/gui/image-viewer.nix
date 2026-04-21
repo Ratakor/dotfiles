@@ -30,7 +30,7 @@ in
 
       cmd = mkOption {
         type = str;
-        description = "The command to spawn an image viewer.";
+        description = "The command to spawn the image viewer.";
       };
 
       desktopEntry = mkOption {

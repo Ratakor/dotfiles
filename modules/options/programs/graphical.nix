@@ -23,26 +23,5 @@ in
       default = if sys.displayServer == "wayland" then "niri" else "dwm";
       description = "The window manager to use.";
     };
-
-    locker = {
-      program = mkOption {
-        type = enum [
-          "dms"
-          "glitchlock"
-          "slock"
-          "swaylock"
-        ];
-        default = if sys.displayServer == "wayland" then "dms" else "slock";
-        description = "The screen locker to use.";
-      };
-
-      cmd = mkOption {
-        type = str;
-        default = if cfg.locker.program == "dms" then "dms ipc lock lock" else cfg.locker.program;
-        internal = true;
-        readOnly = true;
-        description = "The screen locker command to use.";
-      };
-    };
   };
 }

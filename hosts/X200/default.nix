@@ -17,11 +17,6 @@
       video.enable = true;
       bluetooth.enable = false;
     };
-
-    programs = {
-      windowManager = "niri";
-      locker.program = "dms";
-    };
   };
 
   system.stateVersion = "25.05";

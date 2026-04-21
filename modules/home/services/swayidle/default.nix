@@ -7,15 +7,18 @@
 }:
 let
   inherit (lib.meta) getExe;
+
+  prg = config.self.programs;
+  sys = config.self.system;
 in
 {
   hm.services.swayidle = {
-    enable = (config.self.system.displayServer == "wayland");
+    enable = sys.displayServer == "wayland";
     extraArgs = [ "-w" ];
     timeouts = [
       {
         timeout = 300;
-        command = config.self.programs.locker.cmd;
+        command = prg.default.locker.cmd;
       }
       # TODO: wlopm doesn't work on niri
       {

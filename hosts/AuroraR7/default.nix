@@ -21,8 +21,6 @@
     };
 
     programs = {
-      windowManager = "niri";
-      locker.program = "dms";
       default = {
         terminal.name = "ghostty";
       };

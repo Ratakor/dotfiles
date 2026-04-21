@@ -2,7 +2,6 @@
 config:
 let
   inherit (config.hm.xdg.userDirs.extraConfig) NOTES;
-  prg = config.self.programs;
   dprg = config.self.programs.default;
 in
 # kdl
@@ -40,8 +39,8 @@ in
 
     // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${dprg.terminal.cmd} -e newsboat"; }
     Mod+B repeat=false hotkey-overlay-title="Open browser: chromium" { spawn "chromium" "--new-window"; }
-    Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${prg.locker.program}" { spawn-sh "${prg.locker.cmd}"; }
-    XF86ScreenSaver repeat=false { spawn-sh "${prg.locker.cmd}"; }
+    Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${dprg.locker.name}" { spawn-sh "${dprg.locker.cmd}"; }
+    XF86ScreenSaver repeat=false { spawn-sh "${dprg.locker.cmd}"; }
     XF86Battery repeat=false hotkey-overlay-title="Show battery informations" { spawn "battery"; }
     Mod+Shift+W repeat=false hotkey-overlay-title="Set a randwom wallpaper" { spawn "randwp"; }
 

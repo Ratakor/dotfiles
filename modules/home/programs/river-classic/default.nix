@@ -14,10 +14,11 @@ let
   colors = config.self.colors.default;
   XDG_DOCUMENTS_DIR = config.hm.xdg.userDirs.documents;
   RIVER_LOG_DIR = "${config.hm.xdg.stateHome}/river";
-  cfg = config.self.programs;
+  prg = config.self.programs;
+  dprg = prg.default;
 in
 {
-  config = mkIf (cfg.windowManager == "river") {
+  config = mkIf (prg.windowManager == "river") {
     programs.river-classic.enable = true; # river mop when?
 
     hm.wayland.windowManager.river = {
@@ -59,11 +60,11 @@ in
         border-color-urgent = "0x${colors.red}";
 
         map.normal = {
-          "Super Return" = "spawn '${cfg.terminal.cmd}'";
-          "Super D" = "spawn '${cfg.menu.drun}'";
-          "Super+Shift D" = "spawn '${cfg.menu.run}'";
-          "None XF86ScreenSaver" = "spawn '${cfg.locker.cmd}'";
-          "Super+Shift X" = "spawn '${cfg.locker.cmd}'";
+          "Super Return" = "spawn '${dprg.terminal.cmd}'";
+          "Super D" = "spawn '${dprg.launcher.drun}'";
+          "Super+Shift D" = "spawn '${dprg.launcher.run}'";
+          "None XF86ScreenSaver" = "spawn '${dprg.locker.cmd}'";
+          "Super+Shift X" = "spawn '${dprg.locker.cmd}'";
           "None XF86Battery" = "spawn 'battery'";
           "Super+Shift W" = "spawn 'randwp'";
           "None Print" = "spawn 'screenshot'";
@@ -71,8 +72,8 @@ in
           # "Super B" = "spawn '$BROWSER'";
           # "Super N" = "spawn '${config.self.terminal.cmd} -e yazi ${XDG_DOCUMENTS_DIR}/notes'";
           "Super N" =
-            "spawn '${cfg.terminal.cmdDir} ${XDG_DOCUMENTS_DIR}/notes -e zellij attach --create notes'";
-          "Super+Shift N" = "spawn '${cfg.terminal.cmd} -e newsboat'";
+            "spawn '${dprg.terminal.cmdDir} ${XDG_DOCUMENTS_DIR}/notes -e zellij attach --create notes'";
+          "Super+Shift N" = "spawn '${dprg.terminal.cmd} -e newsboat'";
         };
       };
 

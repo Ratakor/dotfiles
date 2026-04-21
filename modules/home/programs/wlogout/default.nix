@@ -17,7 +17,7 @@ let
   inherit (self.lib.trivial) hexToRgba;
 
   colors = config.self.colors.default;
-  prg = config.self.programs;
+  dprg = config.self.programs.default;
 in
 {
   hm.programs.wlogout = {
@@ -29,7 +29,7 @@ in
     layout = [
       {
         label = "lock";
-        action = "${prg.locker.cmd}";
+        action = "${dprg.locker.cmd}";
         text = "Lock";
         keybind = "l";
       }
