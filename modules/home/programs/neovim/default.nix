@@ -6,10 +6,12 @@
 }:
 let
   inherit (lib.modules) mkIf;
+
+  prg = config.self.programs;
 in
 {
-  config = mkIf (config.self.programs.editor.program == "neovim") {
-    self.programs.editor = {
+  config = mkIf prg.editor.neovim.enable {
+    self.programs.default.editor = mkIf (prg.default.editor.name == "neovim") {
       cmd = "nvim";
       desktopEntry = "nvim.desktop";
     };

@@ -13,16 +13,20 @@
     in
     {
       filesystem = callLib ./filesystem.nix;
+      options = callLib ./options.nix;
       time = callLib ./time.nix;
       trivial = callLib ./trivial.nix;
+      types = callLib ./types.nix;
 
       inherit (self.filesystem) listFiles listDirs;
+      inherit (self.options) enumOptionValues mkEnableOptions mkEnableOptions';
       inherit (self.trivial)
         capitalize
         hexToRgba
         isx86Linux
         unreachable
         ;
+      inherit (self.types) enumValues;
     }
   );
 }

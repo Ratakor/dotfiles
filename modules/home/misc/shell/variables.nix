@@ -37,7 +37,7 @@ in
 
     sessionVariables = {
       # Default programs
-      EDITOR = prg.editor.cmd;
+      EDITOR = prg.default.editor.cmd;
       # VISUAL = prg.editor.cmd; # config.self.editor is not a visual editor
       BROWSER = "chromium --new-window"; # cromite
       DMENU = prg.menu.dynamic;

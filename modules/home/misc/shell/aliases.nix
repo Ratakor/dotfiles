@@ -21,7 +21,7 @@ let
     }) sudoCommands
   );
 
-  EDITOR = config.self.programs.editor.cmd;
+  EDITOR = config.self.programs.default.editor.cmd;
   ZDOTDIR = config.hm.programs.zsh.dotDir or "$HOME";
   XDG_CONFIG_HOME = config.hm.xdg.configHome;
   XDG_DATA_HOME = config.hm.xdg.dataHome;

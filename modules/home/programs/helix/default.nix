@@ -10,10 +10,12 @@ let
   package = self.pkgs.helix-wrapped.override {
     inherit (config.self.colors.default.helix) theme;
   };
+
+  prg = config.self.programs;
 in
 {
-  config = mkIf (config.self.programs.editor.program == "helix") {
-    self.programs.editor = {
+  config = mkIf prg.editor.helix.enable {
+    self.programs.default.editor = mkIf (prg.default.editor.name == "helix") {
       cmd = "hx";
       desktopEntry = "Helix.desktop";
     };

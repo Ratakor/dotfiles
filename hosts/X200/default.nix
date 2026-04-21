@@ -24,7 +24,6 @@
       terminal.program = "foot";
       imageViewer.program = "imv";
       locker.program = "dms";
-      editor.program = "helix";
     };
   };
 
