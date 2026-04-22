@@ -23,11 +23,6 @@ in
       util-linux
       psmisc # see also the `killall` package
 
-      ## shells
-      ## They must be installed system-wide or it may cause issue when switching back-and-forth.
-      zsh
-      nushell
-
       ## system tools
       # sysstat
       lm_sensors # sensors

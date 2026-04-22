@@ -1,0 +1,46 @@
+{
+  config,
+  lib,
+  options,
+  pkgs,
+  self,
+  ...
+}:
+let
+  inherit (builtins) concatLists;
+  inherit (lib.options) mkOption;
+  inherit (lib.types) enum;
+  inherit (lib.lists) optional;
+  inherit (self.lib.options) mkEnableOptions enumOptionValues;
+
+  opt = options.self.programs;
+  cfg = config.self.programs;
+in
+{
+  options.self.programs = {
+    shell = mkEnableOptions opt.default.shell.name;
+
+    default.shell = {
+      name = mkOption {
+        type = enum [
+          "zsh"
+          "nushell"
+        ];
+        default = "zsh";
+        description = "The default shell to use.";
+      };
+    };
+  };
+
+  config = {
+    self.programs.shell.${cfg.default.shell.name}.enable = true;
+
+    # Shells must be installed system-wide or it may
+    # cause issue when switching back-and-forth.
+    environment.systemPackages =
+      opt.default.shell.name
+      |> enumOptionValues
+      |> map (name: optional cfg.shell.${name}.enable pkgs.${name})
+      |> concatLists;
+  };
+}

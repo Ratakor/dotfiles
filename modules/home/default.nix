@@ -43,7 +43,7 @@ in
   user = {
     isNormalUser = true;
     uid = 1000;
-    shell = pkgs.zsh;
+    shell = pkgs.${config.self.programs.default.shell.name};
     createHome = true;
     home = "/home/${username}";
     description = capitalize username;

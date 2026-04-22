@@ -35,7 +35,7 @@ in
   };
 
   hm.programs.zsh = {
-    enable = true;
+    inherit (config.self.programs.shell.zsh) enable;
     dotDir = "${config.hm.xdg.configHome}/zsh";
     enableCompletion = true; # see programs.zsh.completionInit
     enableVteIntegration = true;

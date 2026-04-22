@@ -12,7 +12,7 @@ in
     };
 
     zsh = {
-      enable = true;
+      enable = true; # I known about config.self.programs.shell.zsh.enable and idc
       shellInit = ''
         export ZDOTDIR=$HOME/.config/zsh
       '';

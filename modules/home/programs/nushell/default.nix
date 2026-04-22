@@ -3,7 +3,7 @@
 {
   hm.programs = {
     nushell = {
-      enable = true;
+      inherit (config.self.programs.shell.nushell) enable;
       # home-manager issue ig
       environmentVariables = config.hm.home.sessionVariables // {
         # prompt indicator handled by oh-my-posh
