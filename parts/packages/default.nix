@@ -62,14 +62,9 @@
             # Automatic CPU speed & power optimizer for Linux
             watt = pkgs.callPackage "${sources.watt}/nix/package.nix" { };
             # CLI tool to restore files from ZFS snapshots
-            zfs-restore = pkgs.callPackage "${sources.zfs-restore}/nix/package.nix" {
-              zig = pkgs.zig_0_15;
-            };
+            zfs-restore = pkgs.callPackage "${sources.zfs-restore}/nix/package.nix" { };
             # CLI/TUI for Spotify
-            zpotify = pkgs.callPackage "${sources.zpotify}/nix/package.nix" {
-              zig = pkgs.zig_0_15;
-              image-support = true;
-            };
+            zpotify = pkgs.callPackage "${sources.zpotify}/nix/package.nix" { };
             # Helix keybinds for Z Shell
             zsh-helix-mode = pkgs.callPackage "${sources.zsh-helix-mode}/default.nix" { };
           };

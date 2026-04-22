@@ -262,9 +262,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "90bbd917b7f59465d2b8693cbb222f47cb2397e2",
-      "url": "https://github.com/ratakor/zfs-restore/archive/90bbd917b7f59465d2b8693cbb222f47cb2397e2.tar.gz",
-      "hash": "sha256-ytMxXwLdsCY6UlO6uVdcHYIhL9cwilBtjgMVM/rRXHE="
+      "revision": "3ccdca8f1a4578821234edc1fe2b60f3d70c08e5",
+      "url": "https://github.com/ratakor/zfs-restore/archive/3ccdca8f1a4578821234edc1fe2b60f3d70c08e5.tar.gz",
+      "hash": "sha256-SxEamNWjkcojTc5guWBodNE4zgkZ3y5Sq8BHbJu6hv0="
     },
     "zpotify": {
       "type": "Git",
@@ -275,9 +275,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "344cc41ca9583f0fba912e49424888feb9ab64ad",
-      "url": "https://github.com/ratakor/zpotify/archive/344cc41ca9583f0fba912e49424888feb9ab64ad.tar.gz",
-      "hash": "sha256-QBcUEwHRIO+B6ekIffpxYTzywKpRPzJf3/vE+37CDrI="
+      "revision": "71b7e003c43d3cec7e077906dc9549f8d7e350ae",
+      "url": "https://github.com/ratakor/zpotify/archive/71b7e003c43d3cec7e077906dc9549f8d7e350ae.tar.gz",
+      "hash": "sha256-R9pYZ7wuQY9XJGbMudIvrhTjNOPVUaN9JDXS68RIC70="
     },
     "zsh-helix-mode": {
       "type": "Git",

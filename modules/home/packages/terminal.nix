@@ -21,6 +21,7 @@ let
     # shaq # CLI client for Shazam
     timewarrior # Time tracking utility
     rsync # a fast, versatile, remote (and local) file-copying tool
+    self.pkgs.zpotify # A CLI for the Spotify Web API
   ];
 
   tui = with pkgs; [
@@ -65,7 +66,6 @@ let
     # nmap # utility for network discovery and security auditing
     # aria2 #  lightweight, multi-protocol, multi-source command-line download utility
     # ipcalc # simple IP network calculator
-    self.pkgs.zpotify # A CLI/TUI for Spotify
     # ani-cli # CLI to browse and play anime
     # lxc # Userspace tools for Linux Containers, a lightweight virtualization system
     # dnsmasq #  Integrated DNS, DHCP and TFTP server for small networks
