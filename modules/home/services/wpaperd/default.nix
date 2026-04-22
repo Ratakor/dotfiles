@@ -1,9 +1,9 @@
 # The application panicked (crashed).
 # Message:  Failed to create vertices shader:
 #    0: 0:2(10): error: GLSL ES 3.10 is not supported. Supported versions are: 1.00 ES
-{ config, self, ... }:
+{ config, sources, ... }:
 let
-  inherit (self.pins) wallpapers;
+  inherit (sources) wallpapers;
 
   cfg = config.self.programs;
 in

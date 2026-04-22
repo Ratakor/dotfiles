@@ -52,6 +52,5 @@ in
   # That also means that they can be referenced using `self`.
   flake = {
     inherit keys sources;
-    pins = sources; # TODO: remove that
   };
 }

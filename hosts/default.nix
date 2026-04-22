@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   self,
   sources,
@@ -83,12 +82,7 @@ let
       extraModules ? [ ],
     }:
     withSystem system (
-      {
-        self',
-        inputs',
-        wlib,
-        ...
-      }:
+      { self', wlib, ... }:
       mkSystem {
         modules = mkModules {
           inherit
@@ -103,13 +97,7 @@ let
           ];
         };
         specialArgs = recursiveUpdate {
-          inherit
-            inputs
-            inputs'
-            self
-            self'
-            wlib
-            ;
+          inherit self sources wlib;
         } { self.pkgs = self'.packages; };
       }
     );

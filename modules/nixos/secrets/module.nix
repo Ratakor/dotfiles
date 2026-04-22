@@ -1,12 +1,13 @@
 {
   lib,
   self,
+  sources,
   ...
 }:
 let
   inherit (lib.modules) mkIf;
 
-  module = import "${self.pins.agenix}/modules/age.nix";
+  module = import "${sources.agenix}/modules/age.nix";
 
   # based on notashelf/nyx lib
   mkAgenixSecret =

@@ -7,7 +7,6 @@
     {
       system,
       config,
-      inputs',
       lib,
       pkgs,
       wlib,

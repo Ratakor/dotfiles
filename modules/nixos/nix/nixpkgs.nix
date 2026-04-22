@@ -88,7 +88,7 @@ in
       #   package X depends on package Y, but Y is outdated in nixpkgs. So we
       #   add an up-to-date custom package Y. pkgs.X will reference the old Y
       #   but self.pkgs.X will work as expected.
-      # inputs.self.overlays.default
+      # self.overlays.default
     ];
   };
 }

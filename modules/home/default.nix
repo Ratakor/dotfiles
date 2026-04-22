@@ -3,7 +3,7 @@
   lib,
   pkgs,
   self,
-  specialArgs,
+  sources,
   ...
 }:
 let
@@ -15,7 +15,7 @@ let
   inherit (config.self) username;
 
   extraModules = [
-    (import "${self.pins.home-manager}/nixos")
+    (import "${sources.home-manager}/nixos")
   ];
   moduleAliases = [
     (mkAliasOptionModule [ "user" ] [ "users" "users" username ])
@@ -65,12 +65,14 @@ in
 
   # This is not a dotfiles manager it's a whole kitchen sink to manage
   # home configurations, hjem or basic stow implementation might be better
-  # for raw dotfiles. Note that there is a stable version of home-manager.
+  # for raw dotfiles.
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = specialArgs;
+
+    # See also `backupCommand`
     backupFileExtension = "hm.bak";
+    overwriteBackup = true;
 
     users.${username}.home = {
       inherit username;

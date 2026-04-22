@@ -4,6 +4,7 @@
   lib,
   pkgs,
   self,
+  sources,
   ...
 }:
 let
@@ -18,6 +19,7 @@ let
         lib
         pkgs
         self
+        sources
         ;
     };
 in

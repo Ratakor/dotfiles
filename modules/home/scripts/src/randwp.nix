@@ -8,11 +8,11 @@
   lib,
   pkgs,
   self,
+  sources,
   ...
 }:
 let
   inherit (lib.meta) getExe;
-  inherit (self.pins) wallpapers;
   inherit (self.lib.trivial) unreachable;
 
   inherit (config.self.system) displayServer;
@@ -36,7 +36,7 @@ pkgs.writeShellApplication {
 
     PIDFILE=''${XDG_RUNTIME_DIR:-/tmp}/randwp.pid
     LOGFILE=''${XDG_STATE_HOME:-$HOME/.local/state}/randwp.log
-    WPDIR=''${1:-${wallpapers}}
+    WPDIR=''${1:-${sources.wallpapers}}
     IGNORE=''${IGNORE-nsfw}
     ALL=$(find -L "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md')
 

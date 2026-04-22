@@ -1,14 +1,12 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
+  self,
   ...
 }:
 let
-  inherit (lib.trivial) pipe;
-  inherit (lib.types) isType;
-  inherit (lib.attrsets) mapAttrsToList filterAttrs mapAttrs;
+  inherit (lib.attrsets) mapAttrsToList;
 in
 {
   imports = [
@@ -28,13 +26,12 @@ in
     # a new nixpkgs version on each command causing a re-eval.
     # Also make flakes from this repo available with the nix CLI e.g.
     # `nix run self#custom-pkg` or `nix shell agenix`
-    registry = pipe inputs [
-      (filterAttrs (_: isType "flake"))
-      (mapAttrs (_: flake: { inherit flake; }))
-    ];
+    registry = {
+      self.flake = self;
+      # idk how but nixpkgs is already included in my config :D
+    };
 
     # Make legacy nix commands consistent with flakes
-    # nixPath = mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
     nixPath = mapAttrsToList (name: value: "${name}=${value.to.path}") config.nix.registry;
 
     # Customise /etc/nix/nix.conf declaratively
@@ -45,7 +42,6 @@ in
       #    2. command line args `--options substituers http://xxx`
       trusted-users = [ "@wheel" ];
 
-      # Enable flakes globally
       experimental-features = [
         "nix-command"
         "flakes"
@@ -56,14 +52,14 @@ in
       extra-substituters = [
         "https://ratakor.cachix.org"
         "https://nix-community.cachix.org"
-        # "https://s3.cri.epita.fr/cri-nix-cache.s3.cri.epita.fr"
+        "https://s3.cri.epita.fr/cri-nix-cache.s3.cri.epita.fr"
         # "https://nix-gaming.cachix.org"
       ];
 
       extra-trusted-public-keys = [
         "ratakor.cachix.org-1:9hOGzHtnKDJ1i9FQN87XFnOOpRBebSKWECswk17glP0="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        # "cache.nix.cri.epita.fr:qDIfJpZWGBWaGXKO3wZL1zmC+DikhMwFRO4RVE6VVeo="
+        "cache.nix.cri.epita.fr:qDIfJpZWGBWaGXKO3wZL1zmC+DikhMwFRO4RVE6VVeo="
         # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       ];
 

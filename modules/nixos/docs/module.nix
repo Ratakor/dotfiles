@@ -3,14 +3,14 @@
   config,
   lib,
   pkgs,
-  self,
+  sources,
   ...
 }:
 let
   inherit (lib.modules) mkIf;
   inherit (lib.lists) singleton;
 
-  ndg = import "${self.pins.ndg}/nix/internal/packages.nix" pkgs;
+  ndg = import "${sources.ndg}/nix/internal/packages.nix" pkgs;
   docs = ndg.ndg-builder.override {
     rawModules = singleton {
       options = options.self;

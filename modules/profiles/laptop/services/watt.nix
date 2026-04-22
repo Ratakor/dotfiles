@@ -1,10 +1,10 @@
 {
   self,
-  pkgs,
+  sources,
   ...
 }:
 let
-  module = import "${self.pins.watt}/nix/module.nix" { };
+  module = import "${sources.watt}/nix/module.nix" { };
 in
 {
   imports = [ module ];

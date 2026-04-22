@@ -1,10 +1,11 @@
 {
   pkgs,
   self,
+  sources,
   ...
 }:
 let
-  dove = self.lib.flake.compat' self.pins.dove;
+  dove = self.lib.flake.compat' sources.dove;
 in
 {
   imports = [ dove.nixosModules.default ];
