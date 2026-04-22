@@ -39,7 +39,6 @@ let
   ];
 
   tools = with pkgs; [
-    # qemu_full # uncached binaries, arrow-cpp 4 hours to build no thanks
     # astyle # C formatter
     checkbashisms # checks for bashisms in scripts
     shellcheck # there is also shellcheck-minimal in nixpkgs

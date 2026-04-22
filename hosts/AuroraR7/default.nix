@@ -21,8 +21,6 @@
       virt = {
         podman.enable = true;
         qemu.enable = true;
-        waydroid.enable = true;
-        distrobox.enable = true;
       };
     };
 

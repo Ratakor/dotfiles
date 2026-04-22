@@ -7,6 +7,9 @@ in
     podman.enable = mkEnableOption "Podman with Docker support";
     qemu.enable = mkEnableOption "QEMU";
     waydroid.enable = mkEnableOption "Waydroid";
-    distrobox.enable = mkEnableOption "Distrobox";
+    distrobox = {
+      enable = mkEnableOption "Distrobox";
+      autoUpgrade.enable = mkEnableOption "periodically upgrade all distrobox containers";
+    };
   };
 }
