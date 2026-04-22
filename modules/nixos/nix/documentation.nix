@@ -32,7 +32,7 @@
       # This includes:
       # - Pages like `configuration.nix(5)` if `man.enable` is set.
       # - The HTML manual and the `nixos-help` command if `doc.enable` is set.
-      enable = true;
+      enable = false;
 
       # Whether the generated NixOS's documentation should include
       # documentation for all the options from all the NixOS modules included
