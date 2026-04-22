@@ -59,7 +59,6 @@ let
     # rustfmt # rust formatter
     zig-shell-completions
     moreutils # a lot of cool additional utils
-    docker
     file # Program that shows the type of files
     findutils # find & xargs
     gawk # GNU implementation of the Awk programming language

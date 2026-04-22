@@ -58,6 +58,7 @@ in
       "networkmanager"
       # "kvm"
       "docker"
+      "podman"
       "libvirtd"
     ];
     openssh.authorizedKeys.keys = self.keys.${username};

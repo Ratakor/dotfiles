@@ -16,6 +16,9 @@
       audio.enable = true;
       video.enable = true;
       bluetooth.enable = false;
+      virt = {
+        podman.enable = true;
+      };
     };
   };
 
