@@ -87,6 +87,9 @@ in
 
       # Whether to execute builds inside cgroups.
       use-cgroups = pkgs.stdenv.isLinux; # This is only supported on Linux.
+
+      # The timeout (in seconds) for establishing connections with a substituter.
+      connect-timeout = 5; # default: 15
     };
 
     # Perform garbage collection weekly to maintain low disk usage
