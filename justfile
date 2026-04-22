@@ -50,12 +50,10 @@ evaltime host="$(hostname)":
         --read-only \
         --raw
 
-# `nh os repl` sucks
-# Open a nix shell with the flake's nixpkgs
+# Open a nix shell with custom variables
 [group('nix')]
-repl:
-    # Load the flake with `:lf .`
-    nix repl
+repl host="$(hostname)":
+    @nix repl --file parts/repl.nix --argstr host {{host}}
 
 # Format all files
 [group('nix')]
