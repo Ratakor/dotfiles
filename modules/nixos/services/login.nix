@@ -95,6 +95,7 @@ in
     xserver = {
       desktopManager.xterm.enable = mkForce false;
       displayManager.lightdm.enable = mkForce false;
+      excludePackages = [ pkgs.xterm ];
     };
   };
 }
