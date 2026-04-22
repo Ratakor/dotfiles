@@ -19,14 +19,15 @@ let
 in
 {
   hm.home = {
-    # prepend extra directories to $PATH
+    # Prepend extra directories to $PATH.
+    # This isn't added to Nushell, smh.
     sessionPath = [
       # "$HOME/.local/bin"
       "${CARGO_HOME}/bin"
       "${GOPATH}/bin"
     ];
 
-    # prepend extra directories to arbitrary PATH-like environment variables
+    # Prepend extra directories to arbitrary PATH-like environment variables.
     sessionSearchVariables = {
       # smh this overwrite default MANPATH
       # MANPATH = ["${XDG_DATA_HOME}/man"];
@@ -44,11 +45,9 @@ in
       TERMINAL = dprg.terminal.cmd;
 
       # ~/ Clean-up
+      inherit GOPATH CARGO_HOME;
       FFMPEG_DATADIR = "${XDG_CONFIG_HOME}/ffmpeg";
-      inherit GOPATH;
       GOMODCACHE = "${XDG_CACHE_HOME}/go/mod";
-      inherit CARGO_HOME;
-      # CARGO_TARGET_DIR = "${XDG_CACHE_HOME}/cargo";
       RUSTUP_HOME = "${XDG_DATA_HOME}/rustup";
       OPAMROOT = "${XDG_DATA_HOME}/opam";
       DOTNET_CLI_HOME = "${XDG_DATA_HOME}/dotnet";
@@ -63,6 +62,7 @@ in
       WINEPREFIX = "${XDG_DATA_HOME}/wine";
       # TERMINFO = "${XDG_DATA_HOME}/terminfo";
       DOOMWADDIR = "${XDG_DATA_HOME}/gzdoom";
+      DOCKER_CONFIG = "${XDG_CONFIG_HOME}/docker";
 
       # Disable telemetry (https://consoledonottrack.com)
       AZURE_CORE_COLLECT_TELEMETRY = "0";
