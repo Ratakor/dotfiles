@@ -1,7 +1,7 @@
 {
   mkShellNoCC,
   git,
-  agenix,
+  agenix, # agenix-cli in nixpgks
   npins,
   just,
   nh,

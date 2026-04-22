@@ -1,4 +1,4 @@
-# nix develop github:ratakor/dotfiles --accept-flake-config --quiet --quiet
+# nix develop github:ratakor/dotfiles#wrapped-config --accept-flake-config --quiet --quiet
 # alias hx="nix run github:ratakor/dotfiles#helix-wrapped --accept-flake-config --quiet --quiet --"
 # TODO: add oxidation? (also add nerd fonts?)
 # it's funny how this look like yazelix
