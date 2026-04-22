@@ -6,14 +6,10 @@ in
   imports = [
     ./distrobox.nix
     ./podman.nix
+    ./qemu.nix
   ];
 
   virtualisation = {
-    # TODO: qemu
-    libvirtd = {
-      enable = false;
-    };
-
     waydroid.enable = cfg.waydroid.enable;
   };
 }

@@ -49,17 +49,14 @@ in
     description = capitalize username;
     # TODO: change to initialHashedPassword
     initialPassword = "password"; # very secure
+    # Should these be set in there corresponding config?
     extraGroups = [
       "wheel"
-      # "audio"
-      # "video"
-      # "storage"
-      # "network"
       "networkmanager"
-      # "kvm"
       "docker"
       "podman"
       "libvirtd"
+      "kvm"
     ];
     openssh.authorizedKeys.keys = self.keys.${username};
   };

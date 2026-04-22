@@ -17,6 +17,7 @@ in
     ];
 
     virtualisation = {
+      # Requires users to have "podman" (and "docker"?) group.
       podman = {
         enable = true;
 
