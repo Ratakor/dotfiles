@@ -21,7 +21,6 @@
     vscode-css-languageserver # CSS
     gopls # Go
     jdt-language-server # Java
-    python313Packages.jedi-language-server # Python
     lua-language-server # Lua
     marksman # Markdown
     neocmakelsp # CMake
@@ -34,15 +33,16 @@
     taplo # TOML
     texlab # LaTeX
     tinymist # Typst
+    ty # Python
     vscode-json-languageserver # JSON
     vtsls # JS/TS
     yaml-language-server # YAML
     zls # Zig
 
     # Formatters
-    black # Python
     nixfmt # Nix
-    ocamlPackages.ocamlformat
+    ocamlPackages.ocamlformat # OCaml
+    ruff # Python
 
     # Toolchains (often needed by language servers)
     cargo # Rust
@@ -57,7 +57,14 @@ let
   inherit (lib.trivial) const;
   inherit (lib.attrsets) mapAttrsToList;
 
-  langAttrsToList = mapAttrsToList (name: conf: { inherit name; } // conf);
+  langAttrsToList = mapAttrsToList (
+    name: conf:
+    {
+      inherit name;
+      auto-format = true;
+    }
+    // conf
+  );
 in
 wlib.evalPackage (const {
   inherit pkgs extraPackages;
@@ -190,28 +197,13 @@ wlib.evalPackage (const {
     # https://github.com/helix-editor/helix/blob/master/languages.toml
     # https://github.com/helix-editor/helix/wiki/Formatter-Configurations
     language = langAttrsToList {
-      c = {
-        indent = {
-          tab-width = 8;
-          unit = "\t";
-        };
+      c.indent = {
+        tab-width = 8;
+        unit = "\t";
       };
-      nix = {
-        formatter = {
-          command = "nixfmt";
-        };
-        auto-format = true;
-      };
-      python = {
-        formatter = {
-          command = "black";
-          args = [
-            "--quiet"
-            "-"
-          ];
-        };
-        auto-format = true;
-      };
+      nix.formatter.command = "nixfmt";
+      python = { };
+      cpp = { };
     };
   };
   # https://docs.helix-editor.com/themes.html
