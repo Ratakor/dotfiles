@@ -12,6 +12,7 @@ in
   imports = [
     # ./builders.nix
     ./documentation.nix
+    ./nh.nix
     ./nixpkgs.nix
   ];
 
@@ -106,17 +107,5 @@ in
       dates = [ "04:00" ];
       persistent = false; # should prevent from running at init
     };
-  };
-
-  # nix helper
-  programs.nh = {
-    enable = true;
-    clean = {
-      enable = false; # idk if I want automatic cleaning actually
-      extraArgs = "--keep 5 --keep-size 7d";
-      dates = "weekly";
-    };
-    # Set NH_FLAKE env variable for the default flake path.
-    # flake = "/home/${config.self.username}/nixos";
   };
 }

@@ -18,6 +18,6 @@ mkShellNoCC {
     agenix
     npins
     just
-    nh
+    # nh # TODO: this uses the wrong nix-output-monitor
   ];
 }
