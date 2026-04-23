@@ -56,7 +56,7 @@ jobs:
             experimental-features = nix-command flakes pipe-operators
 
       - name: "Set up Cachix"
-        uses: cachix/cachix-action@v16
+        uses: cachix/cachix-action@v17
         with:
           name: ratakor
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
