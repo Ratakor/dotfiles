@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   imports = [
     ./login.nix
@@ -11,5 +12,8 @@
     # Replace some perl scripts and stuff idk but I think it's good
     # see also https://github.com/feel-co/nixos-core
     userborn.enable = true;
+
+    # Enable the X11 windowing system
+    xserver.enable = config.self.system.displayServer.x11;
   };
 }

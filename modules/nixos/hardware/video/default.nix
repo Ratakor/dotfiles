@@ -21,8 +21,5 @@ in
       enable = true;
       enable32Bit = isx86Linux pkgs;
     };
-
-    # Enable the X11 windowing system (still needed for wayland iirc)
-    services.xserver.enable = true;
   };
 }
