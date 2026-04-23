@@ -1,16 +1,12 @@
-# nix run github:ratakor/dotfiles#confloose --accept-flake-config >> ~/.bashrc
-# TODO: this is a little too much, we need to disable completion too :eyes:
+# nix run github:ratakor/dotfiles#confloose  >> ~/.bashrc
 { pkgs }:
 let
   inherit (builtins) concatStringsSep;
 
-  mkAliases =
-    aliases: cmd: aliases |> map (alias: "alias '${alias}'='${cmd}'") |> concatStringsSep "\n";
+  mkAliases = aliases: cmd: concatStringsSep "\n" (map (alias: "alias '${alias}'='${cmd}'") aliases);
 
   # These "aliases" can't be cancelled by prefixing the command with '\'
-  # I'm pretty sure eval is not needed
-  mkFuncAliases =
-    aliases: cmd: aliases |> map (alias: "eval '${alias}() { ${cmd}; }'") |> concatStringsSep "\n";
+  mkFuncAliases = aliases: cmd: concatStringsSep "\n" (map (alias: "${alias}() { ${cmd}; }") aliases);
 
   editors = [
     # "ed" # ed is the standard text editor
@@ -22,6 +18,10 @@ let
     "nano"
     "micro"
     "emacs"
+
+    # common editor aliases
+    "e"
+    "v"
   ];
 
   commonCmds = [
@@ -48,6 +48,8 @@ let
 
     "nix"
     "env"
+
+    "i3lock"
   ];
 
   xrandrFnName = "__xrandr";
@@ -69,6 +71,7 @@ pkgs.writeShellApplication {
   text = ''
     cat << EOF
     # begin
+    bind -u complete
     unalias -a
     ${i3lockAliases}
     ${xrandrFn}
