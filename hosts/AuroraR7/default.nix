@@ -8,7 +8,6 @@
       theme = "gruvbox";
       variant = "dark";
     };
-    fontSize = 16;
 
     system = {
       displayServer.wayland = true;
@@ -25,6 +24,7 @@
     };
 
     programs = {
+      terminal.fontSize = 16;
       default = {
         terminal.name = "ghostty";
       };

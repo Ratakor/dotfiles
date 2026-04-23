@@ -33,7 +33,7 @@ let
     imports = [ wlib.wrapperModules.fuzzel ];
     settings = {
       main = {
-        font = "monospace:size=${toString config.self.fontSize}";
+        font = "monospace:size=${toString prg.terminal.fontSize}";
         horizontal-pad = 5;
         vertical-pad = 5;
         width = 45;

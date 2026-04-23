@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib.options) mkOption;
-  inherit (lib.types) enum str;
+  inherit (lib.types) enum str int;
   inherit (self.lib.options) mkEnableOptions;
 
   opt = options.self.programs;
@@ -16,7 +16,13 @@ let
 in
 {
   options.self.programs = {
-    terminal = mkEnableOptions opt.default.terminal.name;
+    terminal = mkEnableOptions opt.default.terminal.name // {
+      fontSize = mkOption {
+        type = int;
+        default = 10;
+        description = "Font size used by terminal emulators.";
+      };
+    };
 
     default.terminal = {
       name = mkOption {

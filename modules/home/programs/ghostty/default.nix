@@ -26,7 +26,7 @@ in
         window-decoration = "none";
         # gtk-titlebar = false;
         font-family = "monospace";
-        font-size = config.self.fontSize;
+        font-size = prg.terminal.fontSize;
         background-opacity = 0.8;
         inherit (config.self.colors.default.ghostty) theme;
         shell-integration-features = "no-cursor";

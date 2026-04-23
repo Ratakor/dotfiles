@@ -6,13 +6,13 @@
 }:
 let
   inherit (lib.modules) mkIf;
-  inherit (config.self) colors fontSize;
+  inherit (config.self) colors;
 
   prg = config.self.programs;
 
   settings = {
     main = {
-      font = "monospace:size=${toString fontSize}";
+      font = "monospace:size=${toString prg.terminal.fontSize}";
       pad = "5x5";
       # dpi-aware = "yes";
     };
