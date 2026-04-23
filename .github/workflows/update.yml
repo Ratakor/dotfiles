@@ -35,6 +35,6 @@ jobs:
       - name: "Update sources"
         run: nix run nixpkgs#npins -- update
 
-      - uses: stefanzweifel/git-auto-commit-action@v6
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "ci: update sources"
