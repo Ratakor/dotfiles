@@ -64,6 +64,10 @@
       # rerere.enabled = true;
     };
 
+    hooks = {
+      prepare-commit-msg = ./hooks/signoff;
+    };
+
     ignores = [
       "result"
       "result-*"
