@@ -17,8 +17,8 @@ in
   ];
 
   nix = {
-    # package = pkgs.lix; # lix doesn't support pipe operators
-    package = pkgs.nixVersions.latest;
+    package = pkgs.lix; # pkgs.lixPackageSets.latest.lix;
+    # package = pkgs.nixVersions.latest;
 
     # Remove nix-channel related tools & configs in favor of flakes
     channel.enable = false;
@@ -46,18 +46,20 @@ in
       experimental-features = [
         "nix-command"
         "flakes"
-        "pipe-operators"
+        (if config.nix.package.pname == "lix" then "pipe-operator" else "pipe-operators")
         "cgroups"
       ];
 
-      extra-substituters = [
+      substituters = [
+        "https://cache.nixos.org/"
         "https://ratakor.cachix.org"
         "https://nix-community.cachix.org"
         "https://s3.cri.epita.fr/cri-nix-cache.s3.cri.epita.fr"
         # "https://nix-gaming.cachix.org"
       ];
 
-      extra-trusted-public-keys = [
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "ratakor.cachix.org-1:9hOGzHtnKDJ1i9FQN87XFnOOpRBebSKWECswk17glP0="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "cache.nix.cri.epita.fr:qDIfJpZWGBWaGXKO3wZL1zmC+DikhMwFRO4RVE6VVeo="
@@ -82,9 +84,9 @@ in
       # Remove warning about dirty VCS tree
       warn-dirty = false;
 
-      # Whether  to  accept  Nix  configuration settings from a flake without prompting.
-      # Default: false
-      accept-flake-config = false; # I really want to set this to true
+      # Whether to accept Nix configuration settings from a flake without prompting.
+      # Massive security vulnerability.
+      accept-flake-config = false;
 
       # Whether to execute builds inside cgroups.
       use-cgroups = pkgs.stdenv.isLinux; # This is only supported on Linux.
