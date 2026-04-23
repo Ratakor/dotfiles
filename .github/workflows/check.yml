@@ -22,5 +22,10 @@ jobs:
           extra_nix_config: |
             experimental-features = nix-command flakes pipe-operators
 
+      - name: "Set up Cachix"
+        uses: cachix/cachix-action@v17
+        with:
+          name: ratakor
+
       - name: "Check Nix flake"
-        run: nix flake check --accept-flake-config
+        run: nix flake check

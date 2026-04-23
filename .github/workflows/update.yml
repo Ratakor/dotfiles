@@ -30,7 +30,6 @@ jobs:
         uses: cachix/cachix-action@v17
         with:
           name: ratakor
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: "Update sources"
         run: nix run nixpkgs#npins -- update
