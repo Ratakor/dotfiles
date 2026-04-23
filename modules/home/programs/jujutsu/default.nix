@@ -6,7 +6,7 @@ let
 in
 {
   hm.programs.jujutsu = {
-    enable = true;
+    enable = false; # better learn git really well first tbh
     # https://github.com/jj-vcs/jj/blob/main/docs/config.md
     settings = {
       inherit (config.hm.programs.git.settings) user;
