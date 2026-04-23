@@ -19,37 +19,17 @@
       virt = {
         podman.enable = true;
       };
+      boot = {
+        loader.grub = {
+          enable = true;
+          device = "/dev/sda";
+        };
+      };
     };
   };
 
-  system.stateVersion = "25.05";
-
-  boot.loader = {
-    # systemd-boot = {
-    #   enable = true;
-    #   zfsSupport = true;
-    #   configurationLimit = 50;
-    # }
-    grub = {
-      enable = true;
-      zfsSupport = true; # https://wiki.nixos.org/wiki/ZFS
-      efiSupport = false;
-      default = 1; # weird ZFS bug I think
-      # enableCryptodisk = true;
-      # useOSProber = true;
-      # eifInstallAsRemovable = true;
-      # mirroredBoots = [
-      #   { devices = [ "nodev" ]; path = "/boot"; }
-      # ];
-      device = "/dev/sda"; # or "nodev" for efi only
-      configurationLimit = 50; # Limit the number of generations to keep
-    };
-    # efi = {
-    #   canTouchEfiVariables = true;
-    #   efiSysMountPoint = "/boot/efi";
-    # }
-    timeout = 1;
-  };
+  # weird bug can't boot on index 0 iirc
+  boot.loader.grub.default = 1;
 
   services.zfs = {
     autoReplication = {

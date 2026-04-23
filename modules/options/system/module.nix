@@ -6,6 +6,7 @@ let
 in
 {
   imports = [
+    ./boot.nix
     ./display-server.nix
     ./virtualisation.nix
   ];

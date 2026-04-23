@@ -83,7 +83,6 @@ in
     z = "zellij --layout welcome";
     zac = "zellij attach --create";
     j = "just";
-    # ff = "nix run nixpkgs#fastfetch";
     # ask = "ollama run gemma3:12b --hidethinking"; # deepseek-r1:8b gemma3:12b
     ex = "ouch d";
 
