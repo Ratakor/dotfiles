@@ -201,6 +201,19 @@
       "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz",
       "hash": "sha256-qH3mBrZnNsPdwpAgvG2Olgzsp5kt+Sibpm1tx1pxkcQ="
     },
+    "npins": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "andir",
+        "repo": "npins"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "3f9e64097f4548959ebf39f2c9376ece0f98b33e",
+      "url": "https://github.com/andir/npins/archive/3f9e64097f4548959ebf39f2c9376ece0f98b33e.tar.gz",
+      "hash": "sha256-NJDLlkr50QX8pd564JnjKxGkFyRMogfd4u97PkKPJWI="
+    },
     "stash": {
       "type": "Git",
       "repository": {

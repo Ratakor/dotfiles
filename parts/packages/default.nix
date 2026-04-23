@@ -57,6 +57,8 @@
               version = substring 0 7 sources.niri.revision;
               __intentionallyOverridingVersion = true;
             };
+            # Source of sources
+            npins = pkgs.callPackage "${sources.npins}/npins.nix" { };
             # Wayland clipboard "manager"
             stash = pkgs.callPackage "${sources.stash}/nix/package.nix" { inherit craneLib; };
             # Automatic CPU speed & power optimizer for Linux
