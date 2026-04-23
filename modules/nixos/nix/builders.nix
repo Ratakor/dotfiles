@@ -26,7 +26,7 @@ let
       "kvm"
       "big-parallel"
     ];
-    sshKey = "/home/${config.self.username}/.ssh/builder";
+    sshKey = "/home/${config.self.user.name}/.ssh/builder";
     sshUser = "builder";
   };
 

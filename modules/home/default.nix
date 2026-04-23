@@ -11,8 +11,8 @@ let
   inherit (lib.lists) singleton;
   inherit (lib.modules) mkAliasOptionModule mkForce;
   inherit (self.lib.filesystem) listFiles;
-  inherit (self.lib.trivial) capitalize;
-  inherit (config.self) username;
+
+  username = config.self.user.name;
 
   extraModules = [
     (import "${sources.home-manager}/nixos")
@@ -46,7 +46,7 @@ in
     shell = pkgs.${config.self.programs.default.shell.name};
     createHome = true;
     home = "/home/${username}";
-    description = capitalize username;
+    description = config.self.user.fullName;
     # TODO: change to initialHashedPassword
     initialPassword = "password"; # very secure
     # Should these be set in there corresponding config?

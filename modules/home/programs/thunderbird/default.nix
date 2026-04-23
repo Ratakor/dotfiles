@@ -14,7 +14,7 @@ in
   # doesn't work the way I want it to work so we going full imperative (almost)
   hm.programs.thunderbird = {
     enable = false;
-    # profiles.${config.self.username} = {
+    # profiles.${config.self.user.name} = {
     #   isDefault = true;
     #   extensions = with pkgs; [
     #     external-editor-revived

@@ -17,7 +17,7 @@ in
   services = {
     getty = mkIf false {
       autologinOnce = true;
-      autologinUser = config.self.username;
+      autologinUser = config.self.user.name;
     };
 
     greetd = {
@@ -29,7 +29,7 @@ in
         # autologin
         initial_session = {
           command = config.self.programs.default.windowManager.cmd;
-          user = config.self.username;
+          user = config.self.user.name;
         };
 
         # fallback
@@ -87,7 +87,7 @@ in
       defaultSession = "niri"; # used for autoLogin
       autoLogin = {
         enable = false;
-        user = config.self.username;
+        user = config.self.user.name;
       };
     };
 

@@ -23,14 +23,15 @@
 
     settings = {
       user = {
-        name = config.user.description;
-        email = "ratakor@disroot.org"; # add config.self.email?
+        name = config.self.user.fullName;
+        inherit (config.self.user) email;
       };
       alias = {
         st = "status";
         ci = "commit";
         desc = "describe";
         ls = "ls-files";
+        rename = "commit --amend -m";
       };
       init.defaultBranch = "master";
       color.ui = true;
