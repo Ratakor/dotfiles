@@ -197,8 +197,9 @@
       "hash": "sha256-XwLFfJDz71vIF7BAhnbLhrzQjmDC2uXdo7N0oHUrYzA="
     },
     "nixpkgs": {
-      "type": "Tarball",
-      "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz",
+      "type": "Channel",
+      "name": "nixos-unstable",
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre982522.b12141ef619e/nixexprs.tar.xz",
       "hash": "sha256-qH3mBrZnNsPdwpAgvG2Olgzsp5kt+Sibpm1tx1pxkcQ="
     },
     "npins": {
