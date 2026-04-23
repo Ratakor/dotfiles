@@ -1,5 +1,5 @@
 # Simple alternative to both xinit and startx for starting a Xorg server
-# TODO
+# TODO: see services.xserver.displayManager.sx
 {
   config,
   lib,

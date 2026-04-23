@@ -1,5 +1,5 @@
 {
-  systems ? [ "x86_64-linux" ],
+  systems ? [ builtins.currentSystem or "x86_64-linux" ],
   sources ? import ./npins,
   lib ? import "${sources.nixpkgs}/lib",
   ...
