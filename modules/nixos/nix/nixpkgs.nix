@@ -5,9 +5,18 @@
   ...
 }:
 let
-  inherit (builtins) warn;
-  inherit (lib.trivial) const;
+  inherit (builtins) elem;
+  inherit (lib.trivial) const warnIfNot;
   inherit (lib.strings) getName;
+
+  acknowledgedUnfreePackages = [
+    "nvidia-x11"
+    "ouch" # rar
+    "discord"
+    "spotify"
+    "steam"
+    "steam-unwrapped"
+  ];
 
   systemNix = config.nix.package;
 in
@@ -25,11 +34,13 @@ in
       # Whether to allow unfree packages.
       # See https://nixos.org/manual/nixpkgs/stable/#sec-allow-unfree.
       # Default: false || builtins.getEnv "NIXPKGS_ALLOW_UNFREE" == "1"
-      allowUnfree = true;
-
-      # This works despite printing the below warning 3 times.
-      # `evaluation warning: undeclared Nixpkgs option set: config.allowUnfreePredicate`
-      # allowUnfreePredicate = pkg: warn "Allowing unfree package: ${getName pkg}" true;
+      # allowUnfree = true;
+      allowUnfreePredicate =
+        pkg:
+        let
+          pkgName = getName pkg;
+        in
+        warnIfNot (elem pkgName acknowledgedUnfreePackages) "Allowing unfree package: ${pkgName}" true;
 
       # Whether to allow unsupported systems.
       # See https://nixos.org/manual/nixpkgs/stable/#sec-allow-unsupported-system.
@@ -38,8 +49,9 @@ in
       allowUnsupportedSystem = true;
 
       # Whether to warn when config contains an unrecognized attribute.
+      # This is so stupid it can't even recognise valid attributes.
       # Default: false
-      warnUndeclaredOptions = true;
+      warnUndeclaredOptions = false;
 
       # Whether to expose old attribute names for compatibility.
       #
