@@ -66,6 +66,7 @@ let
   ];
 
   # Some of these should probably be available system wide
+  # TODO: move stuff to config.boot.supportedFilesystems
   fs = with pkgs; [
     # lvm2
     cryptsetup
@@ -82,6 +83,7 @@ let
     # btrfs-snap # btrfs snapshot management tool
     # btrfs-list # `zfs list` for btrfs
     self.pkgs.zfs-restore # trash-restore but for ZFS snapshots
+    smartmontools # Tools for monitoring the health of hard drives
   ];
 
   archives = with pkgs; [
