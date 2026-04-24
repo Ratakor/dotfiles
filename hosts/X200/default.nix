@@ -49,6 +49,8 @@
     # You can override a child dataset to use, or not use
     # auto-snapshotting by setting its flag with the given interval: ‘zfs
     # set com.sun:auto-snapshot:weekly=false DATASET’
+    #
+    # See also services.sanoid.
     autoSnapshot = {
       enable = true;
       frequent = 8; # number of 15min snapshot to keep (default 4)
