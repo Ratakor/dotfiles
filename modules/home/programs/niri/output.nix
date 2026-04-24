@@ -40,13 +40,13 @@
     position x=1280 y=0
   }
 
-  output "DP-2" {
+  output "Microstep MSI MPG27CQ2 0x30304E37" {
     mode "2560x1440@119.998001"
     scale 1.3
     position x=0 y=0
   }
 
-  output "HDMI-A-1" {
+  output "Ancor Communications Inc VX238 GCLMRS016906" {
     mode "1920x1080"
     scale 1
     position x=1970 y=130
