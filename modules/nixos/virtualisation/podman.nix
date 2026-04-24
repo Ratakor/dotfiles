@@ -33,6 +33,8 @@ in
           dates = "weekly";
         };
       };
+
+      # TODO: setup containers storage with btrfs/zfs
     };
   };
 }
