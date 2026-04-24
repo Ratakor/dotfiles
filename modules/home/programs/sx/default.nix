@@ -21,5 +21,12 @@ in
       };
       "sx/gruvbox-dark".source = ./gruvbox-dark;
     };
+
+    # TODO: clean that up
+    hm.programs.zsh.profileExtra = ''
+      if [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1; then
+         exec sx
+      fi
+    '';
   };
 }
