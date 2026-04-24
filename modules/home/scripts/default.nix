@@ -76,7 +76,7 @@ in
     (writeShellApplication {
       name = "ocr";
       runtimeInputs = with pkgs; [
-        tesseract
+        tesseract # This is 1GiB
         grim
         slurp
         libnotify

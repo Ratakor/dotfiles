@@ -33,7 +33,7 @@ in
   #   ashift=12 (depends on the drive & cannot be changed)
   #
   #   compression=on ("on" corresponds to the best algorithm aka lz4)
-  #   dedup=on (maybe only on for /nix)
+  #   dedup=on (maybe only on for /nix, /!\ roughly -15% performance)
   #   atime=off
   #   relatime=on (note that relatime=on requires atime=on)
   #   xattr=sa

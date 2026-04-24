@@ -34,8 +34,8 @@
     texlab # LaTeX
     tinymist # Typst
     ty # Python
+    typescript-language-server # JavaScript
     vscode-json-languageserver # JSON
-    vtsls # JS/TS
     yaml-language-server # YAML
     zls # Zig
 

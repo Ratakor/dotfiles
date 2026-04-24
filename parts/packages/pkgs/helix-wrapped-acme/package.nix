@@ -7,6 +7,7 @@ helix-wrapped.override {
     };
   };
   extraPackages = with pkgs; [
-    # TODO: add *mandatory* language server and stuff here
+    # Only add *mandatory* language servers and stuff here
+    typescript-language-server # JavaScript
   ];
 }

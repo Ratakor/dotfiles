@@ -29,7 +29,7 @@ in
     # `nix run self#custom-pkg` or `nix shell agenix`
     registry = {
       self.flake = self;
-      # idk how but nixpkgs is already included in my config :D
+      # nixpkgs is already included via config.nixpkgs.flake.source.
     };
 
     # Make legacy nix commands consistent with flakes
