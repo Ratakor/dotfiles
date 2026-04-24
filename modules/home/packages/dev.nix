@@ -107,6 +107,7 @@ let
     self.pkgs.flint # flake linter
     # nix-tree # TUI viewer for nix derivations
     # nix-query-tree-viewer # GTK viewer for nix derivations
+    # cachix # CLI for the eponym binary cache hosting service
   ];
 
   idkProbablyUsefulTho = with pkgs; [

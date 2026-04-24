@@ -80,12 +80,10 @@ wlib.evalPackage (const {
       middle-click-paste = false;
       line-number = "relative";
       continue-comments = false;
-      # auto-format = false;
       rulers = [
         80
         100
       ];
-      # bufferline = "multiple";
       color-modes = true;
       text-width = 80; # gq is :reflow or zq
       trim-final-newlines = true;
