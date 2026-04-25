@@ -9,7 +9,7 @@ let
 in
 {
   hm.programs.anki = {
-    enable = true;
+    enable = false;
     theme = "dark";
     profiles."User 1".sync = {
       keyFile = config.age.secrets.anki-key.path;
