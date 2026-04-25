@@ -112,7 +112,7 @@ in
           KEYTIMEOUT=1 # with vi / helix mode: make switching modes faster
         '';
 
-        gitIntegration = mkBefore ''
+        promptGitIntegration = mkBefore ''
           autoload -Uz vcs_info
           precmd_functions+=( vcs_info )
           setopt PROMPT_SUBST
@@ -195,8 +195,8 @@ in
       mkMerge [
         # profiling
         basicSettings
-        gitIntegration
-        prompt
+        # promptGitIntegration
+        # prompt
         calc
         commandNotFound
         funnyStuffIMeanKindaLikeYeaIdkManItUsedToBeCalledFunnyStuffBefore

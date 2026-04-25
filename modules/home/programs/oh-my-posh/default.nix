@@ -2,8 +2,8 @@
 { config, ... }:
 {
   hm.programs.oh-my-posh = {
-    enable = config.hm.programs.nushell.enable;
-    enableZshIntegration = false; # too slow & incorrect executiontime
+    enable = true;
+    enableZshIntegration = true;
     enableNushellIntegration = true;
     settings = {
       "$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json";
@@ -14,6 +14,7 @@
           type = "prompt";
           alignment = "left";
           segments = [
+            # https://ohmyposh.dev/docs/segments/system/status
             {
               type = "status";
               style = "plain";
@@ -26,6 +27,7 @@
               ];
               template = "<b>{{ .Code }}</b>";
             }
+            # https://ohmyposh.dev/docs/segments/system/executiontime
             {
               type = "executiontime";
               style = "plain";
@@ -36,6 +38,7 @@
               };
               template = " <b>{{ .FormattedMs }}</b>";
             }
+            # https://ohmyposh.dev/docs/segments/system/path
             {
               type = "path";
               style = "plain";
@@ -45,6 +48,7 @@
               };
               template = " <b>{{ .Path }}</b>";
             }
+            # https://ohmyposh.dev/docs/segments/system/text
             {
               type = "text";
               style = "plain";
@@ -57,6 +61,7 @@
           type = "rprompt";
           alignment = "right";
           segments = [
+            # https://ohmyposh.dev/docs/segments/scm/git
             {
               type = "git";
               style = "plain";
