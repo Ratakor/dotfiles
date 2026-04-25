@@ -27,7 +27,11 @@
     };
 
     programs = {
-      terminal.fontSize = 16;
+      terminal = {
+        fontSize = 16;
+        ghostty.enable = true;
+        foot.enable = true;
+      };
       default = {
         terminal.name = "ghostty";
       };
