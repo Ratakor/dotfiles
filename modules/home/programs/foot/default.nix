@@ -9,6 +9,7 @@ let
   inherit (config.self) colors;
 
   prg = config.self.programs;
+  isDefault = prg.default.terminal.name == "foot";
 
   settings = {
     main = {
@@ -108,14 +109,14 @@ let
 in
 {
   config = mkIf prg.terminal.foot.enable {
-    self.programs.default.terminal = mkIf (prg.default.terminal.name == "foot") {
+    self.programs.default.terminal = mkIf isDefault {
       cmd = "footclient";
       cmdDir = "footclient -D";
     };
 
     hm.programs.foot = {
       enable = true;
-      server.enable = true;
+      server.enable = isDefault;
       inherit settings;
     };
   };
