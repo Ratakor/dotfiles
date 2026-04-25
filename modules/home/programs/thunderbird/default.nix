@@ -5,7 +5,7 @@
   ...
 }:
 let
-  dove = self.lib.flake.compat' sources.dove;
+  dove = self.lib.flakes.compat' sources.dove;
 in
 {
   imports = [ dove.nixosModules.default ];

@@ -1,6 +1,6 @@
 { self, sources, ... }:
 let
-  inherit (self.flake) compat;
+  inherit (self.flakes) compat;
 
   flake-compat = import sources.flake-compat;
 in

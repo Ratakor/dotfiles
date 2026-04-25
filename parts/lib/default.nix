@@ -17,14 +17,14 @@
     in
     {
       filesystem = callLib ./filesystem.nix;
-      flake = callLib ./flake.nix;
+      flakes = callLib ./flakes.nix;
       options = callLib ./options.nix;
       time = callLib ./time.nix;
       trivial = callLib ./trivial.nix;
       types = callLib ./types.nix;
 
       inherit (self.filesystem) listFiles listDirs;
-      inherit (self.flake) compat compat' package;
+      inherit (self.flakes) compat compat' package;
       inherit (self.options)
         enumOptionValues
         enumOptionValues'
