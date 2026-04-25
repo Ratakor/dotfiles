@@ -22,4 +22,6 @@ in
     # afaik this uses nix-channel which we do not support
     command-not-found.enable = mkForce false;
   };
+
+  programs.command-not-found.enable = mkForce false; # :)
 }
