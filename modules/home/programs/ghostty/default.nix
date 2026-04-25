@@ -8,10 +8,11 @@ let
   inherit (lib.modules) mkIf;
 
   prg = config.self.programs;
+  isDefault = prg.default.terminal.name == "ghostty";
 in
 {
   config = mkIf prg.terminal.ghostty.enable {
-    self.programs.default.terminal = mkIf (prg.default.terminal.name == "ghostty") {
+    self.programs.default.terminal = mkIf isDefault {
       cmd = "ghostty";
       cmdDir = "${pkgs.writeShellScript "ghostty_cmdDir" ''
         ghostty --working-directory="$1"
@@ -20,7 +21,7 @@ in
 
     hm.programs.ghostty = {
       enable = true;
-      systemd.enable = true;
+      systemd.enable = isDefault;
       settings = {
         confirm-close-surface = false;
         window-decoration = "none";
