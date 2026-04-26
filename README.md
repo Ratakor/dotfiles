@@ -47,13 +47,12 @@
 - [`modules`](modules): Modularized configurations.
   - [`home`](modules/home): User configuration, this is probably what you want to look at.
   - [`nixos`](modules/nixos): System configuration shared across all hosts.
-  - [`options`](modules/options): Modules options for customising my nixos config.
+  - [`options`](modules/options): Modules options for customizing my nixos config.
   - [`profiles`](modules/profiles): Shared configurations between similar machines.
 - [`parts`](parts): Individual parts of this flake powered by [flake-parts](https://flake.parts/).
   - [`apps`](parts/apps): Custom applications to be run with `nix run`.
   - [`lib`](parts/lib): Custom library of functions and utilities.
   - [`packages`](parts/packages): Custom packages and wrapped configurations.
-  - [`shells`](parts/shells): Developpment shells for this flake and more if affinity.
   - [`templates`](parts/templates): Language specific templates for quickly initializing new projects.
   - [`fmt.nix`](parts/fmt.nix): Formatting configuration for `nix fmt`.
   - [`keys.nix`](parts/keys.nix): My public SSH and PGP keys.

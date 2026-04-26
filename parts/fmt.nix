@@ -52,7 +52,7 @@
           };
 
           # python
-          black.enable = true;
+          ruff-format.enable = true;
 
           # shell
           shfmt = {
@@ -91,9 +91,19 @@
           };
 
           # english
+          # TODO: too much false positive and I cba config
+          # use in pre-commit / CI instead?
+          # same for statix/deadnix
           typos = {
-            enable = false; # TODO: use in pre-commit / CI instead, same for statix/deadnix (& shellcheck?)
-            locale = "en-us";
+            enable = false;
+            # configFile = toml.generate "typos-config.toml" { };
+            # locale = null;
+            # includes = [ "*.nix" ];
+            excludes = [
+              "**/emoji"
+              # "*.lua"
+              # "*.zig"
+            ];
           };
         };
       };
