@@ -387,8 +387,9 @@ niri_action = NiriActions(skt_path)
 
 # Sanity check. Make sure we have the right version
 is_version_ok, version_resp = niri_reader.request("Version")
-expected_version, actual_version = "25.08 (af4b5f9)", version_resp.get(
-    "Version", "unknown"
+expected_version, actual_version = (
+    "25.08 (af4b5f9)",
+    version_resp.get("Version", "unknown"),
 )
 if actual_version != expected_version:
     print(
@@ -429,7 +430,6 @@ signal.signal(signal.SIGTERM, catch_sigterm)
 try:
     init_time = timekeeper.get_time_elapsed_ms()
     for evt_name, evt_data in niri_reader.read_eventstream():
-
         # For debugging printouts, add spaces between events that don't occur together
         time_elapsed_ms = timekeeper.get_time_elapsed_ms()
         if ENABLE_EVENT_NAME_DEBUG_PRINT or ENABLE_EVENT_DATA_DEBUG_PRINT:
@@ -567,7 +567,6 @@ try:
 
         # Handle window-creation behaviors
         if newest_window_data is not None:
-
             # Ignore newly created maximized or floating windows
             # -> Assume opened maximized windows are done by user window rules (don't want to interfere)
             # -> Tiling logic shouldn't apply to floating windows

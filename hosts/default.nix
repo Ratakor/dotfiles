@@ -86,7 +86,6 @@ let
       {
         pkgs,
         self',
-        wlib,
         ...
       }:
       mkSystem pkgs {
@@ -103,7 +102,7 @@ let
           ];
         };
         specialArgs = recursiveUpdate {
-          inherit self sources wlib;
+          inherit self sources;
         } { self.pkgs = self'.packages; };
       }
     );

@@ -35,7 +35,9 @@ in
       ...
     }:
     let
-      extraArgs = { inherit sources wlib; };
+      colors = import "${self}/modules/options/colors" { inherit lib pkgs; };
+
+      extraArgs = { inherit colors sources wlib; };
 
       packages =
         let
@@ -84,7 +86,7 @@ in
         base // fromSources;
 
       wrappers = packagesFromDirectoryRecursive {
-        callPackage = callPackageWith (pkgs // extraArgs);
+        callPackage = callPackageWith (final // extraArgs);
         directory = ./wrappers;
       };
     in
@@ -201,10 +203,7 @@ in
         ];
       };
 
-      # Override flake-parts' perSystem args
-      _module.args = {
-        inherit wlib;
-        pkgs = config.legacyPackages;
-      };
+      # Override flake-parts' perSystem pkgs
+      _module.args.pkgs = config.legacyPackages;
     };
 }
