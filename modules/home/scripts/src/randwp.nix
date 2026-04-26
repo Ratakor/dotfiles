@@ -38,7 +38,7 @@ pkgs.writeShellApplication {
     LOGFILE=''${XDG_STATE_HOME:-$HOME/.local/state}/randwp.log
     WPDIR=''${1:-${sources.wallpapers}}
     IGNORE=''${IGNORE-nsfw}
-    ALL=$(find -L "$WPDIR" -type f ! -path '*/.git*' ! -name 'README.md')
+    ALL=$(find -L "$WPDIR" -type f ! -path '*/.*' ! -name 'README.md')
 
     searchwp() {
     	wp=$(printf '%s' "$ALL" | shuf -n 1)
