@@ -93,7 +93,7 @@ stdenv.mkDerivation (finalAttrs: {
   '';
 
   meta = {
-    description = "Ratakor's unmaintained suckless softwares";
+    description = "Ratakor's unmaintained suckless software";
     homepage = "https://github.com/ratakor/suckless";
     license = with lib.licenses; [
       mit

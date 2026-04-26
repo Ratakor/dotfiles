@@ -18,7 +18,7 @@ let
           c.enable = mkEnableOption "c";
         }
 
-    Originaly included in the library as `mkEnableOptions`.
+    Originally included in the library as `mkEnableOptions`.
   */
   mkEnableOptionsImplem =
     values:

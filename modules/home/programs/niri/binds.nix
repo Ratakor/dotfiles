@@ -41,7 +41,7 @@ in
     Mod+B repeat=false hotkey-overlay-title="Open browser: chromium" { spawn "chromium" "--new-window"; }
     Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${dprg.locker.name}" { spawn-sh "${dprg.locker.cmd}"; }
     XF86ScreenSaver repeat=false { spawn-sh "${dprg.locker.cmd}"; }
-    XF86Battery repeat=false hotkey-overlay-title="Show battery informations" { spawn "battery"; }
+    XF86Battery repeat=false hotkey-overlay-title="Show battery information" { spawn "battery"; }
     Mod+Shift+W repeat=false hotkey-overlay-title="Set a randwom wallpaper" { spawn "randwp"; }
 
     // Print repeat=false { spawn "screenshot"; }

@@ -6,7 +6,7 @@
 ![Screenshot DWM](.github/assets/screenshot_dwm.png)
 (Outdated screenshot, my [artix](https://github.com/ratakor/dotfiles/tree/artix) config still look like that)
 
-## Softwares
+## Software
 
 ### Graphical Environment
 - Wayland Compositor: [Niri](https://github.com/YaLTeR/niri)
@@ -52,10 +52,10 @@
 - [`parts`](parts): Individual parts of this flake powered by [flake-parts](https://flake.parts/).
   - [`apps`](parts/apps): Custom applications to be run with `nix run`.
   - [`lib`](parts/lib): Custom library of functions and utilities.
-  - [`packages`](parts/packages): Custom pacakges and wrapped configurations.
+  - [`packages`](parts/packages): Custom packages and wrapped configurations.
   - [`shells`](parts/shells): Developpment shells for this flake and more if affinity.
   - [`templates`](parts/templates): Language specific templates for quickly initializing new projects.
-  - [`fmt.nix`](parts/fmt.nix): Formating configuration for `nix fmt`.
+  - [`fmt.nix`](parts/fmt.nix): Formatting configuration for `nix fmt`.
   - [`keys.nix`](parts/keys.nix): My public SSH and PGP keys.
   - [`pre-commit`](parts/pre-commit.nix): Pre-commit hooks via [git-hooks.nix](https://github.com/cachix/git-hooks.nix).
 - [`secrets`](secrets): Agenix secrets.

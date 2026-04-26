@@ -40,7 +40,7 @@ in
               };
               # https://wiki.archlinux.org/title/PipeWire#Noise_suppression_for_voice
               "audio.channels" = 1;
-              "audio.position" = [ "MONO" ]; # change to [ "FL", "FR" ] for stero
+              "audio.position" = [ "MONO" ]; # change to [ "FL", "FR" ] for stereo
             };
           }
         ];
