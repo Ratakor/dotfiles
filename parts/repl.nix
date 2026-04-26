@@ -12,5 +12,7 @@ hosts
 // {
   inherit (self) sources keys;
   inherit (host) config options pkgs;
+  inherit (host.pkgs) wrappers;
   inherit self host lib;
+  packages = self.packages.${system};
 }
