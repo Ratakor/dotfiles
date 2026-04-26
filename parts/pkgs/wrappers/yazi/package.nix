@@ -9,7 +9,7 @@
   dragon-drop,
 }:
 let
-  fromTOML = file: builtins.readFile file |> builtins.fromTOML;
+  fromTOML = file: builtins.fromTOML (builtins.readFile file);
 in
 yazi.override {
   initLua = ./init.lua;

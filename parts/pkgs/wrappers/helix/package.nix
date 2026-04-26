@@ -56,6 +56,8 @@
 let
   inherit (lib.attrsets) mapAttrsToList;
 
+  fromTOML = file: builtins.fromTOML (builtins.readFile file);
+
   langAttrsToList = mapAttrsToList (
     name: conf:
     {
@@ -209,6 +211,6 @@ wlib.evalPackage {
     overload = themeOverride // {
       inherits = theme;
     };
-    # helixgelion = ./helixgelion.toml; # wlib only support set of TOML values
+    helixgelion = fromTOML ./helixgelion.toml;
   };
 }
