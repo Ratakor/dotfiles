@@ -8,7 +8,6 @@
 let
   inherit (builtins) filter concatLists;
   inherit (lib.modules) mkDefault;
-  inherit (lib.attrsets) recursiveUpdate;
   inherit (lib.filesystem) listFilesRecursive;
   inherit (lib.lists) flatten;
   inherit (lib.strings) hasSuffix;
@@ -65,6 +64,8 @@ let
     ]);
 
   # TODO: use pkgs.nixos instead
+  # I keep getting infinite recursion when setting _modules.args tho
+  # https://github.com/NixOS/nixpkgs/blob/b12141ef619e0a9c1c84dc8c684040326f27cdcc/pkgs/top-level/all-packages.nix#L11967
   mkSystem =
     pkgs: args:
     import "${sources.nixpkgs}/nixos/lib/eval-config.nix" (
@@ -101,9 +102,12 @@ let
             options
           ];
         };
-        specialArgs = recursiveUpdate {
-          inherit self sources;
-        } { self.pkgs = self'.packages; };
+        specialArgs = {
+          inherit sources;
+          self = self // {
+            pkgs = self'.packages;
+          };
+        };
       }
     );
 in
