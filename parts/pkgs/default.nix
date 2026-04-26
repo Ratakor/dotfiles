@@ -6,7 +6,6 @@
 }:
 let
   inherit (builtins) elem substring;
-  inherit (lib.attrsets) recursiveUpdate;
   inherit (lib.customisation) callPackageWith;
   inherit (lib.filesystem) packagesFromDirectoryRecursive;
   inherit (lib.strings) optionalString getName;
@@ -31,19 +30,11 @@ in
       system,
       config,
       pkgs,
+      final, # pkgs + the default overlay
       ...
     }:
     let
-      # This is a "hack" to have a similar result as using super from overlay.
-      # Basically the pkgs instance we have is a mix between the final
-      # legacyPackages and a raw nixpkgs instance, at least that's what I think
-      # it is.
-      # Please do a proper overlay instead.
-      extraArgs = packages // {
-        inherit sources wlib wrappers;
-        nix = pkgs.lixPackageSets.latest.lix;
-      };
-      # extraArgs = { inherit sources wlib; };
+      extraArgs = { inherit sources wlib; };
 
       packages =
         let
@@ -55,7 +46,7 @@ in
             versionInfo.version + (optionalString (!versionInfo.released) "-dirty");
 
           base = packagesFromDirectoryRecursive {
-            callPackage = callPackageWith (recursiveUpdate pkgs extraArgs);
+            callPackage = callPackageWith (pkgs // extraArgs);
             directory = ./packages;
           };
 
@@ -92,7 +83,7 @@ in
         base // fromSources;
 
       wrappers = packagesFromDirectoryRecursive {
-        callPackage = callPackageWith (recursiveUpdate pkgs extraArgs);
+        callPackage = callPackageWith (pkgs // extraArgs);
         directory = ./wrappers;
       };
     in
@@ -158,7 +149,8 @@ in
         };
 
         overlays = [
-          # eating our own shit
+          # This is overall a bad idea to dogfood flake-parts' easy overlay
+          # but it's fine dw. Do a proper overlay instead of better control.
           self.overlays.default
 
           # Replace _all_ instances of nix with latest lix.
