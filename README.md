@@ -78,7 +78,8 @@
 - `profiles[/{profile}]`: Modification to `modules/profiles`.
 - `apps[/{app}]`: Modification to `parts/apps`.
 - `lib`: Modification to `parts/lib`.
-- `packages[/{package}]`: Modification to `parts/packages`.
+- `packages[/{package}]`: Modification to `parts/pkgs`.
+- `wrappers[/{wrapper}]`: Modification to `parts/pkgs/wrappers`.
 - `shells[/{devShell}]`: Modification to `parts/shells`.
 - `templates[/{template}]`: Modification to `parts/templates`.
 

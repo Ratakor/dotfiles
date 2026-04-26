@@ -36,6 +36,7 @@ let
     # profanity # XMPP client (has security issue iirc)
     # spotify-player # zpotify but different
     wiremix # Audio mixer for PipeWire
+    wrappers.btop # Monitor of resources
   ];
 
   # don't include that in packages
