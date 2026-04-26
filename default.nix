@@ -5,19 +5,7 @@
   ...
 }@args:
 let
-  sourceInfo =
-    let
-      info = builtins.fetchGit ./.;
-    in
-    if info.rev == "0000000000000000000000000000000000000000" then
-      removeAttrs info [
-        "rev"
-        "shortRev"
-      ]
-    else
-      info;
-
-  self = args.self or (sourceInfo // outputs);
+  self = args.self or ({ outPath = ./.; } // outputs);
 
   outputs =
     (import "${sources.flake-parts}/lib.nix" { inherit lib; }).mkFlake

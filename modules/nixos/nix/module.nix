@@ -1,13 +1,9 @@
 {
   config,
-  lib,
   pkgs,
   self,
   ...
 }:
-let
-  inherit (lib.attrsets) mapAttrsToList;
-in
 {
   imports = [
     # ./builders.nix
@@ -21,20 +17,30 @@ in
     # package = pkgs.lixPackageSets.latest.lix;
     # package = pkgs.nixVersions.latest;
 
-    # Remove nix-channel related tools & configs in favor of flakes
+    # Remove nix-channel related tools & configs in favor of flakes (npins)
     channel.enable = false;
 
-    # Pin the registry to avoid downloading and evaluating
-    # a new nixpkgs version on each command causing a re-eval.
-    # Also make flakes from this repo available with the nix CLI e.g.
-    # `nix run self#custom-pkg` or `nix shell agenix`
-    registry = {
-      self.flake = self;
-      # nixpkgs is already included via config.nixpkgs.flake.source.
+    # Replace nixpkgs with this flake's instance of legacyPackages
+    # that includes all the cool kids overlays.
+    # See also config.nixpkgs.flake and config.nix.registry.nixpkgs.flake.
+    registry.nixpkgs.to = {
+      type = "path";
+      path = self;
     };
 
     # Make legacy nix commands consistent with flakes
-    nixPath = mapAttrsToList (name: value: "${name}=${value.to.path}") config.nix.registry;
+    # nixPath = mapAttrsToList (name: value: "${name}=${value.to.path}") config.nix.registry;
+    # nixPath = mapAttrsToList (name: value: "${name}=flake:${name}") config.nix.registry;
+    nixPath = [
+      "nixpkgs=${
+        pkgs.runCommandLocal "nixpkgs" { } ''
+          mkdir -p "$out"
+          cat << EOF > "$out/default.nix"
+          {...}@args: (import ${self} args).legacyPackages.\''${builtins.currentSystem}
+          EOF
+        ''
+      }"
+    ];
 
     # Customise /etc/nix/nix.conf declaratively
     # See nix.conf(5)
