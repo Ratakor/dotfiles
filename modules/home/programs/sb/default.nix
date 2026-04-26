@@ -6,7 +6,7 @@
 {
   config,
   lib,
-  self,
+  pkgs,
   ...
 }:
 let
@@ -16,7 +16,7 @@ let
 in
 {
   config = mkIf prg.statusBar.sb.enable {
-    user.packages = [ self.pkgs.suckless ];
+    user.packages = [ pkgs.suckless ];
     hm.xdg.configFile."sb/config".source = ./config;
   };
 }

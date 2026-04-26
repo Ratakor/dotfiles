@@ -2,7 +2,7 @@
 {
   config,
   lib,
-  self,
+  pkgs,
   ...
 }:
 let
@@ -17,6 +17,6 @@ in
       cmdDir = "st -d";
     };
 
-    user.packages = [ self.pkgs.suckless ];
+    user.packages = [ pkgs.suckless ];
   };
 }

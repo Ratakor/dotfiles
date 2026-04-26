@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  self,
   ...
 }:
 let
@@ -32,7 +31,7 @@ let
   # what about xorg-server and xorg-server-devel from archlinux?
   x11 = {
     # dmenu, dwm, sb, slock, st
-    core = singleton self.pkgs.suckless;
+    core = singleton pkgs.suckless;
 
     unsorted = with pkgs; [
       maim # screenshot

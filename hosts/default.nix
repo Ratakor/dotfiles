@@ -84,11 +84,7 @@ let
       extraModules ? [ ],
     }:
     withSystem system (
-      {
-        pkgs,
-        self',
-        ...
-      }:
+      { pkgs, ... }:
       mkSystem pkgs {
         modules = mkModules {
           inherit
@@ -103,10 +99,7 @@ let
           ];
         };
         specialArgs = {
-          inherit sources;
-          self = self // {
-            pkgs = self'.packages;
-          };
+          inherit self sources;
         };
       }
     );

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  self,
-  ...
-}:
+{ pkgs, ... }:
 let
   toolchains = with pkgs; [
     cargo # rust package manager
@@ -54,7 +50,7 @@ let
     pandoc # document converter
     # tinyxxd # hexdump utility, see `hexyl` too
     # teehee # modal terminal hex editor
-    # self.pkgs.neocities-zig # TODO: not packaged
+    # neocities-zig # TODO: not packaged
     # rustfmt # rust formatter
     zig-shell-completions
     moreutils # a lot of cool additional utils
@@ -73,7 +69,7 @@ let
     sshfs # mount drive over ssh
     # xfsdump # xfs snapshots
     simple-mtpfs # mount phone easily
-    self.pkgs.zfs-restore # trash-restore but for ZFS snapshots
+    zfs-restore # trash-restore but for ZFS snapshots
     smartmontools # Tools for monitoring the health of hard drives
   ];
 
@@ -97,7 +93,7 @@ let
     # deadnix # find and remove unused code in .nix source files
     # nix-output-monitor # replace `nix` with `nom`
     nurl # Generate Nix fetcher calls from URLs
-    self.pkgs.flint # flake linter
+    # flint # flake linter
     # nix-tree # TUI viewer for nix derivations
     # nix-query-tree-viewer # GTK viewer for nix derivations
     # cachix # CLI for the eponym binary cache hosting service

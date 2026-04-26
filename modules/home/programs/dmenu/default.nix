@@ -2,7 +2,7 @@
 {
   config,
   lib,
-  self,
+  pkgs,
   ...
 }:
 let
@@ -29,6 +29,6 @@ in
       run = "dmenu_run";
     };
 
-    user.packages = [ self.pkgs.suckless ];
+    user.packages = [ pkgs.suckless ];
   };
 }

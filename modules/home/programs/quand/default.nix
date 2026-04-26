@@ -1,10 +1,6 @@
 # A calendar CLI like `when`
 # TODO: Rewrite quand in rust & integrate icstocal
-{
-  lib,
-  self,
-  ...
-}:
+{ lib, pkgs, ... }:
 let
   inherit (builtins) isInt isString typeOf;
 
@@ -26,7 +22,7 @@ let
   };
 in
 {
-  user.packages = [ self.pkgs.quand ];
+  user.packages = [ pkgs.quand ];
 
   hm.xdg.configFile."quand/config".text = toKeyValue {
     header = false;

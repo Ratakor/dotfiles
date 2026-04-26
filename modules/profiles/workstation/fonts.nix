@@ -1,8 +1,4 @@
-{
-  pkgs,
-  self,
-  ...
-}:
+{ pkgs, ... }:
 {
   fonts = {
     packages = with pkgs; [
@@ -15,7 +11,7 @@
       # Normal fonts
       noto-fonts
       noto-fonts-cjk-sans
-      self.pkgs.luciole-fonts
+      luciole-fonts
 
       # nerdfonts
       # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerd-fonts/manifests/fonts.json

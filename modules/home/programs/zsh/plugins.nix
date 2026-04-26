@@ -20,7 +20,7 @@
     #{
     #  name = "zsh-helix-mode";
     #  file = "zsh-helix-mode.plugin.zsh";
-    #  src = "${self.pkgs.zsh-helix-mode}/share/zsh-helix-mode";
+    #  src = "${pkgs.zsh-helix-mode}/share/zsh-helix-mode";
     #}
     {
       name = "zsh-vi-mode";

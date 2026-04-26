@@ -4,7 +4,6 @@
   config,
   lib,
   pkgs,
-  self,
   ...
 }:
 let
@@ -36,7 +35,7 @@ in
     # guess why we're using this one
     programs.niri = {
       enable = true;
-      package = self.pkgs.niri-git;
+      package = pkgs.niri-git;
     };
 
     environment.systemPackages = with pkgs; [

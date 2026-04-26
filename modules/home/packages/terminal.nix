@@ -1,8 +1,4 @@
-{
-  pkgs,
-  self,
-  ...
-}:
+{ pkgs, ... }:
 let
   cli = with pkgs; [
     pastel # CLI for color manipulation
@@ -21,7 +17,7 @@ let
     # shaq # CLI client for Shazam
     timewarrior # Time tracking utility
     rsync # a fast, versatile, remote (and local) file-copying tool
-    self.pkgs.zpotify # A CLI for the Spotify Web API
+    zpotify # A CLI for the Spotify Web API
   ];
 
   tui = with pkgs; [
