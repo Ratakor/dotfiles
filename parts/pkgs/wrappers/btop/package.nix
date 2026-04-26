@@ -1,8 +1,6 @@
-{ pkgs, wlib }:
-wlib.evalPackage {
+{ lib, pkgs }:
+lib.mkWrapperFor "btop" {
   inherit pkgs;
-  imports = [ wlib.wrapperModules.btop ];
-
   settings = {
     color_theme = "TTY";
     theme_background = false;

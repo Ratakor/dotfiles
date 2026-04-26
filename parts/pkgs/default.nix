@@ -12,8 +12,6 @@ let
   inherit (lib.lists) length zipListsWith;
   inherit (lib.trivial) const warnIfNot;
 
-  wlib = import "${sources.nix-wrapper-modules}/lib" { inherit lib; };
-
   acknowledgedUnfreePackages = [
     "nvidia-x11"
     "ouch" # rar
@@ -30,14 +28,14 @@ in
     {
       system,
       config,
-      pkgs,
-      final, # pkgs + the default overlay
+      pkgs, # should be nixpkgs without overlays
+      final, # should be nixpkgs with all overlays
       ...
     }:
     let
       colors = import "${self}/modules/options/colors" { inherit lib pkgs; };
 
-      extraArgs = { inherit colors sources wlib; };
+      extraArgs = { inherit colors sources; };
 
       packages =
         let
@@ -155,6 +153,9 @@ in
           # This is overall a bad idea to dogfood flake-parts' easy overlay
           # but it's fine dw. Do a proper overlay instead of better control.
           self.overlays.default
+
+          # Replace nixpkgs' pristine lib with our filthy one
+          (final: prev: { inherit lib; })
 
           # Replace _all_ instances of nix with latest lix.
           (final: prev: {

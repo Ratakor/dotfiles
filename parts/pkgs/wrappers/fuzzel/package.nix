@@ -1,6 +1,6 @@
 {
+  lib,
   pkgs,
-  wlib,
 
   colors, # Whoever tells you this is an unused binding is wrong
   # ff = 100%
@@ -16,10 +16,8 @@
 let
   colors = args.colors.default;
 in
-wlib.evalPackage {
+lib.mkWrapperFor "fuzzel" {
   inherit pkgs;
-  imports = [ wlib.wrapperModules.fuzzel ];
-
   settings = {
     main = {
       font = "monospace:size=${toString fontSize}";

@@ -1,15 +1,14 @@
 {
+  lib,
   pkgs,
-  wlib,
   tofi-dmenu,
   colors,
 }@args:
 let
   colors = args.colors.default;
 in
-wlib.evalPackage {
+lib.mkWrapperFor "tofi" {
   inherit pkgs;
-  imports = [ wlib.wrapperModules.tofi ];
   package = tofi-dmenu;
   settings = {
     width = "100%";

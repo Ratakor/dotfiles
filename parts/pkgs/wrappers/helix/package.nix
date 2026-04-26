@@ -1,6 +1,5 @@
 {
   lib,
-  wlib,
   pkgs,
 
   # dark: gruvbox dracula
@@ -54,11 +53,9 @@
   ],
 }:
 let
-  inherit (lib.attrsets) mapAttrsToList;
-
   fromTOML = file: builtins.fromTOML (builtins.readFile file);
 
-  langAttrsToList = mapAttrsToList (
+  langAttrsToList = lib.mapAttrsToList (
     name: conf:
     {
       inherit name;
@@ -67,10 +64,8 @@ let
     // conf
   );
 in
-wlib.evalPackage {
+lib.mkWrapperFor "helix" {
   inherit pkgs extraPackages;
-  imports = [ wlib.wrapperModules.helix ];
-
   settings = {
     theme = "overload";
 

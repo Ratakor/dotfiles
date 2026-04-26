@@ -35,6 +35,15 @@ sources:
 
     # wlib
     wrappers = import "${sources.nix-wrapper-modules}/lib" { inherit lib; };
-    mkWrapper = self.wrappers.evalPackage;
+    mkWrapper = self.wrappers.evalPackage; # should we include self.wrappers.modules.default?
+    mkWrapperFor =
+      name: module:
+      (self.wrappers.evalModules {
+        modules = [
+          # we can't `{ inherit pkgs; }` sadly
+          self.wrappers.wrapperModules.${name}
+          module
+        ];
+      }).config.wrapper;
   }
 )
