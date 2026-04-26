@@ -1,7 +1,7 @@
 # Terminal File Manager
-{ pkgs, self, ... }:
+{ pkgs, ... }:
 let
-  yazi = self.pkgs.yazi-wrapped.override {
+  yazi = pkgs.wrappers.yazi.override {
     ouch = pkgs.ouch-rar;
   };
 in

@@ -50,7 +50,7 @@
     zig # Zig
 
     # Tools
-    scooter-wrapped # interactive find-and-replace
+    wrappers.scooter # interactive find-and-replace
   ],
 }:
 let

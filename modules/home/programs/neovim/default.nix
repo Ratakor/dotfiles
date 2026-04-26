@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  self,
+  pkgs,
   ...
 }:
 let
@@ -16,7 +16,7 @@ in
       desktopEntry = "nvim.desktop";
     };
 
-    user.packages = [ self.pkgs.neovim-wrapped ];
+    user.packages = [ pkgs.wrappers.neovim ];
 
     hm.home.shellAliases = {
       vimdiff = "nvim -d";

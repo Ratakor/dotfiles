@@ -12,7 +12,7 @@
       devShells = {
         default = self'.devShells.dotfiles;
         dotfiles = callPackage ./dotfiles.nix { };
-        wrapped-config = callPackage ./wrapped-config.nix { };
+        # wrapped-config = callPackage ./wrapped-config.nix { };
       };
     };
 }

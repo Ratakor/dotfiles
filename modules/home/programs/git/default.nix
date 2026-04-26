@@ -1,12 +1,7 @@
 # VCS
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  self,
-  ...
-}:
-{
-  user.packages = [ self.pkgs.gitui-wrapped ];
+  user.packages = [ pkgs.wrappers.gitui ];
 
   hm.programs.git = {
     enable = true;

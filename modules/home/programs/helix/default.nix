@@ -1,13 +1,13 @@
 {
   config,
   lib,
-  self,
+  pkgs,
   ...
 }:
 let
   inherit (lib.modules) mkIf;
 
-  package = self.pkgs.helix-wrapped.override {
+  package = pkgs.wrappers.helix.override {
     inherit (config.self.colors.default.helix) theme;
   };
 

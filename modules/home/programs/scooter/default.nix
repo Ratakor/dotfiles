@@ -1,7 +1,7 @@
 # Interactive file-and-replace on files
-{ config, self, ... }:
+{ config, pkgs, ... }:
 let
-  scooter = self.pkgs.scooter-wrapped.override {
+  scooter = pkgs.wrappers.scooter.override {
     inherit (config.self.colors.default.scooter) theme;
   };
 in

@@ -13,11 +13,12 @@ in
     # ./builders.nix
     ./documentation.nix
     ./nh.nix
-    ./nixpkgs.nix
   ];
 
   nix = {
-    package = pkgs.lixPackageSets.latest.lix;
+    # Nix package is already set in a nixpkgs overlay.
+    # Look at parts/pkgs/default.nix for the whole nixpkgs config.
+    # package = pkgs.lixPackageSets.latest.lix;
     # package = pkgs.nixVersions.latest;
 
     # Remove nix-channel related tools & configs in favor of flakes

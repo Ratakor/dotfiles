@@ -1,7 +1,7 @@
 # Terminal multiplexer & session manager
-{ config, self, ... }:
+{ config, pkgs, ... }:
 let
-  zellij = self.pkgs.zellij-wrapped.override {
+  zellij = pkgs.wrappers.zellij.override {
     inherit (config.self.colors.default.zellij) theme;
   };
 in

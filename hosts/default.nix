@@ -64,11 +64,12 @@ let
       extraModules
     ]);
 
+  # TODO: use pkgs.nixos instead
   mkSystem =
-    args:
+    pkgs: args:
     import "${sources.nixpkgs}/nixos/lib/eval-config.nix" (
       {
-        inherit lib;
+        inherit lib pkgs;
         system = null; # set config.nixpkgs.hostPlatform instead.
       }
       // args
@@ -82,8 +83,13 @@ let
       extraModules ? [ ],
     }:
     withSystem system (
-      { self', wlib, ... }:
-      mkSystem {
+      {
+        pkgs,
+        self',
+        wlib,
+        ...
+      }:
+      mkSystem pkgs {
         modules = mkModules {
           inherit
             hostname

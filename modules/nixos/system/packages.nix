@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  self,
-  ...
-}:
+{ pkgs, lib, ... }:
 let
   inherit (lib.modules) mkForce;
 in
@@ -15,7 +10,7 @@ in
     # List packages installed in system profile.
     # You can use https://search.nixos.org/ to find more packages (and options).
     systemPackages = with pkgs; [
-      self.pkgs.helix-wrapped # editor, see environment.nix for $EDITOR
+      wrappers.helix # editor, see environment.nix for $EDITOR
       yazi # file manager
       git
       # wget
