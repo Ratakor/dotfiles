@@ -6,9 +6,14 @@
     ./lib # custom lib exposed by the flake
     ./pkgs # custom packages exposed by the flake
     # ./pre-commit.nix # pre-commit hooks
-    ./shells # nix develop
     ./templates # nix flake init -t FLAKE#TEMPLATE
   ];
+
+  perSystem =
+    { pkgs, ... }:
+    {
+      devShells.default = pkgs.callPackage ./shell.nix { };
+    };
 
   # Expose useful stuff to the flake outputs.
   # That also means that they can be referenced using `self`.
