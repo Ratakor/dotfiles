@@ -1,12 +1,5 @@
-{
-  lib,
-  pkgs,
-  wlib,
-}:
-let
-  inherit (lib.trivial) const;
-in
-wlib.evalPackage (const {
+{ pkgs, wlib }:
+wlib.evalPackage {
   inherit pkgs;
   imports = [ wlib.wrapperModules.btop ];
 
@@ -16,4 +9,4 @@ wlib.evalPackage (const {
     vim_keys = true;
     rounded_corners = false;
   };
-})
+}

@@ -54,7 +54,6 @@
   ],
 }:
 let
-  inherit (lib.trivial) const;
   inherit (lib.attrsets) mapAttrsToList;
 
   langAttrsToList = mapAttrsToList (
@@ -66,7 +65,7 @@ let
     // conf
   );
 in
-wlib.evalPackage (const {
+wlib.evalPackage {
   inherit pkgs extraPackages;
   imports = [ wlib.wrapperModules.helix ];
 
@@ -212,4 +211,4 @@ wlib.evalPackage (const {
     };
     # helixgelion = ./helixgelion.toml; # wlib only support set of TOML values
   };
-})
+}

@@ -8,7 +8,6 @@
 }:
 let
   inherit (lib.modules) mkIf;
-  inherit (lib.trivial) const;
 
   colors = config.self.colors.default;
   prg = config.self.programs;
@@ -28,7 +27,7 @@ let
   # like the options directly in flake
   # or the big boilerplate,
   # but it's alright the rest looks solid
-  package = wlib.evalPackage (const {
+  package = wlib.evalPackage {
     inherit pkgs;
     imports = [ wlib.wrapperModules.fuzzel ];
     settings = {
@@ -62,7 +61,7 @@ let
       #   execute-input = "Return";
       # };
     };
-  });
+  };
 in
 {
   config = mkIf prg.launcher.fuzzel.enable {

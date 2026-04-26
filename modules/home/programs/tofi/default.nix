@@ -9,12 +9,11 @@
 }:
 let
   inherit (lib.modules) mkIf;
-  inherit (lib.trivial) const;
 
   colors = config.self.colors.default;
   prg = config.self.programs;
 
-  package = wlib.evalPackage (const {
+  package = wlib.evalPackage {
     inherit pkgs;
     imports = [ wlib.wrapperModules.tofi ];
     package = self.pkgs.tofi-dmenu;
@@ -33,7 +32,7 @@ let
       text-color = colors.foreground;
       selection-color = colors.cyan;
     };
-  });
+  };
 in
 {
   config = mkIf prg.launcher.tofi.enable {
