@@ -1,4 +1,0 @@
-#!/bin/sh
-if grep -qv "Signed-off-by:" "$1"; then
-  printf "\nSigned-off-by: %s <%s>" "$(git config user.name)" "$(git config user.email)" >> "$1"
-fi

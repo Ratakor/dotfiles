@@ -1,7 +1,10 @@
 # VCS
 { config, pkgs, ... }:
 {
-  user.packages = [ pkgs.wrappers.gitui ];
+  user.packages = with pkgs; [
+    wrappers.gitui
+    pre-commit
+  ];
 
   hm.programs.git = {
     enable = true;
@@ -23,7 +26,8 @@
       };
       alias = {
         st = "status";
-        ci = "commit";
+        ci = "commit -s";
+        cim = "commit -s -m";
         desc = "describe";
         ls = "ls-files";
         rename = "commit --amend -m";
@@ -57,10 +61,6 @@
       };
       # branch.autoSetupRebase = "always";
       # rerere.enabled = true;
-    };
-
-    hooks = {
-      prepare-commit-msg = ./hooks/signoff;
     };
 
     ignores = [
