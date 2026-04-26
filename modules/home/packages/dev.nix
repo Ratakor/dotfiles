@@ -101,6 +101,8 @@ let
     # nix-tree # TUI viewer for nix derivations
     # nix-query-tree-viewer # GTK viewer for nix derivations
     # cachix # CLI for the eponym binary cache hosting service
+    agenix # Secrets management
+    npins # Sources management
   ];
 
   idkProbablyUsefulTho = with pkgs; [

@@ -9,12 +9,6 @@
     ./templates # nix flake init -t FLAKE#TEMPLATE
   ];
 
-  perSystem =
-    { pkgs, ... }:
-    {
-      devShells.default = pkgs.callPackage ./shell.nix { };
-    };
-
   # Expose useful stuff to the flake outputs.
   # That also means that they can be referenced using `self`.
   flake = {
