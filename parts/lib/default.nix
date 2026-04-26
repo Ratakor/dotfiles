@@ -1,43 +1,40 @@
-{
-  lib,
-  sources,
-  ...
-}:
-{
-  # Expose the lib via the flake using flake-parts.
-  # I could merge this lib with nixpkgs.lib but I chose not to because
-  # namespacing is important. By setting this lib as a flake output we can also
-  # reference it using `self.lib` which makes sense.
-  # See NotAShelf/nyx/parts/lib/default.nix for an example of how to
-  # beautifully merge libs though.
-  flake.lib = lib.makeExtensible (
-    self:
-    let
-      callLib = path: import path { inherit lib sources self; };
-    in
-    {
-      filesystem = callLib ./filesystem.nix;
-      flakes = callLib ./flakes.nix;
-      options = callLib ./options.nix;
-      time = callLib ./time.nix;
-      trivial = callLib ./trivial.nix;
-      types = callLib ./types.nix;
+sources:
+(import "${sources.nixpkgs}/lib").extend (
+  self: lib:
+  let
+    # callLib = name: (lib.${name} or { }) // (import ./${name}.nix { inherit lib sources self; });
+    callLib = path: import path { inherit lib sources self; };
+  in
+  {
+    filesystem = lib.filesystem // (callLib ./filesystem.nix);
+    flakes = lib.flakes // (callLib ./flakes.nix);
+    options = lib.options // (callLib ./options.nix);
+    time = callLib ./time.nix;
+    trivial = lib.trivial // (callLib ./trivial.nix);
+    types = lib.types // (callLib ./types.nix);
 
-      inherit (self.filesystem) listFiles listDirs;
-      inherit (self.flakes) compat compat' package;
-      inherit (self.options)
-        enumOptionValues
-        enumOptionValues'
-        mkEnableOptions
-        mkEnableOptions'
-        ;
-      inherit (self.trivial)
-        capitalize
-        hexToRgba
-        isx86Linux
-        unreachable
-        ;
-      inherit (self.types) enumValues unwrapNullOr;
-    }
-  );
-}
+    inherit (self.filesystem) listFiles listDirs;
+    inherit (self.flakes) compat compat' package;
+    inherit (self.options)
+      enumOptionValues
+      enumOptionValues'
+      mkEnableOptions
+      mkEnableOptions'
+      ;
+    inherit (self.trivial)
+      capitalize
+      hexToRgba
+      isx86Linux
+      unreachable
+      ;
+    inherit (self.types) enumValues unwrapNullOr;
+
+    # Flake Parts
+    flake-parts = import "${sources.flake-parts}/lib.nix" { inherit lib; };
+    inherit (self.flake-parts) mkFlake;
+
+    # wlib
+    wrappers = import "${sources.nix-wrapper-modules}/lib" { inherit lib; };
+    mkWrapper = self.wrappers.evalPackage;
+  }
+)

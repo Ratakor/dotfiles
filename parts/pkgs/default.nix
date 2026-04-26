@@ -64,7 +64,7 @@ in
             # Stupid simple utility for linting your flake inputs
             flint = pkgs.callPackage "${sources.flint}/nix/package.nix" { };
             # A scrollable-tiling Wayland compositior. Git version. Peak usage of flake btw.
-            niri-git = (self.lib.flakes.package sources.niri system { rust-overlay = { }; }).overrideAttrs {
+            niri-git = (lib.flakes.package sources.niri system { rust-overlay = { }; }).overrideAttrs {
               # well flake-compat isn't perfect but I love it
               version = substring 0 7 sources.niri.revision;
               __intentionallyOverridingVersion = true;
