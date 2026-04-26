@@ -5,10 +5,11 @@
   ...
 }:
 let
-  inherit (builtins) elem substring;
+  inherit (builtins) elem substring concatStringsSep;
   inherit (lib.customisation) callPackageWith;
   inherit (lib.filesystem) packagesFromDirectoryRecursive;
-  inherit (lib.strings) optionalString getName;
+  inherit (lib.strings) optionalString getName escapeShellArg;
+  inherit (lib.lists) length zipListsWith;
   inherit (lib.trivial) const warnIfNot;
 
   wlib = import "${sources.nix-wrapper-modules}/lib" { inherit lib; };
@@ -157,6 +158,45 @@ in
           (final: prev: {
             inherit (prev.lixPackageSets.latest) lix;
             nix = final.lix;
+          })
+
+          # Replace nix-output-monitor ugly icons.
+          (final: prev: {
+            nix-output-monitor =
+              let
+                oldIcons = [
+                  "↑"
+                  "↓"
+                  "⏱"
+                  "⏵"
+                  "✔"
+                  "⏸"
+                  "⚠"
+                  "∅"
+                  "∑"
+                ];
+                newIcons = [
+                  "f062" # 
+                  "f063" # 
+                  "f520" # 
+                  "f04b" # 
+                  "f00c" # 
+                  "f04c" # 
+                  "f071" # 
+                  "f1da" # 
+                  "f04a0" # 󰒠
+                ];
+              in
+              assert length oldIcons == length newIcons;
+              prev.nix-output-monitor.overrideAttrs (prevAttrs: {
+                postPatch = (prevAttrs.postPatch or "") + ''
+                  sed -i ${
+                    escapeShellArg (concatStringsSep "\n" (zipListsWith (a: b: "s/${a}/\\\\x${b}/") oldIcons newIcons))
+                  } lib/NOM/Print.hs
+
+                  substituteInPlace lib/NOM/Print/Tree.hs --replace-fail '┌' '╭'
+                '';
+              });
           })
         ];
       };

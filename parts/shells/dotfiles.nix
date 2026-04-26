@@ -15,9 +15,9 @@ mkShellNoCC {
 
   packages = [
     git
-    agenix # TODO: this uses the wrong nix
+    agenix
     npins
     just
-    # nh # TODO: this uses the wrong nix-output-monitor
+    nh
   ];
 }
