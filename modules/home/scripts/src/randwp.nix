@@ -12,10 +12,9 @@
 }:
 let
   inherit (lib.meta) getExe;
-  inherit (lib.trivial) unreachable;
 
   inherit (config.self.system) displayServer;
-  supportMultipleMonitors = true; # TODO: config.self.monitors
+  supportMultipleMonitors = builtins.length config.self.device.monitors > 1;
 in
 pkgs.writeShellApplication {
   name = "randwp";
@@ -109,6 +108,6 @@ pkgs.writeShellApplication {
           ${hsetroot} -cover "$wp" 1>/dev/null
         ''
     else
-      unreachable
+      lib.unreachable
   );
 }

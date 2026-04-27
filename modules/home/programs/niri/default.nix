@@ -14,7 +14,7 @@ let
   prg = config.self.programs;
 
   input = import ./input.nix;
-  output = import ./output.nix;
+  output = import ./output.nix { inherit config lib; };
   binds = import ./binds.nix config;
   switch-events = import ./switch-events.nix;
   layout = import ./layout.nix config;
