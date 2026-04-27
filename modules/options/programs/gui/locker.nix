@@ -2,13 +2,11 @@
   config,
   lib,
   options,
-  self,
   ...
 }:
 let
-  inherit (lib.options) mkOption;
+  inherit (lib.options) mkOption mkEnableOptions;
   inherit (lib.types) enum str;
-  inherit (self.lib.options) mkEnableOptions;
 
   opt = options.self.programs;
   cfg = config.self.programs;

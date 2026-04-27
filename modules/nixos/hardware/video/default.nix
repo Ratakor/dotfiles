@@ -2,12 +2,11 @@
   config,
   lib,
   pkgs,
-  self,
   ...
 }:
 let
   inherit (lib.modules) mkIf;
-  inherit (self.lib.trivial) isx86Linux;
+  inherit (lib.trivial) isx86Linux;
 
   cfg = config.self.system.video;
 in

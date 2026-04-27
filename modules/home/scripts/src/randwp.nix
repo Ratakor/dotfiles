@@ -7,13 +7,12 @@
   config,
   lib,
   pkgs,
-  self,
   sources,
   ...
 }:
 let
   inherit (lib.meta) getExe;
-  inherit (self.lib.trivial) unreachable;
+  inherit (lib.trivial) unreachable;
 
   inherit (config.self.system) displayServer;
   supportMultipleMonitors = true; # TODO: config.self.monitors

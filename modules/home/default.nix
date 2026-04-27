@@ -10,7 +10,7 @@ let
   inherit (builtins) concatLists;
   inherit (lib.lists) singleton;
   inherit (lib.modules) mkAliasOptionModule mkForce;
-  inherit (self.lib.filesystem) listFiles;
+  inherit (lib.filesystem) listFiles;
 
   username = config.self.user.name;
 

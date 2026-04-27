@@ -3,15 +3,13 @@
   lib,
   options,
   pkgs,
-  self,
   ...
 }:
 let
   inherit (builtins) concatLists;
-  inherit (lib.options) mkOption;
+  inherit (lib.options) mkOption mkEnableOptions enumOptionValues;
   inherit (lib.types) enum;
   inherit (lib.lists) optional;
-  inherit (self.lib.options) mkEnableOptions enumOptionValues;
 
   opt = options.self.programs;
   cfg = config.self.programs;

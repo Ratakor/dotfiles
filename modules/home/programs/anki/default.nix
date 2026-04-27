@@ -1,11 +1,11 @@
 {
   config,
+  lib,
   pkgs,
-  self,
   ...
 }:
 let
-  inherit (self.lib.filesystem) listFiles;
+  inherit (lib.filesystem) listFiles;
 in
 {
   hm.programs.anki = {

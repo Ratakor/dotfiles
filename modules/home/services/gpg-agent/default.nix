@@ -1,11 +1,7 @@
 # GPG key management daemon
-{
-  pkgs,
-  self,
-  ...
-}:
+{ lib, pkgs, ... }:
 let
-  inherit (self.lib.time) secPerHour secPerYear;
+  inherit (lib.time) secPerHour secPerYear;
 in
 {
   hm.services.gpg-agent = {

@@ -9,12 +9,12 @@
 # I switched to dms powermenu
 {
   config,
+  lib,
   pkgs,
-  self,
   ...
 }:
 let
-  inherit (self.lib.trivial) hexToRgba;
+  inherit (lib.trivial) hexToRgba;
 
   colors = config.self.colors.default;
   dprg = config.self.programs.default;

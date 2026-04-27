@@ -2,11 +2,10 @@
   config,
   lib,
   pkgs,
-  self,
   ...
 }:
 let
-  inherit (self.lib.trivial) isx86Linux;
+  inherit (lib.trivial) isx86Linux;
   inherit (lib.modules) mkIf mkForce;
 
   cfg = config.self.system.audio;

@@ -1,11 +1,7 @@
 # Status bar for Wayland
-{
-  config,
-  self,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (self.lib.trivial) hexToRgba;
+  inherit (lib.trivial) hexToRgba;
 
   colors = config.self.colors.default;
   prg = config.self.programs;

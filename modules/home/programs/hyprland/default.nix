@@ -1,15 +1,10 @@
 # Hyprland is an independent, highly customizable, dynamic tiling Wayland
 # compositor that doesn't sacrifice on its looks.
 # TODO
-{
-  config,
-  lib,
-  self,
-  ...
-}:
+{ config, lib, ... }:
 let
   inherit (lib.modules) mkIf;
-  inherit (self.lib.trivial) unreachable;
+  inherit (lib.trivial) unreachable;
 
   prg = config.self.programs;
 in

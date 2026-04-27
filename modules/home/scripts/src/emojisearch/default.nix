@@ -1,12 +1,12 @@
 # Search emojis with a dynamic menu
 {
   config,
+  lib,
   pkgs,
-  self,
   ...
 }:
 let
-  inherit (self.lib.trivial) unreachable;
+  inherit (lib.trivial) unreachable;
 
   sys = config.self.system;
   dprg = config.self.programs.default;

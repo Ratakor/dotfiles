@@ -1,12 +1,7 @@
-{
-  config,
-  lib,
-  self,
-  ...
-}:
+{ config, lib, ... }:
 let
   inherit (lib.modules) mkIf;
-  inherit (self.lib.filesystem) GiB;
+  inherit (lib.filesystem) GiB;
 in
 {
   # This uses zram-generator under the hood.

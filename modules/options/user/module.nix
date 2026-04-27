@@ -1,13 +1,8 @@
-{
-  config,
-  lib,
-  self,
-  ...
-}:
+{ config, lib, ... }:
 let
   inherit (lib.options) mkOption;
   inherit (lib.types) str strMatching;
-  inherit (self.lib.trivial) capitalize;
+  inherit (lib.trivial) capitalize;
 
   cfg = config.self.user;
 in
