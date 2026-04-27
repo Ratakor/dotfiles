@@ -4,7 +4,8 @@
   symlinkJoin,
   makeWrapper,
   writeTextFile,
-  theme ? "gruvbox-dark",
+  colors,
+  theme ? colors.default.zellij.theme,
 }:
 let
   inherit (builtins) readFile;

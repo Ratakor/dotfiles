@@ -5,13 +5,15 @@
   runCommandLocal,
   symlinkJoin,
   makeWrapper,
-  theme ? "gruvbox-dark",
+  colors,
+  theme ? colors.default.scooter.theme,
 }:
 let
   inherit (sources) gruvbox-tmTheme dracula-tmTheme;
 
   toml = pkgs.formats.toml { };
 
+  # We should probably only link to the chosen theme
   configDir = runCommandLocal "scooter-config-dir" { } ''
     mkdir -p $out/etc/themes
     ln -s "${toml.generate "scooter-config.toml" settings}" $out/etc/config.toml

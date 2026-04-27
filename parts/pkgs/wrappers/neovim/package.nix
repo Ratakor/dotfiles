@@ -1,3 +1,4 @@
+# This isn't maintained, use helix instead.
 {
   sources,
   pkgs,

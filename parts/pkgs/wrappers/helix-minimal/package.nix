@@ -1,5 +1,5 @@
-{ pkgs }:
-pkgs.wrappers.helix.override {
+{ pkgs, wrappers }:
+wrappers.helix.override {
   theme = "acme";
   themeOverride = {
     "function" = {

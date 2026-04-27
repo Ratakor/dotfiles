@@ -1,10 +1,11 @@
 {
   lib,
   pkgs,
+  colors,
 
   # dark: gruvbox dracula
   # light: gruvbox_light acme papercolor-light
-  theme ? "gruvbox",
+  theme ? colors.default.helix.theme,
   themeOverride ? {
     "ui.background" = "none"; # transparent
     "function" = {
@@ -49,7 +50,7 @@
     zig # Zig
 
     # Tools
-    wrappers.scooter # interactive find-and-replace
+    (wrappers.scooter.override { inherit colors; }) # interactive find-and-replace
   ],
 }:
 let
