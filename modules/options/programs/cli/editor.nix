@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions;
+  inherit (lib.options) mkOption mkPackageOption mkEnableOptions;
   inherit (lib.types) enum str;
 
   opt = options.self.programs;
@@ -33,10 +33,7 @@ in
         description = "The command to spawn an editor in the terminal.";
       };
 
-      desktopEntry = mkOption {
-        type = str;
-        description = "The desktop entry of the editor.";
-      };
+      package = mkPackageOption { } "default editor" { default = null; };
     };
   };
 

@@ -17,7 +17,7 @@ in
   config = mkIf prg.editor.helix.enable {
     self.programs.default.editor = mkIf (prg.default.editor.name == "helix") {
       cmd = "hx";
-      desktopEntry = "Helix.desktop";
+      inherit package;
     };
 
     user.packages = [ package ];

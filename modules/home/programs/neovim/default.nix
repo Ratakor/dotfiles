@@ -8,15 +8,16 @@ let
   inherit (lib.modules) mkIf;
 
   prg = config.self.programs;
+  package = pkgs.wrappers.neovim;
 in
 {
   config = mkIf prg.editor.neovim.enable {
     self.programs.default.editor = mkIf (prg.default.editor.name == "neovim") {
       cmd = "nvim";
-      desktopEntry = "nvim.desktop";
+      inherit package;
     };
 
-    user.packages = [ pkgs.wrappers.neovim ];
+    user.packages = [ package ];
 
     hm.home.shellAliases = {
       vimdiff = "nvim -d";

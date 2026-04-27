@@ -12,7 +12,7 @@ in
   config = mkIf prg.imageViewer.imv.enable {
     self.programs.default.imageViewer = mkIf (prg.default.imageViewer.name == "imv") {
       cmd = "imv";
-      desktopEntry = "imv.desktop";
+      inherit (config.hm.programs.imv) package;
     };
 
     hm.programs.imv = {
