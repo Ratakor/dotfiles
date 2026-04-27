@@ -12,7 +12,7 @@ let
 
   terminal = with pkgs; [
     nbsdgames # 18 text-based modern games from bsd
-    "2048-zig" # 2048 game in terminal
+    pkgs."2048-zig" # 2048 game in terminal, that naming messes with Nix
     binbreak # a terminal based binary number guessing game
   ];
 
