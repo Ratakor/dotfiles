@@ -1,11 +1,7 @@
 # Simple music selector that uses and interacts with mpv.
 # non-nix version of this script:
 # https://raw.githubusercontent.com/Ratakor/dotfiles/ec0dc5e5240d2fef94afaa3cbe7f2cb9d5dcfce3/users/ratakor/programs/scripts/bin/music
-{
-  config,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 let
   dprg = config.self.programs.default;
   XDG_MUSIC_DIR = config.hm.xdg.userDirs.music;

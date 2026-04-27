@@ -1,11 +1,7 @@
 # CLI for the music script
 # non-nix version of this script:
 # https://raw.githubusercontent.com/Ratakor/dotfiles/ec0dc5e5240d2fef94afaa3cbe7f2cb9d5dcfce3/users/ratakor/programs/scripts/bin/musiccmd
-{
-  config,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 let
   dprg = config.self.programs.default;
 

@@ -3,7 +3,6 @@
   config,
   lib,
   pkgs,
-  self,
   sources,
   ...
 }:
@@ -18,7 +17,6 @@ let
         config
         lib
         pkgs
-        self
         sources
         ;
     };

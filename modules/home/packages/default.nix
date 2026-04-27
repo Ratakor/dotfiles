@@ -2,22 +2,12 @@
   config,
   lib,
   pkgs,
-  self,
   ...
 }:
 let
   inherit (builtins) concatLists;
   inherit (lib.lists) flatten;
-  callPkgs =
-    path:
-    import path {
-      inherit
-        config
-        lib
-        pkgs
-        self
-        ;
-    };
+  callPkgs = path: import path { inherit config lib pkgs; };
 
   # Development tools
   dev = callPkgs ./dev.nix;
