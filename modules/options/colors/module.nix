@@ -1,12 +1,4 @@
-# TODO:
-# - Improve type system for colors?
-# - Move specific programs theme to their own options?
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 let
   inherit (lib.options) mkOption;
   inherit (lib.types) enum;
@@ -34,13 +26,13 @@ in
     };
 
     dark = mkOption {
-      default = import ./themes/${cfg.theme}-dark.nix pkgs;
+      default = import ./themes/${cfg.theme}-dark.nix;
       description = "Dark variant of the chosen colorscheme.";
       readOnly = true;
     };
 
     light = mkOption {
-      default = import ./themes/${cfg.theme}-light.nix pkgs;
+      default = import ./themes/${cfg.theme}-light.nix;
       description = "Light variant of the chosen colorscheme.";
       readOnly = true;
     };

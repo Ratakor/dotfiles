@@ -1,4 +1,4 @@
-pkgs: {
+{
   bat.theme = "gruvbox-dark";
   helix.theme = "gruvbox";
   ghostty.theme = "Gruvbox Dark";
@@ -7,7 +7,7 @@ pkgs: {
   scooter.theme = "gruvbox-dark";
   theme-sh = "gruvbox-dark";
 
-  gtk.theme = {
+  gtk.theme = pkgs: {
     name = "Gruvbox-Dark";
     package = pkgs.gruvbox-gtk-theme;
   };

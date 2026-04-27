@@ -1,13 +1,13 @@
-pkgs: {
+{
   bat.theme = "gruvbox-light";
   helix.theme = "gruvbox_light";
   ghostty.theme = "Gruvbox Light";
   vicinae.theme = "gruvbox-light";
   zellij.theme = "gruvbox-light";
-  scooter.theme = "gruvbox-dark";
+  scooter.theme = "gruvbox-light";
   theme-sh = "gruvbox";
 
-  gtk.theme = {
+  gtk.theme = pkgs: {
     name = "Gruvbox-Light";
     package = pkgs.gruvbox-gtk-theme;
   };

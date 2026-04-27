@@ -1,5 +1,5 @@
 # TODO: use alucard theme as light theme for this one
-pkgs: {
+{
   bat.theme = "Dracula";
   helix.theme = "dracula";
   ghostty.theme = "Dracula";
@@ -8,7 +8,7 @@ pkgs: {
   scooter.theme = "dracula";
   theme-sh = "dracula";
 
-  gtk.theme = {
+  gtk.theme = pkgs: {
     name = "Dracula";
     package = pkgs.dracula-theme;
   };
