@@ -1,11 +1,8 @@
 # Spotify client
-{
-  config,
-  ...
-}:
+{ config, ... }:
 {
   hm.services.librespot = {
-    enable = true;
+    inherit (config.self.services.librespot) enable;
     # https://github.com/librespot-org/librespot/wiki/Options
     settings = {
       quiet = true;
