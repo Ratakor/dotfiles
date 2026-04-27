@@ -13,7 +13,6 @@ in
 {
   config = mkIf prg.editor.neovim.enable {
     self.programs.default.editor = mkIf (prg.default.editor.name == "neovim") {
-      cmd = "nvim";
       inherit package;
     };
 

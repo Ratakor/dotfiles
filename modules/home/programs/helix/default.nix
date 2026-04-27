@@ -16,7 +16,6 @@ in
 {
   config = mkIf prg.editor.helix.enable {
     self.programs.default.editor = mkIf (prg.default.editor.name == "helix") {
-      cmd = "hx";
       inherit package;
     };
 

@@ -26,16 +26,9 @@ in
 {
   config = mkIf prg.imageViewer.nsxiv.enable {
     self.programs.default.imageViewer = mkIf (prg.default.imageViewer.name == "nsxiv") {
-      cmd = "nsxiv -a";
-      # desktopEntry = "nsxiv-a.desktop";
       inherit package;
     };
 
     user.packages = [ package ];
-
-    # hm.xdg.desktopEntries.nsxiv-a = {
-    #   name = "nsxiv";
-    #   exec = "nsxiv -a %f";
-    # };
   };
 }

@@ -40,6 +40,9 @@ in
 
       cmdDir = mkOption {
         type = str;
+        # readOnly makes it so that an option can be assigned only one time
+        # except that it doesn't take mkIf into account so it sucks
+        # readOnly = true;
         description = "The command to spawn a terminal emulator in the directory given as argument.";
       };
     };

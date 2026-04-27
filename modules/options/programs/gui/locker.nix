@@ -37,6 +37,8 @@ in
 
   config.self.programs = {
     locker.${cfg.default.locker.name}.enable = true;
+    # TODO: This should be setup in modules/home/programs
+    #       Also packages installation is probably all over the place
     default.locker.cmd =
       if cfg.default.locker.name == "dms" then "dms ipc lock lock" else cfg.default.locker.name;
   };

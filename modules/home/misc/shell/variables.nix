@@ -38,7 +38,7 @@ in
 
     sessionVariables = {
       # Default programs
-      EDITOR = dprg.editor.cmd;
+      EDITOR = getExe dprg.editor.package;
       # VISUAL = prg.editor.cmd; # config.self.editor is not a visual editor
       BROWSER = "chromium --new-window"; # cromite
       DMENU = dprg.launcher.dmenu;
