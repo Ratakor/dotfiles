@@ -1,15 +1,14 @@
-# $XDG_CONFIG_HOME/nix/nix.conf
-# extra-experimental-features = nix-command flakes
-# nix shell nixpkgs#just nixpkgs#nh
-# just switch
+# bootstrap:
+# nix-shell -p nh --run 'nh os switch -f . nixosConfigurations.{{hostname}}'
 
-default:
-    @just --list
+default: switch
+    @# just --list
 
 # Rebuild and switch to the new configuration
 [group('nh')]
 switch host="$(hostname)":
     @# nixos-rebuild switch --sudo --flake .
+    @# nh os switch -f . nixosConfigurations.{{host}}
     nh os switch --diff always --hostname {{host}} .
 
 # Build a `NixOS` VM image
