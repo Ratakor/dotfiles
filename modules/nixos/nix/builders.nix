@@ -12,7 +12,6 @@
 }:
 let
   inherit (lib.attrsets) recursiveUpdate;
-  inherit (lib.lists) filter;
 
   genericBuilder = {
     # system = pkgs.stdenv.hostPlatform.system;
@@ -59,27 +58,29 @@ let
   mkBuilderKeys = keys: map (key: "${sshOpts} ${key}") keys;
 in
 {
-  users = {
-    groups.builder = { };
-    users.builder = {
-      useDefaultShell = false;
-      isSystemUser = true;
-      createHome = true;
-      group = "builder";
-      home = "/var/empty";
-      openssh.authorizedKeys.keys = mkBuilderKeys self.keys.${config.self.username};
+  config = lib.mkIf false {
+    users = {
+      groups.builder = { };
+      users.builder = {
+        useDefaultShell = false;
+        isSystemUser = true;
+        createHome = true;
+        group = "builder";
+        home = "/var/empty";
+        openssh.authorizedKeys.keys = mkBuilderKeys self.keys.${config.self.user.name};
+      };
     };
-  };
 
-  nix = {
-    distributedBuilds = true;
-    buildMachines = filter (builder: builder.hostName != config.networking.hostName) [
-      (mkBuilder {
-        # builder = bigBuilder;
-        host = "AuroraR7";
-        # sshProtocol = "ssh";
-      })
-    ];
-    settings.trusted-users = [ "builder" ];
+    nix = {
+      distributedBuilds = true;
+      buildMachines = builtins.filter (builder: builder.hostName != config.networking.hostName) [
+        (mkBuilder {
+          # builder = bigBuilder;
+          hostName = "AuroraR7";
+          # sshProtocol = "ssh";
+        })
+      ];
+      settings.trusted-users = [ "builder" ];
+    };
   };
 }

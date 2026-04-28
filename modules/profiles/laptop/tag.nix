@@ -1,0 +1,3 @@
+{
+  system.nixos.tags = [ "laptop" ];
+}

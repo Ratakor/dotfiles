@@ -29,19 +29,17 @@ let
   laptop = profiles + /laptop;
   server = profiles + /server;
 
-  # Recursively find all `module.nix` files in a given path
-  mkModuleTree = path: filter (hasSuffix "module.nix") (map toString (listFilesRecursive path));
+  # Recursively find all `.nix` files in a given path
+  listNixFiles = path: filter (hasSuffix ".nix") (listFilesRecursive path);
 
   mkModules =
     {
       hostname,
       system,
       moduleTrees ? [ ],
-      profiles ? [ ],
       extraModules ? [ ],
     }:
     flatten (concatLists [
-      # Host-specific configuration
       [
         ./${hostname}
         {
@@ -52,14 +50,7 @@ let
           };
         }
       ]
-
-      # Recursively import all module trees (i.e. directories with a `module.nix`)
-      # for given moduleTree directories, and in addition, profiles.
-      (map (path: mkModuleTree path) (concatLists [
-        moduleTrees
-        profiles
-      ]))
-
+      (map listNixFiles moduleTrees)
       extraModules
     ]);
 
@@ -90,13 +81,11 @@ let
           inherit
             hostname
             system
-            profiles
-            extraModules
+            # extraModules
             ;
-          moduleTrees = [
-            nixos
-            options
-          ];
+          moduleTrees = profiles ++ [ nixos ];
+          # TODO: we can't put options in moduleTrees because of colors
+          extraModules = extraModules ++ (listFilesRecursive options |> filter (hasSuffix "module.nix"));
         };
         specialArgs = {
           inherit self sources;

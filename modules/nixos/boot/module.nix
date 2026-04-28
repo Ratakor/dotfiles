@@ -5,11 +5,6 @@ let
   cfg = config.self.system.boot;
 in
 {
-  imports = [
-    ./grub.nix
-    ./systemd-boot.nix
-  ];
-
   boot = {
     kernelPackages = cfg.kernel;
 

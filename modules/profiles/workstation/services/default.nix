@@ -1,8 +1,4 @@
 {
-  imports = [
-    ./printing.nix
-  ];
-
   services.dbus.implementation = "broker";
 
   systemd.settings.Manager = {

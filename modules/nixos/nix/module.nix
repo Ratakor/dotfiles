@@ -5,12 +5,6 @@
   ...
 }:
 {
-  imports = [
-    # ./builders.nix
-    ./documentation.nix
-    ./nh.nix
-  ];
-
   nix = {
     # Nix package is already set in a nixpkgs overlay.
     # Look at parts/pkgs/default.nix for the whole nixpkgs config.
