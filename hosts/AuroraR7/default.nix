@@ -63,11 +63,4 @@
   };
 
   # TODO: setup snapshots
-  services.btrfs = {
-    autoScrub = {
-      enable = true;
-      fileSystems = [ "/" ];
-      interval = "monthly";
-    };
-  };
 }
