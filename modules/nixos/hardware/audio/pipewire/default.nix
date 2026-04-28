@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib.trivial) isx86Linux;
-  inherit (lib.modules) mkIf mkForce;
+  inherit (lib.modules) mkIf;
 
   cfg = config.self.system.audio;
 in
@@ -34,6 +34,6 @@ in
     };
 
     # Required by pipewire
-    security.rtkit.enable = mkForce config.services.pipewire.enable;
+    security.rtkit.enable = config.services.pipewire.enable;
   };
 }

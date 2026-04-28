@@ -2,7 +2,9 @@
   imports = [
     ./audio
     ./bluetooth.nix
+    ./cpu
     ./fs
+    ./gpu
     ./video
   ];
 

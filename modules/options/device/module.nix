@@ -6,6 +6,10 @@ let
   cfg = config.self.device;
 in
 {
+  # should this be renamed hardware instead of device?
+  # or merge with system
+  # or split system into multiple modules
+  # idk, it doesn't matter much anywa
   options.self.device = {
     ram = {
       size = mkOption {

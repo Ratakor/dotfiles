@@ -16,5 +16,9 @@ in
         };
       };
     };
+
+    # https://wiki.nixos.org/wiki/Bluetooth
+    # Pair bluetooth devices without GUI via blueman-applet and blueman-manager
+    services.blueman.enable = true;
   };
 }

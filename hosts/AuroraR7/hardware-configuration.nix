@@ -16,8 +16,6 @@
       "usb_storage"
       "sd_mod"
     ];
-
-    kernelModules = [ "kvm-intel" ];
   };
 
   fileSystems = {
@@ -82,8 +80,6 @@
   };
 
   swapDevices = [ ];
-
-  hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.legacy_580;

@@ -11,10 +11,6 @@ let
   cfg = config.self.system.video;
 in
 {
-  imports = [
-    ./nvidia.nix
-  ];
-
   config = mkIf cfg.enable {
     hardware.graphics = {
       enable = true;

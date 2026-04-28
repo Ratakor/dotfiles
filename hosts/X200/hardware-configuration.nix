@@ -13,8 +13,6 @@ in
       "sd_mod"
     ];
 
-    kernelModules = [ "kvm-intel" ];
-
     kernelParams = [
       # https://wiki.freebsd.org/ZFSTuningGuide
       # https://docs-archive.freebsd.org/doc/8.4-RELEASE/usr/share/doc/freebsd/en_US.ISO8859-1/books/handbook/filesystems-zfs.html
@@ -95,8 +93,6 @@ in
       };
     }
   ];
-
-  hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
   # TODO: disko
   # https://git.disroot.org/folliehiyuki/nixconfig/src/branch/main/flake/nixos/aragorn/hardware.nix

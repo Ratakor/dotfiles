@@ -7,11 +7,11 @@
 let
   inherit (lib.modules) mkIf mkDefault;
 
+  dev = config.self.device;
   sys = config.self.system;
-  cfg = sys.video.nvidia;
 in
 {
-  config = mkIf cfg.enable {
+  config = mkIf (dev.gpu.type == "nvidia") {
     services.xserver.videoDrivers = [ "nvidia" ];
 
     boot.blacklistedKernelModules = [ "nouveau" ];
@@ -26,7 +26,7 @@ in
         powerManagement = {
           enable = mkDefault true;
           finegrained = mkDefault false;
-          # kernelSuspendNotifier = true; # nixos enable it based on open / package version
+          # kernelSuspendNotifier = true; # nixos enables it based on open / package version
         };
 
         # see prime.offload for hybrid gpu

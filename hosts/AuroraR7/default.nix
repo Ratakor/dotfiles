@@ -36,10 +36,7 @@
     system = {
       displayServer.wayland = true;
       audio.enable = true;
-      video = {
-        enable = true;
-        nvidia.enable = true;
-      };
+      video.enable = true;
       bluetooth.enable = false;
       virt = {
         podman.enable = true;
