@@ -5,10 +5,6 @@ let
   inherit (lib) types;
 in
 {
-  imports = [
-    ./monitors.nix
-  ];
-
   # should this be renamed hardware instead of device?
   # or merge with system
   # or split system into multiple modules

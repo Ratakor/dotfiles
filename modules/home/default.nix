@@ -22,7 +22,6 @@ let
     (mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
   ];
 
-  packages = singleton ./packages;
   programs = listFiles ./programs;
   services = listFiles ./services;
   scripts = singleton ./scripts;
@@ -33,7 +32,6 @@ in
     extraModules
     moduleAliases
 
-    packages
     programs
     services
     scripts
@@ -59,6 +57,11 @@ in
       "kvm"
     ];
     openssh.authorizedKeys.keys = self.keys.${username};
+    packages =
+      listFiles ./packages
+      |> map (path: import path { inherit config lib pkgs; })
+      |> concatLists
+      |> concatLists; # faster than flatten
   };
 
   # This is not a dotfiles manager it's a whole kitchen sink to manage

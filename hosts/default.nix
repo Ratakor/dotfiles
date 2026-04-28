@@ -6,11 +6,7 @@
   ...
 }:
 let
-  inherit (builtins) filter concatLists;
-  inherit (lib.modules) mkDefault;
-  inherit (lib.filesystem) listFilesRecursive;
-  inherit (lib.lists) flatten;
-  inherit (lib.strings) hasSuffix;
+  inherit (builtins) concatLists;
 
   # External Modules
   disko = import "${sources.disko}/module.nix";
@@ -29,30 +25,25 @@ let
   laptop = profiles + /laptop;
   server = profiles + /server;
 
-  # Recursively find all `.nix` files in a given path
-  listNixFiles = path: filter (hasSuffix ".nix") (listFilesRecursive path);
-
   mkModules =
     {
       hostname,
       system,
-      moduleTrees ? [ ],
       extraModules ? [ ],
     }:
-    flatten (concatLists [
+    concatLists [
       [
         ./${hostname}
         {
           networking.hostName = hostname;
           nixpkgs = {
-            hostPlatform = mkDefault system;
+            hostPlatform = lib.mkDefault system;
             flake.source = sources.nixpkgs.outPath;
           };
         }
       ]
-      (map listNixFiles moduleTrees)
       extraModules
-    ]);
+    ];
 
   # TODO: use pkgs.nixos instead
   # I keep getting infinite recursion when setting _modules.args tho
@@ -78,14 +69,15 @@ let
       { pkgs, ... }:
       mkSystem pkgs {
         modules = mkModules {
-          inherit
-            hostname
-            system
-            # extraModules
-            ;
-          moduleTrees = profiles ++ [ nixos ];
-          # TODO: we can't put options in moduleTrees because of colors
-          extraModules = extraModules ++ (listFilesRecursive options |> filter (hasSuffix "module.nix"));
+          inherit hostname system;
+          extraModules = concatLists [
+            extraModules
+            profiles
+            [
+              nixos
+              options
+            ]
+          ];
         };
         specialArgs = {
           inherit self sources;

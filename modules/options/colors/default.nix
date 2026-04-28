@@ -1,4 +1,4 @@
-# Mirror of module.nix to be used outside of modules.
+# Mirror of option.nix to be used outside of modules.
 {
   lib,
   theme ? "gruvbox", # gruvbox dracula

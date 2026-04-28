@@ -1,3 +1,4 @@
+# Terminal applications
 { pkgs, ... }:
 let
   cli = with pkgs; [

@@ -1,4 +1,4 @@
-{ self, ... }:
+{ lib, self, ... }:
 let
   inherit (builtins)
     readDir
@@ -7,10 +7,13 @@ let
     mapAttrs
     filter
     ;
+  inherit (lib.filesystem) listFilesRecursive;
+  inherit (lib.strings) hasSuffix;
 in
 {
   /**
     Given a directory, return a list of all files within it.
+    This doesn't recursively go into each directory, use listFilesRecursive instead.
 
     # Inputs
 
@@ -27,6 +30,7 @@ in
 
   /**
     Given a directory, return a list of all directories within it.
+    This doesn't recursively go into each directory.
 
     # Inputs
 
@@ -45,6 +49,16 @@ in
     |> mapAttrs (name: kind: if kind == "directory" then dir + /${name} else null)
     |> attrValues
     |> filter (x: x != null);
+
+  /**
+    Given a path, return a list of all nix files except the root default.nix.
+  */
+  listModuleFiles =
+    path:
+    let
+      root = path + /default.nix;
+    in
+    listFilesRecursive path |> filter (path: hasSuffix ".nix" (toString path) && path != root);
 
   /**
     Size constants in bytes.

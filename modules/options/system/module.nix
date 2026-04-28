@@ -4,12 +4,6 @@ let
   inherit (lib.options) mkEnableOption;
 in
 {
-  imports = [
-    ./boot.nix
-    ./display-server.nix
-    ./virtualisation.nix
-  ];
-
   options.self.system = {
     audio.enable = mkEnableOption "audio drivers and related programs";
     video.enable = mkEnableOption "video drivers and related programs";

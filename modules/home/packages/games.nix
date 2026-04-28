@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib.lists) singleton optionals;
+  inherit (lib.lists) singleton optional optionals;
 
   cfg = config.self.programs.gaming;
 
@@ -52,9 +52,9 @@ in
   tools
   # unsorted
 ]
-++ optionals cfg.star-citizen.enable star-citizen
-++ optionals cfg.wow.enable wow
-++ optionals cfg.poe.enable poe
-++ optionals cfg.steam.enable steam
-++ optionals cfg.lutris.enable lutris
+++ optional cfg.star-citizen.enable star-citizen
+++ optional cfg.wow.enable wow
+++ optional cfg.poe.enable poe
+++ optional cfg.steam.enable steam
+++ optional cfg.lutris.enable lutris
 |> optionals cfg.enable
