@@ -10,7 +10,7 @@ let
   inherit (builtins) concatLists;
   inherit (lib.lists) singleton;
   inherit (lib.modules) mkAliasOptionModule mkForce;
-  inherit (lib.filesystem) listFiles;
+  inherit (lib.filesystem) listFiles listFilesRecursive;
 
   username = config.self.user.name;
 
@@ -26,7 +26,7 @@ let
   programs = listFiles ./programs;
   services = listFiles ./services;
   scripts = singleton ./scripts;
-  misc = listFiles ./misc;
+  misc = listFilesRecursive ./misc;
 in
 {
   imports = concatLists [

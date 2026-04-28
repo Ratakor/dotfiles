@@ -1,7 +1,10 @@
+{ lib, ... }:
 {
-  imports = [
-    ./cli
-    ./gui
-    ./misc
-  ];
+  imports =
+    map lib.listFiles [
+      ./cli
+      ./gui
+      ./misc
+    ]
+    |> builtins.concatLists;
 }

@@ -13,8 +13,9 @@ in
       wrappers.helix # editor, see environment.nix for $EDITOR
       yazi # file manager
       git
-      # wget
       curl
+      # wget
+      # rsync
       util-linux
       psmisc # see also the `killall` package
 
@@ -26,6 +27,7 @@ in
       dnsutils # dig, host, nslookup
       brightnessctl # brightness control
       procps # ps
+      # lshw
 
       ## Linux man pages
       man-pages

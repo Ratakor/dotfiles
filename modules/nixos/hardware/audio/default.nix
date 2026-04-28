@@ -1,6 +1,0 @@
-{
-  imports = [
-    ./pipewire
-    ./pulseaudio.nix
-  ];
-}

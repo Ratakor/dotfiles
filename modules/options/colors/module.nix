@@ -1,3 +1,4 @@
+# Theme and colors configuration for the system
 { config, lib, ... }:
 let
   inherit (lib.options) mkOption;

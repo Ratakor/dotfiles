@@ -1,3 +1,4 @@
+# Miscellaneous options
 { lib, ... }:
 let
   inherit (lib.options) mkEnableOption;

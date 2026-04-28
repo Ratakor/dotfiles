@@ -11,10 +11,6 @@ let
   cfg = config.self.system.audio;
 in
 {
-  imports = [
-    ./wireplumber.nix
-  ];
-
   config = mkIf cfg.enable {
     services.pipewire = {
       enable = true;

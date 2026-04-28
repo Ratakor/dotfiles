@@ -1,8 +1,7 @@
-{ config, lib, ... }:
+# Software configuration for the system
+{ lib, ... }:
 let
   inherit (lib.options) mkEnableOption;
-
-  cfg = config.self.system;
 in
 {
   imports = [

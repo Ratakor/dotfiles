@@ -13,7 +13,7 @@ sources:
     trivial = lib.trivial // (callLib ./trivial.nix);
     types = lib.types // (callLib ./types.nix);
 
-    inherit (self.filesystem) listFiles listDirs;
+    inherit (self.filesystem) listFiles listDirs listFilesRecursive;
     inherit (self.flakes) compat compat' package;
     inherit (self.options)
       enumOptionValues
