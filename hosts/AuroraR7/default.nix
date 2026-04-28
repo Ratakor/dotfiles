@@ -61,6 +61,4 @@
       };
     };
   };
-
-  # TODO: setup snapshots
 }
