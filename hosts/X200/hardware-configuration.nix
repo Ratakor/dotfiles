@@ -74,9 +74,6 @@ in
       fsType = "vfat";
       options = [
         "noatime"
-        "nodev"
-        "nosuid"
-        "noexec"
         "fmask=0022"
         "dmask=0022"
       ];
