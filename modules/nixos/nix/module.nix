@@ -30,7 +30,7 @@
         pkgs.runCommandLocal "nixpkgs" { } ''
           mkdir -p "$out"
           cat << EOF > "$out/default.nix"
-          {...}@args: (import ${self} args).legacyPackages.\''${builtins.currentSystem}
+          {...}@args: (import ${toString self} args).legacyPackages.\''${builtins.currentSystem}
           EOF
         ''
       }"

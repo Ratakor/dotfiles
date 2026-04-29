@@ -6,8 +6,8 @@
 #   - /modules/core/common/system/os/users/builder.nix
 {
   config,
+  keys,
   lib,
-  self,
   ...
 }:
 let
@@ -67,7 +67,7 @@ in
         createHome = true;
         group = "builder";
         home = "/var/empty";
-        openssh.authorizedKeys.keys = mkBuilderKeys self.keys.${config.self.user.name};
+        openssh.authorizedKeys.keys = mkBuilderKeys keys.${config.self.user.name};
       };
     };
 

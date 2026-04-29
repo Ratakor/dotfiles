@@ -17,10 +17,10 @@ let
   # Local modules
   nixos = modulePath + /nixos;
   options = modulePath + /options;
-  profiles = modulePath + /profiles;
   home = modulePath + /home;
 
   # Profiles
+  profiles = modulePath + /profiles;
   workstation = profiles + /workstation;
   laptop = profiles + /laptop;
   server = profiles + /server;
@@ -45,8 +45,8 @@ let
       extraModules
     ];
 
-  # TODO: use pkgs.nixos instead
-  # I keep getting infinite recursion when setting _modules.args tho
+  # pkgs.nixos doesn't allow to pass specialArgs :(
+  # Even if we set _module.args it will be evalutaed too late and produce an infinite recursion.
   # https://github.com/NixOS/nixpkgs/blob/b12141ef619e0a9c1c84dc8c684040326f27cdcc/pkgs/top-level/all-packages.nix#L11967
   mkSystem =
     pkgs: args:
@@ -81,6 +81,7 @@ let
         };
         specialArgs = {
           inherit self sources;
+          inherit (self) keys;
         };
       }
     );

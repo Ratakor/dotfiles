@@ -1,8 +1,8 @@
 {
   config,
+  keys,
   lib,
   pkgs,
-  self,
   sources,
   ...
 }:
@@ -56,7 +56,7 @@ in
       "libvirtd"
       "kvm"
     ];
-    openssh.authorizedKeys.keys = self.keys.${username};
+    openssh.authorizedKeys.keys = keys.${username};
     packages =
       listFiles ./packages
       |> map (path: import path { inherit config lib pkgs; })

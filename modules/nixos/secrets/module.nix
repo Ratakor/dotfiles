@@ -19,7 +19,7 @@ let
       mode ? "400",
     }:
     mkIf enableCondition {
-      file = "${self}/secrets/${file}";
+      file = "${toString self}/secrets/${file}";
       inherit group owner mode;
     };
 in
