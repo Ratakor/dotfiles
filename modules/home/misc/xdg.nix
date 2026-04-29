@@ -31,6 +31,7 @@ in
       templates = null; # "${HOME}/tmp";
 
       documents = "${HOME}/documents";
+      projects = "${HOME}/repos"; # ig
 
       music = "${HOME}/media/music";
       pictures = "${HOME}/media/pictures";
