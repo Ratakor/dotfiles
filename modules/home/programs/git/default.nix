@@ -30,7 +30,7 @@
         cim = "commit -s -m";
         desc = "describe";
         ls = "ls-files";
-        rename = "commit --amend -m";
+        rename = "commit --amend -s -m";
       };
       init.defaultBranch = "master";
       color.ui = true;
