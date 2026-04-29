@@ -74,5 +74,10 @@ in
         };
       };
     };
+
+    # This is needed by snapper.
+    systemd.tmpfiles.rules = lib.mapAttrsToList (
+      name: value: "d ${lib.removeSuffix "/" value.SUBVOLUME}/.snapshots - root root - -"
+    ) config.services.snapper.configs;
   };
 }
