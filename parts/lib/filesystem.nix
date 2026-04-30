@@ -51,6 +51,11 @@ in
     |> filter (x: x != null);
 
   /**
+    Given a path, return a list of all nix files.
+  */
+  listNixFiles = path: listFilesRecursive path |> filter (path: hasSuffix ".nix" (toString path));
+
+  /**
     Given a path, return a list of all nix files except the root default.nix.
   */
   listModuleFiles =

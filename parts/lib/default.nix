@@ -16,6 +16,7 @@ sources:
     inherit (self.filesystem)
       listFiles
       listDirs
+      listNixFiles
       listModuleFiles
       listFilesRecursive
       ;

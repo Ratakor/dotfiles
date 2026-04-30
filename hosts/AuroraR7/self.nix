@@ -1,14 +1,5 @@
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
-
   self = {
-    colors = {
-      theme = "gruvbox";
-      variant = "dark";
-    };
-
     device = {
       ram.size = 32573640;
       cpu.type = "intel";
@@ -58,6 +49,7 @@
       };
       gaming = {
         enable = true;
+        poe.enable = true;
       };
     };
   };

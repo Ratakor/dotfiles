@@ -33,7 +33,6 @@ let
     }:
     concatLists [
       [
-        ./${hostname}
         {
           networking.hostName = hostname;
           nixpkgs = {
@@ -42,6 +41,7 @@ let
           };
         }
       ]
+      (lib.listNixFiles ./${hostname})
       extraModules
     ];
 
