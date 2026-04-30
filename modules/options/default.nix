@@ -1,17 +1,14 @@
+# One solution to remove this file could be to outsource colors.
 { lib, ... }:
 {
-  # btw the only reason we still have a default.nix for each modules is
-  # because of colors... also home but that's something else.
-  # One solution could be to outsource colors.
   imports =
-    map lib.listFilesRecursive [
+    lib.singleton ./colors/option.nix
+    ++ builtins.concatMap lib.listFilesRecursive [
       ./device
       ./misc
       ./programs
       ./services
       ./system
       ./user
-    ]
-    |> builtins.concatLists
-    |> lib.concat [ ./colors/option.nix ];
+    ];
 }

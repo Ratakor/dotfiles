@@ -6,21 +6,21 @@
   ...
 }:
 let
-  inherit (builtins) concatLists;
+  inherit (builtins) concatLists concatMap pathExists;
 
   # External Modules
   disko = import "${sources.disko}/module.nix";
 
   # Root path for local modules
-  modulePath = ../modules;
+  modulesPath = ../modules;
 
   # Local modules
-  nixos = modulePath + /nixos;
-  options = modulePath + /options;
-  home = modulePath + /home;
+  nixos = modulesPath + /nixos;
+  options = modulesPath + /options;
+  home = modulesPath + /home;
 
   # Profiles
-  profiles = modulePath + /profiles;
+  profiles = modulesPath + /profiles;
   workstation = profiles + /workstation;
   laptop = profiles + /laptop;
   server = profiles + /server;
@@ -42,7 +42,13 @@ let
         }
       ]
       (lib.listNixFiles ./${hostname})
-      extraModules
+      (concatMap (
+        path:
+        let
+          root = path + /default.nix;
+        in
+        if pathExists root then lib.singleton root else lib.listNixFiles path
+      ) extraModules)
     ];
 
   # pkgs.nixos doesn't allow to pass specialArgs :(

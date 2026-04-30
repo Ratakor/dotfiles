@@ -1,6 +1,6 @@
 # TODO: add gpg keys (needed for programs.gpg and services.gpg-agent)
 let
-  inherit (builtins) attrValues concatLists;
+  inherit (builtins) attrValues concatLists concatMap;
 
   users = {
     ratakor = [
@@ -15,8 +15,8 @@ let
     AuroraR7 = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILiUgEQi9QFi5sOtfjM3iah3HRt6guSz7mP5UJ0G4JSo" ];
   };
 
-  # servers = concatLists (map (host: hosts.${host}) []);
-  # workstations = concatLists (map (host: hosts.${host}) ["X200"]);
+  # servers = concatMap (host: hosts.${host}) [ ];
+  # workstations = concatMap (host: hosts.${host}) ["X200" "AuroraR7"];
   users' = concatLists (attrValues users);
   hosts' = concatLists (attrValues hosts);
   all = users' ++ hosts';

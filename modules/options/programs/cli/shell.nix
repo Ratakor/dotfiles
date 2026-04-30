@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (builtins) concatLists;
+  inherit (builtins) concatMap;
   inherit (lib.options) mkOption mkEnableOptions enumOptionValues;
   inherit (lib.types) enum;
   inherit (lib.lists) optional;
@@ -38,7 +38,6 @@ in
     environment.systemPackages =
       opt.default.shell.name
       |> enumOptionValues
-      |> map (name: optional cfg.shell.${name}.enable pkgs.${name})
-      |> concatLists;
+      |> concatMap (name: optional cfg.shell.${name}.enable pkgs.${name});
   };
 }

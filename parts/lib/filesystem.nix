@@ -56,16 +56,6 @@ in
   listNixFiles = path: listFilesRecursive path |> filter (path: hasSuffix ".nix" (toString path));
 
   /**
-    Given a path, return a list of all nix files except the root default.nix.
-  */
-  listModuleFiles =
-    path:
-    let
-      root = path + /default.nix;
-    in
-    listFilesRecursive path |> filter (path: hasSuffix ".nix" (toString path) && path != root);
-
-  /**
     Size constants in bytes.
   */
   B = 1;
