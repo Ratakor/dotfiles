@@ -41,8 +41,7 @@
     programs = {
       terminal = {
         fontSize = 16;
-        ghostty.enable = true;
-        foot.enable = true;
+        foot.enable = true; # just in case ghostty doesn't work
       };
       default = {
         terminal.name = "ghostty";

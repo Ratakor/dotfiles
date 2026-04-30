@@ -27,5 +27,9 @@ in
       };
       fs.zfs.arcMax = 2 * GiB;
     };
+
+    programs = {
+      terminal.fontSize = 10;
+    };
   };
 }

@@ -12,7 +12,7 @@ let
   inherit (lib.lists) length zipListsWith;
   inherit (lib.trivial) const warnIfNot;
 
-  colors = import "${self}/modules/options/colors" { inherit lib; };
+  colors = import (self + /modules/options/colors) { inherit lib; };
 
   acknowledgedUnfreePackages = [
     "nvidia-x11"
