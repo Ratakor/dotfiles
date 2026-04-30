@@ -1,3 +1,7 @@
+{ lib, ... }:
+let
+  inherit (lib.filesystem) GiB;
+in
 {
   imports = [
     # hardware-configuration.nix should probably be merged here or sorted e.g.
@@ -32,9 +36,9 @@
           device = "/dev/sda";
         };
       };
+      fs.zfs.arcMax = 2 * GiB;
     };
   };
 
-  # weird bug can't boot on index 0 iirc
-  boot.loader.grub.default = 1;
+  boot.loader.grub.default = 1; # can't boot on index 0 smh
 }

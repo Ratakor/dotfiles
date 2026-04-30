@@ -1,6 +1,49 @@
+# https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/Root%20on%20ZFS.html
+# https://jrs-s.net/2018/08/17/zfs-tuning-cheat-sheet/
+# zpool options:
+#   ashift=12 (depends on the drive & cannot be changed)
+#
+#   compression=on ("on" corresponds to the best algorithm aka lz4)
+#   dedup=off (/!\ "on" means roughly -15% performance and x5 ram usage)
+#   atime=off
+#   relatime=on (note that relatime=on requires atime=on (need source))
+#   xattr=sa
+#   acltype=posixacl
+#   normalization=none (use "formD" for compatibility with how macOS handles unicode)
+#   autotrim=off (/!\ set this to "on" if using a modern nvme ssd)
+#   com.sun:auto-snapshot=true (only on /home and /var)
+#   recordsize=... currently keeping default, but maybe 1M for HDDs where storing large files
+#
+# https://forums.ghostbsd.org/d/406-is-zfs-reliable-on-ssds
+# Make sure to create a reserved partition with 10-20% of the total disk capacity
+# to preserve performance and maintain effective wear leveling.
+# See additional informations about SSDs on ZFS in the linked post.
+#
+# https://www.shpv.fr/blog/btrfs-vs-zfs-2026/
+# tldr: zfs > btrfs
 { config, lib, ... }:
+let
+  inherit (lib.modules) mkIf mkDefault;
+
+  cfg = config.self.system.fs.zfs;
+in
 {
-  config = lib.mkIf config.boot.zfs.enabled {
+  config = mkIf config.boot.zfs.enabled {
+    boot = {
+      kernelParams = [
+        "zfs.zfs_arc_max=${toString cfg.arcMax}"
+      ];
+      zfs = {
+        # https://openzfs.github.io/openzfs-docs/Project%20and%20Community/FAQ.html#selecting-dev-names-when-creating-a-pool-linux
+        # TODO: use by-partuuid for nixos VMs?
+        devNodes = mkDefault "/dev/disk/by-id"; # default: /dev/disk/by-id
+
+        # List of zpools to import at boot time.
+        # Needed if not using legacy mountpoints.
+        extraPools = mkDefault [ ];
+      };
+    };
+
     services = {
       zfs = {
         # Automatic transfer of ZFS snapshots to a remote location.

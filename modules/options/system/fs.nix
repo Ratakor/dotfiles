@@ -1,0 +1,24 @@
+{ lib, ... }:
+let
+  inherit (lib.options) mkOption;
+  inherit (lib) types;
+in
+{
+  options.self.system.fs = {
+    zfs = {
+      # https://openzfs.github.io/openzfs-docs/Performance%20and%20Tuning/Module%20Parameters.html#zfs-arc-max
+      # https://blog.thalheim.io/2025/10/17/zfs-ate-my-ram-understanding-the-arc-cache/
+      arcMax = mkOption {
+        type = types.ints.unsigned;
+        default = 0;
+        description = ''
+          The maximum size (in bytes) of the ZFS Adaptive Replacement Cache (ARC).
+          If set to 0, the larger of `all_system_memory - 1GB` and `5/8 × all_system_memory` will be used.
+          A minimum of 2GB is recommended although more is strongly recommended.
+          As a rule of thumb ZFS needs 1GB minimum + 1GB of RAM per 1TB of storage,
+          that can go up to 5GB of RAM per 1TB of storage with deduplication enabled.
+        '';
+      };
+    };
+  };
+}
