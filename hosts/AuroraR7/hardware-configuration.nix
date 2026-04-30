@@ -16,6 +16,9 @@
       "usb_storage"
       "sd_mod"
     ];
+    kernelParams = [
+      "nohibernate"
+    ];
   };
 
   fileSystems = {
