@@ -1,15 +1,24 @@
-{ pkgs, ... }:
+# https://github.com/werman/noise-suppression-for-voice?tab=readme-ov-file#linux
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  json = pkgs.formats.json { };
+  inherit (lib.modules) mkIf;
+
+  cfg = config.self.system.audio.pipewire.rnnoise;
 in
 {
-  # https://github.com/werman/noise-suppression-for-voice?tab=readme-ov-file#linux
-  hm.xdg.configFile."pipewire/pipewire.conf.d/99-input-denoising.conf".source =
-    json.generate "99-input-denoising.conf"
-      {
+  config = mkIf cfg.enable {
+    services.pipewire = {
+      extraLadspaPackages = [ pkgs.rnnoise-plugin.ladspa ];
+      extraConfig.pipewire."99-input-denoising" = {
         "context.modules" = [
           {
             "name" = "libpipewire-module-filter-chain";
+            # flags = [ "ifexists" "nofail" ];
             "args" = {
               "node.description" = "Noise Canceling source";
               "media.name" = "Noise Canceling source";
@@ -18,12 +27,12 @@ in
                   {
                     "type" = "ladspa";
                     "name" = "rnnoise";
-                    "plugin" = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
+                    "plugin" = "librnnoise_ladspa";
                     "label" = "noise_suppressor_mono"; # "noise_suppressor_stereo" consumes 2x resources
                     "control" = {
-                      "VAD Threshold (%)" = 90.0; # default: 50.0, recommended: 85-95
-                      "VAD Grace Period (ms)" = 200; # default: 200
-                      "Retroactive VAD Grace (ms)" = 0; # default: 0
+                      "VAD Threshold (%)" = cfg.vadThreshold;
+                      "VAD Grace Period (ms)" = cfg.vadGracePeriod;
+                      "Retroactive VAD Grace (ms)" = cfg.retroactiveVadGrace;
                     };
                   }
                 ];
@@ -45,4 +54,6 @@ in
           }
         ];
       };
+    };
+  };
 }

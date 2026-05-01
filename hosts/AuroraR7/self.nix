@@ -25,7 +25,10 @@
 
     system = {
       displayServer.wayland = true;
-      audio.enable = true;
+      audio = {
+        enable = true;
+        pipewire.rnnoise.enable = true;
+      };
       video.enable = true;
       bluetooth.enable = false;
       virt = {
