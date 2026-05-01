@@ -32,7 +32,7 @@ in
             commands = map mkNopassRule [
               # "nixos-rebuild"
               # "systemctl"
-              "sync"
+              # "sync" # this is probably a security hole since sync is symlinked to coreutils
               "dmesg"
             ];
           }

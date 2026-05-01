@@ -6,14 +6,16 @@ in
   programs = {
     bash = {
       # mfw `nix develop`
-      interactiveShellInit = ''
-        export HISTFILE=$XDG_STATE_HOME/bash_history
+      interactiveShellInit = /* bash */ ''
+        # XDG_STATE_HOME is not defined for all users and we don't use bash anyway
+        # export HISTFILE=$XDG_STATE_HOME/bash_history
+        export HISTFILE=/dev/null
       '';
     };
 
     zsh = {
       enable = true; # I known about config.self.programs.shell.zsh.enable and idc
-      shellInit = ''
+      shellInit = /* zsh */ ''
         export ZDOTDIR=$HOME/.config/zsh
       '';
       # I think that this controls wether zsh completion output are installed to

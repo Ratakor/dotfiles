@@ -1,3 +1,4 @@
+# https://wiki.nixos.org/wiki/PipeWire
 {
   config,
   lib,
@@ -24,12 +25,13 @@ in
       jack.enable = true;
     };
 
-    systemd.user.services = {
-      pipewire.wantedBy = [ "default.target" ];
-      pipewire-pulse.wantedBy = [ "default.target" ];
-    };
+    # That's probably not needed.
+    # systemd.user.services = {
+    #   pipewire.wantedBy = [ "default.target" ];
+    #   pipewire-pulse.wantedBy = [ "default.target" ];
+    # };
 
     # Required by pipewire
-    security.rtkit.enable = config.services.pipewire.enable;
+    security.rtkit.enable = true;
   };
 }
