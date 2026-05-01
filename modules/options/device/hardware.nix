@@ -10,13 +10,6 @@ in
   # or split system into multiple modules
   # idk, it doesn't matter much anyway
   options.self.device = {
-    ram = {
-      size = mkOption {
-        type = types.int;
-        description = "Total size of the system RAM in bytes.";
-      };
-    };
-
     cpu = {
       type = mkOption {
         type = types.enum [ "intel" ];

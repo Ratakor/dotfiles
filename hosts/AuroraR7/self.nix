@@ -1,7 +1,6 @@
 {
   self = {
     device = {
-      ram.size = 32573640;
       cpu.type = "intel";
       gpu.type = "nvidia";
       monitors = [
