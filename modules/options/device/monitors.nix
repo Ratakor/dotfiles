@@ -52,12 +52,31 @@ in
               default = 1.0;
               description = "Scale of the monitor.";
             };
+            transform = mkOption {
+              # Yes for niri this doesn't make sense and it could be an enum
+              # but for compatibility with hyprland it's easier this way.
+              type = types.ints.between 0 7;
+              default = 0;
+              description = ''
+                Rotate the output counter-clockwise.
+
+                0 -> normal (no transforms)
+                1 -> 90 degrees
+                2 -> 180 degrees
+                3 -> 270 degrees
+                4 -> flipped
+                5 -> flipped + 90 degrees
+                6 -> flipped + 180 degrees
+                7 -> flipped + 270 degrees
+              '';
+            };
+            isVertical = mkOption {
+              type = types.bool;
+              default = (lib.mod config.transform 2) == 1;
+              description = "Whether the monitor is vertical.";
+              readOnly = true;
+            };
             # hdr = mkEnableOption "HDR";
-            # transform = mkOption {
-            #   type = types.int;
-            #   description = "Transform for rotation.";
-            #   default = 0;
-            # };
             # workspaces = mkOption {
             #   type = types.nonEmptyListOf types.int;
             #   description = "List of workspace numbers.";
@@ -67,12 +86,6 @@ in
             #   type = types.enum config.workspaces;
             #   default = builtins.elemAt config.workspaces 0;
             #   description = "Default workspace for this monitor.";
-            # };
-            # isVertical = mkOption {
-            #   type = types.bool;
-            #   default = lib.mod config.transform 2 == 1;
-            #   description = "Whether the monitor is vertical.";
-            #   readOnly = true;
             # };
           };
         }
