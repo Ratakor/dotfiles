@@ -51,7 +51,7 @@ let
     pandoc # document converter
     # tinyxxd # hexdump utility, see `hexyl` too
     # teehee # modal terminal hex editor
-    # neocities-zig # TODO: not packaged
+    neocities # neocities-zig # TODO: not packaged
     # rustfmt # rust formatter
     zig-shell-completions
     moreutils # a lot of cool additional utils

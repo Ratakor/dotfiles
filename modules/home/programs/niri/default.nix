@@ -29,7 +29,7 @@ let
     if cfg.extraConfig == "" then
       ""
     else
-      "include \"${pkgs.writeText "niri-extra-config" cfg.extraConfig}\"";
+      "include \"${pkgs.writeText "niri-extra-config.kdl" cfg.extraConfig}\"";
 in
 {
   config = mkIf cfg.enable {
