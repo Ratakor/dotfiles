@@ -7,6 +7,7 @@
 let
   inherit (lib.options) mkOption mkEnableOptions;
   inherit (lib.types) enum str;
+  inherit (lib.attrsets) recursiveUpdate;
 
   opt = options.self.programs;
   cfg = config.self.programs;
@@ -14,7 +15,18 @@ let
 in
 {
   options.self.programs = {
-    windowManager = mkEnableOptions opt.default.windowManager.name;
+    windowManager = recursiveUpdate (mkEnableOptions opt.default.windowManager.name) {
+      niri = {
+        extraConfig = mkOption {
+          type = str;
+          default = "";
+          description = ''
+            Extra config to include into niri configuration.
+            This will override conflicting prior options.
+          '';
+        };
+      };
+    };
 
     default.windowManager = {
       name = mkOption {

@@ -12,6 +12,7 @@ let
   inherit (lib.meta) getExe';
 
   prg = config.self.programs;
+  cfg = prg.windowManager.niri;
 
   input = import ./input.nix;
   output = import ./output.nix { inherit config lib; };
@@ -24,9 +25,14 @@ let
   layer-rule = import ./layer-rule.nix config;
   animations = import ./animations.nix;
   gestures = import ./gestures.nix;
+  extraConfig =
+    if cfg.extraConfig == "" then
+      ""
+    else
+      "include \"${pkgs.writeText "niri-extra-config" cfg.extraConfig}\"";
 in
 {
-  config = mkIf prg.windowManager.niri.enable {
+  config = mkIf cfg.enable {
     self.programs.default.windowManager = mkIf (prg.default.windowManager.name == "niri") {
       cmd = getExe' config.programs.niri.package "niri-session";
     };
@@ -69,6 +75,7 @@ in
       layer-rule
       animations
       gestures
+      extraConfig
     ];
   };
 }
