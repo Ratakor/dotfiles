@@ -1,11 +1,39 @@
-{ lib, ... }:
+{
+  config,
+  lib,
+  options,
+  ...
+}:
 let
-  inherit (lib.options) mkOption;
+  inherit (lib.options) mkOption mkEnableOption;
   inherit (lib) types;
 in
 {
   options.self.system.fs = {
+    btrfs = {
+      enabled = mkOption {
+        readOnly = true;
+        type = types.bool;
+        default =
+          with config.boot;
+          (initrd.supportedFilesystems.btrfs or false) || (supportedFilesystems.btrfs or false);
+        description = "True if btrfs filesystem support is enabled.";
+      };
+      autoSnapshot = {
+        enable = mkEnableOption "auto-snapshotting service for btrfs";
+        subvolumes = mkOption {
+          type = types.attrsOf types.str;
+          default = {
+            # root = "/";
+            home = "/home";
+            # var = "/var";
+          };
+          description = "List of btrfs mount points to periodically snapshot.";
+        };
+      };
+    };
     zfs = {
+      inherit (options.boot.zfs) enabled;
       # https://openzfs.github.io/openzfs-docs/Performance%20and%20Tuning/Module%20Parameters.html#zfs-arc-max
       # https://blog.thalheim.io/2025/10/17/zfs-ate-my-ram-understanding-the-arc-cache/
       arcMax = mkOption {

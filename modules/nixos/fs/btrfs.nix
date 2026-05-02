@@ -54,9 +54,11 @@ let
     # Minimal age for snapshots to be deleted by the empty-pre-post cleanup algorithm.
     EMPTY_PRE_POST_MIN_AGE = 3600; # default: 3600
   };
+
+  cfg = config.self.system.fs.btrfs;
 in
 {
-  config = lib.mkIf (config.boot.supportedFilesystems.btrfs or false) {
+  config = lib.mkIf cfg.enabled {
     services = {
       btrfs.autoScrub = {
         enable = true;
@@ -64,20 +66,15 @@ in
         interval = "monthly"; # default: monthly
       };
 
-      snapper = {
+      snapper = lib.mkIf cfg.autoSnapshot.enable {
         snapshotInterval = "*:0/15"; # every 15 minutes
-        # A config with `root` name is mandatory but I think subvolume can be anything.
-        configs = builtins.mapAttrs (lib.const mkSnapperConfig) {
-          root = "/";
-          home = "/home";
-          # var = "/var";
-        };
+        configs = builtins.mapAttrs (lib.const mkSnapperConfig) cfg.autoSnapshot.subvolumes;
       };
     };
 
     # This is needed by snapper.
     systemd.tmpfiles.rules = lib.mapAttrsToList (
       name: value: "d ${lib.removeSuffix "/" value.SUBVOLUME}/.snapshots - root root - -"
-    ) config.services.snapper.configs;
+    ) config.services.snapper.configs; # do not use cfg.autoSnapshot.subvolumes
   };
 }
