@@ -80,4 +80,9 @@ in
   getAttrOr =
     s: set: fallback:
     if hasAttr s set then getAttr s set else fallback;
+
+  /**
+    Returns the corresponding shortRev for the given revision.
+  */
+  shortRev = rev: substring 0 7 rev;
 }

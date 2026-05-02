@@ -31,6 +31,7 @@ sources:
       hexToRgba
       isx86Linux
       unreachable
+      shortRev
       ;
     inherit (self.types) enumValues unwrapNullOr;
 

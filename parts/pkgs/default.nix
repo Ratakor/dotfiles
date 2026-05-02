@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (builtins) elem substring concatStringsSep;
+  inherit (builtins) elem concatStringsSep;
   inherit (lib.customisation) callPackageWith;
   inherit (lib.filesystem) packagesFromDirectoryRecursive;
   inherit (lib.strings) optionalString getName escapeShellArg;
@@ -64,7 +64,7 @@ in
             # A scrollable-tiling Wayland compositior. Git version. Peak usage of flake btw.
             niri-git = (lib.flakes.package sources.niri system { rust-overlay = { }; }).overrideAttrs {
               # well flake-compat isn't perfect but I love it
-              version = substring 0 7 sources.niri.revision;
+              version = lib.shortRev sources.niri.revision;
               __intentionallyOverridingVersion = true;
             };
             # Source of sources
