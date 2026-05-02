@@ -42,7 +42,8 @@ in
     Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${dprg.locker.name}" { spawn-sh "${dprg.locker.cmd}"; }
     XF86ScreenSaver repeat=false { spawn-sh "${dprg.locker.cmd}"; }
     XF86Battery repeat=false hotkey-overlay-title="Show battery information" { spawn "battery"; }
-    Mod+Shift+W repeat=false hotkey-overlay-title="Set a randwom wallpaper" { spawn "randwp"; }
+    // TODO: use wlr-which-key to handle prev/next instead?
+    Mod+Shift+W repeat=false hotkey-overlay-title="Set a random wallpaper" { spawn "wpaperctl" "next"; }
 
     // Print repeat=false { spawn "screenshot"; }
     Print { screenshot; }

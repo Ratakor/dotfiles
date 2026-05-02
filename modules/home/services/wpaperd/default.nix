@@ -7,6 +7,9 @@
 # The application panicked (crashed).
 # Message:  Failed to create vertices shader:
 #    0: 0:2(10): error: GLSL ES 3.10 is not supported. Supported versions are: 1.00 ES
+# TODO: replace randwp in
+# - yazi wrapper
+# - plumber
 {
   config,
   lib,
@@ -17,11 +20,11 @@
 let
   fromTOML = path: builtins.fromTOML (builtins.readFile path);
 
-  sys = config.self.system;
+  cfg = config.self.services.wpaperd;
 in
 {
   hm.services.wpaperd = {
-    enable = false; # sys.displayServer.wayland;
+    inherit (cfg) enable;
     package = pkgs.wpaperd.overrideAttrs {
       version = "${
         (fromTOML (sources.wpaperd + /daemon/Cargo.toml)).package.version

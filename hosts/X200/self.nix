@@ -33,6 +33,16 @@ in
 
     programs = {
       terminal.fontSize = 10;
+      windowManager.niri.extraConfig = /* kdl */ ''
+        spawn-at-startup "randwp"
+        binds {
+          Mod+Shift+W repeat=false hotkey-overlay-title="Set a random wallpaper" { spawn "randwp"; }
+        }
+      '';
+    };
+
+    services = {
+      wpaperd.enable = false;
     };
   };
 }
