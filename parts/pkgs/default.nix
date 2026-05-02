@@ -15,9 +15,10 @@ let
   colors = import (self + /modules/options/colors) { inherit lib; };
 
   acknowledgedUnfreePackages = [
+    "discord"
+    "nvidia-kernel-modules"
     "nvidia-x11"
     "ouch" # rar
-    "discord"
     "spotify"
     "steam"
     "steam-unwrapped"
