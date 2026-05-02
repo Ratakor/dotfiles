@@ -10,7 +10,7 @@ let
   inherit (lib.filesystem) packagesFromDirectoryRecursive;
   inherit (lib.strings) optionalString getName escapeShellArg;
   inherit (lib.lists) length zipListsWith;
-  inherit (lib.trivial) const warnIfNot;
+  inherit (lib.trivial) warnIfNot;
 
   colors = import (self + /modules/options/colors) { inherit lib; };
 
@@ -39,13 +39,6 @@ in
 
       packages =
         let
-          craneLib = pkgs.callPackage "${sources.crane}/lib" { };
-          diskoVersion =
-            let
-              versionInfo = import "${sources.disko}/version.nix";
-            in
-            versionInfo.version + (optionalString (!versionInfo.released) "-dirty");
-
           base = packagesFromDirectoryRecursive {
             callPackage = callPackageWith (pkgs // extraArgs);
             directory = ./packages;
@@ -55,10 +48,16 @@ in
             # age-encrypted secrets for NixOS
             agenix = pkgs.callPackage "${sources.agenix}/pkgs/agenix.nix" { };
             # Declarative disk partitioning and formatting using nix
-            disko = pkgs.callPackage "${sources.disko}/package.nix" { inherit diskoVersion; };
-            disko-install = fromSources.disko.overrideAttrs (const {
+            disko = pkgs.callPackage "${sources.disko}/package.nix" {
+              diskoVersion =
+                let
+                  versionInfo = import "${sources.disko}/version.nix";
+                in
+                versionInfo.version + (optionalString (!versionInfo.released) "-dirty");
+            };
+            disko-install = fromSources.disko.overrideAttrs {
               name = "disko-install";
-            });
+            };
             # Stupid simple utility for linting your flake inputs
             flint = pkgs.callPackage "${sources.flint}/nix/package.nix" { };
             # A scrollable-tiling Wayland compositior. Git version. Peak usage of flake btw.
@@ -69,8 +68,6 @@ in
             };
             # Source of sources
             npins = pkgs.callPackage "${sources.npins}/npins.nix" { };
-            # Wayland clipboard "manager"
-            stash = pkgs.callPackage "${sources.stash}/nix/package.nix" { inherit craneLib; };
             # Automatic CPU speed & power optimizer for Linux
             watt = pkgs.callPackage "${sources.watt}/nix/package.nix" { };
             # CLI tool to restore files from ZFS snapshots
