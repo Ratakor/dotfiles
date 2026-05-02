@@ -66,7 +66,7 @@ in
         interval = "monthly"; # default: monthly
       };
 
-      snapper = lib.mkIf cfg.autoSnapshot.enable {
+      snapper = {
         snapshotInterval = "*:0/15"; # every 15 minutes
         configs = builtins.mapAttrs (lib.const mkSnapperConfig) cfg.autoSnapshot.subvolumes;
       };
@@ -75,6 +75,6 @@ in
     # This is needed by snapper.
     systemd.tmpfiles.rules = lib.mapAttrsToList (
       name: value: "d ${lib.removeSuffix "/" value.SUBVOLUME}/.snapshots - root root - -"
-    ) config.services.snapper.configs; # do not use cfg.autoSnapshot.subvolumes
+    ) config.services.snapper.configs;
   };
 }

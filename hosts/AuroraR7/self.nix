@@ -38,7 +38,9 @@
       boot = {
         loader.systemd-boot.enable = true;
       };
-      fs.btrfs.autoSnapshot.enable = true;
+      fs.btrfs.autoSnapshot.subvolumes = {
+        home = "/home";
+      };
     };
 
     programs = {

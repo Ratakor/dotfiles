@@ -5,8 +5,10 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOption;
+  inherit (lib.options) mkOption;
   inherit (lib) types;
+
+  cfg = config.self.system.fs;
 in
 {
   options.self.system.fs = {
@@ -20,18 +22,19 @@ in
         description = "True if btrfs filesystem support is enabled.";
       };
       autoSnapshot = {
-        enable = mkEnableOption "auto-snapshotting service for btrfs";
         subvolumes = mkOption {
           type = types.attrsOf types.str;
-          default = {
-            # root = "/";
+          default = { };
+          example = {
+            root = "/";
             home = "/home";
-            # var = "/var";
+            var = "/var";
           };
           description = "List of btrfs mount points to periodically snapshot.";
         };
       };
     };
+
     zfs = {
       inherit (options.boot.zfs) enabled;
       # https://openzfs.github.io/openzfs-docs/Performance%20and%20Tuning/Module%20Parameters.html#zfs-arc-max
@@ -48,5 +51,17 @@ in
         '';
       };
     };
+  };
+
+  config = {
+    assertions = [
+      {
+        assertion =
+          cfg.btrfs.autoSnapshot.subvolumes
+          |> builtins.attrValues
+          |> builtins.all (path: config.fileSystems.${path}.fsType == "btrfs");
+        message = "All mount points in `self.system.fs.btrfs.autoSnapshot.subvolumes` must exist and be of \"btrfs\" fsType.";
+      }
+    ];
   };
 }
