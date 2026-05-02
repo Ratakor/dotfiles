@@ -1,28 +1,49 @@
+# Wallpaper Daemon
+# See `wpaperctl` to control the daemon.
+# btw super cool stuff, wpaperd creates symlinks in $XDG_STATE_HOME/wpaperd/wallpapers
+# that points to the current wallpaper used.
+#
+# I wish I could enable this and replace randwp but it's crashing on X200
 # The application panicked (crashed).
 # Message:  Failed to create vertices shader:
 #    0: 0:2(10): error: GLSL ES 3.10 is not supported. Supported versions are: 1.00 ES
-{ config, sources, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  sources,
+  ...
+}:
 let
-  inherit (sources) wallpapers;
+  fromTOML = path: builtins.fromTOML (builtins.readFile path);
 
-  cfg = config.self.programs;
+  sys = config.self.system;
 in
 {
   hm.services.wpaperd = {
-    # inherit (cfg.displayServer.wayland) enable;
-    enable = false;
-
-    settings = {
-      default = {
-        path = "${wallpapers}";
-        duration = "30m";
-        sorting = "random";
-        mode = "center";
-        # transition-time = 0; # default: 300
-        # queue-size = 4; # default: 10
-        # initial-transition = false; # default: true
-        recursive = true;
+    enable = false; # sys.displayServer.wayland;
+    package = pkgs.wpaperd.overrideAttrs {
+      version = "${
+        (fromTOML (sources.wpaperd + /daemon/Cargo.toml)).package.version
+      }-${lib.shortRev sources.wpaperd.revision}";
+      src = sources.wpaperd;
+      cargoDeps = pkgs.rustPlatform.importCargoLock {
+        lockFile = sources.wpaperd + /Cargo.lock;
       };
+    };
+    settings.default = {
+      path = config.self.wallpapers;
+      duration = "15m";
+      sorting = "random";
+      mode = "center";
+      transition-time = 400; # default: 300
+      queue-size = 5; # default: 10
+      initial-transition = true; # default: true
+      recursive = true; # default: true
+      # exec =
+
+      # colour-distance goes hard too
+      transition.glitch-memories = { };
     };
   };
 }
