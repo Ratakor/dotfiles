@@ -39,6 +39,9 @@ in
           Mod+Shift+W repeat=false hotkey-overlay-title="Set a random wallpaper" { spawn "randwp"; }
         }
       '';
+      default = {
+        terminal.name = "foot";
+      };
     };
 
     services = {

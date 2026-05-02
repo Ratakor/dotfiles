@@ -76,12 +76,12 @@ in
       # Even though it's technically fine to include unused package,
       # they should still be removed as it takes a while to generate
       # the corresponding mimeapps.list (~30s atm).
-      defaultApplicationPackages = [
+      defaultApplicationPackages = builtins.filter (pkg: pkg != null) [
         pkgs.discord
         pkgs.spotify
         pkgs.qbittorrent
         pkgs.thunderbird
-        config.hm.programs.anki.package
+        (if config.hm.programs.anki.enable then config.hm.programs.anki.package else null)
         # order below is important
         dprg.editor.package
         dprg.imageViewer.package

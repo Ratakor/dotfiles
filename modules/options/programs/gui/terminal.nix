@@ -5,8 +5,14 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions;
-  inherit (lib.types) enum str int;
+  inherit (lib.options) mkOption mkEnableOptions';
+  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.types)
+    nullOr
+    enum
+    str
+    int
+    ;
 
   opt = options.self.programs;
   cfg = config.self.programs;
@@ -14,7 +20,7 @@ let
 in
 {
   options.self.programs = {
-    terminal = mkEnableOptions opt.default.terminal.name // {
+    terminal = mkEnableOptions' opt.default.terminal.name // {
       fontSize = mkOption {
         type = int;
         default = 10;
@@ -24,18 +30,19 @@ in
 
     default.terminal = {
       name = mkOption {
-        type = enum [
+        type = nullOr (enum [
           "foot"
           "ghostty"
           "st"
-        ];
-        default = if sys.displayServer.wayland then "foot" else "ghostty";
+        ]);
+        default = if sys.displayServer.wayland || sys.displayServer.x11 then "ghostty" else null;
         description = "The default terminal emulator to use.";
       };
 
       cmd = mkOption {
         type = str;
         description = "The command to spawn a terminal emulator.";
+        # default = "dummy-terminal";
       };
 
       cmdDir = mkOption {
@@ -44,11 +51,12 @@ in
         # except that it doesn't take mkIf into account so it sucks
         # readOnly = true;
         description = "The command to spawn a terminal emulator in the directory given as argument.";
+        # default = "dummy-terminal";
       };
     };
   };
 
-  config.self.programs = {
-    terminal.${cfg.default.terminal.name}.enable = true;
+  config.self.programs = mkIf (cfg.default.terminal.name != null) {
+    terminal.${cfg.default.terminal.name}.enable = mkDefault true;
   };
 }

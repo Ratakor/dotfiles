@@ -5,23 +5,25 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkPackageOption mkEnableOptions;
-  inherit (lib.types) enum;
+  inherit (lib.options) mkOption mkPackageOption mkEnableOptions';
+  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.types) nullOr enum;
 
   opt = options.self.programs;
   cfg = config.self.programs;
+  sys = config.self.system;
 in
 {
   options.self.programs = {
-    imageViewer = mkEnableOptions opt.default.imageViewer.name;
+    imageViewer = mkEnableOptions' opt.default.imageViewer.name;
 
     default.imageViewer = {
       name = mkOption {
-        type = enum [
+        type = nullOr (enum [
           "imv"
           "nsxiv"
-        ];
-        default = "imv";
+        ]);
+        default = if sys.displayServer.wayland || sys.displayServer.x11 then "imv" else null;
         description = "The default image viewer to use.";
       };
 
@@ -29,7 +31,7 @@ in
     };
   };
 
-  config.self.programs = {
-    imageViewer.${cfg.default.imageViewer.name}.enable = true;
+  config.self.programs = mkIf (cfg.default.imageViewer.name != null) {
+    imageViewer.${cfg.default.imageViewer.name}.enable = mkDefault true;
   };
 }

@@ -9,7 +9,7 @@ in
     systemd.enable = prg.default.statusBar.name == "dms";
     enableVPN = false;
     enableSystemMonitoring = true;
-    enableDynamicTheming = false; # we use swaybg with randwp
+    enableDynamicTheming = false; # we use wpaperd or swaybg with randwp
     enableClipboardPaste = true;
     enableCalendarEvents = true;
     enableAudioWavelength = true;
