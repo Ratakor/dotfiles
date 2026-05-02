@@ -250,9 +250,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "29e0c21c30b6a53b8668a9698415991d4fb8aeff",
-      "url": "https://github.com/ratakor/wallpapers/archive/29e0c21c30b6a53b8668a9698415991d4fb8aeff.tar.gz",
-      "hash": "sha256-cAp1qoBSIvZ3Yi35QvSMP/cSPSOn1okESbQc5v2LKqA="
+      "revision": "5dda03c5b916e0f40b1757f490cd7496c1aefbab",
+      "url": "https://github.com/ratakor/wallpapers/archive/5dda03c5b916e0f40b1757f490cd7496c1aefbab.tar.gz",
+      "hash": "sha256-S3Csyd9+DrR7jjl923nwrJxSww018cGhBslcZ8aIryM="
     },
     "watt": {
       "type": "Git",

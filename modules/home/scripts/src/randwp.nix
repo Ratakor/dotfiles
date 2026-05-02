@@ -7,7 +7,6 @@
   config,
   lib,
   pkgs,
-  sources,
   ...
 }:
 let
@@ -34,7 +33,7 @@ pkgs.writeShellApplication {
 
     PIDFILE=''${XDG_RUNTIME_DIR:-/tmp}/randwp.pid
     LOGFILE=''${XDG_STATE_HOME:-$HOME/.local/state}/randwp.log
-    WPDIR=''${1:-${sources.wallpapers}}
+    WPDIR=''${1:-${config.self.wallpapers}}
     IGNORE=''${IGNORE-nsfw}
     ALL=$(find -L "$WPDIR" -type f ! -path '*/.*' ! -name 'README.md')
 
