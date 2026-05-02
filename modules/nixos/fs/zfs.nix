@@ -41,6 +41,12 @@ in
         # List of zpools to import at boot time.
         # Needed if not using legacy mountpoints.
         extraPools = mkDefault [ ];
+
+        # If NixOS fails to boot because it cannot import the root pool, you
+        # should boot with the zfs_force=1 option as a kernel parameter
+        # (e.g. by manually editing the kernel params via your bootloader).
+        # You should only need to do this after unclean shutdowns.
+        forceImportRoot = false;
       };
     };
 
