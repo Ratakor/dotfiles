@@ -44,6 +44,7 @@ let
       # xbanish # hides mouse pointer while not in use
       xdo # window manipulation
       xclicker # gui autoclicker
+      # oneko # cute cat that chases your mouse cursor
     ];
   };
 
@@ -75,17 +76,17 @@ let
     spotify
   ];
 
-  unsorted = with pkgs; [
+  tools = with pkgs; [
     graphviz # graph visualization tool
     dragon-drop # a simple drag-and-drop replacement for graphical stuff
     # scrcpy # display and control your Android device
-    # oneko # cute cat that chases your mouse cursor
   ];
 in
 [
   browsers
   apps
-  unsorted
+  tools
 ]
 ++ optionals sys.displayServer.wayland (attrValues wayland)
 ++ optionals sys.displayServer.x11 (attrValues x11)
+# |> optionals sys.video.enable

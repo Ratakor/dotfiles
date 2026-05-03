@@ -51,7 +51,7 @@ let
     pandoc # document converter
     # tinyxxd # hexdump utility, see `hexyl` too
     # teehee # modal terminal hex editor
-    neocities # neocities-zig # TODO: not packaged
+    # neocities # neocities-zig # TODO: not packaged
     # rustfmt # rust formatter
     zig-shell-completions
     moreutils # a lot of cool additional utils
@@ -100,6 +100,7 @@ let
     # cachix # CLI for the eponym binary cache hosting service
     agenix # Secrets management
     npins # Sources management
+    # nixpkgs-review # nixpkgs-review pr <PR number>; nixpkgs-review [approve|merge|post-result|comments]
   ];
 
   idkProbablyUsefulTho = with pkgs; [
