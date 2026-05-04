@@ -43,6 +43,10 @@
     nixfmt # Nix
     ocamlPackages.ocamlformat # OCaml
     ruff # Python
+    rustfmt # Rust
+
+    # Linters
+    # clippy # Rust
 
     # Toolchains (often needed by language servers)
     cargo # Rust

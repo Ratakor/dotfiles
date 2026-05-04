@@ -22,7 +22,7 @@ let
   );
 
   EDITOR = lib.getExe config.self.programs.default.editor.package;
-  ZDOTDIR = config.hm.programs.zsh.dotDir or "$HOME";
+  ZDOTDIR = config.hm.programs.zsh.dotDir or config.hm.home.homeDirectory;
   XDG_CONFIG_HOME = config.hm.xdg.configHome;
   XDG_DATA_HOME = config.hm.xdg.dataHome;
   XDG_CACHE_HOME = config.hm.xdg.cacheHome;
