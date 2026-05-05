@@ -18,8 +18,8 @@ getcwd() {
 getcwd || exit 1
 
 if [ "$#" -eq 0 ]; then
-	git commit -m "$scope: init"
+	git commit -s -m "$scope: init"
 	exit
 fi
 
-git commit -m "$scope: $*"
+git commit -s -m "$scope: $*"
