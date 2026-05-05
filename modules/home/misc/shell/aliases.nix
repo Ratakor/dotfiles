@@ -98,6 +98,9 @@ in
     prev = "musiccmd prev";
     stop = "musiccmd stop";
     vol = "musiccmd volume"; # put the volume you want in arg like vol 50
+
+    # type issue
+    giti = "gitui";
   };
 
   # Aliases incompatible with Nushell.
