@@ -31,8 +31,8 @@ in
 
     kernel = mkOption {
       type = raw;
-      default =
-        if config.boot.zfs.enabled then pkgs.linuxPackages_xanmod else pkgs.linuxPackages_xanmod_latest;
+      # see also pkgs.linuxPackages_xanmod
+      default = if config.boot.zfs.enabled then pkgs.linuxPackages else pkgs.linuxPackages_latest;
       description = "The kernel packages to use for the system.";
     };
 
