@@ -1,11 +1,11 @@
 let
   supportedFilesystems = [
-    # "btrfs"
+    "btrfs"
     "ext4"
     "ntfs"
     "vfat"
-    # "xfs"
-    # "zfs"
+    "xfs"
+    "zfs"
   ];
 in
 {
