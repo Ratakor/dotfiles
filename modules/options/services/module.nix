@@ -12,5 +12,6 @@ in
     wpaperd.enable = mkEnableOption "wpaperd" // {
       default = sys.displayServer.wayland;
     };
+    udiskie.enable = mkEnableOption "udiskie";
   };
 }

@@ -1,14 +1,22 @@
 # USB device manager (auto-mounting)
-{ config, ... }:
+{ config, lib, ... }:
+let
+  dprg = config.self.programs.default;
+  cfg = config.self.services.udiskie;
+in
 {
-  hm.services.udiskie = {
-    enable = false; # TODO: not configured yet
-    automount = true;
-    notify = true;
+  config = lib.mkIf cfg.enable {
+    services.udisks2.enable = true;
 
-    settings = {
-      program_options = {
-        terminal = config.self.terminal.cmdDir;
+    hm.services.udiskie = {
+      enable = true;
+      automount = true;
+      notify = true;
+      tray = "never"; # gmod style no icon
+      settings = {
+        program_options = {
+          terminal = dprg.terminal.cmdDir;
+        };
       };
     };
   };
