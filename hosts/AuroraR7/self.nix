@@ -39,7 +39,7 @@
         loader.systemd-boot.enable = true;
       };
       fs.btrfs.autoSnapshot.subvolumes = {
-        home = "/home";
+        # home = "/home";
       };
     };
 
