@@ -28,7 +28,7 @@ let
   cfg = config.self.system.fs.zfs;
 in
 {
-  config = mkIf cfg.enabled {
+  config = mkIf cfg.enable {
     boot = {
       kernelParams = [
         "zfs.zfs_arc_max=${toString cfg.arcMax}"

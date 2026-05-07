@@ -58,7 +58,7 @@ let
   cfg = config.self.system.fs.btrfs;
 in
 {
-  config = lib.mkIf cfg.enabled {
+  config = lib.mkIf cfg.enable {
     services = {
       btrfs.autoScrub = {
         enable = true;
