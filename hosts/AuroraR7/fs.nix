@@ -51,9 +51,12 @@
     # };
 
     "/storage" = {
-      device = "/dev/disk/by-uuid/b1bfaa92-e9ee-483e-96b1-aaf6c123af42";
-      fsType = "ext4";
-      # options = [ "relatime" ];
+      device = "/dev/disk/by-uuid/7646a9b2-9406-4ddb-ba96-062d93954acf";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd"
+        # "noatime"
+      ];
     };
   };
 }
