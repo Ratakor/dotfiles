@@ -64,7 +64,7 @@ let
     # gimp # third image editor
     # aseprite # pixel art editor
     # audacity # sound editor
-    # gajim # XMPP client (see python-axolotl & python-gnupg)
+    gajim # XMPP client
     # obs-studio # screen recording and streaming
     # libreoffice # office suite (there are many variant in nixpkgs)
     # blender # 3D modeling and animation
