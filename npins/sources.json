@@ -75,9 +75,10 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "0678d8986be1661af6bb555f3489f2fdfc31f6ff",
-      "url": "https://github.com/hercules-ci/flake-parts/archive/0678d8986be1661af6bb555f3489f2fdfc31f6ff.tar.gz",
-      "hash": "sha256-qIoWPDs+0/8JecyYgE3gpKQxW/4bLW/gp45vow9ioCQ="
+      "revision": "6956b5e817a19567ab2d3c3914301ea31eac05a8",
+      "url": "https://github.com/hercules-ci/flake-parts/archive/6956b5e817a19567ab2d3c3914301ea31eac05a8.tar.gz",
+      "hash": "sha256-2uZMHIPMH7g+fuasbyOsEIp4qdjnKXYuFQwuBO+XSw0=",
+      "frozen": true
     },
     "flint": {
       "type": "Git",
