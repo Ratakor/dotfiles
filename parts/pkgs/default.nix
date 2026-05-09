@@ -59,6 +59,8 @@ in
             disko-install = fromSources.disko.overrideAttrs {
               name = "disko-install";
             };
+            # Ergonomic Nix Helper
+            eh = pkgs.callPackage "${sources.eh}/nix/package.nix" { };
             # Stupid simple utility for linting your flake inputs
             flint = pkgs.callPackage "${sources.flint}/nix/package.nix" { };
             # A scrollable-tiling Wayland compositior. Git version. Peak usage of flake btw.
