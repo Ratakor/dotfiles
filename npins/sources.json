@@ -154,9 +154,10 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "8bfbfda749a24569bf8c56564f268d9e75f5994e",
-      "url": "https://github.com/feel-co/ndg/archive/8bfbfda749a24569bf8c56564f268d9e75f5994e.tar.gz",
-      "hash": "sha256-cbqH1zvwZge3s2TcpkI4IMDxTPBsh2gUPpVHAuYCsjw="
+      "revision": "4d5b08cc9811b6bc4142c20992e86a2e3a4c16b1",
+      "url": "https://github.com/feel-co/ndg/archive/4d5b08cc9811b6bc4142c20992e86a2e3a4c16b1.tar.gz",
+      "hash": "sha256-4vs+8a89/zMlEObqLLgsKvuMcSH4p/CryIyjRTcqZDs=",
+      "frozen": true
     },
     "niri": {
       "type": "Git",

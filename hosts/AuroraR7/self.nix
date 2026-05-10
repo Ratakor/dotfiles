@@ -1,5 +1,7 @@
 {
   self = {
+    docs.enable = true;
+
     device = {
       cpu.type = "intel";
       gpu.type = "nvidia";

@@ -37,6 +37,7 @@
       # Whether the generated NixOS's documentation should include
       # documentation for all the options from all the NixOS modules included
       # in the current `configuration.nix`.
+      # This means custom options will also be included.
       # Default: false
       includeAllModules = false;
     };
