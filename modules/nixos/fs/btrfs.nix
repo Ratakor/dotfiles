@@ -26,9 +26,9 @@ let
     # Whether the number cleanup algorithm should be run for the config.
     NUMBER_CLEANUP = true;
     # Minimal age for snapshots to be deleted by the number cleanup algorithm.
-    NUMBER_MIN_AGE = 3600; # default: 3600
+    NUMBER_MIN_AGE = 3600; # default: 3600 seconds
     # Defines how many snapshots the number cleanup algorithm should keep.
-    NUMBER_LIMIT = 25; # default: 50
+    NUMBER_LIMIT = 50; # default: 50, don't go higher or performances will decrease massively
     # Defines how many important snapshots the number cleanup algorithm should keep.
     NUMBER_LIMIT_IMPORTANT = 10; # default: 10
 
@@ -37,7 +37,7 @@ let
     # Whether the timeline cleanup algorithm should be run for the config.
     TIMELINE_CLEANUP = true;
     # Minimal age for snapshots to be deleted by the timeline cleanup algorithm.
-    TIMELINE_MIN_AGE = 3600; # default: 3600
+    TIMELINE_MIN_AGE = 3600; # default: 3600 seconds
     # Defines how many hourly snapshots the timeline cleanup algorithm should keep.
     TIMELINE_LIMIT_HOURLY = 24; # default: 10
     # Defines how many daily snapshots the timeline cleanup algorithm should keep.
@@ -52,7 +52,7 @@ let
     # Defines whether the empty-pre-post cleanup algorithm should be run for the config.
     EMPTY_PRE_POST_CLEANUP = true;
     # Minimal age for snapshots to be deleted by the empty-pre-post cleanup algorithm.
-    EMPTY_PRE_POST_MIN_AGE = 3600; # default: 3600
+    EMPTY_PRE_POST_MIN_AGE = 3600; # default: 3600 seconds
   };
 
   cfg = config.self.system.fs.btrfs;
@@ -67,7 +67,10 @@ in
       };
 
       snapper = {
+        snapshotRootOnBoot = false;
         snapshotInterval = "*:0/15"; # every 15 minutes
+        persistentTimer = false;
+        cleanupInterval = "1h";
         configs = builtins.mapAttrs (lib.const mkSnapperConfig) cfg.autoSnapshot.subvolumes;
       };
     };
