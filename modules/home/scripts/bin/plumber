@@ -95,6 +95,8 @@ openfile() {
 		$PIC "$1" ;;
 	*.pdf|*.ps|*.cbz|*.cbr|*.djvu|*.epub)
 		$DOC "$1" ;;
+	*.htm|*.html)
+		$WEB "$1" ;;
 	*)
 		$TEXT "$1" ;;
 	esac
