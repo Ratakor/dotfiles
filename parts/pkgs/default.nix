@@ -66,11 +66,11 @@ in
             # Not a Docs Generator
             ndg = pkgs.callPackage "${sources.ndg}/nix/packages/ndg/package.nix" { };
             # A scrollable-tiling Wayland compositior. Git version. Peak usage of flake btw.
-            niri-git = (lib.flakes.package sources.niri system { rust-overlay = { }; }).overrideAttrs {
-              # well flake-compat isn't perfect but I love it
-              version = lib.shortRev sources.niri.revision;
-              __intentionallyOverridingVersion = true;
-            };
+            # niri-git = (lib.flakes.package sources.niri system { rust-overlay = { }; }).overrideAttrs {
+            #   # well flake-compat isn't perfect but I love it
+            #   version = lib.shortRev sources.niri.revision;
+            #   __intentionallyOverridingVersion = true;
+            # };
             # Source of sources
             npins = pkgs.callPackage "${sources.npins}/npins.nix" { };
             # Automatic CPU speed & power optimizer for Linux
