@@ -18,7 +18,6 @@
     # Language servers
     bash-language-server # Bash
     clang-tools # C/C++
-    vscode-css-languageserver # CSS
     gopls # Go
     jdt-language-server # Java
     lua-language-server # Lua
@@ -35,6 +34,7 @@
     tinymist # Typst
     ty # Python
     typescript-language-server # JavaScript
+    vscode-css-languageserver # CSS
     vscode-json-languageserver # JSON
     yaml-language-server # YAML
     zls # Zig
@@ -47,6 +47,7 @@
 
     # Linters
     # clippy # Rust
+    # eslint # JavaScript
 
     # Toolchains (often needed by language servers)
     cargo # Rust
@@ -90,6 +91,7 @@ lib.mkWrapperFor "helix" {
       trim-final-newlines = true;
       trim-trailing-whitespace = true;
       end-of-line-diagnostics = "hint"; # error, warning, info, hint
+      # rainbow-brackets = true;
 
       # This is almost the same as default
       statusline = {
