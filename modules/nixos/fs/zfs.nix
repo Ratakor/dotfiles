@@ -20,7 +20,11 @@
 # See additional informations about SSDs on ZFS in the linked post.
 #
 # https://www.shpv.fr/blog/btrfs-vs-zfs-2026/
-# tldr: zfs > btrfs
+# - btrfs has slightly better performances unless
+#   - when using LUKS encryption
+#   - with ~70 snapshots then it decreases drastically
+# - zfs has more features (encryption (per dataset), dedup (bad), RAID-Z)
+# - zfs uses more ram
 { config, lib, ... }:
 let
   inherit (lib.modules) mkIf mkDefault;
