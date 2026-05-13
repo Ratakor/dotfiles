@@ -12,7 +12,10 @@ in
   options.self.device = {
     cpu = {
       type = mkOption {
-        type = types.enum [ "intel" ];
+        type = types.enum [
+          "amd"
+          "intel"
+        ];
         description = "The manufacturer of the primary system CPU.";
       };
     };
