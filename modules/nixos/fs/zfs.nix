@@ -25,6 +25,11 @@
 #   - with ~70 snapshots then it decreases drastically
 # - zfs has more features (encryption (per dataset), dedup (bad), RAID-Z)
 # - zfs uses more ram
+#
+# https://despairlabs.com/blog/posts/2024-10-27-openzfs-dedup-is-good-dont-use-it/
+# dedup sucks
+# zdb -D for dedup stats
+# zdb -S to simulate dedup
 { config, lib, ... }:
 let
   inherit (lib.modules) mkIf mkDefault;
