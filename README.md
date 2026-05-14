@@ -42,21 +42,20 @@
 
 ## Repo Structure
 
-- [`flake.nix`](flake.nix): Entry point using nix flakes.
+- [`flake`](flake): Individual parts of this flake.
+  - [`apps`](flake/apps): Custom applications to be run with `nix run`.
+  - [`lib`](flake/lib): Custom library of functions and utilities.
+  - [`pkgs`](flake/pkgs): Custom packages and wrapped configurations.
+  - [`templates`](flake/templates): Language specific templates for quickly initializing new projects.
+  - [`fmt.nix`](flake/fmt.nix): Formatting configuration for `nix fmt` via [treefmt-nix](https://github.com/numtide/treefmt-nix).
+  - [`keys.nix`](flake/keys.nix): My public SSH and PGP keys.
+  - [`pre-commit`](flake/pre-commit.nix): Pre-commit hooks via [git-hooks.nix](https://github.com/cachix/git-hooks.nix).
 - [`hosts`](hosts): Per-host configurations.
 - [`modules`](modules): Modularized configurations.
   - [`home`](modules/home): User configuration, this is probably what you want to look at.
   - [`nixos`](modules/nixos): System configuration shared across all hosts.
   - [`options`](modules/options): Modules options for customizing my nixos config.
   - [`profiles`](modules/profiles): Shared configurations between similar machines.
-- [`parts`](parts): Individual parts of this flake powered by [flake-parts](https://flake.parts/).
-  - [`apps`](parts/apps): Custom applications to be run with `nix run`.
-  - [`lib`](parts/lib): Custom library of functions and utilities.
-  - [`packages`](parts/packages): Custom packages and wrapped configurations.
-  - [`templates`](parts/templates): Language specific templates for quickly initializing new projects.
-  - [`fmt.nix`](parts/fmt.nix): Formatting configuration for `nix fmt`.
-  - [`keys.nix`](parts/keys.nix): My public SSH and PGP keys.
-  - [`pre-commit`](parts/pre-commit.nix): Pre-commit hooks via [git-hooks.nix](https://github.com/cachix/git-hooks.nix).
 - [`secrets`](secrets): Agenix secrets.
 
 ## Commit Convention
@@ -75,11 +74,11 @@
 - `nixos[/{scope}]`: Modification to `modules/nixos`.
 - `options[/{option-group}]`: Modification to `modules/options`.
 - `profiles[/{profile}]`: Modification to `modules/profiles`.
-- `apps[/{app}]`: Modification to `parts/apps`.
-- `lib`: Modification to `parts/lib`.
-- `packages[/{package}]`: Modification to `parts/pkgs`.
-- `wrappers[/{wrapper}]`: Modification to `parts/pkgs/wrappers`.
-- `templates[/{template}]`: Modification to `parts/templates`.
+- `apps[/{app}]`: Modification to `flake/apps`.
+- `lib`: Modification to `flake/lib`.
+- `packages[/{package}]`: Modification to `flake/pkgs`.
+- `wrappers[/{wrapper}]`: Modification to `flake/pkgs/wrappers`.
+- `templates[/{template}]`: Modification to `flake/templates`.
 
 ## Credits
 

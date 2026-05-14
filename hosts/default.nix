@@ -54,10 +54,11 @@ let
   # Even if we set _module.args it will be evalutaed too late and produce an infinite recursion.
   # https://github.com/NixOS/nixpkgs/blob/b12141ef619e0a9c1c84dc8c684040326f27cdcc/pkgs/top-level/all-packages.nix#L11967
   mkSystem =
-    pkgs: args:
+    system: args:
     import "${sources.nixpkgs}/nixos/lib/eval-config.nix" (
       {
-        inherit lib pkgs;
+        inherit lib;
+        pkgs = legacyPackages.${system};
         system = null; # set config.nixpkgs.hostPlatform instead.
       }
       // args
@@ -70,10 +71,7 @@ let
       profiles ? [ ],
       extraModules ? [ ],
     }:
-    let
-      pkgs = legacyPackages.${system};
-    in
-    mkSystem pkgs {
+    mkSystem system {
       modules = mkModules {
         inherit hostname system;
         extraModules = concatLists [

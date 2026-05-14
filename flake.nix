@@ -1,3 +1,1 @@
-{
-  outputs = inputs: import ./. inputs;
-}
+{ outputs = inputs: import ./. inputs; }
