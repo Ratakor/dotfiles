@@ -1,6 +1,6 @@
 {
   host ? "unknown-host",
-  system ? "x86_64-linux",
+  system ? builtins.currentSystem or "x86_64-linux",
 }@args:
 let
   self = import ../. { }; # builtins.getFlake (toString ../.);
