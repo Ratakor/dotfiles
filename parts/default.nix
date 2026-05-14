@@ -3,27 +3,27 @@
   self,
   sources,
   systems,
-}:
+}@args:
 let
-  pkgs = import ./pkgs { inherit lib self sources; };
+  pkgs = import ./pkgs args;
   apps = import ./apps;
   fmt = import ./fmt.nix { inherit self sources; };
   # preCommit = import ./pre-commit.nix { inherit lib self sources; };
 
-  withSystem = lib.genAttrs systems;
-  eachSystem = f: withSystem (system: f (pkgs.perSystem system).legacyPackages);
+  eachSystem = f: lib.genAttrs systems (system: f pkgs.legacyPackages.${system});
 in
 {
   # Overlays exposed by the flake.
-  overlays = pkgs.overlays;
+  inherit (pkgs) overlays;
 
   # Packages exposed to the flake via `packages.${system}.${pkgName}`.
-  packages = withSystem (system: (pkgs.perSystem system).packages);
+  # packages = withSystem (system: (pkgs.perSystem system).packages);
+  inherit (pkgs) packages;
 
   # Pinned nixpkgs packages, custom packages and wrappers exposed to the
   # flake and used by the whole flake.
   # Wrappers can be accessed via `leglegacyPackages.${system}.wrappers.${pkgName}`.
-  legacyPackages = eachSystem lib.id;
+  inherit (pkgs) legacyPackages;
 
   # Apps usable with `nix run`.
   apps = eachSystem apps;
