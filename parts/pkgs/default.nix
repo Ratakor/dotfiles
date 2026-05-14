@@ -36,7 +36,7 @@ in
       ...
     }:
     let
-      extraArgs = { inherit colors sources; };
+      extraArgs = { inherit colors sources self; };
 
       packages =
         let
