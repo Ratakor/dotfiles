@@ -184,6 +184,19 @@
       "url": "https://github.com/BirdeeHub/nix-wrapper-modules/archive/9212b9cf92eae881c35220f9f0041460c0d7437c.tar.gz",
       "hash": "sha256-NLvwFbhcly+XOR1uk+7hsdzQtyRLhDBb3D7EoE7Pn2g="
     },
+    "nixos-hardware": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NixOS",
+        "repo": "nixos-hardware"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "9bd7c80d43e258aaa607d83b43661df11444d808",
+      "url": "https://github.com/NixOS/nixos-hardware/archive/9bd7c80d43e258aaa607d83b43661df11444d808.tar.gz",
+      "hash": "sha256-xYGrSg6354UK2K4WSQd4+TfyvfqmvFbSY+ZtGQUXK0c="
+    },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
