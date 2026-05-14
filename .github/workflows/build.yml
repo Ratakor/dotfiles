@@ -3,7 +3,6 @@ name: Build uncached packages
 
 on:
   workflow_dispatch:
-  pull_request:
   push:
     branches:
       - nixos
@@ -11,6 +10,10 @@ on:
 permissions:
   contents: read
   id-token: write
+
+concurrency:
+  group: build
+  cancel-in-progress: true
 
 jobs:
   find-uncached:
