@@ -88,7 +88,7 @@ in
     # not needed with zoxide
     # dirHashes = {};
 
-    envExtra = ''
+    envExtra = /* zsh */ ''
       # disable system configuration
       setopt no_global_rcs
     '';
@@ -97,12 +97,12 @@ in
     # -u    Trust all directories from $fpath. (kinda unsafe)
     # -i    Silently ignore insecure directories from $fpath. (useful for distrobox)
     # -C    Skip all checks (compaudit) & use cache as is. (fast)
-    completionInit = ''
+    completionInit = /* zsh */ ''
       autoload -Uz compinit
       zmodload zsh/complist
 
       _comp_options+=(globdots) # Include hidden files.
-      zcompdump=${ZDOTDIR}/.zcompdump-"$ZSH_VERSION"-"$(date --iso-8601=date)"
+      zcompdump="${ZDOTDIR}"/.zcompdump-"$ZSH_VERSION"-"$(date --iso-8601=date)"
       compinit -i -C -d "$zcompdump"
 
       # Recompile zcompdump if it exists and is newer than zcompdump.zwc
@@ -129,13 +129,13 @@ in
           (mkOrder 2000 "zprof")
         ];
 
-        basicSettings = mkBefore ''
+        basicSettings = mkBefore /* zsh */ ''
           autoload -U colors && colors # Load colors
           stty stop undef # Disable ctrl-s to freeze terminal.
           KEYTIMEOUT=1 # with vi / helix mode: make switching modes faster
         '';
 
-        promptGitIntegration = mkBefore ''
+        promptGitIntegration = mkBefore /* zsh */ ''
           autoload -Uz vcs_info
           precmd_functions+=( vcs_info )
           setopt PROMPT_SUBST
@@ -146,7 +146,7 @@ in
           zstyle ':vcs_info:*' enable git
         '';
 
-        prompt = ''
+        prompt = /* zsh */ ''
           timer=$(print -P %D{%s%3.})
           function preexec() {
               timer=$(print -P %D{%s%3.})
@@ -180,7 +180,7 @@ in
 
         # none of this code is stupid,
         # it was actually decently hard to make it work properly
-        calc = mkAfter ''
+        calc = mkAfter /* zsh */ ''
           _calc_accept_line() {
             if [[ $BUFFER =~ '^[ (]*[+-]? *(0[xX]|.)?[[:digit:]]+[^[:alnum:]]' ]]; then
               zle -I
@@ -202,14 +202,14 @@ in
         # We could use system's comma instead of pkgs.comma because of
         # nix-index-database but it should be alright since we got symlink to
         # cache home.
-        commandNotFound = mkAfter ''
+        commandNotFound = mkAfter /* zsh */ ''
           command_not_found_handler() {
             ${getExe pkgs.comma} "$@"
           }
         '';
 
-        funnyStuffIMeanKindaLikeYeaIdkManItUsedToBeCalledFunnyStuffBefore = mkAfter ''
-          source ${config.age.secrets.aliases.path}
+        funnyStuffIMeanKindaLikeYeaIdkManItUsedToBeCalledFunnyStuffBefore = mkAfter /* zsh */ ''
+          [ -f "${config.age.secrets.aliases.path}" ] && source "${config.age.secrets.aliases.path}"
 
           quand
           #ls
