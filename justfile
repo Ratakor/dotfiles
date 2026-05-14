@@ -52,7 +52,7 @@ evaltime host="$(hostname)":
 # Open a nix shell with custom variables
 [group('nix')]
 repl host="$(hostname)":
-    @nix repl --file parts/repl.nix --argstr host {{host}}
+    @nix repl --file flake/repl.nix --argstr host {{host}}
 
 # Format all files
 [group('nix')]

@@ -1,5 +1,5 @@
 let
-  keys = import ../parts/keys.nix;
+  keys = import ../flake/keys.nix;
   inherit (keys) all;
 in
 {

@@ -1,13 +1,13 @@
 {
   systems ? [ builtins.currentSystem or "x86_64-linux" ],
   sources ? import ./npins,
-  lib ? import ./parts/lib sources,
+  lib ? import ./flake/lib sources,
   ...
 }@args:
 let
   self = args.self or ({ outPath = ./.; } // outputs);
 
-  parts = import ./parts {
+  flake = import ./flake {
     inherit
       lib
       self
@@ -18,10 +18,10 @@ let
 
   hosts = import ./hosts {
     inherit lib self sources;
-    inherit (parts) legacyPackages;
+    inherit (flake) legacyPackages;
   };
 
-  outputs = parts // {
+  outputs = flake // {
     nixosConfigurations = hosts;
   };
 in

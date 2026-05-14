@@ -7,7 +7,7 @@
 {
   nix = {
     # Nix package is already set in a nixpkgs overlay.
-    # Look at parts/pkgs/default.nix for the whole nixpkgs config.
+    # Look at flake/pkgs/pkgs.nix for the whole nixpkgs config.
     # package = pkgs.lixPackageSets.latest.lix;
     # package = pkgs.nixVersions.latest;
 
