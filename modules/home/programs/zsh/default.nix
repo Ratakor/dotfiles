@@ -14,6 +14,8 @@ let
     mkOrder
     mkMerge
     ;
+
+  ZDOTDIR = config.hm.programs.zsh.dotDir;
 in
 {
   imports = [
@@ -91,12 +93,33 @@ in
       setopt no_global_rcs
     '';
 
-    # TODO: improve that, it's a massive slowdown & it could be more ergonomic
+    # compinit flags:
+    # -u    Trust all directories from $fpath. (kinda unsafe)
+    # -i    Silently ignore insecure directories from $fpath. (useful for distrobox)
+    # -C    Skip all checks (compaudit) & use cache as is. (fast)
     completionInit = ''
-      autoload -U compinit
-      zstyle ':completion:*' menu select
-      compinit
+      autoload -Uz compinit
+      zmodload zsh/complist
+
       _comp_options+=(globdots) # Include hidden files.
+      zcompdump=${ZDOTDIR}/.zcompdump-"$ZSH_VERSION"-"$(date --iso-8601=date)"
+      compinit -i -C -d "$zcompdump"
+
+      # Recompile zcompdump if it exists and is newer than zcompdump.zwc
+      # compdumps are marked with the current date in yyyy-mm-dd format
+      # which means this is likely to recompile daily
+      # which is probably overkill but at least this runs in background
+      # https://htr3n.github.io/2018/07/faster-zsh/
+      if [[ -s "$zcompdump" && (! -s "$zcompdump".zwc || "$zcompdump" -nt "$zcompdump".zwc) ]]; then
+        zcompile "$zcompdump" &!
+      fi
+
+      # Load bash completion functions
+      # autoload -U +X bashcompinit && bashcompinit
+
+      # Completion configuration
+      # idk if still useful since we use fzf-tab plugin
+      zstyle ':completion:*' menu select
     '';
 
     initContent =
