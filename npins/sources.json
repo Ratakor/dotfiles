@@ -79,20 +79,6 @@
       "url": "https://github.com/ratakor/flake-compat/archive/d187bee2a53453ea72417e9b638544382b3fb029.tar.gz",
       "hash": "sha256-uY3gWlQLehaRFW399OMqyvGECOUbHK0EpFPoQU4LPmc="
     },
-    "flake-parts": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "hercules-ci",
-        "repo": "flake-parts"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "6956b5e817a19567ab2d3c3914301ea31eac05a8",
-      "url": "https://github.com/hercules-ci/flake-parts/archive/6956b5e817a19567ab2d3c3914301ea31eac05a8.tar.gz",
-      "hash": "sha256-2uZMHIPMH7g+fuasbyOsEIp4qdjnKXYuFQwuBO+XSw0=",
-      "frozen": true
-    },
     "flint": {
       "type": "Git",
       "repository": {

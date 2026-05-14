@@ -65,10 +65,8 @@ let
 
   i3lockAliases = mkAliases editors "i3lock";
   xrandrAliases = mkFuncAliases commonCmds xrandrFnName;
-in
-pkgs.writeShellApplication {
-  name = "confloose";
-  text = ''
+
+  script = pkgs.writeShellScript "confloose" ''
     cat << EOF
     # begin
     bind -u complete
@@ -79,4 +77,5 @@ pkgs.writeShellApplication {
     # end
     EOF
   '';
-}
+in
+script.outPath

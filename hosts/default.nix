@@ -2,8 +2,7 @@
   lib,
   self,
   sources,
-  withSystem,
-  ...
+  legacyPackages,
 }:
 let
   inherit (builtins) concatLists concatMap pathExists;
@@ -71,43 +70,42 @@ let
       profiles ? [ ],
       extraModules ? [ ],
     }:
-    withSystem system (
-      { pkgs, ... }:
-      mkSystem pkgs {
-        modules = mkModules {
-          inherit hostname system;
-          extraModules = concatLists [
-            extraModules
-            profiles
-            [
-              nixos
-              options
-            ]
-          ];
-        };
-        specialArgs = {
-          inherit self sources;
-          inherit (self) keys;
-        };
-      }
-    );
+    let
+      pkgs = legacyPackages.${system};
+    in
+    mkSystem pkgs {
+      modules = mkModules {
+        inherit hostname system;
+        extraModules = concatLists [
+          extraModules
+          profiles
+          [
+            nixos
+            options
+          ]
+        ];
+      };
+      specialArgs = {
+        inherit self sources;
+        inherit (self) keys;
+      };
+    };
 in
 {
-  flake.nixosConfigurations = {
-    X200 = mkNixosSystem {
-      hostname = "X200";
-      profiles = [
-        workstation
-        laptop
-      ];
-      extraModules = [ home ];
-    };
-    AuroraR7 = mkNixosSystem {
-      hostname = "AuroraR7";
-      profiles = [
-        workstation
-      ];
-      extraModules = [ home ];
-    };
+  X200 = mkNixosSystem {
+    hostname = "X200";
+    profiles = [
+      workstation
+      laptop
+    ];
+    extraModules = [ home ];
+  };
+
+  AuroraR7 = mkNixosSystem {
+    hostname = "AuroraR7";
+    profiles = [
+      workstation
+    ];
+    extraModules = [ home ];
   };
 }

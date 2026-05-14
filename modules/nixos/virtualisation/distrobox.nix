@@ -22,6 +22,7 @@ let
       "/nix/store"
       "/etc/profiles/per-user"
       "/etc/static/profiles/per-user"
+      # "/etc/static"
       "/run/current-system"
     ]
     |> map (path: "${path}:${path}:ro")

@@ -35,10 +35,6 @@ sources:
       ;
     inherit (self.types) enumValues unwrapNullOr;
 
-    # Flake Parts
-    flake-parts = import "${sources.flake-parts}/lib.nix" { inherit lib; };
-    inherit (self.flake-parts) mkFlake;
-
     # wlib
     wrappers = import "${sources.nix-wrapper-modules}/lib" { inherit lib; };
     mkWrapper = self.wrappers.evalPackage; # should we include self.wrappers.modules.default?

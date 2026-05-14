@@ -7,18 +7,22 @@
 let
   self = args.self or ({ outPath = ./.; } // outputs);
 
-  outputs =
-    lib.mkFlake
-      {
-        inputs = { inherit self; };
-        specialArgs = { inherit sources; };
-      }
-      {
-        inherit systems;
-        imports = [
-          ./parts
-          ./hosts
-        ];
-      };
+  parts = import ./parts {
+    inherit
+      lib
+      self
+      sources
+      systems
+      ;
+  };
+
+  hosts = import ./hosts {
+    inherit lib self sources;
+    inherit (parts) legacyPackages;
+  };
+
+  outputs = parts // {
+    nixosConfigurations = hosts;
+  };
 in
-if args ? self then outputs else self
+outputs

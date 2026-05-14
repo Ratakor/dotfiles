@@ -2,14 +2,13 @@
   lib,
   self,
   sources,
-  ...
 }:
 let
   inherit (builtins) elem concatStringsSep;
   inherit (lib.customisation) callPackageWith;
   inherit (lib.filesystem) packagesFromDirectoryRecursive;
-  inherit (lib.strings) optionalString getName escapeShellArg;
   inherit (lib.lists) length zipListsWith;
+  inherit (lib.strings) optionalString getName escapeShellArg;
   inherit (lib.trivial) warnIfNot;
 
   colors = import (self + /modules/options/colors) { inherit lib; };
@@ -23,18 +22,9 @@ let
     "steam"
     "steam-unwrapped"
   ];
-in
-{
-  imports = [ "${sources.flake-parts}/extras/easyOverlay.nix" ];
 
-  perSystem =
-    {
-      system,
-      config,
-      pkgs, # should be nixpkgs without overlays
-      final, # should be nixpkgs with all overlays
-      ...
-    }:
+  overlay =
+    final: pkgs:
     let
       extraArgs = { inherit colors sources self; };
 
@@ -66,7 +56,7 @@ in
             # Not a Docs Generator
             ndg = pkgs.callPackage "${sources.ndg}/nix/packages/ndg/package.nix" { };
             # A scrollable-tiling Wayland compositior. Git version. Peak usage of flake btw.
-            # niri-git = (lib.flakes.package sources.niri system { rust-overlay = { }; }).overrideAttrs {
+            # niri-git = (lib.flakes.package sources.niri pkgs.system { rust-overlay = { }; }).overrideAttrs {
             #   # well flake-compat isn't perfect but I love it
             #   version = lib.shortRev sources.niri.revision;
             #   __intentionallyOverridingVersion = true;
@@ -90,19 +80,14 @@ in
         directory = ./wrappers;
       };
     in
-    {
-      # Add all packages to the default overlay which can be consumed as follows:
-      # `nixpkgs.overlays = [inputs.FLAKE_NAME.overlays.default];`
-      overlayAttrs = packages // {
-        inherit wrappers;
-      };
+    packages // { inherit wrappers; };
+in
+{
+  overlays.default = overlay;
 
-      # Packages exposed to the flake via `packages.${system}.${pkgName}`.
-      inherit packages;
-
-      # Pinned nixpkgs packages, custom packages and wrappers exposed to the
-      # flake and used by the whole flake.
-      # Wrappers can be accessed via `legacylegacyPackages.${system}.wrappers.${pkgName}`.
+  perSystem =
+    system:
+    let
       legacyPackages = import sources.nixpkgs {
         inherit system;
 
@@ -152,9 +137,7 @@ in
         };
 
         overlays = [
-          # This is overall a bad idea to dogfood flake-parts' easy overlay
-          # but it's fine dw. Do a proper overlay instead of better control.
-          self.overlays.default
+          overlay
 
           # Replace nixpkgs' pristine lib with our filthy one
           (final: prev: { inherit lib; })
@@ -205,8 +188,9 @@ in
           })
         ];
       };
-
-      # Override flake-parts' perSystem pkgs
-      _module.args.pkgs = config.legacyPackages;
+    in
+    {
+      inherit legacyPackages;
+      packages = removeAttrs (overlay legacyPackages legacyPackages) [ "wrappers" ];
     };
 }
