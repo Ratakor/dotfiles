@@ -1,11 +1,11 @@
 {
-  lib,
   self,
   sources,
   systems,
 }@args:
 let
-  pkgs = import ./pkgs args;
+  lib = import ./lib sources;
+  pkgs = import ./pkgs (args // { inherit lib; });
   apps = import ./apps;
   fmt = import ./fmt.nix { inherit self sources; };
   # preCommit = import ./pre-commit.nix { inherit lib self sources; };
@@ -40,8 +40,11 @@ in
   # Templates for `nix flake init -t FLAKE#TEMPLATE`.
   templates = import ./templates;
 
+  # Nixpkgs library with additional custom functions used by this falke.
+  inherit lib;
+
   # Expose useful stuff to the flake outputs.
   # That also means that they can be referenced using `self`.
-  inherit lib sources;
+  inherit sources;
   keys = import ./keys.nix;
 }
