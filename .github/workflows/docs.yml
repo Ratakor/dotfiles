@@ -1,0 +1,54 @@
+name: docs
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - nixos
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/configure-pages@v5
+
+      - name: "Set up Nix"
+        uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes pipe-operators
+
+      - name: "Set up Cachix"
+        uses: cachix/cachix-action@v17
+        with:
+          name: ratakor
+
+      - name: "Build docs"
+        run: nix build .#docs
+
+      - uses: actions/upload-pages-artifact@v4
+        id: deployment
+        with:
+          path: result
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
