@@ -41,7 +41,7 @@ in
       packages =
         let
           base = packagesFromDirectoryRecursive {
-            callPackage = callPackageWith (pkgs // extraArgs);
+            callPackage = callPackageWith (final // extraArgs);
             directory = ./packages;
           };
 
