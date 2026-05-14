@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions';
+  inherit (lib.options) mkOption mkEnableOptions' literalMD;
   inherit (lib.modules) mkIf mkDefault;
   inherit (lib.types) nullOr enum;
 
@@ -32,7 +32,13 @@ in
             "sb"
           else
             null;
-        description = "The default status bar to use.";
+        defaultText = literalMD ''
+          `"dms"` if using Wayland, `"sb"` if using X11, `null` otherwise
+        '';
+        description = ''
+          The default status bar to use.
+          This will automatically enable the corresponding program.
+        '';
       };
     };
   };

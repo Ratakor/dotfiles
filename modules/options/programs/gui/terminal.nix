@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions';
+  inherit (lib.options) mkOption mkEnableOptions' literalMD;
   inherit (lib.modules) mkIf mkDefault;
   inherit (lib.types)
     nullOr
@@ -36,13 +36,20 @@ in
           "st"
         ]);
         default = if sys.displayServer.wayland || sys.displayServer.x11 then "ghostty" else null;
-        description = "The default terminal emulator to use.";
+        defaultText = literalMD ''
+          `"ghostty"` if using Wayland or X11, `null` otherwise
+        '';
+        description = ''
+          The default terminal emulator to use.
+          This will automatically enable the corresponding program.
+        '';
       };
 
       cmd = mkOption {
         type = str;
         description = "The command to spawn a terminal emulator.";
         # default = "dummy-terminal";
+        internal = true;
       };
 
       cmdDir = mkOption {
@@ -52,6 +59,7 @@ in
         # readOnly = true;
         description = "The command to spawn a terminal emulator in the directory given as argument.";
         # default = "dummy-terminal";
+        internal = true;
       };
     };
   };

@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions';
+  inherit (lib.options) mkOption mkEnableOptions' literalMD;
   inherit (lib.modules) mkIf mkDefault;
   inherit (lib.types) nullOr enum str;
 
@@ -32,13 +32,20 @@ in
             "slock"
           else
             null;
-        description = "The default screen locker to use.";
+        defaultText = literalMD ''
+          `"dms"` if using Wayland, `"slock"` if using X11, `null` otherwise
+        '';
+        description = ''
+          The default screen locker to use.
+          This will automatically enable the corresponding program.
+        '';
       };
 
       cmd = mkOption {
         type = str;
         description = "The command to spawn the screen locker.";
         # default = "dummy-locker";
+        internal = true;
       };
     };
   };

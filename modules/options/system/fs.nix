@@ -9,6 +9,7 @@ let
     mkOption {
       type = types.bool;
       default = any (v: v.fsType == fs) (attrValues config.fileSystems);
+      defaultText = lib.literalMD "`true` if a `${fs}` filesystem is found";
       description = "Whether to enable ${fs} services and specific configurations.";
     };
 

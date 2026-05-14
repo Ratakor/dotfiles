@@ -73,6 +73,7 @@ in
             isVertical = mkOption {
               type = types.bool;
               default = (lib.mod config.transform 2) == 1;
+              defaultText = lib.literalExpression "(lib.mod config.transform 2) == 1";
               description = "Whether the monitor is vertical.";
               readOnly = true;
             };

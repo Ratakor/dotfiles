@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions';
+  inherit (lib.options) mkOption mkEnableOptions' literalMD;
   inherit (lib.modules) mkIf mkDefault;
   inherit (lib.types) nullOr enum str;
   inherit (lib.attrsets) recursiveUpdate;
@@ -45,13 +45,20 @@ in
             "dwm"
           else
             null;
-        description = "The default window manager to use.";
+        defaultText = literalMD ''
+          `"niri"` if using Wayland, `"dwm"` if using X11, `null` otherwise
+        '';
+        description = ''
+          The default window manager to use.
+          This will automatically enable the corresponding program.
+        '';
       };
 
       cmd = mkOption {
         type = str;
         description = "The command to spawn a new window manager session from TTY.";
         # default = "dummy-window-manager"; # probably a bad idea
+        internal = true;
       };
     };
   };

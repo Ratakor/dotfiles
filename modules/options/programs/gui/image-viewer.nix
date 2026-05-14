@@ -5,7 +5,12 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkPackageOption mkEnableOptions';
+  inherit (lib.options)
+    mkOption
+    mkPackageOption
+    mkEnableOptions'
+    literalMD
+    ;
   inherit (lib.modules) mkIf mkDefault;
   inherit (lib.types) nullOr enum;
 
@@ -24,10 +29,18 @@ in
           "nsxiv"
         ]);
         default = if sys.displayServer.wayland || sys.displayServer.x11 then "imv" else null;
-        description = "The default image viewer to use.";
+        defaultText = literalMD ''
+          `"imv"` if using Wayland or X11, `null` otherwise
+        '';
+        description = ''
+          The default image viewer to use.
+          This will automatically enable the corresponding program.
+        '';
       };
 
-      package = mkPackageOption { } "default image viewer" { default = null; };
+      package = (mkPackageOption { } "default image viewer" { default = null; }) // {
+        internal = true;
+      };
     };
   };
 

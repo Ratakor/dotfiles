@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions';
+  inherit (lib.options) mkOption mkEnableOptions' literalMD;
   inherit (lib.modules) mkIf mkDefault;
   inherit (lib.types) nullOr enum str;
 
@@ -33,25 +33,34 @@ in
             "dmenu"
           else
             null;
-        description = "The default launcher to use.";
+        defaultText = literalMD ''
+          `"fuzzel"` if using Wayland, `"dmenu"` if using X11, `null` otherwise
+        '';
+        description = ''
+          The default launcher to use.
+          This will automatically enable the corresponding program.
+        '';
       };
 
       dmenu = mkOption {
         type = str;
         description = "The command to spawn a dynamic menu like dmenu.";
         # default = "dummy-launcher";
+        internal = true;
       };
 
       drun = mkOption {
         type = str;
         description = "The command to spawn a dynamic menu used to launch applications from desktop files.";
         # default = "dummy-launcher";
+        internal = true;
       };
 
       run = mkOption {
         type = str;
         description = "The command to spawn a dynamic menu used to launch applications from $PATH.";
         # default = "dummy-launcher";
+        internal = true;
       };
     };
   };

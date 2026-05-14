@@ -17,6 +17,7 @@ in
       default = pkgs.callPackage "${sources.wallpapers}/package.nix" {
         version = lib.shortRev sources.wallpapers.revision;
       };
+      defaultText = sources.wallpapers.url;
       description = "Directory with all available wallpapers.";
     };
   };

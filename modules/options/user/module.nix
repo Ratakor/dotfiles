@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (lib.options) mkOption;
+  inherit (lib.options) mkOption literalExpression;
   inherit (lib.types) str strMatching;
   inherit (lib.trivial) capitalize;
 
@@ -18,12 +18,14 @@ in
       type = str;
       description = "Full name of the main user.";
       default = capitalize cfg.name;
+      defaultText = literalExpression "capitalize user.name";
     };
 
     email = mkOption {
       type = strMatching ".*@.*";
       description = "Email address of the main user.";
       default = "${cfg.name}@disroot.org";
+      defaultText = literalExpression "\${user.name}@disroot.org";
     };
   };
 }

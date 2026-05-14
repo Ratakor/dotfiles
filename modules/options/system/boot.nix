@@ -33,6 +33,7 @@ in
       type = raw;
       # see also pkgs.linuxPackages_xanmod
       default = if config.boot.zfs.enabled then pkgs.linuxPackages else pkgs.linuxPackages_latest;
+      defaultText = lib.literalMD "`pkgs.linuxPackages` if ZFS is enabled, `pkgs.linuxPackages_latest` otherwise";
       description = "The kernel packages to use for the system.";
     };
 

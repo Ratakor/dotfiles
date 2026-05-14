@@ -22,10 +22,15 @@ in
           "neovim"
         ];
         default = "helix";
-        description = "The default editor to use.";
+        description = ''
+          The default editor to use.
+          This will automatically enable the corresponding program.
+        '';
       };
 
-      package = mkPackageOption { } "default editor" { default = null; };
+      package = (mkPackageOption { } "default editor" { default = null; }) // {
+        internal = true;
+      };
     };
   };
 

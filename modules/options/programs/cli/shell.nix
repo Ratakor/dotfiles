@@ -25,7 +25,10 @@ in
           "nushell"
         ];
         default = "zsh";
-        description = "The default shell to use.";
+        description = ''
+          The default shell to use.
+          This will automatically enable the corresponding program.
+        '';
       };
     };
   };
@@ -34,7 +37,7 @@ in
     self.programs.shell.${cfg.default.shell.name}.enable = true;
 
     # Shells must be installed system-wide or it may
-    # cause issue when switching back-and-forth.
+    # cause issue when switching default back-and-forth.
     environment.systemPackages =
       opt.default.shell.name
       |> enumOptionValues

@@ -30,24 +30,28 @@ in
       default = import ./themes/${cfg.theme}-dark.nix;
       description = "Dark variant of the chosen colorscheme.";
       readOnly = true;
+      internal = true;
     };
 
     light = mkOption {
       default = import ./themes/${cfg.theme}-light.nix;
       description = "Light variant of the chosen colorscheme.";
       readOnly = true;
+      internal = true;
     };
 
     default = mkOption {
       default = cfg.${cfg.variant};
       description = "Variant of the chosen colorscheme based on the chosen default variant.";
       readOnly = true;
+      internal = true;
     };
 
     alternative = mkOption {
       default = cfg.${if cfg.variant == "dark" then "light" else "dark"};
       description = "Alternative variant of the chosen colorscheme based on the chosen default variant.";
       readOnly = true;
+      internal = true;
     };
   };
 }
