@@ -36,6 +36,7 @@
       virt = {
         podman.enable = true;
         qemu.enable = true;
+        distrobox.enable = true;
       };
       boot = {
         loader.systemd-boot.enable = true;

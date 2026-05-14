@@ -60,6 +60,7 @@ let
     gawk # GNU implementation of the Awk programming language
     gnugrep # GNU implementation of the Unix grep command
     gnused # GNU sed, a batch stream editor
+    pkg-config # Tool that allows packages to find out information about other packages
   ];
 
   fs = with pkgs; [
@@ -105,7 +106,6 @@ let
 
   idkProbablyUsefulTho = with pkgs; [
     pkgconf # Package compiler and linker metadata toolkit
-    pkg-config # Tool that allows packages to find out information about other packages
     binutils # Tools for manipulating binaries (linker, assembler, etc.)
     groff # Luke Smith propaganda
     gnupatch # A program to apply differences to files
