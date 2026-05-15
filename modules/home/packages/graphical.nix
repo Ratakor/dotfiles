@@ -48,7 +48,7 @@ let
     ];
   };
 
-  # better to configure these with hm.programs, alse I use chromium btw
+  # better to configure these with hm.programs, also I use chromium btw
   browsers = with pkgs; [
     # firefox # check out celenityy/phoenix
     # nyxt # browser for lisp people

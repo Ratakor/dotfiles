@@ -17,7 +17,7 @@
 # https://forums.ghostbsd.org/d/406-is-zfs-reliable-on-ssds
 # Make sure to create a reserved partition with 10-20% of the total disk capacity
 # to preserve performance and maintain effective wear leveling.
-# See additional informations about SSDs on ZFS in the linked post.
+# See additional information about SSDs on ZFS in the linked post.
 #
 # https://www.shpv.fr/blog/btrfs-vs-zfs-2026/
 # - btrfs has slightly better performances unless

@@ -29,7 +29,7 @@
         };
       };
       plugins = [
-        # TODO: All of belows are available in nixpkgs
+        # TODO: All of below are available in nixpkgs
         # https://github.com/FMotalleb/nu_plugin_desktop_notifications
         # https://github.com/JosephTLyons/nu_plugin_units
         # https://github.com/idanarye/nu_plugin_skim

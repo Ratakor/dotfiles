@@ -32,7 +32,7 @@ in
         inherit (config.self.colors.default.ghostty) theme;
         shell-integration-features = "no-cursor";
         window-inherit-working-directory = false;
-        # this is suposed to fix memory issues but I think it's enblaed by
+        # this is supposed to fix memory issues but I think it's enblaed by
         # default on linux anyway and it doesn't seem to work well too
         gtk-single-instance = true;
       };

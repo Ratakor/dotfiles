@@ -51,7 +51,7 @@ let
     ];
 
   # pkgs.nixos doesn't allow to pass specialArgs :(
-  # Even if we set _module.args it will be evalutaed too late and produce an infinite recursion.
+  # Even if we set _module.args it will be evaluated too late and produce an infinite recursion.
   # https://github.com/NixOS/nixpkgs/blob/b12141ef619e0a9c1c84dc8c684040326f27cdcc/pkgs/top-level/all-packages.nix#L11967
   mkSystem =
     system: args:

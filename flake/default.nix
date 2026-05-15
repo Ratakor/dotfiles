@@ -37,7 +37,7 @@ in
   # Templates for `nix flake init -t FLAKE#TEMPLATE`.
   templates = import ./templates;
 
-  # Nixpkgs library with additional custom functions used by this falke.
+  # Nixpkgs library with additional custom functions used by this flake.
   inherit lib;
 
   # Expose useful stuff to the flake outputs.
