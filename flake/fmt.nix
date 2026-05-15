@@ -1,6 +1,9 @@
 { self, sources }:
 pkgs:
 let
+  toml = pkgs.formats.toml { };
+  toTOML = name: value: toString (toml.generate name value);
+
   treefmt = (import sources.treefmt-nix).evalModule pkgs {
     projectRootFile = "flake.nix";
     enableDefaultExcludes = true;
@@ -80,19 +83,30 @@ let
       };
 
       # english
-      # TODO: too much false positive and I cba config
-      # use in pre-commit / CI instead?
-      # same for statix/deadnix
       typos = {
-        enable = false;
-        # configFile = toml.generate "typos-config.toml" { };
-        # locale = null;
-        # includes = [ "*.nix" ];
-        excludes = [
-          "**/emoji"
-          # "*.lua"
-          # "*.zig"
-        ];
+        enable = true;
+        # https://github.com/crate-ci/typos/blob/master/docs/reference.md
+        configFile = toTOML "typos-config.toml" {
+          files = {
+            extend-exclude = [
+              "flake/pkgs/wrappers/neovim"
+              "*.age"
+            ];
+            ignore-hidden = false; # .github
+          };
+          default = {
+            extend-identifiers = {
+              Claus = "Claus"; # emoji
+              "322abd6" = "322abd6"; # helixgelion
+              gam = "gam"; # git
+              caf = "caf"; # zig tar
+            };
+            extend-words = {
+              ba = "ba"; # yt-dlp
+              noice = "noice"; # helixgelion
+            };
+          };
+        };
       };
     };
   };
