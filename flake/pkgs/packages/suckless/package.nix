@@ -17,7 +17,7 @@
   libxrandr,
   xorgproto,
 }:
-stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation {
   pname = "suckless";
   version = "r4.771c89c";
 
@@ -102,4 +102,4 @@ stdenv.mkDerivation (finalAttrs: {
     maintainers = with lib.maintainers; [ ratakor ];
     platforms = lib.platforms.linux;
   };
-})
+}

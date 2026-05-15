@@ -70,7 +70,7 @@
           # ocamlfind = "1.9.2";
         };
         scope = opam-nix.lib.${system}.buildOpamProject' { } src query;
-        overlay = final: prev: {
+        overlay = _final: prev: {
           # You can add overrides here
           ${package} = prev.${package}.overrideAttrs (_: {
             # Prevent the ocaml dependencies from leaking into dependent environments

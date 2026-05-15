@@ -4,7 +4,7 @@
 }@args:
 let
   self = import ../. { }; # builtins.getFlake (toString ../.);
-  hosts = builtins.mapAttrs (name: value: value.config) self.nixosConfigurations;
+  hosts = builtins.mapAttrs (_name: value: value.config) self.nixosConfigurations;
   host = self.nixosConfigurations.${args.host};
 in
 hosts

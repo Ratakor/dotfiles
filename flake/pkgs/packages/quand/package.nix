@@ -12,7 +12,7 @@ let
   # well idk but I won't update this until quand is rewritten in a proper language
   rev = "5894842960a09e2d3b35eba3900c548a781001e5";
 in
-stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation {
   pname = "quand";
   version = "0.4-${substring 0 7 rev}";
 
@@ -37,4 +37,4 @@ stdenv.mkDerivation (finalAttrs: {
     maintainers = [ lib.maintainers.ratakor ];
     mainProgram = "quand";
   };
-})
+}

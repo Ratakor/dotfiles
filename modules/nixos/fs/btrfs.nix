@@ -78,7 +78,7 @@ in
     # This is needed by snapper.
     # Also this won't work if / is not btrfs, maybe it's worth to add a warning
     systemd.tmpfiles.rules = lib.mapAttrsToList (
-      name: value: "v ${lib.removeSuffix "/" value.SUBVOLUME}/.snapshots 0750 root wheel - -"
+      _name: value: "v ${lib.removeSuffix "/" value.SUBVOLUME}/.snapshots 0750 root wheel - -"
     ) config.services.snapper.configs;
   };
 }

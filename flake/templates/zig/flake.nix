@@ -39,6 +39,6 @@
         }
       );
 
-      formatter = forAllSystems (pkgs: zig: pkgs.nixfmt-tree);
+      formatter = forAllSystems (pkgs: _zig: pkgs.nixfmt-tree);
     };
 }

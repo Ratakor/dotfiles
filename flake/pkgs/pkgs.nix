@@ -72,7 +72,7 @@ import sources.nixpkgs {
     overlay
 
     # Replace nixpkgs' pristine lib with our filthy one
-    (final: prev: { inherit lib; })
+    (_final: _prev: { inherit lib; })
 
     # Replace _all_ instances of nix with latest lix.
     (final: prev: {
@@ -81,7 +81,7 @@ import sources.nixpkgs {
     })
 
     # Replace nix-output-monitor ugly icons.
-    (final: prev: {
+    (_final: prev: {
       nix-output-monitor =
         let
           oldIcons = [
