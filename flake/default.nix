@@ -8,7 +8,6 @@ let
   pkgs = import ./pkgs (args // { inherit lib; });
   apps = import ./apps;
   fmt = import ./fmt.nix { inherit self sources; };
-  # preCommit = import ./pre-commit.nix { inherit lib self sources; };
 
   eachSystem = f: lib.genAttrs systems (system: f pkgs.legacyPackages.${system});
 in
@@ -17,12 +16,11 @@ in
   inherit (pkgs) overlays;
 
   # Packages exposed to the flake via `packages.${system}.${pkgName}`.
-  # packages = withSystem (system: (pkgs.perSystem system).packages);
   inherit (pkgs) packages;
 
   # Pinned nixpkgs packages, custom packages and wrappers exposed to the
   # flake and used by the whole flake.
-  # Wrappers can be accessed via `leglegacyPackages.${system}.wrappers.${pkgName}`.
+  # Wrappers can be accessed via `legacyPackages.${system}.wrappers.${pkgName}`.
   inherit (pkgs) legacyPackages;
 
   # Apps usable with `nix run`.
@@ -34,7 +32,6 @@ in
   # Checks for `nix flake check`
   checks = eachSystem (pkgs: {
     treefmt = (fmt pkgs).check;
-    # pre-commit = preCommit pkgs;
   });
 
   # Templates for `nix flake init -t FLAKE#TEMPLATE`.

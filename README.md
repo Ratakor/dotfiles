@@ -49,7 +49,6 @@
   - [`templates`](flake/templates): Language specific templates for quickly initializing new projects.
   - [`fmt.nix`](flake/fmt.nix): Formatting configuration for `nix fmt` via [treefmt-nix](https://github.com/numtide/treefmt-nix).
   - [`keys.nix`](flake/keys.nix): My public SSH and PGP keys.
-  - [`pre-commit`](flake/pre-commit.nix): Pre-commit hooks via [git-hooks.nix](https://github.com/cachix/git-hooks.nix).
 - [`hosts`](hosts): Per-host configurations.
 - [`modules`](modules): Modularized configurations.
   - [`home`](modules/home): User configuration, this is probably what you want to look at.
