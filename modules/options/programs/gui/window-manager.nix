@@ -60,6 +60,13 @@ in
         # default = "dummy-window-manager"; # probably a bad idea
         internal = true;
       };
+
+      session = mkOption {
+        type = str;
+        description = "The name of the default window manager session.";
+        # default = "dummy-window-manager";
+        internal = true;
+      };
     };
   };
 

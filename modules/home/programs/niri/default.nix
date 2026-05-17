@@ -35,6 +35,7 @@ in
   config = mkIf cfg.enable {
     self.programs.default.windowManager = mkIf (prg.default.windowManager.name == "niri") {
       cmd = getExe' config.programs.niri.package "niri-session";
+      session = "niri";
     };
 
     # btw this is NixOS's programs not home-manager's programs.

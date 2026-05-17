@@ -12,6 +12,7 @@ in
   config = mkIf prg.windowManager.hyprland.enable {
     self.programs.default.windowManager = mkIf (prg.default.windowManager.name == "hyprland") {
       cmd = unreachable; # unimplemented
+      session = "hyprland";
     };
 
     programs.hyprland.enable = true;
