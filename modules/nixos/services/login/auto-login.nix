@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (lib.modules) mkIf;
+  inherit (lib.modules) mkIf mkDefault;
 
   inherit (config.self) user;
   dprg = config.self.programs.default;
@@ -14,7 +14,7 @@ in
     };
 
     greetd.settings.initial_session = {
-      command = dprg.windowManager.cmd;
+      command = mkDefault dprg.windowManager.cmd;
       user = user.name;
     };
 

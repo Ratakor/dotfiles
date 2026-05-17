@@ -11,6 +11,7 @@ in
 
     manager = mkOption {
       type = nullOr (enum [
+        "dms-greeter"
         "gdm"
         "ly"
         "tuigreet"
