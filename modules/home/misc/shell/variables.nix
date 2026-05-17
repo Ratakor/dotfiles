@@ -41,7 +41,7 @@ in
       # Maybe we should use meta.mainProgram instead for convenience. (also need to change aliases)
       EDITOR = getExe dprg.editor.package;
       # VISUAL = prg.editor.cmd; # config.self.editor is not a visual editor
-      BROWSER = "chromium --new-window"; # cromite
+      BROWSER = dprg.browser.newWindow;
       DMENU = dprg.launcher.dmenu;
       TERMINAL = dprg.terminal.cmd;
 

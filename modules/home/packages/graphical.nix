@@ -48,14 +48,6 @@ let
     ];
   };
 
-  # better to configure these with hm.programs, also I use chromium btw
-  browsers = with pkgs; [
-    # firefox # check out celenityy/phoenix
-    # nyxt # browser for lisp people
-    # qutebrowser # "minimal" vim-like browser
-    tor-browser
-  ];
-
   apps = with pkgs; [
     keepassxc # password manager
     qbittorrent # torrent client
@@ -83,7 +75,6 @@ let
   ];
 in
 [
-  browsers
   apps
   tools
 ]

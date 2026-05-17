@@ -87,7 +87,7 @@ in
         dprg.imageViewer.package
         config.hm.programs.mpv.package
         pkgs.zathura
-        config.hm.programs.chromium.package
+        dprg.browser.package
       ];
     };
   };

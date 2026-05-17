@@ -38,7 +38,7 @@ in
     Mod+Shift+D repeat=false hotkey-overlay-title=null { spawn-sh "${dprg.launcher.run}"; }
 
     // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${dprg.terminal.cmd} -e newsboat"; }
-    Mod+B repeat=false hotkey-overlay-title="Open browser: chromium" { spawn "chromium" "--new-window"; }
+    Mod+B repeat=false hotkey-overlay-title="Open browser: ${dprg.browser.name}" { spawn-sh "${dprg.browser.newWindow}"; }
     Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${dprg.locker.name}" { spawn-sh "${dprg.locker.cmd}"; }
     XF86ScreenSaver repeat=false { spawn-sh "${dprg.locker.cmd}"; }
     XF86Battery repeat=false hotkey-overlay-title="Show battery information" { spawn "battery"; }
