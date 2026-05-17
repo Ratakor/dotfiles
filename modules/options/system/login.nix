@@ -5,9 +5,7 @@ let
 in
 {
   options.self.system.login = {
-    autoLogin = mkEnableOption "automatic login" // {
-      default = true;
-    };
+    autoLogin = mkEnableOption "automatic login";
 
     manager = mkOption {
       type = nullOr (enum [
@@ -16,7 +14,7 @@ in
         "ly"
         "tuigreet"
       ]);
-      default = "tuigreet";
+      default = null;
       description = ''
         The login manager to use.
         Setting this to `null` fallbacks to getty with optional auto login.

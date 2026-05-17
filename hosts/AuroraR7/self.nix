@@ -27,6 +27,10 @@
 
     system = {
       displayServer.wayland = true;
+      login = {
+        autoLogin = true;
+        manager = "tuigreet";
+      };
       audio = {
         enable = true;
         pipewire.rnnoise.enable = true;
