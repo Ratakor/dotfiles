@@ -53,13 +53,6 @@ in
       xwayland-satellite
     ];
 
-    # Disabled by default, but re-enabled by some packages:
-    # niri: https://github.com/YaLTeR/niri/wiki/Important-Software#portals
-    # services.gnome = {
-    #   gnome-keyring.enable = mkForce false;
-    #   # gcr-ssh-agent.enable = false; # config.services.gnome.gnome-keyring.enable
-    # };
-
     # This config is in the KDL format: https://kdl.dev
     # "/-" comments out the following node.
     # Check the wiki for a full description of the configuration:
