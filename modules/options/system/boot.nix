@@ -7,6 +7,7 @@
 let
   inherit (lib.options) mkOption mkEnableOption;
   inherit (lib.types) str int raw;
+  inherit (lib.lists) count;
 
   cfg = config.self.system.boot;
 in
@@ -22,6 +23,8 @@ in
           description = "The device on which the GRUB boot loader will be installed.";
         };
       };
+      lanzaboote.enable = mkEnableOption "Lanzaboote Secure Boot";
+
       configurationLimit = mkOption {
         type = int;
         default = 100;
@@ -43,8 +46,13 @@ in
   config = {
     assertions = [
       {
-        assertion = !(cfg.loader.systemd-boot.enable && cfg.loader.grub.enable);
-        message = "You cannot enable both systemd-boot and GRUB boot loaders simultaneously.";
+        assertion =
+          count (x: x.enable) [
+            cfg.loader.systemd-boot
+            cfg.loader.grub
+            cfg.loader.lanzaboote
+          ] <= 1;
+        message = "You cannot enable more than one boot loader.";
       }
     ];
   };

@@ -118,6 +118,19 @@
       "url": "https://github.com/nix-community/home-manager/archive/92a8736142944ed3b2c4aba8b364583b6fda15a5.tar.gz",
       "hash": "sha256-mqzr2uSY3TzBxnpFGocsT7fATE8tqU+eb0V+OhNR53I="
     },
+    "lanzaboote": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "lanzaboote"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "f11608843ca4fa95049c096ec0a50c93b41080b8",
+      "url": "https://github.com/nix-community/lanzaboote/archive/f11608843ca4fa95049c096ec0a50c93b41080b8.tar.gz",
+      "hash": "sha256-HJ4e4IQz7TJ1wDmEnkowXCM6SYXF9sfYg8nmUYHCnpI="
+    },
     "mnw": {
       "type": "Git",
       "repository": {

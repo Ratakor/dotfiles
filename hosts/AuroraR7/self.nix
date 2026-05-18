@@ -43,7 +43,7 @@
         distrobox.enable = true;
       };
       boot = {
-        loader.systemd-boot.enable = true;
+        loader.lanzaboote.enable = true;
       };
       fs.btrfs.autoSnapshot.subvolumes = {
         home = "/home";
