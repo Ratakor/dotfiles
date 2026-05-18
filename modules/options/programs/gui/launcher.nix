@@ -1,4 +1,4 @@
-# see also: dms, anyrun, walker
+# see also: anyrun, walker
 {
   config,
   lib,
@@ -22,6 +22,7 @@ in
       name = mkOption {
         type = nullOr (enum [
           "dmenu"
+          # "dms" # doesn't support dmenu style
           "fuzzel"
           "tofi"
           "vicinae"

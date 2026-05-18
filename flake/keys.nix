@@ -1,4 +1,3 @@
-# TODO: add gpg keys (needed for programs.gpg and services.gpg-agent)
 let
   inherit (builtins) attrValues concatLists concatMap;
 
