@@ -22,6 +22,7 @@ in
       name = mkOption {
         type = nullOr (enum [
           "dms"
+          "noctalia"
           "sb"
           "waybar"
         ]);
