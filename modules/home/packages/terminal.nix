@@ -19,6 +19,7 @@ let
     timewarrior # Time tracking utility
     rsync # a fast, versatile, remote (and local) file-copying tool
     zpotify # A CLI for the Spotify Web API
+    croc # Easily and securely send things from one computer to another
   ];
 
   tui = with pkgs; [
@@ -41,6 +42,7 @@ let
     fastfetch # system information tool
     cbonsai
     pipes
+    cmatrix
   ];
 
   # Chromecast tools
