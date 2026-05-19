@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   services = {
-    udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
+    udev.packages = [ pkgs.gnome-settings-daemon ];
 
     # Disabled by default, but re-enabled / needed by some packages:
     # niri: https://github.com/YaLTeR/niri/wiki/Important-Software#portals
