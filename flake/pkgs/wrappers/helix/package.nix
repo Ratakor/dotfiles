@@ -204,7 +204,7 @@ lib.mkWrapperFor "helix" {
       };
       nix.formatter.command = "nixfmt";
       python = { };
-      cpp = { };
+      # cpp = { };
     };
   };
   # https://docs.helix-editor.com/themes.html
