@@ -21,6 +21,7 @@ in
       clear_password = true;
       vi_mode = true;
       vi_default_mode = "insert";
+      session_log = ".local/state/ly-session.log"; # xdg
       brightness_down_cmd = "${brightnessctl} -q set 10%-";
       brightness_up_cmd = "${brightnessctl} -q set +10%";
       animation = "colormix"; # none, doom, matrix, colormix, gameoflife
