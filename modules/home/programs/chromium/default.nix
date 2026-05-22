@@ -10,14 +10,11 @@ let
 
   prg = config.self.programs;
   cfg = prg.browser.chromium;
-
-  # TODO: pkgs.cromite;
-  package = if cfg.ungoogled then pkgs.ungoogled-chromium else pkgs.chromium;
 in
 {
   config = mkIf cfg.enable {
     self.programs.default.browser = mkIf (prg.default.browser.name == "chromium") {
-      inherit package;
+      inherit (cfg) package;
       newWindow = "chromium --new-window";
     };
 
@@ -25,7 +22,7 @@ in
     # https://github.com/noahvogt/chromium-patches
     hm.programs.chromium = {
       enable = true;
-      inherit package;
+      inherit (cfg) package;
       dictionaries = with pkgs.hunspellDictsChromium; [
         en-us
         fr-fr

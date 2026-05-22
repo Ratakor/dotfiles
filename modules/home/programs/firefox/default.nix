@@ -1,25 +1,18 @@
 # TODO: incomplete
-# check out celenityy/phoenix...
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 let
   inherit (lib.modules) mkIf;
 
   prg = config.self.programs;
-
-  package = pkgs.firefox;
+  cfg = prg.browser.firefox;
 in
 {
-  config = mkIf prg.browser.firefox.enable {
+  config = mkIf cfg.enable {
     self.programs.default.browser = mkIf (prg.default.browser.name == "firefox") {
-      inherit package;
+      inherit (cfg) package;
       newWindow = "firefox --new-window";
     };
 
-    user.packages = [ package ];
+    user.packages = [ cfg.package ];
   };
 }

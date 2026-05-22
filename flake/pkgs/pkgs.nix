@@ -118,5 +118,10 @@ import sources.nixpkgs {
           '';
         });
     })
+
+    # Helium Browser
+    (_final: _prev: {
+      helium = lib.flakes.package sources.helium system { };
+    })
   ];
 }

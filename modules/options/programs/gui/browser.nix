@@ -2,6 +2,7 @@
   config,
   lib,
   options,
+  pkgs,
   ...
 }:
 let
@@ -9,7 +10,6 @@ let
     mkOption
     mkPackageOption
     mkEnableOptions'
-    mkEnableOption
     literalMD
     ;
   inherit (lib.modules) mkIf mkDefault;
@@ -24,9 +24,15 @@ in
   options.self.programs = {
     browser = recursiveUpdate (mkEnableOptions' opt.default.browser.name) {
       chromium = {
-        # this could be a package option instead
-        ungoogled = mkEnableOption "ungoogled chromium patches" // {
-          default = true;
+        package = mkPackageOption pkgs "chromium" {
+          default = "ungoogled-chromium";
+          example = [ "helium" ]; # see also cromite, github:celenityy/titanium
+        };
+      };
+
+      firefox = {
+        package = mkPackageOption pkgs "firefox" {
+          example = [ "librewolf" ]; # see also github:celenityy/phoenix
         };
       };
     };

@@ -105,6 +105,19 @@
       "url": "https://github.com/subnut/gruvbox-tmTheme/archive/40503472826e51d87666e548a0634c4f1d74938c.tar.gz",
       "hash": "sha256-Jip1Hd0sRhhPnO+xnA4buVd9Zu93Tr9OBJrsITG6ayQ="
     },
+    "helium": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "amaanq",
+        "repo": "helium-flake"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "ef55486f42ee427bc3a069b896f7fe57ae5878ee",
+      "url": "https://github.com/amaanq/helium-flake/archive/ef55486f42ee427bc3a069b896f7fe57ae5878ee.tar.gz",
+      "hash": "sha256-4xUQV80MLIxSKhOz8R2IqV5TiUds69SKMsB5ERQyQZs="
+    },
     "home-manager": {
       "type": "Git",
       "repository": {
