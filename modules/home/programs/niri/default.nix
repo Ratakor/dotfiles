@@ -43,12 +43,10 @@ in
     programs.niri = {
       enable = true;
       # package = pkgs.niri-git;
+      useNautilus = prg.fileManager.nautilus.enable;
     };
 
     environment.systemPackages = with pkgs; [
-      # File manager for the File chooser portal.
-      # https://github.com/YaLTeR/niri/wiki/Important-Software#portals
-      nautilus
       # https://github.com/YaLTeR/niri/wiki/Xwayland
       xwayland-satellite
     ];
