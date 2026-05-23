@@ -59,18 +59,10 @@ in
       '';
     };
 
-    desktopEntries = {
-      terminal-directory = {
-        name = "Directory (${dprg.terminal.name})";
-        exec = "${dprg.terminal.cmdDir} %f";
-        icon = dprg.terminal.name; # hopefully it's right one
-      };
-    };
-
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "inode/directory" = [ "terminal-directory.desktop" ];
+        "inode/directory" = [ dprg.fileManager.desktopEntry ];
       };
       # TODO: there should be an option corresponding to all these "pkgs" packages
       # Even though it's technically fine to include unused package,

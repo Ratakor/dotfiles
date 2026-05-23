@@ -6,6 +6,8 @@
   ...
 }:
 let
+  inherit (lib.modules) mkIf;
+
   yazi = pkgs.wrappers.yazi.override {
     ouch = pkgs.ouch-rar;
   };
@@ -13,7 +15,11 @@ let
   prg = config.self.programs;
 in
 {
-  config = lib.mkIf prg.fileManager.yazi.enable {
+  config = mkIf prg.fileManager.yazi.enable {
+    self.programs.default.fileManager = mkIf (prg.default.fileManager.name == "yazi") {
+      desktopEntry = "yazi.desktop";
+    };
+
     user.packages = [ yazi ];
 
     hm.programs.yazi = {
