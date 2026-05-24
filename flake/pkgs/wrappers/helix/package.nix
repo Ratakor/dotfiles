@@ -71,7 +71,8 @@ let
   );
 in
 lib.mkWrapperFor "helix" {
-  inherit pkgs extraPackages;
+  inherit pkgs;
+  runtimePkgs = extraPackages;
   settings = {
     theme = "overload";
 

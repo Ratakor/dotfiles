@@ -5,12 +5,10 @@
     enable = true;
     package = pkgs.openssh_gssapi; # use `null` for system default
     enableDefaultConfig = false; # deprecated
-    matchBlocks = {
+    settings = {
       "ssh.cri.epita.fr" = {
-        extraOptions = {
-          GSSAPIAuthentication = "yes";
-          GSSAPIDelegateCredentials = "yes";
-        };
+        GSSAPIAuthentication = "yes";
+        GSSAPIDelegateCredentials = "yes";
       };
     };
   };

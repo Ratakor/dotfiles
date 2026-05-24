@@ -36,9 +36,9 @@
       },
       "branch": "pages",
       "submodules": false,
-      "revision": "1266d6f474b119c9dee4017e905d4d7367243c7e",
-      "url": "https://codeberg.org/celenity/dove/archive/1266d6f474b119c9dee4017e905d4d7367243c7e.tar.gz",
-      "hash": "sha256-b46tl2fcYXkWzHqfL8IoRc6Vnh5hz1VWViaX25GKDcI="
+      "revision": "1d6078600de76db3a5076de74cfcc2beb3d081a0",
+      "url": "https://codeberg.org/celenity/dove/archive/1d6078600de76db3a5076de74cfcc2beb3d081a0.tar.gz",
+      "hash": "sha256-lkZxGIKTR4N3/AHGLRAbN5pcCK324nTDi02LfgNfpk4="
     },
     "dracula-tmTheme": {
       "type": "Git",
@@ -226,8 +226,8 @@
       "type": "Channel",
       "name": "nixos-unstable",
       "artifact": "nixexprs.tar.xz",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre1002845.f83fc3c307e7/nixexprs.tar.xz",
-      "hash": "sha256-STlbE8L45Uutxaffotwjqp+nX6g6jqc/mnx/7DxODyA="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre995699.da5ad661ba4e/nixexprs.tar.xz",
+      "hash": "sha256-rNDJzV2JTV5SUTwv1cgKZYMdyoUYU9/YfegSaUf3QfY="
     },
     "noctalia-shell": {
       "type": "Git",
