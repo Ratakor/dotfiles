@@ -72,6 +72,7 @@ let
     graphviz # graph visualization tool
     dragon-drop # a simple drag-and-drop replacement for graphical stuff
     # scrcpy # display and control your Android device
+    # network-printer # https://github.com/notashelf/np
   ];
 in
 [

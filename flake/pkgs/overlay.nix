@@ -41,6 +41,10 @@ let
         flint = pkgs.callPackage "${sources.flint}/nix/package.nix" { };
         # Not a Docs Generator
         ndg = pkgs.callPackage "${sources.ndg}/nix/packages/ndg/package.nix" { };
+        # Network Printer
+        network-printer = pkgs.callPackage "${sources.np}/nix/package.nix" {
+          xcb-util-cursor = pkgs.libxcb-cursor;
+        };
         # A scrollable-tiling Wayland compositior. Git version. Peak usage of flake btw.
         # niri-git = (lib.flakes.package sources.niri pkgs.system { rust-overlay = { }; }).overrideAttrs {
         #   # well flake-compat isn't perfect but I love it
