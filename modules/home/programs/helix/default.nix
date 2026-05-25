@@ -20,5 +20,8 @@ in
     };
 
     user.packages = [ package ];
+
+    # if using steelix, I'm not even sure this works since we're using a wrapper
+    # hm.xdg.configFile."helix/runtime".source = pkgs.steelix.src + /runtime;
   };
 }
