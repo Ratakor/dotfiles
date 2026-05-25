@@ -14,7 +14,7 @@ let
     libbsd # Common functions found on BSD systems
     zig # use zig-overlay per project for a specific version
     python3
-    pipx # python package manager
+    # pipx # python package manager
     # jdk17 # java 17
     nodejs # javascript
     pnpm # additional js package manager
