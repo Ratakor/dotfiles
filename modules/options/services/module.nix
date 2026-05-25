@@ -14,5 +14,8 @@ in
       defaultText = literalMD "`true` if using Wayland.";
     };
     udiskie.enable = mkEnableOption "udiskie";
+    syncthing.enable = mkEnableOption "Syncthing" // {
+      default = true;
+    };
   };
 }
