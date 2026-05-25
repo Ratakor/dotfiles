@@ -7,6 +7,7 @@
 }:
 let
   inherit (lib.modules) mkIf;
+  inherit (lib.meta) getExe;
 
   prg = config.self.programs;
   cfg = prg.browser.chromium;
@@ -15,7 +16,7 @@ in
   config = mkIf cfg.enable {
     self.programs.default.browser = mkIf (prg.default.browser.name == "chromium") {
       inherit (cfg) package;
-      newWindow = "chromium --new-window";
+      newWindow = "${getExe cfg.package} --new-window";
     };
 
     # See here for additional patches
