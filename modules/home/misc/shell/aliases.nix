@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 let
   sudoCommands = [
     "iftop"
@@ -21,7 +21,7 @@ let
     }) sudoCommands
   );
 
-  EDITOR = lib.getExe config.self.programs.default.editor.package;
+  EDITOR = config.self.programs.default.editor.package.meta.mainProgram;
   ZDOTDIR = config.hm.programs.zsh.dotDir or config.hm.home.homeDirectory;
   XDG_CONFIG_HOME = config.hm.xdg.configHome;
   XDG_DATA_HOME = config.hm.xdg.dataHome;

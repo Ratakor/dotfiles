@@ -56,9 +56,14 @@ in
         '';
       };
 
-      package = (mkPackageOption { } "default browser" { default = null; }) // {
-        internal = true;
-      };
+      package =
+        (mkPackageOption { } "default browser" {
+          nullable = true;
+          default = null;
+        })
+        // {
+          internal = true;
+        };
 
       newWindow = mkOption {
         type = str;

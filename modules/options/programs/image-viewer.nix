@@ -38,9 +38,14 @@ in
         '';
       };
 
-      package = (mkPackageOption { } "default image viewer" { default = null; }) // {
-        internal = true;
-      };
+      package =
+        (mkPackageOption { } "default image viewer" {
+          nullable = true;
+          default = null;
+        })
+        // {
+          internal = true;
+        };
     };
   };
 
