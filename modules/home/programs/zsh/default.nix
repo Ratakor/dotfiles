@@ -14,6 +14,7 @@ let
     mkOrder
     mkMerge
     ;
+  inherit (lib.strings) optionalString;
 
   ZDOTDIR = config.hm.programs.zsh.dotDir;
 in
@@ -208,8 +209,8 @@ in
           }
         '';
 
-        funnyStuffIMeanKindaLikeYeaIdkManItUsedToBeCalledFunnyStuffBefore = mkAfter /* zsh */ ''
-          [ -f "${config.age.secrets.aliases.path}" ] && source "${config.age.secrets.aliases.path}"
+        funnyStuffIMeanKindaLikeYeaIdkManItUsedToBeCalledFunnyStuffBefore = mkAfter ''
+          ${optionalString (config.age.secrets ? aliases) "source \"${config.age.secrets.aliases.path}\""}
 
           quand
           #ls

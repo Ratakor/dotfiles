@@ -1,21 +1,13 @@
 # IRC Client
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-let
-  cat = lib.getExe' pkgs.coreutils "cat";
-in
+{ config, ... }:
 {
   hm.programs.senpai = {
-    enable = true;
+    enable = config.age.secrets ? irc;
     config = {
       nickname = config.user.description;
       address = "irctoday.com"; # "libera.chat:6697";
       password-cmd = [
-        cat
+        "cat"
         config.age.secrets.irc.path
       ];
     };

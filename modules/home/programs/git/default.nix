@@ -1,5 +1,13 @@
 # VCS
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib.modules) mkIf;
+in
 {
   user.packages = with pkgs; [
     wrappers.gitui
@@ -70,10 +78,10 @@
     ];
 
     includes = [
-      {
+      (mkIf (config.age.secrets ? git-epita) {
         condition = "hasconfig:remote.*.url:*epita.fr:**/**";
         path = config.age.secrets.git-epita.path;
-      }
+      })
     ];
   };
 
