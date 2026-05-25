@@ -55,10 +55,7 @@
       browser = {
         tor-browser.enable = true;
       };
-      terminal = {
-        fontSize = 16;
-        foot.enable = true; # just in case ghostty doesn't work
-      };
+      terminal.foot.enable = true; # just in case ghostty doesn't work
       default = {
         terminal.name = "ghostty";
       };

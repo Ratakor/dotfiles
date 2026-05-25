@@ -23,7 +23,7 @@ in
     terminal = mkEnableOptions' opt.default.terminal.name // {
       fontSize = mkOption {
         type = int;
-        default = 10;
+        default = 16;
         description = "Font size used by terminal emulators.";
       };
     };
