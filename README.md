@@ -57,6 +57,7 @@
   - [`profiles`](modules/profiles): Shared configurations between similar machines.
 - [`secrets`](secrets): Agenix secrets.
 
+<!--
 ## Commit Convention
 
 ```git-commit
@@ -78,6 +79,7 @@
 - `packages[/{package}]`: Modification to `flake/pkgs`.
 - `wrappers[/{wrapper}]`: Modification to `flake/pkgs/wrappers`.
 - `templates[/{template}]`: Modification to `flake/templates`.
+-->
 
 ## Credits
 
