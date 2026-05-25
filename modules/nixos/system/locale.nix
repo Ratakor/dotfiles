@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   time.timeZone = "Europe/Paris";
 
@@ -14,9 +15,7 @@
   i18n.defaultLocale = "en_IE.UTF-8";
 
   services.xserver.xkb = {
-    layout = "fr";
-    variant = "us";
-    options = "caps:none";
+    inherit (config.self.system.keyboard) layout variant options;
   };
 
   console.useXkbConfig = true;

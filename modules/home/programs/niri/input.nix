@@ -1,13 +1,17 @@
 # Input device configuration.
 # https://yalter.github.io/niri/Configuration:-Input
+config:
+let
+  inherit (config.self.system) keyboard;
+in
 # kdl
 ''
   input {
     keyboard {
       xkb {
-        layout "fr"
-        variant "us"
-        options "caps:none"
+        layout "${keyboard.layout}"
+        variant "${keyboard.variant}"
+        options "${keyboard.options}"
       }
 
       repeat-delay 300

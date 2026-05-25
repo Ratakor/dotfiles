@@ -14,7 +14,7 @@ let
   prg = config.self.programs;
   cfg = prg.windowManager.niri;
 
-  input = import ./input.nix;
+  input = import ./input.nix config;
   output = import ./output.nix { inherit config lib; };
   binds = import ./binds.nix config;
   switch-events = import ./switch-events.nix;
