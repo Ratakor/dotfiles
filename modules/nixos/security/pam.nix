@@ -1,10 +1,9 @@
 {
   security.pam = {
     services = {
-      # keep the set even if empty to make swaylock work
-      swaylock = {
-        fprintAuth = false;
-      };
+      # This must be set even if empty to make swaylock work
+      swaylock = { };
+
       # Unlock gnome-keyring and GPG on login via greetd.
       # Replace greetd with login if using another display manager.
       # https://wiki.nixos.org/wiki/Secret_Service#Auto-decrypt_on_login
@@ -16,6 +15,12 @@
         #   storeOnly = true;
         # };
       };
+      # none this doesn't seem to work :(
+      login.enableGnomeKeyring = true;
+      # ly pam config is already done by nixos' ly module
+      # ly-autologin.enableGnomeKeyring = true;
+      # gdm-autologin.enableGnomeKeyring = true;
+      # passwd.enableGnomeKeyring = true;
     };
   };
 }
