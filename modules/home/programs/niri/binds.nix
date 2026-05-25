@@ -20,6 +20,7 @@ in
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+Shift+Colon hotkey-overlay-title=null { show-hotkey-overlay; } // Same as above for AZERTY keyboard
 
     // WARNING: using `spawn` to avoid latency but that means cfg.terminal.cmd must be a single command
     // -> add a nix assertion?
