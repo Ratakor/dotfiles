@@ -101,8 +101,8 @@ in
     //# TODO: toggle transparency
     //#riverctl map normal Control P spawn 'killall picom || picom -b'
 
-    // XF86MonBrightnessUp   allow-when-locked=true hotkey-overlay-title="Increase brightness" { spawn "brightnessctl" "set" "+10%"; }
-    // XF86MonBrightnessDown allow-when-locked=true hotkey-overlay-title="Decrease brightness" { spawn "brightnessctl" "set" "10%-"; }
+    XF86MonBrightnessUp   allow-when-locked=true hotkey-overlay-title="Increase brightness" { spawn "brightnessctl" "set" "+10%"; }
+    XF86MonBrightnessDown allow-when-locked=true hotkey-overlay-title="Decrease brightness" { spawn "brightnessctl" "set" "10%-"; }
     Mod+Insert allow-when-locked=true hotkey-overlay-title=null { spawn "brightnessctl" "set" "+10%"; }
     Mod+Delete allow-when-locked=true hotkey-overlay-title=null { spawn "brightnessctl" "set" "10%-"; }
 
