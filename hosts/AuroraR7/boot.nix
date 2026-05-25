@@ -14,8 +14,5 @@
     # extraModeprobeConfig = ''
     #   options dell-smm-hwmon ignore_dmi=1
     # '';
-
-    # Silence a warning introduced in 26.11
-    zfs.forceImportRoot = false;
   };
 }
