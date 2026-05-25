@@ -102,6 +102,7 @@ let
     agenix # Secrets management
     npins # Sources management
     # nixpkgs-review # nixpkgs-review pr <PR number>; nixpkgs-review [approve|merge|post-result|comments]
+    # npr # A pull request tracker for Nixpkgs
   ];
 
   idkProbablyUsefulTho = with pkgs; [

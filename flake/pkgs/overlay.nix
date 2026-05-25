@@ -53,6 +53,8 @@ let
         # };
         # Source of sources
         npins = pkgs.callPackage "${sources.npins}/npins.nix" { };
+        # A pull request tracker for Nixpkgs
+        npr = pkgs.callPackage "${sources.npr}/package.nix" { rev = lib.shortRev sources.npr.revision; };
         # Automatic CPU speed & power optimizer for Linux
         watt = pkgs.callPackage "${sources.watt}/nix/package.nix" { };
         # CLI tool to restore files from ZFS snapshots

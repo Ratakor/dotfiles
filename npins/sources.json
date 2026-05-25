@@ -268,6 +268,19 @@
       "url": "https://github.com/andir/npins/archive/41a153cdc1aa446480b2b652a967652ad62609bf.tar.gz",
       "hash": "sha256-OkPEh0axWs3gUoUyplQexYpEXxyCDYWm5BQpwB2PIqA="
     },
+    "npr": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "sisyphean-group",
+        "repo": "npr"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "33b59d0ddfe371e1c16a2a3ac61dd6ac38cafb12",
+      "url": "https://github.com/sisyphean-group/npr/archive/33b59d0ddfe371e1c16a2a3ac61dd6ac38cafb12.tar.gz",
+      "hash": "sha256-dJOwaMqah2i6uDD+K04vel8BUPTPbBuNx58vDNo/fog="
+    },
     "treefmt-nix": {
       "type": "Git",
       "repository": {
