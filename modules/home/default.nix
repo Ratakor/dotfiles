@@ -1,6 +1,5 @@
 {
   config,
-  keys,
   lib,
   pkgs,
   sources,
@@ -56,7 +55,7 @@ in
       "libvirtd"
       "kvm"
     ];
-    openssh.authorizedKeys.keys = keys.${username};
+    openssh.authorizedKeys.keys = config.self.user.keys;
     packages =
       listFiles ./packages |> concatMap (path: import path { inherit config lib pkgs; }) |> concatLists;
   };

@@ -1,7 +1,12 @@
-{ config, lib, ... }:
+{
+  config,
+  keys,
+  lib,
+  ...
+}:
 let
   inherit (lib.options) mkOption literalExpression;
-  inherit (lib.types) str strMatching;
+  inherit (lib.types) listOf str strMatching;
   inherit (lib.trivial) capitalize;
 
   cfg = config.self.user;
@@ -26,6 +31,13 @@ in
       description = "Email address of the main user.";
       default = "${cfg.name}@disroot.org";
       defaultText = literalExpression "\${user.name}@disroot.org";
+    };
+
+    keys = mkOption {
+      type = listOf str;
+      description = "A list of OpenSSH public keys that should be added to the user's authorized keys";
+      default = keys.${cfg.name};
+      defaultText = literalExpression "keys.\${user.name}";
     };
   };
 }
