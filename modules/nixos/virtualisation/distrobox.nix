@@ -23,7 +23,7 @@ let
       "/etc/profiles/per-user"
       "/etc/static/profiles/per-user"
       # "/etc/static"
-      "/run/current-system"
+      # "/run/current-system"
     ]
     |> map (path: "${path}:${path}:ro")
     |> concatStringsSep " ";
