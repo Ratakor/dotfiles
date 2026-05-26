@@ -185,16 +185,14 @@ in
     // Mod+Shift+U         { move-workspace-down; }
     // Mod+Shift+I         { move-workspace-up; }
 
+    // TODO: config mouse
+    // MouseLeft MouseRight MouseMiddle MouseBack MouseForward
     // These bindings don't exist see
     // https://github.com/YaLTeR/niri/discussions/2383
     //Mod+MouseLeft { move-window; }
     //Mod+Shift+MouseLeft { resize-window; }
     //Mod+MouseRight { window-resize; }
 
-    // TODO: config mouse
-    // MouseLeft MouseRight MouseMiddle MouseBack MouseForward
-    // WheelScrollUp WheelScrollDown WheelScrollLeft WheelScrollRight
-    // TouchpadScrollUp TouchpadScrollDown TouchpadScrollLeft TouchpadScrollRight
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.
     //
@@ -224,8 +222,15 @@ in
     // These binds are also affected by touchpad's natural-scroll, so these
     // example binds are "inverted", since we have natural-scroll enabled for
     // touchpads by default.
-    // Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
-    // Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
+    Mod+TouchpadScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+TouchpadScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+Ctrl+TouchpadScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+TouchpadScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+
+    Mod+TouchpadScrollRight      cooldown-ms=150 { focus-column-right; }
+    Mod+TouchpadScrollLeft       cooldown-ms=150 { focus-column-left; }
+    Mod+Ctrl+TouchpadScrollRight cooldown-ms=150 { move-column-right; }
+    Mod+Ctrl+TouchpadScrollLeft  cooldown-ms=150 { move-column-left; }
 
     // You can refer to workspaces by index. However, keep in mind that
     // niri is a dynamic workspace system, so these commands are kind of
