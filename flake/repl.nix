@@ -1,6 +1,5 @@
 {
   host ? "unknown-host",
-  system ? builtins.currentSystem or "x86_64-linux",
 }@args:
 let
   self = import ../. { }; # builtins.getFlake (toString ../.);
@@ -13,5 +12,5 @@ hosts
   inherit (host) config options pkgs;
   inherit (host.pkgs) wrappers;
   inherit self host;
-  packages = self.packages.${system};
+  packages = self.packages.${host.pkgs.stdenv.hostPlatform.system};
 }
