@@ -4,6 +4,6 @@ let
 in
 {
   options.self.system.security.fprint = {
-    enable = mkEnableOption "Fingerpint reader service";
+    enable = mkEnableOption "Fingerprint reader service";
   };
 }

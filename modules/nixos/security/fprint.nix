@@ -7,7 +7,7 @@
 let
   inherit (lib.modules) mkIf;
 
-  cfg = config.self.system.security.fprintd;
+  cfg = config.self.system.security.fprint;
 in
 {
   config = mkIf cfg.enable {
