@@ -13,12 +13,18 @@ let
 
   # colors = config.self.colors.default;
   prg = config.self.programs;
-  isDefault = prg.default.statusBar.name == "noctalia";
+  dprg = prg.default;
+  isDefaultBar = dprg.statusBar.name == "noctalia";
 in
 {
-  config = mkIf prg.statusBar.noctalia.enable {
-    self.programs.default.statusBar = mkIf isDefault {
-      toggle = unreachable; # TODO
+  config = mkIf (prg.statusBar.noctalia.enable || prg.locker.noctalia.enable) {
+    self.programs.default = {
+      statusBar = mkIf isDefaultBar {
+        toggle = "noctalia-shell ipc call bar toggle";
+      };
+      locker = mkIf (dprg.locker.name == "noctalia") {
+        cmd = "noctalia-shell ipc call lockScreen lock";
+      };
     };
 
     # TODO: idk if this works
@@ -26,7 +32,7 @@ in
 
     hm.programs.noctalia-shell = {
       enable = true;
-      systemd.enable = isDefault; # TODO: deprecated
+      systemd.enable = isDefaultBar; # TODO: deprecated
       package = pkgs.noctalia-shell;
 
       # settings = {};

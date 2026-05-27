@@ -21,7 +21,8 @@ in
       name = mkOption {
         type = nullOr (enum [
           "dms"
-          "glitchlock"
+          "glitchlock" # backed by swaylock
+          "noctalia"
           "slock"
           "swaylock"
         ]);
@@ -54,7 +55,6 @@ in
     locker.${cfg.default.locker.name}.enable = mkDefault true;
     # TODO: This should be setup in modules/home/programs
     #       Also packages installation is probably all over the place
-    default.locker.cmd =
-      if cfg.default.locker.name == "dms" then "dms ipc lock lock" else cfg.default.locker.name;
+    default.locker.cmd = mkDefault cfg.default.locker.name;
   };
 }

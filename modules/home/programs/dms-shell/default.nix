@@ -4,13 +4,17 @@ let
   inherit (lib.modules) mkIf;
 
   prg = config.self.programs;
-  isDefaultBar = prg.default.statusBar.name == "dms";
+  dprg = prg.default;
+  isDefaultBar = dprg.statusBar.name == "dms";
 in
 {
   config = mkIf (prg.locker.dms.enable || prg.statusBar.dms.enable) {
     self.programs.default = {
       statusBar = mkIf isDefaultBar {
         toggle = "dms ipc bar toggle index 0";
+      };
+      locker = mkIf (dprg.locker.name == "dms") {
+        cmd = "dms ipc lock lock";
       };
     };
 
