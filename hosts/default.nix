@@ -40,14 +40,8 @@ let
           };
         }
       ]
-      (lib.listNixFiles ./${hostname})
-      (concatMap (
-        path:
-        let
-          root = path + /default.nix;
-        in
-        if pathExists root then lib.singleton root else lib.listNixFiles path
-      ) extraModules)
+      (lib.filterNixFiles (lib.listFilesRecursive ./${hostname}))
+      (concatMap lib.listModuleFiles extraModules)
     ];
 
   # pkgs.nixos doesn't allow to pass specialArgs :(

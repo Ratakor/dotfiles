@@ -6,6 +6,7 @@
   ...
 }:
 let
+  inherit (lib.filesystem) listModuleFiles;
   inherit (lib.lists) singleton;
 
   # This depends on `ndg` being in `pkgs`.
@@ -14,7 +15,7 @@ let
   eval = import "${sources.nixpkgs}/nixos/lib/eval-config.nix" {
     inherit lib pkgs;
     system = null;
-    modules = singleton (self + /modules/options);
+    modules = listModuleFiles (self + /modules/options);
     specialArgs = {
       inherit sources;
     };

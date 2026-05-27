@@ -16,7 +16,8 @@ sources:
     inherit (self.filesystem)
       listFiles
       listDirs
-      listNixFiles
+      filterNixFiles
+      listModuleFiles
       listFilesRecursive
       ;
     inherit (self.flakes) compat compat' package;
