@@ -123,5 +123,12 @@ import sources.nixpkgs {
     (_final: _prev: {
       helium = lib.flakes.package sources.helium system { };
     })
+
+    # https://github.com/NixOS/nixpkgs/issues/513245#issuecomment-4320293674
+    (_final: prev: {
+      openldap = prev.openldap.overrideAttrs {
+        doCheck = !prev.stdenv.hostPlatform.isi686;
+      };
+    })
   ];
 }
