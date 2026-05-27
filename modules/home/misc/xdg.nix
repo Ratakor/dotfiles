@@ -72,7 +72,7 @@ in
         pkgs.discord
         pkgs.spotify
         pkgs.qbittorrent
-        pkgs.thunderbird
+        dprg.email.package
         (if config.hm.programs.anki.enable then config.hm.programs.anki.package else null)
         # order below is important
         dprg.editor.visual.package

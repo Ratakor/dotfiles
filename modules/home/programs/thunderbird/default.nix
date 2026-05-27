@@ -1,24 +1,31 @@
 {
+  config,
   lib,
   pkgs,
   sources,
   ...
 }:
 let
+  inherit (lib.modules) mkIf;
+  inherit (lib.lists) optional;
+
   dove = lib.flakes.compat' sources.dove;
+
+  prg = config.self.programs;
+  cfg = prg.email.thunderbird;
+
+  package = pkgs.thunderbird;
 in
 {
   imports = [ dove.nixosModules.default ];
-  user.packages = [ pkgs.thunderbird ];
 
-  # doesn't work the way I want it to work so we going full imperative (almost)
-  hm.programs.thunderbird = {
-    enable = false;
-    # profiles.${config.self.user.name} = {
-    #   isDefault = true;
-    #   extensions = with pkgs; [
-    #     external-editor-revived
-    #   ];
-    # };
+  config = {
+    self.programs.default.email = mkIf (prg.default.email.name == "thunderbird") {
+      inherit package;
+    };
+
+    user.packages = optional cfg.enable package;
+
+    programs.thunderbird.dove.enable = cfg.dove;
   };
 }
