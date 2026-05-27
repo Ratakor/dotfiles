@@ -9,7 +9,7 @@ in
   binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
-    // like wev.
+    // like **wev**.
     //
     // "Mod" is a special modifier equal to Super when running on a TTY, and to Alt
     // when running as a winit window.
@@ -20,7 +20,6 @@ in
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
-    Mod+Shift+Colon hotkey-overlay-title=null { show-hotkey-overlay; } // Same as above for AZERTY keyboard
 
     // WARNING: using `spawn` to avoid latency but that means cfg.terminal.cmd must be a single command
     // -> add a nix assertion?
@@ -34,7 +33,6 @@ in
       // spawn-sh "${dprg.terminal.cmd} -e yazi ${NOTES}";
     }
 
-    // see `dms ipc spotlight toggle`
     Mod+D repeat=false hotkey-overlay-title="Run an Application: ${dprg.launcher.name}" { spawn-sh "${dprg.launcher.drun}"; }
     Mod+Shift+D repeat=false hotkey-overlay-title=null { spawn-sh "${dprg.launcher.run}"; }
 
@@ -64,14 +62,14 @@ in
 
     Mod+M           repeat=false hotkey-overlay-title="Dynamically play Spotify playlist" { spawn "zpotify" "play" "playlist"; } // "music"
     Mod+Shift+M     repeat=false hotkey-overlay-title="Dynamically play Spotify album"{ spawn "zpotify" "play" "album"; } // "musiccmd"
-    XF86AudioPrev   repeat=false allow-when-locked=true hotkey-overlay-title="Play previous track" { spawn-sh "musiccmd prev || zpotify prev >/dev/null"; }
-    XF86AudioNext   repeat=false allow-when-locked=true hotkey-overlay-title="Play next track" { spawn-sh "musiccmd next || zpotify next >/dev/null"; }
-    XF86AudioPlay   repeat=false allow-when-locked=true hotkey-overlay-title="Toggle playback" { spawn-sh "musiccmd cycle || zpotify pause >/dev/null"; }
-    XF86AudioStop   repeat=false allow-when-locked=true hotkey-overlay-title="Stop playback" { spawn-sh "musiccmd stop || zpotify pause >/dev/null"; }
-    Mod+Shift+Left  repeat=false allow-when-locked=true { spawn-sh "musiccmd prev || zpotify prev >/dev/null"; }
-    Mod+Shift+Right repeat=false allow-when-locked=true { spawn-sh "musiccmd next || zpotify next >/dev/null"; }
-    Mod+Shift+Down  repeat=false allow-when-locked=true { spawn-sh "musiccmd cycle || zpotify pause >/dev/null"; }
-    Mod+Shift+Up    repeat=false allow-when-locked=true { spawn-sh "musiccmd stop || zpotify pause >/dev/null"; }
+    XF86AudioPrev   repeat=false allow-when-locked=true hotkey-overlay-title="Play previous track" { spawn-sh "playerctl previous"; }
+    XF86AudioNext   repeat=false allow-when-locked=true hotkey-overlay-title="Play next track" { spawn-sh "playerctl next"; }
+    XF86AudioPlay   repeat=false allow-when-locked=true hotkey-overlay-title="Toggle playback" { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop   repeat=false allow-when-locked=true hotkey-overlay-title="Stop playback" { spawn-sh "playerctl stop"; }
+    Mod+Shift+Left  repeat=false allow-when-locked=true { spawn-sh "zpotify prev >/dev/null"; } // musiccmd prev
+    Mod+Shift+Right repeat=false allow-when-locked=true { spawn-sh "zpotify next >/dev/null"; } // musiccmd next
+    Mod+Shift+Down  repeat=false allow-when-locked=true { spawn-sh "zpotify pause >/dev/null"; } // musiccmd cycle
+    Mod+Shift+Up    repeat=false allow-when-locked=true { spawn-sh "zpotify pause >/dev/null"; } // musiccmd stop
 
     // Mod+S repeat=false { spawn "dmenusearch" "web"; }
     // Mod+A repeat=false { spawn "dmenusearch" "aur"; }
@@ -325,7 +323,6 @@ in
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    // TODO
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
     // so they may, for example, forward the key presses as-is to a remote machine.
@@ -334,7 +331,7 @@ in
     //
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.
-    // Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     // Mod+Shift+E { quit; }
@@ -342,6 +339,6 @@ in
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
-    Mod+Shift+P { power-off-monitors; }
+    Mod+Shift+P hotkey-overlay-title="Power off monitors" { power-off-monitors; }
   }
 ''

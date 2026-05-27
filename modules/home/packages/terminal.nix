@@ -20,6 +20,7 @@ let
     rsync # a fast, versatile, remote (and local) file-copying tool
     zpotify # A CLI for the Spotify Web API
     croc # Easily and securely send things from one computer to another
+    playerctl # CLI for controlling media players that implement MPRIS
   ];
 
   tui = with pkgs; [
