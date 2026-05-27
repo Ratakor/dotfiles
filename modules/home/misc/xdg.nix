@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 let
   HOME = config.hm.home.homeDirectory;
   prg = config.self.programs;
@@ -77,7 +77,7 @@ in
         dprg.editor.package
         dprg.imageViewer.package
         dprg.mediaPlayer.package
-        pkgs.zathura
+        dprg.documentViewer.package
         dprg.browser.package
       ];
     };
