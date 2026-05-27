@@ -90,7 +90,7 @@ in
     //   spawn-sh "makoctl reload; systemctl --user restart dms foot";
     // }
 
-    Mod+Shift+B repeat=false hotkey-overlay-title="Toggle status bar" { spawn-sh "dms ipc bar toggle index 0"; }
+    Mod+Shift+B repeat=false hotkey-overlay-title="Toggle status bar" { spawn-sh "${dprg.statusBar.toggle}"; }
 
     //# TODO: toggle padding (gaps)
     //#riverctl map normal Super+Shift G ...

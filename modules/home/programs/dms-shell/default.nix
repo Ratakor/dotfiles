@@ -1,18 +1,28 @@
 # Dank Material Shell
-{ config, ... }:
+{ config, lib, ... }:
 let
+  inherit (lib.modules) mkIf;
+
   prg = config.self.programs;
-  dprg = prg.default;
+  isDefaultBar = prg.default.statusBar.name == "dms";
 in
 {
-  programs.dms-shell = {
-    enable = prg.locker.dms.enable || prg.statusBar.dms.enable;
-    systemd.enable = dprg.statusBar.name == "dms";
-    enableVPN = false;
-    enableSystemMonitoring = true;
-    enableDynamicTheming = false; # we use wpaperd or swaybg with randwp
-    enableClipboardPaste = true;
-    enableCalendarEvents = true;
-    enableAudioWavelength = true;
+  config = mkIf (prg.locker.dms.enable || prg.statusBar.dms.enable) {
+    self.programs.default = {
+      statusBar = mkIf isDefaultBar {
+        toggle = "dms ipc bar toggle index 0";
+      };
+    };
+
+    programs.dms-shell = {
+      enable = true;
+      systemd.enable = isDefaultBar;
+      enableVPN = false;
+      enableSystemMonitoring = true;
+      enableDynamicTheming = false; # we use wpaperd or swaybg with randwp instead
+      enableClipboardPaste = true;
+      enableCalendarEvents = true;
+      enableAudioWavelength = true;
+    };
   };
 }

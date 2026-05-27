@@ -11,11 +11,16 @@
 }:
 let
   inherit (lib.modules) mkIf;
+  inherit (lib.trivial) unreachable;
 
   prg = config.self.programs;
 in
 {
   config = mkIf prg.statusBar.sb.enable {
+    self.programs.default.statusBar = mkIf (prg.default.statusBar.name == "sb") {
+      toggle = unreachable; # TODO
+    };
+
     user.packages = [ pkgs.suckless ];
     hm.xdg.configFile."sb/config".source = ./config;
   };

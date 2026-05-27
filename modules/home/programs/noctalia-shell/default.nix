@@ -1,45 +1,56 @@
 {
   config,
+  lib,
   pkgs,
   sources,
   ...
 }:
 let
+  inherit (lib.modules) mkIf;
+  inherit (lib.trivial) unreachable;
+
   module = "${sources.noctalia-shell}/nix/home-module.nix";
 
   # colors = config.self.colors.default;
   prg = config.self.programs;
-  dprg = prg.default;
+  isDefault = prg.default.statusBar.name == "noctalia";
 in
 {
-  hm.imports = [ module ];
+  config = mkIf prg.statusBar.noctalia.enable {
+    self.programs.default.statusBar = mkIf isDefault {
+      toggle = unreachable; # TODO
+    };
 
-  hm.programs.noctalia-shell = {
-    enable = prg.statusBar.noctalia.enable;
-    systemd.enable = dprg.default.statusBar.name == "noctalia"; # TODO: deprecated
-    package = pkgs.noctalia-shell;
+    # TODO: idk if this works
+    hm.imports = [ module ];
 
-    # settings = {};
+    hm.programs.noctalia-shell = {
+      enable = true;
+      systemd.enable = isDefault; # TODO: deprecated
+      package = pkgs.noctalia-shell;
 
-    # colors = {
-    #   mError = colors.bright.red;
-    #   mHover = colors.bright.blue;
-    #   mOnError = colors.background;
-    #   mOnHover = colors.background;
-    #   mOnPrimary = colors.background;
-    #   mOnSecondary = colors.background;
-    #   mOnSurface = "#fbf1c7"; # TODO: fg0
-    #   mOnSurfaceVariant = colors.foreground;
-    #   mOnTertiary = colors.background;
-    #   mOutline = "#57514e";
-    #   mPrimary = "#b8bb26";
-    #   mSecondary = "#fabd2f";
-    #   mShadow = "#282828";
-    #   mSurface = "#282828";
-    #   mSurfaceVariant = "#3c3836";
-    #   mTertiary = "#83a598";
-    # };
+      # settings = {};
 
-    # plugins = {};
+      # colors = {
+      #   mError = colors.bright.red;
+      #   mHover = colors.bright.blue;
+      #   mOnError = colors.background;
+      #   mOnHover = colors.background;
+      #   mOnPrimary = colors.background;
+      #   mOnSecondary = colors.background;
+      #   mOnSurface = "#fbf1c7"; # TODO: fg0
+      #   mOnSurfaceVariant = colors.foreground;
+      #   mOnTertiary = colors.background;
+      #   mOutline = "#57514e";
+      #   mPrimary = "#b8bb26";
+      #   mSecondary = "#fabd2f";
+      #   mShadow = "#282828";
+      #   mSurface = "#282828";
+      #   mSurfaceVariant = "#3c3836";
+      #   mTertiary = "#83a598";
+      # };
+
+      # plugins = {};
+    };
   };
 }

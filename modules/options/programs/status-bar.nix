@@ -8,7 +8,7 @@
 let
   inherit (lib.options) mkOption mkEnableOptions' literalMD;
   inherit (lib.modules) mkIf mkDefault;
-  inherit (lib.types) nullOr enum;
+  inherit (lib.types) nullOr enum str;
 
   opt = options.self.programs;
   cfg = config.self.programs;
@@ -40,6 +40,13 @@ in
           The default status bar to use.
           This will automatically enable the corresponding program.
         '';
+      };
+
+      toggle = mkOption {
+        type = str;
+        description = "The command to toggle the default status bar.";
+        # default = "dummy-status-bar";
+        internal = true;
       };
     };
   };
