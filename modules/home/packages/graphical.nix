@@ -51,22 +51,24 @@ let
 
   apps = concatLists [
     [
-      # krita # image editor
-      # pinta # second image editor
-      # gimp # third image editor
-      # aseprite # pixel art editor
-
       # blender # 3D modeling and animation
       # monero-gui # Monero wallet
       # teams-for-linux # Microsoft Teams
       # songrec # Open-source Shazam client
-      # kiwix # # bruh why do I have the whole wikipedia locally installed
+      # kiwix # bruh why do I have the whole wikipedia locally installed
     ]
     (optional prg.apps.keepassxc.enable pkgs.keepassxc)
     (optional prg.apps.gajim.enable pkgs.gajim)
     (optional prg.apps.obs-studio.enable pkgs.obs-studio)
     (optional prg.apps.audacity.enable pkgs.audacity)
     (optional prg.apps.libreoffice.enable pkgs.libreoffice-fresh)
+  ];
+
+  imageEditor = concatLists [
+    (optional prg.imageEditor.krita.enable pkgs.krita)
+    (optional prg.imageEditor.pinta.enable pkgs.pinta)
+    (optional prg.imageEditor.gimp.enable pkgs.gimp)
+    (optional prg.imageEditor.aseprite.enable pkgs.aseprite)
   ];
 
   tools = with pkgs; [
@@ -78,6 +80,7 @@ let
 in
 [
   apps
+  imageEditor
   tools
 ]
 ++ optionals sys.displayServer.wayland (attrValues wayland)
