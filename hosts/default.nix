@@ -5,10 +5,13 @@
   legacyPackages,
 }:
 let
-  inherit (builtins) concatLists concatMap pathExists;
+  inherit (builtins) concatLists concatMap;
+  inherit (lib.modules) mkDefault;
+  inherit (lib.filesystem) filterNixFiles listModuleFiles listFilesRecursive;
 
   # External Modules
   disko = import "${sources.disko}/module.nix";
+  inherit (sources) nixos-hardware;
 
   # Root path for local modules
   modulesPath = ../modules;
@@ -35,13 +38,13 @@ let
         {
           networking.hostName = hostname;
           nixpkgs = {
-            hostPlatform = lib.mkDefault system;
+            hostPlatform = mkDefault system;
             flake.source = sources.nixpkgs.outPath;
           };
         }
       ]
-      (lib.filterNixFiles (lib.listFilesRecursive ./${hostname}))
-      (concatMap lib.listModuleFiles extraModules)
+      (filterNixFiles (listFilesRecursive ./${hostname}))
+      (concatMap listModuleFiles extraModules)
     ];
 
   # pkgs.nixos doesn't allow to pass specialArgs :(
@@ -74,6 +77,7 @@ let
           [
             nixos
             options
+            home
           ]
         ];
       };
@@ -90,7 +94,6 @@ in
       workstation
       laptop
     ];
-    extraModules = [ home ];
   };
 
   AuroraR7 = mkNixosSystem {
@@ -98,6 +101,5 @@ in
     profiles = [
       workstation
     ];
-    extraModules = [ home ];
   };
 }
