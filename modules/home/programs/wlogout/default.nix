@@ -14,11 +14,18 @@
   ...
 }:
 let
+  inherit (lib.modules) mkIf;
+
   colors = config.self.colors.default;
-  dprg = config.self.programs.default;
+  prg = config.self.programs;
+  dprg = prg.default;
 in
 {
-  config = lib.mkIf false {
+  config = mkIf prg.powerMenu.wlogout.enable {
+    self.programs.default.powerMenu = mkIf (dprg.powerMenu.name == "wlogout") {
+      cmd = "wlogout";
+    };
+
     programs.gdk-pixbuf.modulePackages = with pkgs; [
       librsvg # add svg support to gdk-pixbuf (wlogout)
     ];

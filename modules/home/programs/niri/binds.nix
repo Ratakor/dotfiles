@@ -84,7 +84,7 @@ in
     //riverctl map normal None button9 close
     //riverctl map normal None button10 spawn 'musiccmd'
 
-    Mod+Shift+E repeat=false hotkey-overlay-title="Exit options" { spawn-sh "dms ipc powermenu toggle"; }
+    Mod+Shift+E repeat=false hotkey-overlay-title="Exit options" { spawn-sh "${dprg.powerMenu.cmd}"; }
 
     // Mod+Escape repeat=false hotkey-overlay-title="Reload config" {
     //   spawn-sh "makoctl reload; systemctl --user restart dms foot";

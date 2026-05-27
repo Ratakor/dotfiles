@@ -7,7 +7,6 @@
 }:
 let
   inherit (lib.modules) mkIf;
-  inherit (lib.trivial) unreachable;
 
   module = "${sources.noctalia-shell}/nix/home-module.nix";
 
@@ -15,9 +14,11 @@ let
   prg = config.self.programs;
   dprg = prg.default;
   isDefaultBar = dprg.statusBar.name == "noctalia";
+  enable =
+    prg.statusBar.noctalia.enable || prg.locker.noctalia.enable || prg.powerMenu.noctalia.enable;
 in
 {
-  config = mkIf (prg.statusBar.noctalia.enable || prg.locker.noctalia.enable) {
+  config = mkIf enable {
     self.programs.default = {
       statusBar = mkIf isDefaultBar {
         toggle = "noctalia-shell ipc call bar toggle";
@@ -25,9 +26,11 @@ in
       locker = mkIf (dprg.locker.name == "noctalia") {
         cmd = "noctalia-shell ipc call lockScreen lock";
       };
+      powerMenu = mkIf (dprg.powerMenu.name == "noctalia") {
+        cmd = "noctalia-shell ipc call sessionMenu toggle";
+      };
     };
 
-    # TODO: idk if this works
     hm.imports = [ module ];
 
     hm.programs.noctalia-shell = {

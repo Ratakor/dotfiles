@@ -8,13 +8,16 @@ let
   isDefaultBar = dprg.statusBar.name == "dms";
 in
 {
-  config = mkIf (prg.locker.dms.enable || prg.statusBar.dms.enable) {
+  config = mkIf (prg.locker.dms.enable || prg.statusBar.dms.enable || prg.powerMenu.dms.enable) {
     self.programs.default = {
       statusBar = mkIf isDefaultBar {
         toggle = "dms ipc bar toggle index 0";
       };
       locker = mkIf (dprg.locker.name == "dms") {
         cmd = "dms ipc lock lock";
+      };
+      powerMenu = mkIf (dprg.powerMenu.name == "dms") {
+        cmd = "dms ipc powermenu toggle";
       };
     };
 
