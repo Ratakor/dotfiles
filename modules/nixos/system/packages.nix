@@ -32,6 +32,11 @@ in
       ## Linux man pages
       man-pages
       man-pages-posix
+
+      # Spell Chcker
+      hunspell
+      hunspellDicts.en-us
+      hunspellDicts.fr-moderne
     ];
   };
 }
