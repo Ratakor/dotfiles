@@ -33,7 +33,7 @@ in
       man-pages
       man-pages-posix
 
-      # Spell Chcker
+      # Spell Checker
       hunspell
       hunspellDicts.en-us
       hunspellDicts.fr-moderne

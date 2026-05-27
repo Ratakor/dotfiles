@@ -6,10 +6,11 @@
   ...
 }:
 let
-  inherit (builtins) attrValues;
-  inherit (lib.lists) optionals singleton;
+  inherit (builtins) attrValues concatLists;
+  inherit (lib.lists) optionals singleton optional;
 
   sys = config.self.system;
+  prg = config.self.programs;
 
   wayland = {
     apps = [ ];
@@ -48,24 +49,24 @@ let
     ];
   };
 
-  apps = with pkgs; [
-    keepassxc # password manager
-    qbittorrent # torrent client
-    # krita # image editor
-    # pinta # second image editor
-    # gimp # third image editor
-    # aseprite # pixel art editor
-    # audacity # sound editor
-    gajim # XMPP client
-    # obs-studio # screen recording and streaming
-    # libreoffice # office suite (there are many variant in nixpkgs)
-    # blender # 3D modeling and animation
-    # monero-gui # Monero wallet
-    # teams-for-linux # Microsoft Teams
-    # songrec # Open-source Shazam client
-    # kiwix # # bruh why do I have the whole wikipedia locally installed
-    discord # see vencord & vesktop too
-    spotify
+  apps = concatLists [
+    [
+      # krita # image editor
+      # pinta # second image editor
+      # gimp # third image editor
+      # aseprite # pixel art editor
+
+      # blender # 3D modeling and animation
+      # monero-gui # Monero wallet
+      # teams-for-linux # Microsoft Teams
+      # songrec # Open-source Shazam client
+      # kiwix # # bruh why do I have the whole wikipedia locally installed
+    ]
+    (optional prg.apps.keepassxc.enable pkgs.keepassxc)
+    (optional prg.apps.gajim.enable pkgs.gajim)
+    (optional prg.apps.obs-studio.enable pkgs.obs-studio)
+    (optional prg.apps.audacity.enable pkgs.audacity)
+    (optional prg.apps.libreoffice.enable pkgs.libreoffice-fresh)
   ];
 
   tools = with pkgs; [

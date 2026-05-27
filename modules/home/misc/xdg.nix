@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 let
   HOME = config.hm.home.homeDirectory;
-  dprg = config.self.programs.default;
+  prg = config.self.programs;
+  dprg = prg.default;
 in
 {
   hm.xdg = {
@@ -64,16 +65,13 @@ in
       defaultApplications = {
         "inode/directory" = [ dprg.fileManager.desktopEntry ];
       };
-      # TODO: there should be an option corresponding to all these "pkgs" packages
-      # Even though it's technically fine to include unused package,
-      # they should still be removed as it takes a while to generate
-      # the corresponding mimeapps.list (~30s atm).
+      # This takes ~30s to generate mimeapps.list but I love it.
       defaultApplicationPackages = builtins.filter (pkg: pkg != null) [
-        pkgs.discord
-        pkgs.spotify
-        pkgs.qbittorrent
+        prg.apps.discord.package
+        prg.apps.spotify.package
+        prg.apps.qbittorrent.package
         dprg.email.package
-        (if config.hm.programs.anki.enable then config.hm.programs.anki.package else null)
+        prg.apps.anki.package
         # order below is important
         dprg.editor.visual.package
         dprg.editor.package
