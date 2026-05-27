@@ -76,7 +76,7 @@ in
         dprg.editor.visual.package
         dprg.editor.package
         dprg.imageViewer.package
-        config.hm.programs.mpv.package
+        dprg.mediaPlayer.package
         pkgs.zathura
         dprg.browser.package
       ];
