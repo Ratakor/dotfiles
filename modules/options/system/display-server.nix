@@ -3,7 +3,8 @@ let
   inherit (lib.options) mkEnableOption;
   inherit (lib.lists) singleton;
 
-  cfg = config.self.system.displayServer;
+  sys = config.self.system;
+  cfg = sys.displayServer;
 in
 {
   # .enable is too verbose for this
@@ -17,6 +18,11 @@ in
       {
         assertion = !(cfg.wayland && cfg.x11);
         message = "You cannot enable both Wayland and X11 display servers simultaneously.";
+      }
+      {
+        # we could instead use == instead of -> to enforce a display server when video is enabled
+        assertion = (cfg.wayland || cfg.x11) -> sys.video.enable;
+        message = "Display server requires config.self.video to be enabled.";
       }
     ];
 
