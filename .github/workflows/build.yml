@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+  pages: write
   id-token: write
 
 concurrency:
@@ -66,3 +67,13 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - run: nix build "github:${{ github.repository }}/${{ github.ref }}#${{ matrix.package }}"
+
+  deploy-docs:
+    needs: [find-uncached, build-uncached]
+    if: |
+      always() &&
+      needs.find-uncached.result == 'success' &&
+      contains(needs.find-uncached.outputs.uncached, 'packages.x86_64-linux.docs') &&
+      needs.build-uncached.result == 'success'
+    uses: ./.github/workflows/docs.yml
+    secrets: inherit
