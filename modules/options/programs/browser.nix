@@ -10,7 +10,7 @@ let
     mkOption
     mkPackageOption
     mkEnableOptions'
-    literalMD
+    literalExpression
     ;
   inherit (lib.modules) mkIf mkDefault;
   inherit (lib.types) nullOr enum str;
@@ -27,12 +27,18 @@ in
         package = mkPackageOption pkgs "chromium" {
           default = "helium";
           example = [ "ungoogled-chromium" ]; # see also cromite, github:celenityy/titanium
+          extraDescription = ''
+            The command used to launch a new browser may differ from "chromium".
+          '';
         };
       };
 
       firefox = {
         package = mkPackageOption pkgs "firefox" {
           example = [ "librewolf" ]; # see also github:celenityy/phoenix
+          extraDescription = ''
+            The command used to launch a new browser may differ from "firefox".
+          '';
         };
       };
     };
@@ -46,9 +52,9 @@ in
           "qutebrowser"
           "tor-browser"
         ]);
-        default = if sys.displayServer.wayland || sys.displayServer.x11 then "chromium" else null;
-        defaultText = literalMD ''
-          `"chromium"` if using Wayland or X11, `null` otherwise
+        default = if sys.video.enable then "chromium" else null;
+        defaultText = literalExpression ''
+          if sys.video.enable then "chromium" else null;
         '';
         description = ''
           The default browser to use.

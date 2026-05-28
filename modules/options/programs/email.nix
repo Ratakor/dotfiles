@@ -10,7 +10,7 @@ let
     mkPackageOption
     mkEnableOptions'
     mkEnableOption
-    literalMD
+    literalExpression
     ;
   inherit (lib.modules) mkIf mkDefault;
   inherit (lib.types) nullOr enum;
@@ -35,9 +35,9 @@ in
         type = nullOr (enum [
           "thunderbird"
         ]);
-        default = if sys.displayServer.wayland || sys.displayServer.x11 then "thunderbird" else null;
-        defaultText = literalMD ''
-          `"thunderbird"` if using Wayland or X11, `null` otherwise
+        default = if sys.video.enable then "thunderbird" else null;
+        defaultText = literalExpression ''
+          if sys.video.enable then "thunderbird" else null;
         '';
         description = ''
           The default email client to use.

@@ -9,7 +9,7 @@ let
     mkOption
     mkPackageOption
     mkEnableOptions'
-    literalMD
+    literalExpression
     ;
   inherit (lib.modules) mkIf mkDefault;
   inherit (lib.types) nullOr enum;
@@ -28,9 +28,9 @@ in
           "mpv"
           "vlc"
         ]);
-        default = if sys.displayServer.wayland || sys.displayServer.x11 then "mpv" else null;
-        defaultText = literalMD ''
-          `"mpv"` if using Wayland or X11, `null` otherwise
+        default = if sys.video.enable then "mpv" else null;
+        defaultText = literalExpression ''
+          if sys.video.enable then "mpv" else null;
         '';
         description = ''
           The default media player to use.

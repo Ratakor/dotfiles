@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions' literalMD;
+  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.modules) mkIf mkDefault;
   inherit (lib.types)
     nullOr
@@ -35,9 +35,9 @@ in
           "ghostty"
           "st"
         ]);
-        default = if sys.displayServer.wayland || sys.displayServer.x11 then "ghostty" else null;
-        defaultText = literalMD ''
-          `"ghostty"` if using Wayland or X11, `null` otherwise
+        default = if sys.video.enable then "ghostty" else null;
+        defaultText = literalExpression ''
+          if sys.video.enable then "ghostty" else null;
         '';
         description = ''
           The default terminal emulator to use.

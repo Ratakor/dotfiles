@@ -9,7 +9,7 @@ let
     mkOption
     mkPackageOption
     mkEnableOptions'
-    literalMD
+    literalExpression
     ;
   inherit (lib.modules) mkIf mkDefault;
   inherit (lib.types) nullOr enum;
@@ -28,9 +28,9 @@ in
           "imv"
           "nsxiv"
         ]);
-        default = if sys.displayServer.wayland || sys.displayServer.x11 then "imv" else null;
-        defaultText = literalMD ''
-          `"imv"` if using Wayland or X11, `null` otherwise
+        default = if sys.video.enable then "imv" else null;
+        defaultText = literalExpression ''
+          if sys.video.enable then "imv" else null;
         '';
         description = ''
           The default image viewer to use.
