@@ -5,13 +5,13 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions' literalMD;
+  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum str;
 
   opt = options.self.programs;
-  cfg = config.self.programs;
-  sys = config.self.system;
+  prg = config.self.programs;
+  dprg = prg.default;
 in
 {
   options.self.programs = {
@@ -24,13 +24,12 @@ in
           "noctalia"
           "wlogout"
         ]);
-        default = if sys.displayServer.wayland then "dms" else null;
-        defaultText = literalMD ''
-          `"dms"` if using Wayland, `null` otherwise
-        '';
+        default = dprg.desktopShell.name;
+        defaultText = literalExpression "dprg.desktopShell.name;";
         description = ''
           The default power menu to use.
           This will automatically enable the corresponding program.
+          Consider setting config.self.programs.default.desktopShell.name instead.
         '';
       };
 
@@ -43,7 +42,15 @@ in
     };
   };
 
-  config.self.programs = mkIf (cfg.default.powerMenu.name != null) {
-    powerMenu.${cfg.default.powerMenu.name}.enable = true;
+  config = mkIf (dprg.powerMenu.name != null) {
+    assertions = [
+      {
+        assertion =
+          prg.desktopShell ? ${dprg.powerMenu.name} -> prg.desktopShell.${dprg.powerMenu.name}.enable;
+        message = "The corresponding desktop shell must be enabled for power menu.";
+      }
+    ];
+
+    self.programs.powerMenu.${dprg.powerMenu.name}.enable = true;
   };
 }

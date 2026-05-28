@@ -14,11 +14,9 @@ let
   prg = config.self.programs;
   dprg = prg.default;
   isDefaultBar = dprg.statusBar.name == "noctalia";
-  enable =
-    prg.statusBar.noctalia.enable || prg.locker.noctalia.enable || prg.powerMenu.noctalia.enable;
 in
 {
-  config = mkIf enable {
+  config = mkIf prg.desktopShell.noctalia.enable {
     self.programs.default = {
       statusBar = mkIf isDefaultBar {
         toggle = "noctalia-shell ipc call bar toggle";

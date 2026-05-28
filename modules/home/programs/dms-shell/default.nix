@@ -8,7 +8,7 @@ let
   isDefaultBar = dprg.statusBar.name == "dms";
 in
 {
-  config = mkIf (prg.locker.dms.enable || prg.statusBar.dms.enable || prg.powerMenu.dms.enable) {
+  config = mkIf prg.desktopShell.dms.enable {
     self.programs.default = {
       statusBar = mkIf isDefaultBar {
         toggle = "dms ipc bar toggle index 0";
