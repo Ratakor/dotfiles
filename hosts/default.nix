@@ -102,4 +102,13 @@ in
       workstation
     ];
   };
+
+  nomTemporaire = mkNixosSystem {
+    hostname = "nomTemporaire";
+    profiles = [
+      workstation
+      laptop
+    ];
+    extraModules = [ home ];
+  };
 }
