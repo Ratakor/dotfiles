@@ -61,6 +61,7 @@
         lutris.enable = false; # TODO: fail to build
       };
       browser.chromium.package = pkgs.helium;
+      email.thunderbird.dove = false;
       apps = {
         anki.enable = true;
         gajim.enable = false;
