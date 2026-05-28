@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (builtins) attrValues any;
+  inherit (builtins) attrValues any all;
   inherit (lib.options) mkOption;
   inherit (lib) types;
 
@@ -56,8 +56,8 @@ in
       {
         assertion =
           cfg.btrfs.autoSnapshot.subvolumes
-          |> builtins.attrValues
-          |> builtins.all (path: config.fileSystems.${path}.fsType == "btrfs");
+          |> attrValues
+          |> all (path: config.fileSystems.${path}.fsType == "btrfs");
         message = "All mount points in `self.system.fs.btrfs.autoSnapshot.subvolumes` must exist and be of \"btrfs\" fsType.";
       }
     ];

@@ -109,6 +109,8 @@ in
       workstation
       laptop
     ];
-    extraModules = [ home ];
+    extraModules = [
+      "${nixos-hardware}/framework/13-inch/amd-ai-300-series"
+    ];
   };
 }

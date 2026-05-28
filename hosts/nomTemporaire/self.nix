@@ -58,10 +58,8 @@
       };
       gaming = {
         enable = true;
-        lutris.enable = false; # TODO: fail to build
+        lutris.enable = false; # TODO: should be true
       };
-      browser.chromium.package = pkgs.helium;
-      email.thunderbird.dove = false;
       apps = {
         anki.enable = true;
         gajim.enable = false;
@@ -69,9 +67,11 @@
         libreoffice.enable = true;
         obs-studio.enable = true;
       };
+      email.thunderbird.dove = false;
       windowManager.niri.extraConfig = /* kdl */ ''
         binds {
           Mod+Shift+Colon hotkey-overlay-title=null { show-hotkey-overlay; }
+
           Mod+ampersand { focus-workspace 1; }
           Mod+eacute { focus-workspace 2; }
           Mod+quotedbl { focus-workspace 3; }
