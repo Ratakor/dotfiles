@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib.modules) mkIf;
+  inherit (lib.modules) mkIf mkForce;
 
   yazi = pkgs.wrappers.yazi.override {
     ouch = pkgs.ouch-rar;
@@ -18,6 +18,11 @@ in
   config = mkIf prg.fileManager.yazi.enable {
     self.programs.default.fileManager = mkIf (prg.default.fileManager.name == "yazi") {
       desktopEntry = "yazi.desktop";
+    };
+
+    xdg.portal = mkIf prg.fileManager.yazi.portal.enable {
+      enable = true;
+      extraPortals = mkForce [ pkgs.xdg-desktop-portal-termfilechooser ];
     };
 
     user.packages = [ yazi ];

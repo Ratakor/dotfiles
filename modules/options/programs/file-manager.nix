@@ -5,7 +5,12 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions literalExpression;
+  inherit (lib.options)
+    mkOption
+    mkEnableOption
+    mkEnableOptions
+    literalExpression
+    ;
   inherit (lib.modules) mkDefault;
   inherit (lib.types) enum str;
   inherit (lib.attrsets) recursiveUpdate;
@@ -16,7 +21,12 @@ in
 {
   options.self.programs = {
     fileManager = recursiveUpdate (mkEnableOptions opt.default.fileManager.name) {
-      yazi.enable.default = true;
+      yazi = {
+        enable.default = true;
+        portal.enable = mkEnableOption "yazi for the FileChooser portal" // {
+          default = true;
+        };
+      };
     };
 
     default.fileManager = {

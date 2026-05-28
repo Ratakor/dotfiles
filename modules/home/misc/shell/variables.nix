@@ -46,6 +46,7 @@ in
         BROWSER = dprg.browser.newWindow;
         DMENU = dprg.launcher.dmenu;
         TERMINAL = dprg.terminal.cmd;
+        TERMCMD = dprg.terminal.cmd; # needed by xdg-desktop-portal-termfilechooser
 
         # ~/ Clean-up
         inherit GOPATH CARGO_HOME;

@@ -56,6 +56,8 @@ in
           "gnome"
         else if dprg.fileManager.name == "dolphin" then
           "kde"
+        else if prg.fileManager.yazi.portal.enable then
+          "termfilechooser"
         else
           "gtk";
 
