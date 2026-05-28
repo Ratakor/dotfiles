@@ -5,9 +5,16 @@
   ...
 }:
 let
+  inherit (lib.modules) mkIf mkForce;
+
   theme = config.self.colors.default.gtk.theme pkgs;
+  cfg = config.self.programs.xdg.portal.gtk;
 in
 {
+  xdg.portal = mkIf cfg.enable {
+    extraPortals = mkForce [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   hm.gtk = {
     enable = true;
 
@@ -15,13 +22,8 @@ in
 
     gtk2.enable = false; # .gtkrc-2.0 symlink in $HOME
 
-    # TODO:
-    # - does this work as intended on X11?
-    # - iirc it was causing issue with lutris on wayland
-    # - try to only remove titlebar for specific apps (terminal, dragon-drop, ...)
-    # - idk if it's because of this or odd gtk4 config but chromium looses its bar when fullscreen
-    # TODO: check if disabling that fixes anything
-    gtk3.extraCss = lib.mkIf false /* css */ ''
+    # This was needed on river but it's causing issue on niri.
+    gtk3.extraCss = mkIf false /* css */ ''
       /* No (default) titlebar on wayland */
       .titlebar, .css, headerbar {
           background-image: none;

@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
+let
+  inherit (lib.modules) mkForce;
+in
 {
   services = {
     udev.packages = [ pkgs.gnome-settings-daemon ];
@@ -10,5 +13,10 @@
       gnome-keyring.enable = true; # mkForce false;
       # gcr-ssh-agent.enable = false; # config.services.gnome.gnome-keyring.enable
     };
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = mkForce [ pkgs.gnome-keyring ];
   };
 }

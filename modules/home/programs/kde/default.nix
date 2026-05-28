@@ -1,4 +1,3 @@
-# currently only used for dolphin file manager
 {
   config,
   lib,
@@ -6,16 +5,25 @@
   ...
 }:
 let
-  inherit (lib.modules) mkIf;
+  inherit (lib.modules) mkIf mkForce;
+  inherit (lib.lists) optional;
 
   prg = config.self.programs;
+  dprg = prg.default;
+
+  dolphin = optional prg.fileManager.dolphin.enable pkgs.kdePackages.dolphin;
 in
 {
-  config = mkIf prg.fileManager.dolphin.enable {
-    self.programs.default.fileManager = mkIf (prg.default.fileManager.name == "dolphin") {
+  config = {
+    self.programs.default.fileManager = mkIf (dprg.fileManager.name == "dolphin") {
       desktopEntry = "org.kde.dolphin.desktop";
     };
 
-    user.packages = [ pkgs.kdePackages.dolphin ];
+    xdg.portal = mkIf prg.xdg.portal.kde.enable {
+      extraPortals = mkForce [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+    };
+
+    services.dbus.packages = dolphin;
+    user.packages = dolphin;
   };
 }

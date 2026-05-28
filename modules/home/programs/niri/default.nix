@@ -8,10 +8,11 @@
 }:
 let
   inherit (builtins) concatStringsSep;
-  inherit (lib.modules) mkIf;
+  inherit (lib.modules) mkIf mkForce;
   inherit (lib.meta) getExe';
 
   prg = config.self.programs;
+  dprg = prg.default;
   cfg = prg.windowManager.niri;
 
   input = import ./input.nix config;
@@ -33,7 +34,7 @@ let
 in
 {
   config = mkIf cfg.enable {
-    self.programs.default.windowManager = mkIf (prg.default.windowManager.name == "niri") {
+    self.programs.default.windowManager = mkIf (dprg.windowManager.name == "niri") {
       cmd = getExe' config.programs.niri.package "niri-session";
       session = "niri";
     };
@@ -43,7 +44,23 @@ in
     programs.niri = {
       enable = true;
       # package = pkgs.niri-git;
-      useNautilus = prg.fileManager.nautilus.enable;
+      useNautilus = false;
+    };
+
+    xdg.portal.config.niri = {
+      default = mkForce [
+        dprg.xdg.portal.name
+        "gtk"
+      ];
+
+      "org.freedesktop.impl.portal.FileChooser" = mkForce (
+        if dprg.fileManager.name == "nautilus" then
+          "gnome"
+        else if dprg.fileManager.name == "dolphin" then
+          "kde"
+        else
+          "gtk"
+      );
     };
 
     environment.systemPackages = with pkgs; [

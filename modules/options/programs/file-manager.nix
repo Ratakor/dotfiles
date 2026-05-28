@@ -5,13 +5,13 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions;
+  inherit (lib.options) mkOption mkEnableOptions literalExpression;
   inherit (lib.modules) mkDefault;
   inherit (lib.types) enum str;
   inherit (lib.attrsets) recursiveUpdate;
 
   opt = options.self.programs;
-  cfg = config.self.programs;
+  dprg = config.self.programs.default;
 in
 {
   options.self.programs = {
@@ -27,7 +27,21 @@ in
           "nautilus" # gnome
           "dolphin" # kde
         ];
-        default = "terminal";
+        default =
+          if dprg.xdg.portal.name == "gnome" then
+            "nautilus"
+          else if dprg.xdg.portal.name == "kde" then
+            "dolphin"
+          else
+            "terminal";
+        defaultText = literalExpression ''
+          if dprg.xdg.portal.name == "gnome" then
+            "nautilus"
+          else if dprg.xdg.portal.name == "kde" then
+            "dolphin"
+          else
+            "terminal";
+        '';
         description = ''
           The default file manager to use.
           This will automatically enable the corresponding program.
@@ -43,6 +57,6 @@ in
   };
 
   config.self.programs = {
-    fileManager.${cfg.default.fileManager.name}.enable = mkDefault true;
+    fileManager.${dprg.fileManager.name}.enable = mkDefault true;
   };
 }
