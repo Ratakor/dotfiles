@@ -22,7 +22,6 @@ in
     default.fileManager = {
       name = mkOption {
         type = enum [
-          "terminal" # directly use the terminal
           "yazi" # terminal file manager
           "nautilus" # gnome
           "dolphin" # kde
@@ -33,14 +32,14 @@ in
           else if dprg.xdg.portal.name == "kde" then
             "dolphin"
           else
-            "terminal";
+            "yazi";
         defaultText = literalExpression ''
           if dprg.xdg.portal.name == "gnome" then
             "nautilus"
           else if dprg.xdg.portal.name == "kde" then
             "dolphin"
           else
-            "terminal";
+            "yazi";
         '';
         description = ''
           The default file manager to use.
