@@ -12,6 +12,7 @@ let
 in
 {
   xdg.portal = mkIf cfg.enable {
+    enable = true;
     extraPortals = mkForce [ pkgs.xdg-desktop-portal-gtk ];
   };
 

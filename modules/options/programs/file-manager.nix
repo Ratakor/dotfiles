@@ -44,6 +44,7 @@ in
         description = ''
           The default file manager to use.
           This will automatically enable the corresponding program.
+          Consider setting config.self.programs.default.xdg.portal.name instead.
         '';
       };
 

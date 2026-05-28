@@ -20,6 +20,7 @@ in
     };
 
     xdg.portal = mkIf prg.xdg.portal.kde.enable {
+      enable = true;
       extraPortals = mkForce [ pkgs.kdePackages.xdg-desktop-portal-kde ];
     };
 

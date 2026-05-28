@@ -39,28 +39,27 @@ in
       session = "niri";
     };
 
-    # btw this is NixOS's programs not home-manager's programs.
-    # guess why we're using this one
     programs.niri = {
       enable = true;
       # package = pkgs.niri-git;
       useNautilus = false;
     };
 
-    xdg.portal.config.niri = {
-      default = mkForce [
+    xdg.portal.config.niri = mkForce {
+      default = [
         dprg.xdg.portal.name
         "gtk"
       ];
 
-      "org.freedesktop.impl.portal.FileChooser" = mkForce (
+      "org.freedesktop.impl.portal.FileChooser" =
         if dprg.fileManager.name == "nautilus" then
           "gnome"
         else if dprg.fileManager.name == "dolphin" then
           "kde"
         else
-          "gtk"
-      );
+          "gtk";
+
+      "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
     };
 
     environment.systemPackages = with pkgs; [

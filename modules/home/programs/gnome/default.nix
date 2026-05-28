@@ -20,6 +20,7 @@ in
     };
 
     xdg.portal = mkIf prg.xdg.portal.gnome.enable {
+      enable = true;
       extraPortals = mkForce [ pkgs.xdg-desktop-portal-gnome ];
     };
 

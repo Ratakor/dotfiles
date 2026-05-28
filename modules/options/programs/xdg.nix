@@ -17,12 +17,14 @@ in
 {
   options.self.programs = {
     xdg.portal = recursiveUpdate (mkEnableOptions' opt.default.xdg.portal.name) {
+      # gtk is used as fallback
       gtk.enable = {
         default = sys.video.enable;
         defaultText = literalExpression "sys.video.enable";
       };
     };
 
+    # TODO: kde is a better default imo but need to theme qt6
     default.xdg.portal = {
       name = mkOption {
         type = nullOr (enum [
@@ -30,9 +32,9 @@ in
           "gtk"
           "kde"
         ]);
-        default = if sys.video.enable then "gtk" else null;
+        default = if sys.video.enable then "gnome" else null;
         defaultText = literalExpression ''
-          if sys.video.enable then "gtk" else null;
+          if sys.video.enable then "gnome" else null;
         '';
         description = ''
           The default XDG Portal to use.
