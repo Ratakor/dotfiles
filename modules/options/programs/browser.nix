@@ -12,7 +12,7 @@ let
     mkEnableOptions'
     literalExpression
     ;
-  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum str;
   inherit (lib.attrsets) recursiveUpdate;
 
@@ -81,6 +81,6 @@ in
   };
 
   config.self.programs = mkIf (cfg.default.browser.name != null) {
-    browser.${cfg.default.browser.name}.enable = mkDefault true;
+    browser.${cfg.default.browser.name}.enable = true;
   };
 }

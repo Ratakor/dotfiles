@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib.options) mkOption mkEnableOptions' literalMD;
-  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum str;
 
   opt = options.self.programs;
@@ -44,6 +44,6 @@ in
   };
 
   config.self.programs = mkIf (cfg.default.powerMenu.name != null) {
-    powerMenu.${cfg.default.powerMenu.name}.enable = mkDefault true;
+    powerMenu.${cfg.default.powerMenu.name}.enable = true;
   };
 }

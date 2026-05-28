@@ -52,7 +52,8 @@ in
   };
 
   config.self.programs = mkIf (cfg.default.locker.name != null) {
-    locker.${cfg.default.locker.name}.enable = mkDefault true;
+    locker.${cfg.default.locker.name}.enable = true;
+
     # TODO: This should be setup in modules/home/programs
     #       Also packages installation is probably all over the place
     default.locker.cmd = mkDefault cfg.default.locker.name;

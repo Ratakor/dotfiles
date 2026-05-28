@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib.options) mkOption mkEnableOptions' literalExpression;
-  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.modules) mkIf;
   inherit (lib.types)
     nullOr
     enum
@@ -65,6 +65,6 @@ in
   };
 
   config.self.programs = mkIf (cfg.default.terminal.name != null) {
-    terminal.${cfg.default.terminal.name}.enable = mkDefault true;
+    terminal.${cfg.default.terminal.name}.enable = true;
   };
 }

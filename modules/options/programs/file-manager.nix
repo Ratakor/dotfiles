@@ -6,7 +6,6 @@
 }:
 let
   inherit (lib.options) mkOption mkEnableOptions literalExpression;
-  inherit (lib.modules) mkDefault;
   inherit (lib.types) enum str;
   inherit (lib.attrsets) recursiveUpdate;
 
@@ -57,6 +56,6 @@ in
   };
 
   config.self.programs = {
-    fileManager.${dprg.fileManager.name}.enable = mkDefault true;
+    fileManager.${dprg.fileManager.name}.enable = true;
   };
 }

@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib.options) mkOption mkEnableOptions' literalExpression;
-  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum;
   inherit (lib.attrsets) recursiveUpdate;
 
@@ -45,6 +45,6 @@ in
   };
 
   config.self.programs = mkIf (cfg.default.xdg.portal.name != null) {
-    xdg.portal.${cfg.default.xdg.portal.name}.enable = mkDefault true;
+    xdg.portal.${cfg.default.xdg.portal.name}.enable = true;
   };
 }

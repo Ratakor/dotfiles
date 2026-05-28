@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib.options) mkOption mkEnableOptions' literalMD;
-  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum str;
 
   opt = options.self.programs;
@@ -52,6 +52,6 @@ in
   };
 
   config.self.programs = mkIf (cfg.default.statusBar.name != null) {
-    statusBar.${cfg.default.statusBar.name}.enable = mkDefault true;
+    statusBar.${cfg.default.statusBar.name}.enable = true;
   };
 }

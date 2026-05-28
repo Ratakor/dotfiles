@@ -12,7 +12,7 @@ let
     mkEnableOption
     literalExpression
     ;
-  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum;
   inherit (lib.attrsets) recursiveUpdate;
 
@@ -57,6 +57,6 @@ in
   };
 
   config.self.programs = mkIf (cfg.default.email.name != null) {
-    email.${cfg.default.email.name}.enable = mkDefault true;
+    email.${cfg.default.email.name}.enable = true;
   };
 }

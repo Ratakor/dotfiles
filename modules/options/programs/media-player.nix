@@ -11,7 +11,7 @@ let
     mkEnableOptions'
     literalExpression
     ;
-  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum;
 
   opt = options.self.programs;
@@ -50,6 +50,6 @@ in
   };
 
   config.self.programs = mkIf (cfg.default.mediaPlayer.name != null) {
-    mediaPlayer.${cfg.default.mediaPlayer.name}.enable = mkDefault true;
+    mediaPlayer.${cfg.default.mediaPlayer.name}.enable = true;
   };
 }

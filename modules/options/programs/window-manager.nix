@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib.options) mkOption mkEnableOptions' literalMD;
-  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum str;
   inherit (lib.attrsets) recursiveUpdate;
 
@@ -71,6 +71,6 @@ in
   };
 
   config.self.programs = mkIf (cfg.default.windowManager.name != null) {
-    windowManager.${cfg.default.windowManager.name}.enable = mkDefault true;
+    windowManager.${cfg.default.windowManager.name}.enable = true;
   };
 }

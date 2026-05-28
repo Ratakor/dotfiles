@@ -11,7 +11,7 @@ let
     mkEnableOptions'
     literalExpression
     ;
-  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum;
 
   opt = options.self.programs;
@@ -49,6 +49,6 @@ in
   };
 
   config.self.programs = mkIf (cfg.default.documentViewer.name != null) {
-    documentViewer.${cfg.default.documentViewer.name}.enable = mkDefault true;
+    documentViewer.${cfg.default.documentViewer.name}.enable = true;
   };
 }

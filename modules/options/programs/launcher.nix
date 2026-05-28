@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib.options) mkOption mkEnableOptions' literalMD;
-  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum str;
 
   opt = options.self.programs;
@@ -67,6 +67,6 @@ in
   };
 
   config.self.programs = mkIf (cfg.default.launcher.name != null) {
-    launcher.${cfg.default.launcher.name}.enable = mkDefault true;
+    launcher.${cfg.default.launcher.name}.enable = true;
   };
 }

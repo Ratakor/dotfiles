@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib.options) mkOption mkEnableOptions';
-  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum;
 
   opt = options.self.programs;
@@ -35,6 +35,6 @@ in
   };
 
   config.self.programs = mkIf (cfg.default.imageEditor.name != null) {
-    imageEditor.${cfg.default.imageEditor.name}.enable = mkDefault true;
+    imageEditor.${cfg.default.imageEditor.name}.enable = true;
   };
 }
