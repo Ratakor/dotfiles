@@ -6,7 +6,8 @@ let
 
   colors = config.self.colors.default;
   prg = config.self.programs;
-  isDefault = prg.default.statusBar.name == "waybar";
+  dprg = prg.default;
+  isDefault = dprg.statusBar.name == "waybar";
 in
 {
   config = mkIf prg.statusBar.waybar.enable {
@@ -50,13 +51,14 @@ in
           path = "/tmp/cover.jpg";
           # TODO
         };
-        "custom/spotify" = {
-          exec = "zpotify waybar"; # TODO: this was removed
-          return-type = "json";
-          tooltip = true;
-          on-click = "zpotify pause >/dev/null";
-          max-length = 40;
-        };
+        # TODO: replace with MPRIS stuff
+        # "custom/spotify" = {
+        #   exec = "zpotify waybar"; # TODO: this was removed
+        #   return-type = "json";
+        #   tooltip = true;
+        #   on-click = "zpotify pause >/dev/null";
+        #   max-length = 40;
+        # };
         "custom/music" = {
           exec = ./scripts/waybar-music.sh;
           interval = "once";
@@ -70,7 +72,7 @@ in
           format-critical = " {temperatureC}°C";
           critical-threshold = 80;
           tooltip = false;
-          on-click = "${config.self.terminal.cmd} -e htop";
+          on-click = "${dprg.terminal.cmd} -e htop";
         };
         battery = {
           full-at = 99;
@@ -125,14 +127,14 @@ in
             "󰤨"
           ];
           tooltip = true;
-          on-click = "${config.self.terminal.cmd} -e nmtui";
+          on-click = "${dprg.terminal.cmd} -e nmtui";
         };
         bluetooth = {
           format-disabled = "";
           format-connected = " {device_alias}";
           tooltip-format = "{controller_alias}\t{controller_address}";
           tooltip-format-connected = "{controller_alias}\t\t{controller_address}\n{device_alias}\t{device_address}";
-          on-click = "${config.self.terminal.cmd} -e bluetoothctl";
+          on-click = "${dprg.terminal.cmd} -e bluetoothctl";
         };
         wireplumber = {
           format = "{icon} {volume}%";
