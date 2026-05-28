@@ -16,7 +16,7 @@ in
 {
   services.displayManager.ly = mkIf (cfg.manager == "ly") {
     enable = true;
-    x11Support = sys.displayServer.x11;
+    x11Support = false;
     settings = {
       clear_password = true;
       vi_mode = true;

@@ -1,16 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }:
 let
   inherit (lib.modules) mkForce;
 in
 {
   services.xserver = {
-    # Enable the X11 windowing system
-    enable = config.self.system.displayServer.x11;
+    enable = false; # no X11 support, Wayland is the future, take that chud 🫵
 
     # Disable auto-installation of unneeded software
     desktopManager.xterm.enable = mkForce false;

@@ -13,7 +13,6 @@ let
   opt = options.self.programs;
   prg = config.self.programs;
   dprg = prg.default;
-  sys = config.self.system;
 in
 {
   options.self.programs = {
@@ -24,12 +23,11 @@ in
         type = nullOr (enum [
           "dms"
           "noctalia"
-          "sb"
           "waybar"
         ]);
-        default = if sys.displayServer.x11 then "sb" else dprg.desktopShell.name;
+        default = dprg.desktopShell.name;
         defaultText = literalExpression ''
-          if sys.displayServer.x11 then "sb" else dprg.desktopShell.name;
+          dprg.desktopShell.name;
         '';
         description = ''
           The default status bar to use.

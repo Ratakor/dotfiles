@@ -12,7 +12,6 @@ in
     };
 
     system = {
-      displayServer.wayland = true;
       login = {
         autoLogin = true;
         manager = "ly";

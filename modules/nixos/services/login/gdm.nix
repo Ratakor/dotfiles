@@ -8,7 +8,7 @@ in
 {
   services.displayManager.gdm = mkIf (cfg.manager == "gdm") {
     enable = true;
-    inherit (sys.displayServer) wayland;
+    wayland = true;
     # settings = {};
   };
 }

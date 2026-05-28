@@ -1,19 +1,11 @@
-{ config, lib, ... }:
+{ lib, ... }:
 let
-  inherit (lib.options) mkEnableOption literalMD;
-
-  cfg = config.self.services;
-  sys = config.self.system;
+  inherit (lib.options) mkEnableOption;
 in
 {
   options.self.services = {
-    kanshi.enable = mkEnableOption "Kanshi";
-    librespot.enable = mkEnableOption "Librespot";
-    wpaperd.enable = mkEnableOption "wpaperd" // {
-      default = sys.displayServer.wayland;
-      defaultText = literalMD "`true` if using Wayland.";
-    };
-    udiskie.enable = mkEnableOption "udiskie";
+    librespot.enable = mkEnableOption "Librespot, Spotify playback daemon";
+    udiskie.enable = mkEnableOption "udiskie, Removable disk automounter";
     syncthing.enable = mkEnableOption "Syncthing" // {
       default = true;
     };

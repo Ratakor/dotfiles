@@ -23,9 +23,9 @@ in
           "dms"
           "noctalia"
         ]);
-        default = if sys.displayServer.wayland then "dms" else null;
+        default = if sys.video.enable then "dms" else null;
         defaultText = literalExpression ''
-          if sys.displayServer.wayland then "dms" else null;
+          if sys.video.enable then "dms" else null;
         '';
         description = ''
           The default desktop shell to use.

@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions' literalMD;
+  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum str;
 
@@ -21,21 +21,14 @@ in
     default.launcher = {
       name = mkOption {
         type = nullOr (enum [
-          "dmenu"
           # "dms" # doesn't support dmenu style
           "fuzzel"
           "tofi"
           "vicinae"
         ]);
-        default =
-          if sys.displayServer.wayland then
-            "fuzzel"
-          else if sys.displayServer.x11 then
-            "dmenu"
-          else
-            null;
-        defaultText = literalMD ''
-          `"fuzzel"` if using Wayland, `"dmenu"` if using X11, `null` otherwise
+        default = if sys.video.enable then "fuzzel" else null;
+        defaultText = literalExpression ''
+          if sys.video.enable then "fuzzel" else null;
         '';
         description = ''
           The default launcher to use.

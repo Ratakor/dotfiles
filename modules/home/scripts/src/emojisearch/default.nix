@@ -1,25 +1,8 @@
 # Search emojis with a dynamic menu
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 let
-  inherit (lib.trivial) unreachable;
-
-  sys = config.self.system;
-  dprg = config.self.programs.default;
-
-  copyCommand =
-    if sys.displayServer.x11 then
-      "xclip -selection clipboard"
-    else if sys.displayServer.wayland then
-      "wl-copy"
-    else
-      unreachable;
   emojiDisplayed = 30;
-  DMENU = dprg.launcher.dmenu;
+  DMENU = config.self.programs.default.launcher.dmenu;
 in
 pkgs.writeShellApplication {
   name = "emojisearch";
@@ -27,6 +10,7 @@ pkgs.writeShellApplication {
     coreutils
     gnused
     libnotify
+    wl-clipboard
   ];
   bashOptions = [
     "errexit"
@@ -36,7 +20,7 @@ pkgs.writeShellApplication {
   text = ''
     chosen=$(cut -d ';' -f1 "${./emoji}" | ${DMENU} -i -l ${toString emojiDisplayed} | sed "s/ .*//")
     [ -z "$chosen" ] && exit 1
-    printf '%s' "$chosen" | ${copyCommand}
+    printf '%s' "$chosen" | wl-copy
     notify-send "'$chosen' copied to clipboard."
   '';
 }

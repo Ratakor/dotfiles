@@ -25,7 +25,9 @@ in
           "wlogout"
         ]);
         default = dprg.desktopShell.name;
-        defaultText = literalExpression "dprg.desktopShell.name;";
+        defaultText = literalExpression ''
+          dprg.desktopShell.name;
+        '';
         description = ''
           The default power menu to use.
           This will automatically enable the corresponding program.

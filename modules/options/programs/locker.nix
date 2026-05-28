@@ -12,7 +12,6 @@ let
   opt = options.self.programs;
   prg = config.self.programs;
   dprg = prg.default;
-  sys = config.self.system;
 in
 {
   options.self.programs = {
@@ -24,12 +23,11 @@ in
           "dms"
           "glitchlock" # backed by swaylock
           "noctalia"
-          "slock"
           "swaylock"
         ]);
-        default = if sys.displayServer.x11 then "slock" else dprg.desktopShell.name;
+        default = dprg.desktopShell.name;
         defaultText = literalExpression ''
-          if sys.displayServer.x11 then "slock" else dprg.desktopShell.name;
+          dprg.desktopShell.name;
         '';
         description = ''
           The default screen locker to use.

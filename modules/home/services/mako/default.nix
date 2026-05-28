@@ -9,10 +9,10 @@ let
   inherit (lib.modules) mkIf;
 
   colors = config.self.colors.default;
-  sys = config.self.system;
+  cfg = config.self.services.mako;
 in
 {
-  config = mkIf sys.displayServer.wayland {
+  config = mkIf cfg.enable {
     user.packages = [ pkgs.libnotify ];
 
     hm.services.mako = {
