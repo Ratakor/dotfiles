@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   self = {
     device = {
@@ -50,10 +51,6 @@
     };
 
     programs = {
-      browser = {
-        tor-browser.enable = true;
-      };
-      terminal.foot.enable = true; # just in case ghostty doesn't work
       default = {
         terminal.name = "ghostty";
       };
@@ -61,6 +58,11 @@
         enable = true;
         poe.enable = true;
       };
+      browser = {
+        tor-browser.enable = true;
+        chromium.package = pkgs.ungoogled-chromium;
+      };
+      terminal.foot.enable = true; # just in case ghostty doesn't work
     };
   };
 }

@@ -25,8 +25,8 @@ in
     browser = recursiveUpdate (mkEnableOptions' opt.default.browser.name) {
       chromium = {
         package = mkPackageOption pkgs "chromium" {
-          default = "ungoogled-chromium";
-          example = [ "helium" ]; # see also cromite, github:celenityy/titanium
+          default = "helium";
+          example = [ "ungoogled-chromium" ]; # see also cromite, github:celenityy/titanium
         };
       };
 
