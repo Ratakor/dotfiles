@@ -20,6 +20,10 @@ let
     (optional prg.apps.libreoffice.enable pkgs.libreoffice-fresh)
     (optional prg.apps.blender.enable pkgs.blender)
     (optional prg.apps.teams.enable pkgs.teams-for-linux)
+    (optionals prg.apps.ledger-live.enable [
+      pkgs.ledger-live-desktop
+      pkgs.ledger-udev-rules # should this be in systemPackages?
+    ])
   ];
 
   imageEditor = concatLists [

@@ -32,5 +32,6 @@ in
     libreoffice.enable = mkEnableOption "LibreOffice";
     blender.enable = mkEnableOption "Blender";
     teams.enable = mkEnableOption "Microsoft Teams";
+    ledger-live.enable = mkEnableOption "Ledger Live";
   };
 }
