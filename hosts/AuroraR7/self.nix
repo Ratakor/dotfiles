@@ -57,6 +57,9 @@
         enable = true;
         poe.enable = true;
       };
+      apps = {
+        teams.enable = true;
+      };
       browser = {
         tor-browser.enable = true;
         chromium.package = pkgs.ungoogled-chromium;

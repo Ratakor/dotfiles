@@ -1,4 +1,4 @@
-{ keys, pkgs, ... }:
+{ keys, ... }:
 {
   self = {
     device = {
@@ -65,6 +65,7 @@
         keepassxc.enable = false;
         libreoffice.enable = true;
         obs-studio.enable = true;
+        teams.enable = true;
       };
       email.thunderbird.dove = false;
       windowManager.niri.extraConfig = /* kdl */ ''

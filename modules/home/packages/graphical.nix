@@ -13,16 +13,13 @@ let
   prg = config.self.programs;
 
   apps = concatLists [
-    [
-      # TODO
-      # blender # 3D modeling and animation
-      # teams-for-linux # Microsoft Teams
-    ]
     (optional prg.apps.keepassxc.enable pkgs.keepassxc)
     (optional prg.apps.gajim.enable pkgs.gajim)
     (optional prg.apps.obs-studio.enable pkgs.obs-studio)
     (optional prg.apps.audacity.enable pkgs.audacity)
     (optional prg.apps.libreoffice.enable pkgs.libreoffice-fresh)
+    (optional prg.apps.blender.enable pkgs.blender)
+    (optional prg.apps.teams.enable pkgs.teams-for-linux)
   ];
 
   imageEditor = concatLists [
@@ -62,7 +59,7 @@ in
 [
   apps
   imageEditor
-  # screenshot
+  screenshot
   tools
   unsorted
 ]

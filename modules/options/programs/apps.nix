@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, ... }:
 let
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.types) nullOr package;
@@ -16,8 +16,6 @@ let
       internal = true;
     };
   };
-
-  cfg = config.self.programs.apps;
 in
 {
   options.self.programs.apps = {
@@ -32,5 +30,7 @@ in
     obs-studio.enable = mkEnableOption "OBS Studio";
     audacity.enable = mkEnableOption "Audacity, Sound Editor";
     libreoffice.enable = mkEnableOption "LibreOffice";
+    blender.enable = mkEnableOption "Blender";
+    teams.enable = mkEnableOption "Microsoft Teams";
   };
 }
