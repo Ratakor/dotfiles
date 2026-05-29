@@ -51,8 +51,7 @@
   - [`keys.nix`](flake/keys.nix): My public SSH and PGP keys.
 - [`hosts`](hosts): Per-host configurations.
 - [`modules`](modules): Modularized configurations.
-  - [`home`](modules/home): User configuration, this is probably what you want to look at.
-  - [`nixos`](modules/nixos): System configuration shared across all hosts.
+  - [`nixos`](modules/nixos): System & user configuration shared across all hosts.
   - [`options`](modules/options): Modules options for customizing my nixos config.
   - [`profiles`](modules/profiles): Shared configurations between similar machines.
 - [`secrets`](secrets): Agenix secrets.
@@ -67,16 +66,12 @@
 ### Scopes:
 
 - `{path}`: Modification to a specific file or directory. Extension can be omitted if it makes sense.
-- `{program}`: Modification to a program located in `modules/home/{programs,services}`.
 - `hosts[/{host}]`: Modification to `hosts`.
-- `home/packages[/{scope,package}]`: Modification to `modules/home/packages`.
-- `home[/{scope}]`: Modification to `modules/home`.
-- `nixos[/{scope}]`: Modification to `modules/nixos`.
+- `[nixos/]{scope}`: Modification to `modules/nixos`.
 - `options[/{option-group}]`: Modification to `modules/options`.
 - `profiles[/{profile}]`: Modification to `modules/profiles`.
-- `apps[/{app}]`: Modification to `flake/apps`.
 - `lib`: Modification to `flake/lib`.
-- `packages[/{package}]`: Modification to `flake/pkgs`.
+- `packages[/{package}]`: Modification to `flake/pkgs[/packages]`.
 - `wrappers[/{wrapper}]`: Modification to `flake/pkgs/wrappers`.
 - `templates[/{template}]`: Modification to `flake/templates`.
 -->
