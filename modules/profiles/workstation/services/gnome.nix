@@ -15,6 +15,9 @@ in
     };
   };
 
+  # A GNOME application for managing encryption keys and passwords in the GNOME Keyring.
+  programs.seahorse.enable = true;
+
   xdg.portal = {
     enable = true;
     extraPortals = mkForce [ pkgs.gnome-keyring ];
