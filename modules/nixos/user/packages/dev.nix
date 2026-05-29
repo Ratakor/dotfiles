@@ -61,6 +61,7 @@ let
     gnugrep # GNU implementation of the Unix grep command
     gnused # GNU sed, a batch stream editor
     pkg-config # Tool that allows packages to find out information about other packages
+    gh # GitHub CLI tool
   ];
 
   fs = with pkgs; [
