@@ -35,6 +35,11 @@ in
         # this is supposed to fix memory issues but I think it's enblaed by
         # default on linux anyway and it doesn't seem to work well too
         gtk-single-instance = true;
+        keybind = [
+          "ctrl+shift+plus=increase_font_size:1"
+          "ctrl+shift+minus=decrease_font_size:1"
+          "ctrl+equal=reset_font_size"
+        ];
       };
       enableZshIntegration = true;
     };
