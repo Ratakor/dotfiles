@@ -1,5 +1,7 @@
+# Consider using AppArmor instead as SELinux doesn't make much sense on NixOS
 # https://wiki.nixos.org/wiki/SELinux_workgroup
 # https://nixos.wiki/wiki/Workgroup:SELinux
+# https://nixos.wiki/wiki/Talk:Workgroup:SELinux
 # https://wiki.archlinux.org/title/SELinux
 {
   config,
@@ -35,7 +37,7 @@ in
 
     boot = {
       kernelParams = [
-        "security=selinux"
+        # "security=selinux" # deprecated by "lsm=" parameter
         "selinux=1"
       ];
 
@@ -46,10 +48,8 @@ in
           extraConfig = ''
             SECURITY_SELINUX y
             SECURITY_SELINUX_BOOTPARAM n
-            SECURITY_SELINUX_DISABLE n
             SECURITY_SELINUX_DEVELOP y
             SECURITY_SELINUX_AVC_STATS y
-            SECURITY_SELINUX_CHECKREQPROT_VALUE 0
             DEFAULT_SECURITY_SELINUX n
           '';
         }
