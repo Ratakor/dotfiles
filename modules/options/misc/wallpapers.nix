@@ -1,4 +1,3 @@
-# Miscellaneous options
 {
   lib,
   pkgs,
@@ -6,14 +5,13 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOption;
-  inherit (lib) types;
+  inherit (lib.options) mkOption;
+  inherit (lib.types) path;
 in
 {
   options.self = {
-    docs.enable = mkEnableOption "generation of internal module documentation to `/etc/nixos/docs`";
     wallpapers = mkOption {
-      type = types.path;
+      type = path;
       default = pkgs.callPackage "${sources.wallpapers}/package.nix" {
         version = lib.shortRev sources.wallpapers.revision;
       };
