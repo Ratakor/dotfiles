@@ -1,4 +1,5 @@
 # TODO: should this be exposed by the flake as a package output?
+# TODO: this should be more modular
 {
   config,
   lib,
@@ -9,6 +10,7 @@
 let
   inherit (builtins) readFile;
   inherit (pkgs) writeShellApplication;
+  inherit (lib.modules) mkIf;
 
   callScript =
     path:
@@ -71,7 +73,7 @@ in
     })
 
     # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/cli/wayland.nix
-    (writeShellApplication {
+    (mkIf false (writeShellApplication {
       name = "ocr";
       runtimeInputs = with pkgs; [
         tesseract # This is 1GiB
@@ -81,7 +83,7 @@ in
         coreutils
       ];
       text = readFile ./src/ocr.sh;
-    })
+    }))
 
     # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/dev/default.nix
     (writeShellApplication {

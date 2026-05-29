@@ -19,7 +19,6 @@ let
   # Local modules
   nixos = modulesPath + /nixos;
   options = modulesPath + /options;
-  home = modulesPath + /home;
 
   # Profiles
   profiles = modulesPath + /profiles;
@@ -77,7 +76,6 @@ let
           [
             nixos
             options
-            home
           ]
         ];
       };
