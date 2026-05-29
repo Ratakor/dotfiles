@@ -1,18 +1,24 @@
 sources:
 (import "${sources.nixpkgs}/lib").extend (
   self: lib:
-  let
-    # callLib = name: (lib.${name} or { }) // (import ./${name}.nix { inherit lib sources self; });
-    callLib = path: import path { inherit lib sources self; };
-  in
-  {
-    filesystem = lib.filesystem // (callLib ./filesystem.nix);
-    flakes = lib.flakes // (callLib ./flakes.nix);
-    options = lib.options // (callLib ./options.nix);
-    time = callLib ./time.nix;
-    trivial = lib.trivial // (callLib ./trivial.nix);
-    types = lib.types // (callLib ./types.nix);
-
+  (
+    # me when I overcomplicate things for no reason
+    builtins.removeAttrs (builtins.readDir ./.) [ "default.nix" ]
+    |> builtins.attrNames
+    |> map (
+      file:
+      let
+        # lib.removeSuffix ".nix" -> infinite recursion
+        name = builtins.substring 0 ((builtins.stringLength file) - 4) file;
+      in
+      {
+        inherit name;
+        value = (lib.${name} or { }) // (import ./${name}.nix { inherit lib sources self; });
+      }
+    )
+    |> builtins.listToAttrs
+  )
+  // {
     inherit (self.filesystem)
       listFiles
       listDirs
