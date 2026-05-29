@@ -7,28 +7,19 @@
 }:
 let
   inherit (builtins) concatLists concatMap;
-  inherit (lib.lists) singleton;
   inherit (lib.modules) mkAliasOptionModule mkForce;
   inherit (lib.filesystem) listFiles;
 
   username = config.self.user.name;
-
-  extraModules = [
-    (import "${sources.home-manager}/nixos")
-  ];
-  moduleAliases = [
-    (mkAliasOptionModule [ "user" ] [ "users" "users" username ])
-    (mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
-  ];
-
-  scripts = singleton ./scripts;
 in
 {
-  imports = concatLists [
-    extraModules
-    moduleAliases
+  imports = [
+    (import "${sources.home-manager}/nixos")
 
-    scripts
+    (mkAliasOptionModule [ "user" ] [ "users" "users" username ])
+    (mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
+
+    ./scripts
     ./oxidation.nix
   ];
 
