@@ -54,6 +54,7 @@
       default = {
         editor.visual.name = "zed";
         locker.name = "glitchlock";
+        mediaPlayer.name = "vlc";
       };
       gaming = {
         enable = true;
@@ -67,6 +68,7 @@
         obs-studio.enable = true;
         teams.enable = true;
       };
+      mediaPlayer.mpv.enable = true;
       email.thunderbird.dove = false;
       windowManager.niri.extraConfig = /* kdl */ ''
         binds {
