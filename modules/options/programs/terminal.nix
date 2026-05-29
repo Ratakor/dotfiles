@@ -33,7 +33,6 @@ in
         type = nullOr (enum [
           "foot"
           "ghostty"
-          "st"
         ]);
         default = if sys.video.enable then "ghostty" else null;
         defaultText = literalExpression ''

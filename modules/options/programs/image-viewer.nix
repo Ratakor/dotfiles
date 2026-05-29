@@ -26,7 +26,6 @@ in
       name = mkOption {
         type = nullOr (enum [
           "imv"
-          "nsxiv"
         ]);
         default = if sys.video.enable then "imv" else null;
         defaultText = literalExpression ''

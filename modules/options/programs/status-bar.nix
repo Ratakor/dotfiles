@@ -48,8 +48,9 @@ in
   config = mkIf (dprg.statusBar.name != null) {
     assertions = [
       {
-        assertion = prg.desktopShell ? ${dprg.locker.name} -> prg.desktopShell.${dprg.locker.name}.enable;
-        message = "The corresponding desktop shell must be enabled for locker.";
+        assertion =
+          prg.desktopShell ? ${dprg.statusBar.name} -> prg.desktopShell.${dprg.statusBar.name}.enable;
+        message = "The corresponding desktop shell must be enabled for status bar.";
       }
     ];
 
