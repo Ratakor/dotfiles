@@ -8,18 +8,32 @@
   ...
 }:
 let
+  inherit (lib.modules) mkIf mkForce;
+
   cfg = config.self.system.security.selinux;
 in
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     # Build systemd with SE Linux support so it loads policy at boot and supports file labelling
     systemd.package = pkgs.systemd.override { withSelinux = true; };
 
-    # iirc SELinux conflicts with AppArmor.
-    security.apparmor.enable = false;
+    security = {
+      # iirc SELinux conflicts with AppArmor.
+      apparmor.enable = false;
+
+      # https://wiki.archlinux.org/title/SELinux#Enable_SELinux_LSM
+      # https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/security/Kconfig#n268
+      lsm = mkForce [
+        "landlock"
+        "lockdown"
+        "yama"
+        "integrity" # "loadpin" "safesetid"
+        "selinux"
+        "bpf"
+      ];
+    };
 
     boot = {
-      # not sure if selinux=1 is necessary
       kernelParams = [
         "security=selinux"
         "selinux=1"
