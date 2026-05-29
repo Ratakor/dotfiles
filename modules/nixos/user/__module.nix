@@ -9,7 +9,7 @@ let
   inherit (builtins) concatLists concatMap;
   inherit (lib.lists) singleton;
   inherit (lib.modules) mkAliasOptionModule mkForce;
-  inherit (lib.filesystem) listFiles listFilesRecursive;
+  inherit (lib.filesystem) listFiles;
 
   username = config.self.user.name;
 
@@ -22,7 +22,6 @@ let
   ];
 
   scripts = singleton ./scripts;
-  misc = listFilesRecursive ./misc;
 in
 {
   imports = concatLists [
@@ -30,7 +29,7 @@ in
     moduleAliases
 
     scripts
-    misc
+    ./oxidation.nix
   ];
 
   user = {
@@ -53,7 +52,10 @@ in
     ];
     openssh.authorizedKeys.keys = config.self.user.keys;
     packages =
-      listFiles ./packages |> concatMap (path: import path { inherit config lib pkgs; }) |> concatLists;
+      ./packages
+      |> listFiles
+      |> concatMap (path: import path { inherit config lib pkgs; })
+      |> concatLists;
   };
 
   # This is not a dotfiles manager it's a whole kitchen sink to manage
