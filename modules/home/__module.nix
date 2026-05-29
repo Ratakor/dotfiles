@@ -21,7 +21,6 @@ let
     (mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
   ];
 
-  programs = listFiles ./programs;
   services = listFiles ./services;
   scripts = singleton ./scripts;
   misc = listFilesRecursive ./misc;
@@ -31,7 +30,6 @@ in
     extraModules
     moduleAliases
 
-    programs
     services
     scripts
     misc

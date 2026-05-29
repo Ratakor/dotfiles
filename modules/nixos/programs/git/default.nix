@@ -14,6 +14,12 @@ in
     pre-commit
   ];
 
+  # idk idk idk
+  programs.git = {
+    enable = true;
+    package = pkgs.gitMinimal;
+  };
+
   hm.programs.git = {
     enable = true;
     # package = pkgs.gitFull;
