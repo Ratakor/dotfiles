@@ -9,7 +9,10 @@ let
   inherit (lib.modules) mkIf;
   inherit (lib.lists) optional;
 
-  dove = lib.flakes.compat' sources.dove;
+  dove = lib.flakes.compat {
+    src = sources.dove;
+    inputsOverrides = { inherit (sources) phoenix; };
+  };
 
   prg = config.self.programs;
   cfg = prg.email.thunderbird;

@@ -294,6 +294,20 @@
       "url": "https://github.com/sisyphean-group/npr/archive/a80abbaf521216b454909550a786d0f37273599e.tar.gz",
       "hash": "sha256-RbSSFW8hMn6pBo6rnWeFwtLtNPAldlQaceNh0mMQErQ="
     },
+    "phoenix": {
+      "type": "Git",
+      "repository": {
+        "type": "Forgejo",
+        "server": "https://codeberg.org/",
+        "owner": "celenity",
+        "repo": "Phoenix"
+      },
+      "branch": "pages",
+      "submodules": false,
+      "revision": "9dc1e63fd020bed37b071abc2b6299840484f21f",
+      "url": "https://codeberg.org/celenity/Phoenix/archive/9dc1e63fd020bed37b071abc2b6299840484f21f.tar.gz",
+      "hash": "sha256-VgcPJph8RsLFx0PMWJZHwPFDgANffrFwF0FUz+ZgqcQ="
+    },
     "treefmt-nix": {
       "type": "Git",
       "repository": {
