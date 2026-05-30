@@ -38,7 +38,7 @@ in
 
     // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${dprg.terminal.cmd} -e newsboat"; }
     Mod+B repeat=false hotkey-overlay-title="Open browser: ${dprg.browser.name}" { spawn-sh "${dprg.browser.newWindow}"; }
-    Super+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${dprg.locker.name}" { spawn-sh "${dprg.locker.cmd}"; }
+    Mod+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${dprg.locker.name}" { spawn-sh "${dprg.locker.cmd}"; }
     XF86ScreenSaver repeat=false { spawn-sh "${dprg.locker.cmd}"; }
     XF86Battery repeat=false hotkey-overlay-title="Show battery information" { spawn "battery"; }
     // TODO: use wlr-which-key to handle prev/next instead?
@@ -48,6 +48,7 @@ in
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
+    Shift+Print repeat=false hotkey-overlay-title="Perform OCR on a screenshot" { spawn "ocr"; } // Mod+Shift+O might be a good bind too
     // F7 repeat=false { spawn-sh "${dprg.terminal.cmd} -e dmenurecord"; }
 
     // see `dms ipc audio increment 2`, `dms ipc audio mute`, `dms ipc audio micmute`

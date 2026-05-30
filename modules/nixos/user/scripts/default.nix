@@ -10,7 +10,6 @@
 let
   inherit (builtins) readFile;
   inherit (pkgs) writeShellApplication;
-  inherit (lib.modules) mkIf;
 
   callScript =
     path:
@@ -73,7 +72,7 @@ in
     })
 
     # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/cli/wayland.nix
-    (mkIf false (writeShellApplication {
+    (writeShellApplication {
       name = "ocr";
       runtimeInputs = with pkgs; [
         tesseract # This is 1GiB
@@ -81,9 +80,10 @@ in
         slurp
         libnotify
         coreutils
+        wl-clipboard
       ];
       text = readFile ./src/ocr.sh;
-    }))
+    })
 
     # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/dev/default.nix
     (writeShellApplication {
