@@ -1,3 +1,4 @@
+# TODO: this should be out of _core and more configurable
 { config, lib, ... }:
 let
   inherit (builtins) substring hashString;

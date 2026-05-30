@@ -28,15 +28,6 @@ in
       brightnessctl # brightness control
       procps # ps
       # lshw
-
-      ## Linux man pages
-      man-pages
-      man-pages-posix
-
-      # Spell Checker
-      hunspell
-      hunspellDicts.en-us
-      hunspellDicts.fr-moderne
     ];
   };
 }

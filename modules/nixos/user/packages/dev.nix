@@ -106,6 +106,11 @@ let
     # npr # A pull request tracker for Nixpkgs
   ];
 
+  manPages = with pkgs; [
+    man-pages
+    man-pages-posix
+  ];
+
   idkProbablyUsefulTho = with pkgs; [
     pkgconf # Package compiler and linker metadata toolkit
     binutils # Tools for manipulating binaries (linker, assembler, etc.)
@@ -122,5 +127,6 @@ in
   fs
   archives
   nix
+  manPages
   # idkProbablyUsefulTho
 ]
