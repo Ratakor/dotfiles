@@ -347,19 +347,6 @@
       "url": "https://github.com/NotAShelf/watt/archive/84ddae4d527d82a93d9adcc04ea4af8c957aff1a.tar.gz",
       "hash": "sha256-Tdkr/UOl/pCrbjGIGbLMBRTzwN3mBxXZjRCHG/cSBT8="
     },
-    "wpaperd": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "danyspin97",
-        "repo": "wpaperd"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "4056208328290b5005f509468f0f94b508a5b14e",
-      "url": "https://github.com/danyspin97/wpaperd/archive/4056208328290b5005f509468f0f94b508a5b14e.tar.gz",
-      "hash": "sha256-rCuT6V8Jzuqulxoc3oNe2XYtRA6HOjCu4u2ZWeEz5Vw="
-    },
     "zfs-restore": {
       "type": "Git",
       "repository": {

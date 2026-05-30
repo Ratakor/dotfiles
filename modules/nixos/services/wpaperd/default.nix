@@ -10,30 +10,13 @@
 # TODO: replace randwp in
 # - yazi wrapper
 # - plumber
-{
-  config,
-  lib,
-  pkgs,
-  sources,
-  ...
-}:
+{ config, ... }:
 let
-  fromTOML = path: builtins.fromTOML (builtins.readFile path);
-
   cfg = config.self.services.wpaperd;
 in
 {
   hm.services.wpaperd = {
     inherit (cfg) enable;
-    package = pkgs.wpaperd.overrideAttrs {
-      version = "${
-        (fromTOML (sources.wpaperd + /daemon/Cargo.toml)).package.version
-      }-${lib.shortRev sources.wpaperd.revision}";
-      src = sources.wpaperd;
-      cargoDeps = pkgs.rustPlatform.importCargoLock {
-        lockFile = sources.wpaperd + /Cargo.lock;
-      };
-    };
     settings.default = {
       path = config.self.wallpapers;
       duration = "15m";
