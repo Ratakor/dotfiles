@@ -1,4 +1,3 @@
-# Browser (duh)
 {
   config,
   lib,
@@ -6,11 +5,14 @@
   ...
 }:
 let
-  inherit (lib.modules) mkIf;
+  inherit (builtins) listToAttrs;
+  inherit (lib.modules) mkIf mkMerge;
   inherit (lib.meta) getExe;
 
   prg = config.self.programs;
   cfg = prg.browser.chromium;
+
+  configDir = if cfg.package.pname == "helium" then "net.imput.helium" else "chromium";
 in
 {
   config = mkIf cfg.enable {
@@ -19,26 +21,37 @@ in
       newWindow = "${getExe cfg.package} --new-window";
     };
 
-    # See here for additional patches
-    # https://github.com/noahvogt/chromium-patches
-    hm.programs.chromium = {
-      enable = true;
-      inherit (cfg) package;
-      dictionaries = with pkgs.hunspellDictsChromium; [
-        en-us
-        fr-fr
-      ];
-      extensions = [
-        { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # Vimium
-        # {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # uBlock Origin
-        # {id = "ddkjiahejlhfcafbddmgiahcphecmpfh";} # uBlock Origin Lite
-        # both ublock doesn't seem to work, is it time to switch to another browser?
-      ];
-      # See some hardening args here
-      # https://github.com/Ratakor/dotfiles/blob/artix/.local/bin/browser
-      # See celenityy/Titanium too
-      # UC Flags needs to be configured for it to be as good as cromite
-      commandLineArgs = [ ]; # TODO
-    };
+    user.packages = [ cfg.package ];
+
+    # based on https://github.com/nix-community/home-manager/blob/master/modules/programs/chromium.nix
+    hm.xdg.configFile = mkMerge [
+      (listToAttrs (
+        map (dict: {
+          name = "${configDir}/Dictionaries/${dict.passthru.dictFileName}";
+          value.source = dict;
+        }) cfg.dictionaries
+      ))
+      (listToAttrs (
+        map (ext: {
+          name = "${configDir}/External Extensions/${ext}.json";
+          value.text = ''
+            {"external_update_url":"https://clients2.google.com/service/update2/crx"}
+          '';
+        }) cfg.extensions
+      ))
+      (mkIf cfg.drm.enable {
+        "${configDir}/WidevineCdm/latest-component-updated-widevine-cdm".text = ''
+          {"Path":"${pkgs.widevine-cdm}/share/google/chrome/WidevineCdm"}
+        '';
+      })
+    ];
+
+    # cool (but unused) patches: https://github.com/noahvogt/chromium-patches
+
+    # TODO: commandLineArgs
+    # See some hardening args here
+    # https://github.com/Ratakor/dotfiles/blob/artix/.local/bin/browser
+    # See celenityy/Titanium too
+    # UC Flags needs to be configured for it to be as good as cromite
   };
 }

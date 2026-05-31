@@ -17,6 +17,7 @@ let
     "spotify"
     "steam"
     "steam-unwrapped"
+    "widevine-cdm"
   ];
 in
 system:
