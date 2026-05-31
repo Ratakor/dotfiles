@@ -40,6 +40,7 @@ in
         }) cfg.extensions
       ))
       (mkIf cfg.drm.enable {
+        # https://github.com/imputnet/helium/issues/116#issuecomment-3668370766
         "${configDir}/WidevineCdm/latest-component-updated-widevine-cdm".text = ''
           {"Path":"${pkgs.widevine-cdm}/share/google/chrome/WidevineCdm"}
         '';

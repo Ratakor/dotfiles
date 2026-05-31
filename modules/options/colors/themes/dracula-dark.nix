@@ -13,6 +13,12 @@
     package = pkgs.dracula-theme;
   };
 
+  # https://github.com/dracula/gtk/tree/master/kde/kvantum
+  qt.theme = pkgs: {
+    name = "Dracula";
+    package = pkgs.dracula-theme;
+  };
+
   cursor.theme = "Simp1e-Dracula";
 
   foreground = "f8f8f2";

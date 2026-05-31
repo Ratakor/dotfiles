@@ -12,6 +12,11 @@
     package = pkgs.gruvbox-gtk-theme;
   };
 
+  qt.theme = pkgs: rec {
+    name = "Gruvbox_Light_Green";
+    package = pkgs.gruvbox-kvantum.override { variant = name; };
+  };
+
   cursor.theme = "Simp1e-Gruvbox-Light"; # "Simp1e-Gruvbox-Dark"
 
   foreground = "3c3836";
