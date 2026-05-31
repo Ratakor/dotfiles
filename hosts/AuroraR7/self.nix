@@ -51,7 +51,7 @@
 
     programs = {
       default = {
-        terminal.name = "ghostty";
+        xdg.portal.name = "kde";
       };
       gaming = {
         enable = true;

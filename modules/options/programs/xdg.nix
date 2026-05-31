@@ -24,7 +24,6 @@ in
       };
     };
 
-    # TODO: kde is a better default imo but need to theme qt6
     default.xdg.portal = {
       name = mkOption {
         type = nullOr (enum [
