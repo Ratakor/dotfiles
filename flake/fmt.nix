@@ -100,6 +100,7 @@ let
               "322abd6" = "322abd6"; # helixgelion
               gam = "gam"; # git
               caf = "caf"; # zig tar
+              imput = "imput"; # helium
             };
             extend-words = {
               ba = "ba"; # yt-dlp
