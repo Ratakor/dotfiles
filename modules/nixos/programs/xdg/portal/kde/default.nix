@@ -6,10 +6,11 @@
 }:
 let
   inherit (lib.modules) mkIf mkForce;
-  inherit (lib.lists) optional singleton;
+  inherit (lib.lists) optional optionals singleton;
 
   prg = config.self.programs;
   dprg = prg.default;
+  cfg = prg.xdg.portal.kde;
 
   theme = config.self.colors.default.qt.theme pkgs;
   dolphin = optional prg.fileManager.dolphin.enable pkgs.kdePackages.dolphin;
@@ -20,13 +21,22 @@ in
       desktopEntry = "org.kde.dolphin.desktop";
     };
 
-    xdg.portal = mkIf prg.xdg.portal.kde.enable {
+    xdg.portal = mkIf cfg.enable {
       enable = true;
-      extraPortals = mkForce [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+      extraPortals = mkForce [
+        pkgs.kdePackages.xdg-desktop-portal-kde
+        pkgs.kdePackages.kwallet
+      ];
     };
 
-    services.dbus.packages = dolphin;
+    environment.systemPackages = optionals cfg.enable [
+      pkgs.kdePackages.kwallet
+      pkgs.kdePackages.kwalletmanager
+    ];
     user.packages = dolphin;
+    services = {
+      dbus.packages = dolphin ++ (optional cfg.enable pkgs.kdePackages.kwallet);
+    };
 
     hm.qt = {
       enable = true;

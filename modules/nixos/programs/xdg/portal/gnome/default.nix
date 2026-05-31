@@ -10,6 +10,7 @@ let
 
   prg = config.self.programs;
   dprg = prg.default;
+  cfg = prg.xdg.portal.gnome;
 
   nautilus = optional prg.fileManager.nautilus.enable pkgs.nautilus;
 in
@@ -19,12 +20,26 @@ in
       desktopEntry = "org.gnome.Nautilus.desktop";
     };
 
-    xdg.portal = mkIf prg.xdg.portal.gnome.enable {
+    xdg.portal = mkIf cfg.enable {
       enable = true;
-      extraPortals = mkForce [ pkgs.xdg-desktop-portal-gnome ];
+      extraPortals = mkForce [
+        pkgs.xdg-desktop-portal-gnome
+        pkgs.gnome-keyring
+      ];
     };
 
-    services.dbus.packages = nautilus;
     user.packages = nautilus;
+    services = {
+      dbus.packages = nautilus;
+
+      udev.packages = [ pkgs.gnome-settings-daemon ];
+
+      gnome = {
+        gnome-keyring.enable = cfg.enable;
+      };
+    };
+
+    # A GNOME application for managing encryption keys and passwords in the GNOME Keyring.
+    programs.seahorse.enable = cfg.enable;
   };
 }
