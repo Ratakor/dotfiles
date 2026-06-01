@@ -118,6 +118,19 @@
       "url": "https://github.com/amaanq/helium-flake/archive/aa06960b748d91219c61b59d6f49b62b4c679e77.tar.gz",
       "hash": "sha256-hg/lmgC4Y4iCCJoVUXspXtoM27oVnmFVD68/yq/tXvs="
     },
+    "hjem": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "feel-co",
+        "repo": "hjem"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "ffa433dd86e761de45ef985d4293f31a4d2a775d",
+      "url": "https://github.com/feel-co/hjem/archive/ffa433dd86e761de45ef985d4293f31a4d2a775d.tar.gz",
+      "hash": "sha256-NhtWx0youXYRvcqtL+sjdqoZinMcnjcwRsh6eBJUZLg="
+    },
     "home-manager": {
       "type": "Git",
       "repository": {

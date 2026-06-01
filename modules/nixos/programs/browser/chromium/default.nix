@@ -24,7 +24,7 @@ in
     user.packages = [ cfg.package ];
 
     # based on https://github.com/nix-community/home-manager/blob/master/modules/programs/chromium.nix
-    hm.xdg.configFile = mkMerge [
+    hj.xdg.config.files = mkMerge [
       (listToAttrs (
         map (dict: {
           name = "${configDir}/Dictionaries/${dict.passthru.dictFileName}";
