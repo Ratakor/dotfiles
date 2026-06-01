@@ -16,7 +16,8 @@ function M:peek(job)
   local collected_lines = ""
   local i = 0
   local last_line = 0
-  local is_wrap = rt and rt.preview and rt.preview.wrap == "yes"
+  local preview = rt and rt.preview or PREVIEW or {}
+  local is_wrap = preview.wrap == "yes"
 
   repeat
     local next, event = child:read_line()
@@ -48,11 +49,11 @@ function M:peek(job)
   end
 
   -- Process tabs
-  local processed_text = collected_lines:gsub("\t", string.rep(" ", (rt and rt.preview or PREVIEW).tab_size))
+  local processed_text = collected_lines:gsub("\t", string.rep(" ", preview.tab_size or 2))
 
   -- Create text widget with proper wrapping
-  ya.preview_widgets(job, {
-    ui.Text.parse(processed_text):area(job.area):wrap(is_wrap and ui.Text.WRAP or ui.Text.WRAP_NO),
+  ya.preview_widget(job, {
+    ui.Text.parse(processed_text):area(job.area):wrap(is_wrap and ui.Wrap.YES or ui.Wrap.NO),
   })
 end
 
