@@ -1,53 +1,19 @@
 {
   config,
   lib,
-  pkgs,
   sources,
   ...
 }:
 let
-  inherit (builtins) concatLists concatMap;
   inherit (lib.modules) mkAliasOptionModule mkForce;
-  inherit (lib.filesystem) listFiles;
 
   username = config.self.user.name;
 in
 {
   imports = [
     (import "${sources.home-manager}/nixos")
-
-    (mkAliasOptionModule [ "user" ] [ "users" "users" username ])
     (mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
-
-    ./scripts
-    ./oxidation.nix
   ];
-
-  user = {
-    isNormalUser = true;
-    uid = 1000;
-    shell = pkgs.${config.self.programs.default.shell.name};
-    createHome = true;
-    home = "/home/${username}";
-    description = config.self.user.fullName;
-    # TODO: change to initialHashedPassword
-    initialPassword = "password"; # very secure
-    # Should these be set in there corresponding config?
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "docker"
-      "podman"
-      "libvirtd"
-      "kvm"
-    ];
-    openssh.authorizedKeys.keys = config.self.user.keys;
-    packages =
-      ./packages
-      |> listFiles
-      |> concatMap (path: import path { inherit config lib pkgs; })
-      |> concatLists;
-  };
 
   # This is not a dotfiles manager it's a whole kitchen sink to manage
   # home configurations, hjem or basic stow implementation might be better
