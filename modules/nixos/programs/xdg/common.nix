@@ -1,10 +1,25 @@
 { config, ... }:
 let
-  HOME = config.hm.home.homeDirectory;
+  HOME = config.hj.directory;
   prg = config.self.programs;
   dprg = prg.default;
 in
 {
+  hj.xdg = {
+    # https://specifications.freedesktop.org/basedir-spec/latest
+    config.directory = "${HOME}/.config";
+    data.directory = "${HOME}/.local/share";
+    state.directory = "${HOME}/.local/state";
+    cache.directory = "${HOME}/.cache";
+
+    # .local convention
+    # https://gist.github.com/Earnestly/84cf9670b7e11ae2eac6f753910efebe
+    # config.directory = "${HOME}/.local/etc";
+    # data.directory = "${HOME}/.local/share";
+    # state.directory = "${HOME}/.local/var/state";
+    # cache.directory = "${HOME}/.local/var/cache";
+  };
+
   hm.xdg = {
     enable = true;
 

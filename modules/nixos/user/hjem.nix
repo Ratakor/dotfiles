@@ -15,8 +15,5 @@ in
     (mkAliasOptionModule [ "hj" ] [ "hjem" "users" username ])
   ];
 
-  hjem = {
-    clobberByDefault = true;
-    # TODO: other settings...
-  };
+  hjem.clobberByDefault = true;
 }
