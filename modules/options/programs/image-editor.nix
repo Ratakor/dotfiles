@@ -20,10 +20,11 @@ in
     default.imageEditor = {
       name = mkOption {
         type = nullOr (enum [
+          "aseprite" # pixel art editor
+          "drawy"
+          "gimp"
           "krita"
           "pinta"
-          "gimp"
-          "aseprite" # pixel art editor
         ]);
         default = null;
         description = ''

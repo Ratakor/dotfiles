@@ -27,10 +27,11 @@ let
   ];
 
   imageEditor = concatLists [
+    (optional prg.imageEditor.aseprite.enable pkgs.aseprite)
+    (optional prg.imageEditor.drawy.enable pkgs.drawy)
+    (optional prg.imageEditor.gimp.enable pkgs.gimp)
     (optional prg.imageEditor.krita.enable pkgs.krita)
     (optional prg.imageEditor.pinta.enable pkgs.pinta)
-    (optional prg.imageEditor.gimp.enable pkgs.gimp)
-    (optional prg.imageEditor.aseprite.enable pkgs.aseprite)
   ];
 
   screenshot = with pkgs; [
