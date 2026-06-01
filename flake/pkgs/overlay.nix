@@ -40,7 +40,7 @@ let
         # Stupid simple utility for linting your flake inputs
         flint = pkgs.callPackage "${sources.flint}/nix/package.nix" { };
         # Not a Docs Generator
-        ndg = pkgs.callPackage "${sources.ndg}/nix/packages/ndg/package.nix" { };
+        # ndg = pkgs.callPackage "${sources.ndg}/nix/packages/ndg/package.nix" { };
         # Network Printer
         network-printer = pkgs.callPackage "${sources.np}/nix/package.nix" {
           xcb-util-cursor = pkgs.libxcb-cursor;
