@@ -16,22 +16,23 @@ let
       "0"
     else
       throw "Unsupported value type: ${typeOf v}";
-
-  toKeyValue = lib.generators.toKeyValue {
-    mkKeyValue = k: v: "${k}=${mkValueString v}";
-  };
 in
 {
   user.packages = [ pkgs.quand ];
 
-  hm.xdg.configFile."quand/config".text = toKeyValue {
-    header = false;
-    mondayfirst = true;
-    past = 0;
-    future = 1;
-    yesterday = "\\033[36myesterday  ";
-    today = "\\033[35;1mtoday      ";
-    tomorrow = "\\033[32mtomorrow   ";
-    special = "\\033[33;3m*special* ";
+  hj.xdg.config.files."quand/config" = {
+    generator = lib.generators.toKeyValue {
+      mkKeyValue = k: v: "${k}=${mkValueString v}";
+    };
+    value = {
+      header = false;
+      mondayfirst = true;
+      past = 0;
+      future = 1;
+      yesterday = "\\033[36myesterday  ";
+      today = "\\033[35;1mtoday      ";
+      tomorrow = "\\033[32mtomorrow   ";
+      special = "\\033[33;3m*special* ";
+    };
   };
 }

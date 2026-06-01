@@ -71,7 +71,7 @@ in
     # "/-" comments out the following node.
     # Check the wiki for a full description of the configuration:
     # https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
-    hm.xdg.configFile."niri/config.kdl".text = concatStringsSep "\n" [
+    hj.xdg.config.files."niri/config.kdl".text = concatStringsSep "\n" [
       input
       output
       binds
