@@ -237,10 +237,10 @@
     },
     "nixpkgs": {
       "type": "Channel",
-      "name": "nixos-unstable",
+      "name": "nixos-unstable-small",
       "artifact": "nixexprs.tar.xz",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre1004030.64c08a7ca051/nixexprs.tar.xz",
-      "hash": "sha256-NpH8iEQ5JHv/BtUuzTEXUMDxPLetCDzIv4OxL8H7Kps="
+      "url": "https://releases.nixos.org/nixos/unstable-small/nixos-26.11pre1008553.e12fdeef28ee/nixexprs.tar.xz",
+      "hash": "sha256-AfqupkOQEOVajijGWwXR1UDqeaQ3C2kr3owLL5EBTig="
     },
     "noctalia-shell": {
       "type": "Git",
