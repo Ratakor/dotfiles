@@ -30,6 +30,7 @@ in
     obs-studio.enable = mkEnableOption "OBS Studio";
     audacity.enable = mkEnableOption "Audacity, Sound Editor";
     libreoffice.enable = mkEnableOption "LibreOffice";
+    onlyoffice.enable = mkEnableOption "ONLYOFFICE";
     blender.enable = mkEnableOption "Blender";
     teams.enable = mkEnableOption "Microsoft Teams";
     ledger-live.enable = mkEnableOption "Ledger Live";
