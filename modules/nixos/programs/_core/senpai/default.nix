@@ -1,15 +1,23 @@
 # IRC Client
-{ config, ... }:
 {
-  hm.programs.senpai = {
-    enable = config.age.secrets ? irc;
-    config = {
-      nickname = config.user.description;
-      address = "irctoday.com"; # "libera.chat:6697";
-      password-cmd = [
-        "cat"
-        config.age.secrets.irc.path
-      ];
-    };
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  inherit (lib.modules) mkIf;
+
+  enabled = config.age.secrets ? irc;
+in
+{
+  config = mkIf enabled {
+    user.packages = [ pkgs.senpai ];
+
+    hj.xdg.config.files."senpai/senpai.scfg".text = ''
+      address irctoday.com
+      nickname ${config.self.user.fullName}
+      password-cmd cat ${config.age.secrets.irc.path}
+    '';
   };
 }
