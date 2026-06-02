@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (builtins) listToAttrs;
+  inherit (lib.attrsets) genAttrs';
   inherit (lib.modules) mkIf mkMerge;
   inherit (lib.meta) getExe;
 
@@ -25,20 +25,16 @@ in
 
     # based on https://github.com/nix-community/home-manager/blob/master/modules/programs/chromium.nix
     hm.xdg.configFile = mkMerge [
-      (listToAttrs (
-        map (dict: {
-          name = "${configDir}/Dictionaries/${dict.passthru.dictFileName}";
-          value.source = dict;
-        }) cfg.dictionaries
-      ))
-      (listToAttrs (
-        map (ext: {
-          name = "${configDir}/External Extensions/${ext}.json";
-          value.text = ''
-            {"external_update_url":"https://clients2.google.com/service/update2/crx"}
-          '';
-        }) cfg.extensions
-      ))
+      (genAttrs' cfg.dictionaries (dict: {
+        name = "${configDir}/Dictionaries/${dict.passthru.dictFileName}";
+        value.source = dict;
+      }))
+      (genAttrs' cfg.extensions (ext: {
+        name = "${configDir}/External Extensions/${ext}.json";
+        value.text = ''
+          {"external_update_url":"https://clients2.google.com/service/update2/crx"}
+        '';
+      }))
       (mkIf cfg.drm.enable {
         # https://github.com/imputnet/helium/issues/116#issuecomment-3668370766
         "${configDir}/WidevineCdm/latest-component-updated-widevine-cdm".text = ''

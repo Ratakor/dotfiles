@@ -1,9 +1,9 @@
 { lib, self, ... }:
 let
-  inherit (builtins) listToAttrs;
   inherit (lib.options) mkEnableOption;
   inherit (self.types) enumValues unwrapNullOr;
   inherit (self.options) enumOptionValues enumOptionValues';
+  inherit (self.attrsets) genAttrs;
 
   /**
     Create multiple enable options based on the given list of values.
@@ -22,12 +22,9 @@ let
   */
   mkEnableOptionsImplem =
     values:
-    values
-    |> map (value: {
-      name = value;
-      value.enable = mkEnableOption value;
-    })
-    |> listToAttrs;
+    genAttrs values (value: {
+      enable = mkEnableOption value;
+    });
 in
 {
   /**

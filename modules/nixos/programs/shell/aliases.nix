@@ -1,5 +1,7 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
+  inherit (lib.attrsets) genAttrs;
+
   sudoCommands = [
     "iftop"
     # "mount" # handled below
@@ -14,12 +16,7 @@ let
     "dmesg"
   ];
 
-  sudoAliases = builtins.listToAttrs (
-    map (cmd: {
-      name = cmd;
-      value = "sudo ${cmd}";
-    }) sudoCommands
-  );
+  sudoAliases = genAttrs sudoCommands (cmd: "sudo ${cmd}");
 
   EDITOR = config.self.programs.default.editor.package.meta.mainProgram;
   ZDOTDIR = config.hm.programs.zsh.dotDir or config.hm.home.homeDirectory;
