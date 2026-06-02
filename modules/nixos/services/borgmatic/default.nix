@@ -135,12 +135,4 @@ in
       };
     };
   };
-
-  hm.programs.borgmatic = {
-    enable = false;
-  };
-
-  hm.services.borgmatic = {
-    enable = false;
-  };
 }
