@@ -7,7 +7,13 @@
 let
   inherit (builtins) concatLists concatMap mapAttrs;
   inherit (lib.modules) mkDefault;
-  inherit (lib.filesystem) filterNixFiles listModuleFiles listFilesRecursive;
+  inherit (lib.filesystem)
+    filterNixFiles
+    listModuleFiles
+    listFiles
+    listFilesRecursive
+    ;
+  inherit (lib.attrsets) genAttrs';
 
   # External Modules
   disko = sources.disko + /module.nix;
@@ -19,13 +25,10 @@ let
   # Local modules
   nixos = modulesPath + /nixos;
   options = modulesPath + /options;
-
-  # Profiles
-  profiles = modulesPath + /profiles;
-  workstation = profiles + /workstation;
-  laptop = profiles + /laptop;
-  server = profiles + /server;
-  vm = profiles + /vm;
+  profiles = genAttrs' (listFiles (modulesPath + /profiles)) (path: {
+    name = baseNameOf path;
+    value = path;
+  });
 
   mkModules =
     {
@@ -92,20 +95,20 @@ let
 in
 mapAttrs mkNixosSystem {
   X200 = {
-    profiles = [
+    profiles = with profiles; [
       workstation
       laptop
     ];
   };
 
   AuroraR7 = {
-    profiles = [
+    profiles = with profiles; [
       workstation
     ];
   };
 
   nomTemporaire = {
-    profiles = [
+    profiles = with profiles; [
       workstation
       laptop
     ];
