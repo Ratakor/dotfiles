@@ -125,7 +125,7 @@ in
       newWindow = mkOption {
         type = types.str;
         description = "The command to spawn a new window.";
-        # default = "dummy-browser --new-window";
+        default = "dummy-browser --new-window";
         internal = true;
       };
     };

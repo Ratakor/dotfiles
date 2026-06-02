@@ -39,7 +39,7 @@ in
       dmenu = mkOption {
         type = str;
         description = "The command to spawn a dynamic menu like dmenu.";
-        # default = "dummy-launcher";
+        default = "dummy-launcher";
         internal = true;
       };
 

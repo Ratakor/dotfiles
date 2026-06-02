@@ -47,7 +47,7 @@ in
       cmd = mkOption {
         type = str;
         description = "The command to spawn a terminal emulator.";
-        # default = "dummy-terminal";
+        default = "dummy-terminal";
         internal = true;
       };
 
