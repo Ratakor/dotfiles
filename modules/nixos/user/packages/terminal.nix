@@ -21,6 +21,7 @@ let
     zpotify # A CLI for the Spotify Web API
     croc # Easily and securely send things from one computer to another
     playerctl # CLI for controlling media players that implement MPRIS
+    taskwarrior3 # CLI to manage TODO lists
   ];
 
   tui = with pkgs; [
