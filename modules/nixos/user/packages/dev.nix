@@ -1,17 +1,27 @@
 # Development tools
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
+  inherit (builtins) concatLists;
+  inherit (lib.lists) optionals;
+
+  cfg = config.self.programs.dev;
+
   toolchains = with pkgs; [
     cargo # rust package manager
     rustc # rust compiler
     go # golang
-    nasm # x86 compiler
+    # nasm # x86 compiler
     gcc # gnu compiler collection
     clang # another cc + clangd C lsp
-    tinycc # tiny c compiler
+    # tinycc # tiny c compiler
     # windows.mingw_w64 # windows cc (mingw-w64-gcc)
     # musl # another libc
-    libbsd # Common functions found on BSD systems
+    # libbsd # Common functions found on BSD systems
     zig # use zig-overlay per project for a specific version
     python3
     # pipx # python package manager
@@ -41,7 +51,7 @@ let
     shellcheck # there is also shellcheck-minimal in nixpkgs
     # perf # performance analysis tool (wrong package)
     hyperfine # benchmarking tool
-    # poop # Performance Optimizer Observation Platform
+    poop # Performance Optimizer Observation Platform
     # gdb # gnu debugger
     cloc # counts lines of code
     strace # system call monitoring
@@ -62,31 +72,6 @@ let
     gnused # GNU sed, a batch stream editor
     pkg-config # Tool that allows packages to find out information about other packages
     gh # GitHub CLI tool
-  ];
-
-  fs = with pkgs; [
-    cryptsetup
-    # mtools # Utilities to access MS-DOS disks
-    # libisoburn # xorriso
-    # gptfdisk
-    sshfs # mount drive over ssh
-    # xfsdump # xfs snapshots
-    simple-mtpfs # mount phone easily
-    zfs-restore # trash-restore but for ZFS snapshots
-    smartmontools # Tools for monitoring the health of hard drives
-  ];
-
-  archives = with pkgs; [
-    ouch-rar # Obvious Unified Compression Helper
-    # bzip2
-    # gzip
-    # zip
-    # unzip
-    # p7zip
-    # xz
-    # zstd
-    # lz4
-    # gnutar
   ];
 
   # Nix tools
@@ -119,16 +104,25 @@ let
     texinfo # GNU documentation system
     which # Shows the full path of (shell) commands (builtin in zsh/nushell)
   ];
+
+  # _mandatory_ package used for dev on this flake, yes we could shell.nix instead
+  flakeDev = with pkgs; [
+    just
+    agenix
+    npins
+    gh
+  ];
 in
 {
-  user.packages = [
-    toolchains
-    buildSystems
-    tools
-    fs
-    archives
-    nix
-    manPages
-    # idkProbablyUsefulTho
+  user.packages = concatLists [
+    (optionals cfg.enable (concatLists [
+      toolchains
+      buildSystems
+      tools
+      nix
+      manPages
+      # idkProbablyUsefulTho
+    ]))
+    flakeDev
   ];
 }

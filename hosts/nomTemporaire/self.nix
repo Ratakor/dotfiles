@@ -56,6 +56,7 @@
         locker.name = "glitchlock";
         mediaPlayer.name = "vlc";
       };
+      dev.enable = true; # ?
       gaming = {
         enable = true;
         lutris.enable = false; # TODO: should be true

@@ -1,6 +1,9 @@
 # Terminal applications
+# TODO: this is bloated
 { pkgs, ... }:
 let
+  inherit (builtins) concatLists;
+
   cli = with pkgs; [
     pastel # CLI for color manipulation
     acpi # battery status, -i is good
@@ -58,6 +61,31 @@ let
     # claude-code # Anthropic AI
   ];
 
+  fs = with pkgs; [
+    cryptsetup
+    # mtools # Utilities to access MS-DOS disks
+    # libisoburn # xorriso
+    # gptfdisk
+    sshfs # mount drive over ssh
+    # xfsdump # xfs snapshots
+    simple-mtpfs # mount phone easily
+    zfs-restore # trash-restore but for ZFS snapshots
+    smartmontools # Tools for monitoring the health of hard drives
+  ];
+
+  archives = with pkgs; [
+    ouch-rar # Obvious Unified Compression Helper
+    # bzip2
+    # gzip
+    # zip
+    # unzip
+    # p7zip
+    # xz
+    # zstd
+    # lz4
+    # gnutar
+  ];
+
   unsorted = with pkgs; [
     chafa # image in terminal
     caligula # TUI for burning disks
@@ -72,12 +100,14 @@ let
   ];
 in
 {
-  user.packages = [
+  user.packages = concatLists [
     cli
     tui
     # rice
     # cast
     ai
+    fs
+    archives
     unsorted
   ];
 }

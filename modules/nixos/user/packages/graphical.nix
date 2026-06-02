@@ -62,11 +62,11 @@ let
   ];
 in
 {
-  user.packages = optionals sys.video.enable [
+  user.packages = optionals sys.video.enable (concatLists [
     apps
     imageEditor
     screenshot
     tools
     unsorted
-  ];
+  ]);
 }

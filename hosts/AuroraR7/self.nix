@@ -53,6 +53,7 @@
       default = {
         xdg.portal.name = "kde";
       };
+      dev.enable = true;
       gaming = {
         enable = true;
         poe.enable = true;
