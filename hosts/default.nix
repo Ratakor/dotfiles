@@ -5,7 +5,7 @@
   legacyPackages,
 }:
 let
-  inherit (builtins) concatLists concatMap;
+  inherit (builtins) concatLists concatMap mapAttrs;
   inherit (lib.modules) mkDefault;
   inherit (lib.filesystem) filterNixFiles listModuleFiles listFilesRecursive;
 
@@ -67,8 +67,9 @@ let
     );
 
   mkNixosSystem =
+    name:
     {
-      hostname,
+      hostname ? name,
       system ? "x86_64-linux",
       profiles ? [ ],
       extraModules ? [ ],
@@ -88,24 +89,21 @@ let
       };
     };
 in
-{
-  X200 = mkNixosSystem {
-    hostname = "X200";
+mapAttrs mkNixosSystem {
+  X200 = {
     profiles = [
       workstation
       laptop
     ];
   };
 
-  AuroraR7 = mkNixosSystem {
-    hostname = "AuroraR7";
+  AuroraR7 = {
     profiles = [
       workstation
     ];
   };
 
-  nomTemporaire = mkNixosSystem {
-    hostname = "nomTemporaire";
+  nomTemporaire = {
     profiles = [
       workstation
       laptop
