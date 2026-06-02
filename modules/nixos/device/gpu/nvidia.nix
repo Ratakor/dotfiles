@@ -8,7 +8,6 @@ let
   inherit (lib.modules) mkIf mkDefault;
 
   dev = config.self.device;
-  sys = config.self.system;
 in
 {
   config = mkIf (dev.gpu.type == "nvidia") {
@@ -31,9 +30,6 @@ in
 
         # see prime.offload for hybrid gpu
       };
-
-      # Enable Nvidia support for containers such as podman and docker.
-      nvidia-container-toolkit.enable = sys.virt.podman.enable;
 
       graphics = {
         extraPackages = [ pkgs.nvidia-vaapi-driver ];

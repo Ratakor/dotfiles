@@ -5,6 +5,7 @@
   ...
 }:
 let
+  inherit (builtins) elem;
   inherit (lib.modules) mkIf;
 
   cfg = config.self.system.virt.podman;
@@ -36,5 +37,8 @@ in
 
       # TODO: setup containers storage with btrfs/zfs
     };
+
+    # Enable Nvidia support for containers such as podman and docker.
+    hardware.nvidia-container-toolkit.enable = elem "nvidia" config.services.xserver.videoDrivers;
   };
 }
