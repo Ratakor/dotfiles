@@ -1,17 +1,13 @@
+{ lib }:
 pkgs:
 let
   callApps =
     apps:
-    builtins.listToAttrs (
-      map (app: {
-        name = app;
-        value = {
-          type = "app";
-          program = import ./${app}/app.nix { inherit pkgs; };
-          meta.description = app;
-        };
-      }) apps
-    );
+    lib.genAttrs apps (app: {
+      type = "app";
+      program = import ./${app}/app.nix { inherit lib pkgs; };
+      meta.description = app;
+    });
 in
 callApps [
   "confloose"

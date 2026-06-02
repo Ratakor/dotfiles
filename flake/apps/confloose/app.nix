@@ -1,12 +1,12 @@
 # nix run github:ratakor/dotfiles#confloose  >> ~/.bashrc
-{ pkgs }:
+{ lib, pkgs }:
 let
-  inherit (builtins) concatStringsSep;
+  inherit (lib.strings) concatMapStringsSep;
 
-  mkAliases = aliases: cmd: concatStringsSep "\n" (map (alias: "alias '${alias}'='${cmd}'") aliases);
+  mkAliases = aliases: cmd: concatMapStringsSep "\n" (alias: "alias '${alias}'='${cmd}'") aliases;
 
   # These "aliases" can't be cancelled by prefixing the command with '\'
-  mkFuncAliases = aliases: cmd: concatStringsSep "\n" (map (alias: "${alias}() { ${cmd}; }") aliases);
+  mkFuncAliases = aliases: cmd: concatMapStringsSep "\n" (alias: "${alias}() { ${cmd}; }") aliases;
 
   editors = [
     # "ed" # ed is the standard text editor
@@ -63,7 +63,7 @@ let
       esac
     }'';
 
-  i3lockAliases = mkAliases editors "i3lock";
+  i3lockAliases = mkAliases editors "/usr/bin/env i3lock";
   xrandrAliases = mkFuncAliases commonCmds xrandrFnName;
 
   script = pkgs.writeShellScript "confloose" ''

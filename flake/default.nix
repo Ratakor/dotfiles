@@ -6,7 +6,7 @@
 let
   lib = import ./lib sources;
   pkgs = import ./pkgs (args // { inherit lib; });
-  apps = import ./apps;
+  apps = import ./apps { inherit lib; };
   fmt = import ./fmt.nix { inherit self sources; };
 
   eachSystem = f: lib.genAttrs systems (system: f pkgs.legacyPackages.${system});
