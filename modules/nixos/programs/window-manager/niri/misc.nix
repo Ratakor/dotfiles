@@ -1,6 +1,12 @@
 # https://yalter.github.io/niri/Configuration:-Miscellaneous
-config:
+{
+  config,
+  lib,
+  pkgs,
+}:
 let
+  inherit (lib.meta) getExe;
+
   colors = config.self.colors.default;
   XDG_SCREENSHOTS_DIR = config.hm.xdg.userDirs.extraConfig.SCREENSHOTS;
 in
@@ -47,7 +53,10 @@ in
     }
   }
 
-  // xwayland-satellite { }
+  // https://github.com/niri-wm/niri/wiki/Xwayland
+  xwayland-satellite {
+    path "${getExe pkgs.xwayland-satellite}"
+  }
 
   clipboard {
     disable-primary

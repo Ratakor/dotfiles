@@ -21,7 +21,7 @@ let
   switch-events = import ./switch-events.nix;
   layout = import ./layout.nix config;
   workspace = import ./workspace.nix;
-  misc = import ./misc.nix config;
+  misc = import ./misc.nix { inherit config lib pkgs; };
   window-rule = import ./window-rule.nix;
   layer-rule = import ./layer-rule.nix config;
   animations = import ./animations.nix;
@@ -61,11 +61,6 @@ in
 
       "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
     };
-
-    environment.systemPackages = with pkgs; [
-      # https://github.com/YaLTeR/niri/wiki/Xwayland
-      xwayland-satellite
-    ];
 
     # This config is in the KDL format: https://kdl.dev
     # "/-" comments out the following node.
