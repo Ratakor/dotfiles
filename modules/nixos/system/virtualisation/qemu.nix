@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -45,5 +46,11 @@ in
       # Supporting VFIO
       SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
     '';
+
+    programs.virt-manager.enable = true;
+    # https://discourse.nixos.org/t/virt-manager-cannot-find-virtiofsd/26752/2
+    # add virtiofsd to filesystem xml
+    # <binary path="/run/current-system/sw/bin/virtiofsd"/>
+    environment.systemPackages = [ pkgs.virtiofsd ];
   };
 }
