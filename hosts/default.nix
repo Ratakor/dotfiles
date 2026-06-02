@@ -25,6 +25,7 @@ let
   workstation = profiles + /workstation;
   laptop = profiles + /laptop;
   server = profiles + /server;
+  vm = profiles + /vm;
 
   mkModules =
     {
