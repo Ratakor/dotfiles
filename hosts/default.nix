@@ -10,7 +10,7 @@ let
   inherit (lib.filesystem) filterNixFiles listModuleFiles listFilesRecursive;
 
   # External Modules
-  disko = import "${sources.disko}/module.nix";
+  disko = sources.disko + /module.nix;
   inherit (sources) nixos-hardware;
 
   # Root path for local modules
@@ -30,6 +30,11 @@ let
     {
       hostname,
       system,
+      moduleTrees ? [
+        nixos
+        options
+      ],
+      profiles ? [ ],
       extraModules ? [ ],
     }:
     concatLists [
@@ -43,7 +48,8 @@ let
         }
       ]
       (filterNixFiles (listFilesRecursive ./${hostname}))
-      (concatMap listModuleFiles extraModules)
+      (concatMap listModuleFiles (moduleTrees ++ profiles))
+      extraModules
     ];
 
   # pkgs.nixos doesn't allow to pass specialArgs :(
@@ -69,15 +75,12 @@ let
     }:
     mkSystem system {
       modules = mkModules {
-        inherit hostname system;
-        extraModules = concatLists [
-          extraModules
+        inherit
+          hostname
+          system
           profiles
-          [
-            nixos
-            options
-          ]
-        ];
+          extraModules
+          ;
       };
       specialArgs = {
         inherit self sources;
