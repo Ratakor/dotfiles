@@ -38,9 +38,8 @@ in
 
     # Shells must be installed system-wide or it may
     # cause issue when switching default back-and-forth.
-    environment.systemPackages =
-      opt.default.shell.name
-      |> enumOptionValues
-      |> concatMap (name: optional cfg.shell.${name}.enable pkgs.${name});
+    environment.systemPackages = concatMap (name: optional cfg.shell.${name}.enable pkgs.${name}) (
+      enumOptionValues opt.default.shell.name
+    );
   };
 }

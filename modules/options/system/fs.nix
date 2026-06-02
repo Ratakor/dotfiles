@@ -54,10 +54,9 @@ in
   config = {
     assertions = [
       {
-        assertion =
-          cfg.btrfs.autoSnapshot.subvolumes
-          |> attrValues
-          |> all (path: config.fileSystems.${path}.fsType == "btrfs");
+        assertion = all (path: config.fileSystems.${path}.fsType == "btrfs") (
+          attrValues cfg.btrfs.autoSnapshot.subvolumes
+        );
         message = "All mount points in `self.system.fs.btrfs.autoSnapshot.subvolumes` must exist and be of \"btrfs\" fsType.";
       }
     ];

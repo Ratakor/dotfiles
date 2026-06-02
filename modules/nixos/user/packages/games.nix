@@ -6,6 +6,7 @@
   ...
 }:
 let
+  inherit (builtins) concatLists;
   inherit (lib.lists) singleton optional optionals;
 
   cfg = config.self.programs.gaming;
@@ -47,14 +48,15 @@ let
     love # lua 2D game engine (Balatro)
   ];
 in
-[
-  terminal
-  tools
-  # unsorted
-]
-++ optional cfg.star-citizen.enable star-citizen
-++ optional cfg.wow.enable wow
-++ optional cfg.poe.enable poe
-++ optional cfg.steam.enable steam
-++ optional cfg.lutris.enable lutris
-|> optionals cfg.enable
+optionals cfg.enable (concatLists [
+  [
+    terminal
+    tools
+    # unsorted
+  ]
+  (optional cfg.star-citizen.enable star-citizen)
+  (optional cfg.wow.enable wow)
+  (optional cfg.poe.enable poe)
+  (optional cfg.steam.enable steam)
+  (optional cfg.lutris.enable lutris)
+])

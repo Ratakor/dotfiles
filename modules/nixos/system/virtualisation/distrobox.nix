@@ -10,23 +10,20 @@
   ...
 }:
 let
-  inherit (builtins) concatStringsSep;
   inherit (lib.modules) mkIf;
   inherit (lib.lists) singleton;
   inherit (lib.meta) getExe;
+  inherit (lib.strings) concatMapStringsSep;
 
   cfg = config.self.system.virt.distrobox;
 
-  additionalVolumes =
-    [
-      "/nix/store"
-      "/etc/profiles/per-user"
-      "/etc/static/profiles/per-user"
-      # "/etc/static"
-      # "/run/current-system"
-    ]
-    |> map (path: "${path}:${path}:ro")
-    |> concatStringsSep " ";
+  additionalVolumes = concatMapStringsSep " " (path: "${path}:${path}:ro") [
+    "/nix/store"
+    "/etc/profiles/per-user"
+    "/etc/static/profiles/per-user"
+    # "/etc/static"
+    # "/run/current-system"
+  ];
 in
 {
   config = mkIf cfg.enable {

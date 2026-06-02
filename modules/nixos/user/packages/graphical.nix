@@ -61,11 +61,10 @@ let
     # kiwix # bruh why do I have the whole wikipedia locally installed
   ];
 in
-[
+optionals sys.video.enable [
   apps
   imageEditor
   screenshot
   tools
   unsorted
 ]
-|> optionals sys.video.enable

@@ -21,7 +21,7 @@ in
         keyFile = config.age.secrets.anki-key.path;
         usernameFile = config.age.secrets.anki-user.path;
       };
-      addons = listFiles ./plugins |> map (f: import f { inherit config pkgs; });
+      addons = map (f: import f { inherit config pkgs; }) (listFiles ./plugins);
     };
   };
 }
