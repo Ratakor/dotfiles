@@ -1,48 +1,41 @@
 # USB device manager (auto-mounting)
 {
   config,
-  pkgs,
   lib,
+  pkgs,
   ...
 }:
 let
   inherit (lib.modules) mkIf;
+  inherit (lib.meta) getExe';
+
   dprg = config.self.programs.default;
   cfg = config.self.services.udiskie;
+  package = pkgs.udiskie;
 in
 {
   config = mkIf cfg.enable {
     services.udisks2.enable = true;
-    user.packages = [ pkgs.udiskie ];
 
-    systemd.user.services.udiskie = {
-      description = "udiskie auto-mount daemon";
-      bindsTo = [ "graphical-session.target" ];
+    user.packages = [ package ];
+
+    hj.systemd.units.udiskie = {
+      description = "udiskie mount daemon";
       after = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
       wantedBy = [ "graphical-session.target" ];
       serviceConfig = {
-        ExecStart = "${pkgs.udiskie}/bin/udiskie --automount --notify --tray never";
-        Restart = "always";
+        ExecStart = getExe' package "udiskie";
+        # Restart = "always";
       };
     };
 
-    hj.xdg.config.files."udiskie/config.yml".text = ''
+    hj.xdg.config.files."udiskie/config.yml".text = /* yaml */ ''
       program_options:
+        automount: true
+        notify: true
+        tray: false
         terminal: ${dprg.terminal.cmdDir}
     '';
-
-    /*
-    hm.services.udiskie = {
-      enable = true;
-      automount = true;
-      notify = true;
-      tray = "never";
-      settings = {
-        program_options = {
-          terminal = dprg.terminal.cmdDir;
-        };
-      };
-    };
-    */
   };
 }
