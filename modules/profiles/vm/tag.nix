@@ -1,3 +1,0 @@
-{
-  system.nixos.tags = [ "vm" ];
-}

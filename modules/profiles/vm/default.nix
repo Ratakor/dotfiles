@@ -1,8 +1,13 @@
 # -device virtio-vga-gl -display gtk,gl=on
 # TODO: mouse pointer doesn't work when input is captured
-{ lib, modulesPath, ... }:
+{
+  lib,
+  modulesPath,
+  self,
+  ...
+}:
 let
-  inherit (lib.modules) mkForce;
+  inherit (lib.modules) mkVMOverride;
 in
 {
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
@@ -18,8 +23,10 @@ in
     cores = 8;
   };
 
+  environment.etc."nixos/flake".source = self;
+
   self = {
-    device.monitors = mkForce [ ];
-    system.fs.btrfs.autoSnapshot.subvolumes = mkForce { };
+    device.monitors = mkVMOverride [ ];
+    system.fs.btrfs.autoSnapshot.subvolumes = mkVMOverride { };
   };
 }
