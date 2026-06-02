@@ -56,7 +56,6 @@ let
     gemini-cli # Google AI
     # copilot-cli # Microsoft AI
     # claude-code # Anthropic AI
-    # ollama # My GPU is too old for this and I cba compiling it from scratch or using vulkan
   ];
 
   unsorted = with pkgs; [

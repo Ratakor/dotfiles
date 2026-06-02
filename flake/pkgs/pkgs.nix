@@ -10,14 +10,28 @@ let
   inherit (lib.trivial) warnIfNot;
 
   acknowledgedUnfreePackages = [
+    # apps
     "discord"
-    "nvidia-kernel-modules"
-    "nvidia-x11"
-    "ouch" # rar
     "spotify"
+    "ouch" # rar
+
+    # steam
     "steam"
     "steam-unwrapped"
+
+    # chromium drm
     "widevine-cdm"
+
+    # nvidia
+    "nvidia-kernel-modules"
+    "nvidia-x11"
+
+    # cuda (ollama)
+    "cuda_cudart"
+    "cuda_compat"
+    "cuda_nvcc"
+    "cuda_cccl"
+    "libcublas"
   ];
 in
 system:
@@ -44,10 +58,10 @@ import sources.nixpkgs {
       warnIfNot (elem pkgName acknowledgedUnfreePackages) "Allowing unfree package: ${pkgName}" true;
 
     # Whether to allow unsupported systems.
-    # See https://nixos.org/manual/nixpkgs/stable/#sec-allow-unsupported-system.
+    # See https://nixos.org/manual/nixpkgs/stable/#opt-allowUnsupportedSystem
     # This is useful for cross-compilation.
     # Default: false || builtins.getEnv "NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM" == "1"
-    allowUnsupportedSystem = true;
+    allowUnsupportedSystem = false; # this is broking cuda_compat
 
     # Whether to warn when config contains an unrecognized attribute.
     # This is so stupid it can't even recognise valid attributes.
