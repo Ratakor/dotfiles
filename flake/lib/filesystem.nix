@@ -27,7 +27,7 @@ in
     listFiles :: Path -> [Path]
     ```
   */
-  listFiles = dir: readDir dir |> attrNames |> map (file: dir + "/${file}");
+  listFiles = dir: map (file: dir + "/${file}") (attrNames (readDir dir));
 
   /**
     Given a directory, return a list of all directories within it.
@@ -46,9 +46,9 @@ in
   */
   listDirs =
     dir:
-    readDir dir
-    |> mapAttrsToList (name: kind: if kind == "directory" then dir + "/${name}" else null)
-    |> filter (x: x != null);
+    filter (x: x != null) (
+      mapAttrsToList (name: kind: if kind == "directory" then dir + "/${name}" else null) (readDir dir)
+    );
 
   /**
     Given a list of files, return a list of all nix files.
@@ -74,7 +74,7 @@ in
 
       root = dir + "/__module.nix";
     in
-    if pathExists root then singleton root else (dir |> internalFunc |> flatten |> filterNixFiles);
+    if pathExists root then singleton root else (filterNixFiles (flatten (internalFunc dir)));
 
   /**
     Size constants in bytes.

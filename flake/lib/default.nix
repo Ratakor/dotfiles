@@ -1,23 +1,22 @@
 sources:
 (import "${sources.nixpkgs}/lib").extend (
   self: lib:
-  (
-    # me when I overcomplicate things for no reason
-    builtins.removeAttrs (builtins.readDir ./.) [ "default.nix" ]
-    |> builtins.attrNames
-    |> map (
-      file:
-      let
-        # lib.removeSuffix ".nix" -> infinite recursion
-        name = builtins.substring 0 ((builtins.stringLength file) - 4) file;
-      in
-      {
-        inherit name;
-        value = (lib.${name} or { }) // (import ./${name}.nix { inherit lib sources self; });
-      }
-    )
-    |> builtins.listToAttrs
-  )
+  let
+    inherit (builtins) attrNames removeAttrs readDir;
+    inherit (lib.attrsets) genAttrs';
+  in
+  # me when I overcomplicate things for no reason
+  (genAttrs' (attrNames (removeAttrs (readDir ./.) [ "default.nix" ])) (
+    file:
+    let
+      # name = lib.strings.removeSuffix ".nix" file; # infinite recursion
+      name = builtins.substring 0 ((builtins.stringLength file) - 4) file;
+    in
+    {
+      inherit name;
+      value = (lib.${name} or { }) // (import ./${name}.nix { inherit lib sources self; });
+    }
+  ))
   // {
     inherit (self.filesystem)
       listFiles
