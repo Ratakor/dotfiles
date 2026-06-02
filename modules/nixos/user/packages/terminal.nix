@@ -71,11 +71,13 @@ let
     # dnsmasq #  Integrated DNS, DHCP and TFTP server for small networks
   ];
 in
-[
-  cli
-  tui
-  # rice
-  # cast
-  ai
-  unsorted
-]
+{
+  user.packages = [
+    cli
+    tui
+    # rice
+    # cast
+    ai
+    unsorted
+  ];
+}

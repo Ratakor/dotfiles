@@ -120,13 +120,15 @@ let
     which # Shows the full path of (shell) commands (builtin in zsh/nushell)
   ];
 in
-[
-  toolchains
-  buildSystems
-  tools
-  fs
-  archives
-  nix
-  manPages
-  # idkProbablyUsefulTho
-]
+{
+  user.packages = [
+    toolchains
+    buildSystems
+    tools
+    fs
+    archives
+    nix
+    manPages
+    # idkProbablyUsefulTho
+  ];
+}
