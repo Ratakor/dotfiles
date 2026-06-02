@@ -10,26 +10,47 @@
 # TODO: replace randwp in
 # - yazi wrapper
 # - plumber
-{ config, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
+  inherit (lib.modules) mkIf;
+
   cfg = config.self.services.wpaperd;
 in
 {
-  hm.services.wpaperd = {
-    inherit (cfg) enable;
-    settings.default = {
-      path = config.self.wallpapers;
-      duration = "15m";
-      sorting = "random";
-      mode = "center";
-      transition-time = 400; # default: 300
-      queue-size = 5; # default: 10
-      initial-transition = true; # default: true
-      recursive = true; # default: true
-      # exec =
+  config = mkIf cfg.enable {
+    user.packages = [ pkgs.wpaperd ];
+
+    hj.xdg.config.files."wpaperd/wallpaper.toml".text = /* toml */ ''
+      [default]
+      path = "${config.self.wallpapers}"
+      duration = "15m"
+      sorting = "random"
+      mode = "center"
+      transition-time = 400 # default: 300
+      queue-size = 5 # default: 10
+      initial-transition = true # default: true
+      recursive = true # default: true
 
       # colour-distance goes hard too
-      transition.glitch-memories = { };
+      [default.transition.glitch-memories]
+    '';
+
+    # FIXME
+    hj.systemd.units.wpaperd = {
+      description = "Wallpaper daemon";
+      # TODO ConditionEnvironment = "WAYLAND_DISPLAY"
+      bindsTo = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      serviceConfig = {
+        ExecStart = "${pkgs.wpaperd}/bin/wpaperd";
+        Restart = "always";
+      };
     };
   };
 }
