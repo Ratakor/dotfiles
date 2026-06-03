@@ -57,6 +57,7 @@
         mediaPlayer.name = "vlc";
       };
       dev.enable = true; # ?
+      scripts.enable = true;
       gaming = {
         enable = true;
         lutris.enable = false; # TODO: should be true

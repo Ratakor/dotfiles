@@ -24,6 +24,7 @@ let
       pkgs.ledger-live-desktop
       pkgs.ledger-udev-rules # should this be in systemPackages?
     ])
+    (optional prg.locker.swaylock.enable pkgs.swaylock)
   ];
 
   imageEditor = concatLists [
@@ -56,7 +57,6 @@ let
     # network-printer # https://github.com/notashelf/np
     songrec # Open-source Shazam client (actual banger tbh)
 
-    swaylock # screen locker (ik about prg.locker shut up)
     # monero-gui # Monero wallet
     # kiwix # bruh why do I have the whole wikipedia locally installed
   ];

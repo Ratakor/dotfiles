@@ -39,6 +39,10 @@ in
         terminal.name = "foot";
       };
       dev.enable = true;
+      scripts = {
+        enable = true;
+        randwp.enable = true;
+      };
       apps.enable = true;
       terminal.fontSize = 10;
       windowManager.niri.extraConfig = /* kdl */ ''

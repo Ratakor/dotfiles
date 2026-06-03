@@ -54,6 +54,7 @@
         xdg.portal.name = "kde";
       };
       dev.enable = true;
+      scripts.enable = true;
       gaming = {
         enable = true;
         poe.enable = true;
