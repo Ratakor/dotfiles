@@ -92,4 +92,12 @@ mapAttrs mkNixosSystem {
       "${nixos-hardware}/framework/13-inch/amd-ai-300-series"
     ];
   };
+
+  iso = {
+    moduleTrees = [ ];
+    profiles = with profiles; [
+      iso
+      headless
+    ];
+  };
 }
