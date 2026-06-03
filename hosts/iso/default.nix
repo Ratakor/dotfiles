@@ -8,7 +8,7 @@ let
   inherit (lib.modules) mkForce;
   inherit (lib.strings) optionalString;
 
-  colors = import (self + /modules/options/colors) { inherit lib; };
+  colors = import (self + /modules/options/colors) { };
 in
 {
   networking.hostName = mkForce "nixos";

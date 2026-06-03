@@ -8,7 +8,7 @@ let
   inherit (lib.filesystem) packagesFromDirectoryRecursive;
   inherit (lib.strings) optionalString;
 
-  colors = import (self + /modules/options/colors) { inherit lib; };
+  colors = import (self + /modules/options/colors) { };
 
   extraArgs = { inherit colors sources self; };
 in

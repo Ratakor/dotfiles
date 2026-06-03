@@ -1,12 +1,17 @@
-# Mirror of option.nix to be used outside of modules.
+# Mirror of __module.nix to be used outside of modules.
 {
-  lib,
   theme ? "gruvbox", # gruvbox dracula
   variant ? "dark", # dark light
 }:
-lib.fix (self: {
-  dark = import ./themes/${theme}-dark.nix;
-  light = import ./themes/${theme}-light.nix;
+let
+  self = {
+    inherit theme variant;
+    dark = import ./themes/${theme}-dark.nix;
+    light = import ./themes/${theme}-light.nix;
+  };
+in
+self
+// {
   default = self.${variant};
   alternative = self.${if variant == "dark" then "light" else "dark"};
-})
+}
