@@ -14,7 +14,7 @@ let
     {
       inherit (config.self.colors.default.helix) theme;
     }
-    // (optionalAttrs prg.dev.enable { extraPackages = [ ]; })
+    // (optionalAttrs (!prg.dev.enable) { extraPackages = [ ]; })
   );
 in
 {
