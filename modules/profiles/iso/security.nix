@@ -1,7 +1,3 @@
-{ lib, ... }:
-let
-  inherit (lib.modules) mkImageMediaOverride;
-in
 {
   security = {
     # Don't require sudo/root to `reboot` or `poweroff`.
@@ -9,7 +5,7 @@ in
 
     sudo = {
       enable = true;
-      wheelNeedsPassword = mkImageMediaOverride false;
+      wheelNeedsPassword = false;
     };
   };
 }
