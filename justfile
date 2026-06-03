@@ -16,6 +16,11 @@ switch host="$(hostname)":
 build-vm host="$(hostname)":
     nh os build-vm --hostname {{host}} .
 
+# Build a custom `NixOS` ISO
+[group('nix')]
+build-iso:
+    nix build .#nixosConfigurations.iso.config.system.build.isoImage
+
 # Garbage collect all unused nix store entries & remove old generations
 [group('nh')]
 clean:
