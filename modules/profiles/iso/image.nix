@@ -4,14 +4,16 @@
   lib,
   pkgs,
   sources,
-  self,
   ...
 }:
 let
+  inherit (builtins) concatStringsSep length;
   inherit (lib.modules) mkImageMediaOverride;
-  inherit (lib.sources) cleanSource;
+  inherit (lib.strings) optionalString;
 
-  name = "${config.networking.hostName}-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}";
+  inherit (config.networking) hostName;
+  inherit (config.system) nixos;
+  inherit (pkgs.stdenv) hostPlatform;
 in
 {
   imports = [
@@ -22,22 +24,17 @@ in
     "${sources.nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
   ];
 
-  image.baseName = mkImageMediaOverride name;
+  image.baseName = mkImageMediaOverride "${hostName}-${nixos.label}-${hostPlatform.system}";
 
   isoImage = {
-    volumeID = mkImageMediaOverride name;
+    volumeID = mkImageMediaOverride "${hostName}${
+      optionalString (length nixos.tags > 0) "-${concatStringsSep "-" nixos.tags}"
+    }-${nixos.release}-${hostPlatform.uname.processor}";
     makeBiosBootable = true;
     makeEfiBootable = true;
     makeUsbBootable = true;
 
     # Get rid of "installer" suffix in boot menu.
     appendToMenuLabel = "";
-
-    contents = [
-      {
-        source = cleanSource self;
-        target = "/root/self"; # maybe /self or /etc/nixos/flake instead?
-      }
-    ];
   };
 }

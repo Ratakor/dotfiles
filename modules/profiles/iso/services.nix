@@ -6,7 +6,7 @@ in
 {
   services = {
     getty = {
-      autologinUser = "nixos";
+      autologinUser = "root";
 
       helpLine = ''
         The "nixos" and "root" accounts have empty passwords.

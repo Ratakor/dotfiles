@@ -38,6 +38,10 @@ in
     command-not-found.enable = mkForce false;
   };
 
+  security = {
+    pam.services.su.forwardXAuth = mkForce false;
+  };
+
   services = {
     # logrotate.enable = mkDefault false; # useful for servers
     udisks2.enable = false;

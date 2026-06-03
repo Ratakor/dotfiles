@@ -3,6 +3,7 @@
 {
   environment = {
     systemPackages = with pkgs; [
+      # utils for cool kids
       wrappers.helix-minimal # editor
       wrappers.yazi
       wrappers.zellij
@@ -23,7 +24,11 @@
       util-linux
       jq
       ouch # compress / decompress
+
+      # nix installation tools
       nixos-install-tools
+      disko
+      disko-install
 
       # partitioning tools
       testdisk # useful for repairing boot problems
