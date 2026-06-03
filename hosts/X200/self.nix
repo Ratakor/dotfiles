@@ -39,6 +39,7 @@ in
         terminal.name = "foot";
       };
       dev.enable = true;
+      apps.enable = true;
       terminal.fontSize = 10;
       windowManager.niri.extraConfig = /* kdl */ ''
         spawn-at-startup "randwp"

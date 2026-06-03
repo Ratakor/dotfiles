@@ -59,6 +59,7 @@
         poe.enable = true;
       };
       apps = {
+        enable = true;
         teams.enable = true;
       };
       browser = {

@@ -62,6 +62,7 @@
         lutris.enable = false; # TODO: should be true
       };
       apps = {
+        enable = true;
         anki.enable = true;
         gajim.enable = false;
         keepassxc.enable = false;
