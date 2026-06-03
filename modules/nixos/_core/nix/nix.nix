@@ -1,9 +1,13 @@
 {
   config,
+  lib,
   pkgs,
   self,
   ...
 }:
+let
+  inherit (lib.strings) getName;
+in
 {
   nix = {
     # Nix package is already set in a nixpkgs overlay.
@@ -47,7 +51,7 @@
       experimental-features = [
         "nix-command"
         "flakes"
-        (if config.nix.package.pname == "lix" then "pipe-operator" else "pipe-operators")
+        (if (getName config.nix.package) == "lix" then "pipe-operator" else "pipe-operators")
         "cgroups"
       ];
 
