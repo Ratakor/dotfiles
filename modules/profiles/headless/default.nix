@@ -43,9 +43,10 @@ in
   };
 
   services = {
-    # logrotate.enable = mkDefault false; # useful for servers
+    logrotate.enable = mkDefault false; # /!\ useful for servers
     udisks2.enable = false;
     xserver.excludePackages = [ pkgs.xterm ];
+    displayManager.enable = mkForce false;
   };
 
   systemd = {
