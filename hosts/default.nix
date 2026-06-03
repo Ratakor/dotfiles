@@ -30,32 +30,6 @@ let
     value = path;
   });
 
-  mkModules =
-    {
-      hostname,
-      system,
-      moduleTrees ? [
-        nixos
-        options
-      ],
-      profiles ? [ ],
-      extraModules ? [ ],
-    }:
-    concatLists [
-      [
-        {
-          networking.hostName = hostname;
-          nixpkgs = {
-            hostPlatform = mkDefault system;
-            flake.source = sources.nixpkgs.outPath;
-          };
-        }
-      ]
-      (filterNixFiles (listFilesRecursive ./${hostname}))
-      (concatMap listModuleFiles (moduleTrees ++ profiles))
-      extraModules
-    ];
-
   # pkgs.nixos doesn't allow to pass specialArgs :(
   # Even if we set _module.args it will be evaluated too late and produce an infinite recursion.
   # https://github.com/NixOS/nixpkgs/blob/b12141ef619e0a9c1c84dc8c684040326f27cdcc/pkgs/top-level/all-packages.nix#L11967
@@ -75,18 +49,28 @@ let
     {
       hostname ? name,
       system ? "x86_64-linux",
+      moduleTrees ? [
+        nixos
+        options
+      ],
       profiles ? [ ],
       extraModules ? [ ],
     }:
     mkSystem system {
-      modules = mkModules {
-        inherit
-          hostname
-          system
-          profiles
-          extraModules
-          ;
-      };
+      modules = concatLists [
+        [
+          {
+            networking.hostName = hostname;
+            nixpkgs = {
+              hostPlatform = mkDefault system;
+              flake.source = sources.nixpkgs.outPath;
+            };
+          }
+        ]
+        (filterNixFiles (listFilesRecursive ./${hostname}))
+        (concatMap listModuleFiles (moduleTrees ++ profiles))
+        extraModules
+      ];
       specialArgs = {
         inherit self sources;
         inherit (self) keys;
