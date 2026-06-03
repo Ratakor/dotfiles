@@ -7,24 +7,22 @@ in
   networking.hostName = mkForce "nixos";
 
   services.getty = {
-    getty = {
-      autologinUser = "root";
+    autologinUser = "root";
 
-      helpLine = ''
-        The "nixos" and "root" accounts have empty passwords.
+    helpLine = ''
+      The "nixos" and "root" accounts have empty passwords.
 
-        To log in over ssh you must set add your public key to
-        /home/nixos/.ssh/authorized_keys or /root/.ssh/authorized_keys.
+      To log in over ssh you must set add your public key to
+      /home/nixos/.ssh/authorized_keys or /root/.ssh/authorized_keys.
 
-        A nixos configuration is provided at /root/self.
+      A nixos configuration is provided at /root/self.
 
-        To set up a wireless connection, run `nmtui`.
-      ''
-      + optionalString config.services.xserver.enable ''
+      To set up a wireless connection, run `nmtui`.
+    ''
+    + optionalString config.services.xserver.enable ''
 
-        Type `sudo systemctl start display-manager' to
-        start the graphical user interface.
-      '';
-    };
+      Type `sudo systemctl start display-manager' to
+      start the graphical user interface.
+    '';
   };
 }

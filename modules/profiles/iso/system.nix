@@ -16,12 +16,15 @@ in
 
     # To speed up installation a little bit, include the complete
     # stdenvNoCC in the Nix store on the CD.
-    extraDependencies = with pkgs; [
-      stdenvNoCC # for runCommand
-      busybox
-      makeInitrdNGTool # for boot.initrd.systemd
-      jq.all # for closureInfo
-    ];
+    extraDependencies =
+      with pkgs;
+      [
+        stdenvNoCC # for runCommand
+        busybox
+        # For boot.initrd.systemd
+        makeInitrdNGTool
+      ]
+      ++ jq.all; # for closureInfo
 
     # isoImage.contents is relative to /iso and read-only so we're doing this instead
     activationScripts.customFiles = {

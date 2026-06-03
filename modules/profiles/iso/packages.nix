@@ -4,7 +4,7 @@
   environment = {
     systemPackages = with pkgs; [
       # utils for cool kids
-      wrappers.helix-minimal # editor
+      (wrappers.helix.override { extraPackages = [ nil ]; })
       wrappers.yazi
       wrappers.zellij
       moor
