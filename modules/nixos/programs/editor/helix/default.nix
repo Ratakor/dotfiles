@@ -5,13 +5,17 @@
   ...
 }:
 let
+  inherit (lib.attrsets) optionalAttrs;
   inherit (lib.modules) mkIf;
 
-  package = pkgs.wrappers.helix.override {
-    inherit (config.self.colors.default.helix) theme;
-  };
-
   prg = config.self.programs;
+
+  package = pkgs.wrappers.helix.override (
+    {
+      inherit (config.self.colors.default.helix) theme;
+    }
+    // (optionalAttrs prg.dev.enable { extraPackages = [ ]; })
+  );
 in
 {
   config = mkIf prg.editor.helix.enable {
