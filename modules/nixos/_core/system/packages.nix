@@ -10,7 +10,7 @@ in
     # List packages installed in system profile.
     # You can use https://search.nixos.org/ to find more packages (and options).
     systemPackages = with pkgs; [
-      wrappers.helix # editor, see environment.nix for $EDITOR
+      wrappers.helix-minimal # editor, see environment.nix for $EDITOR
       yazi # file manager
       git
       curl
