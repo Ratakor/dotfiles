@@ -1,4 +1,3 @@
-# TODO: should this be exposed by the flake as a package output?
 {
   config,
   lib,
@@ -8,7 +7,6 @@
 }:
 let
   inherit (builtins) concatLists;
-  inherit (pkgs) writeShellApplication callPackage;
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkIf;
   inherit (lib.lists) optional;
@@ -34,7 +32,6 @@ in
     # TODO:
     # dmenurecord: replace with wf-recorder
     # dmenusearch: split into different package since it has so many dependencies?
-    # icstocal: merge with quand?
     # plumber: ..., support archive/compressed files
     # screenshot: remove? rewrite using nix, depends on dmenurecord
     # ytdl: ...
