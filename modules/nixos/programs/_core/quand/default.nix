@@ -2,7 +2,14 @@
 # TODO: Rewrite quand in rust & integrate icstocal
 { lib, pkgs, ... }:
 let
-  inherit (builtins) isInt isString typeOf;
+  inherit (builtins)
+    isInt
+    isString
+    typeOf
+    readFile
+    ;
+
+  icstocal = pkgs.writeScriptBin "icstocal" (readFile ./icstocal.py);
 
   mkValueString =
     v:
@@ -22,7 +29,10 @@ let
   };
 in
 {
-  user.packages = [ pkgs.quand ];
+  user.packages = [
+    pkgs.quand
+    icstocal
+  ];
 
   hm.xdg.configFile."quand/config".text = toKeyValue {
     header = false;
