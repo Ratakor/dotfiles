@@ -1,4 +1,4 @@
-#!/bin/sh --
+# shellcheck shell=sh
 # plumber 🪠
 # Copyright © 2025 Ratakor. Under ISC License.
 # Check https://github.com/Ratakor/dotfiles/blob/artix/.local/bin/plumber
@@ -6,22 +6,7 @@
 # manager with mouse support when using my version of st
 # shellcheck disable=SC2086
 
-# default programs:
-# use open for gui and openterm for terminal applications
-# currently assuming that WEB, VIDEO and AUDIO handle URLs
-# NOTE to self: if going full nix:
-# - add a home-manager options or options to set these variables
-# - or add an options like config.browser, config.editor etc
-# - or both
-# - or setup xdg-mime correctly (plumber > xdg-open though, I swear)
-WEB="open ${BROWSER:-"xdg-open"}"
-TEXT="openterm $EDITOR" # replace with `if $VISUAL then open $VISUAL else openterm $EDITOR`?
-VIDEO="open mpv --loop" # --ytdl-format=bv+ba
-AUDIO="open music" # --shuffle
-PIC="open imv" # nsxiv -a
-DOC="open zathura"
-DIR="openterm yazi"
-DMENU=${DMENU:-"dmenu -i"}
+# default programs are defined in nix predule
 
 TMPDIR=${XDG_RUNTIME_DIR:-/tmp}/plumber
 HISTDIR=${XDG_STATE_HOME:-$HOME/.local/state}/plumber
@@ -35,6 +20,7 @@ openterm() {
 	if [ -n "$ZELLIJ" ]; then
 		zellij action new-pane -- "$@"
 	else
+		# shellcheck disable=SC2086
 		open $TERMINAL -e "$@"
 	fi
 }

@@ -32,7 +32,6 @@ in
     # TODO:
     # dmenurecord: replace with wf-recorder
     # dmenusearch: split into different package since it has so many dependencies?
-    # plumber: ..., support archive/compressed files
     # screenshot: remove? rewrite using nix, depends on dmenurecord
     # ytdl: ...
     hm.home.file.".local/bin" = {
@@ -62,6 +61,10 @@ in
         pkgs.scripts.pdflatexmk
         pkgs.scripts.help
         pkgs.scripts.real
+
+        # TODO: support archive/compressed files?
+        # TODO: override prelude?
+        pkgs.scripts.plumber
 
         # TODO: to deprecate
         (callScript ./src/music)
