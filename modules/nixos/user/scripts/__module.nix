@@ -45,7 +45,7 @@ in
     };
 
     user.packages = concatLists [
-      (optional prg.locker.glitchlock.enable (callPackage ./src/glitchlock { }))
+      (optional prg.locker.glitchlock.enable (pkgs.scripts.glitchlock.override { isWayland = true; }))
       (optional cfg.ocr.enable (callPackage ./src/ocr { }))
       (optional cfg.pdfmd.enable (callPackage ./src/pdfmd { }))
       (optional cfg.randwp.enable (callScript ./src/randwp))
