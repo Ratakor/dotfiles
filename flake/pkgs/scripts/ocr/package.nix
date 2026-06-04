@@ -20,4 +20,5 @@ writeShellApplication {
     wl-clipboard
   ];
   text = builtins.readFile ./ocr.sh;
+  meta.mainProgram = "ocr";
 }
