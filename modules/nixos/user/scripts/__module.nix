@@ -63,18 +63,11 @@ in
         pkgs.scripts.sci
         pkgs.scripts.battery
         pkgs.scripts.pdflatexmk
+        pkgs.scripts.help
 
         # TODO: to deprecate
         (callScript ./src/music)
         (callScript ./src/musiccmd)
-
-        (writeShellApplication {
-          name = "help";
-          runtimeInputs = [ pkgs.bat ];
-          text = ''
-            "$@" --help 2>&1 | bat -p -l help
-          '';
-        })
 
         (writeShellApplication {
           name = "real";
