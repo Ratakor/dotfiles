@@ -48,7 +48,13 @@ in
       (optional prg.locker.glitchlock.enable (pkgs.scripts.glitchlock.override { isWayland = true; }))
       (optional cfg.ocr.enable (callPackage ./src/ocr { }))
       (optional cfg.pdfmd.enable (callPackage ./src/pdfmd { }))
-      (optional cfg.randwp.enable (callScript ./src/randwp))
+      (optional cfg.randwp.enable (
+        pkgs.scripts.randwp.override {
+          isWayland = true;
+          supportMultipleMonitors = true; # builtins.length config.self.device.monitors > 1;
+          inherit (config.self) wallpapers;
+        }
+      ))
       [
         (pkgs.scripts.emojisearch.override {
           dmenuCommand = dprg.launcher.dmenu;
