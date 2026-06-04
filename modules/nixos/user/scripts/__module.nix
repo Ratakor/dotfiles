@@ -62,18 +62,11 @@ in
         })
         pkgs.scripts.sci
         pkgs.scripts.battery
+        pkgs.scripts.pdflatexmk
 
+        # TODO: to deprecate
         (callScript ./src/music)
         (callScript ./src/musiccmd)
-
-        # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/dev/default.nix
-        (writeShellApplication {
-          name = "pdflatexmk";
-          runtimeInputs = [ pkgs.texlivePackages.latexmk ];
-          text = ''
-            latexmk -pdf "$@" && latexmk -c "$@"
-          '';
-        })
 
         (writeShellApplication {
           name = "help";
