@@ -64,21 +64,11 @@ in
         pkgs.scripts.battery
         pkgs.scripts.pdflatexmk
         pkgs.scripts.help
+        pkgs.scripts.real
 
         # TODO: to deprecate
         (callScript ./src/music)
         (callScript ./src/musiccmd)
-
-        (writeShellApplication {
-          name = "real";
-          runtimeInputs = with pkgs; [
-            coreutils
-            which
-          ];
-          text = ''
-            realpath "$(which "$1")"
-          '';
-        })
       ]
     ];
   };
