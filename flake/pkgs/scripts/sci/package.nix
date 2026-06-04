@@ -10,4 +10,5 @@ writeShellApplication {
     coreutils
   ];
   text = builtins.readFile ./sci.sh;
+  meta.mainProgram = "sci";
 }

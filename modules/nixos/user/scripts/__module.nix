@@ -60,12 +60,12 @@ in
           dmenuCommand = dprg.launcher.dmenu;
           copyCommand = getExe' pkgs.wl-clipboard "wl-copy";
         })
+        pkgs.scripts.sci
 
         (callScript ./src/music)
         (callScript ./src/musiccmd)
 
         (callPackage ./src/battery { })
-        (callPackage ./src/sci { })
 
         # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/dev/default.nix
         (writeShellApplication {
