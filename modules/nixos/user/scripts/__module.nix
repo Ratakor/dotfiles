@@ -9,6 +9,7 @@
 let
   inherit (builtins) concatLists;
   inherit (pkgs) writeShellApplication callPackage;
+  inherit (lib.meta) getExe';
   inherit (lib.modules) mkIf;
   inherit (lib.lists) optional;
 
@@ -25,6 +26,7 @@ let
     };
 
   prg = config.self.programs;
+  dprg = prg.default;
   cfg = prg.scripts;
 in
 {
@@ -48,7 +50,11 @@ in
       (optional cfg.pdfmd.enable (callPackage ./src/pdfmd { }))
       (optional cfg.randwp.enable (callScript ./src/randwp))
       [
-        (callScript ./src/emojisearch)
+        (pkgs.scripts.emojisearch.override {
+          dmenuCommand = dprg.launcher.dmenu;
+          copyCommand = getExe' pkgs.wl-clipboard "wl-copy";
+        })
+
         (callScript ./src/music)
         (callScript ./src/musiccmd)
 

@@ -145,5 +145,10 @@ import sources.nixpkgs {
         doCheck = !prev.stdenv.hostPlatform.isi686;
       };
     })
+
+    # This conflicts with our custom scripts at pkgs.scripts
+    (_final: prev: {
+      mpv = prev.mpv.override { scripts = [ ]; };
+    })
   ];
 }
