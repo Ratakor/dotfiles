@@ -51,7 +51,7 @@
 
     programs = {
       default = {
-        xdg.portal.name = "kde";
+        # xdg.portal.name = "kde";
       };
       dev.enable = true;
       scripts.enable = true;

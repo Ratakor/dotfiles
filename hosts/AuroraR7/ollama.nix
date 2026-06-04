@@ -6,7 +6,8 @@
     package = pkgs.ollama-cuda.override {
       cudaArches = [ "sm_61" ];
     };
-    home = "/storage/home/.ollama"; # see also models
+    # home = "/storage/home/.ollama";
+    # models = "/storage/home/.ollama/models";
 
     # declarative models...
     loadModels = [
