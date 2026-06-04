@@ -106,11 +106,9 @@ in
       tmp = "cd $(mktemp -d)";
       timestamp = "date +%Y-%m-%dT%H:%M:%S%z";
     };
-    nushell.extraConfig =
-      # nu
-      ''
-        alias "tmp" = cd $"(mktemp -d)"
-        def timestamp [] { date now | format date "%Y-%m-%dT%H:%M:%S%z" }
-      '';
+    nushell.extraConfig = /* nu */ ''
+      alias "tmp" = cd $"(mktemp -d)"
+      def timestamp [] { date now | format date "%Y-%m-%dT%H:%M:%S%z" }
+    '';
   };
 }

@@ -1,16 +1,14 @@
 # Window rules let you adjust behavior for individual windows.
 # https://yalter.github.io/niri/Configuration:-Window-Rules
 let
-  no-border =
-    # kdl
-    ''
-      focus-ring {
-        off
-      }
-      border {
-        off
-      }
-    '';
+  no-border = /* kdl */ ''
+    focus-ring {
+      off
+    }
+    border {
+      off
+    }
+  '';
 in
 # kdl
 ''

@@ -14,11 +14,9 @@ mnw.lib.wrap pkgs {
 
   desktopEntry = true;
 
-  initLua =
-    # lua
-    ''
-      require("self")
-    '';
+  initLua = /* lua */ ''
+    require("self")
+  '';
 
   providers = {
     nodeJs.enable = true;
