@@ -14,7 +14,7 @@
   wlr-randr,
   jq,
   xrandr,
-  awk,
+  gawk,
   xwallpaper,
   hsetroot,
 
@@ -86,7 +86,7 @@ writeShellApplication {
       ''
         # Multiple screens on X11 with xwallpaper
         IGNORE="$IGNORE|.webp" # xwallpaper doesn't support webp
-        for output in $(${getExe xrandr} | ${getExe awk} '$2=="connected" {print $1}'); do
+        for output in $(${getExe xrandr} | ${getExe gawk} '$2=="connected" {print $1}'); do
           searchwp
           args="$args --output $output --zoom $wp"
         done
