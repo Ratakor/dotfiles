@@ -1,4 +1,5 @@
 # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/cli/wayland.nix
+# TODO: add x11 support
 {
   writeShellApplication,
   tesseract,

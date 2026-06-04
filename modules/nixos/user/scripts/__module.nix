@@ -46,7 +46,7 @@ in
 
     user.packages = concatLists [
       (optional prg.locker.glitchlock.enable (pkgs.scripts.glitchlock.override { isWayland = true; }))
-      (optional cfg.ocr.enable (callPackage ./src/ocr { }))
+      (optional cfg.ocr.enable pkgs.scripts.ocr)
       (optional cfg.pdfmd.enable (callPackage ./src/pdfmd { }))
       (optional cfg.randwp.enable (
         pkgs.scripts.randwp.override {
