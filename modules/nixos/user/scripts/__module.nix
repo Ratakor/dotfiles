@@ -61,11 +61,10 @@ in
           copyCommand = getExe' pkgs.wl-clipboard "wl-copy";
         })
         pkgs.scripts.sci
+        pkgs.scripts.battery
 
         (callScript ./src/music)
         (callScript ./src/musiccmd)
-
-        (callPackage ./src/battery { })
 
         # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/dev/default.nix
         (writeShellApplication {

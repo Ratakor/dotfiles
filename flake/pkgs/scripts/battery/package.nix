@@ -10,4 +10,5 @@ writeShellApplication {
     libnotify
   ];
   text = builtins.readFile ./battery.sh;
+  meta.mainProgram = "battery";
 }
