@@ -1,15 +1,26 @@
 # bootstrap:
+# nixos-generate-config --show-hardware-config > hosts/{{hostname}}/hw.nix
 # nix-shell -p nh --run 'nh os switch -f . nixosConfigurations.{{hostname}}'
 
 default: switch
     @# just --list
 
-# Rebuild and switch to the new configuration
+# Build and activate the new configuration, and make it the boot default
 [group('nh')]
 switch host="$(hostname)":
     @# nixos-rebuild switch --sudo --flake .
     @# nh os switch -f . nixosConfigurations.{{host}}
     nh os switch --diff always --hostname {{host}} .
+
+# Build the new configuration and make it the boot default
+[group('nh')]
+boot host="$(hostname)":
+    nh os boot --diff always --hostname {{host}} .
+
+# Build and activate the new configuration
+[group('nh')]
+test host="$(hostname)":
+    nh os test --diff always --hostname {{host}} .
 
 # Build a `NixOS` VM image
 [group('nh')]
