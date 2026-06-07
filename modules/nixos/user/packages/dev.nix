@@ -49,7 +49,7 @@ let
     # astyle # C formatter
     checkbashisms # checks for bashisms in scripts
     shellcheck # there is also shellcheck-minimal in nixpkgs
-    # perf # performance analysis tool (wrong package)
+    perf # performance analysis tool for Linux
     hyperfine # benchmarking tool
     poop # Performance Optimizer Observation Platform
     # gdb # gnu debugger
