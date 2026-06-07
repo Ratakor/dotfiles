@@ -3,6 +3,9 @@ config:
 let
   inherit (config.hm.xdg.userDirs.extraConfig) NOTES;
   dprg = config.self.programs.default;
+
+  # niri allow only one action per keybind
+  lockCmd = "${dprg.locker.cmd}; niri msg action power-off-monitors";
 in
 # kdl
 ''
@@ -38,8 +41,8 @@ in
 
     // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${dprg.terminal.cmd} -e newsboat"; }
     Mod+B repeat=false hotkey-overlay-title="Open browser: ${dprg.browser.name}" { spawn-sh "${dprg.browser.newWindow}"; }
-    Mod+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${dprg.locker.name}" { spawn-sh "${dprg.locker.cmd}"; }
-    XF86ScreenSaver repeat=false { spawn-sh "${dprg.locker.cmd}"; }
+    Mod+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${dprg.locker.name}" { spawn-sh "${lockCmd}"; }
+    XF86ScreenSaver repeat=false { spawn-sh "${lockCmd}"; }
     XF86Battery repeat=false hotkey-overlay-title="Show battery information" { spawn "battery"; }
     // TODO: use wlr-which-key to handle prev/next instead?
     Mod+Shift+W repeat=false hotkey-overlay-title="Set a random wallpaper" { spawn "wpaperctl" "next"; }
