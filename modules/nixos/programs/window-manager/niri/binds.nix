@@ -63,14 +63,14 @@ in
 
     Mod+M           repeat=false hotkey-overlay-title="Dynamically play Spotify playlist" { spawn "zpotify" "play" "playlist"; } // "music"
     Mod+Shift+M     repeat=false hotkey-overlay-title="Dynamically play Spotify album"{ spawn "zpotify" "play" "album"; } // "musiccmd"
-    XF86AudioPrev   repeat=false allow-when-locked=true hotkey-overlay-title="Play previous track" { spawn-sh "playerctl previous"; }
-    XF86AudioNext   repeat=false allow-when-locked=true hotkey-overlay-title="Play next track" { spawn-sh "playerctl next"; }
-    XF86AudioPlay   repeat=false allow-when-locked=true hotkey-overlay-title="Toggle playback" { spawn-sh "playerctl play-pause"; }
-    XF86AudioStop   repeat=false allow-when-locked=true hotkey-overlay-title="Stop playback" { spawn-sh "playerctl stop"; }
-    Mod+Shift+Left  repeat=false allow-when-locked=true { spawn-sh "zpotify prev >/dev/null"; } // musiccmd prev
-    Mod+Shift+Right repeat=false allow-when-locked=true { spawn-sh "zpotify next >/dev/null"; } // musiccmd next
-    Mod+Shift+Down  repeat=false allow-when-locked=true { spawn-sh "zpotify pause >/dev/null"; } // musiccmd cycle
-    Mod+Shift+Up    repeat=false allow-when-locked=true { spawn-sh "zpotify pause >/dev/null"; } // musiccmd stop
+    XF86AudioPrev   repeat=false allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioNext   repeat=false allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86AudioPlay   repeat=false allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop   repeat=false allow-when-locked=true { spawn-sh "playerctl stop"; }
+    Mod+Shift+Left  repeat=false allow-when-locked=true hotkey-overlay-title="Play previous track" { spawn-sh "zpotify prev >/dev/null"; } // musiccmd prev
+    Mod+Shift+Right repeat=false allow-when-locked=true hotkey-overlay-title="Play next track" { spawn-sh "zpotify next >/dev/null"; } // musiccmd next
+    Mod+Shift+Down  repeat=false allow-when-locked=true hotkey-overlay-title="Toggle playback" { spawn-sh "zpotify pause >/dev/null"; } // musiccmd cycle
+    Mod+Shift+Up    repeat=false allow-when-locked=true hotkey-overlay-title="Stop playback" { spawn-sh "zpotify pause >/dev/null"; } // musiccmd stop
 
     // Mod+S repeat=false { spawn "dmenusearch" "web"; }
     // Mod+A repeat=false { spawn "dmenusearch" "aur"; }
@@ -78,8 +78,8 @@ in
     // Mod+W repeat=false { spawn "dmenusearch" "man"; }
     Mod+E repeat=false hotkey-overlay-title="Dynamically search emojis" { spawn "emojisearch"; }
 
-    Mod+U repeat=false { spawn-sh "plumber --dmenu \"$(wl-paste)\""; }
-    Mod+Shift+U repeat=false { spawn-sh "plumber \"$(wl-paste)\""; }
+    Mod+U repeat=false hotkey-overlay-title="Dynamically plumb clipboard" { spawn-sh "plumber --dmenu \"$(wl-paste)\""; }
+    Mod+Shift+U repeat=false hotkey-overlay-title="Plumb clipboard" { spawn-sh "plumber \"$(wl-paste)\""; }
     //riverctl map-pointer normal None BTN_MIDDLE spawn 'plumber'
     //riverctl map normal None button8 spawn 'plumber "$(wl-paste)"'
     //riverctl map normal None button9 close
