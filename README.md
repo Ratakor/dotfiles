@@ -48,6 +48,7 @@ My (deprecated) [artix](https://github.com/ratakor/dotfiles/tree/artix) config s
 - [NotAShelf/nyx](https://github.com/NotAShelf/nyx/)
 - [foo-dogsquared/nixos-config](https://github.com/foo-dogsquared/nixos-config/)
 - [fazzi/nixohess](https://gitlab.com/fazzi/nixohess)
+- [sotormd/nixos](https://github.com/sotormd/nixos)
 - [viperML/dotfiles](https://github.com/viperML/dotfiles)
 - [sioodmy/dotfiles](https://github.com/sioodmy/dotfiles)
 - [ryan4yin/nixos-and-flakes](https://nixos-and-flakes.thiscute.world/)
