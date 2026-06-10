@@ -12,7 +12,7 @@ in
       enable = true;
       automount = true;
       notify = true;
-      tray = "never"; # gmod style no icon
+      tray = "auto";
       settings = {
         program_options = {
           terminal = dprg.terminal.cmdDir;
