@@ -25,7 +25,6 @@ in
     createHome = true;
     home = "/home/${username}";
     description = config.self.user.fullName;
-    # TODO: change to initialHashedPassword
     initialPassword = "password"; # very secure
     # Should these be set in there corresponding config?
     extraGroups = [
