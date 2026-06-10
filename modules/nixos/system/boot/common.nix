@@ -43,8 +43,5 @@ in
       # TODO: availableKernelModules
       # TODO: kernelModules
     };
-
-    # https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
-    kernelParams = [ ];
   };
 }
