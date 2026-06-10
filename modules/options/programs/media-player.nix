@@ -30,7 +30,7 @@ in
         ]);
         default = if sys.video.enable then "mpv" else null;
         defaultText = literalExpression ''
-          if sys.video.enable then "mpv" else null;
+          if sys.video.enable then "mpv" else null
         '';
         description = ''
           The default media player to use.

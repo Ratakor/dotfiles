@@ -27,7 +27,7 @@ in
         ]);
         default = dprg.desktopShell.name;
         defaultText = literalExpression ''
-          dprg.desktopShell.name;
+          dprg.desktopShell.name
         '';
         description = ''
           The default screen locker to use.

@@ -39,7 +39,7 @@ in
         ]);
         default = if sys.video.enable then "niri" else null;
         defaultText = literalExpression ''
-          if sys.video.enable then "niri" else null;
+          if sys.video.enable then "niri" else null
         '';
         description = ''
           The default window manager to use.

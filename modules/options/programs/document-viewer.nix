@@ -29,7 +29,7 @@ in
         ]);
         default = if sys.video.enable then "zathura" else null;
         defaultText = literalExpression ''
-          if sys.video.enable then "zathura" else null;
+          if sys.video.enable then "zathura" else null
         '';
         description = ''
           The default document viewer to use.

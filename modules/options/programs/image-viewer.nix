@@ -29,7 +29,7 @@ in
         ]);
         default = if sys.video.enable then "imv" else null;
         defaultText = literalExpression ''
-          if sys.video.enable then "imv" else null;
+          if sys.video.enable then "imv" else null
         '';
         description = ''
           The default image viewer to use.

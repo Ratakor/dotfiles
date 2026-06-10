@@ -47,7 +47,7 @@ in
             with pkgs.hunspellDictsChromium; [
               en-us
               fr-fr
-            ];
+            ]
           '';
           description = "List of chromium dictionaries to install.";
         };
@@ -105,7 +105,7 @@ in
         );
         default = if sys.video.enable then "chromium" else null;
         defaultText = literalExpression ''
-          if sys.video.enable then "chromium" else null;
+          if sys.video.enable then "chromium" else null
         '';
         description = ''
           The default browser to use.

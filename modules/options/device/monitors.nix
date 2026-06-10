@@ -1,6 +1,6 @@
 { lib, ... }:
 let
-  inherit (lib.options) mkOption mkEnableOption;
+  inherit (lib.options) mkOption mkEnableOption literalExpression;
   inherit (lib) types;
 in
 {
@@ -73,7 +73,9 @@ in
             isVertical = mkOption {
               type = types.bool;
               default = (lib.mod config.transform 2) == 1;
-              defaultText = lib.literalExpression "(lib.mod config.transform 2) == 1";
+              defaultText = literalExpression ''
+                (lib.mod config.transform 2) == 1
+              '';
               description = "Whether the monitor is vertical.";
               readOnly = true;
             };

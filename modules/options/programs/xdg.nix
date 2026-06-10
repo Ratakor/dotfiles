@@ -20,7 +20,9 @@ in
       # gtk is used as fallback
       gtk.enable = {
         default = sys.video.enable;
-        defaultText = literalExpression "sys.video.enable";
+        defaultText = literalExpression ''
+          sys.video.enable
+        '';
       };
     };
 
@@ -33,7 +35,7 @@ in
         ]);
         default = if sys.video.enable then "gnome" else null;
         defaultText = literalExpression ''
-          if sys.video.enable then "gnome" else null;
+          if sys.video.enable then "gnome" else null
         '';
         description = ''
           The default XDG Portal to use.

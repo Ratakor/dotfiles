@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   inherit (builtins) attrValues any all;
-  inherit (lib.options) mkOption;
+  inherit (lib.options) mkOption literalMD;
   inherit (lib) types;
 
   mkFsEnableOption =
@@ -9,7 +9,7 @@ let
     mkOption {
       type = types.bool;
       default = any (v: v.fsType == fs) (attrValues config.fileSystems);
-      defaultText = lib.literalMD "`true` if a `${fs}` filesystem is found";
+      defaultText = literalMD "`true` if a `${fs}` filesystem is found.";
       description = "Whether to enable ${fs} services and specific configurations.";
     };
 

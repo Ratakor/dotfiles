@@ -36,7 +36,7 @@ in
         ]);
         default = if sys.video.enable then "ghostty" else null;
         defaultText = literalExpression ''
-          if sys.video.enable then "ghostty" else null;
+          if sys.video.enable then "ghostty" else null
         '';
         description = ''
           The default terminal emulator to use.

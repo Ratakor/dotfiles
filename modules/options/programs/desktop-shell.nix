@@ -25,7 +25,7 @@ in
         ]);
         default = if sys.video.enable then "dms" else null;
         defaultText = literalExpression ''
-          if sys.video.enable then "dms" else null;
+          if sys.video.enable then "dms" else null
         '';
         description = ''
           The default desktop shell to use.

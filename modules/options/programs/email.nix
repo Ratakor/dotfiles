@@ -37,7 +37,7 @@ in
         ]);
         default = if sys.video.enable then "thunderbird" else null;
         defaultText = literalExpression ''
-          if sys.video.enable then "thunderbird" else null;
+          if sys.video.enable then "thunderbird" else null
         '';
         description = ''
           The default email client to use.

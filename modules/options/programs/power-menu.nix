@@ -26,7 +26,7 @@ in
         ]);
         default = dprg.desktopShell.name;
         defaultText = literalExpression ''
-          dprg.desktopShell.name;
+          dprg.desktopShell.name
         '';
         description = ''
           The default power menu to use.

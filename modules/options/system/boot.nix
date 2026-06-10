@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOption;
+  inherit (lib.options) mkOption mkEnableOption literalExpression;
   inherit (lib.types) str int raw;
   inherit (lib.lists) count;
 
@@ -36,7 +36,9 @@ in
       type = raw;
       # see also pkgs.linuxPackages_xanmod
       default = if config.boot.zfs.enabled then pkgs.linuxPackages else pkgs.linuxPackages_latest;
-      defaultText = lib.literalMD "`pkgs.linuxPackages` if ZFS is enabled, `pkgs.linuxPackages_latest` otherwise";
+      defaultText = literalExpression ''
+        if config.boot.zfs.enabled then pkgs.linuxPackages else pkgs.linuxPackages_latest
+      '';
       description = "The kernel packages to use for the system.";
     };
 

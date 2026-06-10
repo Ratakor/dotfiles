@@ -23,21 +23,27 @@ in
       type = str;
       description = "Full name of the main user.";
       default = capitalize cfg.name;
-      defaultText = literalExpression "capitalize user.name";
+      defaultText = literalExpression ''
+        lib.capitalize user.name
+      '';
     };
 
     email = mkOption {
       type = strMatching ".*@.*";
       description = "Email address of the main user.";
       default = "${cfg.name}@disroot.org";
-      defaultText = literalExpression "\${user.name}@disroot.org";
+      defaultText = literalExpression ''
+        "''${user.name}@disroot.org"
+      '';
     };
 
     keys = mkOption {
       type = listOf str;
       description = "A list of OpenSSH public keys that should be added to the user's authorized keys";
       default = keys.${cfg.name};
-      defaultText = literalExpression "keys.\${user.name}";
+      defaultText = literalExpression ''
+        keys.''${user.name}
+      '';
     };
   };
 }

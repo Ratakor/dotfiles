@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (lib.options) mkEnableOption literalMD;
+  inherit (lib.options) mkEnableOption literalExpression;
 
   cfg = config.self.programs.gaming;
 in
@@ -12,7 +12,9 @@ in
     poe.enable = mkEnableOption "Path of Exile specific packages";
     steam.enable = mkEnableOption "Steam" // {
       default = cfg.enable;
-      defaultText = literalMD "`true` if gaming is enabled";
+      defaultText = literalExpression ''
+        prg.gaming.enable
+      '';
     };
     lutris.enable = mkEnableOption "Lutris";
   };

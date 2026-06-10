@@ -8,7 +8,7 @@ let
     // {
       default = sys.video.enable;
       defaultText = literalExpression ''
-        sys.video.enable;
+        sys.video.enable
       '';
     };
 

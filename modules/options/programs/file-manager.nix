@@ -38,7 +38,7 @@ in
           else if dprg.xdg.portal.name == "kde" then
             "dolphin"
           else
-            "yazi";
+            "yazi"
         '';
         description = ''
           The default file manager to use.
