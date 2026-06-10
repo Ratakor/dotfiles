@@ -43,10 +43,11 @@ in
     # Customise /etc/nix/nix.conf declaratively
     # See nix.conf(5)
     settings = {
-      # Give the users in this list the right to specify additional substituters via:
-      #    1. `nixConfig.substituers` in `flake.nix`
-      #    2. command line args `--options substituers http://xxx`
-      trusted-users = [ "@wheel" ];
+      # Users allowed to connect to the Nix daemon.
+      allowed-users = [ "@wheel" ]; # default: "*"
+
+      # Users allowed to specify additional substituters
+      trusted-users = [ "root" ];
 
       experimental-features = [
         "nix-command"
@@ -86,7 +87,7 @@ in
       # Disable global flake registry.
       flake-registry = "";
 
-      # Remove warning about dirty VCS tree
+      # Remove warning about dirty VCS tree.
       warn-dirty = false;
 
       # Whether to accept Nix configuration settings from a flake without prompting.

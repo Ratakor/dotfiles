@@ -80,7 +80,10 @@ in
           # sshProtocol = "ssh";
         })
       ];
-      settings.trusted-users = [ "builder" ];
+      settings = {
+        allowed-users = [ "builder" ];
+        trusted-users = [ "builder" ];
+      };
     };
   };
 }
