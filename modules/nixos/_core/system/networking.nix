@@ -17,7 +17,18 @@ in
 
     # Pick only one of the below networking options.
     # wireless.enable = true; # Enables wireless support via wpa_supplicant.
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+
+      wifi = {
+        # backend = "iwd";
+        macAddress = "random";
+        powersave = true;
+        scanRandMacAddress = true;
+      };
+
+      ethernet.macAddress = "random"; # TODO: "preserve"? on servers
+    };
 
     # I've heard that networkd > dhcp
     # That was _probably_ fake news, it's only better for servers
