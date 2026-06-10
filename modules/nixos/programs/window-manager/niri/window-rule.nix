@@ -1,6 +1,16 @@
 # Window rules let you adjust behavior for individual windows.
 # https://yalter.github.io/niri/Configuration:-Window-Rules
+{ config, lib }:
 let
+  inherit (builtins) length elemAt;
+  inherit (lib.strings) optionalString;
+
+  dev = config.self.device;
+
+  open-on-primary-monitor = optionalString (length dev.monitors > 0) /* kdl */ ''
+    open-on-output "${(elemAt dev.monitors 0).name}"
+  '';
+
   no-border = /* kdl */ ''
     focus-ring {
       off
@@ -71,8 +81,11 @@ in
   window-rule {
     match title="^Path of Exile$"
     match app-id="steam_app_238960"
-    open-on-output "DP-2"// TODO: this should be host specific
+    match title="^Path of Exile 2$"
+    match app-id="steam_app_2694490"
+    ${open-on-primary-monitor}
     open-fullscreen true
+    // open-on-workspace "gaming"
     /*
     open-floating true
     ${no-border}

@@ -22,7 +22,7 @@ let
   layout = import ./layout.nix config;
   workspace = import ./workspace.nix;
   misc = import ./misc.nix { inherit config lib pkgs; };
-  window-rule = import ./window-rule.nix;
+  window-rule = import ./window-rule.nix { inherit config lib; };
   layer-rule = import ./layer-rule.nix config;
   animations = import ./animations.nix;
   gestures = import ./gestures.nix;

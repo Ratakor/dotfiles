@@ -5,6 +5,7 @@
     # Enable CUPS and some drivers to common printers
     printing = {
       enable = true;
+      webInterface = true; # localhost:631
       drivers = with pkgs; [
         gutenprint # Drivers for many different printers from many different vendors
         hplip # Drivers for HP printers
