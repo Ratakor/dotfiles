@@ -1,13 +1,13 @@
 # This will get a proper option and everything once it works with this host
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   services.ollama = {
     enable = true;
     package = pkgs.ollama-cuda.override {
       cudaArches = [ "sm_61" ];
     };
-    # home = "/storage/home/.ollama";
-    # models = "/storage/home/.ollama/models";
+    home = "/storage/home"; # same as config.user.home
+    models = "${config.services.ollama.home}/.ollama/models";
 
     # declarative models...
     loadModels = [
