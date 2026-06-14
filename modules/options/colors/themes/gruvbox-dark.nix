@@ -7,9 +7,15 @@
   scooter.theme = "gruvbox-dark";
   theme-sh = "gruvbox-dark";
 
-  gtk.theme = pkgs: {
-    name = "Gruvbox-Dark";
-    package = pkgs.gruvbox-gtk-theme;
+  gtk = pkgs: {
+    theme = {
+      name = "Gruvbox-Dark";
+      package = pkgs.gruvbox-gtk-theme;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
   };
 
   qt.theme = pkgs: rec {

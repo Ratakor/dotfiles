@@ -8,9 +8,15 @@
   scooter.theme = "dracula";
   theme-sh = "dracula";
 
-  gtk.theme = pkgs: {
-    name = "Dracula";
-    package = pkgs.dracula-theme;
+  gtk = pkgs: {
+    theme = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
+    };
+    iconTheme = {
+      name = "Dracula";
+      package = pkgs.dracula-icon-theme;
+    };
   };
 
   # https://github.com/dracula/gtk/tree/master/kde/kvantum

@@ -7,7 +7,7 @@
 let
   inherit (lib.modules) mkIf mkForce;
 
-  theme = config.self.colors.default.gtk.theme pkgs;
+  colors = config.self.colors.default.gtk pkgs;
   cfg = config.self.programs.xdg.portal.gtk;
 in
 {
@@ -19,7 +19,7 @@ in
   hm.gtk = {
     enable = true;
 
-    inherit theme;
+    inherit (colors) theme iconTheme;
 
     gtk2.enable = false; # .gtkrc-2.0 symlink in $HOME
 
@@ -35,7 +35,7 @@ in
     '';
 
     gtk4 = {
-      inherit theme;
+      inherit (colors) theme;
       extraConfig = {
         # gtk-application-prefer-dark-theme = true;
         # gtk-decoration-layout = "appmenu:none";
