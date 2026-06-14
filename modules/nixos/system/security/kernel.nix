@@ -75,8 +75,14 @@ in
       "mce=0"
 
       # mitigate spectre vulnerabilities
-      "spectre_v2=on"
-      "spec_store_bypass_disable=on"
+      #"spectre_v2=on"
+      #"spec_store_bypass_disable=on"
+
+      # mitigate spectre & retbleed vulnerabilities
+      # https://www.golinuxcloud.com/spectre-v2-mitigation-leaves-cpu-vulnerable/
+      # performance impacts especially on older CPUs
+      #"retbleed=off"
+      #"spectre_v2=retpoline,force"
 
       # do not trust the proprietary cpu RNG
       # this RNG can not be audited
