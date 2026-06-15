@@ -14,7 +14,7 @@ in
 ''
   environment {
     MOZ_ENABLE_WAYLAND "1"
-    NIXOS_OZONE_WAYLAND "1"
+    NIXOS_OZONE_WL "1"
   }
 
   // Add lines like this to spawn processes at startup.
