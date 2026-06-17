@@ -6,8 +6,8 @@
 writeShellApplication {
   name = "real";
   runtimeInputs = [
-    coreutils
-    which
+    # coreutils
+    # which
   ];
   text = ''
     realpath "$(which "$1")"

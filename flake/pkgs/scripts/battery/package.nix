@@ -6,8 +6,8 @@
 writeShellApplication {
   name = "battery";
   runtimeInputs = [
-    coreutils
-    libnotify
+    # coreutils
+    # libnotify
   ];
   text = builtins.readFile ./battery.sh;
   meta.mainProgram = "battery";

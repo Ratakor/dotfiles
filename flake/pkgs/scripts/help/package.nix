@@ -4,7 +4,9 @@
 }:
 writeShellApplication {
   name = "help";
-  runtimeInputs = [ bat ];
+  runtimeInputs = [
+    bat
+  ];
   text = ''
     "$@" --help 2>&1 | bat -p -l help
   '';

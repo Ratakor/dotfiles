@@ -5,6 +5,7 @@
   lib,
   writeShellApplication,
   imagemagick,
+  coreutils,
   grim,
   swaylock,
   scrot,
@@ -35,8 +36,8 @@ in
 writeShellApplication {
   name = "glitchlock";
   runtimeInputs = [
-    imagemagick
     # coreutils
+    imagemagick
   ];
   text = ''
     ${screenshot} /tmp/lock.png

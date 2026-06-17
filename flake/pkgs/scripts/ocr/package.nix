@@ -15,8 +15,8 @@ writeShellApplication {
     tesseract # This is 1GiB
     grim
     slurp
-    libnotify
-    coreutils
+    # libnotify
+    # coreutils
     wl-clipboard
   ];
   text = builtins.readFile ./ocr.sh;

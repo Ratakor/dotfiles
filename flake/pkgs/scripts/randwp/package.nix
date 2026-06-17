@@ -28,8 +28,8 @@ in
 writeShellApplication {
   name = "randwp";
   runtimeInputs = [
+    # coreutils
     findutils
-    coreutils
     gnugrep
   ];
   bashOptions = [ ]; # errexit sucks

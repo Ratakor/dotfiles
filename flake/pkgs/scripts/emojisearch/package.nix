@@ -14,9 +14,9 @@
 writeShellApplication {
   name = "emojisearch";
   runtimeInputs = [
-    coreutils
-    gnused
-    libnotify
+    # coreutils
+    # gnused
+    # libnotify
   ];
   bashOptions = [
     "errexit"

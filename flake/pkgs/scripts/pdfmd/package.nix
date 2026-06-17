@@ -9,7 +9,7 @@ writeShellApplication {
   name = "pdfmd";
   runtimeInputs = [
     pandoc
-    gnused
+    # gnused
   ];
   text = ''
     pandoc "$@" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g') -V geometry:margin=1in"
