@@ -26,6 +26,7 @@ in
       name = mkOption {
         type = enum [
           "helix"
+          "micro"
           "neovim"
         ];
         default = "helix";

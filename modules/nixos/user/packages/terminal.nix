@@ -33,7 +33,6 @@ let
     # iamb # Matrix Client
     fzf # fuzzy finder
     # htop-vim # process viewer with vim keybindings
-    # micro # normie text editor
     # discordo # discord client
     # profanity # XMPP client (has security issue iirc)
     # spotify-player # zpotify but different
@@ -75,6 +74,7 @@ let
 
   archives = with pkgs; [
     ouch-rar # Obvious Unified Compression Helper
+    # mpack # encode / decode binary files in MIME (like RFC 822 mail)
     # bzip2
     # gzip
     # zip

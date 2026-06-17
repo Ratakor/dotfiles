@@ -19,7 +19,6 @@ in
     };
 
     displayManager = {
-      # only work with gdm, sddm and lightdm iirc
       defaultSession = dprg.windowManager.session;
       autoLogin = {
         enable = true;
