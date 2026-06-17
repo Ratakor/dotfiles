@@ -36,8 +36,8 @@ in
 writeShellApplication {
   name = "glitchlock";
   runtimeInputs = [
-    # coreutils
-    # imagemagick
+    coreutils
+    imagemagick
   ];
   text = ''
     ${screenshot} /tmp/lock.png

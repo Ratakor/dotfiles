@@ -23,8 +23,8 @@
 writeShellApplication {
   name = "plumber";
   runtimeInputs = [
-    # coreutils # mkdir
-    # util-linux # setsid
+    #coreutils # mkdir
+    #util-linux # setsid
 
     # tmpdl dependencies
     #curl

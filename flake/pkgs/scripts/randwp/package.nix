@@ -28,9 +28,9 @@ in
 writeShellApplication {
   name = "randwp";
   runtimeInputs = [
-    # coreutils
-    # findutils
-    # gnugrep
+    coreutils
+    findutils
+    gnugrep
   ];
   bashOptions = [ ]; # errexit sucks
   inheritPath = false;
@@ -41,6 +41,7 @@ writeShellApplication {
     # IGNORE=''${IGNORE-file1|folder|file2|.ext}
     # IGNORE can be an env variable (useful for yazi)
 
+    # shellcheck disable=SC2034
     PIDFILE=''${XDG_RUNTIME_DIR:-/tmp}/randwp.pid
     LOGFILE=''${XDG_STATE_HOME:-$HOME/.local/state}/randwp.log
     WPDIR=''${1:-${wallpapers}}

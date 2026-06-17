@@ -73,7 +73,7 @@ let
   };
 
   scripts = packagesFromDirectoryRecursive {
-    callPackage = callPackageWith (pkgs // extraArgs);
+    callPackage = callPackageWith (final // extraArgs);
     directory = ./scripts;
   };
 in
