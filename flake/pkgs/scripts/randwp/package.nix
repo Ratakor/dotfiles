@@ -6,6 +6,7 @@
 {
   lib,
   sources,
+  callPackage,
   writeShellApplication,
   findutils,
   coreutils,
@@ -20,7 +21,9 @@
 
   isWayland ? false,
   supportMultipleMonitors ? true,
-  wallpapers ? sources.wallpapers,
+  wallpapers ? callPackage "${sources.wallpapers}/package.nix" {
+    version = lib.shortRev sources.wallpapers.revision;
+  },
 }:
 let
   inherit (lib.meta) getExe;
