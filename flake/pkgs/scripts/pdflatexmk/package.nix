@@ -5,7 +5,9 @@
 }:
 writeShellApplication {
   name = "pdflatexmk";
-  runtimeInputs = [ texlivePackages.latexmk ];
+  runtimeInputs = [
+    texlivePackages.latexmk
+  ];
   text = ''
     latexmk -pdf "$@" && latexmk -c "$@"
   '';

@@ -6,8 +6,8 @@
 writeShellApplication {
   name = "sci";
   runtimeInputs = [
-    git
-    coreutils
+    # coreutils
+    # git
   ];
   text = builtins.readFile ./sci.sh;
   meta.mainProgram = "sci";

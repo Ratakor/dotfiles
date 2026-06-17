@@ -28,9 +28,9 @@ in
 writeShellApplication {
   name = "randwp";
   runtimeInputs = [
-    findutils
-    coreutils
-    gnugrep
+    # coreutils
+    # findutils
+    # gnugrep
   ];
   bashOptions = [ ]; # errexit sucks
   inheritPath = false;
