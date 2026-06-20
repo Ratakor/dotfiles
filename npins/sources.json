@@ -62,9 +62,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "e56da8714bad939848ba45a9ea7a5805eba3d173",
-      "url": "https://github.com/NotAShelf/eh/archive/e56da8714bad939848ba45a9ea7a5805eba3d173.tar.gz",
-      "hash": "sha256-H93S76cRj2jVgBKXTvUvezS1fsP6MkUSgUoqhqR0MNI="
+      "revision": "6351cb76a5256bd71807f244b541a79d5d4d3cd1",
+      "url": "https://github.com/NotAShelf/eh/archive/6351cb76a5256bd71807f244b541a79d5d4d3cd1.tar.gz",
+      "hash": "sha256-xNmvz86FgLo41jQHMol361/TI7PTa3MYE8Ywnqr7NlA="
     },
     "flake-compat": {
       "type": "Git",
@@ -114,9 +114,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "de0cfb2a39d90c135e8277f7ec1215a2ae315912",
-      "url": "https://github.com/amaanq/helium-flake/archive/de0cfb2a39d90c135e8277f7ec1215a2ae315912.tar.gz",
-      "hash": "sha256-hiG17+E2KNLPW1Z5CXnTAAgqDCsIpDOS+x7v68vUhQM="
+      "revision": "304bc3524cb61b4ebd39fceea8d7462da643cfb4",
+      "url": "https://github.com/amaanq/helium-flake/archive/304bc3524cb61b4ebd39fceea8d7462da643cfb4.tar.gz",
+      "hash": "sha256-nNYQkn7LNaMts92XqKhVf7cJY+4VkyzEjrgHkt7nD9I="
     },
     "home-manager": {
       "type": "Git",
@@ -127,9 +127,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "c87a39aa979acc4848016d2220c6238390d84779",
-      "url": "https://github.com/nix-community/home-manager/archive/c87a39aa979acc4848016d2220c6238390d84779.tar.gz",
-      "hash": "sha256-g8Vv4Qfc7n+lgov97REu3X6BeJtvYY0hlSUZR1GrGQQ="
+      "revision": "37f21dfa5d27e71b75bacd9418b156f9265e312e",
+      "url": "https://github.com/nix-community/home-manager/archive/37f21dfa5d27e71b75bacd9418b156f9265e312e.tar.gz",
+      "hash": "sha256-6Ld1PqmptFtFKblE+SynhRgyBApUWcmrISetWqWHeeo="
     },
     "lanzaboote": {
       "type": "Git",
@@ -140,9 +140,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "0403b4b7e8b2612657f0053a4c315e6c43eee9e6",
-      "url": "https://github.com/nix-community/lanzaboote/archive/0403b4b7e8b2612657f0053a4c315e6c43eee9e6.tar.gz",
-      "hash": "sha256-4JLkQvN7/f77TyxXXtoEuUfovMqMLOgWpBaLMNX1dns="
+      "revision": "001e560fffc8f0235e9db20ebeb4ccde0ade1caf",
+      "url": "https://github.com/nix-community/lanzaboote/archive/001e560fffc8f0235e9db20ebeb4ccde0ade1caf.tar.gz",
+      "hash": "sha256-ycG9a7svaV/zF9G03waY7BqUcNQn2HODMN/lXy3C7Zc="
     },
     "mnw": {
       "type": "Git",
@@ -166,9 +166,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "dfaab68d257d479bb52840577c1ac286aa4014fa",
-      "url": "https://github.com/feel-co/ndg/archive/dfaab68d257d479bb52840577c1ac286aa4014fa.tar.gz",
-      "hash": "sha256-eMZCZoZr9/UZiTHOEH/NG2M98avnvqc4RAzasmeM8E8="
+      "revision": "e85962ff4c7aac9a3cd91395565904137df8d18a",
+      "url": "https://github.com/feel-co/ndg/archive/e85962ff4c7aac9a3cd91395565904137df8d18a.tar.gz",
+      "hash": "sha256-bbFn6dui+ASHWYjxOcd34Woy7Xq8QtQ4ydRXBvZr2Po="
     },
     "niri": {
       "type": "Git",
@@ -179,9 +179,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "6f1a2c5f0e8274223d4204b1f8d6f7f91538967e",
-      "url": "https://github.com/niri-wm/niri/archive/6f1a2c5f0e8274223d4204b1f8d6f7f91538967e.tar.gz",
-      "hash": "sha256-QHyIMGSbCQW8d5qbOrMsm6gem10bO3Au2YLa3alJfHo="
+      "revision": "49fc6117fd6c043adaa2ead316b82db5ed735d36",
+      "url": "https://github.com/niri-wm/niri/archive/49fc6117fd6c043adaa2ead316b82db5ed735d36.tar.gz",
+      "hash": "sha256-Ii/koEm/sRyg65qbAQWqEgboSEIhdH0EL4KglAc14p0="
     },
     "nix-index-database": {
       "type": "Git",
@@ -192,9 +192,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "1a2ea89c917781e88508d9fd2b507f2d2a0e173c",
-      "url": "https://github.com/nix-community/nix-index-database/archive/1a2ea89c917781e88508d9fd2b507f2d2a0e173c.tar.gz",
-      "hash": "sha256-0BYqs8yKWkOz2Q7+SP18N5E5gmDKSo6LSxIVIa0wWes="
+      "revision": "854d04e2368fb2e9c328a36b3c0a04cd713bfae1",
+      "url": "https://github.com/nix-community/nix-index-database/archive/854d04e2368fb2e9c328a36b3c0a04cd713bfae1.tar.gz",
+      "hash": "sha256-W7S8O86bVrw2gaomEwkHStOzmPpnFIHQ6lS4Q2HffJ0="
     },
     "nix-wrapper-modules": {
       "type": "Git",
@@ -231,16 +231,16 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "6358ff76821101c178e3ab4919a62799bfe3652e",
-      "url": "https://github.com/NixOS/nixos-hardware/archive/6358ff76821101c178e3ab4919a62799bfe3652e.tar.gz",
-      "hash": "sha256-LOnLQ2tpYF9gqIDDr3+j3DbpJJr/QCH6zPRT2GzEUOE="
+      "revision": "08018c72174a4df5657f8d94178ac69fb9c243e5",
+      "url": "https://github.com/NixOS/nixos-hardware/archive/08018c72174a4df5657f8d94178ac69fb9c243e5.tar.gz",
+      "hash": "sha256-JrPh4M6S7aPsEE9tOENuZrxC6o2szSLlK+t4+nLke9s="
     },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
       "artifact": "nixexprs.tar.xz",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1014179.9ae611a455b9/nixexprs.tar.xz",
-      "hash": "sha256-d34lhgOet4IqYMnCxbIvwFBMOyTV6PT4TyNEOP0/ZhU="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1017464.567a49d1913c/nixexprs.tar.xz",
+      "hash": "sha256-rcUHdUtJEvMdNEl2Wq+YpHraHKfcer3KsBscpZEF2Yg="
     },
     "noctalia-shell": {
       "type": "Git",
@@ -251,9 +251,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "e3d292656c340e5d766e11c3e4be922a39f7ac51",
-      "url": "https://github.com/noctalia-dev/noctalia-shell/archive/e3d292656c340e5d766e11c3e4be922a39f7ac51.tar.gz",
-      "hash": "sha256-a+mKOLWyJmIB+IqERNGRv8KnpG/d/EukCE7bPfbG7O8="
+      "revision": "7ae971c6ad63d3a521563a468da140b8adfa5691",
+      "url": "https://github.com/noctalia-dev/noctalia-shell/archive/7ae971c6ad63d3a521563a468da140b8adfa5691.tar.gz",
+      "hash": "sha256-vOWDMSzRiLit79D1IA2ooir/43tOinMees4Yv6QgnxI="
     },
     "np": {
       "type": "Git",
@@ -343,9 +343,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "b75dcdbefb0fa156a1d79d19b604bf5bff741e14",
-      "url": "https://github.com/NotAShelf/watt/archive/b75dcdbefb0fa156a1d79d19b604bf5bff741e14.tar.gz",
-      "hash": "sha256-mb7z1NHhS5DtFNzi/H/XQR5RfhYY5ELxJg8DFMWtzmU="
+      "revision": "396b3034f3f7a7cba3fe84831f16cbc153f519b3",
+      "url": "https://github.com/NotAShelf/watt/archive/396b3034f3f7a7cba3fe84831f16cbc153f519b3.tar.gz",
+      "hash": "sha256-3TZP9+yY5oRUYraxYOvbluaHr1/gqgXrLMmXtIINMik="
     },
     "zfs-restore": {
       "type": "Git",
