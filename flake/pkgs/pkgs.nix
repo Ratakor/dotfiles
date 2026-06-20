@@ -32,6 +32,9 @@ let
     "cuda_nvcc"
     "cuda_cccl"
     "libcublas"
+
+    # smh gemini was open source but not agy :(
+    "antigravity-cli"
   ];
 in
 system:

@@ -55,7 +55,7 @@ let
   ];
 
   ai = with pkgs; [
-    gemini-cli # Google AI
+    antigravity-cli # Google AI (agy)
     # copilot-cli # Microsoft AI
     # claude-code # Anthropic AI
   ];
