@@ -425,7 +425,7 @@ in
       [
         # annoying PC speaker module
         # can blacklist unless deaf
-        #"pcspkr"
+        "pcspkr"
       ]
 
       # dirtyfrag mitigation
