@@ -14,5 +14,9 @@
     # extraModeprobeConfig = ''
     #   options dell-smm-hwmon ignore_dmi=1
     # '';
+
+    blacklistedKernelModules = [
+      "ath10k_pci" # wifi driver, the hardware seems faulty (several desktop crashes)
+    ];
   };
 }
