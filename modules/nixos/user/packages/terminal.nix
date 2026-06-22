@@ -1,8 +1,10 @@
 # Terminal applications
 # TODO: this is bloated
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
   inherit (builtins) concatLists;
+
+  sys = config.self.system;
 
   cli = with pkgs; [
     pastel # CLI for color manipulation
@@ -86,6 +88,16 @@ let
     # gnutar
   ];
 
+  # Anilist & co interface
+  # TODO: see inotify for media recognition tracking
+  trackma = [
+    (pkgs.trackma.override {
+      withCurses = true;
+      withGTK = sys.video.enable;
+      withQT = false; # sys.video.enable;
+    })
+  ];
+
   unsorted = with pkgs; [
     chafa # image in terminal
     caligula # TUI for burning disks
@@ -108,6 +120,7 @@ in
     ai
     fs
     archives
+    # trackma
     unsorted
   ];
 }
