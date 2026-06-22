@@ -36,6 +36,7 @@ let
     # wasmtime # WebAssembly runtime
     # dotnet-sdk # C#
     # R # R
+    # ocaml # ocaml
   ];
 
   buildSystems = with pkgs; [
