@@ -10,6 +10,7 @@ in
     star-citizen.enable = mkEnableOption "Star Citizen specific packages";
     wow.enable = mkEnableOption "World of Warcraft specific packages";
     poe.enable = mkEnableOption "Path of Exile specific packages";
+    minecraft.enable = mkEnableOption "Minecraft specific packages";
     steam.enable = mkEnableOption "Steam" // {
       default = cfg.enable;
       defaultText = literalExpression ''

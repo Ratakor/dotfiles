@@ -33,6 +33,10 @@ let
     exiled-exchange-2
   ];
 
+  minecraft = with pkgs; [
+    prismlauncher
+  ];
+
   steam = singleton pkgs.steam;
 
   lutris = singleton pkgs.lutris;
@@ -56,6 +60,7 @@ in
     (optionals cfg.star-citizen.enable star-citizen)
     (optionals cfg.wow.enable wow)
     (optionals cfg.poe.enable poe)
+    (optionals cfg.minecraft.enable minecraft)
     (optionals cfg.steam.enable steam)
     (optionals cfg.lutris.enable lutris)
   ]);
