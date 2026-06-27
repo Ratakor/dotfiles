@@ -114,9 +114,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "304bc3524cb61b4ebd39fceea8d7462da643cfb4",
-      "url": "https://github.com/amaanq/helium-flake/archive/304bc3524cb61b4ebd39fceea8d7462da643cfb4.tar.gz",
-      "hash": "sha256-nNYQkn7LNaMts92XqKhVf7cJY+4VkyzEjrgHkt7nD9I="
+      "revision": "7058a7928fbefb434ca40a698b25260d9871a27b",
+      "url": "https://github.com/amaanq/helium-flake/archive/7058a7928fbefb434ca40a698b25260d9871a27b.tar.gz",
+      "hash": "sha256-oDAstnLMloEufcTDxW5lnVB11q4VAIvPELbDIkk1UhU="
     },
     "home-manager": {
       "type": "Git",
@@ -127,9 +127,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "37f21dfa5d27e71b75bacd9418b156f9265e312e",
-      "url": "https://github.com/nix-community/home-manager/archive/37f21dfa5d27e71b75bacd9418b156f9265e312e.tar.gz",
-      "hash": "sha256-6Ld1PqmptFtFKblE+SynhRgyBApUWcmrISetWqWHeeo="
+      "revision": "8d8a6cc50ddc60748791a14ee1163c865ec57635",
+      "url": "https://github.com/nix-community/home-manager/archive/8d8a6cc50ddc60748791a14ee1163c865ec57635.tar.gz",
+      "hash": "sha256-CvOaUvJ+mXlxU3m2cPWKcOAhtKETsPUYhq+Xa5ewBp4="
     },
     "lanzaboote": {
       "type": "Git",
@@ -140,9 +140,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "001e560fffc8f0235e9db20ebeb4ccde0ade1caf",
-      "url": "https://github.com/nix-community/lanzaboote/archive/001e560fffc8f0235e9db20ebeb4ccde0ade1caf.tar.gz",
-      "hash": "sha256-ycG9a7svaV/zF9G03waY7BqUcNQn2HODMN/lXy3C7Zc="
+      "revision": "6650fb7c6b48177c8200e21ffac99a4adc72b08d",
+      "url": "https://github.com/nix-community/lanzaboote/archive/6650fb7c6b48177c8200e21ffac99a4adc72b08d.tar.gz",
+      "hash": "sha256-APwmLI4UuSTim0JO/kZ6FXDPiZVp3zIj0uGDF2UZ5kU="
     },
     "mnw": {
       "type": "Git",
@@ -166,9 +166,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "e85962ff4c7aac9a3cd91395565904137df8d18a",
-      "url": "https://github.com/feel-co/ndg/archive/e85962ff4c7aac9a3cd91395565904137df8d18a.tar.gz",
-      "hash": "sha256-bbFn6dui+ASHWYjxOcd34Woy7Xq8QtQ4ydRXBvZr2Po="
+      "revision": "5748163ca3807a43b3d11e7d1d4a83112827db50",
+      "url": "https://github.com/feel-co/ndg/archive/5748163ca3807a43b3d11e7d1d4a83112827db50.tar.gz",
+      "hash": "sha256-XkA5jJ+wvgjZjOeCwynDGbXrJwAqNhWLavfaH80xaGA="
     },
     "niri": {
       "type": "Git",
@@ -192,9 +192,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "854d04e2368fb2e9c328a36b3c0a04cd713bfae1",
-      "url": "https://github.com/nix-community/nix-index-database/archive/854d04e2368fb2e9c328a36b3c0a04cd713bfae1.tar.gz",
-      "hash": "sha256-W7S8O86bVrw2gaomEwkHStOzmPpnFIHQ6lS4Q2HffJ0="
+      "revision": "3017088b49efd404f78e3b104f553b97e4af786b",
+      "url": "https://github.com/nix-community/nix-index-database/archive/3017088b49efd404f78e3b104f553b97e4af786b.tar.gz",
+      "hash": "sha256-h4WpMr455AfRub0FXBaon6Vcpe0waUyJ4GivIW6oyd4="
     },
     "nix-wrapper-modules": {
       "type": "Git",
@@ -205,9 +205,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "8dd304c3582ddd339217e1cc5fb53f50acb63c2d",
-      "url": "https://github.com/BirdeeHub/nix-wrapper-modules/archive/8dd304c3582ddd339217e1cc5fb53f50acb63c2d.tar.gz",
-      "hash": "sha256-3F5DixT3Gk91lBI9E+TGMm0ko5HrRbDiL23di16TJGA="
+      "revision": "6e7f66fa2cdf4d63162580b438f7fcf87c28a46f",
+      "url": "https://github.com/BirdeeHub/nix-wrapper-modules/archive/6e7f66fa2cdf4d63162580b438f7fcf87c28a46f.tar.gz",
+      "hash": "sha256-vAmbArdCyjqpVW+37aCy/PMBOLIqukUXLQuEKLwUhA4="
     },
     "nixos-core": {
       "type": "Git",
@@ -231,16 +231,16 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "08018c72174a4df5657f8d94178ac69fb9c243e5",
-      "url": "https://github.com/NixOS/nixos-hardware/archive/08018c72174a4df5657f8d94178ac69fb9c243e5.tar.gz",
-      "hash": "sha256-JrPh4M6S7aPsEE9tOENuZrxC6o2szSLlK+t4+nLke9s="
+      "revision": "603d3afd1b6145bd66e97ae38a34d91c95df70cf",
+      "url": "https://github.com/NixOS/nixos-hardware/archive/603d3afd1b6145bd66e97ae38a34d91c95df70cf.tar.gz",
+      "hash": "sha256-zPvPiU+a7pqtH47xrtZLNRABJKpOjfZQclDbcvNtH+I="
     },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
       "artifact": "nixexprs.tar.xz",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1017464.567a49d1913c/nixexprs.tar.xz",
-      "hash": "sha256-rcUHdUtJEvMdNEl2Wq+YpHraHKfcer3KsBscpZEF2Yg="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1022855.e73de5be04e0/nixexprs.tar.xz",
+      "hash": "sha256-inDx/w70OSJoJPqtKh0BrzAsbZZhpya7YgS43jHnhwg="
     },
     "noctalia-shell": {
       "type": "Git",
@@ -251,9 +251,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "7ae971c6ad63d3a521563a468da140b8adfa5691",
-      "url": "https://github.com/noctalia-dev/noctalia-shell/archive/7ae971c6ad63d3a521563a468da140b8adfa5691.tar.gz",
-      "hash": "sha256-vOWDMSzRiLit79D1IA2ooir/43tOinMees4Yv6QgnxI="
+      "revision": "a61d9775fe53f5b894311afe65af513770225ddc",
+      "url": "https://github.com/noctalia-dev/noctalia-shell/archive/a61d9775fe53f5b894311afe65af513770225ddc.tar.gz",
+      "hash": "sha256-GMFmrfHOM+4Fwz83oPpPt4EZKM7r+5CyrDZ9+s8sSHQ="
     },
     "np": {
       "type": "Git",
@@ -343,9 +343,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "396b3034f3f7a7cba3fe84831f16cbc153f519b3",
-      "url": "https://github.com/NotAShelf/watt/archive/396b3034f3f7a7cba3fe84831f16cbc153f519b3.tar.gz",
-      "hash": "sha256-3TZP9+yY5oRUYraxYOvbluaHr1/gqgXrLMmXtIINMik="
+      "revision": "e65d029fda3eb77f6a464c37847f006c69bd0797",
+      "url": "https://github.com/NotAShelf/watt/archive/e65d029fda3eb77f6a464c37847f006c69bd0797.tar.gz",
+      "hash": "sha256-1qEfa04gqCkkhHv+HJtEqrGCqJ3epJ2RepmOJZFEyiQ="
     },
     "zfs-restore": {
       "type": "Git",
