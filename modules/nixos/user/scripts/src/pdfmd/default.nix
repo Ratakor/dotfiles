@@ -10,8 +10,9 @@ writeShellApplication {
   runtimeInputs = [
     pandoc
     gnused
+    # also needs pdflatex and stuff from texliveSmall
   ];
   text = ''
-    pandoc "$@" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g') -V geometry:margin=1in"
+    pandoc "$@" -o "$(printf '%s' "$1" | sed 's/.md/.pdf/g')" -V geometry:margin=1in
   '';
 }
