@@ -101,6 +101,7 @@ let
               gam = "gam"; # git
               caf = "caf"; # zig tar
               imput = "imput"; # helium
+              lazer = "lazer"; # osu
             };
             extend-words = {
               ba = "ba"; # yt-dlp

@@ -9,6 +9,7 @@ let
   inherit (lib.strings) getName escapeShellArg;
   inherit (lib.trivial) warnIfNot;
 
+  # I kinda dislike this
   acknowledgedUnfreePackages = [
     # apps
     "discord"
@@ -35,6 +36,8 @@ let
 
     # smh gemini was open source but not agy :(
     "antigravity-cli"
+
+    "osu-lazer-bin"
   ];
 in
 system:

@@ -11,6 +11,7 @@ in
     wow.enable = mkEnableOption "World of Warcraft specific packages";
     poe.enable = mkEnableOption "Path of Exile specific packages";
     minecraft.enable = mkEnableOption "Minecraft specific packages";
+    osu.enable = mkEnableOption "osu! specific packages";
     steam.enable = mkEnableOption "Steam" // {
       default = cfg.enable;
       defaultText = literalExpression ''
