@@ -37,7 +37,7 @@ in
       # : clipboard
       # $ windows
       settings = {
-        # click_to_close = false;
+        click_to_close = false;
         # hide_action_hints = true;
         keybind_symbols = false;
         ext_background_effect_blur = true;
