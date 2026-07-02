@@ -56,5 +56,9 @@ in
     services = {
       wpaperd.enable = false;
     };
+
+    disabledPackages = [
+      "antigravity-cli" # requires AES instruction set
+    ];
   };
 }
