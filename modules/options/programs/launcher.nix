@@ -1,4 +1,3 @@
-# see also: anyrun, walker
 {
   config,
   lib,
@@ -25,6 +24,7 @@ in
           "fuzzel"
           "tofi"
           "vicinae"
+          "walker"
         ]);
         default = if sys.video.enable then "fuzzel" else null;
         defaultText = literalExpression ''

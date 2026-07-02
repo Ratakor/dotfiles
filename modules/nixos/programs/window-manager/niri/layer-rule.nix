@@ -10,6 +10,7 @@ in
 ''
   layer-rule {
     match namespace="^launcher$"
+    match namespace="^walker$"
 
     // opacity is managed by the application
     // opacity 0.75
