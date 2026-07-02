@@ -37,6 +37,7 @@ in
     programs = {
       default = {
         terminal.name = "foot";
+        launcher.name = "fuzzel";
       };
       dev.enable = true;
       scripts = {
