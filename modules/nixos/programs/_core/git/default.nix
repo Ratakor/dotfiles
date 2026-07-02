@@ -14,6 +14,10 @@ in
     pre-commit
   ];
 
+  hm.programs.lazygit = {
+    enable = false; # currently using gitui
+  };
+
   # idk idk idk
   programs.git = {
     enable = true;
