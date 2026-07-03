@@ -177,6 +177,7 @@ in
   riverctl spawn 'rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55'
 
   ### Extra config
+
   ${prg.windowManager.river-classic.extraConfig}
 
   ### Systemd activation

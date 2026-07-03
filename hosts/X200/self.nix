@@ -63,6 +63,7 @@ in
 
     services = {
       wpaperd.enable = false;
+      swayidle.enable = true;
     };
 
     disabledPackages = [
