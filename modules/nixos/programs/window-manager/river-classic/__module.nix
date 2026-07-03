@@ -64,7 +64,10 @@ in
       extraPackages = mkForce [ ];
     };
 
-    hm.xdg.configFile."river/init".text = import ./init.nix args;
+    hm.xdg.configFile."river/init" = {
+      text = import ./init.nix args;
+      executable = true;
+    };
 
     systemd.user.targets.river-session = {
       enable = true;
