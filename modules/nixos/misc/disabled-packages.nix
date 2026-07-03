@@ -1,15 +1,15 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 let
   inherit (builtins) listToAttrs;
 in
 {
   nixpkgs.overlays = [
     (
-      final: prev:
+      _final: prev:
       listToAttrs (
         map (name: {
           inherit name;
-          value = pkgs.emptyDirectory;
+          value = prev.emptyDirectory;
         }) config.self.disabledPackages
       )
     )
