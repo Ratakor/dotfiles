@@ -39,6 +39,10 @@ in
         terminal.name = "foot";
         launcher.name = "fuzzel";
         windowManager.name = "river-classic";
+        desktopShell.name = null;
+        powerMenu.name = "wlogout";
+        statusBar.name = "waybar";
+        locker.name = "glitchlock";
       };
       dev.enable = true;
       scripts = {
