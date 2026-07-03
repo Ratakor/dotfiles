@@ -49,7 +49,10 @@ in
         enable = true;
         randwp.enable = true;
       };
-      apps.enable = true;
+      apps = {
+        enable = true;
+        spotify.enable = false;
+      };
       terminal.fontSize = 10;
       windowManager = {
         niri.extraConfig = /* kdl */ ''
