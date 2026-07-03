@@ -76,7 +76,6 @@ in
     gofmt = "gofmt -s -w";
     javafmt = "astyle --mode=java --style=google -n";
     fork = "setsid -f";
-    zpot = "zpotify";
     z = "zellij --layout welcome";
     zac = "zellij attach --create";
     j = "just";

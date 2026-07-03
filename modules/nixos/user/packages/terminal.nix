@@ -23,9 +23,9 @@ let
     # shaq # CLI client for Shazam
     timewarrior # Time tracking utility
     rsync # a fast, versatile, remote (and local) file-copying tool
-    zpotify # A CLI for the Spotify Web API
     croc # Easily and securely send things from one computer to another
     playerctl # CLI for controlling media players that implement MPRIS
+    ani-cli # CLI to browse and play anime
   ];
 
   tui = with pkgs; [
@@ -36,10 +36,11 @@ let
     fzf # fuzzy finder
     # htop-vim # process viewer with vim keybindings
     # discordo # discord client
-    # profanity # XMPP client (has security issue iirc)
+    # profanity # XMPP client
     # spotify-player # zpotify but different
     wiremix # Audio mixer for PipeWire
     wrappers.btop # Monitor of resources
+    caligula # TUI for burning disks
   ];
 
   # don't include that in packages
@@ -100,13 +101,11 @@ let
 
   unsorted = with pkgs; [
     chafa # image in terminal
-    caligula # TUI for burning disks
     ytfzf # search youtube video without a browser
     termdown # timer on the terminal
     # nmap # utility for network discovery and security auditing
     # aria2 #  lightweight, multi-protocol, multi-source command-line download utility
     # ipcalc # simple IP network calculator
-    # ani-cli # CLI to browse and play anime
     # lxc # Userspace tools for Linux Containers, a lightweight virtualization system
     # dnsmasq #  Integrated DNS, DHCP and TFTP server for small networks
   ];

@@ -74,8 +74,8 @@ riverctl map -repeat normal Super Minus spawn 'wpctl set-volume @DEFAULT_AUDIO_S
 riverctl map normal None XF86Launch1 spawn 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'
 riverctl map normal None F6 spawn 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'
 
-riverctl map normal Super M spawn 'zpotify play playlist'    # 'music'
-riverctl map normal Super+Shift M spawn 'zpotify play album' # 'musiccmd'
+# riverctl map normal Super M spawn 'zpotify play playlist'    # 'music'
+# riverctl map normal Super+Shift M spawn 'zpotify play album' # 'musiccmd'
 riverctl map normal None XF86AudioPrev spawn 'musiccmd prev || zpotify prev >/dev/null'
 riverctl map normal None XF86AudioNext spawn 'musiccmd next || zpotify next >/dev/null'
 riverctl map normal None XF86AudioPlay spawn 'musiccmd cycle || zpotify pause >/dev/null'
