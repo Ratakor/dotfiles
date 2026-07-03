@@ -10,23 +10,19 @@
 let
   inherit (lib.modules) mkIf mkForce;
   inherit (lib.meta) getExe;
-  inherit (lib.trivial) unreachable;
 
   RIVER_LOG_DIR = "${config.hm.xdg.stateHome}/river";
   prg = config.self.programs;
   dprg = prg.default;
 
-  unwrappedRiver = pkgs.river-classic;
-
   wrapper = pkgs.writeShellScriptBin "river" ''
     timestamp=$(date +%Y-%m-%dT%H:%M:%S%z)
     mkdir -p "${RIVER_LOG_DIR}"
 
-    # Run the raw river compositor directly in the login/PAM session
-    ${getExe unwrappedRiver} -log-level warning > "${RIVER_LOG_DIR}/river-$timestamp.log" 2>&1
+    # used to be prefixed with `exec dbus-run-session `
+    ${getExe pkgs.river-classic} -log-level warning > "${RIVER_LOG_DIR}/river-$timestamp.log" 2>&1
     exit_code=$?
 
-    # Clean up systemd targets when the compositor exits
     systemctl --user stop river-session.target
     systemctl --user stop graphical-session.target
 
@@ -34,33 +30,17 @@ let
   '';
 
   wrapperExe = getExe wrapper;
-
-  # riverWrapped =
-  #   (pkgs.symlinkJoin {
-  #     name = "river-wrapped-${lib.getVersion unwrappedRiver}";
-  #     paths = [ unwrappedRiver ];
-  #     postBuild = ''
-  #       # Remove the original /bin/river symlink to prevent conflicts
-  #       rm $out/bin/river
-  #       # Copy our wrapper script to $out/bin/river
-  #       cp ${wrapper}/bin/river $out/bin/river
-  #     '';
-  #   })
-  #   // {
-  #     override = unwrappedRiver.override;
-  #     overrideAttrs = unwrappedRiver.overrideAttrs;
-  #   };
 in
 {
   config = mkIf prg.windowManager.river-classic.enable {
     self.programs.default.windowManager = mkIf (dprg.windowManager.name == "river-classic") {
       cmd = wrapperExe;
-      session = unreachable; # "river" doesn't work with systemd, use tuigreet instead of ly
+      # "river" doesn't work with systemd, use a greetd login manager like tuigreet instead
+      session = "river";
     };
 
     programs.river-classic = {
       enable = true;
-      # package = riverWrapped;
       xwayland.enable = true;
       extraPackages = mkForce [ ];
     };
