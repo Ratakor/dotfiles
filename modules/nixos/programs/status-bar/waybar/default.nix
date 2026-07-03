@@ -1,10 +1,13 @@
 # Status bar for Wayland
 { config, lib, ... }:
 let
+  inherit (builtins) concatLists;
+  inherit (lib.lists) optional;
   inherit (lib.modules) mkIf;
   inherit (lib.trivial) hexToRgba;
 
   colors = config.self.colors.default;
+  sys = config.self.system;
   prg = config.self.programs;
   dprg = prg.default;
   isDefault = dprg.statusBar.name == "waybar";
@@ -31,18 +34,22 @@ in
           # "river/window"
           # "niri/window"
           # "image"
-          "custom/spotify"
-          "custom/music"
+          "mpris"
         ];
-        modules-right = [
-          "temperature"
-          "battery"
-          "network"
-          "bluetooth"
-          "wireplumber"
-          "custom/weather"
-          "clock"
+        modules-right = concatLists [
+          [
+            "temperature"
+            "battery"
+            "network"
+          ]
+          (optional sys.bluetooth.enable "bluetooth")
+          [
+            "wireplumber"
+            "custom/weather"
+            "clock"
+          ]
         ];
+
         "river/window" = {
           max-length = 50;
           tooltip = false;
@@ -51,21 +58,17 @@ in
           path = "/tmp/cover.jpg";
           # TODO
         };
-        # TODO: replace with MPRIS stuff
-        # "custom/spotify" = {
-        #   exec = "zpotify waybar"; # TODO: this was removed
-        #   return-type = "json";
-        #   tooltip = true;
-        #   on-click = "zpotify pause >/dev/null";
-        #   max-length = 40;
-        # };
-        "custom/music" = {
-          exec = ./scripts/waybar-music.sh;
-          interval = "once";
-          signal = 1;
+        mpris = {
+          format = "{player_icon} {dynamic}";
+          format-paused = "{status_icon} <i>{dynamic}</i>";
+          player-icons = {
+            default = "";
+            spotify = "";
+          };
+          status-icons = {
+            paused = "";
+          };
           max-length = 40;
-          tooltip = false;
-          on-click = "musiccmd";
         };
         temperature = {
           format = " {temperatureC}°C";
@@ -156,7 +159,7 @@ in
           tooltip = true;
         };
         clock = {
-          format = " {:%H:%M}";
+          format = " {:%H:%M}";
           format-alt = " {:%b %d (%a)}";
           tooltip-format = "<tt><small>{calendar}</small></tt>";
           calendar = {
@@ -206,8 +209,7 @@ in
         #window,
         #tags,
         #workspaces,
-        #custom-spotify,
-        #custom-music,
+        #mpris,
         #temperature,
         #bluetooth,
         #battery,
@@ -263,7 +265,7 @@ in
             border: 2px solid @red;
         }
 
-        #image, #custom-spotify, #custom-music {
+        #image, #mpris {
             border-bottom: 2px solid @green;
         }
 

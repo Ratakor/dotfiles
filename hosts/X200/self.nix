@@ -14,7 +14,7 @@ in
     system = {
       login = {
         autoLogin = true;
-        manager = "ly";
+        manager = "tuigreet";
       };
       audio = {
         enable = true;
@@ -38,6 +38,11 @@ in
       default = {
         terminal.name = "foot";
         launcher.name = "fuzzel";
+        windowManager.name = "river-classic";
+        desktopShell.name = null;
+        powerMenu.name = "wlogout";
+        statusBar.name = "waybar";
+        locker.name = "glitchlock";
       };
       dev.enable = true;
       scripts = {
@@ -46,16 +51,23 @@ in
       };
       apps.enable = true;
       terminal.fontSize = 10;
-      windowManager.niri.extraConfig = /* kdl */ ''
-        spawn-at-startup "randwp"
-        binds {
-          Mod+Shift+W repeat=false hotkey-overlay-title="Set a random wallpaper" { spawn "randwp"; }
-        }
-      '';
+      windowManager = {
+        niri.extraConfig = /* kdl */ ''
+          spawn-at-startup "randwp"
+          binds {
+            Mod+Shift+W repeat=false hotkey-overlay-title="Set a random wallpaper" { spawn "randwp"; }
+          }
+        '';
+        river-classic.extraConfig = /* sh */ ''
+          riverctl spawn 'randwp'
+          riverctl map normal Super+Shift W spawn 'randwp'
+        '';
+      };
     };
 
     services = {
       wpaperd.enable = false;
+      swayidle.enable = true;
     };
 
     disabledPackages = [

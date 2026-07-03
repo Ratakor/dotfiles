@@ -31,7 +31,7 @@ in
 
     hm.imports = [ module ];
 
-    hm.programs.noctalia-shell = {
+    hm.programs.noctalia = {
       enable = true;
       systemd.enable = isDefaultBar; # TODO: deprecated
       package = pkgs.noctalia-shell;
