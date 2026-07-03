@@ -14,7 +14,7 @@ in
     system = {
       login = {
         autoLogin = true;
-        manager = "ly";
+        manager = "tuigreet";
       };
       audio = {
         enable = true;
