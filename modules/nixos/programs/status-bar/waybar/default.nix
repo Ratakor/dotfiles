@@ -1,10 +1,13 @@
 # Status bar for Wayland
 { config, lib, ... }:
 let
+  inherit (builtins) concatLists;
+  inherit (lib.lists) optional;
   inherit (lib.modules) mkIf;
   inherit (lib.trivial) hexToRgba;
 
   colors = config.self.colors.default;
+  sys = config.self.system;
   prg = config.self.programs;
   dprg = prg.default;
   isDefault = dprg.statusBar.name == "waybar";
@@ -34,15 +37,20 @@ in
           "custom/spotify"
           "custom/music"
         ];
-        modules-right = [
-          "temperature"
-          "battery"
-          "network"
-          "bluetooth"
-          "wireplumber"
-          "custom/weather"
-          "clock"
+        modules-right = concatLists [
+          [
+            "temperature"
+            "battery"
+            "network"
+          ]
+          (optional sys.bluetooth.enable "bluetooth")
+          [
+            "wireplumber"
+            "custom/weather"
+            "clock"
+          ]
         ];
+
         "river/window" = {
           max-length = 50;
           tooltip = false;
