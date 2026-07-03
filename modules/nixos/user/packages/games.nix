@@ -33,6 +33,14 @@ let
     exiled-exchange-2
   ];
 
+  minecraft = with pkgs; [
+    prismlauncher
+  ];
+
+  osu = with pkgs; [
+    (osu-lazer-bin.override { nativeWayland = true; })
+  ];
+
   steam = singleton pkgs.steam;
 
   lutris = singleton pkgs.lutris;
@@ -56,6 +64,8 @@ in
     (optionals cfg.star-citizen.enable star-citizen)
     (optionals cfg.wow.enable wow)
     (optionals cfg.poe.enable poe)
+    (optionals cfg.minecraft.enable minecraft)
+    (optionals cfg.osu.enable osu)
     (optionals cfg.steam.enable steam)
     (optionals cfg.lutris.enable lutris)
   ]);

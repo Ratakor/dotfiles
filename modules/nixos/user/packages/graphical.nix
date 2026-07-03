@@ -56,6 +56,7 @@ let
     # scrcpy # display and control your Android device
     # network-printer # https://github.com/notashelf/np
     songrec # Open-source Shazam client (actual banger tbh)
+    # kdePackages.kdenlive # Video Editor (add to prg.apps?)
 
     # monero-gui # Monero wallet
     # kiwix # bruh why do I have the whole wikipedia locally installed

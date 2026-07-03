@@ -9,6 +9,7 @@ let
   inherit (lib.strings) getName escapeShellArg;
   inherit (lib.trivial) warnIfNot;
 
+  # I kinda dislike this
   acknowledgedUnfreePackages = [
     # apps
     "discord"
@@ -32,6 +33,11 @@ let
     "cuda_nvcc"
     "cuda_cccl"
     "libcublas"
+
+    # smh gemini was open source but not agy :(
+    "antigravity-cli"
+
+    "osu-lazer-bin"
   ];
 in
 system:

@@ -47,6 +47,7 @@
         "subvol=ssd"
         "compress=zstd"
         "noatime"
+        "nofail"
       ];
     };
 

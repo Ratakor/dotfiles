@@ -34,7 +34,7 @@
     tinymist # Typst
     ty # Python
     typescript-language-server # JavaScript
-    vscode-css-languageserver # CSS
+    # vscode-css-languageserver # CSS
     vscode-json-languageserver # JSON
     yaml-language-server # YAML
     zls # Zig

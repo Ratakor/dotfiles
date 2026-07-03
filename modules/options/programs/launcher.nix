@@ -1,4 +1,3 @@
-# see also: anyrun, walker
 {
   config,
   lib,
@@ -25,10 +24,11 @@ in
           "fuzzel"
           "tofi"
           "vicinae"
+          "walker"
         ]);
-        default = if sys.video.enable then "fuzzel" else null;
+        default = if sys.video.enable then "walker" else null;
         defaultText = literalExpression ''
-          if sys.video.enable then "fuzzel" else null
+          if sys.video.enable then "walker" else null
         '';
         description = ''
           The default launcher to use.

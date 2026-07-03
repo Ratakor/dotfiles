@@ -36,6 +36,7 @@ let
     # wasmtime # WebAssembly runtime
     # dotnet-sdk # C#
     # R # R
+    # ocaml # ocaml
   ];
 
   buildSystems = with pkgs; [
@@ -57,7 +58,7 @@ let
     strace # system call monitoring
     ltrace # library call monitoring
     lsof # list open files
-    # texliveMinimal # latex, see `texliveFull` too
+    texliveSmall # LaTeX, texliveFull: 4.75 GiB, texliveMedium: 1.35 GiB, texliveSmall: 334 MiB
     pandoc # document converter
     # tinyxxd # hexdump utility, see `hexyl` too
     # teehee # modal terminal hex editor

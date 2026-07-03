@@ -58,6 +58,8 @@
       gaming = {
         enable = true;
         poe.enable = true;
+        minecraft.enable = true;
+        osu.enable = true;
       };
       apps = {
         enable = true;

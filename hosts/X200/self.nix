@@ -37,6 +37,7 @@ in
     programs = {
       default = {
         terminal.name = "foot";
+        launcher.name = "fuzzel";
         windowManager.name = "river-classic";
       };
       dev.enable = true;
@@ -57,5 +58,9 @@ in
     services = {
       wpaperd.enable = false;
     };
+
+    disabledPackages = [
+      "antigravity-cli" # requires AES instruction set
+    ];
   };
 }
