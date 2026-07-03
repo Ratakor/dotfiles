@@ -37,6 +37,7 @@ in
     programs = {
       default = {
         terminal.name = "foot";
+        windowManager.name = "river-classic";
       };
       dev.enable = true;
       scripts = {
