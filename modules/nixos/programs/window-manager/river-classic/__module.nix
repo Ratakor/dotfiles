@@ -21,13 +21,15 @@ let
     timestamp=$(date +%Y-%m-%dT%H:%M:%S%z)
     mkdir -p "${RIVER_LOG_DIR}"
 
-    # Import login environment variables into systemd user manager
-    systemctl --user import-environment PATH DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_CLASS XDG_SESSION_DESKTOP XDG_SEAT XDG_VTNR
-    ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd PATH DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_CLASS XDG_SESSION_DESKTOP XDG_SEAT XDG_VTNR
+    # Run the raw river compositor directly in the login/PAM session
+    ${unwrappedRiver}/bin/river -log-level warning > "${RIVER_LOG_DIR}/river-$timestamp.log" 2>&1
+    exit_code=$?
 
-    # Start the systemd service for river and wait for it to exit
-    echo "Starting river-classic via systemd..." > "${RIVER_LOG_DIR}/river-$timestamp.log"
-    systemctl --user start --wait river.service >> "${RIVER_LOG_DIR}/river-$timestamp.log" 2>&1
+    # Clean up systemd targets when the compositor exits
+    systemctl --user stop river-session.target
+    systemctl --user stop graphical-session.target
+
+    exit $exit_code
   '';
 
   wrapperExe = getExe wrapper;
@@ -73,22 +75,6 @@ in
         "graphical-session.target"
       ];
       after = [ "graphical-session-pre.target" ];
-    };
-
-    systemd.user.services.river = {
-      enable = true;
-      description = "River Wayland Compositor";
-      bindsTo = [ "graphical-session.target" ];
-      before = [ "graphical-session.target" ];
-      wants = [ "graphical-session-pre.target" ];
-      after = [ "graphical-session-pre.target" ];
-
-      serviceConfig = {
-        Slice = "session.slice";
-        Type = "simple";
-        ExecStart = "${unwrappedRiver}/bin/river -log-level warning";
-        ExecStopPost = "${pkgs.systemd}/bin/systemctl --user stop river-session.target graphical-session.target";
-      };
     };
   };
 }
