@@ -182,7 +182,8 @@ in
 
   ### Systemd activation
 
-  ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all &&
-    systemctl --user stop river-session.target &&
-    systemctl --user start river-session.target
+  systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+  ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+  systemctl --user stop river-session.target
+  systemctl --user start river-session.target
 ''
