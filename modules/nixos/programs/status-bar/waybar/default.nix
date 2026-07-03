@@ -159,7 +159,7 @@ in
           tooltip = true;
         };
         clock = {
-          format = " {:%H:%M}";
+          format = " {:%H:%M}";
           format-alt = " {:%b %d (%a)}";
           tooltip-format = "<tt><small>{calendar}</small></tt>";
           calendar = {
