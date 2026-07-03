@@ -10,6 +10,7 @@
 let
   inherit (lib.modules) mkIf mkForce;
   inherit (lib.meta) getExe;
+  inherit (lib.trivial) unreachable;
 
   RIVER_LOG_DIR = "${config.hm.xdg.stateHome}/river";
   prg = config.self.programs;
@@ -22,7 +23,7 @@ let
     mkdir -p "${RIVER_LOG_DIR}"
 
     # Run the raw river compositor directly in the login/PAM session
-    ${unwrappedRiver}/bin/river -log-level warning > "${RIVER_LOG_DIR}/river-$timestamp.log" 2>&1
+    ${getExe unwrappedRiver} -log-level warning > "${RIVER_LOG_DIR}/river-$timestamp.log" 2>&1
     exit_code=$?
 
     # Clean up systemd targets when the compositor exits
@@ -34,32 +35,32 @@ let
 
   wrapperExe = getExe wrapper;
 
-  riverWrapped =
-    (pkgs.symlinkJoin {
-      name = "river-wrapped-${lib.getVersion unwrappedRiver}";
-      paths = [ unwrappedRiver ];
-      postBuild = ''
-        # Remove the original /bin/river symlink to prevent conflicts
-        rm $out/bin/river
-        # Copy our wrapper script to $out/bin/river
-        cp ${wrapper}/bin/river $out/bin/river
-      '';
-    })
-    // {
-      override = unwrappedRiver.override;
-      overrideAttrs = unwrappedRiver.overrideAttrs;
-    };
+  # riverWrapped =
+  #   (pkgs.symlinkJoin {
+  #     name = "river-wrapped-${lib.getVersion unwrappedRiver}";
+  #     paths = [ unwrappedRiver ];
+  #     postBuild = ''
+  #       # Remove the original /bin/river symlink to prevent conflicts
+  #       rm $out/bin/river
+  #       # Copy our wrapper script to $out/bin/river
+  #       cp ${wrapper}/bin/river $out/bin/river
+  #     '';
+  #   })
+  #   // {
+  #     override = unwrappedRiver.override;
+  #     overrideAttrs = unwrappedRiver.overrideAttrs;
+  #   };
 in
 {
   config = mkIf prg.windowManager.river-classic.enable {
     self.programs.default.windowManager = mkIf (dprg.windowManager.name == "river-classic") {
       cmd = wrapperExe;
-      session = "river";
+      session = unreachable; # "river" doesn't work with systemd, use tuigreet instead of ly
     };
 
     programs.river-classic = {
       enable = true;
-      package = riverWrapped;
+      # package = riverWrapped;
       xwayland.enable = true;
       extraPackages = mkForce [ ];
     };
@@ -79,5 +80,29 @@ in
       ];
       after = [ "graphical-session-pre.target" ];
     };
+
+    /*
+      systemd.user.services.river = {
+        enable = true;
+        description = "River Wayland Compositor";
+        bindsTo = [ "graphical-session.target" ];
+        before = [ "graphical-session.target" ]; # ?
+        wants = [
+          "graphical-session-pre.target"
+          # "xdg-desktop-autostart.target"
+        ];
+        after = [
+          "graphical-session-pre.target"
+          # "xdg-desktop-autostart.target"
+        ];
+
+        # ?
+        serviceConfig = {
+          Slice = "session.slice";
+          Type = "notify";
+          ExecStart = wrapperExe;
+        };
+      };
+    */
   };
 }
