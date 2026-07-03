@@ -27,6 +27,15 @@ in
           '';
         };
       };
+      river-classic = {
+        extraConfig = mkOption {
+          type = str;
+          default = "";
+          description = ''
+            Extra config to include into river-classic configuration.
+          '';
+        };
+      };
     };
 
     default.windowManager = {

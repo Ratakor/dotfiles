@@ -47,12 +47,18 @@ in
       };
       apps.enable = true;
       terminal.fontSize = 10;
-      windowManager.niri.extraConfig = /* kdl */ ''
-        spawn-at-startup "randwp"
-        binds {
-          Mod+Shift+W repeat=false hotkey-overlay-title="Set a random wallpaper" { spawn "randwp"; }
-        }
-      '';
+      windowManager = {
+        niri.extraConfig = /* kdl */ ''
+          spawn-at-startup "randwp"
+          binds {
+            Mod+Shift+W repeat=false hotkey-overlay-title="Set a random wallpaper" { spawn "randwp"; }
+          }
+        '';
+        river-classic.extraConfig = /* sh */ ''
+          riverctl spawn 'randwp'
+          riverctl map normal Super+Shift W spawn 'randwp'
+        '';
+      };
     };
 
     services = {

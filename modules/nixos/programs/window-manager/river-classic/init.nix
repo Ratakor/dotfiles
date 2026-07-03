@@ -176,9 +176,8 @@ in
 
   riverctl spawn 'rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55'
 
-  # TODO: source extra config
-  #riverctl spawn 'randwp'
-  #riverctl map normal Super+Shift W spawn 'randwp'
+  ### Extra config
+  ${prg.windowManager.river-classic.extraConfig}
 
   ### Systemd activation
 
