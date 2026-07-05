@@ -51,7 +51,7 @@ in
       };
       apps = {
         enable = true;
-        spotify.enable = false;
+        spotify.enable = false; # crashes with illegal instruction
       };
       terminal.fontSize = 10;
       windowManager = {
