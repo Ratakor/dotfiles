@@ -24,6 +24,8 @@ let
       fromSources = {
         # age-encrypted secrets for NixOS
         agenix = pkgs.callPackage "${sources.agenix}/pkgs/agenix.nix" { };
+        # Watch anime in cli with Anilist, MAL Integration and Discord RPC
+        curd = pkgs.callPackage "${sources.curd}/package.nix" { withMpv = false; };
         # Declarative disk partitioning and formatting using nix
         disko = pkgs.callPackage "${sources.disko}/package.nix" {
           diskoVersion =

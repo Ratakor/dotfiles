@@ -25,7 +25,7 @@ let
     rsync # a fast, versatile, remote (and local) file-copying tool
     croc # Easily and securely send things from one computer to another
     playerctl # CLI for controlling media players that implement MPRIS
-    ani-cli # CLI to browse and play anime
+    curd # CLI to browse and play anime, see also ani-cli
   ];
 
   tui = with pkgs; [
@@ -61,6 +61,7 @@ let
     antigravity-cli # Google AI (agy)
     # copilot-cli # Microsoft AI
     # claude-code # Anthropic AI
+    # herdr # Agent multiplexer
   ];
 
   fs = with pkgs; [

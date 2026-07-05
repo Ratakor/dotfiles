@@ -13,6 +13,19 @@
       "url": "https://github.com/ryantm/agenix/archive/b027ee29d959fda4b60b57566d64c98a202e0feb.tar.gz",
       "hash": "sha256-9VnK6Oqai65puVJ4WYtCTvlJeXxMzAp/69HhQuTdl/I="
     },
+    "curd": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Wraient",
+        "repo": "curd"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "3c1c919b840cf7a6279c0671baa2b818caf6e8c7",
+      "url": "https://github.com/Wraient/curd/archive/3c1c919b840cf7a6279c0671baa2b818caf6e8c7.tar.gz",
+      "hash": "sha256-om3FQZz0wZTodSXt2X5XW9b7gVLb8uiv3zGMUzJwU1M="
+    },
     "disko": {
       "type": "Git",
       "repository": {
