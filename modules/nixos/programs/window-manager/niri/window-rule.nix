@@ -37,6 +37,9 @@ in
   window-rule {
     geometry-corner-radius 8 // 12 is also decent
     clip-to-geometry true
+
+    // unrelated to rounded corners but may be useful to apply on all windows
+    // draw-border-with-background false
   }
 
   window-rule {
@@ -46,17 +49,11 @@ in
   }
 
   window-rule {
-    // comment to match all
     match app-id=r#"^com\.mitchellh\.ghostty$"#
     draw-border-with-background false
-  }
-
-  /-window-rule {
-    match app-id=r#"^com\.mitchellh\.ghostty$"#
 
     background-effect {
-      blur true
-      // xray false
+      // blur true
     }
   }
 
@@ -79,12 +76,11 @@ in
   }
 
   window-rule {
-    match title="^Path of Exile$"
-    match app-id="steam_app_238960"
-    match title="^Path of Exile 2$"
-    match app-id="steam_app_2694490"
+    match app-id=r#"steam_app_[0-9]+"#
+
     ${open-on-primary-monitor}
     open-fullscreen true
+    variable-refresh-rate true
     // open-on-workspace "gaming"
     /*
     open-floating true
@@ -92,12 +88,12 @@ in
     */
   }
 
-  window-rule {
+  // doesn't work iirc
+  /-window-rule {
     match app-id="awakened-poe-trade"
-    /*
+
     open-floating true
     open-focused false
     ${no-border}
-    */
   }
 ''
