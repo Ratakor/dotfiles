@@ -196,6 +196,19 @@
       "url": "https://github.com/niri-wm/niri/archive/49fc6117fd6c043adaa2ead316b82db5ed735d36.tar.gz",
       "hash": "sha256-Ii/koEm/sRyg65qbAQWqEgboSEIhdH0EL4KglAc14p0="
     },
+    "nix-alien": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "thiagokokada",
+        "repo": "nix-alien"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "4fc9de6d1f215cf1679da04cf8749e085dd027d7",
+      "url": "https://github.com/thiagokokada/nix-alien/archive/4fc9de6d1f215cf1679da04cf8749e085dd027d7.tar.gz",
+      "hash": "sha256-n6nn0A3U3FnHWa9Y+dWNiuQnMDrcndQplgE0ooiexG8="
+    },
     "nix-index-database": {
       "type": "Git",
       "repository": {

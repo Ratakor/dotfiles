@@ -90,6 +90,7 @@ let
     npins # Sources management
     # nixpkgs-review # nixpkgs-review pr <PR number>; nixpkgs-review [approve|merge|post-result|comments]
     # npr # A pull request tracker for Nixpkgs
+    nix-alien # Run unpatched binaries on Nix/NixOS
   ];
 
   manPages = with pkgs; [

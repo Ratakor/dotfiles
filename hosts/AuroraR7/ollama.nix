@@ -7,7 +7,7 @@
       cudaArches = [ "sm_61" ];
     };
     home = "/storage/home"; # same as config.user.home
-    models = "${config.services.ollama.home}/.ollama/models";
+    modelsDir = "${config.services.ollama.home}/.ollama/models";
 
     # declarative models...
     loadModels = [
