@@ -49,6 +49,7 @@ let
     # TODO: package wayclicker
     graphviz # graph visualization tool
     dragon-drop # a simple drag-and-drop replacement for graphical stuff
+    pavucontrol # volume control
   ];
 
   unsorted = with pkgs; [

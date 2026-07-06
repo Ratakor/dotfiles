@@ -16,7 +16,7 @@ let
     detox # cli to cleanup filenames
     # xdg-ninja # Shell script which checks your $HOME for unwanted files and directories
     imagemagick # image manipulation from the terminal
-    ffmpeg # video manipulation and a lot of other stuff
+    ffmpeg # video manipulation and a lot of other stuff, see also ffmpeg-full
     mat2 # metadata removal tool
     bc # calculation
     libqalculate # better bc
