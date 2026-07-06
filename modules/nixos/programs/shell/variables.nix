@@ -66,6 +66,11 @@ in
         # TERMINFO = "${XDG_DATA_HOME}/terminfo";
         DOOMWADDIR = "${XDG_DATA_HOME}/gzdoom";
         DOCKER_CONFIG = "${XDG_CONFIG_HOME}/docker";
+        ANDROID_USER_HOME = "${XDG_DATA_HOME}/android"; # need adb alias too?
+        XCOMPOSEFILE = "${XDG_CONFIG_HOME}/X11/xcompose";
+        XCOMPOSECACHE = "${XDG_CACHE_HOME}/X11/xcompose";
+        RENPY_PATH_TO_SAVES = "${XDG_DATA_HOME}/renpy";
+        RENPY_MULTIPERSISTENT = "${XDG_DATA_HOME}/renpy_shared";
 
         # Disable telemetry (https://consoledonottrack.com)
         AZURE_CORE_COLLECT_TELEMETRY = "0";
