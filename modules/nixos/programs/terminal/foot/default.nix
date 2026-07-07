@@ -119,5 +119,11 @@ in
       server.enable = isDefault;
       inherit settings;
     };
+
+    # we should really write a foot wrapper + NixOS systemd service instead of
+    # using home-manager :D
+    hm.systemd.user.services.foot = mkIf isDefault {
+      Unit.X-SwitchMethod = "keep-old";
+    };
   };
 }
