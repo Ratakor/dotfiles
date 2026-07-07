@@ -64,6 +64,8 @@
       apps = {
         enable = true;
         teams.enable = true;
+        discord.enable = false; # crashes the whole computer, using flatpak instead
+        # onlyoffice.enable = true;
       };
       browser = {
         tor-browser.enable = true;

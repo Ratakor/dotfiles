@@ -15,6 +15,7 @@ let
     "discord"
     "spotify"
     "ouch" # rar
+    "osu-lazer-bin"
 
     # steam
     "steam"
@@ -37,7 +38,8 @@ let
     # smh gemini was open source but not agy :(
     "antigravity-cli"
 
-    "osu-lazer-bin"
+    # onlyoffice fonts
+    "corefonts"
   ];
 in
 system:
