@@ -1,6 +1,12 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (builtins) readFile;
+  inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
   inherit (lib.trivial) hexToRgba;
 
@@ -10,14 +16,17 @@ let
     bg = 0.75; # 0.75 is better with xray (niri), 0.85 otherwise
   };
 
+  # https://github.com/abenz1267/walker#basic-usage
+  fastSocketCall = "${getExe pkgs.netcat} -U /run/user/${toString config.user.uid}/walker/walker.sock";
+
   prg = config.self.programs;
 in
 {
   config = mkIf prg.launcher.walker.enable {
     self.programs.default.launcher = mkIf (prg.default.launcher.name == "walker") {
       dmenu = "walker --dmenu --"; # adding -- to prevent from flag incompatibilities
-      drun = "walker";
-      run = "walker"; # no equivalent?, there is `>` prefix
+      drun = fastSocketCall;
+      run = fastSocketCall; # no equivalent?, there is `>` prefix
     };
 
     hm.services.walker = {
