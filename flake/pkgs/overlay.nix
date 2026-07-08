@@ -74,9 +74,6 @@ let
             };
           }).nix-alien;
 
-        # A pull request tracker for Nixpkgs
-        npr = pkgs.callPackage "${sources.npr}/package.nix" { rev = lib.shortRev sources.npr.rev; };
-
         # Source of sources
         tack = sources.tack.packages.${system}.default;
 

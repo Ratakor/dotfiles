@@ -88,7 +88,6 @@ let
     agenix # Secrets management
     tack # Sources management
     # nixpkgs-review # nixpkgs-review pr <PR number>; nixpkgs-review [approve|merge|post-result|comments]
-    # npr # A pull request tracker for Nixpkgs
     nix-alien # Run unpatched binaries on Nix/NixOS
   ];
 
