@@ -181,14 +181,6 @@
     "narHash": "sha256-KC+Tj43cjDcHtul7DoyaEKMzyDI5drHtsnArPfQVKGU=",
     "lastModified": 1765281846
   },
-  "npins": {
-    "type": "github",
-    "owner": "andir",
-    "repo": "npins",
-    "rev": "b7799bca849009ea150a91d9045aa7183f02bdec",
-    "narHash": "sha256-2DZ7zcCZlnwTsj8cDKg+i/Pb7plU/GPtO1pFPsnNBGE=",
-    "lastModified": 1780473225
-  },
   "npr": {
     "type": "github",
     "owner": "manic-systems",

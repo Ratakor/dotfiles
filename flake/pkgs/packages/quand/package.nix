@@ -10,6 +10,7 @@ let
 
   # why aren't we using npins?
   # well idk but I won't update this until quand is rewritten in a proper language
+  # PS: when will this be rewritten in rust or something???
   rev = "5894842960a09e2d3b35eba3900c548a781001e5";
 in
 stdenv.mkDerivation {

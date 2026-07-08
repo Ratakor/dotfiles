@@ -32,7 +32,7 @@ jobs:
           name: ratakor
 
       - name: "Update sources"
-        run: nix run .#npins -- update
+        run: nix run .#tack -- update
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:

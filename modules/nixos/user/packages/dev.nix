@@ -87,7 +87,7 @@ let
     # nix-query-tree-viewer # GTK viewer for nix derivations
     # cachix # CLI for the eponym binary cache hosting service
     agenix # Secrets management
-    npins # Sources management
+    tack # Sources management
     # nixpkgs-review # nixpkgs-review pr <PR number>; nixpkgs-review [approve|merge|post-result|comments]
     # npr # A pull request tracker for Nixpkgs
     nix-alien # Run unpatched binaries on Nix/NixOS
@@ -111,7 +111,7 @@ let
   flakeDev = with pkgs; [
     just
     agenix
-    npins
+    tack
     gh
   ];
 in

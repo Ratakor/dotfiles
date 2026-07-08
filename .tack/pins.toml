@@ -122,11 +122,6 @@ type = "fetch"
 url = "github:notashelf/np"
 type = "fetch"
 
-# TODO: to remove
-[inputs.npins]
-url = "github:andir/npins"
-type = "fetch"
-
 # TODO: to remove since nh can do the same now?
 [inputs.npr]
 url = "github:manic-systems/npr"

@@ -15,7 +15,7 @@ in
     # package = pkgs.lixPackageSets.latest.lix;
     # package = pkgs.nixVersions.latest;
 
-    # Remove nix-channel related tools & configs in favor of flakes (npins)
+    # Remove nix-channel related tools & configs in favor of flakes (tack)
     channel.enable = false;
 
     # Replace nixpkgs with this flake's instance of legacyPackages
