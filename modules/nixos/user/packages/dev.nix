@@ -82,14 +82,12 @@ let
     # deadnix # find and remove unused code in .nix source files
     # nix-output-monitor # replace `nix` with `nom`
     nurl # Generate Nix fetcher calls from URLs
-    # flint # flake linter
     # nix-tree # TUI viewer for nix derivations
     # nix-query-tree-viewer # GTK viewer for nix derivations
     # cachix # CLI for the eponym binary cache hosting service
     agenix # Secrets management
-    npins # Sources management
+    tack # Sources management
     # nixpkgs-review # nixpkgs-review pr <PR number>; nixpkgs-review [approve|merge|post-result|comments]
-    # npr # A pull request tracker for Nixpkgs
     nix-alien # Run unpatched binaries on Nix/NixOS
   ];
 
@@ -111,7 +109,7 @@ let
   flakeDev = with pkgs; [
     just
     agenix
-    npins
+    tack
     gh
   ];
 in

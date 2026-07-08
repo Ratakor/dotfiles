@@ -90,7 +90,6 @@ let
           files = {
             extend-exclude = [
               "flake/pkgs/wrappers/neovim"
-              "*.age"
             ];
             ignore-hidden = false; # .github
           };

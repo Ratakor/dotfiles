@@ -14,6 +14,8 @@ let
 in
 final: pkgs:
 let
+  inherit (pkgs.stdenv.hostPlatform) system;
+
   packages =
     let
       base = packagesFromDirectoryRecursive {
@@ -43,9 +45,6 @@ let
         # Ergonomic Nix Helper
         eh = pkgs.callPackage "${sources.eh}/nix/package.nix" { };
 
-        # Stupid simple utility for linting your flake inputs
-        flint = pkgs.callPackage "${sources.flint}/nix/package.nix" { };
-
         # Not a Docs Generator
         # ndg = pkgs.callPackage "${sources.ndg}/nix/packages/ndg/package.nix" { };
 
@@ -54,36 +53,14 @@ let
           xcb-util-cursor = pkgs.libxcb-cursor;
         };
 
-        # A scrollable-tiling Wayland compositior. Git version. Peak usage of flake btw.
-        # niri-git = (lib.flakes.package sources.niri pkgs.system { rust-overlay = { }; }).overrideAttrs {
-        #   # well flake-compat isn't perfect but I love it
-        #   version = lib.shortRev sources.niri.revision;
-        #   __intentionallyOverridingVersion = true;
-        # };
+        # A scrollable-tiling Wayland compositior. Git version.
+        # niri-git = sources.niri.packages.${system}.default;
 
         # Run unpatched binaries on Nix/NixOS
-        nix-alien =
-          (import sources.nix-alien {
-            inherit pkgs;
-            self = {
-              shortRev = lib.shortRev sources.nix-alien.revision;
-              inputs = {
-                nix-index-database = {
-                  packages.${pkgs.stdenv.hostPlatform.system} = import sources.nix-index-database { inherit pkgs; };
-                  rev = sources.nix-index-database.revision;
-                };
-                nixpkgs = {
-                  narHash = sources.nixpkgs.hash;
-                };
-              };
-            };
-          }).nix-alien;
+        nix-alien = sources.nix-alien.packages.${system}.default;
 
         # Source of sources
-        npins = pkgs.callPackage "${sources.npins}/npins.nix" { };
-
-        # A pull request tracker for Nixpkgs
-        npr = pkgs.callPackage "${sources.npr}/package.nix" { rev = lib.shortRev sources.npr.revision; };
+        tack = sources.tack.packages.${system}.default;
 
         # Automatic CPU speed & power optimizer for Linux
         watt = pkgs.callPackage "${sources.watt}/nix/package.nix" { };

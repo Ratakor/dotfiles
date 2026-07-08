@@ -81,6 +81,6 @@ check:
     nix flake check
 
 # Update nixpkgs
-[group('npins')]
+[group('tack')]
 update:
-    npins update nixpkgs
+    tack update nixpkgs

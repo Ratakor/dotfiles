@@ -14,7 +14,7 @@
       # tools related to this flake
       just
       agenix
-      npins
+      tack
       #gh
 
       # general installation tools

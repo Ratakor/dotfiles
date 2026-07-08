@@ -17,9 +17,9 @@ let
   configDir = runCommandLocal "scooter-config-dir" { } ''
     mkdir -p $out/etc/themes
     ln -s "${toml.generate "scooter-config.toml" settings}" $out/etc/config.toml
-    ln -s "${gruvbox-tmTheme + /gruvbox-dark.tmTheme}" $out/etc/themes/gruvbox-dark.tmTheme
-    ln -s "${gruvbox-tmTheme + /gruvbox-light.tmTheme}" $out/etc/themes/gruvbox-light.tmTheme
-    ln -s "${dracula-tmTheme + /Dracula.tmTheme}" $out/etc/themes/dracula.tmTheme
+    ln -s "${gruvbox-tmTheme}/gruvbox-dark.tmTheme" $out/etc/themes/gruvbox-dark.tmTheme
+    ln -s "${gruvbox-tmTheme}/gruvbox-light.tmTheme" $out/etc/themes/gruvbox-light.tmTheme
+    ln -s "${dracula-tmTheme}/Dracula.tmTheme" $out/etc/themes/dracula.tmTheme
   '';
 
   settings = {

@@ -11,13 +11,11 @@ in
 {
   options.self.wallpapers = mkOption {
     type = path;
-    default = pkgs.callPackage "${sources.wallpapers}/package.nix" {
-      version = lib.shortRev sources.wallpapers.revision;
-    };
+    # TODO: version = sources.wallpapers.metadata.lastModified
+    # depends on https://github.com/manic-systems/tack/pull/84
+    default = pkgs.callPackage "${sources.wallpapers}/package.nix" { };
     defaultText = literalExpression ''
-      pkgs.callPackage "''${sources.wallpapers}/package.nix" {
-        version = lib.shortRev sources.wallpapers.revision;
-      }
+      pkgs.callPackage "''${sources.wallpapers}/package.nix" { }
     '';
     description = "Directory with all available wallpapers.";
   };

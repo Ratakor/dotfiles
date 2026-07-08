@@ -25,7 +25,6 @@ sources:
       listModuleFiles
       listFilesRecursive
       ;
-    inherit (self.flakes) compat compat' package;
     inherit (self.options)
       enumOptionValues
       enumOptionValues'

@@ -1,0 +1,140 @@
+# tack pins
+# edit by hand or with tack add / rm / alias
+# nix reads pins.lock.json
+# this file drives tack update
+
+# shorturl schemes
+# `scheme:rest` expands by substituting `rest` into the template `{path}`
+[shorturls]
+codeberg = "git+https://codeberg.org/{path}"
+channel = "https://channels.nixos.org/{path}/nixexprs.tar.xz"
+
+[tack]
+recomposable = true
+
+# all_follow maps input names to the top-level pin they follow
+# opt out per-input with exclude_follow
+[all_follow]
+nixpkgs = "nixpkgs"
+# nixpkgs = ["nixpkgs-stable", "nixpkgs-unstable"]
+
+# inputs.<name> fields
+#   url             required, shorturl ok, ?rev=<sha> pins an exact commit
+#   type            flake (default), fetch, or fixed
+#   flake           legacy false means type = "fetch"
+#   follows         { child = "pin" } override map
+#   exclude_follow  all_follow names to skip
+#   dir             subdir holding flake.nix
+#   submodules      fetch git submodules
+#   unpack          fixed-only tarball or file
+[inputs.agenix]
+url = "github:ryantm/agenix"
+type = "fetch"
+
+[inputs.curd]
+url = "github:Wraient/curd"
+type = "fetch"
+
+[inputs.disko]
+url = "github:nix-community/disko"
+type = "fetch"
+
+[inputs.dove]
+url = "codeberg:celenity/Dove?ref=pages"
+follows = { phoenix = "phoenix" }
+
+[inputs.dracula-tmTheme]
+url = "github:dracula/sublime"
+type = "fetch"
+
+[inputs.eh]
+url = "github:NotAShelf/eh"
+type = "fetch"
+
+[inputs.gruvbox-tmTheme]
+url = "github:subnut/gruvbox-tmTheme?ref=bat-source"
+type = "fetch"
+
+[inputs.helium]
+url = "github:amaanq/helium-flake"
+
+[inputs.home-manager]
+url = "github:nix-community/home-manager"
+type = "fetch"
+
+[inputs.lanzaboote]
+url = "github:nix-community/lanzaboote"
+type = "fetch"
+
+[inputs.mnw]
+url = "github:Gerg-L/mnw"
+type = "fetch"
+
+[inputs.ndg]
+url = "github:feel-co/ndg"
+type = "fetch"
+
+[inputs.niri]
+url = "github:niri-wm/niri"
+
+[inputs.nix-alien]
+url = "github:thiagokokada/nix-alien"
+follows = { flake-compat = "", nix-index-database = "nix-index-database" }
+
+[inputs.nix-index-database]
+url = "github:nix-community/nix-index-database"
+
+[inputs.nix-wrapper-modules]
+url = "github:BirdeeHub/nix-wrapper-modules"
+type = "fetch"
+
+[inputs.nixos-core]
+url = "github:manic-systems/nixos-core"
+
+[inputs.nixos-hardware]
+url = "github:NixOS/nixos-hardware"
+type = "fetch"
+
+[inputs.nixpkgs]
+url = "channel:nixos-unstable"
+# this is needed by all_follow
+type = "flake"
+
+[inputs.noctalia]
+url = "github:noctalia-dev/noctalia"
+type = "fetch"
+
+[inputs.np]
+url = "github:notashelf/np"
+type = "fetch"
+
+[inputs.phoenix]
+url = "codeberg:celenity/Phoenix?ref=pages"
+type = "fetch"
+
+[inputs.treefmt-nix]
+url = "github:numtide/treefmt-nix"
+type = "fetch"
+
+[inputs.wallpapers]
+url = "github:ratakor/wallpapers"
+type = "fetch"
+
+[inputs.watt]
+url = "github:NotAShelf/watt"
+type = "fetch"
+
+[inputs.zfs-restore]
+url = "github:ratakor/zfs-restore"
+type = "fetch"
+
+[inputs.zpotify]
+url = "github:ratakor/zpotify"
+type = "fetch"
+
+[inputs.zsh-helix-mode]
+url = "github:Multirious/zsh-helix-mode"
+type = "fetch"
+
+[inputs.tack]
+url = "github:manic-systems/tack"
