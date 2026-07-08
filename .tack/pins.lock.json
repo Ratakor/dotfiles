@@ -47,14 +47,6 @@
     "narHash": "sha256-xNmvz86FgLo41jQHMol361/TI7PTa3MYE8Ywnqr7NlA=",
     "lastModified": 1781707694
   },
-  "flint": {
-    "type": "github",
-    "owner": "NotAShelf",
-    "repo": "flint",
-    "rev": "7832a5b5f5ef1243818f8f5e357ad1ee2d35d2b7",
-    "narHash": "sha256-ug37Jt6r8LP3161suTh6IW+fkx0a7kiSAhAPsVcPrkA=",
-    "lastModified": 1767431140
-  },
   "gruvbox-tmTheme": {
     "type": "github",
     "owner": "subnut",

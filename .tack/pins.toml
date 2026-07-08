@@ -51,11 +51,6 @@ type = "fetch"
 url = "github:NotAShelf/eh"
 type = "fetch"
 
-# TODO: useless?
-[inputs.flint]
-url = "github:NotAShelf/flint"
-type = "fetch"
-
 [inputs.gruvbox-tmTheme]
 url = "github:subnut/gruvbox-tmTheme?ref=bat-source"
 type = "fetch"

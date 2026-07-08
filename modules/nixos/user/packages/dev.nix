@@ -82,7 +82,6 @@ let
     # deadnix # find and remove unused code in .nix source files
     # nix-output-monitor # replace `nix` with `nom`
     nurl # Generate Nix fetcher calls from URLs
-    # flint # flake linter
     # nix-tree # TUI viewer for nix derivations
     # nix-query-tree-viewer # GTK viewer for nix derivations
     # cachix # CLI for the eponym binary cache hosting service
