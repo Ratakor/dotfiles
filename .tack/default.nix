@@ -258,7 +258,7 @@ let
         evalFlake sourceInfo flakeDir upLock rootNode f.level f.deep;
 
       evalFetch =
-        sourceInfo: pin: subdir:
+        sourceInfo: pin: subdir: metadata:
         let
           path = sourceInfo.outPath + subdir;
           tackPinsPath = path + "/.tack/pins.toml";
@@ -282,7 +282,7 @@ let
           else
             trace "tack: ${path}: upstream .tack predates override support; overrides will not reach it" path
         else
-          path;
+          metadata // { outPath = path; };
 
       loadPin =
         name: pin:
@@ -296,7 +296,10 @@ let
           let
             sourceInfo = fetchPin name;
           in
-          if pinType == "flake" then evalTopFlake sourceInfo pin else evalFetch sourceInfo pin subdir;
+          if pinType == "flake" then
+            evalTopFlake sourceInfo pin
+          else
+            evalFetch sourceInfo pin subdir lock.${name};
 
       declared = pins.inputs or { };
 
