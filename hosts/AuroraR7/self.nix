@@ -74,5 +74,9 @@
       terminal.foot.enable = true; # just in case ghostty doesn't work
       editor.visual.zed.enable = true;
     };
+
+    services = {
+      arrpc.enable = true;
+    };
   };
 }

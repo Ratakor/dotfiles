@@ -10,5 +10,6 @@ in
     syncthing.enable = mkEnableOption' "Syncthing";
 
     librespot.enable = mkEnableOption "Librespot, Spotify playback daemon";
+    arrpc.enable = mkEnableOption "arRPC, Discord RPC server";
   };
 }
