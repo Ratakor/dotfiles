@@ -12,11 +12,11 @@ in
   options.self.wallpapers = mkOption {
     type = path;
     default = pkgs.callPackage "${sources.wallpapers}/package.nix" {
-      version = lib.shortRev sources.wallpapers.revision;
+      version = lib.shortRev sources.wallpapers.rev;
     };
     defaultText = literalExpression ''
       pkgs.callPackage "''${sources.wallpapers}/package.nix" {
-        version = lib.shortRev sources.wallpapers.revision;
+        version = lib.shortRev sources.wallpapers.rev;
       }
     '';
     description = "Directory with all available wallpapers.";

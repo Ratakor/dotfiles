@@ -57,7 +57,7 @@ let
         # A scrollable-tiling Wayland compositior. Git version. Peak usage of flake btw.
         # niri-git = (lib.flakes.package sources.niri pkgs.system { rust-overlay = { }; }).overrideAttrs {
         #   # well flake-compat isn't perfect but I love it
-        #   version = lib.shortRev sources.niri.revision;
+        #   version = lib.shortRev sources.niri.rev;
         #   __intentionallyOverridingVersion = true;
         # };
 
@@ -66,14 +66,14 @@ let
           (import sources.nix-alien {
             inherit pkgs;
             self = {
-              shortRev = lib.shortRev sources.nix-alien.revision;
+              shortRev = lib.shortRev sources.nix-alien.rev;
               inputs = {
                 nix-index-database = {
                   packages.${pkgs.stdenv.hostPlatform.system} = import sources.nix-index-database { inherit pkgs; };
-                  rev = sources.nix-index-database.revision;
+                  inherit (sources.nix-index-database) rev;
                 };
                 nixpkgs = {
-                  narHash = sources.nixpkgs.hash;
+                  inherit (sources.nixpkgs) narHash;
                 };
               };
             };
@@ -83,7 +83,7 @@ let
         npins = pkgs.callPackage "${sources.npins}/npins.nix" { };
 
         # A pull request tracker for Nixpkgs
-        npr = pkgs.callPackage "${sources.npr}/package.nix" { rev = lib.shortRev sources.npr.revision; };
+        npr = pkgs.callPackage "${sources.npr}/package.nix" { rev = lib.shortRev sources.npr.rev; };
 
         # Automatic CPU speed & power optimizer for Linux
         watt = pkgs.callPackage "${sources.watt}/nix/package.nix" { };

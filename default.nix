@@ -1,5 +1,5 @@
 {
-  sources ? import ./npins,
+  sources ? (import ./.tack) { overrides = args.tackOverrides or { }; },
   system ? builtins.currentSystem or "x86_64-linux",
   ...
 }@args:
