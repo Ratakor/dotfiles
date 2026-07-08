@@ -9,18 +9,13 @@ let
   inherit (lib.modules) mkIf;
   inherit (lib.lists) optional;
 
-  dove = lib.flakes.compat {
-    src = sources.dove;
-    inputsOverrides = { inherit (sources) phoenix; };
-  };
-
   prg = config.self.programs;
   cfg = prg.email.thunderbird;
 
   package = pkgs.thunderbird;
 in
 {
-  imports = [ dove.nixosModules.default ];
+  imports = [ sources.dove.nixosModules.default ];
 
   config = {
     self.programs.default.email = mkIf (prg.default.email.name == "thunderbird") {

@@ -144,7 +144,7 @@ import sources.nixpkgs {
 
     # Helium Browser
     (_final: _prev: {
-      helium = lib.flakes.package sources.helium system { };
+      helium = sources.helium.packages.${system}.default;
     })
 
     # https://github.com/NixOS/nixpkgs/issues/513245#issuecomment-4320293674

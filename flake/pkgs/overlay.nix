@@ -56,12 +56,8 @@ let
           xcb-util-cursor = pkgs.libxcb-cursor;
         };
 
-        # A scrollable-tiling Wayland compositior. Git version. Peak usage of flake btw.
-        # niri-git = (lib.flakes.package sources.niri system { rust-overlay = { }; }).overrideAttrs {
-        #   # well flake-compat isn't perfect but I love it
-        #   version = lib.shortRev sources.niri.rev;
-        #   __intentionallyOverridingVersion = true;
-        # };
+        # A scrollable-tiling Wayland compositior. Git version.
+        # niri-git = sources.niri.packages.${system}.default;
 
         # Run unpatched binaries on Nix/NixOS
         nix-alien =

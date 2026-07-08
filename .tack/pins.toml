@@ -40,8 +40,8 @@ url = "github:nix-community/disko"
 type = "fetch"
 
 [inputs.dove]
-url = "codeberg:celenity/dove?ref=pages"
-type = "fetch"
+url = "codeberg:celenity/Dove?ref=pages"
+follows = { phoenix = "phoenix" }
 
 [inputs.dracula-tmTheme]
 url = "github:dracula/sublime"
@@ -49,11 +49,6 @@ type = "fetch"
 
 [inputs.eh]
 url = "github:NotAShelf/eh"
-type = "fetch"
-
-# TODO: to remove
-[inputs.flake-compat]
-url = "github:ratakor/flake-compat"
 type = "fetch"
 
 # TODO: useless?
@@ -67,7 +62,6 @@ type = "fetch"
 
 [inputs.helium]
 url = "github:amaanq/helium-flake"
-type = "fetch"
 
 [inputs.home-manager]
 url = "github:nix-community/home-manager"
@@ -87,7 +81,6 @@ type = "fetch"
 
 [inputs.niri]
 url = "github:niri-wm/niri"
-type = "fetch"
 
 [inputs.nix-alien]
 url = "github:thiagokokada/nix-alien"
@@ -103,7 +96,6 @@ type = "fetch"
 
 [inputs.nixos-core]
 url = "github:manic-systems/nixos-core"
-type = "fetch"
 
 [inputs.nixos-hardware]
 url = "github:NixOS/nixos-hardware"

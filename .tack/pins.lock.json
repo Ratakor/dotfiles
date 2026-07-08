@@ -25,7 +25,7 @@
   },
   "dove": {
     "type": "git",
-    "url": "https://codeberg.org/celenity/dove",
+    "url": "https://codeberg.org/celenity/Dove",
     "ref": "refs/heads/pages",
     "rev": "e798693c8d97c19c2fc2a447b639d6a975b0c21c",
     "narHash": "sha256-fyMwUygQ/0qeaYyfTOGiAxrvAmM2QAxFo+bYEXesSos=",
@@ -46,14 +46,6 @@
     "rev": "6351cb76a5256bd71807f244b541a79d5d4d3cd1",
     "narHash": "sha256-xNmvz86FgLo41jQHMol361/TI7PTa3MYE8Ywnqr7NlA=",
     "lastModified": 1781707694
-  },
-  "flake-compat": {
-    "type": "github",
-    "owner": "ratakor",
-    "repo": "flake-compat",
-    "rev": "d187bee2a53453ea72417e9b638544382b3fb029",
-    "narHash": "sha256-uY3gWlQLehaRFW399OMqyvGECOUbHK0EpFPoQU4LPmc=",
-    "lastModified": 1776787484
   },
   "flint": {
     "type": "github",
