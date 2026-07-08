@@ -79,11 +79,10 @@ url = "github:niri-wm/niri"
 
 [inputs.nix-alien]
 url = "github:thiagokokada/nix-alien"
-type = "fetch"
+follows = { flake-compat = "", nix-index-database = "nix-index-database" }
 
 [inputs.nix-index-database]
 url = "github:nix-community/nix-index-database"
-type = "fetch"
 
 [inputs.nix-wrapper-modules]
 url = "github:BirdeeHub/nix-wrapper-modules"
@@ -98,7 +97,8 @@ type = "fetch"
 
 [inputs.nixpkgs]
 url = "channel:nixos-unstable"
-# type = "fetch" # TODO
+# this is needed by all_follow
+type = "flake"
 
 [inputs.noctalia]
 url = "github:noctalia-dev/noctalia"

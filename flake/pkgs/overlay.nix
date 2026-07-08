@@ -57,22 +57,7 @@ let
         # niri-git = sources.niri.packages.${system}.default;
 
         # Run unpatched binaries on Nix/NixOS
-        nix-alien =
-          (import sources.nix-alien {
-            inherit pkgs;
-            self = {
-              shortRev = lib.shortRev sources.nix-alien.rev;
-              inputs = {
-                nix-index-database = {
-                  packages.${system} = import sources.nix-index-database { inherit pkgs; };
-                  inherit (sources.nix-index-database) rev;
-                };
-                nixpkgs = {
-                  inherit (sources.nixpkgs) narHash;
-                };
-              };
-            };
-          }).nix-alien;
+        nix-alien = sources.nix-alien.packages.${system}.default;
 
         # Source of sources
         tack = sources.tack.packages.${system}.default;

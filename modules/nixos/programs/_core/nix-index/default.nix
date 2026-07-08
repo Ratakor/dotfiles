@@ -1,13 +1,9 @@
-{
-  lib,
-  sources,
-  ...
-}:
+{ lib, sources, ... }:
 let
   inherit (lib.modules) mkForce;
 in
 {
-  hm.imports = [ "${sources.nix-index-database}/home-manager-module.nix" ];
+  hm.imports = [ sources.nix-index-database.homeModules.default ];
 
   hm.programs = {
     # A file database for nixpkgs
