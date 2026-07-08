@@ -8,7 +8,7 @@
 let
   inherit (lib.modules) mkIf;
 
-  module = "${sources.noctalia-shell}/nix/home-module.nix";
+  module = "${sources.noctalia}/nix/home-module.nix";
 
   # colors = config.self.colors.default;
   prg = config.self.programs;

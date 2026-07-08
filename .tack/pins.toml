@@ -105,8 +105,7 @@ type = "fetch"
 url = "channel:nixos-unstable"
 # type = "fetch" # TODO
 
-# TODO: rename noctalia
-[inputs.noctalia-shell]
+[inputs.noctalia]
 url = "github:noctalia-dev/noctalia"
 type = "fetch"
 
