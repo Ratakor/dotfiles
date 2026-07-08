@@ -205,6 +205,14 @@
     "narHash": "sha256-sbsYNVt12TNYDNZe1BgvA8AtDI3jrdrIpSRCpJRWhFI=",
     "lastModified": 1783485924
   },
+  "tack": {
+    "type": "github",
+    "owner": "manic-systems",
+    "repo": "tack",
+    "rev": "95ddc34601dcded62dc5d3cba27a5d102136f542",
+    "narHash": "sha256-2oK+QKei8MNpfDBwnSC/pjWtWwWwGNtqChM8XmAhZhs=",
+    "lastModified": 1782616671
+  },
   "treefmt-nix": {
     "type": "github",
     "owner": "numtide",

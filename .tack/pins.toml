@@ -111,7 +111,7 @@ type = "fetch"
 
 [inputs.nixpkgs]
 url = "channel:nixos-unstable"
-type = "fetch"
+# type = "fetch" # TODO
 
 # TODO: rename noctalia
 [inputs.noctalia-shell]
@@ -159,3 +159,6 @@ type = "fetch"
 [inputs.zsh-helix-mode]
 url = "github:Multirious/zsh-helix-mode"
 type = "fetch"
+
+[inputs.tack]
+url = "github:manic-systems/tack"
