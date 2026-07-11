@@ -50,6 +50,7 @@ jobs:
     needs: find-uncached
     if: needs.find-uncached.outputs.uncached != '[]'
     strategy:
+      fail-fast: false
       matrix:
         package: ${{ fromJSON(needs.find-uncached.outputs.uncached) }}
     runs-on: ubuntu-latest
