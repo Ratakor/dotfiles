@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v7
         with:
@@ -32,8 +33,11 @@ jobs:
           name: ratakor
 
       - name: "Update sources"
-        run: nix run .#tack -- update
+        run: nix run .#tack -- update > body.txt 2>&1
 
-      - uses: stefanzweifel/git-auto-commit-action@v7
+      - uses: peter-evans/create-pull-request@v8
         with:
-          commit_message: "ci: update sources"
+          branch: nixos/update-sources
+          commit-message: "ci: update sources"
+          title: "ci: update sources"
+          body-path: body.txt
