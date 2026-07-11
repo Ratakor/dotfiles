@@ -1,4 +1,4 @@
-name: Update flake
+name: Update sources
 
 on:
   workflow_dispatch: # Allows manual triggering
