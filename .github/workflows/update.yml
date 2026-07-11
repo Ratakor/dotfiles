@@ -33,11 +33,11 @@ jobs:
           name: ratakor
 
       - name: "Update sources"
-        run: nix run .#tack -- update > body.txt 2>&1
+        run: nix run .#tack -- update | grep -v unchanged > "$RUNNER_TEMP"/body.txt
 
       - uses: peter-evans/create-pull-request@v8
         with:
           branch: nixos/update-sources
           commit-message: "ci: update sources"
           title: "ci: update sources"
-          body-path: body.txt
+          body-path: ${{ runner.temp }}/body.txt
