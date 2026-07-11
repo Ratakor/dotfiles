@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: nixos
+          ref: nixos/master
           token: "${{ secrets.FLAKE_UPDATE_PAT }}"
 
       - name: "Set up Nix"
