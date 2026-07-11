@@ -1,9 +1,9 @@
-name: Update flake
+name: Update sources
 
 on:
   workflow_dispatch: # Allows manual triggering
   schedule:
-    - cron: "0 1 * * 6" # At 01:00 on Saturday.
+    - cron: "0 1 * * 5" # At 01:00 on Friday.
 
 permissions:
   contents: read
