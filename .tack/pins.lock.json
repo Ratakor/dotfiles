@@ -205,14 +205,6 @@
     "narHash": "sha256-VJtExAheEg2UgFjfHEOFO63Hcm8LAdb/DO2EpzKkJOw=",
     "lastModified": 1780238125
   },
-  "watt": {
-    "type": "github",
-    "owner": "NotAShelf",
-    "repo": "watt",
-    "rev": "8c39a46d1d9314484a1d573da66f306d6862814f",
-    "narHash": "sha256-Njn471xFf7OA/HkzrSWNLSxbYnXq0ZZ7nwwPF63vB2M=",
-    "lastModified": 1783329514
-  },
   "zfs-restore": {
     "type": "github",
     "owner": "ratakor",

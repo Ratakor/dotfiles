@@ -62,9 +62,6 @@ let
         # Source of sources
         tack = sources.tack.packages.${system}.default;
 
-        # Automatic CPU speed & power optimizer for Linux
-        watt = pkgs.callPackage "${sources.watt}/nix/package.nix" { };
-
         # CLI tool to restore files from ZFS snapshots
         zfs-restore = pkgs.callPackage "${sources.zfs-restore}/nix/package.nix" { };
 
