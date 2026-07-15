@@ -147,7 +147,6 @@ url = "github:numtide/treefmt-nix"
 # Massive collection of wallpapers
 [inputs.wallpapers]
 url = "github:ratakor/wallpapers"
-type = "fetch"
 
 # CLI tool to restore files from ZFS snapshots
 [inputs.zfs-restore]

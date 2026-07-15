@@ -193,9 +193,9 @@
     "type": "github",
     "owner": "ratakor",
     "repo": "wallpapers",
-    "rev": "890f2b1a6b227654823bc1b9ad382e8d5979b401",
-    "narHash": "sha256-VJtExAheEg2UgFjfHEOFO63Hcm8LAdb/DO2EpzKkJOw=",
-    "lastModified": 1780238125
+    "rev": "de96fe925294937d6e115059f6b94211f4c5f758",
+    "narHash": "sha256-Ny/SVGDmsSgKOBSwgWcu8UUXYeWSwST72Q+9S7M3PgQ=",
+    "lastModified": 1784150747
   },
   "zfs-restore": {
     "type": "github",

@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  sources,
-  ...
-}:
+{ lib, pkgs, ... }:
 let
   inherit (lib.options) mkOption literalExpression;
   inherit (lib.types) path;
@@ -11,11 +6,9 @@ in
 {
   options.self.wallpapers = mkOption {
     type = path;
-    # TODO: version = sources.wallpapers.metadata.lastModified
-    # depends on https://github.com/manic-systems/tack/pull/84
-    default = pkgs.callPackage "${sources.wallpapers}/package.nix" { };
+    default = pkgs.wallpapers;
     defaultText = literalExpression ''
-      pkgs.callPackage "''${sources.wallpapers}/package.nix" { }
+      pkgs.wallpapers
     '';
     description = "Directory with all available wallpapers.";
   };
