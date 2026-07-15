@@ -38,5 +38,12 @@ in
           }
         ];
     };
+
+    # This is probably better security wise since run0 uses polkit rather than
+    # setuid binary BUT it's way less convenient to use run0 instead of sudo
+    run0 = {
+      enable = false;
+      # sudo-shim.enable = true;
+    };
   };
 }
