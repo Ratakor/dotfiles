@@ -1,7 +1,7 @@
 {
   lib,
+  self,
   sources,
-  overlay,
 }:
 let
   inherit (builtins) elem concatStringsSep;
@@ -92,19 +92,20 @@ import sources.nixpkgs {
   };
 
   overlays = [
-    overlay
+    self.overlays.default
 
-    # Replace nixpkgs' pristine lib with our filthy one
-    (_final: _prev: { inherit lib; })
-
-    # Replace _all_ instances of nix with latest lix.
     (final: prev: {
+      # Replace nixpkgs' pristine lib with our filthy one
+      inherit lib;
+
+      # Replace _all_ instances of nix with latest lix.
       inherit (prev.lixPackageSets.latest) lix;
       nix = final.lix;
-    })
 
-    # Replace nix-output-monitor ugly icons.
-    (_final: prev: {
+      # Helium Browser
+      helium = sources.helium.packages.${system}.default;
+
+      # Replace nix-output-monitor ugly icons.
       nix-output-monitor =
         let
           oldIcons = [
@@ -140,18 +141,6 @@ import sources.nixpkgs {
             substituteInPlace lib/NOM/Print/Tree.hs --replace-fail '┌' '╭'
           '';
         });
-    })
-
-    # Helium Browser
-    (_final: _prev: {
-      helium = sources.helium.packages.${system}.default;
-    })
-
-    # https://github.com/NixOS/nixpkgs/issues/513245#issuecomment-4320293674
-    (_final: prev: {
-      openldap = prev.openldap.overrideAttrs {
-        doCheck = !prev.stdenv.hostPlatform.isi686;
-      };
     })
   ];
 }

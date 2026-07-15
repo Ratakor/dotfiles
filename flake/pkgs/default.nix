@@ -9,7 +9,7 @@ let
   inherit (lib.attrsets) genAttrs;
 
   overlay = import ./overlay.nix { inherit lib self sources; };
-  pkgsFor = import ./pkgs.nix { inherit lib sources overlay; };
+  pkgsFor = import ./pkgs.nix { inherit lib self sources; };
   legacyPackages = genAttrs systems pkgsFor;
 in
 {
