@@ -42,9 +42,6 @@ let
           name = "disko-install";
         };
 
-        # Ergonomic Nix Helper
-        eh = pkgs.callPackage "${sources.eh}/nix/package.nix" { };
-
         # Not a Docs Generator
         # ndg = pkgs.callPackage "${sources.ndg}/nix/packages/ndg/package.nix" { };
 

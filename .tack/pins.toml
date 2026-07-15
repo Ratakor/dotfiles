@@ -46,10 +46,6 @@ follows = { phoenix = "phoenix" }
 url = "github:dracula/sublime"
 type = "fetch"
 
-[inputs.eh]
-url = "github:NotAShelf/eh"
-type = "fetch"
-
 [inputs.gruvbox-tmTheme]
 url = "github:subnut/gruvbox-tmTheme?ref=bat-source"
 type = "fetch"

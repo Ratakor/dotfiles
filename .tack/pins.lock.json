@@ -39,14 +39,6 @@
     "narHash": "sha256-7veVVrLPW3T7KkkelDmgPW5kp+b12naKSKwCXBgjL1k=",
     "lastModified": 1750788141
   },
-  "eh": {
-    "type": "github",
-    "owner": "NotAShelf",
-    "repo": "eh",
-    "rev": "6351cb76a5256bd71807f244b541a79d5d4d3cd1",
-    "narHash": "sha256-xNmvz86FgLo41jQHMol361/TI7PTa3MYE8Ywnqr7NlA=",
-    "lastModified": 1781707694
-  },
   "gruvbox-tmTheme": {
     "type": "github",
     "owner": "subnut",
