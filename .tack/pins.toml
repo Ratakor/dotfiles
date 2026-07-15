@@ -40,7 +40,6 @@ type = "fetch"
 # Declarative disk partitioning and formatting using nix
 [inputs.disko]
 url = "github:nix-community/disko"
-type = "fetch"
 
 # Dove is a suite of configurations & advanced modifications for Mozilla
 # Thunderbird, designed to put the user first - with a focus on privacy,

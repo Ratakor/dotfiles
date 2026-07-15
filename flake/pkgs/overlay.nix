@@ -6,7 +6,6 @@
 let
   inherit (lib.customisation) callPackageWith;
   inherit (lib.filesystem) packagesFromDirectoryRecursive;
-  inherit (lib.strings) optionalString;
 
   colors = import (self + /modules/options/colors) { };
 
@@ -31,16 +30,7 @@ let
         curd = pkgs.callPackage "${sources.curd}/package.nix" { withMpv = false; };
 
         # Declarative disk partitioning and formatting using nix
-        disko = pkgs.callPackage "${sources.disko}/package.nix" {
-          diskoVersion =
-            let
-              versionInfo = import "${sources.disko}/version.nix";
-            in
-            versionInfo.version + (optionalString (!versionInfo.released) "-dirty");
-        };
-        disko-install = fromSources.disko.overrideAttrs {
-          name = "disko-install";
-        };
+        inherit (sources.disko.packages.${system}) disko disko-install;
 
         # Not a Docs Generator
         # ndg = pkgs.callPackage "${sources.ndg}/nix/packages/ndg/package.nix" { };

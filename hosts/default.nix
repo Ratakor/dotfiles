@@ -16,7 +16,7 @@ let
   inherit (lib.attrsets) genAttrs';
 
   # External Modules
-  disko = sources.disko + /module.nix;
+  inherit (sources.disko.nixosModules) disko;
   inherit (sources) nixos-hardware;
 
   # Root path for local modules
