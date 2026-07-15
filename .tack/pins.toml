@@ -67,7 +67,6 @@ url = "github:amaanq/helium-flake"
 # Manage a user environment using Nix
 [inputs.home-manager]
 url = "github:nix-community/home-manager"
-type = "fetch"
 
 # Secure Boot & Measured Boot for NixOS
 [inputs.lanzaboote]
@@ -123,7 +122,6 @@ type = "flake"
 # A sleek and minimal desktop shell thoughtfully crafted for Wayland
 [inputs.noctalia]
 url = "github:noctalia-dev/noctalia"
-type = "fetch"
 
 # Network Printer, or; "No Problem" (We still have Many Problems)
 [inputs.np]
@@ -145,7 +143,6 @@ url = "github:manic-systems/tack"
 # Formatter multiplexer, configured in nix
 [inputs.treefmt-nix]
 url = "github:numtide/treefmt-nix"
-type = "fetch"
 
 # Massive collection of wallpapers
 [inputs.wallpapers]

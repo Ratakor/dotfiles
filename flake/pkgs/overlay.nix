@@ -32,9 +32,6 @@ let
         # Declarative disk partitioning and formatting using nix
         inherit (sources.disko.packages.${system}) disko disko-install;
 
-        # Not a Docs Generator
-        # ndg = pkgs.callPackage "${sources.ndg}/nix/packages/ndg/package.nix" { };
-
         # Network Printer
         network-printer = pkgs.callPackage "${sources.np}/nix/package.nix" {
           xcb-util-cursor = pkgs.libxcb-cursor;

@@ -11,7 +11,7 @@ let
 in
 {
   imports = [
-    (import "${sources.home-manager}/nixos")
+    sources.home-manager.nixosModules.default
     (mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
   ];
 

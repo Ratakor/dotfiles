@@ -4,7 +4,7 @@ let
   toml = pkgs.formats.toml { };
   toTOML = name: value: toString (toml.generate name value);
 
-  treefmt = (import sources.treefmt-nix).evalModule pkgs {
+  treefmt = sources.treefmt-nix.lib.evalModule pkgs {
     projectRootFile = "flake.nix";
     enableDefaultExcludes = true;
 

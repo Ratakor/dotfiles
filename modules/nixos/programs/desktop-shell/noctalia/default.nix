@@ -8,8 +8,6 @@
 let
   inherit (lib.modules) mkIf;
 
-  module = "${sources.noctalia}/nix/home-module.nix";
-
   # colors = config.self.colors.default;
   prg = config.self.programs;
   dprg = prg.default;
@@ -29,12 +27,12 @@ in
       };
     };
 
-    hm.imports = [ module ];
+    hm.imports = [ sources.noctalia.homeModules.default ];
 
     hm.programs.noctalia = {
       enable = true;
       systemd.enable = isDefaultBar; # TODO: deprecated
-      package = pkgs.noctalia-shell;
+      # package = pkgs.noctalia-shell;
 
       # settings = {};
 
