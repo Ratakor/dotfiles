@@ -8,17 +8,10 @@
 let
   inherit (lib.modules) mkIf mkDefault mkForce;
 
-  lanzaboote = import sources.lanzaboote {
-    inherit (pkgs.stdenv.hostPlatform) system;
-    inherit pkgs;
-    # rust-overlay
-    # crane
-  };
-
   cfg = config.self.system.boot.loader;
 in
 {
-  imports = [ lanzaboote.nixosModules.lanzaboote ];
+  imports = [ sources.lanzaboote.nixosModules.default ];
 
   config = mkIf cfg.lanzaboote.enable {
     environment.systemPackages = [

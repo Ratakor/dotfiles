@@ -71,7 +71,9 @@ url = "github:nix-community/home-manager"
 # Secure Boot & Measured Boot for NixOS
 [inputs.lanzaboote]
 url = "github:nix-community/lanzaboote"
-type = "fetch"
+follows = { pre-commit = "" }
+# crane
+# rust-overlay
 
 # Minimal Neovim Wrapper
 [inputs.mnw]
@@ -116,8 +118,6 @@ type = "fetch"
 # https://wiki.nixos.org/wiki/Channel_branches
 [inputs.nixpkgs]
 url = "channel:nixos-unstable"
-# this is needed by all_follow
-type = "flake"
 
 # A sleek and minimal desktop shell thoughtfully crafted for Wayland
 [inputs.noctalia]
