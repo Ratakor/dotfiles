@@ -23,7 +23,7 @@ ndg-builder.override {
   evaluatedModules.options.self = eval.options.self;
   moduleName = "self";
   basePath = self;
-  repoPath = "https://github.com/ratakor/dotfiles/blob/nixos";
+  repoPath = "https://github.com/ratakor/dotfiles/blob/nixos/master";
   title = "Self";
   description = "Options available via config.self";
 }
