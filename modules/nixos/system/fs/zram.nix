@@ -7,7 +7,7 @@ in
   # This uses zram-generator under the hood.
   zramSwap = {
     enable = true;
-    algorithm = "zstd";
+    algorithm = "zstd"; # can also use "lz4"
     # Maximum percentage of memory that can be stored in zram swap.
     memoryPercent = 50; # 0-200, default is 50
     # Maximum total amount of memory (in bytes) that can be stored in zram swap.

@@ -8,6 +8,7 @@
       channels = { };
       settings = { };
     };
+
     nix-search-tv = {
       enable = true;
       settings = {
@@ -20,6 +21,7 @@
         update_interval = "24h";
       };
     };
+
     # I think we *need* to do that because of zsh-vi-mode.
     # Use mkAfter if it's still not working.
     zsh.initContent = /* zsh */ ''

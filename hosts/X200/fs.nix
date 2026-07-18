@@ -45,7 +45,7 @@
     {
       device = "/dev/disk/by-partuuid/279e9b8b-02";
       randomEncryption = {
-        enable = true;
+        enable = false; # doesn't work
         cipher = "serpent-xts-plain64";
         keySize = 512;
       };
