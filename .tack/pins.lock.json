@@ -27,9 +27,9 @@
     "type": "git",
     "url": "https://codeberg.org/celenity/Dove",
     "ref": "refs/heads/pages",
-    "rev": "e798693c8d97c19c2fc2a447b639d6a975b0c21c",
-    "narHash": "sha256-fyMwUygQ/0qeaYyfTOGiAxrvAmM2QAxFo+bYEXesSos=",
-    "lastModified": 1781074173
+    "rev": "62f739e914705e6247c08fa169671998a6668b6a",
+    "narHash": "sha256-UWB4CwFoKKhSGDziwjR6VOda/LpLh+dHIm8XNH55arE=",
+    "lastModified": 1783907735
   },
   "dracula-tmTheme": {
     "type": "github",
@@ -51,17 +51,17 @@
     "type": "github",
     "owner": "amaanq",
     "repo": "helium-flake",
-    "rev": "50f683df6e07a65b1735eeebd4e03c71b27d7587",
-    "narHash": "sha256-X5+QoBbG+iVRhoHEoK83GGK2EuFwW4Jnyuqxn6AVzIA=",
-    "lastModified": 1783527686
+    "rev": "7dcfc8f6532e8ee65ca24f45609bb781bda3518f",
+    "narHash": "sha256-rSAYjCpG+0ODQPZXU5N7cyRfszU1diW0kFXJaO8duYw=",
+    "lastModified": 1784194405
   },
   "home-manager": {
     "type": "github",
     "owner": "nix-community",
     "repo": "home-manager",
-    "rev": "1aac8895fea6fcabc6a0184c63a80fb2f99fd208",
-    "narHash": "sha256-OEFYdbtG6Qy04KGteknnrx15Uo2XXkYVuUvBvFNEn+Q=",
-    "lastModified": 1783525612
+    "rev": "165228b0efefc3e635e5174020c40ea64271dc25",
+    "narHash": "sha256-N5JiyICSeQF14x+OQebNyPpYowOT9Rs1iKyeCylSzOA=",
+    "lastModified": 1784129366
   },
   "lanzaboote": {
     "type": "github",
@@ -75,17 +75,17 @@
     "type": "github",
     "owner": "Gerg-L",
     "repo": "mnw",
-    "rev": "0871dbf63a53610c95db04439ed8ea4d6ec9c160",
-    "narHash": "sha256-VKKe8r4pwCGWZ3Yr9CPN129R4S3CKLSrlYqdYz3vKpM=",
-    "lastModified": 1780772958
+    "rev": "0151d9fa87992cbeb67c86616fb9170dcec830b6",
+    "narHash": "sha256-HRn4O1X2ShYtbq5Egji72/aemyc2cIQicjRZD9hBqM8=",
+    "lastModified": 1784154424
   },
   "ndg": {
     "type": "github",
     "owner": "feel-co",
     "repo": "ndg",
-    "rev": "47af0be118b78d7b3f6b2c42d3206734c44cd58c",
-    "narHash": "sha256-7wOAQpEzwcr+nW2cIUEsCZ7h+WSOTe46Ln3s4/XELr8=",
-    "lastModified": 1783084739
+    "rev": "57bba567ce88e9799f79f367f20896d96e293463",
+    "narHash": "sha256-/0iK1fXxrVhCpKQh1nP7DGVQXpgcJyQDq+iDDZ2VK+8=",
+    "lastModified": 1784292573
   },
   "niri": {
     "type": "github",
@@ -99,17 +99,17 @@
     "type": "github",
     "owner": "thiagokokada",
     "repo": "nix-alien",
-    "rev": "4fc9de6d1f215cf1679da04cf8749e085dd027d7",
-    "narHash": "sha256-n6nn0A3U3FnHWa9Y+dWNiuQnMDrcndQplgE0ooiexG8=",
-    "lastModified": 1782206964
+    "rev": "df422df4324674417f91dee49bae401eef87c6ed",
+    "narHash": "sha256-iW7BzSkv27lII5FvrB6kPRO0CzOZj8utOIpvcFWjHgw=",
+    "lastModified": 1784118096
   },
   "nix-index-database": {
     "type": "github",
     "owner": "nix-community",
     "repo": "nix-index-database",
-    "rev": "96d6de10eb281b98f5cfcd1841394c03da5df77c",
-    "narHash": "sha256-RY8e+gR2/DhXsYDxGDL6Hhe9+POD9u4+llwxMBqMQDs=",
-    "lastModified": 1783414108
+    "rev": "1111b9bc836afb7e31a7014e8d1272de9b1c917d",
+    "narHash": "sha256-BQxN5UMg9FOevAsgBRwPxfxlh51Puj+dNn/8Dsi3sPM=",
+    "lastModified": 1783864904
   },
   "nix-wrapper-modules": {
     "type": "github",
@@ -131,23 +131,23 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixos-hardware",
-    "rev": "662bd6e312d2c8b212e32cb377abaee190749320",
-    "narHash": "sha256-E+3MIMvKuo9k+K+qLQ9YXzsBzkgHuyVLnsEbN2DFfuc=",
-    "lastModified": 1783370751
+    "rev": "779c32a00155994c86cde8213a8dd4df139d4355",
+    "narHash": "sha256-rkSPTePrKqs4dg+i7ZFCq93+HrClac6oSwXX927SVjA=",
+    "lastModified": 1784310968
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1027867.d407951447dc/nixexprs.tar.xz",
-    "rev": "d407951447dcd00442e97087bf374aad70c04cea",
-    "narHash": "sha256-FGQ8TfSm9WviNE/fQAWsKs+y4GkX8fU4EScewpw54Y8="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1035164.753cc8a3a874/nixexprs.tar.xz",
+    "rev": "753cc8a3a87467296ddd1fa93f0cc3e81120ee46",
+    "narHash": "sha256-Pjytpyqs/h6Kfs46Pcj+upOCqq0/Wwq81YSSeko7ChM="
   },
   "noctalia": {
     "type": "github",
     "owner": "noctalia-dev",
     "repo": "noctalia",
-    "rev": "14ec268fc5833fa34e4b1e25ffc8762545bbdf5f",
-    "narHash": "sha256-zZw90c4SRCrnNR2nwUigywYAFA78wsjpmKKMpVD3EOI=",
-    "lastModified": 1783539356
+    "rev": "8b5b1381d5a2ea94b787da11abe4f2411b89b196",
+    "narHash": "sha256-Kx5wHzcaAU0co8C5/QDkB43EaYsEShEN4iKmoUMyFrY=",
+    "lastModified": 1784342302
   },
   "np": {
     "type": "github",
@@ -157,29 +157,21 @@
     "narHash": "sha256-KC+Tj43cjDcHtul7DoyaEKMzyDI5drHtsnArPfQVKGU=",
     "lastModified": 1765281846
   },
-  "npr": {
-    "type": "github",
-    "owner": "manic-systems",
-    "repo": "npr",
-    "rev": "a80abbaf521216b454909550a786d0f37273599e",
-    "narHash": "sha256-RbSSFW8hMn6pBo6rnWeFwtLtNPAldlQaceNh0mMQErQ=",
-    "lastModified": 1779954238
-  },
   "phoenix": {
     "type": "git",
     "url": "https://codeberg.org/celenity/Phoenix",
     "ref": "refs/heads/pages",
-    "rev": "62778509fa8de445eb3f21cbed90265321132f08",
-    "narHash": "sha256-sbsYNVt12TNYDNZe1BgvA8AtDI3jrdrIpSRCpJRWhFI=",
-    "lastModified": 1783485924
+    "rev": "0331899e5023e671bb66bb565189ca9d764ec018",
+    "narHash": "sha256-H6KyLUuKJGP+PjHtwiIJ033z51tja3v5dXDVYbiUu1I=",
+    "lastModified": 1783993774
   },
   "tack": {
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "95ddc34601dcded62dc5d3cba27a5d102136f542",
-    "narHash": "sha256-2oK+QKei8MNpfDBwnSC/pjWtWwWwGNtqChM8XmAhZhs=",
-    "lastModified": 1782616671
+    "rev": "1b35dea7e2f90863cce2099eafdf318d4c96f2e6",
+    "narHash": "sha256-5peItmNvgVHeLDf/T7JxA/By0r8JsQx75MuMni1Q9ns=",
+    "lastModified": 1783834540
   },
   "treefmt-nix": {
     "type": "github",
@@ -193,9 +185,9 @@
     "type": "github",
     "owner": "ratakor",
     "repo": "wallpapers",
-    "rev": "de96fe925294937d6e115059f6b94211f4c5f758",
-    "narHash": "sha256-Ny/SVGDmsSgKOBSwgWcu8UUXYeWSwST72Q+9S7M3PgQ=",
-    "lastModified": 1784150747
+    "rev": "6c8e67bcee1557a074eba5006606a86f8dd075d4",
+    "narHash": "sha256-pV2t5XXq3V6KI/VAAzICr8K8OT9k1/uy3+bQo47xdtg=",
+    "lastModified": 1784325025
   },
   "zfs-restore": {
     "type": "github",
