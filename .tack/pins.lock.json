@@ -204,13 +204,5 @@
     "rev": "5f7b5b22216ea56363d9c203e228b87c9887e534",
     "narHash": "sha256-tvhXPsL+cnYWDHjbfp45aV6aBzzpKspRWI+8v0Y7ABw=",
     "lastModified": 1780451277
-  },
-  "zsh-helix-mode": {
-    "type": "github",
-    "owner": "Multirious",
-    "repo": "zsh-helix-mode",
-    "rev": "e8d4940588f9809ab5658aa7c9c664921d547879",
-    "narHash": "sha256-YggmEZ5hRySwXR+VZFKKZ+HzH5Cvz0661QeiAjlE30E=",
-    "lastModified": 1774203535
   }
 }

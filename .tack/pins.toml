@@ -157,8 +157,3 @@ type = "fetch"
 [inputs.zpotify]
 url = "github:ratakor/zpotify"
 type = "fetch"
-
-# Helix keybinding for Z Shell
-[inputs.zsh-helix-mode]
-url = "github:Multirious/zsh-helix-mode"
-type = "fetch"

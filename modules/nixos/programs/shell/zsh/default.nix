@@ -64,24 +64,21 @@ in
           file = "fzf-tab.plugin.zsh";
           src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
         }
+
         {
           name = "nix-shell";
           file = "nix-shell.plugin.zsh";
           src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
         }
-        # zsh-helix-mode looks really cool but:
-        # - cursor blinks (and is colored in normal/insert mode)
-        # - selection doesn't look good on my terminal
-        #{
-        #  name = "zsh-helix-mode";
-        #  file = "zsh-helix-mode.plugin.zsh";
-        #  src = "${pkgs.zsh-helix-mode}/share/zsh-helix-mode";
-        #}
+
+        # zsh-helix-mode is great too but I cba configuring it to work with
+        # other zsh plugins, also zsh-vi-mode seems to having better defaults
         {
           name = "zsh-vi-mode";
           file = "zsh-vi-mode.plugin.zsh";
           src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
         }
+
         # {
         #   name = "fast-syntax-highlighting";
         #   file = "fast-syntax-highlighting.plugin.zsh";
@@ -169,6 +166,7 @@ in
 
       initContent =
         let
+          # (almost) same as `config.hm.programs.zsh.zprof.enable = true;`
           profiling = mkMerge [
             (mkOrder 0 "zmodload zsh/zprof")
             (mkOrder 2000 "zprof")

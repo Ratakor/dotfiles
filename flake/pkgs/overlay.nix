@@ -51,9 +51,6 @@ let
 
         # CLI/TUI for Spotify
         zpotify = pkgs.callPackage "${sources.zpotify}/nix/package.nix" { };
-
-        # Helix keybinds for Z Shell
-        zsh-helix-mode = pkgs.callPackage "${sources.zsh-helix-mode}/default.nix" { };
       };
     in
     base // fromSources;
