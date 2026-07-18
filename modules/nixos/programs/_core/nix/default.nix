@@ -60,7 +60,7 @@ in
         "https://cache.nixos.org/"
         "https://ratakor.cachix.org"
         "https://nix-community.cachix.org"
-        "https://s3.cri.epita.fr/cri-nix-cache.s3.cri.epita.fr"
+        # "https://s3.cri.epita.fr/cri-nix-cache.s3.cri.epita.fr"
         # "https://nix-gaming.cachix.org"
       ];
 
@@ -68,7 +68,7 @@ in
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "ratakor.cachix.org-1:9hOGzHtnKDJ1i9FQN87XFnOOpRBebSKWECswk17glP0="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "cache.nix.cri.epita.fr:qDIfJpZWGBWaGXKO3wZL1zmC+DikhMwFRO4RVE6VVeo="
+        # "cache.nix.cri.epita.fr:qDIfJpZWGBWaGXKO3wZL1zmC+DikhMwFRO4RVE6VVeo="
         # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       ];
 
