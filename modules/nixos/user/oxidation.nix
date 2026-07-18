@@ -82,6 +82,7 @@ in
 
     sl = "ls";
     la = "ls -a";
+    lr = "ls -R";
   };
 
   hm.programs = {
@@ -92,11 +93,10 @@ in
       ];
 
       ls = mkAlias "eza" [
-        "--color=auto"
+        # "--color=auto"
         "--group-directories-first"
-        "--hyperlink"
+        # "--hyperlink=auto"
       ];
-      lr = "ls --recurse";
       tree = "ls --tree";
       ll = "ls --long --group --header --octal-permissions --git";
     };
