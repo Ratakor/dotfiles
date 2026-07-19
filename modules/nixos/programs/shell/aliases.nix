@@ -30,8 +30,9 @@ let
   XDG_PICTURES_DIR = config.hm.xdg.userDirs.pictures;
   XDG_VIDEOS_DIR = config.hm.xdg.userDirs.videos;
   XDG_BIN_DIR = config.hm.xdg.userDirs.extraConfig.BIN;
-  XDG_SCREENSHOTS_DIR = config.hm.xdg.userDirs.extraConfig.SCREENSHOTS;
   XDG_NOTES_DIR = config.hm.xdg.userDirs.extraConfig.NOTES;
+  XDG_SCREENSHOTS_DIR = config.hm.xdg.userDirs.extraConfig.SCREENSHOTS;
+  XDG_WALLPAPERS_DIR = config.hm.xdg.userDirs.extraConfig.WALLPAPERS;
 in
 {
   hm.home.shellAliases = sudoAliases // {
@@ -48,7 +49,7 @@ in
     pp = "cd ${XDG_PICTURES_DIR}";
     psc = "cd ${XDG_SCREENSHOTS_DIR}";
     vv = "cd ${XDG_VIDEOS_DIR}";
-    wp = "cd ${XDG_PICTURES_DIR}/wallpapers";
+    wp = "cd ${XDG_WALLPAPERS_DIR}";
     n = "yazi ${XDG_NOTES_DIR}";
     nn = "cd ${XDG_NOTES_DIR}";
     sc = "cd ${XDG_BIN_DIR}";

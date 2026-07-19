@@ -181,14 +181,6 @@
     "narHash": "sha256-eynAfOmbmxJnkp7YewvCEbShNnnYJ9gLLqkzsYtBPeM=",
     "lastModified": 1780220602
   },
-  "wallpapers": {
-    "type": "github",
-    "owner": "ratakor",
-    "repo": "wallpapers",
-    "rev": "6c8e67bcee1557a074eba5006606a86f8dd075d4",
-    "narHash": "sha256-pV2t5XXq3V6KI/VAAzICr8K8OT9k1/uy3+bQo47xdtg=",
-    "lastModified": 1784325025
-  },
   "zfs-restore": {
     "type": "github",
     "owner": "ratakor",

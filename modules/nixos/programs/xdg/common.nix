@@ -41,9 +41,10 @@ in
       # Non-standard
       extraConfig = {
         BIN = "${HOME}/.local/bin";
-        SCREENSHOTS = "${config.hm.xdg.userDirs.pictures}/screenshots";
         NOTES = "${config.hm.xdg.userDirs.documents}/notes";
         # MAIL = "${HOME}/mail"; # ".local/var/mail" made sense with the .local convention
+        SCREENSHOTS = "${config.hm.xdg.userDirs.pictures}/screenshots";
+        WALLPAPERS = "${config.hm.xdg.userDirs.pictures}/wallpapers";
       };
     };
 

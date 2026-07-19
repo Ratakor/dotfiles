@@ -105,9 +105,6 @@ import sources.nixpkgs {
       # Helium Browser
       helium = sources.helium.packages.${system}.default;
 
-      # Wallpapers, adds pkgs.wallpapers which is like 1GB
-      wallpapers = sources.wallpapers.packages.${system}.default;
-
       # Replace nix-output-monitor ugly icons.
       nix-output-monitor =
         let

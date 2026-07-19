@@ -144,10 +144,6 @@ url = "github:manic-systems/tack"
 [inputs.treefmt-nix]
 url = "github:numtide/treefmt-nix"
 
-# Massive collection of wallpapers
-[inputs.wallpapers]
-url = "github:ratakor/wallpapers"
-
 # CLI tool to restore files from ZFS snapshots
 [inputs.zfs-restore]
 url = "github:ratakor/zfs-restore"

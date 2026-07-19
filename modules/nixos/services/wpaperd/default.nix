@@ -18,7 +18,7 @@ in
   hm.services.wpaperd = {
     inherit (cfg) enable;
     settings.default = {
-      path = config.self.wallpapers;
+      path = config.hm.xdg.userDirs.extraConfig.WALLPAPERS;
       duration = "15m";
       sorting = "random";
       mode = "center";
