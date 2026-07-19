@@ -6,34 +6,59 @@ default: switch
     @# just --list
 
 # Build and activate the new configuration, and make it the boot default
-[group('nh')]
+[group('deploy')]
 switch host="$(hostname)":
     @# nixos-rebuild switch --sudo --flake .
     @# nh os switch -f . nixosConfigurations.{{host}}
     nh os switch --diff always --hostname {{host}} .
 
 # Build the new configuration and make it the boot default
-[group('nh')]
+[group('deploy')]
 boot host="$(hostname)":
     nh os boot --diff always --hostname {{host}} .
 
 # Build and activate the new configuration
-[group('nh')]
+[group('deploy')]
 test host="$(hostname)":
     nh os test --diff always --hostname {{host}} .
 
+
 # Build a `NixOS` VM image
-[group('nh')]
+[group('build')]
 build-vm host="$(hostname)":
     nh os build-vm --hostname {{host}} .
 
 # Build a custom `NixOS` ISO
-[group('nix')]
+[group('build')]
 build-iso:
     nix build .#nixosConfigurations.iso.config.system.build.isoImage
 
+# Run checks
+[group('dev')]
+check:
+    nix flake check
+
+# Format all files
+[group('dev')]
+fmt:
+    nix fmt .
+
+# Flex evaltime :D
+[group('dev')]
+evaltime host="$(hostname)":
+    @time nix eval \
+        .#nixosConfigurations.{{host}}.config.system.build.toplevel \
+        --option eval-cache false \
+        --read-only \
+        --raw
+
+# Open a nix shell with custom variables
+[group('dev')]
+repl host="$(hostname)":
+    @nix repl --file flake/repl.nix --argstr host {{host}}
+
 # Garbage collect all unused nix store entries & remove old generations
-[group('nh')]
+[group('system')]
 clean:
     @# # remove all generations older than 7 days
     @# sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d
@@ -45,42 +70,18 @@ clean:
     nh clean all --ask --keep 5 --keep-since 7d
 
 # Rollback to a previous generation
-[group('nh')]
+[group('system')]
 rollback:
     @# nix profile rollback --profile /nix/var/nix/profiles/system
     nh os rollback --verbose --ask
 
 # List all generations of the system profile
-[group('nh')]
+[group('system')]
 info:
     @# nix profile history --profile /nix/var/nix/profiles/system
     nh os info
 
-# Flex evaltime :D
-[group('nix')]
-evaltime host="$(hostname)":
-    @time nix eval \
-        .#nixosConfigurations.{{host}}.config.system.build.toplevel \
-        --option eval-cache false \
-        --read-only \
-        --raw
-
-# Open a nix shell with custom variables
-[group('nix')]
-repl host="$(hostname)":
-    @nix repl --file flake/repl.nix --argstr host {{host}}
-
-# Format all files
-[group('nix')]
-fmt:
-    nix fmt .
-
-# Run checks
-[group('nix')]
-check:
-    nix flake check
-
 # Update sources
-[group('tack')]
+[group('system')]
 update *inputs:
     tack update {{inputs}}
