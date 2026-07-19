@@ -80,7 +80,7 @@ fmt:
 check:
     nix flake check
 
-# Update nixpkgs
+# Update sources
 [group('tack')]
-update:
-    tack update nixpkgs
+update *inputs:
+    tack update {{inputs}}
