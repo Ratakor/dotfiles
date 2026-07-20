@@ -111,4 +111,9 @@ in
       def timestamp [] { date now | format date "%Y-%m-%dT%H:%M:%S%z" }
     '';
   };
+
+  hm.programs.zsh.shellGlobalAliases = {
+    "-h" = "-h 2>&1 | bat --language=help --style=plain";
+    "--help" = "--help 2>&1 | bat --language=help --style=plain";
+  };
 }

@@ -65,14 +65,6 @@ in
         })
 
         (writeShellApplication {
-          name = "help";
-          runtimeInputs = [ pkgs.bat ];
-          text = ''
-            "$@" --help 2>&1 | bat -p -l help
-          '';
-        })
-
-        (writeShellApplication {
           name = "real";
           runtimeInputs = with pkgs; [
             coreutils
