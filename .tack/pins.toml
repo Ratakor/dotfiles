@@ -7,7 +7,7 @@
 # `scheme:rest` expands by substituting `rest` into the template `{path}`
 [shorturls]
 codeberg = "git+https://codeberg.org/{path}"
-channel = "https://channels.nixos.org/{path}/nixexprs.tar.xz"
+channel = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 
 [tack]
 recomposable = true
