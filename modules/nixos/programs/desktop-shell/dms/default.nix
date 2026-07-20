@@ -1,5 +1,10 @@
 # Dank Material Shell
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  sources,
+  ...
+}:
 let
   inherit (lib.modules) mkIf;
 
@@ -8,6 +13,8 @@ let
   isDefaultBar = dprg.statusBar.name == "dms";
 in
 {
+  imports = [ sources.dms-plugin-registry.nixosModules.default ];
+
   config = mkIf prg.desktopShell.dms.enable {
     self.programs.default = {
       statusBar = mkIf isDefaultBar {
@@ -24,12 +31,9 @@ in
     programs.dms-shell = {
       enable = true;
       systemd.enable = isDefaultBar;
-      enableVPN = false;
-      enableSystemMonitoring = true;
-      enableDynamicTheming = false; # we use wpaperd or swaybg with randwp instead
-      enableClipboardPaste = true;
-      enableCalendarEvents = true;
-      enableAudioWavelength = true;
+      plugins = {
+        dankKDEConnect.enable = config.programs.kdeconnect.enable;
+      };
     };
   };
 }

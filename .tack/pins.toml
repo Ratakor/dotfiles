@@ -41,6 +41,10 @@ type = "fetch"
 [inputs.disko]
 url = "github:nix-community/disko"
 
+# Official and Third Party Plugins & Themes for DankMaterialShell
+[inputs.dms-plugin-registry]
+url = "github:AvengeMedia/dms-plugin-registry"
+
 # Dove is a suite of configurations & advanced modifications for Mozilla
 # Thunderbird, designed to put the user first - with a focus on privacy,
 # security, freedom, & usability.

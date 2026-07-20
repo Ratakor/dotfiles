@@ -23,6 +23,14 @@
     "narHash": "sha256-RxWs5ND31KzTG7wvMM+PMfUjyNpmIEr999lqNARaM5o=",
     "lastModified": 1781152676
   },
+  "dms-plugin-registry": {
+    "type": "github",
+    "owner": "AvengeMedia",
+    "repo": "dms-plugin-registry",
+    "rev": "56aa233bdef2bd4b41163b1a22202ca6e8320c17",
+    "narHash": "sha256-q2SUVigt7qhmhyKl3s4TUG8ZsmpO36Og2pKoLN09yf0=",
+    "lastModified": 1784507922
+  },
   "dove": {
     "type": "git",
     "url": "https://codeberg.org/celenity/Dove",
