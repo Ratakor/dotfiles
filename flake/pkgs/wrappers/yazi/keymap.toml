@@ -16,6 +16,6 @@ prepend_keymap = [
 
   { on = "o", run = "shell 'plumber \"$1\"' --confirm", desc = "Open selected files" },
   { on = "<Enter>", run = "shell 'plumber \"$1\"' --confirm", desc = "Open selected files" },
-  { on = "W", run = "shell 'env IGNORE='' randwp \"$1\"' --confirm", desc = "Set wallpaper" },
+  { on = "W", run = "shell 'randwp \"$1\"' --confirm", desc = "Set wallpaper" },
   { on = "<C-n>", run = "shell 'dragon-drop -x -T \"$1\"' --confirm" },
 ]

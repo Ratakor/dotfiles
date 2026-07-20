@@ -10,9 +10,18 @@
   ...
 }:
 let
+  inherit (builtins) length;
   inherit (lib.meta) getExe;
+  inherit (lib.strings) concatMapStringsSep;
 
-  supportMultipleMonitors = builtins.length config.self.device.monitors > 1;
+  supportMultipleMonitors = length config.self.device.monitors > 1;
+
+  extensions = [
+    "jpeg"
+    "jpg"
+    "png"
+    "webp"
+  ];
 in
 pkgs.writeShellApplication {
   name = "randwp";
@@ -26,24 +35,17 @@ pkgs.writeShellApplication {
   text = ''
     # Set a random wallpaper.
     # There must be no space in wallpaper filename.
-    # To ignore a folder or a file put it in IGNORE after the - like below
-    # IGNORE=''${IGNORE-file1|folder|file2|.ext}
-    # IGNORE can be an env variable (useful for yazi)
 
     PIDFILE=''${XDG_RUNTIME_DIR:-/tmp}/randwp.pid
     LOGFILE=''${XDG_STATE_HOME:-$HOME/.local/state}/randwp.log
     WPDIR=''${1:-${config.hm.xdg.userDirs.extraConfig.WALLPAPERS}}
-    IGNORE=''${IGNORE-nsfw}
-    ALL=$(find -L "$WPDIR" -type f ! -path '*/.*' ! -name 'README.md')
+    ALL=$(find "$WPDIR" -type f ! -path '*/.*' \( ${
+      concatMapStringsSep " -o " (ext: "-iname '*.${ext}'") extensions
+    } \))
 
     searchwp() {
-    	wp=$(printf '%s' "$ALL" | shuf -n 1)
-    	if [ -n "$IGNORE" ]; then
-    		while printf '%s' "$wp" | grep -q -E "$IGNORE" ; do
-    			wp=$(printf '%s' "$ALL" | shuf -n 1)
-    		done
-    	fi
-    	printf '%s\n' "$wp" >> "$LOGFILE"
+      wp=$(printf '%s' "$ALL" | shuf -n 1)
+      printf '%s\n' "$wp" >> "$LOGFILE"
     }
 
   ''
@@ -60,8 +62,8 @@ pkgs.writeShellApplication {
       ''
         # Multiple screens on wayland with swaybg
         for output in $(${wlr-randr} --json | ${jq} -r '.[] | select(.enabled) | .name'); do
-        	searchwp
-        	args="$args -o $output -m fill -i $wp"
+          searchwp
+          args="$args -o $output -m fill -i $wp"
         done
         OLDPID=$(cat "$PIDFILE" 2>/dev/null)
         # shellcheck disable=SC2086
@@ -87,10 +89,10 @@ pkgs.writeShellApplication {
     #     in
     #     ''
     #       # Multiple screens on X11 with xwallpaper
-    #       IGNORE="$IGNORE|.webp" # xwallpaper doesn't support webp
+    #       IGNORE="$IGNORE|.webp" # WARN: xwallpaper doesn't support webp
     #       for output in $(${xrandr} | ${awk} '$2=="connected" {print $1}'); do
-    #       	searchwp
-    #       	args="$args --output $output --zoom $wp"
+    #         searchwp
+    #         args="$args --output $output --zoom $wp"
     #       done
     #       # doing this speedup a lot, there must be no space in wallpaper filename
     #       # shellcheck disable=SC2086
