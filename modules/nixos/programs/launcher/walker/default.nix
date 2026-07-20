@@ -62,6 +62,7 @@ in
       + (readFile ./style.css);
     };
 
+    # this is 800MiB smh
     hm.services.elephant.enable = true;
   };
 }

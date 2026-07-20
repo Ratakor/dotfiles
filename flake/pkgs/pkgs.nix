@@ -16,6 +16,8 @@ let
     "spotify"
     "ouch" # rar
     "osu-lazer-bin"
+    "antigravity-cli"
+    "claude-code"
 
     # steam
     "steam"
@@ -34,9 +36,6 @@ let
     "cuda_nvcc"
     "cuda_cccl"
     "libcublas"
-
-    # smh gemini was open source but not agy :(
-    "antigravity-cli"
 
     # onlyoffice fonts
     "corefonts"

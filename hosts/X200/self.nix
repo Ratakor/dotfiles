@@ -75,6 +75,7 @@ in
 
     disabledPackages = [
       "antigravity-cli" # requires AES instruction set
+      "claude-code" # crashes with illegal hardware instructon
     ];
   };
 }

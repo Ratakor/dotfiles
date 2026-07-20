@@ -58,9 +58,9 @@ let
   ];
 
   ai = with pkgs; [
-    antigravity-cli # Google AI (agy)
-    # copilot-cli # Microsoft AI
-    # claude-code # Anthropic AI
+    antigravity-cli # Google (agy)
+    # claude-code # Anthropic
+    # codex # OpenAI
     # herdr # Agent multiplexer
   ];
 
