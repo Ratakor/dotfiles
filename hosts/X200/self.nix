@@ -1,6 +1,8 @@
-{ lib, ... }:
+{ config, lib, ... }:
 let
   inherit (lib.filesystem) GiB;
+
+  dprg = config.self.programs.default;
 in
 {
   self = {
@@ -37,12 +39,13 @@ in
     programs = {
       default = {
         terminal.name = "foot";
-        launcher.name = "fuzzel";
-        windowManager.name = "river-classic";
-        desktopShell.name = null;
-        powerMenu.name = "wlogout";
-        statusBar.name = "waybar";
-        locker.name = "glitchlock";
+        desktopShell.name = "noctalia";
+        # launcher.name = "fuzzel";
+        # windowManager.name = "river-classic";
+        # desktopShell.name = null;
+        # powerMenu.name = "wlogout";
+        # statusBar.name = "waybar";
+        # locker.name = "glitchlock";
       };
       dev.enable = true;
       scripts = {
@@ -70,12 +73,13 @@ in
 
     services = {
       wpaperd.enable = false;
-      swayidle.enable = true;
+      swayidle.enable = dprg.windowManager.name == "river-classic";
+      mako.enable = false; # TODO: noctalia (and DMS?) handles notifications
     };
 
     disabledPackages = [
       "antigravity-cli" # requires AES instruction set
-      "claude-code" # crashes with illegal hardware instructon
+      "claude-code" # crashes with illegal hardware instruction
     ];
   };
 }

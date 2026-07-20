@@ -125,7 +125,8 @@ url = "channel:nixos-unstable"
 
 # A sleek and minimal desktop shell thoughtfully crafted for Wayland
 [inputs.noctalia]
-url = "github:noctalia-dev/noctalia"
+url = "github:noctalia-dev/noctalia?ref=cachix"
+exclude_follow = [ "nixpkgs" ] # needed to avoid cache misses
 
 # Network Printer, or; "No Problem" (We still have Many Problems)
 [inputs.np]
