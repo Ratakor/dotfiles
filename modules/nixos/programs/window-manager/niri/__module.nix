@@ -23,7 +23,7 @@ let
   workspace = import ./workspace.nix;
   misc = import ./misc.nix { inherit config lib pkgs; };
   window-rule = import ./window-rule.nix { inherit config lib; };
-  layer-rule = import ./layer-rule.nix config;
+  layer-rule = import ./layer-rule.nix;
   animations = import ./animations.nix;
   gestures = import ./gestures.nix;
   recent-windows = import ./recent-windows.nix;

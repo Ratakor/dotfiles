@@ -63,6 +63,10 @@ in
           binds {
             Mod+Shift+W repeat=false hotkey-overlay-title="Set a random wallpaper" { spawn "randwp"; }
           }
+
+          blur {
+            off
+          }
         '';
         river-classic.extraConfig = /* sh */ ''
           riverctl spawn 'randwp'
