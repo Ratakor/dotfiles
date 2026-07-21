@@ -5,6 +5,7 @@
   vicinae.theme = "gruvbox-light";
   zellij.theme = "gruvbox-light";
   scooter.theme = "gruvbox-light";
+  noctalia.theme = "Gruvbox";
   theme-sh = "gruvbox";
 
   gtk = pkgs: {

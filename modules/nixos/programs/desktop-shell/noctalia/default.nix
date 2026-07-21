@@ -9,7 +9,7 @@ let
 
   defaultName = "noctalia";
 
-  # colors = config.self.colors.default;
+  inherit (config.self) colors;
   prg = config.self.programs;
   dprg = prg.default;
   isDefaultBar = dprg.statusBar.name == defaultName;
@@ -45,30 +45,64 @@ in
       systemd.enable = isDefaultBar;
       # package = pkgs.noctalia-shell;
 
-      # TODO: settings & colors
-
-      # settings = {};
-
-      # colors = mapAttrs (_name: value: "#${value}") {
-      #   mError = colors.bright.red;
-      #   mHover = colors.bright.blue;
-      #   mOnError = colors.background;
-      #   mOnHover = colors.background;
-      #   mOnPrimary = colors.background;
-      #   mOnSecondary = colors.background;
-      #   mOnSurface = "fbf1c7"; # fg0 (not mapped in colors yet)
-      #   mOnSurfaceVariant = colors.foreground;
-      #   mOnTertiary = colors.background;
-      #   mOutline = "57514e"; # idk not in gruvbox spec
-      #   mPrimary = colors.bright.green;
-      #   mSecondary = colors.bright.yellow;
-      #   mShadow = colors.background;
-      #   mSurface = colors.background;
-      #   mSurfaceVariant = colors.unfocused;
-      #   mTertiary = colors.bright.blue;
-      # };
-
-      # plugins = {};
+      # imagine writing toml lmao eval time go brr
+      settings = {
+        bar.default = {
+          center = [
+            "media"
+            "clock"
+            "weather"
+          ];
+          end = [
+            "tray "
+            "notifications"
+            "clipboard"
+            "network"
+            "bluetooth"
+            "volume"
+            "brightness"
+            "battery"
+            "control-center"
+            "session"
+          ];
+          start = [
+            "launcher"
+            "wallpaper"
+            "workspaces"
+            "active_window"
+          ];
+        };
+        battery.warning_threshold = 15;
+        location.auto_locate = true;
+        lockscreen.blurred_desktop = true;
+        # plugins.enabled = [ ];
+        shell = {
+          # avatar_path = user.avatar; # probably overkill and better be configured imperatively
+          launch_apps_as_systemd_services = true;
+          panel.transparency_mode = "solid"; # "soft" and "glass" doesn't look that good, maybe need blur
+        };
+        theme = {
+          builtin = colors.default.noctalia.theme;
+          mode = colors.variant; # "light" "dark" "auto"
+          source = "builtin";
+        };
+        wallpaper = {
+          enabled = false; # currently using wpaperd or randwp instead but might use this later
+          directory = config.hm.xdg.userDirs.extraConfig.WALLPAPERS;
+          automation = {
+            enabled = true;
+            interval_seconds = 15 * 60;
+          };
+        };
+        widget = {
+          media = {
+            album_art_only = true;
+            hide_when_no_media = true;
+          };
+          wallpaper.enabled = false;
+          workspaces.labels_only_when_occupied = true;
+        };
+      };
     };
   };
 }
