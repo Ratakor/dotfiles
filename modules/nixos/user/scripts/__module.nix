@@ -54,6 +54,7 @@ in
 
         (callPackage ./src/battery { })
         (callPackage ./src/sci { })
+        (callPackage ./src/real { })
 
         # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/dev/default.nix
         (writeShellApplication {
@@ -61,17 +62,6 @@ in
           runtimeInputs = [ pkgs.texlivePackages.latexmk ];
           text = ''
             latexmk -pdf "$@" && latexmk -c "$@"
-          '';
-        })
-
-        (writeShellApplication {
-          name = "real";
-          runtimeInputs = with pkgs; [
-            coreutils
-            which
-          ];
-          text = ''
-            realpath "$(which "$1")"
           '';
         })
       ]
