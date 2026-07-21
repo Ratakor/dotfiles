@@ -26,6 +26,8 @@ let
   layer-rule = import ./layer-rule.nix config;
   animations = import ./animations.nix;
   gestures = import ./gestures.nix;
+  recent-windows = import ./recent-windows.nix;
+  debug = import ./debug.nix;
   extraConfig =
     if cfg.extraConfig == "" then
       ""
@@ -78,6 +80,8 @@ in
       layer-rule
       animations
       gestures
+      recent-windows
+      debug
       extraConfig
     ];
   };

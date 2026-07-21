@@ -35,7 +35,7 @@ in
   // Enable rounded corners for all windows
   // I'm only enabling this because chromium got weird rounded corner by default
   window-rule {
-    geometry-corner-radius 8 // 12 is also decent
+    geometry-corner-radius 10 // 8-12 is good
     clip-to-geometry true
 
     // unrelated to rounded corners but may be useful to apply on all windows
