@@ -8,15 +8,17 @@
 let
   inherit (lib.modules) mkIf;
 
+  prg = config.self.programs;
+  dprg = prg.default;
+
   yazi = pkgs.wrappers.yazi.override {
     ouch = pkgs.ouch-rar;
+    setWallpaperCommand = dprg.wallpaper.set;
   };
-
-  prg = config.self.programs;
 in
 {
   config = mkIf prg.fileManager.yazi.enable {
-    self.programs.default.fileManager = mkIf (prg.default.fileManager.name == "yazi") {
+    self.programs.default.fileManager = mkIf (dprg.fileManager.name == "yazi") {
       desktopEntry = "yazi.desktop";
     };
 

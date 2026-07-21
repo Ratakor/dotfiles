@@ -54,6 +54,7 @@
         # xdg.portal.name = "kde";
         launcher.name = "walker";
         desktopShell.name = "dms";
+        wallpaper.name = "wpaperd";
       };
       dev.enable = true;
       scripts.enable = true;

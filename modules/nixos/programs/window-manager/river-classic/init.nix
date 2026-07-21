@@ -111,7 +111,7 @@ in
   riverctl map normal None XF86ScreenSaver spawn '${lockCmd}'
   riverctl map normal Super+Shift X spawn '${lockCmd}'
   riverctl map normal None XF86Battery spawn 'battery'
-  riverctl map normal Super+Shift W spawn 'wpaperctl next'
+  riverctl map normal Super+Shift W spawn '${dprg.wallpaper.nextRandom}'
   riverctl map normal None Print spawn 'screenshot'
   riverctl map normal Shift Print spawn 'ocr'
   # riverctl map normal None F7 spawn '${dprg.terminal.cmd} -e dmenurecord'

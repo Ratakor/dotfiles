@@ -4,6 +4,7 @@
   symlinkJoin,
   makeWrapper,
   writeTextFile,
+
   colors,
   theme ? colors.default.zellij.theme,
 }:

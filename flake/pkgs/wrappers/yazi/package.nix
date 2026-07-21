@@ -1,5 +1,6 @@
 # Terminal File Manager
 {
+  lib,
   yazi,
   yaziPlugins,
   bat,
@@ -7,16 +8,19 @@
   mediainfo,
   ueberzugpp,
   dragon-drop,
+
+  setWallpaperCommand ? null,
 }:
 let
-  fromTOML = file: builtins.fromTOML (builtins.readFile file);
+  inherit (builtins) fromTOML readFile;
 in
 yazi.override {
   initLua = ./init.lua;
 
+  # atp this should probably be configured in nix rather than toml
   settings = {
-    keymap = fromTOML ./keymap.toml;
-    yazi = fromTOML ./yazi.toml;
+    yazi = fromTOML (readFile ./yazi.toml);
+    keymap = fromTOML (import ./keymap.nix { inherit lib setWallpaperCommand; });
   };
 
   plugins = {
@@ -39,8 +43,6 @@ yazi.override {
     ueberzugpp # image preview on terminal emulators that don't have it built-in
     dragon-drop # <C-n>
 
-    # TODO: custom scripts
-    # randwp
-    # plumber
+    # TODO: plumber
   ];
 }

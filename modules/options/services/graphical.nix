@@ -16,7 +16,6 @@ let
 in
 {
   options.self.services = {
-    wpaperd.enable = mkEnableOption' "wpaperd, Wallpaper daemon";
     gammastep.enable = mkEnableOption' "gammastep, Screen color temperature manager";
 
     swayidle.enable = mkEnableOption "swayidle, Idle manager";

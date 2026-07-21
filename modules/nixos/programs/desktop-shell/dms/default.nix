@@ -14,6 +14,7 @@ let
   dprg = prg.default;
   isDefaultBar = dprg.statusBar.name == defaultName;
   isDefaultLauncher = dprg.launcher.name == defaultName;
+  isDefaultWallpaper = dprg.wallpaper.name == defaultName;
 in
 {
   imports = [ sources.dms-plugin-registry.nixosModules.default ];
@@ -34,6 +35,10 @@ in
         drun = "dms ipc call spotlight toggle";
         run = "dms ipc call spotlight toggleQuery '>'";
       };
+      wallpaper = mkIf isDefaultWallpaper {
+        nextRandom = "dms ipc call wallpaper next";
+        set = "dms ipc call wallpaper set";
+      };
     };
 
     # fuzzel is used as a fallback launcher for dmenu mode
@@ -45,6 +50,7 @@ in
 
       # TODO: settings
       # handle `dprg.notification.name == defaultName` in settings
+      # handle isDefaultWallpaper in settings
 
       plugins = {
         dankKDEConnect.enable = config.programs.kdeconnect.enable;

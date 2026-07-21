@@ -1,0 +1,140 @@
+# Set a random wallpaper.
+# non-nix version of this script:
+# https://raw.githubusercontent.com/Ratakor/dotfiles/ec0dc5e5240d2fef94afaa3cbe7f2cb9d5dcfce3/users/ratakor/programs/scripts/bin/randwp
+# I don't know if there should be a timestamp when logging, anyway this should
+# be rewritten into a daemon
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (builtins) length;
+  inherit (lib.meta) getExe;
+  inherit (lib.strings) concatMapStringsSep;
+
+  supportMultipleMonitors = length config.self.device.monitors > 1;
+
+  extensions = [
+    "jpeg"
+    "jpg"
+    "png"
+    "webp"
+  ];
+
+  randwp = pkgs.writeShellApplication {
+    name = "randwp";
+    runtimeInputs = with pkgs; [
+      findutils
+      coreutils
+      gnugrep
+    ];
+    bashOptions = [ ]; # errexit sucks
+    inheritPath = false;
+    text = ''
+      # Set a random wallpaper.
+      # There must be no space in wallpaper filename.
+
+      PIDFILE=''${XDG_RUNTIME_DIR:-/tmp}/randwp.pid
+      LOGFILE=''${XDG_STATE_HOME:-$HOME/.local/state}/randwp.log
+      WPDIR=''${1:-${config.hm.xdg.userDirs.extraConfig.WALLPAPERS}}
+      ALL=$(find "$WPDIR" -type f ! -path '*/.*' \( ${
+        concatMapStringsSep " -o " (ext: "-iname '*.${ext}'") extensions
+      } \))
+
+      searchwp() {
+        wp=$(printf '%s' "$ALL" | shuf -n 1)
+        printf '%s\n' "$wp" >> "$LOGFILE"
+      }
+
+    ''
+    + (
+      # if displayServer.wayland then
+      let
+        swaybg = getExe pkgs.swaybg;
+      in
+      if supportMultipleMonitors then
+        let
+          wlr-randr = getExe pkgs.wlr-randr;
+          jq = getExe pkgs.jq;
+        in
+        ''
+          # Multiple screens on wayland with swaybg
+          for output in $(${wlr-randr} --json | ${jq} -r '.[] | select(.enabled) | .name'); do
+            searchwp
+            args="$args -o $output -m fill -i $wp"
+          done
+          OLDPID=$(cat "$PIDFILE" 2>/dev/null)
+          # shellcheck disable=SC2086
+          ${swaybg} $args 2>/dev/null &
+          echo $! > "$PIDFILE"
+          (sleep 3; kill "$OLDPID" 2>/dev/null || exit 0) &
+        ''
+      else
+        ''
+          # Single screen on wayland with swaybg
+          searchwp
+          OLDPID=$(cat "$PIDFILE" 2>/dev/null)
+          ${swaybg} -m fill -i "$wp" 2>/dev/null &
+          echo $! > "$PIDFILE"
+          (sleep 3; kill "$OLDPID" 2>/dev/null || exit 0) &
+        ''
+      # else if displayServer.x11 then
+      #   if supportMultipleMonitors then
+      #     let
+      #       xwallpaper = getExe pkgs.xwallpaper;
+      #       xrandr = getExe pkgs.xorg.xrandr;
+      #       awk = getExe pkgs.gawk;
+      #     in
+      #     ''
+      #       # Multiple screens on X11 with xwallpaper
+      #       IGNORE="$IGNORE|.webp" # WARN: xwallpaper doesn't support webp
+      #       for output in $(${xrandr} | ${awk} '$2=="connected" {print $1}'); do
+      #         searchwp
+      #         args="$args --output $output --zoom $wp"
+      #       done
+      #       # doing this speedup a lot, there must be no space in wallpaper filename
+      #       # shellcheck disable=SC2086
+      #       ${xwallpaper} $args
+      #     ''
+      #   else
+      #     let
+      #       hsetroot = getExe pkgs.hsetroot;
+      #     in
+      #     ''
+      #       # Single screen on X11 with hsetroot
+      #       searchwp
+      #       ${hsetroot} -cover "$wp" 1>/dev/null
+      #     ''
+      # else
+      #   lib.unreachable
+    );
+  };
+in
+let
+  inherit (lib.modules) mkIf;
+
+  prg = config.self.programs;
+  dprg = prg.default;
+in
+{
+  config = mkIf prg.wallpaper.randwp.enable {
+    self.programs.default.wallpaper = mkIf (dprg.wallpaper.name == "randwp") {
+      nextRandom = "randwp";
+      set = "randwp";
+    };
+
+    # TODO: this is the worst thing ever
+    self.programs.windowManager = {
+      niri.extraConfig = /* kdl */ ''
+        spawn-at-startup "randwp"
+      '';
+      river-classic.extraConfig = /* sh */ ''
+        riverctl spawn 'randwp';
+      '';
+    };
+
+    user.packages = [ randwp ];
+  };
+}

@@ -14,6 +14,7 @@ let
   dprg = prg.default;
   isDefaultBar = dprg.statusBar.name == defaultName;
   isDefaultLauncher = dprg.launcher.name == defaultName;
+  isDefaultWallpaper = dprg.wallpaper.name == defaultName;
 in
 {
   config = mkIf prg.desktopShell.noctalia.enable {
@@ -32,6 +33,10 @@ in
         dmenu = "fuzzel --dmenu";
         drun = "noctalia msg panel-toggle launcher";
         run = "noctalia msg panel-toggle launcher"; # no equivalent?
+      };
+      wallpaper = mkIf isDefaultWallpaper {
+        nextRandom = "noctalia msg wallpaper-random";
+        set = "noctalia msg wallpaper-set";
       };
     };
 
@@ -88,11 +93,12 @@ in
           source = "builtin";
         };
         wallpaper = {
-          enabled = false; # currently using wpaperd or randwp instead but might use this later
+          enabled = isDefaultWallpaper;
           directory = config.hm.xdg.userDirs.extraConfig.WALLPAPERS;
+          transition = [ ];
           automation = {
             enabled = true;
-            interval_seconds = 15 * 60;
+            interval_seconds = 30 * 60;
           };
         };
         widget = {

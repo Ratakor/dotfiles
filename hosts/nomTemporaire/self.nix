@@ -55,6 +55,9 @@
         editor.visual.name = "zed";
         locker.name = "glitchlock";
         mediaPlayer.name = "vlc";
+
+        desktopShell.name = "dms"; # ?
+        wallpaper.name = "wpaperd"; # ?
       };
       dev.enable = true; # ?
       scripts.enable = true;

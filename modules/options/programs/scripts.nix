@@ -10,7 +10,5 @@ in
 
     ocr.enable = mkEnableOption' "ocr";
     pdfmd.enable = mkEnableOption' "pdfmd";
-
-    randwp.enable = mkEnableOption "randwp";
   };
 }

@@ -50,10 +50,7 @@ in
         # notification.name = "mako";
       };
       dev.enable = true;
-      scripts = {
-        enable = true;
-        randwp.enable = true;
-      };
+      scripts.enable = true;
       apps = {
         enable = true;
         spotify.enable = false; # crashes with illegal instruction
@@ -61,24 +58,14 @@ in
       terminal.fontSize = 10;
       windowManager = {
         niri.extraConfig = /* kdl */ ''
-          spawn-at-startup "randwp"
-          binds {
-            Mod+Shift+W repeat=false hotkey-overlay-title="Set a random wallpaper" { spawn "randwp"; }
-          }
-
           blur {
             off
           }
-        '';
-        river-classic.extraConfig = /* sh */ ''
-          riverctl spawn 'randwp'
-          riverctl map normal Super+Shift W spawn 'randwp'
         '';
       };
     };
 
     services = {
-      wpaperd.enable = false;
       swayidle.enable = dprg.windowManager.name == "river-classic";
     };
 
