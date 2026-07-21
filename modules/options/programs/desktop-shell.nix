@@ -15,6 +15,7 @@ let
 in
 {
   options.self.programs = {
+    # is this useful? why would smn want multiple desktop shell
     desktopShell = mkEnableOptions' opt.default.desktopShell.name;
 
     default.desktopShell = {

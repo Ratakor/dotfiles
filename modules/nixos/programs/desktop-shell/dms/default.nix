@@ -42,6 +42,10 @@ in
     programs.dms-shell = {
       enable = true;
       systemd.enable = isDefaultBar;
+
+      # TODO: settings
+      # handle `dprg.notification.name == defaultName` in settings
+
       plugins = {
         dankKDEConnect.enable = config.programs.kdeconnect.enable;
         nixPackageRunner.enable = false; # too slow

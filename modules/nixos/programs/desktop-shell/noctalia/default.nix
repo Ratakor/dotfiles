@@ -75,6 +75,7 @@ in
         battery.warning_threshold = 15;
         location.auto_locate = true;
         lockscreen.blurred_desktop = true;
+        notification.enable_daemon = dprg.notification.name == defaultName; # should we use prg?
         # plugins.enabled = [ ];
         shell = {
           # avatar_path = user.avatar; # probably overkill and better be configured imperatively

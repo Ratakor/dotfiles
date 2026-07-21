@@ -16,6 +16,7 @@ let
 in
 {
   options.self.programs = {
+    # is this useful? why would smn want multiple status bar
     statusBar = mkEnableOptions' opt.default.statusBar.name;
 
     default.statusBar = {

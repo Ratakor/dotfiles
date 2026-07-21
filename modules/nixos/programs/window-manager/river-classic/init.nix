@@ -159,9 +159,6 @@ in
   #riverctl map normal None button9 close
   #riverctl map normal None button10 spawn 'musiccmd'
 
-  # reload config
-  # riverctl map normal Super Escape spawn 'kill -USR2 $(pidof waybar); makoctl reload'
-
   # toggle bar
   riverctl map normal Super+Shift B spawn '${dprg.statusBar.toggle}'
   # TODO: toggle padding (gaps)

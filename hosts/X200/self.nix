@@ -40,12 +40,14 @@ in
       default = {
         terminal.name = "foot";
         desktopShell.name = "noctalia";
-        # launcher.name = "fuzzel";
-        # windowManager.name = "river-classic";
+
         # desktopShell.name = null;
+        # windowManager.name = "river-classic";
+        # launcher.name = "fuzzel";
         # powerMenu.name = "wlogout";
         # statusBar.name = "waybar";
         # locker.name = "glitchlock";
+        # notification.name = "mako";
       };
       dev.enable = true;
       scripts = {
@@ -78,7 +80,6 @@ in
     services = {
       wpaperd.enable = false;
       swayidle.enable = dprg.windowManager.name == "river-classic";
-      mako.enable = false; # TODO: noctalia (and DMS?) handles notifications
     };
 
     disabledPackages = [

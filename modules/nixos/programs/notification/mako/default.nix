@@ -1,20 +1,14 @@
 # Notification daemon
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 let
   inherit (lib.modules) mkIf;
 
   colors = config.self.colors.default;
-  cfg = config.self.services.mako;
+  cfg = config.self.programs.notification.mako;
 in
 {
+  # let's assume that if cfg.enable is true that means mako is the default notification daemon
   config = mkIf cfg.enable {
-    user.packages = [ pkgs.libnotify ];
-
     hm.services.mako = {
       enable = true;
       settings = {

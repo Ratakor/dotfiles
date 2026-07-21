@@ -17,7 +17,6 @@ in
 {
   options.self.services = {
     wpaperd.enable = mkEnableOption' "wpaperd, Wallpaper daemon";
-    mako.enable = mkEnableOption' "mako, Notification daemon";
     gammastep.enable = mkEnableOption' "gammastep, Screen color temperature manager";
 
     swayidle.enable = mkEnableOption "swayidle, Idle manager";
