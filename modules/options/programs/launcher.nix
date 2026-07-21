@@ -10,8 +10,8 @@ let
   inherit (lib.types) nullOr enum str;
 
   opt = options.self.programs;
-  cfg = config.self.programs;
-  sys = config.self.system;
+  prg = config.self.programs;
+  dprg = prg.default;
 in
 {
   options.self.programs = {
@@ -20,19 +20,21 @@ in
     default.launcher = {
       name = mkOption {
         type = nullOr (enum [
-          # "dms" # doesn't support dmenu style
+          "dms" # fallback to fuzzel for dmenu
           "fuzzel"
+          "noctalia" # fallback to fuzzel for dmenu
           "tofi"
           "vicinae"
           "walker"
         ]);
-        default = if sys.video.enable then "walker" else null;
+        default = dprg.desktopShell.name;
         defaultText = literalExpression ''
-          if sys.video.enable then "walker" else null
+          dprg.desktopShell.name
         '';
         description = ''
           The default launcher to use.
           This will automatically enable the corresponding program.
+          Consider setting config.self.programs.default.desktopShell.name instead.
         '';
       };
 
@@ -59,7 +61,15 @@ in
     };
   };
 
-  config.self.programs = mkIf (cfg.default.launcher.name != null) {
-    launcher.${cfg.default.launcher.name}.enable = true;
+  config = mkIf (dprg.launcher.name != null) {
+    assertions = [
+      {
+        assertion =
+          prg.desktopShell ? ${dprg.launcher.name} -> prg.desktopShell.${dprg.launcher.name}.enable;
+        message = "The corresponding desktop shell must be enabled for launcher.";
+      }
+    ];
+
+    self.programs.launcher.${dprg.launcher.name}.enable = true;
   };
 }

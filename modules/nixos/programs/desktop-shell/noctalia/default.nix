@@ -7,10 +7,13 @@
 let
   inherit (lib.modules) mkIf;
 
+  defaultName = "noctalia";
+
   # colors = config.self.colors.default;
   prg = config.self.programs;
   dprg = prg.default;
-  isDefaultBar = dprg.statusBar.name == "noctalia";
+  isDefaultBar = dprg.statusBar.name == defaultName;
+  isDefaultLauncher = dprg.launcher.name == defaultName;
 in
 {
   config = mkIf prg.desktopShell.noctalia.enable {
@@ -18,13 +21,22 @@ in
       statusBar = mkIf isDefaultBar {
         toggle = "noctalia msg bar-toggle";
       };
-      locker = mkIf (dprg.locker.name == "noctalia") {
+      locker = mkIf (dprg.locker.name == defaultName) {
         cmd = "noctalia msg session lock";
       };
-      powerMenu = mkIf (dprg.powerMenu.name == "noctalia") {
+      powerMenu = mkIf (dprg.powerMenu.name == defaultName) {
         cmd = "noctalia msg panel-toggle session";
+        # cmd = "noctalia msg panel-toggle launcher '/session '";
+      };
+      launcher = mkIf isDefaultLauncher {
+        dmenu = "fuzzel --dmenu";
+        drun = "noctalia msg panel-toggle launcher";
+        run = "noctalia msg panel-toggle launcher"; # no equivalent?
       };
     };
+
+    # fuzzel is used as a fallback launcher for dmenu mode
+    self.programs.launcher.fuzzel.enable = isDefaultLauncher;
 
     hm.imports = [ sources.noctalia.homeModules.default ];
 
