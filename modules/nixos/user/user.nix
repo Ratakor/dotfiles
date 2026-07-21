@@ -21,7 +21,7 @@ in
   user = {
     isNormalUser = true;
     uid = 1000;
-    shell = pkgs.${config.self.programs.default.shell.name};
+    shell = pkgs.zsh;
     createHome = true;
     home = "/home/${username}";
     description = config.self.user.fullName;

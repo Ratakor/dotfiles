@@ -9,7 +9,6 @@ in
     verbose = false; # default: false
     # Set $GPG_TTY=$(tty)
     enableZshIntegration = true;
-    enableNushellIntegration = true;
     enableSshSupport = true;
     # sshKeys = [""]; # TODO: use self.keys
     defaultCacheTtl = 6 * secPerHour; # 6 hours

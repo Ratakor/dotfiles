@@ -5,6 +5,5 @@
     silent = true;
     # Enable direnv hook.
     enableZshIntegration = true;
-    enableNushellIntegration = true;
   };
 }

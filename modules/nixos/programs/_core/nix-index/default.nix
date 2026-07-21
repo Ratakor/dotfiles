@@ -11,7 +11,6 @@ in
       enable = true;
       symlinkToCacheHome = true;
       enableZshIntegration = false; # We use comma instead
-      enableNushellIntegration = true;
     };
     # A combination of nix-index and nix run
     nix-index-database.comma.enable = true;

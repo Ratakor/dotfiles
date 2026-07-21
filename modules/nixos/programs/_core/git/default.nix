@@ -109,22 +109,11 @@ in
     gr = "git restore";
     grs = "git restore --staged";
     gd = "git diff";
-  };
 
-  hm.programs = {
-    zsh.shellAliases = {
-      gac = "ga . && gc";
-      gacv = "ga . && gcv";
-      gcp = "gc && gp";
-      gacp = "ga . && gc && gp";
-      gacpv = "ga . && gcv && gp";
-    };
-    nushell.extraConfig = /* nu */ ''
-      def gac [] { ga .; gc }
-      def gacv [] { ga .; gcv }
-      def gcp [] { gc; gp }
-      def gacp [] { ga .; gc; gp }
-      def gacpv [] { ga .; gcv; gp }
-    '';
+    gac = "ga . && gc";
+    gacv = "ga . && gcv";
+    gcp = "gc && gp";
+    gacp = "ga . && gc && gp";
+    gacpv = "ga . && gcv && gp";
   };
 }

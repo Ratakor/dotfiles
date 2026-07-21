@@ -4,7 +4,6 @@
       enable = true;
       # Add <C-T> for smart autocomplete & <C-R> for history search
       enableZshIntegration = true;
-      enableNushellIntegration = true;
       channels = { };
       settings = { };
     };

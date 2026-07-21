@@ -8,7 +8,6 @@
 let
   inherit (lib.meta) getExe;
   inherit (lib.modules)
-    mkIf
     mkBefore
     mkAfter
     mkOrder
@@ -17,10 +16,9 @@ let
   inherit (lib.strings) optionalString;
 
   ZDOTDIR = config.hm.programs.zsh.dotDir;
-  cfg = config.self.programs.shell.zsh;
 in
 {
-  config = mkIf cfg.enable {
+  config = {
     programs.zsh = {
       enable = true;
       shellInit = /* zsh */ ''
@@ -33,19 +31,13 @@ in
       enableCompletion = true;
     };
 
-    hm.home = {
-      # enables shell integrations for zsh from programs
-      # I think it's enabled by default tho
-      shell.enableZshIntegration = true;
+    user.packages = with pkgs; [
+      zsh-completions
+      nix-zsh-completions
+    ];
 
-      packages = with pkgs; [
-        zsh-completions
-        nix-zsh-completions
-      ];
-
-      # Not needed, see programs.zsh.shellInit for why
-      file.".zshenv".enable = false;
-    };
+    # Not needed, see programs.zsh.shellInit for why
+    hm.home.file.".zshenv".enable = false;
 
     hm.programs.zsh = {
       enable = true;

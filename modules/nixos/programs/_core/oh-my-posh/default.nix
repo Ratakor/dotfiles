@@ -4,7 +4,6 @@
   hm.programs.oh-my-posh = {
     enable = true;
     enableZshIntegration = true;
-    enableNushellIntegration = true;
     settings = {
       "$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json";
       version = 4;

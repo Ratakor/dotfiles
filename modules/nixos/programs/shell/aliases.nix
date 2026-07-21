@@ -96,20 +96,12 @@ in
     stop = "musiccmd stop";
     vol = "musiccmd volume"; # put the volume you want in arg like vol 50
 
+    # aliases incompatible with "modern" shells such as nushell
+    tmp = "cd $(mktemp -d)";
+    timestamp = "date +%Y-%m-%dT%H:%M:%S%z";
+
     # type issue
     giti = "gitui";
-  };
-
-  # Aliases incompatible with Nushell.
-  hm.programs = {
-    zsh.shellAliases = {
-      tmp = "cd $(mktemp -d)";
-      timestamp = "date +%Y-%m-%dT%H:%M:%S%z";
-    };
-    nushell.extraConfig = /* nu */ ''
-      alias "tmp" = cd $"(mktemp -d)"
-      def timestamp [] { date now | format date "%Y-%m-%dT%H:%M:%S%z" }
-    '';
   };
 
   hm.programs.zsh.shellGlobalAliases = {

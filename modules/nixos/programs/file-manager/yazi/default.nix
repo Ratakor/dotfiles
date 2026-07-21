@@ -28,7 +28,6 @@ in
       shellWrapperName = "y";
       # Add a shell wrapper (`y`) that changes cwd when exiting yazi
       enableZshIntegration = true;
-      enableNushellIntegration = true;
     };
   };
 }

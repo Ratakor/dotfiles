@@ -33,20 +33,24 @@ in
       "--recursive"
       "--verbose"
     ];
+
     rmdir = mkAlias "rmdir" [
       # "--parents"
       "--verbose"
     ];
+
     cp = mkAlias "cp" [
       "--interactive"
       "--recursive"
       # "--reflink=always"
       "--verbose"
     ];
+
     mv = mkAlias "mv" [
       "--interactive"
       "--verbose"
     ];
+
     # grep = mkAlias "grep" [
     #   "--binary-files=without-match"
     #   "--color=auto"
@@ -54,22 +58,30 @@ in
     #   "--exclude-dir=.git"
     #   "--line-number"
     # ];
+
     ip = mkAlias "ip" [ "--color=auto" ];
 
-    # ps = "procs";
+    # ps = mkAlias "procs" [ ];
+
     duf = mkAlias "duf" [
       "-hide special"
       "-hide-fs zfs"
     ];
+
     du = mkAlias "dust" [ "--reverse" ];
+
     # cat = mkAlias "bat" [
     #   # These are arguments for bat
     #   # I believe --decorations=auto is broken
     #   # "--style=numbers,changes"
     #   # "--tabs 8"
     # ];
+
     diff = mkAlias "riff" [ ];
+
     # less = mkAlias "moor" [ ];
+    pager = mkAlias "moor" [ ];
+
     fd = mkAlias "fd" [
       # "--absolute-path" # print absolute paths
       # "--color=always" # always use colors
@@ -80,33 +92,24 @@ in
       "--no-ignore-vcs" # don't ignore files in .gitignore
     ];
 
+    ls = mkAlias "eza" [
+      # "--color=auto"
+      "--group-directories-first"
+      # "--hyperlink=auto"
+    ];
     sl = "ls";
     la = "ls -a";
     lr = "ls -R";
+    ll = "ls --long --group --header --octal-permissions --git";
+    tree = "ls --tree";
+
+    mkdir = mkAlias "mkdir" [
+      "--parents"
+      "--verbose"
+    ];
   };
 
   hm.programs = {
-    zsh.shellAliases = {
-      mkdir = mkAlias "mkdir" [
-        "--parents"
-        "--verbose"
-      ];
-
-      ls = mkAlias "eza" [
-        # "--color=auto"
-        "--group-directories-first"
-        # "--hyperlink=auto"
-      ];
-      tree = "ls --tree";
-      ll = "ls --long --group --header --octal-permissions --git";
-    };
-
-    nushell.shellAliases = {
-      mkdir = mkAlias "mkdir" [ "--verbose" ];
-      # TODO: replace ls with eza?
-      ll = "ls -l";
-    };
-
     # cat replacement
     bat = {
       enable = true;
@@ -146,7 +149,6 @@ in
       options = [ "--cmd cd" ];
       # Replaces cd & add `cdi` command.
       enableZshIntegration = true;
-      enableNushellIntegration = true;
     };
 
     # diff replacement
