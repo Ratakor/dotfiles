@@ -12,6 +12,7 @@ in
         "dms-greeter"
         "gdm"
         "ly"
+        "noctalia-greeter"
         "tuigreet"
       ]);
       default = null;

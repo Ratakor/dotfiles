@@ -157,6 +157,14 @@
     "narHash": "sha256-tlcP2x7d+ldS3BypTcInqrsOhi6BPuSSTeubfBMmm8Y=",
     "lastModified": 1784556533
   },
+  "noctalia-greeter": {
+    "type": "github",
+    "owner": "noctalia-dev",
+    "repo": "noctalia-greeter",
+    "rev": "8e53bb30f1d1179c0bd2275b02915258827d62eb",
+    "narHash": "sha256-K8yyxX/sShhVznU/3ejZgriayg8Fyac+bR4dCTB1864=",
+    "lastModified": 1784707224
+  },
   "np": {
     "type": "github",
     "owner": "notashelf",

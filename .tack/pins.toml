@@ -128,6 +128,9 @@ url = "channel:nixos-unstable"
 url = "github:noctalia-dev/noctalia?ref=cachix"
 exclude_follow = [ "nixpkgs" ] # needed to avoid cache misses
 
+[inputs.noctalia-greeter]
+url = "github:noctalia-dev/noctalia-greeter"
+
 # Network Printer, or; "No Problem" (We still have Many Problems)
 [inputs.np]
 url = "github:notashelf/np"
