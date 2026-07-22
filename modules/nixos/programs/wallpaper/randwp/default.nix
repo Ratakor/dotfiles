@@ -125,16 +125,35 @@ in
       set = "randwp";
     };
 
-    # TODO: this is the worst thing ever
-    self.programs.windowManager = {
-      niri.extraConfig = /* kdl */ ''
-        spawn-at-startup "randwp"
-      '';
-      river-classic.extraConfig = /* sh */ ''
-        riverctl spawn 'randwp';
-      '';
+    user.packages = [ randwp ];
+
+    systemd.user.services.randwp = {
+      description = "Set a random wallpaper";
+
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = getExe randwp;
+
+        # this is really dirty but the proper fix would be to rewrite randwp to
+        # have better interaction with systemd and to actually be a daemon
+        KillMode = "none";
+      };
     };
 
-    user.packages = [ randwp ];
+    systemd.user.timers.randwp = {
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+
+      timerConfig = {
+        OnBootSec = "1min";
+        OnUnitActiveSec = "15min"; # i can't decide between 15min or 30min :3
+        Unit = "randwp.service";
+      };
+    };
   };
 }

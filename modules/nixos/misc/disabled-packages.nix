@@ -1,17 +1,10 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
-  inherit (builtins) listToAttrs;
+  inherit (lib.attrsets) genAttrs;
+  inherit (lib.trivial) const;
 in
 {
   nixpkgs.overlays = [
-    (
-      _final: prev:
-      listToAttrs (
-        map (name: {
-          inherit name;
-          value = prev.emptyDirectory;
-        }) config.self.disabledPackages
-      )
-    )
+    (_final: prev: genAttrs config.self.disabledPackages (const prev.emptyDirectory))
   ];
 }

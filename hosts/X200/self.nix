@@ -48,6 +48,7 @@ in
         # statusBar.name = "waybar";
         # locker.name = "glitchlock";
         # notification.name = "mako";
+        # wallpaper.name = "randwp";
       };
       dev.enable = true;
       scripts.enable = true;
