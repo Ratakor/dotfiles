@@ -21,4 +21,10 @@
       // saturation 3
     }
   }
+
+  // https://docs.noctalia.dev/v5/compositor-settings/niri/?section=option-1-blurred-overview-wallpaper#option-1-blurred-overview-wallpaper
+  layer-rule {
+    match namespace="^noctalia-backdrop"
+    place-within-backdrop true
+  }
 ''

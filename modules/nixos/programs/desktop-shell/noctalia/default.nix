@@ -101,6 +101,7 @@ in
             interval_seconds = 30 * 60;
           };
         };
+        backdrop.enabled = true; # niri stuff, this makes chaning wallpaper kinda slow, at least on X200
         widget = {
           media = {
             album_art_only = true;
