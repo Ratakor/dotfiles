@@ -5,24 +5,19 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.modules) mkIf;
-  inherit (lib.types)
-    nullOr
-    enum
-    str
-    int
-    ;
+  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
+  inherit (lib) types;
 
-  opt = options.self.programs;
-  cfg = config.self.programs;
+  odprg = options.self.programs.default;
+  dprg = config.self.programs.default;
   sys = config.self.system;
 in
 {
   options.self.programs = {
-    terminal = mkEnableOptions' opt.default.terminal.name // {
+    terminal = mkEnableOptions' odprg.terminal.name // {
       fontSize = mkOption {
-        type = int;
+        type = types.int;
         default = 16;
         description = "Font size used by terminal emulators.";
       };
@@ -30,10 +25,12 @@ in
 
     default.terminal = {
       name = mkOption {
-        type = nullOr (enum [
-          "foot"
-          "ghostty"
-        ]);
+        type = types.nullOr (
+          types.enum [
+            "foot"
+            "ghostty"
+          ]
+        );
         default = if sys.video.enable then "ghostty" else null;
         defaultText = literalExpression ''
           if sys.video.enable then "ghostty" else null
@@ -45,14 +42,14 @@ in
       };
 
       cmd = mkOption {
-        type = str;
+        type = types.str;
         description = "The command to spawn a terminal emulator.";
         default = "dummy-terminal";
         internal = true;
       };
 
       cmdDir = mkOption {
-        type = str;
+        type = types.str;
         # readOnly makes it so that an option can be assigned only one time
         # except that it doesn't take mkIf into account so it sucks
         # readOnly = true;
@@ -63,7 +60,7 @@ in
     };
   };
 
-  config.self.programs = mkIf (cfg.default.terminal.name != null) {
-    terminal.${cfg.default.terminal.name}.enable = true;
+  config.self.programs = mkIf (dprg.terminal.name != null) {
+    terminal.${dprg.terminal.name}.enable = true;
   };
 }

@@ -5,18 +5,18 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
-  inherit (lib.modules) mkIf;
-  inherit (lib.types) nullOr enum str;
   inherit (lib.attrsets) recursiveUpdate;
+  inherit (lib.modules) mkIf;
+  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
+  inherit (lib.types) nullOr enum str;
 
-  opt = options.self.programs;
-  cfg = config.self.programs;
+  odprg = options.self.programs.default;
+  dprg = config.self.programs.default;
   sys = config.self.system;
 in
 {
   options.self.programs = {
-    windowManager = recursiveUpdate (mkEnableOptions' opt.default.windowManager.name) {
+    windowManager = recursiveUpdate (mkEnableOptions' odprg.windowManager.name) {
       niri = {
         extraConfig = mkOption {
           type = str;
@@ -72,7 +72,7 @@ in
     };
   };
 
-  config.self.programs = mkIf (cfg.default.windowManager.name != null) {
-    windowManager.${cfg.default.windowManager.name}.enable = true;
+  config.self.programs = mkIf (dprg.windowManager.name != null) {
+    windowManager.${dprg.windowManager.name}.enable = true;
   };
 }

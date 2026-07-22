@@ -5,18 +5,18 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.modules) mkIf;
+  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.types) nullOr enum;
 
-  opt = options.self.programs;
-  cfg = config.self.programs;
+  odprg = options.self.programs.default;
+  dprg = config.self.programs.default;
   sys = config.self.system;
 in
 {
   options.self.programs = {
     # is this useful? why would smn want multiple desktop shell
-    desktopShell = mkEnableOptions' opt.default.desktopShell.name;
+    desktopShell = mkEnableOptions' odprg.desktopShell.name;
 
     default.desktopShell = {
       name = mkOption {
@@ -36,7 +36,7 @@ in
     };
   };
 
-  config.self.programs = mkIf (cfg.default.desktopShell.name != null) {
-    desktopShell.${cfg.default.desktopShell.name}.enable = true;
+  config.self.programs = mkIf (dprg.desktopShell.name != null) {
+    desktopShell.${dprg.desktopShell.name}.enable = true;
   };
 }

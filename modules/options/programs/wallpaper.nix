@@ -5,17 +5,17 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.modules) mkIf;
+  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.types) nullOr enum str;
 
-  opt = options.self.programs;
+  odprg = options.self.programs.default;
   prg = config.self.programs;
   dprg = prg.default;
 in
 {
   options.self.programs = {
-    wallpaper = mkEnableOptions' opt.default.wallpaper.name;
+    wallpaper = mkEnableOptions' odprg.wallpaper.name;
 
     default.wallpaper = {
       name = mkOption {

@@ -5,18 +5,18 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
-  inherit (lib.modules) mkIf;
-  inherit (lib.types) nullOr enum;
   inherit (lib.attrsets) recursiveUpdate;
+  inherit (lib.modules) mkIf;
+  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
+  inherit (lib.types) nullOr enum;
 
-  opt = options.self.programs;
-  cfg = config.self.programs;
+  odprg = options.self.programs.default;
+  dprg = config.self.programs.default;
   sys = config.self.system;
 in
 {
   options.self.programs = {
-    xdg.portal = recursiveUpdate (mkEnableOptions' opt.default.xdg.portal.name) {
+    xdg.portal = recursiveUpdate (mkEnableOptions' odprg.xdg.portal.name) {
       # gtk is used as fallback
       gtk.enable = {
         default = sys.video.enable;
@@ -45,7 +45,7 @@ in
     };
   };
 
-  config.self.programs = mkIf (cfg.default.xdg.portal.name != null) {
-    xdg.portal.${cfg.default.xdg.portal.name}.enable = true;
+  config.self.programs = mkIf (dprg.xdg.portal.name != null) {
+    xdg.portal.${dprg.xdg.portal.name}.enable = true;
   };
 }

@@ -5,16 +5,16 @@
   ...
 }:
 let
+  inherit (lib.attrsets) recursiveUpdate;
   inherit (lib.options) mkOption mkEnableOptions literalExpression;
   inherit (lib.types) enum str;
-  inherit (lib.attrsets) recursiveUpdate;
 
-  opt = options.self.programs;
+  odprg = options.self.programs.default;
   dprg = config.self.programs.default;
 in
 {
   options.self.programs = {
-    fileManager = recursiveUpdate (mkEnableOptions opt.default.fileManager.name) {
+    fileManager = recursiveUpdate (mkEnableOptions odprg.fileManager.name) {
       yazi.enable.default = true;
     };
 

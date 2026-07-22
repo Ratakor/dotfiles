@@ -5,22 +5,22 @@
   ...
 }:
 let
+  inherit (lib.modules) mkIf;
   inherit (lib.options)
     mkOption
     mkPackageOption
     mkEnableOptions'
     literalExpression
     ;
-  inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum;
 
-  opt = options.self.programs;
-  cfg = config.self.programs;
+  odprg = options.self.programs.default;
+  dprg = config.self.programs.default;
   sys = config.self.system;
 in
 {
   options.self.programs = {
-    mediaPlayer = mkEnableOptions' opt.default.mediaPlayer.name;
+    mediaPlayer = mkEnableOptions' odprg.mediaPlayer.name;
 
     default.mediaPlayer = {
       name = mkOption {
@@ -49,7 +49,7 @@ in
     };
   };
 
-  config.self.programs = mkIf (cfg.default.mediaPlayer.name != null) {
-    mediaPlayer.${cfg.default.mediaPlayer.name}.enable = true;
+  config.self.programs = mkIf (dprg.mediaPlayer.name != null) {
+    mediaPlayer.${dprg.mediaPlayer.name}.enable = true;
   };
 }

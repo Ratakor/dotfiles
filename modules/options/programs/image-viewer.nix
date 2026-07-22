@@ -5,22 +5,22 @@
   ...
 }:
 let
+  inherit (lib.modules) mkIf;
   inherit (lib.options)
     mkOption
     mkPackageOption
     mkEnableOptions'
     literalExpression
     ;
-  inherit (lib.modules) mkIf;
   inherit (lib.types) nullOr enum;
 
-  opt = options.self.programs;
-  cfg = config.self.programs;
+  odprg = options.self.programs.default;
+  dprg = config.self.programs.default;
   sys = config.self.system;
 in
 {
   options.self.programs = {
-    imageViewer = mkEnableOptions' opt.default.imageViewer.name;
+    imageViewer = mkEnableOptions' odprg.imageViewer.name;
 
     default.imageViewer = {
       name = mkOption {
@@ -48,7 +48,7 @@ in
     };
   };
 
-  config.self.programs = mkIf (cfg.default.imageViewer.name != null) {
-    imageViewer.${cfg.default.imageViewer.name}.enable = true;
+  config.self.programs = mkIf (dprg.imageViewer.name != null) {
+    imageViewer.${dprg.imageViewer.name}.enable = true;
   };
 }

@@ -6,18 +6,18 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.modules) mkIf;
+  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.types) nullOr enum str;
 
-  opt = options.self.programs;
+  odprg = options.self.programs.default;
   prg = config.self.programs;
   dprg = prg.default;
 in
 {
   options.self.programs = {
     # is this useful? why would smn want multiple status bar
-    statusBar = mkEnableOptions' opt.default.statusBar.name;
+    statusBar = mkEnableOptions' odprg.statusBar.name;
 
     default.statusBar = {
       name = mkOption {

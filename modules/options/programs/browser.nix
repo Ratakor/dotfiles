@@ -6,6 +6,8 @@
   ...
 }:
 let
+  inherit (lib.attrsets) recursiveUpdate;
+  inherit (lib.modules) mkIf;
   inherit (lib.options)
     mkOption
     mkPackageOption
@@ -13,17 +15,15 @@ let
     mkEnableOptions'
     literalExpression
     ;
-  inherit (lib.modules) mkIf;
-  inherit (lib.attrsets) recursiveUpdate;
   inherit (lib) types;
 
-  opt = options.self.programs;
-  cfg = config.self.programs;
+  odprg = options.self.programs.default;
+  dprg = config.self.programs.default;
   sys = config.self.system;
 in
 {
   options.self.programs = {
-    browser = recursiveUpdate (mkEnableOptions' opt.default.browser.name) {
+    browser = recursiveUpdate (mkEnableOptions' odprg.browser.name) {
       chromium = {
         package = mkPackageOption pkgs "chromium" {
           default = "helium";
@@ -131,7 +131,7 @@ in
     };
   };
 
-  config.self.programs = mkIf (cfg.default.browser.name != null) {
-    browser.${cfg.default.browser.name}.enable = true;
+  config.self.programs = mkIf (dprg.browser.name != null) {
+    browser.${dprg.browser.name}.enable = true;
   };
 }

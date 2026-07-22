@@ -6,18 +6,18 @@
   ...
 }:
 let
-  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.modules) mkIf;
+  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.types) nullOr enum;
 
-  opt = options.self.programs;
+  odprg = options.self.programs.default;
   prg = config.self.programs;
   dprg = prg.default;
 in
 {
   options.self.programs = {
     # is this useful? why would smn want multiple notification daemon
-    notification = mkEnableOptions' opt.default.notification.name;
+    notification = mkEnableOptions' odprg.notification.name;
 
     # because notificationDaemon was way too verbose
     default.notification = {

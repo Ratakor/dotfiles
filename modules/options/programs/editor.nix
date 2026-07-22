@@ -13,13 +13,13 @@ let
     ;
   inherit (lib.types) nullOr enum;
 
-  opt = options.self.programs;
-  cfg = config.self.programs;
+  odprg = options.self.programs.default;
+  dprg = config.self.programs.default;
 in
 {
   options.self.programs = {
-    editor = mkEnableOptions opt.default.editor.name // {
-      visual = mkEnableOptions' opt.default.editor.visual.name;
+    editor = mkEnableOptions odprg.editor.name // {
+      visual = mkEnableOptions' odprg.editor.visual.name;
     };
 
     default.editor = {
@@ -65,7 +65,7 @@ in
   };
 
   config.self.programs = {
-    editor.${cfg.default.editor.name}.enable = true;
-    editor.visual.${cfg.default.editor.visual.name}.enable = true;
+    editor.${dprg.editor.name}.enable = true;
+    editor.visual.${dprg.editor.visual.name}.enable = true;
   };
 }
