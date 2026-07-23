@@ -88,14 +88,6 @@ in
     myip4 = "dig @resolver4.opendns.com myip.opendns.com +short -4";
     myip6 = "dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +short -6";
 
-    # music
-    pause = "musiccmd pause";
-    play = "musiccmd play"; # This does the same thing as pause
-    next = "musiccmd next";
-    prev = "musiccmd prev";
-    stop = "musiccmd stop";
-    vol = "musiccmd volume"; # put the volume you want in arg like vol 50
-
     # aliases incompatible with "modern" shells such as nushell
     tmp = "cd $(mktemp -d)";
     timestamp = "date +%Y-%m-%dT%H:%M:%S%z";

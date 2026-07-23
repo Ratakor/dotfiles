@@ -48,8 +48,6 @@ in
       (optional cfg.pdfmd.enable (callPackage ./src/pdfmd { }))
       [
         (callScript ./src/emojisearch)
-        (callScript ./src/music)
-        (callScript ./src/musiccmd)
 
         (callPackage ./src/battery { })
         (callPackage ./src/sci { })
