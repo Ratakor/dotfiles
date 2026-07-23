@@ -62,6 +62,14 @@ in
           blur {
             off
           }
+
+          // https://github.com/niri-wm/niri/issues/4043
+          layer-rule {
+            match namespace="^launcher$" // this is necessary
+            background-effect {
+              xray true
+            }
+          }
         '';
       };
     };
