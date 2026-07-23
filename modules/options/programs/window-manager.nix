@@ -8,7 +8,7 @@ let
   inherit (lib.attrsets) recursiveUpdate;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkOption mkEnableOptions' literalExpression;
-  inherit (lib.types) nullOr enum str;
+  inherit (lib) types;
 
   odprg = options.self.programs.default;
   dprg = config.self.programs.default;
@@ -19,7 +19,7 @@ in
     windowManager = recursiveUpdate (mkEnableOptions' odprg.windowManager.name) {
       niri = {
         extraConfig = mkOption {
-          type = str;
+          type = types.str;
           default = "";
           description = ''
             Extra config to include into niri configuration.
@@ -27,25 +27,65 @@ in
           '';
         };
       };
+
       river-classic = {
         extraConfig = mkOption {
-          type = str;
+          type = types.str;
           default = "";
           description = ''
             Extra config to include into river-classic configuration.
           '';
         };
       };
+
+      binds = mkOption {
+        type = types.attrsOf (
+          types.submodule {
+            options = {
+              spawn = mkOption {
+                type = types.str;
+                description = "Command to execute";
+              };
+              # TODO: useful on river and also on niri since there are a lot of
+              # duplicate repeat=false, could also add a type to niri option
+              #repeat = mkOption {
+              #  type = types.bool;
+              #  default = false;
+              #  description = "";
+              #};
+              niri = mkOption {
+                type = types.attrs;
+                description = "Additional args to be used by niri.";
+              };
+            };
+          }
+        );
+        default = { }; # see /nixos/modules/nixos/programs/window-manager/binds.nix
+        example = literalExpression ''
+          {
+            "Mod+Return" = {
+              spawn = dprg.terminal.cmd;
+              niri = {
+                repeat = false;
+                hotkey-overlay-title = "Open a terminal: ''${dprg.terminal.name}";
+              };
+            };
+          }
+        '';
+        description = "Keybinds shared across all window managers.";
+      };
     };
 
     default.windowManager = {
       name = mkOption {
-        type = nullOr (enum [
-          "hyprland"
-          "niri"
-          # "river"
-          "river-classic"
-        ]);
+        type = types.nullOr (
+          types.enum [
+            "hyprland"
+            "niri"
+            # "river"
+            "river-classic"
+          ]
+        );
         default = if sys.video.enable then "niri" else null;
         defaultText = literalExpression ''
           if sys.video.enable then "niri" else null
@@ -57,14 +97,14 @@ in
       };
 
       cmd = mkOption {
-        type = str;
+        type = types.str;
         description = "The command to spawn a new window manager session from TTY.";
         # default = "dummy-window-manager"; # probably a bad idea
         internal = true;
       };
 
       session = mkOption {
-        type = str;
+        type = types.str;
         description = "The name of the default window manager session.";
         # default = "dummy-window-manager";
         internal = true;

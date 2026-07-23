@@ -17,7 +17,7 @@ let
 
   input = import ./input.nix config;
   output = import ./output.nix { inherit config lib; };
-  binds = import ./binds.nix config;
+  binds = import ./binds.nix { inherit config lib; };
   switch-events = import ./switch-events.nix;
   layout = import ./layout.nix config;
   workspace = import ./workspace.nix;

@@ -1,13 +1,20 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
-  inherit (config.hm.xdg.userDirs.extraConfig) NOTES;
+  inherit (builtins) isList split length;
+  inherit (lib.lists) ifold1;
+  inherit (lib.strings) concatMapAttrsStringSep;
+
   inherit (config.self.system) keyboard;
   prg = config.self.programs;
-  dprg = prg.default;
   colors = config.self.colors.default;
 
   # TODO: also power off monitors
-  lockCmd = dprg.locker.cmd;
+  lockCmd = prg.default.locker.cmd;
 in
 # sh
 ''
@@ -36,7 +43,7 @@ in
   riverctl border-color-unfocused '0x${colors.unfocused}'
   riverctl border-color-urgent '0x${colors.red}'
 
-  # TODO: output config like niri if possible
+  # TODO: output (as in monitor) config like niri if possible
 
   ### WM bindings
 
@@ -105,69 +112,34 @@ in
 
   ### Custom bindings
 
-  riverctl map normal Super Return spawn '${dprg.terminal.cmd}'
-  riverctl map normal Super D spawn '${dprg.launcher.drun}'
-  riverctl map normal Super+Shift D spawn '${dprg.launcher.run}'
+  # TODO: move to prg.windowManager.binds
   riverctl map normal None XF86ScreenSaver spawn '${lockCmd}'
   riverctl map normal Super+Shift X spawn '${lockCmd}'
-  riverctl map normal None XF86Battery spawn 'battery'
-  riverctl map normal Super+Shift W spawn '${dprg.wallpaper.nextRandom}'
   riverctl map normal None Print spawn 'screenshot'
-  riverctl map normal Shift Print spawn 'ocr'
-  # riverctl map normal None F7 spawn '${dprg.terminal.cmd} -e dmenurecord'
-  riverctl map normal Super B spawn '${dprg.browser.newWindow}'
-  # riverctl map normal Super N spawn '${dprg.terminal.cmd} -e yazi ${NOTES}'
-  # riverctl map normal Super N spawn '${dprg.terminal.cmdDir} ${NOTES} -e zellij attach --create notes'
-  riverctl map normal Super N spawn '${dprg.terminal.cmd} -e zellij attach --create main'
-  # riverctl map normal Super+Shift N spawn '${dprg.terminal.cmd} -e newsboat'
-  riverctl map normal Super+Shift N spawn '${dprg.terminal.cmdDir} ${NOTES} -e zellij attach --create notes'
 
-  riverctl map -repeat normal None XF86AudioRaiseVolume spawn 'wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+'
-  riverctl map -repeat normal Super Equal spawn 'wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+'
-  riverctl map -repeat normal None XF86AudioLowerVolume spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-'
-  riverctl map -repeat normal Super Minus spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-'
-  riverctl map normal None XF86Launch1 spawn 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'
-  riverctl map normal None F6 spawn 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'
-
-  # riverctl map normal Super M spawn 'zpotify play playlist'    # 'music'
-  # riverctl map normal Super+Shift M spawn 'zpotify play album' # 'musiccmd'
-  riverctl map normal None XF86AudioPrev spawn 'playerctl previous'   # 'musiccmd prev || zpotify prev >/dev/null'
-  riverctl map normal None XF86AudioNext spawn 'playerctl next'       # 'musiccmd next || zpotify next >/dev/null'
-  riverctl map normal None XF86AudioPlay spawn 'playerctl play-pause' # 'musiccmd cycle || zpotify pause >/dev/null'
-  riverctl map normal None XF86AudioStop spawn 'playerctl stop'       # 'musiccmd stop || zpotify pause >/dev/null'
-  riverctl map normal Super+Shift Left spawn   'playerctl previous'   # 'musiccmd prev || zpotify prev >/dev/null'
-  riverctl map normal Super+Shift Right spawn  'playerctl next'       # 'musiccmd next || zpotify next >/dev/null'
-  riverctl map normal Super+Shift Down spawn   'playerctl play-pause' # 'musiccmd cycle || zpotify pause >/dev/null'
-  riverctl map normal Super+Shift Up spawn     'playerctl stop'       # 'musiccmd stop || zpotify pause >/dev/null'
-
-  riverctl map normal None XF86MonBrightnessUp spawn 'brightnessctl set +10%'
-  riverctl map normal None XF86MonBrightnessDown spawn 'brightnessctl set 10%-'
-  riverctl map normal Super Insert spawn 'brightnessctl set +10%'
-  riverctl map normal Super Delete spawn 'brightnessctl set 10%-'
-
-  # riverctl map normal Super S spawn 'dmenusearch web'
-  # riverctl map normal Super A spawn 'dmenusearch aur'
-  # riverctl map normal Super Y spawn 'dmenusearch youtube'
-  # riverctl map normal Super W spawn 'dmenusearch man'
-  riverctl map normal Super E spawn 'emojisearch' # 'dmenusearch emoji'
-
-  riverctl map normal Super+Shift E spawn '${dprg.powerMenu.cmd}'
-  riverctl map normal Super U spawn 'plumber --dmenu "$(wl-paste)"'
-  riverctl map normal Super+Shift U spawn 'plumber "$(wl-paste)"'
-  #riverctl map-pointer normal None BTN_MIDDLE spawn 'plumber'
-  #riverctl map normal None button8 spawn 'plumber "$(wl-paste)"'
-  #riverctl map normal None button9 close
-  #riverctl map normal None button10 spawn 'musiccmd'
-
-  # toggle bar
-  riverctl map normal Super+Shift B spawn '${dprg.statusBar.toggle}'
-  # TODO: toggle padding (gaps)
-  #riverctl map normal Super+Shift G ...
-  # cycle layout (toggle floating mode)
-  # riverctl map normal Super+Shift Space spawn \
-  # 	'killall rivertile || rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55'
-  # TODO: toggle transparency
-  #riverctl map normal Control P spawn 'killall picom || picom -b'
+  ${concatMapAttrsStringSep "\n" (
+    name: value:
+    "riverctl map normal ${
+      let
+        components = split "\\+" name;
+        len = length components;
+      in
+      if len == 1 then
+        "None ${name}"
+      else
+        ifold1 (
+          acc: i: x:
+          if isList x then
+            acc
+          else if i == 1 then
+            if x == "Mod" then "Super" else x
+          else if i == len then
+            "${acc} ${x}"
+          else
+            "${acc}+${x}"
+        ) "" components
+    } spawn '${value.spawn}'"
+  ) prg.windowManager.binds}
 
   ### Start programs
 

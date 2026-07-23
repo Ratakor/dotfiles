@@ -25,6 +25,7 @@ sources:
       listModuleFiles
       listFilesRecursive
       ;
+    inherit (self.lists) ifold0 ifold1;
     inherit (self.options)
       enumOptionValues
       enumOptionValues'

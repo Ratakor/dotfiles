@@ -1,9 +1,30 @@
 # https://yalter.github.io/niri/Configuration:-Key-Bindings
-config:
+{ config, lib }:
 let
-  inherit (config.hm.xdg.userDirs.extraConfig) NOTES;
-  dprg = config.self.programs.default;
+  inherit (builtins) isString typeOf;
+  inherit (lib.strings)
+    concatMapAttrsStringSep
+    escape
+    hasInfix
+    optionalString
+    ;
 
+  mkValue =
+    v:
+    if isString v then
+      "\"${v}\""
+    else if true == v then
+      "true"
+    else if false == v then
+      "false"
+    else if null == v then
+      "null"
+    else
+      throw "Unsupported value type: ${typeOf v}";
+
+  prg = config.self.programs;
+
+  dprg = prg.default;
   # niri allow only one action per keybind
   lockCmd = "${dprg.locker.cmd}; niri msg action power-off-monitors";
 in
@@ -23,87 +44,6 @@ in
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
-
-    // WARNING: using `spawn` to avoid latency but that means cfg.terminal.cmd must be a single command
-    // -> add a nix assertion?
-    Mod+Return repeat=false hotkey-overlay-title="Open a Terminal: ${dprg.terminal.name}" { spawn "${dprg.terminal.cmd}"; }
-    Mod+N repeat=false hotkey-overlay-title="Open main Zellij session" {
-      spawn-sh "${dprg.terminal.cmd} -e zellij attach --create main";
-    }
-    // see `dms ipc notepad toggle`
-    Mod+Shift+N repeat=false hotkey-overlay-title="Open notes directory in a Zellij session" {
-      spawn-sh "${dprg.terminal.cmdDir} ${NOTES} -e zellij attach --create notes";
-      // spawn-sh "${dprg.terminal.cmd} -e yazi ${NOTES}";
-    }
-
-    Mod+D repeat=false hotkey-overlay-title="Run an Application: ${dprg.launcher.name}" { spawn-sh "${dprg.launcher.drun}"; }
-    Mod+Shift+D repeat=false hotkey-overlay-title=null { spawn-sh "${dprg.launcher.run}"; }
-
-    // Mod+B repeat=false hotkey-overlay-title="Open newsboat" { spawn-sh "${dprg.terminal.cmd} -e newsboat"; }
-    Mod+B repeat=false hotkey-overlay-title="Open browser: ${dprg.browser.name}" { spawn-sh "${dprg.browser.newWindow}"; }
-    Mod+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${dprg.locker.name}" { spawn-sh "${lockCmd}"; }
-    XF86ScreenSaver repeat=false { spawn-sh "${lockCmd}"; }
-    XF86Battery repeat=false hotkey-overlay-title="Show battery information" { spawn "battery"; }
-    // TODO: use wlr-which-key to handle prev/next instead?
-    Mod+Shift+W repeat=false hotkey-overlay-title="Set a random wallpaper" { spawn-sh "${dprg.wallpaper.nextRandom}"; }
-
-    // Print repeat=false { spawn "screenshot"; }
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
-    Shift+Print repeat=false hotkey-overlay-title="Perform OCR on a screenshot" { spawn "ocr"; } // Mod+Shift+O might be a good bind too
-    // F7 repeat=false { spawn-sh "${dprg.terminal.cmd} -e dmenurecord"; }
-
-    // see `dms ipc audio increment 2`, `dms ipc audio mute`, `dms ipc audio micmute`
-    XF86AudioRaiseVolume allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
-    Ctrl+Equal           allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "2%+"; }
-    XF86AudioLowerVolume allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"; }
-    Ctrl+Minus           allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"; }
-    XF86AudioMute        repeat=false allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86Launch1          repeat=false allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86AudioMicMute     repeat=false allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    F6                   repeat=false allow-when-locked=true hotkey-overlay-title=null { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-
-    // Mod+M           repeat=false hotkey-overlay-title="Dynamically play Spotify playlist" { spawn "zpotify" "play" "playlist"; } // "music"
-    // Mod+Shift+M     repeat=false hotkey-overlay-title="Dynamically play Spotify album"{ spawn "zpotify" "play" "album"; } // "musiccmd"
-    XF86AudioPrev   repeat=false allow-when-locked=true { spawn-sh "playerctl previous"; }
-    XF86AudioNext   repeat=false allow-when-locked=true { spawn-sh "playerctl next"; }
-    XF86AudioPlay   repeat=false allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-    XF86AudioStop   repeat=false allow-when-locked=true { spawn-sh "playerctl stop"; }
-    Mod+Shift+Left  repeat=false allow-when-locked=true hotkey-overlay-title="Play previous track" { spawn-sh "playerctl previous"; } // musiccmd prev
-    Mod+Shift+Right repeat=false allow-when-locked=true hotkey-overlay-title="Play next track" { spawn-sh "playerctl next"; } // musiccmd next
-    Mod+Shift+Down  repeat=false allow-when-locked=true hotkey-overlay-title="Toggle playback" { spawn-sh "playerctl play-pause"; } // musiccmd cycle
-    Mod+Shift+Up    repeat=false allow-when-locked=true hotkey-overlay-title="Stop playback" { spawn-sh "playerctl stop"; } // musiccmd stop
-
-    // Mod+S repeat=false { spawn "dmenusearch" "web"; }
-    // Mod+A repeat=false { spawn "dmenusearch" "aur"; }
-    // Mod+Y repeat=false { spawn "dmenusearch" "youtube"; }
-    // Mod+W repeat=false { spawn "dmenusearch" "man"; }
-    Mod+E repeat=false hotkey-overlay-title="Dynamically search emojis" { spawn "emojisearch"; }
-
-    Mod+U repeat=false hotkey-overlay-title="Dynamically plumb clipboard" { spawn-sh "plumber --dmenu \"$(wl-paste)\""; }
-    Mod+Shift+U repeat=false hotkey-overlay-title="Plumb clipboard" { spawn-sh "plumber \"$(wl-paste)\""; }
-    //riverctl map-pointer normal None BTN_MIDDLE spawn 'plumber'
-    //riverctl map normal None button8 spawn 'plumber "$(wl-paste)"'
-    //riverctl map normal None button9 close
-    //riverctl map normal None button10 spawn 'musiccmd'
-
-    Mod+Shift+E repeat=false hotkey-overlay-title="Exit options" { spawn-sh "${dprg.powerMenu.cmd}"; }
-
-    Mod+Shift+B repeat=false hotkey-overlay-title="Toggle status bar" { spawn-sh "${dprg.statusBar.toggle}"; }
-
-    //# TODO: toggle padding (gaps)
-    //#riverctl map normal Super+Shift G ...
-    //# cycle layout (toggle floating mode)
-    //# riverctl map normal Super+Shift Space spawn \
-    //# 	'killall rivertile || rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55'
-    //# TODO: toggle transparency
-    //#riverctl map normal Control P spawn 'killall picom || picom -b'
-
-    XF86MonBrightnessUp   allow-when-locked=true hotkey-overlay-title="Increase brightness" { spawn "brightnessctl" "set" "+10%"; }
-    XF86MonBrightnessDown allow-when-locked=true hotkey-overlay-title="Decrease brightness" { spawn "brightnessctl" "set" "10%-"; }
-    Mod+Insert allow-when-locked=true hotkey-overlay-title=null { spawn "brightnessctl" "set" "+10%"; }
-    Mod+Delete allow-when-locked=true hotkey-overlay-title=null { spawn "brightnessctl" "set" "10%-"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
@@ -340,5 +280,21 @@ in
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P hotkey-overlay-title="Power off monitors" { power-off-monitors; }
+
+    // Print repeat=false { spawn "screenshot"; }
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    // TODO: move to prg.windowManager.binds
+    Mod+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${dprg.locker.name}" { spawn-sh "${lockCmd}"; }
+    XF86ScreenSaver repeat=false { spawn-sh "${lockCmd}"; }
+
+    ${concatMapAttrsStringSep "\n" (
+      name: value:
+      ''${name} ${
+        concatMapAttrsStringSep " " (k: v: "${k}=${mkValue v}") value.niri
+      } { spawn${optionalString (hasInfix " " value.spawn) "-sh"} "${escape [ "\"" ] value.spawn}"; }''
+    ) prg.windowManager.binds}
   }
 ''
