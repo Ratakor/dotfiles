@@ -31,7 +31,6 @@ in
   config = mkIf cfg.enable {
     # TODO:
     # dmenurecord: replace with wf-recorder
-    # dmenusearch: split into different package since it has so many dependencies?
     # icstocal: merge with quand?
     # plumber: ..., support archive/compressed files
     # screenshot: remove? rewrite using nix, depends on dmenurecord
