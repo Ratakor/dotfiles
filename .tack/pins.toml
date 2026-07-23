@@ -156,8 +156,3 @@ url = "github:numtide/treefmt-nix"
 [inputs.zfs-restore]
 url = "github:ratakor/zfs-restore"
 type = "fetch"
-
-# CLI/TUI for Spotify
-[inputs.zpotify]
-url = "github:ratakor/zpotify"
-type = "fetch"

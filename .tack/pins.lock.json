@@ -204,13 +204,5 @@
     "rev": "8ef61b988bb6b15e0b77c261df5457d44e367cc3",
     "narHash": "sha256-UUN5vCJIz5r71La9BWJZmLXVeSLFXFbFJJMSPnrSVi4=",
     "lastModified": 1780451242
-  },
-  "zpotify": {
-    "type": "github",
-    "owner": "ratakor",
-    "repo": "zpotify",
-    "rev": "5f7b5b22216ea56363d9c203e228b87c9887e534",
-    "narHash": "sha256-tvhXPsL+cnYWDHjbfp45aV6aBzzpKspRWI+8v0Y7ABw=",
-    "lastModified": 1780451277
   }
 }
