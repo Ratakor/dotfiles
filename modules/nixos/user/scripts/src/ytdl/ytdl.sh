@@ -1,5 +1,5 @@
 # wrapper for yt-dlp with notification support
-# shellcheck shell=bash disable=SC2015
+# shellcheck shell=bash
 
 # first argument is type
 # v for video
@@ -38,6 +38,7 @@ case $type in
 v)
 	mkdir -p "$videodir"
 	notify-send "Video download started"
+	# shellcheck disable=SC2015
 	yt-dlp -f 'bv+ba' -o '%(title)s [%(id)s].%(ext)s' \
 		--embed-metadata -P "$videodir" "$url" &&
 		notify-send "Video downloaded" ||
@@ -49,7 +50,10 @@ v)
 m)
 	mkdir -p "$musicdir"
 	notify-send "Music download started"
-	yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3 -o '%(title)s [%(id)s].%(ext)s' --embed-metadata -P "$musicdir" "$url" &&
+	# shellcheck disable=SC2015
+	yt-dlp -f 'ba' -o '%(title)s [%(id)s].%(ext)s' \
+		-x --embed-thumbnail --audio-format mp3 \
+		--embed-metadata -P "$musicdir" "$url" &&
 		notify-send "Music downloaded" ||
 		(
 			notify-send "Error: Download failed"
@@ -59,7 +63,9 @@ m)
 p)
 	mkdir -p "$musicdir"
 	notify-send "Playlist download started"
-	yt-dlp -f 'ba' -x --embed-thumbnail --audio-format mp3 -o '%(playlist_index)s - %(title)s [%(id)s].%(ext)s' \
+	# shellcheck disable=SC2015
+	yt-dlp -f 'ba' -o '%(playlist_index)s - %(title)s [%(id)s].%(ext)s' \
+		-x --embed-thumbnail --audio-format mp3 \
 		--embed-metadata -P "$musicdir" "$url" &&
 		notify-send "Playlist downloaded" ||
 		(
