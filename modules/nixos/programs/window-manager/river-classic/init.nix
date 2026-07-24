@@ -9,6 +9,7 @@ let
   inherit (lib.lists) ifold1;
   inherit (lib.strings) concatMapAttrsStringSep;
 
+  inherit (config.hm.xdg.userDirs.extraConfig) SCREENSHOTS;
   inherit (config.self.system) keyboard;
   prg = config.self.programs;
   colors = config.self.colors.default;
@@ -112,10 +113,14 @@ in
 
   ### Custom bindings
 
+  # TODO: use swappy?
+  riverctl map normal None Print spawn 'grim -g "$(slurp)" - | tee "${SCREENSHOTS}/$(date "+%Y-%m-%d_%H:%M:%S").png" | wl-copy'
+  riverctl map normal Ctrl Print spawn 'grim - | tee "${SCREENSHOTS}/$(date "+%Y-%m-%d_%H:%M:%S").png" | wl-copy'
+  # TODO: Alt Print screenshot-window
+
   # TODO: move to prg.windowManager.binds
   riverctl map normal None XF86ScreenSaver spawn '${lockCmd}'
   riverctl map normal Super+Shift X spawn '${lockCmd}'
-  riverctl map normal None Print spawn 'screenshot'
 
   ${concatMapAttrsStringSep "\n" (
     name: value:

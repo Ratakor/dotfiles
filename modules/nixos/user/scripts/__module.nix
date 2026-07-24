@@ -33,7 +33,6 @@ in
     # dmenurecord: replace with wf-recorder
     # icstocal: merge with quand?
     # plumber: ..., support archive/compressed files
-    # screenshot: remove? rewrite using nix, depends on dmenurecord
     # ytdl: ...
     hm.home.file.".local/bin" = {
       source = ./bin;

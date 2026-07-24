@@ -283,7 +283,6 @@ in
     // moving the mouse or pressing any other key.
     Mod+Shift+P hotkey-overlay-title="Power off monitors" { power-off-monitors; }
 
-    // Print repeat=false { spawn "screenshot"; }
     Print { screenshot show-pointer=false; }
     Ctrl+Print { screenshot-screen show-pointer=false; }
     Alt+Print { screenshot-window show-pointer=false; }
