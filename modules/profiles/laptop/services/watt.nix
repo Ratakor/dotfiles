@@ -1,4 +1,6 @@
 # TODO: use and config this?
+# https://github.com/NotAShelf/watt/blob/main/docs/configuring.md
+# https://github.com/NotAShelf/watt/blob/main/watt/config.toml
 { lib, ... }:
 let
   inherit (lib.modules) mkIf;
