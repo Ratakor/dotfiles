@@ -32,7 +32,6 @@ in
     # TODO:
     # icstocal: merge with quand?
     # plumber: ..., support archive/compressed files
-    # ytdl: ...
     hm.home.file.".local/bin" = {
       source = ./bin;
       recursive = true;
@@ -47,8 +46,9 @@ in
         (callScript ./src/emojisearch)
 
         (callPackage ./src/battery { })
-        (callPackage ./src/sci { })
         (callPackage ./src/real { })
+        (callPackage ./src/sci { })
+        (callPackage ./src/ytdl { })
 
         # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/dev/default.nix
         (writeShellApplication {
