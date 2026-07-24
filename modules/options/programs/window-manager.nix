@@ -55,6 +55,7 @@ in
               #};
               niri = mkOption {
                 type = types.attrs;
+                default = { };
                 description = "Additional args to be used by niri.";
               };
             };

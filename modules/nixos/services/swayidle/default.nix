@@ -1,4 +1,5 @@
 # Idle manager
+# see also https://github.com/saltnpepper97/stasis
 {
   config,
   lib,
@@ -23,6 +24,7 @@ in
           command = dprg.locker.cmd;
         }
         # TODO: wlopm doesn't work on niri
+        # we can use `niri msg action power-off-monitors` instead
         {
           timeout = 600;
           command = "${getExe pkgs.wlopm} --off '*'";

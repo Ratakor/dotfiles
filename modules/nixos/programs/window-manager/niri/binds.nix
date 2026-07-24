@@ -1,7 +1,7 @@
 # https://yalter.github.io/niri/Configuration:-Key-Bindings
 { config, lib }:
 let
-  inherit (builtins) isString typeOf;
+  inherit (builtins) isInt isString typeOf;
   inherit (lib.strings)
     concatMapAttrsStringSep
     escape
@@ -19,6 +19,8 @@ let
       "false"
     else if null == v then
       "null"
+    else if isInt v then
+      toString v
     else
       throw "Unsupported value type: ${typeOf v}";
 
@@ -282,11 +284,12 @@ in
     Mod+Shift+P hotkey-overlay-title="Power off monitors" { power-off-monitors; }
 
     // Print repeat=false { spawn "screenshot"; }
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Print { screenshot show-pointer=false; }
+    Ctrl+Print { screenshot-screen show-pointer=false; }
+    Alt+Print { screenshot-window show-pointer=false; }
 
     // TODO: move to prg.windowManager.binds
+    // depends on https://github.com/niri-wm/niri/pull/3192
     Mod+Shift+X repeat=false hotkey-overlay-title="Lock the Screen: ${dprg.locker.name}" { spawn-sh "${lockCmd}"; }
     XF86ScreenSaver repeat=false { spawn-sh "${lockCmd}"; }
 
