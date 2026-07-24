@@ -1,6 +1,6 @@
 {
   lib,
-  stdenvNoCC,
+  stdenv,
   callPackage,
   zig,
   releaseMode ? "safe",
@@ -8,7 +8,7 @@
 let
   fs = lib.fileset;
 in
-stdenvNoCC.mkDerivation (finalAttrs: {
+stdenv.mkDerivation (finalAttrs: {
   pname = "zig-template";
   inherit (import ./version.nix lib) version;
 
