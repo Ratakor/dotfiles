@@ -14,11 +14,10 @@ in
 {
   # config = mkIf prg.launcher.anyrun.enable {
   config = mkIf false {
-    # self.programs.default.launcher = mkIf (prg.default.launcher.name == "anyrun") {
-    #   dmenu = "anyrun"; # ??
-    #   drun = "anyrun";
-    #   run = "anyrun"; # no equivalent?
-    # };
+    self.programs.default.launcher = mkIf (prg.default.launcher.name == "anyrun") {
+      cmd = "anyrun";
+      # TODO: emoji: use symbols plugin
+    };
 
     hm.programs.anyrun = {
       enable = true;
@@ -42,7 +41,7 @@ in
           "${pkgs.anyrun}/lib/libtranslate.so"
           "${pkgs.anyrun}/lib/libkidex.so"
           "${pkgs.anyrun}/lib/librandr.so"
-          "${pkgs.anyrun}/lib/libstdin.so"
+          "${pkgs.anyrun}/lib/libstdin.so" # ig this is dmenu support
           "${pkgs.anyrun}/lib/libdictionary.so"
           "${pkgs.anyrun}/lib/libwebsearch.so"
           "${pkgs.anyrun}/lib/libnix_run.so"

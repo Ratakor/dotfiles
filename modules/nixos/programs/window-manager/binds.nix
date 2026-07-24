@@ -18,17 +18,10 @@ in
     };
 
     "Mod+D" = {
-      spawn = dprg.launcher.drun;
+      spawn = dprg.launcher.cmd;
       niri = {
         repeat = false;
         hotkey-overlay-title = "Run an Application: ${dprg.launcher.name}";
-      };
-    };
-    "Mod+Shift+D" = {
-      spawn = dprg.launcher.run;
-      niri = {
-        repeat = false;
-        hotkey-overlay-title = null;
       };
     };
 
@@ -162,10 +155,10 @@ in
     };
 
     "Mod+E" = {
-      spawn = "emojisearch";
+      spawn = dprg.launcher.emoji;
       niri = {
         repeat = false;
-        hotkey-overlay-title = "Dynamically search emojis";
+        hotkey-overlay-title = "Open a menu to search emojis";
       };
     };
 
@@ -233,12 +226,5 @@ in
         hotkey-overlay-title = "Perform OCR on a screenshot";
       };
     };
-
-    # "F7" = {
-    #   spawn = "${dprg.terminal.cmd} -e dmenurecord";
-    #   niri = {
-    #     repeat = false;
-    #   };
-    # };
   });
 }

@@ -16,17 +16,20 @@ let
     bg = 0.75; # 0.75 is better with xray (niri), 0.85 otherwise
   };
 
-  # https://github.com/abenz1267/walker#basic-usage
-  fastSocketCall = "${getExe pkgs.netcat} -U /run/user/${toString config.user.uid}/walker/walker.sock";
-
   prg = config.self.programs;
 in
 {
   config = mkIf prg.launcher.walker.enable {
     self.programs.default.launcher = mkIf (prg.default.launcher.name == "walker") {
-      dmenu = "walker --dmenu --"; # adding -- to prevent from flag incompatibilities
-      drun = fastSocketCall;
-      run = fastSocketCall; # no equivalent?, there is `>` prefix
+      # https://github.com/abenz1267/walker#basic-usage
+      cmd = "${getExe pkgs.netcat} -U /run/user/${toString config.user.uid}/walker/walker.sock";
+      # TODO: find a way to use `.` prefix instead
+      # emoji = getExe (
+      #   pkgs.emojisearch.override {
+      #     dmenuCommand = "walker --dmenu";
+      #     copyCommand = "wl-copy";
+      #   }
+      # );
     };
 
     hm.services.walker = {

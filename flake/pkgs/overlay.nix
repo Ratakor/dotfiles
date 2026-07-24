@@ -48,9 +48,6 @@ let
 
         # CLI tool to restore files from ZFS snapshots
         zfs-restore = pkgs.callPackage "${sources.zfs-restore}/nix/package.nix" { };
-
-        # CLI/TUI for Spotify
-        zpotify = pkgs.callPackage "${sources.zpotify}/nix/package.nix" { };
       };
     in
     base // fromSources;

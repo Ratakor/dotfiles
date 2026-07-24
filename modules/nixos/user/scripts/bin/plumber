@@ -17,7 +17,7 @@
 WEB="open ${BROWSER:-"xdg-open"}"
 TEXT="openterm $EDITOR" # replace with `if $VISUAL then open $VISUAL else openterm $EDITOR`?
 VIDEO="open mpv --loop" # --ytdl-format=bv+ba
-AUDIO="open music" # --shuffle
+AUDIO="open mpv --video=no --loop-playlist --ytdl-format=ba" # --shuffle
 PIC="open imv" # nsxiv -a
 DOC="open zathura"
 DIR="openterm yazi"

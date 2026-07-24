@@ -20,9 +20,9 @@ in
     default.launcher = {
       name = mkOption {
         type = nullOr (enum [
-          "dms" # fallback to fuzzel for dmenu
+          "dms"
           "fuzzel"
-          "noctalia" # fallback to fuzzel for dmenu
+          "noctalia"
           "tofi"
           "vicinae"
           "walker"
@@ -38,24 +38,17 @@ in
         '';
       };
 
-      dmenu = mkOption {
+      cmd = mkOption {
         type = str;
-        description = "The command to spawn a dynamic menu like dmenu.";
-        default = "dummy-launcher";
-        internal = true;
-      };
-
-      drun = mkOption {
-        type = str;
-        description = "The command to spawn a dynamic menu used to launch applications from desktop files.";
+        description = "The command to spawn a menu to launch applications.";
         # default = "dummy-launcher";
         internal = true;
       };
 
-      run = mkOption {
+      emoji = mkOption {
         type = str;
-        description = "The command to spawn a dynamic menu used to launch applications from $PATH.";
-        # default = "dummy-launcher";
+        description = "The command to spawn a menu to find emoji.";
+        default = "notify-send 'Unsupported command: emojisearch'";
         internal = true;
       };
     };

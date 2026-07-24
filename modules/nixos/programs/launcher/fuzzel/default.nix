@@ -6,6 +6,7 @@
   ...
 }:
 let
+  inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
 
   prg = config.self.programs;
@@ -18,9 +19,13 @@ in
 {
   config = mkIf prg.launcher.fuzzel.enable {
     self.programs.default.launcher = mkIf (prg.default.launcher.name == "fuzzel") {
-      dmenu = "fuzzel --dmenu";
-      drun = "fuzzel";
-      run = "fuzzel --list-executables-in-path";
+      cmd = "fuzzel";
+      emoji = getExe (
+        pkgs.emojisearch.override {
+          dmenuCommand = "fuzzel --dmenu -l 30";
+          copyCommand = "wl-copy";
+        }
+      );
     };
 
     user.packages = [ package ];

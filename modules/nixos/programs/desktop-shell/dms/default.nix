@@ -31,18 +31,14 @@ in
         cmd = "dms ipc call powermenu toggle";
       };
       launcher = mkIf isDefaultLauncher {
-        dmenu = "fuzzel --dmenu";
-        drun = "dms ipc call spotlight toggle";
-        run = "dms ipc call spotlight toggleQuery '>'";
+        cmd = "dms ipc call spotlight toggle";
+        emoji = "dms ipc call spotlight toggleQuery ':e '";
       };
       wallpaper = mkIf isDefaultWallpaper {
         nextRandom = "dms ipc call wallpaper next";
         set = "dms ipc call wallpaper set";
       };
     };
-
-    # fuzzel is used as a fallback launcher for dmenu mode
-    self.programs.launcher.fuzzel.enable = isDefaultLauncher;
 
     programs.dms-shell = {
       enable = true;
@@ -55,8 +51,8 @@ in
       plugins = {
         dankKDEConnect.enable = config.programs.kdeconnect.enable;
         nixPackageRunner.enable = false; # too slow
-        commandRunner.enable = true; # used for launcher run
-        # emojiLauncher.enable = true;
+        # commandRunner.enable = true; # previously used for launcher run
+        emojiLauncher.enable = true; # used for launcher emoji
         # calculator.enable = true;
       };
     };

@@ -44,7 +44,6 @@ in
         # Default programs
         EDITOR = dprg.editor.package.meta.mainProgram;
         BROWSER = dprg.browser.newWindow;
-        DMENU = dprg.launcher.dmenu;
         TERMINAL = dprg.terminal.cmd;
 
         # ~/ Clean-up
