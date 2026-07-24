@@ -9,6 +9,15 @@ let
   inherit (lib.lists) ifold1;
   inherit (lib.strings) concatMapAttrsStringSep;
 
+  convertModifier =
+    mod:
+    if mod == "Mod" then
+      "Super"
+    else if mod == "Ctrl" then
+      "Control"
+    else
+      mod;
+
   inherit (config.hm.xdg.userDirs.extraConfig) SCREENSHOTS;
   inherit (config.self.system) keyboard;
   prg = config.self.programs;
@@ -115,7 +124,7 @@ in
 
   # TODO: use swappy?
   riverctl map normal None Print spawn 'grim -g "$(slurp)" - | tee "${SCREENSHOTS}/$(date "+%Y-%m-%d_%H:%M:%S").png" | wl-copy'
-  riverctl map normal Ctrl Print spawn 'grim - | tee "${SCREENSHOTS}/$(date "+%Y-%m-%d_%H:%M:%S").png" | wl-copy'
+  riverctl map normal Control Print spawn 'grim - | tee "${SCREENSHOTS}/$(date "+%Y-%m-%d_%H:%M:%S").png" | wl-copy'
   # TODO: Alt Print screenshot-window
 
   # TODO: move to prg.windowManager.binds
@@ -137,11 +146,11 @@ in
           if isList x then
             acc
           else if i == 1 then
-            if x == "Mod" then "Super" else x
+            convertModifier x
           else if i == len then
             "${acc} ${x}"
           else
-            "${acc}+${x}"
+            "${acc}+${convertModifier x}"
         ) "" components
     } spawn '${value.spawn}'"
   ) prg.windowManager.binds}
