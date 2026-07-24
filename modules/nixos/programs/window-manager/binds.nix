@@ -18,17 +18,10 @@ in
     };
 
     "Mod+D" = {
-      spawn = dprg.launcher.drun;
+      spawn = dprg.launcher.cmd;
       niri = {
         repeat = false;
         hotkey-overlay-title = "Run an Application: ${dprg.launcher.name}";
-      };
-    };
-    "Mod+Shift+D" = {
-      spawn = dprg.launcher.run;
-      niri = {
-        repeat = false;
-        hotkey-overlay-title = null;
       };
     };
 

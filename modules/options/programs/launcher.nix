@@ -46,18 +46,9 @@ in
         internal = true;
       };
 
-      # TODO: rename to cmd?
-      drun = mkOption {
+      cmd = mkOption {
         type = str;
         description = "The command to spawn a menu to launch applications.";
-        # default = "dummy-launcher";
-        internal = true;
-      };
-
-      # TODO: to remove
-      run = mkOption {
-        type = str;
-        description = "The command to spawn a dynamic menu used to launch applications from $PATH.";
         # default = "dummy-launcher";
         internal = true;
       };

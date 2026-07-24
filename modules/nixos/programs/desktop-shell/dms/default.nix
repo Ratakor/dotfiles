@@ -32,8 +32,7 @@ in
       };
       launcher = mkIf isDefaultLauncher {
         dmenu = "fuzzel --dmenu";
-        drun = "dms ipc call spotlight toggle";
-        run = "dms ipc call spotlight toggleQuery '>'";
+        cmd = "dms ipc call spotlight toggle";
         emoji = "dms ipc call spotlight toggleQuery ':e '";
       };
       wallpaper = mkIf isDefaultWallpaper {
@@ -56,7 +55,7 @@ in
       plugins = {
         dankKDEConnect.enable = config.programs.kdeconnect.enable;
         nixPackageRunner.enable = false; # too slow
-        commandRunner.enable = true; # used for launcher run
+        # commandRunner.enable = true; # previously used for launcher run
         emojiLauncher.enable = true; # used for launcher emoji
         # calculator.enable = true;
       };

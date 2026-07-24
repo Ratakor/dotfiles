@@ -31,8 +31,7 @@ in
       };
       launcher = mkIf isDefaultLauncher {
         dmenu = "fuzzel --dmenu";
-        drun = "noctalia msg panel-toggle launcher";
-        run = "noctalia msg panel-toggle launcher"; # no equivalent?
+        cmd = "noctalia msg panel-toggle launcher";
         emoji = "noctalia msg panel-toggle launcher '/emo '";
       };
       wallpaper = mkIf isDefaultWallpaper {
