@@ -233,12 +233,5 @@ in
         hotkey-overlay-title = "Perform OCR on a screenshot";
       };
     };
-
-    # "F7" = {
-    #   spawn = "${dprg.terminal.cmd} -e dmenurecord";
-    #   niri = {
-    #     repeat = false;
-    #   };
-    # };
   });
 }

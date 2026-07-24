@@ -36,9 +36,11 @@ let
   ];
 
   screenshot = with pkgs; [
-    grim # screenshot
+    grim # screenshot, -g "$(slurp)"
     slurp # region selection
     # swappy # image editor for screenshots # TODO: look into gabm/satty
+    wf-recorder # screen recording, -g "$(slurp)", -a for audio
+    # kooha # screen recorder with a minimal gui
   ];
 
   tools = with pkgs; [
@@ -53,7 +55,6 @@ let
   ];
 
   unsorted = with pkgs; [
-    wf-recorder # screen recording
     # scrcpy # display and control your Android device
     # network-printer # https://github.com/notashelf/np
     songrec # Open-source Shazam client (actual banger tbh)

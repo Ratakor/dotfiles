@@ -30,7 +30,6 @@ in
 {
   config = mkIf cfg.enable {
     # TODO:
-    # dmenurecord: replace with wf-recorder
     # icstocal: merge with quand?
     # plumber: ..., support archive/compressed files
     # ytdl: ...
