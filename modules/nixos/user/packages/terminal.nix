@@ -102,7 +102,7 @@ let
 
   unsorted = with pkgs; [
     chafa # image in terminal
-    ytfzf # search youtube video without a browser
+    # ytfzf # search youtube video without a browser
     termdown # timer on the terminal
     # nmap # utility for network discovery and security auditing
     # aria2 #  lightweight, multi-protocol, multi-source command-line download utility
