@@ -118,7 +118,7 @@ in
     "Ctrl+Equal" = binds."XF86AudioRaiseVolume";
     "Ctrl+Minus" = binds."XF86AudioLowerVolume";
     "XF86Launch1" = binds."XF86AudioMute";
-    "F6" = binds."XF86AudioMicMute";
+    # "F6" = binds."XF86AudioMicMute";
 
     "XF86AudioPrev" = {
       spawn = "playerctl previous";
