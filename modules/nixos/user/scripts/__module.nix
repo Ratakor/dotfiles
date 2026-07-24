@@ -3,26 +3,13 @@
   config,
   lib,
   pkgs,
-  sources,
   ...
 }:
 let
   inherit (builtins) concatLists;
-  inherit (pkgs) writeShellApplication callPackage;
+  inherit (pkgs) callPackage;
   inherit (lib.modules) mkIf;
   inherit (lib.lists) optional;
-
-  # TODO: replace with callPackage
-  callScript =
-    path:
-    import path {
-      inherit
-        config
-        lib
-        pkgs
-        sources
-        ;
-    };
 
   prg = config.self.programs;
   cfg = prg.scripts;
@@ -43,8 +30,6 @@ in
       (optional cfg.ocr.enable (callPackage ./src/ocr { }))
       (optional cfg.pdfmd.enable (callPackage ./src/pdfmd { }))
       [
-        (callScript ./src/emojisearch)
-
         (callPackage ./src/battery { })
         (callPackage ./src/real { })
         (callPackage ./src/sci { })
