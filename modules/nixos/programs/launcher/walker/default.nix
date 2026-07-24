@@ -27,6 +27,13 @@ in
       dmenu = "walker --dmenu --"; # adding -- to prevent from flag incompatibilities
       drun = fastSocketCall;
       run = fastSocketCall; # no equivalent?, there is `>` prefix
+      # TODO: find a way to use `.` prefix instead
+      # emoji = getExe (
+      #   pkgs.emojisearch.override {
+      #     dmenuCommand = "walker --dmenu";
+      #     copyCommand = "wl-copy";
+      #   }
+      # );
     };
 
     hm.services.walker = {

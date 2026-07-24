@@ -16,6 +16,7 @@ in
       dmenu = "vicinae dmenu";
       drun = "vicinae toggle";
       run = "vicinae toggle"; # no equivalent
+      emoji = "vicinae vicinae://launch/core/search-emojis"; # idk but it works
     };
 
     hm.programs.vicinae = {

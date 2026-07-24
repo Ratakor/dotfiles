@@ -6,6 +6,7 @@
   ...
 }:
 let
+  inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
 
   prg = config.self.programs;
@@ -21,6 +22,12 @@ in
       dmenu = "fuzzel --dmenu";
       drun = "fuzzel";
       run = "fuzzel --list-executables-in-path";
+      emoji = getExe (
+        pkgs.emojisearch.override {
+          dmenuCommand = "fuzzel --dmenu -l 30";
+          copyCommand = "wl-copy";
+        }
+      );
     };
 
     user.packages = [ package ];

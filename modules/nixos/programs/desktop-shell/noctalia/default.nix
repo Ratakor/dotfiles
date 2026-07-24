@@ -33,6 +33,7 @@ in
         dmenu = "fuzzel --dmenu";
         drun = "noctalia msg panel-toggle launcher";
         run = "noctalia msg panel-toggle launcher"; # no equivalent?
+        emoji = "noctalia msg panel-toggle launcher '/emo '";
       };
       wallpaper = mkIf isDefaultWallpaper {
         nextRandom = "noctalia msg wallpaper-random";

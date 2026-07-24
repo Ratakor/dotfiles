@@ -162,10 +162,10 @@ in
     };
 
     "Mod+E" = {
-      spawn = "emojisearch";
+      spawn = dprg.launcher.emoji;
       niri = {
         repeat = false;
-        hotkey-overlay-title = "Dynamically search emojis";
+        hotkey-overlay-title = "Open a menu to search emojis";
       };
     };
 

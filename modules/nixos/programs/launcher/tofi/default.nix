@@ -6,6 +6,7 @@
   ...
 }:
 let
+  inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
 
   prg = config.self.programs;
@@ -20,6 +21,12 @@ in
       dmenu = "tofi";
       drun = "exec $(tofi-drun)";
       run = "exec $(tofi-run)";
+      emoji = getExe (
+        pkgs.emojisearch.override {
+          dmenuCommand = "tofi"; # --num-results=10
+          copyCommand = "wl-copy";
+        }
+      );
     };
 
     user.packages = [ package ];

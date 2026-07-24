@@ -38,6 +38,7 @@ in
         '';
       };
 
+      # TODO: remove
       dmenu = mkOption {
         type = str;
         description = "The command to spawn a dynamic menu like dmenu.";
@@ -45,17 +46,26 @@ in
         internal = true;
       };
 
+      # TODO: rename to cmd?
       drun = mkOption {
         type = str;
-        description = "The command to spawn a dynamic menu used to launch applications from desktop files.";
+        description = "The command to spawn a menu to launch applications.";
         # default = "dummy-launcher";
         internal = true;
       };
 
+      # TODO: to remove
       run = mkOption {
         type = str;
         description = "The command to spawn a dynamic menu used to launch applications from $PATH.";
         # default = "dummy-launcher";
+        internal = true;
+      };
+
+      emoji = mkOption {
+        type = str;
+        description = "The command to spawn a menu to find emoji.";
+        default = "notify-send 'Unsupported command: emojisearch'";
         internal = true;
       };
     };
