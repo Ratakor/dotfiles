@@ -30,7 +30,6 @@ in
         # cmd = "noctalia msg panel-toggle launcher '/session '";
       };
       launcher = mkIf isDefaultLauncher {
-        dmenu = "fuzzel --dmenu";
         cmd = "noctalia msg panel-toggle launcher";
         emoji = "noctalia msg panel-toggle launcher '/emo '";
       };
@@ -39,9 +38,6 @@ in
         set = "noctalia msg wallpaper-set";
       };
     };
-
-    # fuzzel is used as a fallback launcher for dmenu mode
-    self.programs.launcher.fuzzel.enable = isDefaultLauncher;
 
     hm.imports = [ sources.noctalia.homeModules.default ];
 

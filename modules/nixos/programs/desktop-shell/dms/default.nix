@@ -31,7 +31,6 @@ in
         cmd = "dms ipc call powermenu toggle";
       };
       launcher = mkIf isDefaultLauncher {
-        dmenu = "fuzzel --dmenu";
         cmd = "dms ipc call spotlight toggle";
         emoji = "dms ipc call spotlight toggleQuery ':e '";
       };
@@ -40,9 +39,6 @@ in
         set = "dms ipc call wallpaper set";
       };
     };
-
-    # fuzzel is used as a fallback launcher for dmenu mode
-    self.programs.launcher.fuzzel.enable = isDefaultLauncher;
 
     programs.dms-shell = {
       enable = true;

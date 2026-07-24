@@ -21,7 +21,6 @@ in
 {
   config = mkIf prg.launcher.walker.enable {
     self.programs.default.launcher = mkIf (prg.default.launcher.name == "walker") {
-      dmenu = "walker --dmenu --"; # adding -- to prevent from flag incompatibilities
       # https://github.com/abenz1267/walker#basic-usage
       cmd = "${getExe pkgs.netcat} -U /run/user/${toString config.user.uid}/walker/walker.sock";
       # TODO: find a way to use `.` prefix instead

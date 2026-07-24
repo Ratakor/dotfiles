@@ -19,7 +19,6 @@ in
 {
   config = mkIf prg.launcher.fuzzel.enable {
     self.programs.default.launcher = mkIf (prg.default.launcher.name == "fuzzel") {
-      dmenu = "fuzzel --dmenu";
       cmd = "fuzzel";
       emoji = getExe (
         pkgs.emojisearch.override {

@@ -18,7 +18,6 @@ in
 {
   config = mkIf prg.launcher.tofi.enable {
     self.programs.default.launcher = mkIf (prg.default.launcher.name == "tofi") {
-      dmenu = "tofi";
       cmd = "exec $(tofi-drun)";
       emoji = getExe (
         pkgs.emojisearch.override {

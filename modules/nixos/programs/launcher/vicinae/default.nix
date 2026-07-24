@@ -13,7 +13,6 @@ in
 {
   config = mkIf prg.launcher.vicinae.enable {
     self.programs.default.launcher = mkIf (prg.default.launcher.name == "vicinae") {
-      dmenu = "vicinae dmenu";
       cmd = "vicinae toggle";
       emoji = "vicinae vicinae://launch/core/search-emojis"; # idk but it works
     };

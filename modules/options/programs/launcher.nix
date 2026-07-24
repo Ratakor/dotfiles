@@ -20,9 +20,9 @@ in
     default.launcher = {
       name = mkOption {
         type = nullOr (enum [
-          "dms" # fallback to fuzzel for dmenu
+          "dms"
           "fuzzel"
-          "noctalia" # fallback to fuzzel for dmenu
+          "noctalia"
           "tofi"
           "vicinae"
           "walker"
@@ -36,14 +36,6 @@ in
           This will automatically enable the corresponding program.
           Consider setting config.self.programs.default.desktopShell.name instead.
         '';
-      };
-
-      # TODO: remove
-      dmenu = mkOption {
-        type = str;
-        description = "The command to spawn a dynamic menu like dmenu.";
-        default = "dummy-launcher";
-        internal = true;
       };
 
       cmd = mkOption {
