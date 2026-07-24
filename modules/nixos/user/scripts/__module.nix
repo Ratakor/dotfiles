@@ -49,15 +49,6 @@ in
         (callPackage ./src/real { })
         (callPackage ./src/sci { })
         (callPackage ./src/ytdl { })
-
-        # from https://github.com/NotAShelf/nyx/tree/main/homes/notashelf/packages/dev/default.nix
-        (writeShellApplication {
-          name = "pdflatexmk";
-          runtimeInputs = [ pkgs.texlivePackages.latexmk ];
-          text = ''
-            latexmk -pdf "$@" && latexmk -c "$@"
-          '';
-        })
       ]
     ];
   };
