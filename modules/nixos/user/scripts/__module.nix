@@ -34,7 +34,7 @@ in
       (optional cfg.ocr.enable (pkgs.scripts.ocr.override { isWayland = true; }))
       (optional cfg.pdfmd.enable pkgs.scripts.pdfmd)
       [
-        (callPackage ./src/real { })
+        pkgs.scripts.real
         pkgs.scripts.sci
         (callPackage ./src/ytdl { })
       ]
