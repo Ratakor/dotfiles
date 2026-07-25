@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib.modules) mkIf mkDefault;
+  inherit (lib.modules) mkIf;
   inherit (lib.options) mkOption mkEnableOptions' literalExpression;
   inherit (lib.types) nullOr enum str;
 
@@ -15,6 +15,7 @@ let
 in
 {
   options.self.programs = {
+    # rename to lock?
     locker = mkEnableOptions' odprg.locker.name;
 
     default.locker = {
@@ -53,12 +54,6 @@ in
       }
     ];
 
-    self.programs = {
-      locker.${dprg.locker.name}.enable = true;
-
-      # TODO: This should be setup in modules/home/programs
-      #       Also packages installation is probably all over the place
-      default.locker.cmd = mkDefault dprg.locker.name;
-    };
+    self.programs.locker.${dprg.locker.name}.enable = true;
   };
 }

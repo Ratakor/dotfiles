@@ -21,7 +21,6 @@ in
 
     security.pam.services = {
       login.fprintAuth = true;
-      swaylock.fprintAuth = true;
     };
   };
 }

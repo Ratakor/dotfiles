@@ -24,7 +24,6 @@ let
       pkgs.ledger-live-desktop
       pkgs.ledger-udev-rules # should this be in systemPackages?
     ])
-    (optional prg.locker.swaylock.enable pkgs.swaylock)
   ];
 
   imageEditor = concatLists [

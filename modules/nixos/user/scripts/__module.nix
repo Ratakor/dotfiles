@@ -15,11 +15,6 @@ in
 {
   config = mkIf cfg.enable {
     user.packages = concatLists [
-      # TODO: probably move this to programs/locker
-      # swaylock too
-      # also rename to lock instead of locker?
-      (optional prg.locker.glitchlock.enable (pkgs.scripts.glitchlock.override { isWayland = true; }))
-
       (optional cfg.ocr.enable (pkgs.scripts.ocr.override { isWayland = true; }))
       (optional cfg.pdfmd.enable pkgs.scripts.pdfmd)
       [
