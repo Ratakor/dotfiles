@@ -36,7 +36,7 @@ in
       [
         (callPackage ./src/battery { })
         (callPackage ./src/real { })
-        (callPackage ./src/sci { })
+        pkgs.scripts.sci
         (callPackage ./src/ytdl { })
       ]
     ];
