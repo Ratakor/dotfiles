@@ -26,7 +26,11 @@ in
     };
 
     user.packages = concatLists [
-      (optional prg.locker.glitchlock.enable (callPackage ./src/glitchlock { }))
+      # TODO: probably move this to programs/locker
+      # swaylock too
+      # also rename to lock instead of locker?
+      (optional prg.locker.glitchlock.enable (pkgs.scripts.glitchlock.override { isWayland = true; }))
+
       (optional cfg.ocr.enable (callPackage ./src/ocr { }))
       (optional cfg.pdfmd.enable (callPackage ./src/pdfmd { }))
       [
