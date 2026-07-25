@@ -13,7 +13,7 @@ in
 {
   config = mkIf prg.mediaPlayer.mpv.enable {
     self.programs.default.mediaPlayer = mkIf (prg.default.mediaPlayer.name == "mpv") {
-      inherit (config.hm.programs.mpv) package;
+      package = config.hm.programs.mpv.finalPackage;
     };
 
     hm.programs.mpv = {
