@@ -14,14 +14,6 @@ let
 in
 {
   config = mkIf cfg.enable {
-    # TODO:
-    # plumber: ..., support archive/compressed files
-    hm.home.file.".local/bin" = {
-      source = ./bin;
-      recursive = true;
-      executable = true;
-    };
-
     user.packages = concatLists [
       # TODO: probably move this to programs/locker
       # swaylock too
@@ -34,6 +26,11 @@ in
         pkgs.scripts.real
         pkgs.scripts.sci
         pkgs.scripts.ytdl
+
+        # TODO: support archive/compressed files? (ouch is already goated)
+        # TODO: override prelude?
+        # TODO: dmenu support was removed
+        pkgs.scripts.plumber
       ]
     ];
   };
