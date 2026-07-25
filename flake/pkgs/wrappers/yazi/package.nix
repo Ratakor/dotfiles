@@ -1,6 +1,7 @@
 # Terminal File Manager
 {
   lib,
+  scripts,
   yazi,
   yaziPlugins,
   bat,
@@ -42,7 +43,6 @@ yazi.override {
     mediainfo
     ueberzugpp # image preview on terminal emulators that don't have it built-in
     dragon-drop # <C-n>
-
-    # TODO: plumber
+    scripts.plumber
   ];
 }

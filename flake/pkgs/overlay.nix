@@ -58,6 +58,7 @@ let
   };
 
   scripts = packagesFromDirectoryRecursive {
+    # Using `pkgs` instead of `final` here causes a mass rebuild of dependencies.
     callPackage = callPackageWith (final // extraArgs);
     directory = ./scripts;
   };
