@@ -40,6 +40,7 @@ My (deprecated) [artix](https://github.com/ratakor/dotfiles/tree/artix) config s
 - `lib`: Modification to `flake/lib`.
 - `packages[/{package}]`: Modification to `flake/pkgs[/packages]`.
 - `wrappers[/{wrapper}]`: Modification to `flake/pkgs/wrappers`.
+- `scripts[/{script}]`: Modification to `flake/pkgs/scripts`.
 - `templates[/{template}]`: Modification to `flake/templates`.
 -->
 
