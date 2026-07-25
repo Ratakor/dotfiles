@@ -16,7 +16,6 @@
     PIC="open imv" # nsxiv -a
     DOC="open zathura"
     DIR="openterm yazi"
-    DMENU=''${DMENU:-"dmenu -i"}
     TERMINAL=''${TERMINAL:-alacritty}
   '',
 }:
@@ -31,10 +30,8 @@ writeShellApplication {
     #curl
     #gnused
 
-    # copy command (currently dynamic i.e. kinda using system available)
-    #wl-clipboard
-    #xclip
-    #xsel
+    # various dependencies
+    #git
 
     # default programs
     #xdg-utils # xdg-open
@@ -43,13 +40,7 @@ writeShellApplication {
     #imv
     #zathura
     #yazi
-    #dmenu
     #alacritty
-
-    # various dependencies
-    #git
-    #scripts.ytdl
-    #scripts.randwp
   ];
   inheritPath = true;
   bashOptions = [

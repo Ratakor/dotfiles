@@ -29,7 +29,6 @@ in
 
         # TODO: support archive/compressed files? (ouch is already goated)
         # TODO: override prelude?
-        # TODO: dmenu support was removed
         pkgs.scripts.plumber
       ]
     ];

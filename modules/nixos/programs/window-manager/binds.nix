@@ -170,13 +170,13 @@ in
       };
     };
 
-    "Mod+U" = {
-      spawn = "plumber --dmenu \"$(wl-paste)\"";
-      niri = {
-        repeat = false;
-        hotkey-overlay-title = "Dynamically plumb clipboard";
-      };
-    };
+    # "Mod+U" = {
+    #   spawn = "plumber --dmenu \"$(wl-paste)\"";
+    #   niri = {
+    #     repeat = false;
+    #     hotkey-overlay-title = "Dynamically plumb clipboard";
+    #   };
+    # };
     "Mod+Shift+U" = {
       spawn = "plumber \"$(wl-paste)\"";
       niri = {

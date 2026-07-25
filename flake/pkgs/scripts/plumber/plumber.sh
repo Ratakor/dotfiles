@@ -102,65 +102,6 @@ openfile() {
   esac
 }
 
-# TODO: ytdl + randwp
-opendmenu() {
-  case "$(printf '%s\nbrowser\naudio\nvideo\nimage\ndocument\neditor
-yt-dlp\nmusic-dlp\nsetbg' "$1" | $DMENU -p 'Open with: ')" in
-  "$1")
-    wl-copy "$1" 2>/dev/null ||
-      printf '%s' "$1" | xclip 2>/dev/null ||
-      printf '%s' "$1" | xsel 2>/dev/null
-    ;;
-  browser)
-    $WEB "$1"
-    ;;
-  audio)
-    $AUDIO "$1"
-    ;;
-  video)
-    $VIDEO "$1"
-    ;;
-  image)
-    if isurl "$1"; then
-      tmpdl "$1" && $PIC "$TMPDIR/$file"
-    else
-      $PIC "$1"
-    fi
-    ;;
-  document)
-    if isurl "$1"; then
-      tmpdl "$1" && $DOC "$TMPDIR/$file"
-    else
-      $DOC "$1"
-    fi
-    ;;
-  editor)
-    if isurl "$1"; then
-      tmpdl "$1" && $TEXT "$TMPDIR/$file"
-    else
-      $TEXT "$1"
-    fi
-    ;;
-  yt-dlp)
-    open ytdl v "$1"
-    ;;
-  music-dlp)
-    if [ "$(printf 'no\nyes' | $DMENU -p 'Playlist? ')" = "yes" ]; then
-      open ytdl p "$1"
-    else
-      open ytdl m "$1"
-    fi
-    ;;
-  setbg)
-    if isurl "$1"; then
-      tmpdl "$1" && open randwp "$TMPDIR/$file"
-    else
-      open randwp "$1"
-    fi
-    ;;
-  esac
-}
-
 usage() {
   cat <<EOF >&2
 Usage: ${0##*/} [options] [args]
@@ -169,7 +110,6 @@ Options:
   no option [args]    | Try to guess what to do
   -u|--url [urls]     | Open URLs
   -f|--file [files]   | Open files or directories
-  -d|--dmenu [arg]    | Use \$DMENU to select how to handle the argument
   -h|--help           │ Print this help message
 
 Config:
@@ -180,7 +120,6 @@ Config:
   picture      = $PIC
   document     = $DOC
   file manager = $DIR
-  dmenu        = $DMENU
 
   tmpdir       = $TMPDIR
   history      = $HISTFILE
@@ -215,14 +154,6 @@ main() {
       printf '%s\n' "$arg" >>"$HISTFILE"
       openfile "$arg"
     done
-    ;;
-  -d | --dmenu)
-    shift
-    # --prompt-only with fuzzel?
-    arg=${1:-$(true | $DMENU -p 'Paste URL or file path')}
-    [ -z "$arg" ] && return
-    printf '%s\n' "$arg" >>"$HISTFILE"
-    opendmenu "$arg"
     ;;
   -h | --help | '')
     usage

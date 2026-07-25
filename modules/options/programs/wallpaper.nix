@@ -43,7 +43,6 @@ in
         internal = true;
       };
 
-      # TODO: use in plumber (--dmenu so not that important)
       set = mkOption {
         type = str;
         description = "The command to set a wallpaper via a given path.";
