@@ -62,11 +62,11 @@ in
   riverctl map normal Super Space toggle-float
 
   for i in $(seq 1 9); do
-  	tags=$((1 << (i - 1)))
-  	riverctl map normal Super "$i" set-focused-tags $tags
-  	riverctl map normal Super+Shift "$i" set-view-tags $tags
-  	riverctl map normal Super+Control "$i" toggle-focused-tags $tags
-  	riverctl map normal Super+Shift+Control "$i" toggle-view-tags $tags
+    tags=$((1 << (i - 1)))
+    riverctl map normal Super "$i" set-focused-tags $tags
+    riverctl map normal Super+Shift "$i" set-view-tags $tags
+    riverctl map normal Super+Control "$i" toggle-focused-tags $tags
+    riverctl map normal Super+Shift+Control "$i" toggle-view-tags $tags
   done
   tags1to9=$(((1 << 9) - 1))
   riverctl map normal Super 0 set-focused-tags $tags1to9

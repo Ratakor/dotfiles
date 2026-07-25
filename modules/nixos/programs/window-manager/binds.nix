@@ -197,7 +197,7 @@ in
     # //#riverctl map normal Super+Shift G ...
     # //# cycle layout (toggle floating mode)
     # //# riverctl map normal Super+Shift Space spawn \
-    # //# 	'killall rivertile || rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55'
+    # //#   'killall rivertile || rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55'
     # //# TODO: toggle transparency
     # //#riverctl map normal Control P spawn 'killall picom || picom -b'
 
