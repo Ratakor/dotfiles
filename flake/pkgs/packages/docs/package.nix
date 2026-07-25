@@ -26,4 +26,7 @@ ndg-builder.override {
   repoPath = "https://github.com/ratakor/dotfiles/blob/nixos/master";
   title = "Self";
   description = "Options available via config.self";
+
+  # This fixes conflict with our custom scripts at pkgs.scripts
+  scripts = [ ];
 }
