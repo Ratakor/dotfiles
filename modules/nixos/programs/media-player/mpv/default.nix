@@ -30,8 +30,10 @@ in
       scripts = with pkgs.mpvScripts; [
         reload
         sponsorblock-minimal
+        # sponsorblock
         # skipsilence
         # mpv-notify-send
+        mpris
       ];
       profiles = {
         # mpv --profile=yt <url>
