@@ -31,7 +31,7 @@ in
       # also rename to lock instead of locker?
       (optional prg.locker.glitchlock.enable (pkgs.scripts.glitchlock.override { isWayland = true; }))
 
-      (optional cfg.ocr.enable (callPackage ./src/ocr { }))
+      (optional cfg.ocr.enable (pkgs.scripts.ocr.override { isWayland = true; }))
       (optional cfg.pdfmd.enable (callPackage ./src/pdfmd { }))
       [
         (callPackage ./src/battery { })
