@@ -21,7 +21,7 @@ in
     self.programs.default.launcher = mkIf (prg.default.launcher.name == "fuzzel") {
       cmd = "fuzzel";
       emoji = getExe (
-        pkgs.emojisearch.override {
+        pkgs.scripts.emojisearch.override {
           dmenuCommand = "fuzzel --dmenu -l 30";
           copyCommand = "wl-copy";
         }
