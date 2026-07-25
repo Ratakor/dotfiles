@@ -15,5 +15,11 @@ in
 {
   overlays.default = overlay;
   inherit legacyPackages;
-  packages = mapAttrs (_system: pkgs: removeAttrs (overlay pkgs pkgs) [ "wrappers" ]) legacyPackages;
+  packages = mapAttrs (
+    _system: pkgs:
+    removeAttrs (overlay pkgs pkgs) [
+      "wrappers"
+      "scripts"
+    ]
+  ) legacyPackages;
 }

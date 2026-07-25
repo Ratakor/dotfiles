@@ -7,14 +7,11 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.sh]
-indent_style = tab
-
 [*.py]
 indent_style = space
 indent_size = 4
 
-[*.{nix,lua,yml,yaml,md,toml}]
+[*.{nix,lua,yml,yaml,md,toml,sh}]
 indent_style = space
 indent_size = 2
 

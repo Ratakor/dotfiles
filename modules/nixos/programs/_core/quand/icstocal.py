@@ -12,8 +12,8 @@ if len(argv) < 3:
     print("example:", progname, "calendar.ics $XDG_DATA_HOME/quand/calendar")
     exit(1)
 
-TIMEZONE = 2 # as UTC+2
-IN="en" # 'en' means 'in' in french
+TIMEZONE = 2  # as UTC+2
+IN = "en"  # 'en' means 'in' in french
 INPUT = argv[1]
 OUTPUT = argv[2]
 
@@ -59,7 +59,9 @@ while line != "END:VCALENDAR\n":
                         hour += start[i]
                     elif i == 11:
                         if int(start[i]) + TIMEZONE > 9:
-                            hour = str(int(hour[0]) + 1) + "0" # I cba do the case where H will become 25
+                            hour = (
+                                str(int(hour[0]) + 1) + "0"
+                            )  # I cba do the case where H will become 25
                         else:
                             hour += str(int(start[i]) + TIMEZONE)
                     elif i == 12 or i == 13:
@@ -74,7 +76,9 @@ while line != "END:VCALENDAR\n":
                         hour += end[i]
                     elif i == 11:
                         if int(end[i]) + TIMEZONE > 9:
-                            hour = str(int(hour[0]) + 1) + "0" # I cba do the case where H will become 25
+                            hour = (
+                                str(int(hour[0]) + 1) + "0"
+                            )  # I cba do the case where H will become 25
                         else:
                             hour += str(int(end[i]) + TIMEZONE)
                     elif i == 12 or i == 13:
@@ -87,15 +91,19 @@ file.close()
 file = open(OUTPUT, "w")
 for i in range(len(locations)):
     # yyyy mm dd, hh:hh -> hh:hh summary location
-    file.write("{0} {1} {2}, {3}:{4} -> {5} {6} {7} {8}\n".format(starts[i][0],
-                                                                  starts[i][1],
-                                                                  starts[i][2],
-                                                                  starts[i][3],
-                                                                  starts[i][4],
-                                                                  ends[i],
-                                                                  summaries[i],
-                                                                  IN,
-                                                                  locations[i]))
+    file.write(
+        "{0} {1} {2}, {3}:{4} -> {5} {6} {7} {8}\n".format(
+            starts[i][0],
+            starts[i][1],
+            starts[i][2],
+            starts[i][3],
+            starts[i][4],
+            ends[i],
+            summaries[i],
+            IN,
+            locations[i],
+        )
+    )
 
 file.close()
 print("All done!")

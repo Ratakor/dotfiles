@@ -100,6 +100,17 @@ let
     })
   ];
 
+  scripts = with pkgs.scripts; [
+    real
+    sci
+    ytdl
+    # pdfmd # 1GB of dependencies (pandoc)
+
+    # TODO: support archive/compressed files? (ouch is already goated)
+    # TODO: override prelude?
+    plumber
+  ];
+
   unsorted = with pkgs; [
     chafa # image in terminal
     # ytfzf # search youtube video without a browser
@@ -121,6 +132,7 @@ in
     fs
     archives
     # trackma
+    scripts
     unsorted
   ];
 }

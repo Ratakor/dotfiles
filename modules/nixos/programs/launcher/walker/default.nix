@@ -25,7 +25,7 @@ in
       cmd = "${getExe pkgs.netcat} -U /run/user/${toString config.user.uid}/walker/walker.sock";
       # TODO: find a way to use `.` prefix instead
       # emoji = getExe (
-      #   pkgs.emojisearch.override {
+      #   pkgs.scripts.emojisearch.override {
       #     dmenuCommand = "walker --dmenu";
       #     copyCommand = "wl-copy";
       #   }

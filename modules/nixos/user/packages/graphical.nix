@@ -24,7 +24,6 @@ let
       pkgs.ledger-live-desktop
       pkgs.ledger-udev-rules # should this be in systemPackages?
     ])
-    (optional prg.locker.swaylock.enable pkgs.swaylock)
   ];
 
   imageEditor = concatLists [
@@ -52,6 +51,7 @@ let
     graphviz # graph visualization tool
     dragon-drop # a simple drag-and-drop replacement for graphical stuff
     pavucontrol # volume control
+    (scripts.ocr.override { isWayland = true; }) # OCR, 1GB of dependencies (tesseract)
   ];
 
   unsorted = with pkgs; [

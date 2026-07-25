@@ -49,7 +49,7 @@ let
       # shell
       shfmt = {
         enable = true;
-        indent_size = null; # n for spaces, 0 for tabs, null for .editorconfig
+        indent_size = 2; # n for spaces, 0 for tabs, null for .editorconfig (doesn't work)
       };
       shellcheck = {
         enable = true;

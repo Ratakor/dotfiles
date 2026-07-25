@@ -53,13 +53,13 @@ in
       };
     };
 
-    "XF86Battery" = {
-      spawn = "battery";
-      niri = {
-        repeat = false;
-        hotkey-overlay-title = "Show battery information";
-      };
-    };
+    # "XF86Battery" = {
+    #   spawn = ""; # TODO: use some daemon(?) with IPC backed by upower
+    #   niri = {
+    #     repeat = false;
+    #     hotkey-overlay-title = "Show battery information";
+    #   };
+    # };
 
     # TODO: use wlr-which-key to handle prev/next instead?
     "Mod+Shift+W" = {
@@ -170,13 +170,13 @@ in
       };
     };
 
-    "Mod+U" = {
-      spawn = "plumber --dmenu \"$(wl-paste)\"";
-      niri = {
-        repeat = false;
-        hotkey-overlay-title = "Dynamically plumb clipboard";
-      };
-    };
+    # "Mod+U" = {
+    #   spawn = "plumber --dmenu \"$(wl-paste)\"";
+    #   niri = {
+    #     repeat = false;
+    #     hotkey-overlay-title = "Dynamically plumb clipboard";
+    #   };
+    # };
     "Mod+Shift+U" = {
       spawn = "plumber \"$(wl-paste)\"";
       niri = {
@@ -197,7 +197,7 @@ in
     # //#riverctl map normal Super+Shift G ...
     # //# cycle layout (toggle floating mode)
     # //# riverctl map normal Super+Shift Space spawn \
-    # //# 	'killall rivertile || rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55'
+    # //#   'killall rivertile || rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.55'
     # //# TODO: toggle transparency
     # //#riverctl map normal Control P spawn 'killall picom || picom -b'
 

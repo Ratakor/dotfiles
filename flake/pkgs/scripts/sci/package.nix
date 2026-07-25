@@ -1,0 +1,38 @@
+{
+  writeShellApplication,
+  git,
+  coreutils,
+}:
+writeShellApplication {
+  name = "sci";
+  runtimeInputs = [
+    git
+    coreutils
+  ];
+  text = ''
+    getcwd() {
+      local cdup
+      cdup=$(git rev-parse --show-cdup)
+      if [ -z "$cdup" ]; then
+        # either git failed or we're at git root
+        return 1
+      fi
+
+      if [ "$cdup" != "../" ]; then
+        cd "''${cdup%../}" || return 1
+      fi
+
+      scope=$(basename "$(realpath "$(pwd)")")
+    }
+
+    getcwd || exit 1
+
+    if [ "$#" -eq 0 ]; then
+      git commit -s -m "$scope: init"
+      exit
+    fi
+
+    git commit -s -m "$scope: $*"
+  '';
+  meta.mainProgram = "sci";
+}

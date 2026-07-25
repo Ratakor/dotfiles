@@ -20,7 +20,7 @@ in
     self.programs.default.launcher = mkIf (prg.default.launcher.name == "tofi") {
       cmd = "exec $(tofi-drun)";
       emoji = getExe (
-        pkgs.emojisearch.override {
+        pkgs.scripts.emojisearch.override {
           dmenuCommand = "tofi"; # --num-results=10
           copyCommand = "wl-copy";
         }

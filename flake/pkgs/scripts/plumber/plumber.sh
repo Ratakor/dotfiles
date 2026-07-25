@@ -1,0 +1,180 @@
+# shellcheck shell=sh
+# plumber 🪠
+# Copyright © 2025 Ratakor. Under ISC License.
+# Check https://github.com/Ratakor/dotfiles/blob/artix/.local/bin/plumber
+# for a cursed version that transform your terminal into a full fledged file
+# manager with mouse support when using my version of st
+# shellcheck disable=SC2086
+
+# default programs are defined in nix predule
+
+TMPDIR=${XDG_RUNTIME_DIR:-/tmp}/plumber
+HISTDIR=${XDG_STATE_HOME:-$HOME/.local/state}/plumber
+HISTFILE=$HISTDIR/history
+
+open() {
+  setsid -f "$@" >/dev/null 2>&1
+}
+
+openterm() {
+  if [ -n "$ZELLIJ" ]; then
+    zellij action new-pane -- "$@"
+  else
+    open $TERMINAL -e "$@"
+  fi
+}
+
+# mfw 0 is true and 1 is false
+isurl() {
+  case "$1" in
+  http://* | https://* | git://* | irc://* | ircs://* | file://*)
+    return 0
+    ;;
+  *)
+    return 1
+    ;;
+  esac
+}
+
+# The downloaded file "$1" will be saved to "$TMPDIR/$file"
+tmpdl() {
+  file=$(printf '%s' "$1" | sed "s/.*\///;s/%20/ /g")
+  curl -sL "$1" >"$TMPDIR/$file"
+}
+
+openurls() {
+  case "$1" in
+  file://*)
+    openfile "${1##file://}"
+    ;;
+  *.mkv | *.webm | *.mp4 | *.mov | *youtube.com/watch* | *youtube.com/playlist* | \
+    *youtube.com/shorts* | *youtu.be* | *inv*/playlist* | *inv*/watch*)
+    $VIDEO "$1"
+    ;;
+  *.mp3 | *.flac | *.opus | *mp3?source* | *.ogg | *.wav | *soundcloud.com*)
+    $AUDIO "$1"
+    ;;
+  *.png | *.jpg | *.jpeg | *.gif | *.webp | *.bmp)
+    tmpdl "$1" && $PIC "$TMPDIR/$file"
+    ;;
+  *.pdf | *.ps | *.cbz | *.cbr | *.djvu | *.epub)
+    tmpdl "$1" && $DOC "$TMPDIR/$file"
+    ;;
+  git://* | git@* | *.git)
+    openterm git clone "$1"
+    ;;
+  *)
+    $WEB "$1"
+    ;;
+  esac
+}
+
+openfile() {
+  if [ -d "$1" ]; then
+    $DIR "$1"
+    return
+  fi
+
+  if [ ! -f "$1" ]; then
+    printf '\033[31mError:\033[m %s is not a valid file\n' "$1" >&2
+    return 1
+  fi
+
+  case "$1" in
+  *.mkv | *.webm | *.mp4 | *.mov)
+    $VIDEO "$1"
+    ;;
+  *.mp3 | *.flac | *.opus | *.ogg | *.wav)
+    $AUDIO "$1"
+    ;;
+  *.png | *.jpg | *.jpeg | *.gif | *.webp | *.bmp)
+    $PIC "$1"
+    ;;
+  *.pdf | *.ps | *.cbz | *.cbr | *.djvu | *.epub)
+    $DOC "$1"
+    ;;
+  *.htm | *.html)
+    $WEB "$1"
+    ;;
+  *)
+    $TEXT "$1"
+    ;;
+  esac
+}
+
+usage() {
+  cat <<EOF >&2
+Usage: ${0##*/} [options] [args]
+
+Options:
+  no option [args]    | Try to guess what to do
+  -u|--url [urls]     | Open URLs
+  -f|--file [files]   | Open files or directories
+  -h|--help           │ Print this help message
+
+Config:
+  browser      = $WEB
+  editor       = $TEXT
+  video        = $VIDEO
+  audio        = $AUDIO
+  picture      = $PIC
+  document     = $DOC
+  file manager = $DIR
+
+  tmpdir       = $TMPDIR
+  history      = $HISTFILE
+EOF
+}
+
+main() {
+  mkdir -p "$HISTDIR"
+  mkdir -p "$TMPDIR"
+
+  case "$1" in
+  -u | --url)
+    shift
+    if [ -z "$1" ]; then
+      printf '\033[31mError:\033[m no argument given\n' >&2
+      usage
+      return 1
+    fi
+    for arg in "$@"; do
+      printf '%s\n' "$arg" >>"$HISTFILE"
+      openurls "$arg"
+    done
+    ;;
+  -f | --file)
+    shift
+    if [ -z "$1" ]; then
+      printf '\033[31mError:\033[m no argument given\n' >&2
+      usage
+      return 1
+    fi
+    for arg in "$@"; do
+      printf '%s\n' "$arg" >>"$HISTFILE"
+      openfile "$arg"
+    done
+    ;;
+  -h | --help | '')
+    usage
+    ;;
+  -*)
+    printf "\033[31mError:\033[m unknown option '%s'\n" "$1" >&2
+    usage
+    return 1
+    ;;
+  *)
+    for arg in "$@"; do
+      printf '%s\n' "$arg" >>"$HISTFILE"
+      if isurl "$arg"; then
+        openurls "$arg"
+      else
+        openfile "$arg"
+      fi
+
+    done
+    ;;
+  esac
+}
+
+main "$@"

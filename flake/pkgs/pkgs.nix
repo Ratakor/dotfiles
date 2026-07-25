@@ -104,6 +104,9 @@ import sources.nixpkgs {
       # Helium Browser
       helium = sources.helium.packages.${system}.default;
 
+      # This fixes conflict with our custom scripts at pkgs.scripts
+      mpv = prev.mpv.override { scripts = [ ]; };
+
       # Replace nix-output-monitor ugly icons.
       nix-output-monitor =
         let

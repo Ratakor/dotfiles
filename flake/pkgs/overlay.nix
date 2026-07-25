@@ -56,5 +56,11 @@ let
     callPackage = callPackageWith (final // extraArgs);
     directory = ./wrappers;
   };
+
+  scripts = packagesFromDirectoryRecursive {
+    # Using `pkgs` instead of `final` here causes a mass rebuild of dependencies.
+    callPackage = callPackageWith (final // extraArgs);
+    directory = ./scripts;
+  };
 in
-packages // { inherit wrappers; }
+packages // { inherit wrappers scripts; }

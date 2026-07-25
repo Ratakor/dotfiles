@@ -1,9 +1,6 @@
 {
   security.pam = {
     services = {
-      # This must be set even if empty to make swaylock work
-      swaylock = { };
-
       # Unlock gnome-keyring and GPG on login via greetd.
       # Replace greetd with login if using another display manager.
       # https://wiki.nixos.org/wiki/Secret_Service#Auto-decrypt_on_login
