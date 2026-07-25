@@ -32,7 +32,7 @@ in
       (optional prg.locker.glitchlock.enable (pkgs.scripts.glitchlock.override { isWayland = true; }))
 
       (optional cfg.ocr.enable (pkgs.scripts.ocr.override { isWayland = true; }))
-      (optional cfg.pdfmd.enable (callPackage ./src/pdfmd { }))
+      (optional cfg.pdfmd.enable pkgs.scripts.pdfmd)
       [
         (callPackage ./src/battery { })
         (callPackage ./src/real { })
