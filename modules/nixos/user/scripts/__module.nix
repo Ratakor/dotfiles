@@ -1,4 +1,3 @@
-# TODO: should this be exposed by the flake as a package output?
 {
   config,
   lib,
@@ -7,7 +6,6 @@
 }:
 let
   inherit (builtins) concatLists;
-  inherit (pkgs) callPackage;
   inherit (lib.modules) mkIf;
   inherit (lib.lists) optional;
 
@@ -17,7 +15,6 @@ in
 {
   config = mkIf cfg.enable {
     # TODO:
-    # icstocal: merge with quand?
     # plumber: ..., support archive/compressed files
     hm.home.file.".local/bin" = {
       source = ./bin;
@@ -36,7 +33,7 @@ in
       [
         pkgs.scripts.real
         pkgs.scripts.sci
-        (callPackage ./src/ytdl { })
+        pkgs.scripts.ytdl
       ]
     ];
   };
