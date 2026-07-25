@@ -34,7 +34,6 @@ in
       (optional cfg.ocr.enable (pkgs.scripts.ocr.override { isWayland = true; }))
       (optional cfg.pdfmd.enable pkgs.scripts.pdfmd)
       [
-        (callPackage ./src/battery { })
         (callPackage ./src/real { })
         pkgs.scripts.sci
         (callPackage ./src/ytdl { })

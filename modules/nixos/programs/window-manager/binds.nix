@@ -53,13 +53,13 @@ in
       };
     };
 
-    "XF86Battery" = {
-      spawn = "battery";
-      niri = {
-        repeat = false;
-        hotkey-overlay-title = "Show battery information";
-      };
-    };
+    # "XF86Battery" = {
+    #   spawn = ""; # TODO: use some daemon(?) with IPC backed by upower
+    #   niri = {
+    #     repeat = false;
+    #     hotkey-overlay-title = "Show battery information";
+    #   };
+    # };
 
     # TODO: use wlr-which-key to handle prev/next instead?
     "Mod+Shift+W" = {
