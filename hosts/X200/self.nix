@@ -51,7 +51,6 @@ in
         # wallpaper.name = "randwp";
       };
       dev.enable = true;
-      scripts.enable = true;
       apps = {
         enable = true;
         spotify.enable = false; # crashes with illegal instruction

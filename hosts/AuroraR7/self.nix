@@ -57,7 +57,6 @@
         wallpaper.name = "wpaperd";
       };
       dev.enable = true;
-      scripts.enable = true;
       gaming = {
         enable = true;
         poe.enable = true;
