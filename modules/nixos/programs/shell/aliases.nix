@@ -15,10 +15,10 @@ let
     "sync"
     "dmesg"
   ];
-
   sudoAliases = genAttrs sudoCommands (cmd: "sudo ${cmd}");
 
-  EDITOR = config.self.programs.default.editor.package.meta.mainProgram;
+  dprg = config.self.programs.default;
+  EDITOR = dprg.editor.package.meta.mainProgram;
   ZDOTDIR = config.hm.programs.zsh.dotDir or config.hm.home.homeDirectory;
   XDG_CONFIG_HOME = config.hm.xdg.configHome;
   XDG_DATA_HOME = config.hm.xdg.dataHome;
@@ -57,7 +57,7 @@ in
     cac = "cd ${XDG_CACHE_HOME}";
 
     # shorter name and basic stuff changed
-    e = "${EDITOR}";
+    e = EDITOR;
     se = "sudoedit";
     sudo = "sudo "; # allows to run aliases with sudo
     ":q" = "exit";
@@ -82,6 +82,7 @@ in
     j = "just";
     # ask = "ollama run gemma3:12b --hidethinking"; # deepseek-r1:8b gemma3:12b
     ex = "ouch d";
+    setwp = dprg.wallpaper.set;
 
     # <https://unix.stackexchange.com/a/81699>
     myip = "dig @resolver4.opendns.com myip.opendns.com +short";

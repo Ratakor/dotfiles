@@ -70,6 +70,7 @@ in
         XCOMPOSECACHE = "${XDG_CACHE_HOME}/X11/xcompose";
         RENPY_PATH_TO_SAVES = "${XDG_DATA_HOME}/renpy";
         RENPY_MULTIPERSISTENT = "${XDG_DATA_HOME}/renpy_shared";
+        CODEX_HOME = "${XDG_CONFIG_HOME}/codex";
 
         # Disable telemetry (https://consoledonottrack.com)
         AZURE_CORE_COLLECT_TELEMETRY = "0";
