@@ -37,7 +37,7 @@ let
   screenshot = with pkgs; [
     grim # screenshot, -g "$(slurp)"
     slurp # region selection
-    # swappy # image editor for screenshots # TODO: look into gabm/satty
+    # swappy # image editor for screenshots # TODO: look into gabm/satty, ItsLemmy/swash, faetalize/waytator (niri integration)
     wf-recorder # screen recording, -g "$(slurp)", -a for audio
     # kooha # screen recorder with a minimal gui
   ];

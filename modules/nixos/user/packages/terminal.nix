@@ -107,7 +107,7 @@ let
     # pdfmd # 1GB of dependencies (pandoc)
 
     # TODO: support archive/compressed files? (ouch is already goated)
-    # TODO: override prelude?
+    # TODO: override prelude? (also in yazi, maybe as a nixpkgs overlay)
     plumber
   ];
 
