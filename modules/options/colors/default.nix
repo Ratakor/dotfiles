@@ -6,8 +6,8 @@
 let
   self = {
     inherit theme variant;
-    dark = import ./themes/${theme}-dark.nix;
-    light = import ./themes/${theme}-light.nix;
+    dark = import ./themes/${theme}/dark.nix;
+    light = import ./themes/${theme}/light.nix;
     default = self.${variant};
     alternative = self.${if variant == "dark" then "light" else "dark"};
   };

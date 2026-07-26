@@ -1,6 +1,7 @@
 # Theme and colors configuration for the system
 { config, lib, ... }:
 let
+  inherit (builtins) attrNames readDir;
   inherit (lib.options) mkOption;
   inherit (lib.types) enum;
 
@@ -9,10 +10,7 @@ in
 {
   options.self.colors = {
     theme = mkOption {
-      type = enum [
-        "gruvbox"
-        "dracula"
-      ];
+      type = enum (attrNames (readDir ./themes));
       description = "The colorscheme that should be used globally.";
       default = "gruvbox";
     };
@@ -27,14 +25,14 @@ in
     };
 
     dark = mkOption {
-      default = import ./themes/${cfg.theme}-dark.nix;
+      default = import ./themes/${cfg.theme}/dark.nix;
       description = "Dark variant of the chosen colorscheme.";
       readOnly = true;
       internal = true;
     };
 
     light = mkOption {
-      default = import ./themes/${cfg.theme}-light.nix;
+      default = import ./themes/${cfg.theme}/light.nix;
       description = "Light variant of the chosen colorscheme.";
       readOnly = true;
       internal = true;
