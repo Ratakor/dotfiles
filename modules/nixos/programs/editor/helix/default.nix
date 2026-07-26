@@ -12,7 +12,7 @@ let
 
   package = pkgs.wrappers.helix.override (
     {
-      inherit (config.self.colors.default.helix) theme;
+      inherit (config.self) colors; # used for helix & scooter theme
     }
     // (optionalAttrs (!prg.dev.enable) { extraPackages = [ ]; })
   );
