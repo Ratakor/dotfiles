@@ -18,7 +18,7 @@
   hsetroot,
 
   isWayland ? false,
-  supportMultipleMonitors ? true,
+  supportMultipleMonitors ? false,
   wallpapers ? "\${XDG_PICTURES_DIR:-$HOME/Pictures}/wallpapers",
   extensions ? [
     "jpeg"

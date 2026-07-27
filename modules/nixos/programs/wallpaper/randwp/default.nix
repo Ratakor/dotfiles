@@ -11,7 +11,7 @@ let
 
   randwp = pkgs.scripts.randwp.override {
     isWayland = true;
-    # supportMultipleMonitors = length config.self.device.monitors > 1;
+    supportMultipleMonitors = true; # length config.self.device.monitors > 1;
     wallpapers = config.hm.xdg.userDirs.extraConfig.WALLPAPERS;
   };
 

@@ -15,9 +15,6 @@ let
     typos # spell checker
     detox # cli to cleanup filenames
     # xdg-ninja # Shell script which checks your $HOME for unwanted files and directories
-    imagemagick # image manipulation from the terminal
-    ffmpeg # video manipulation and a lot of other stuff, see also ffmpeg-full
-    mat2 # metadata removal tool
     bc # calculation
     libqalculate # better bc
     # shaq # CLI client for Shazam
@@ -41,6 +38,14 @@ let
     wiremix # Audio mixer for PipeWire
     wrappers.btop # Monitor of resources
     caligula # TUI for burning disks
+  ];
+
+  image = with pkgs; [
+    imagemagick # image manipulation from the terminal
+    ffmpeg # video manipulation and a lot of other stuff, see also ffmpeg-full
+    mat2 # metadata removal tool
+    oxipng # PNG compression optimizer
+    libwebp # Tools and library for the WebP image format (cwebp/dwebp)
   ];
 
   # don't include that in packages
@@ -126,6 +131,7 @@ in
   user.packages = concatLists [
     cli
     tui
+    image
     # rice
     # cast
     ai

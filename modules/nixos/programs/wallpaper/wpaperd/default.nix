@@ -2,11 +2,6 @@
 # See `wpaperctl` to control the daemon.
 # btw super cool stuff, wpaperd creates symlinks in $XDG_STATE_HOME/wpaperd/wallpapers
 # that points to the current wallpaper used.
-#
-# I wish I could enable this and replace randwp but it's crashing on X200
-# The application panicked (crashed).
-# Message:  Failed to create vertices shader:
-#    0: 0:2(10): error: GLSL ES 3.10 is not supported. Supported versions are: 1.00 ES
 { config, lib, ... }:
 let
   inherit (lib.modules) mkIf;
