@@ -12,6 +12,8 @@ in
   user.packages = with pkgs; [
     wrappers.gitui
     pre-commit
+    gist # github gist
+    act # local github actions
   ];
 
   hm.programs.lazygit = {
@@ -60,6 +62,24 @@ in
             "github:"
           ];
         };
+        "ssh://git@gitlab.com/" = {
+          insteadOf = [
+            "https://gitlab.com/"
+            "gitlab:"
+          ];
+        };
+        "ssh://git@git.sr.ht.com/" = {
+          insteadOf = [
+            "https://git.sr.ht.com/"
+            "srht:" # "sourcehut:"
+          ];
+        };
+        "ssh://git@codeberg.org/" = {
+          insteadOf = [
+            "https://codeberg.org/"
+            "codeberg:"
+          ];
+        };
         # "ssh://git@ratakor.com/" = {
         #   insteadOf = "https://git.ratakor.com/";
         # };
@@ -105,6 +125,7 @@ in
     gcm = "git commit --message";
     gam = "git commit --amend";
     gp = "git push"; # --follow-tags"; # --tags
+    gpf = "git push --force-with-lease";
     gpl = "git pull";
     gr = "git restore";
     grs = "git restore --staged";
