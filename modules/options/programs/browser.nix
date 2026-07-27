@@ -14,6 +14,7 @@ let
     mkEnableOption
     mkEnableOptions'
     literalExpression
+    mkCommandOption
     ;
   inherit (lib) types;
 
@@ -122,12 +123,7 @@ in
           internal = true;
         };
 
-      newWindow = mkOption {
-        type = types.str;
-        description = "The command to spawn a new window.";
-        default = "dummy-browser --new-window";
-        internal = true;
-      };
+      newWindow = mkCommandOption "spawn a new browser window";
     };
   };
 

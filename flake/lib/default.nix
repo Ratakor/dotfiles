@@ -31,6 +31,7 @@ sources:
       enumOptionValues'
       mkEnableOptions
       mkEnableOptions'
+      mkCommandOption
       ;
     inherit (self.trivial)
       capitalize

@@ -22,7 +22,6 @@ boot host="$(hostname)":
 test host="$(hostname)":
     nh os test --diff always --hostname {{host}} .
 
-
 # Build a `NixOS` VM image
 [group('build')]
 build-vm host="$(hostname)":

@@ -6,8 +6,13 @@
 }:
 let
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
-  inherit (lib.types) nullOr enum str;
+  inherit (lib.options)
+    mkOption
+    mkEnableOptions'
+    literalExpression
+    mkCommandOption
+    ;
+  inherit (lib.types) nullOr enum;
 
   odprg = options.self.programs.default;
   prg = config.self.programs;
@@ -36,19 +41,8 @@ in
         '';
       };
 
-      nextRandom = mkOption {
-        type = str;
-        description = "The command to switch to the next random wallpaper.";
-        # default = "dummy-wallpaper";
-        internal = true;
-      };
-
-      set = mkOption {
-        type = str;
-        description = "The command to set a wallpaper via a given path.";
-        # default = "dummy-wallpaper";
-        internal = true;
-      };
+      nextRandom = mkCommandOption "switch to the next random wallpaper";
+      set = mkCommandOption "set a wallpaper via a given path";
     };
   };
 

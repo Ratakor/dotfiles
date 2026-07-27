@@ -6,8 +6,13 @@
 }:
 let
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
-  inherit (lib.types) nullOr enum str;
+  inherit (lib.options)
+    mkOption
+    mkEnableOptions'
+    literalExpression
+    mkCommandOption
+    ;
+  inherit (lib.types) nullOr enum;
 
   odprg = options.self.programs.default;
   prg = config.self.programs;
@@ -38,19 +43,8 @@ in
         '';
       };
 
-      cmd = mkOption {
-        type = str;
-        description = "The command to spawn a menu to launch applications.";
-        # default = "dummy-launcher";
-        internal = true;
-      };
-
-      emoji = mkOption {
-        type = str;
-        description = "The command to spawn a menu to find emoji.";
-        default = "notify-send 'Unsupported command: emojisearch'";
-        internal = true;
-      };
+      cmd = mkCommandOption "spawn a menu to launch applications";
+      emoji = mkCommandOption "spawn a menu to search emojis";
     };
   };
 

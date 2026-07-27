@@ -7,8 +7,13 @@
 }:
 let
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
-  inherit (lib.types) nullOr enum str;
+  inherit (lib.options)
+    mkOption
+    mkEnableOptions'
+    literalExpression
+    mkCommandOption
+    ;
+  inherit (lib.types) nullOr enum;
 
   odprg = options.self.programs.default;
   prg = config.self.programs;
@@ -37,12 +42,7 @@ in
         '';
       };
 
-      toggle = mkOption {
-        type = str;
-        description = "The command to toggle the default status bar.";
-        # default = "dummy-status-bar";
-        internal = true;
-      };
+      toggle = mkCommandOption "toggle the default status bar";
     };
   };
 

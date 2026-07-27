@@ -1,9 +1,10 @@
 { lib, self, ... }:
 let
-  inherit (lib.options) mkEnableOption;
-  inherit (self.types) enumValues unwrapNullOr;
-  inherit (self.options) enumOptionValues enumOptionValues';
+  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.types) str;
   inherit (self.attrsets) genAttrs;
+  inherit (self.options) enumOptionValues enumOptionValues';
+  inherit (self.types) enumValues unwrapNullOr;
 
   /**
     Create multiple enable options based on the given list of values.
@@ -28,23 +29,42 @@ let
 in
 {
   /**
-    Return the values of an option which type is an enum.
+    Returns the values of an option which type is an enum.
   */
   enumOptionValues = option: enumValues option.type;
 
   /**
-    Return the values of an option which type is a nullOr enum.
+    Returns the values of an option which type is a nullOr enum.
     `null` is not included.
   */
   enumOptionValues' = option: enumValues (unwrapNullOr option.type);
 
   /**
-    Create multiple enable options based on the given enum option.
+    Creates multiple enable options based on the given enum option.
   */
   mkEnableOptions = option: mkEnableOptionsImplem (enumOptionValues option);
 
   /**
-    Create multiple enable options based on the given nullOr enum option.
+    Creates multiple enable options based on the given nullOr enum option.
   */
   mkEnableOptions' = option: mkEnableOptionsImplem (enumOptionValues' option);
+
+  /**
+    Helper to create command option with a dummy default value for unsupported commands.
+  */
+  mkCommandOption =
+    desc:
+    mkOption {
+      type = str;
+      description = "The command to ${desc}.";
+      default =
+        let
+          msg = "Unsupported command: ${desc}";
+        in
+        "echo '${msg}'; notify-send '${msg}'";
+      internal = true;
+      # readOnly makes it so that an option can be assigned only one time
+      # except that it doesn't take mkIf into account so it sucks
+      # readOnly = true;
+    };
 }

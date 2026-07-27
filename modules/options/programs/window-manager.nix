@@ -7,7 +7,12 @@
 let
   inherit (lib.attrsets) recursiveUpdate;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkOption mkEnableOptions' literalExpression;
+  inherit (lib.options)
+    mkOption
+    mkEnableOptions'
+    literalExpression
+    mkCommandOption
+    ;
   inherit (lib) types;
 
   odprg = options.self.programs.default;
@@ -97,12 +102,7 @@ in
         '';
       };
 
-      cmd = mkOption {
-        type = types.str;
-        description = "The command to spawn a new window manager session from TTY.";
-        # default = "dummy-window-manager"; # probably a bad idea
-        internal = true;
-      };
+      cmd = mkCommandOption "spawn a new window manager session from TTY";
 
       session = mkOption {
         type = types.str;
