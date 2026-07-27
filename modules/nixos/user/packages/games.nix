@@ -60,7 +60,7 @@ in
   user.packages = optionals cfg.enable (concatLists [
     terminal
     tools
-    # unsorted
+    unsorted
     (optionals cfg.star-citizen.enable star-citizen)
     (optionals cfg.wow.enable wow)
     (optionals cfg.poe.enable poe)
