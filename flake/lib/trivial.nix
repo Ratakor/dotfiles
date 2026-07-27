@@ -1,25 +1,9 @@
 { lib, ... }:
 let
-  inherit (builtins) substring stringLength;
+  inherit (builtins) substring;
   inherit (lib.trivial) fromHexString;
-  inherit (lib.strings) toUpper;
 in
 {
-  /**
-    Capitalize the first letter of a word.
-    If the word is empty, it returns an empty string.
-  */
-  capitalize =
-    word:
-    if word == "" then
-      ""
-    else
-      let
-        head = substring 0 1 word;
-        tail = substring 1 (stringLength word - 1) word;
-      in
-      "${toUpper head}${tail}";
-
   /**
     Convert a hex color string to an rgba string.
 
@@ -51,9 +35,4 @@ in
 
   # Abort with an error message if this code is ever executed.
   unreachable = abort "Reached unreachable code!";
-
-  /**
-    Returns the corresponding shortRev for the given revision.
-  */
-  shortRev = rev: substring 0 7 rev;
 }

@@ -33,13 +33,7 @@ sources:
       mkEnableOptions'
       mkCommandOption
       ;
-    inherit (self.trivial)
-      capitalize
-      hexToRgba
-      isx86Linux
-      unreachable
-      shortRev
-      ;
+    inherit (self.trivial) hexToRgba isx86Linux unreachable;
     inherit (self.types) enumValues unwrapNullOr;
 
     # wlib

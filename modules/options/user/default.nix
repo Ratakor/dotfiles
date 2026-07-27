@@ -6,8 +6,8 @@
 }:
 let
   inherit (lib.options) mkOption literalExpression;
+  inherit (lib.strings) toSentenceCase;
   inherit (lib.types) listOf str strMatching;
-  inherit (lib.trivial) capitalize;
 
   cfg = config.self.user;
 in
@@ -22,9 +22,9 @@ in
     fullName = mkOption {
       type = str;
       description = "Full name of the main user.";
-      default = capitalize cfg.name;
+      default = toSentenceCase cfg.name;
       defaultText = literalExpression ''
-        lib.capitalize user.name
+        lib.strings.toSentenceCase user.name
       '';
     };
 
