@@ -134,6 +134,7 @@ in
         allow-when-locked = true;
       };
     };
+    "XF86AudioPause" = binds."XF86AudioPlay";
     "XF86AudioStop" = {
       spawn = "playerctl stop";
       niri = {
@@ -177,7 +178,7 @@ in
     #     hotkey-overlay-title = "Dynamically plumb clipboard";
     #   };
     # };
-    "Mod+Shift+U" = {
+    "Mod+Shift+O" = {
       spawn = "plumber \"$(wl-paste)\"";
       niri = {
         repeat = false;

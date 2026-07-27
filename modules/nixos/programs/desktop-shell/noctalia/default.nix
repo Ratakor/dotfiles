@@ -72,6 +72,10 @@ in
             "workspaces"
             "active_window"
           ];
+          # dead_zone = mkIf prg.windowManager.niri.enable {
+          #   scroll_down_command = "niri msg action focus-workspace-down";
+          #   scroll_up_command = "niri msg action focus-workspace-up";
+          # };
         };
         battery.warning_threshold = 15;
         calendar.enabled = true;
