@@ -74,9 +74,16 @@ in
           ];
         };
         battery.warning_threshold = 15;
+        calendar.enabled = true;
         location.auto_locate = true;
         lockscreen.blurred_desktop = true;
         notification.enable_daemon = dprg.notification.name == defaultName; # should we use prg?
+        nightlight = {
+          # same config as gammastep and I'm think about prg.nightLight, the madness never ends
+          enabled = false;
+          temperature_day = 6000;
+          temperature_night = 3000;
+        };
         # plugins.enabled = [ ];
         shell = {
           # avatar_path = user.avatar; # probably overkill and better be configured imperatively
