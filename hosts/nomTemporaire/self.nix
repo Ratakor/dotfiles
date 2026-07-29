@@ -56,13 +56,14 @@
         locker.name = "glitchlock";
         mediaPlayer.name = "vlc";
 
-        desktopShell.name = "dms"; # ?
-        wallpaper.name = "wpaperd"; # ?
+        desktopShell.name = "dms";
+        wallpaper.name = "wpaperd";
       };
       dev.enable = true; # ?
       gaming = {
         enable = true;
-        lutris.enable = false; # TODO: should be true
+        lutris.enable = false; # ?
+        minecraft.enable = true;
       };
       apps = {
         enable = true;
@@ -70,6 +71,7 @@
         gajim.enable = false;
         keepassxc.enable = false;
         libreoffice.enable = true;
+        onlyoffice.enable = true;
         obs-studio.enable = true;
         teams.enable = true;
         nixbit.enable = true;
