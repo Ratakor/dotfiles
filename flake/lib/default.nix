@@ -27,14 +27,13 @@ sources:
       ;
     inherit (self.lists) ifold0 ifold1;
     inherit (self.options)
-      enumOptionValues
-      enumOptionValues'
       mkEnableOptions
-      mkEnableOptions'
+      mkDesktopShellProgram
+      mkVideoProgram
+      mkProgram
       mkCommandOption
       ;
     inherit (self.trivial) hexToRgba isx86Linux unreachable;
-    inherit (self.types) enumValues unwrapNullOr;
 
     # wlib
     wrappers = import "${sources.nix-wrapper-modules}/lib" { inherit lib; };

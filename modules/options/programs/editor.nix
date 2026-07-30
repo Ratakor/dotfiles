@@ -1,70 +1,30 @@
-{
-  config,
-  lib,
-  options,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib.options)
-    mkOption
-    mkPackageOption
-    mkEnableOptions
-    mkEnableOptions'
-    ;
-  inherit (lib.types) nullOr enum;
+  inherit (lib.options) mkProgram;
 
-  odprg = options.self.programs.default;
-  dprg = config.self.programs.default;
 in
 {
-  options.self.programs = {
-    editor = mkEnableOptions odprg.editor.name // {
-      visual = mkEnableOptions' odprg.editor.visual.name;
-    };
+  imports = [
+    (mkProgram config "editor" {
+      values = [
+        "helix"
+        "micro"
+      ];
+      default = "helix";
+      nullable = false;
+      hasPackage = true;
+    })
 
-    default.editor = {
-      name = mkOption {
-        type = enum [
-          "helix"
-          "micro"
-        ];
-        default = "helix";
-        description = ''
-          The default editor to use.
-          This will automatically enable the corresponding program.
-        '';
-      };
-
-      package = (mkPackageOption { } "default editor" { default = null; }) // {
-        internal = true;
-      };
-
-      visual = {
-        name = mkOption {
-          type = nullOr (enum [
-            "zed"
-          ]);
-          default = null;
-          description = ''
-            The default visual editor to use.
-            This will automatically enable the corresponding program.
-          '';
-        };
-
-        package =
-          (mkPackageOption { } "default visual editor" {
-            nullable = true;
-            default = null;
-          })
-          // {
-            internal = true;
-          };
-      };
-    };
-  };
-
-  config.self.programs = {
-    editor.${dprg.editor.name}.enable = true;
-    editor.visual.${dprg.editor.visual.name}.enable = true;
-  };
+    (mkProgram config "visual editor" {
+      values = [
+        "zed"
+      ];
+      optionPath = [
+        "editor"
+        "visual"
+      ];
+      nullable = true;
+      hasPackage = true;
+    })
+  ];
 }
