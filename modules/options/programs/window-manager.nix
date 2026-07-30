@@ -86,9 +86,9 @@ in
       name = mkOption {
         type = types.nullOr (
           types.enum [
-            "hyprland"
+            "hyprland" # TODO
             "niri"
-            # "river"
+            # "river" # TODO
             "river-classic"
           ]
         );

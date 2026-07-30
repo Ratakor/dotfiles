@@ -25,6 +25,7 @@ in
     default.wallpaper = {
       name = mkOption {
         type = nullOr (enum [
+          # "awww" # TODO
           "dms"
           "noctalia"
           "randwp" # backed by swaybg

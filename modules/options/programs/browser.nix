@@ -85,7 +85,7 @@ in
 
       firefox = {
         package = mkPackageOption pkgs "firefox" {
-          example = [ "librewolf" ]; # see also github:celenityy/phoenix
+          example = [ "librewolf" ]; # see also github:celenityy/phoenix, zen, glide
           extraDescription = ''
             The command used to launch a new browser may differ from "firefox".
           '';
