@@ -37,6 +37,7 @@ in
       wallpaper = mkIf isDefaultWallpaper {
         nextRandom = "dms ipc call wallpaper next";
         set = "dms ipc call wallpaper set";
+        get = "dms ipc call wallpaper get";
       };
     };
 

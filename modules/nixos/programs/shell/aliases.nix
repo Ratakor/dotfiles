@@ -83,6 +83,7 @@ in
     # ask = "ollama run gemma3:12b --hidethinking"; # deepseek-r1:8b gemma3:12b
     ex = "ouch d";
     setwp = dprg.wallpaper.set;
+    getwp = dprg.wallpaper.get;
 
     # <https://unix.stackexchange.com/a/81699>
     myip = "dig @resolver4.opendns.com myip.opendns.com +short";

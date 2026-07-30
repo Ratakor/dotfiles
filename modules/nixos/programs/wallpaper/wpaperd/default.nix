@@ -15,6 +15,7 @@ in
     self.programs.default.wallpaper = mkIf (dprg.wallpaper.name == "wpaperd") {
       nextRandom = "wpaperctl next";
       set = "wpaperctl set";
+      get = "wpaperctl get-all";
     };
 
     hm.services.wpaperd = {

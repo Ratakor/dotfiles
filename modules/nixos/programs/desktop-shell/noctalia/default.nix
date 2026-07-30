@@ -36,6 +36,7 @@ in
       wallpaper = mkIf isDefaultWallpaper {
         nextRandom = "noctalia msg wallpaper-random";
         set = "noctalia msg wallpaper-set";
+        get = "noctalia msg wallpaper-get";
       };
     };
 

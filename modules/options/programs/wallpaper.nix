@@ -44,6 +44,7 @@ in
 
       nextRandom = mkCommandOption "switch to the next random wallpaper";
       set = mkCommandOption "set a wallpaper via a given path";
+      get = mkCommandOption "get the current wallpaper";
     };
   };
 
