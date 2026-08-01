@@ -6,11 +6,17 @@
 }:
 let
   inherit (lib.modules) mkIf mkForce;
+  inherit (lib.strings) toSentenceCase;
 
-  colors = config.self.colors.default.gtk pkgs;
+  inherit (config.self) colors;
   cfg = config.self.programs.xdg.portal.gtk;
 in
 {
+  user.packages = with pkgs; [
+    glib # gsettings
+    nwg-look # Graphical GTK settings
+  ];
+
   xdg.portal = mkIf cfg.enable {
     enable = true;
     extraPortals = mkForce [ pkgs.xdg-desktop-portal-gtk ];
@@ -19,7 +25,19 @@ in
   hm.gtk = {
     enable = true;
 
-    inherit (colors) theme iconTheme;
+    theme = {
+      # let desktop shells handle the actual theming
+      # for noctalia it is automatic via a template hook
+      # for dms it's a button to press in System App Theming
+      # for non-desktop shell users well idk diy
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
+    };
+
+    iconTheme = {
+      name = "Papirus-${toSentenceCase colors.variant}";
+      package = pkgs.papirus-icon-theme;
+    };
 
     gtk2.enable = false; # .gtkrc-2.0 symlink in $HOME
 
@@ -35,7 +53,7 @@ in
     '';
 
     gtk4 = {
-      inherit (colors) theme;
+      inherit (config.hm.gtk) theme;
       extraConfig = {
         # gtk-application-prefer-dark-theme = true;
         # gtk-decoration-layout = "appmenu:none";

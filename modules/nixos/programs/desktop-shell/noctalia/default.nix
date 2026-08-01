@@ -99,6 +99,12 @@ in
           builtin = colors.default.noctalia.theme;
           mode = colors.variant; # "light" "dark" "auto"
           source = "builtin";
+          templates = {
+            builtins_ids = [
+              "gtk3"
+              "gtk4"
+            ];
+          };
         };
         wallpaper = {
           enabled = isDefaultWallpaper;

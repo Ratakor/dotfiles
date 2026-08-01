@@ -8,17 +8,6 @@
   noctalia.theme = "Gruvbox";
   theme-sh = "gruvbox-dark";
 
-  gtk = pkgs: {
-    theme = {
-      name = "Gruvbox-Dark";
-      package = pkgs.gruvbox-gtk-theme;
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-  };
-
   qt.theme = pkgs: rec {
     name = "Gruvbox-Dark-Blue";
     package = pkgs.gruvbox-kvantum.override { variant = name; };

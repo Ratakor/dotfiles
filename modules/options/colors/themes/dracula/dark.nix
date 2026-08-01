@@ -9,17 +9,6 @@
   noctalia.theme = "Dracula";
   theme-sh = "dracula";
 
-  gtk = pkgs: {
-    theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
-    };
-    iconTheme = {
-      name = "Dracula";
-      package = pkgs.dracula-icon-theme;
-    };
-  };
-
   # https://github.com/dracula/gtk/tree/master/kde/kvantum
   qt.theme = pkgs: {
     name = "Dracula";
