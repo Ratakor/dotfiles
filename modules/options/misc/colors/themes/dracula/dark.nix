@@ -3,10 +3,8 @@
   bat.theme = "Dracula";
   helix.theme = "dracula";
   ghostty.theme = "Dracula";
-  vicinae.theme = "dracula";
   zellij.theme = "dracula";
   noctalia.theme = "Dracula";
-  theme-sh = "dracula";
 
   # https://github.com/dracula/gtk/tree/master/kde/kvantum
   qt.theme = pkgs: {

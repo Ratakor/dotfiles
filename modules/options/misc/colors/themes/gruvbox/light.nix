@@ -2,10 +2,8 @@
   bat.theme = "gruvbox-light";
   helix.theme = "gruvbox_light";
   ghostty.theme = "Gruvbox Light";
-  vicinae.theme = "gruvbox-light";
   zellij.theme = "gruvbox-light";
   noctalia.theme = "Gruvbox";
-  theme-sh = "gruvbox";
 
   qt.theme = pkgs: rec {
     name = "Gruvbox_Light_Green";

@@ -6,7 +6,6 @@
 }:
 let
   inherit (lib.modules) mkIf;
-  inherit (config.self) colors;
 
   prg = config.self.programs;
 in
@@ -21,10 +20,10 @@ in
       enable = true;
       systemd.enable = true;
       settings = {
-        theme = {
-          light.name = colors.light.vicinae.theme;
-          dark.name = colors.dark.vicinae.theme;
-        };
+        # theme = {
+        #   light.name = colors.light.vicinae.theme;
+        #   dark.name = colors.dark.vicinae.theme;
+        # };
         # TODO: rest of config
       };
     };
