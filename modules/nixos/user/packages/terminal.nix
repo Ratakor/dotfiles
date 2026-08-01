@@ -38,6 +38,7 @@ let
     wiremix # Audio mixer for PipeWire
     wrappers.btop # Monitor of resources
     caligula # TUI for burning disks
+    wrappers.scooter # Interactive file-and-replace on files
   ];
 
   image = with pkgs; [

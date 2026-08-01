@@ -5,7 +5,6 @@
   ghostty.theme = "Dracula";
   vicinae.theme = "dracula";
   zellij.theme = "dracula";
-  scooter.theme = "dracula";
   noctalia.theme = "Dracula";
   theme-sh = "dracula";
 

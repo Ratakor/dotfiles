@@ -39,22 +39,6 @@
     "narHash": "sha256-uHJ2VxvuOkuP3bFy7j2BrFqrD07blEkEowdqwTSFpAw=",
     "lastModified": 1785178429
   },
-  "dracula-tmTheme": {
-    "type": "github",
-    "owner": "dracula",
-    "repo": "sublime",
-    "rev": "d490b57c08f3d110ff61a07ec6edcc1ed9e24a63",
-    "narHash": "sha256-7veVVrLPW3T7KkkelDmgPW5kp+b12naKSKwCXBgjL1k=",
-    "lastModified": 1750788141
-  },
-  "gruvbox-tmTheme": {
-    "type": "github",
-    "owner": "subnut",
-    "repo": "gruvbox-tmTheme",
-    "rev": "40503472826e51d87666e548a0634c4f1d74938c",
-    "narHash": "sha256-Jip1Hd0sRhhPnO+xnA4buVd9Zu93Tr9OBJrsITG6ayQ=",
-    "lastModified": 1754824544
-  },
   "helium": {
     "type": "github",
     "owner": "amaanq",

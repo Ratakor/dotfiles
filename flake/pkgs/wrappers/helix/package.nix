@@ -55,7 +55,7 @@
     zig # Zig
 
     # Tools
-    (wrappers.scooter.override { inherit colors; }) # interactive find-and-replace
+    wrappers.scooter # interactive find-and-replace
   ],
 }:
 let

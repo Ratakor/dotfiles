@@ -4,7 +4,6 @@
   ghostty.theme = "Gruvbox Dark";
   vicinae.theme = "gruvbox-dark";
   zellij.theme = "gruvbox-dark";
-  scooter.theme = "gruvbox-dark";
   noctalia.theme = "Gruvbox";
   theme-sh = "gruvbox-dark";
 
