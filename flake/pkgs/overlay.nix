@@ -7,7 +7,7 @@ let
   inherit (lib.customisation) callPackageWith;
   inherit (lib.filesystem) packagesFromDirectoryRecursive;
 
-  colors = import (self + /modules/options/colors) { };
+  colors = import (self + /modules/options/misc/colors) { };
 
   extraArgs = { inherit colors sources self; };
 in
