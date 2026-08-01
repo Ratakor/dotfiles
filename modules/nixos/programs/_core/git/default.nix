@@ -6,6 +6,7 @@
   ...
 }:
 let
+  inherit (lib.attrsets) concatMapAttrs;
   inherit (lib.modules) mkIf;
 in
 {
@@ -55,35 +56,21 @@ in
       init.defaultBranch = "master";
       color.ui = true;
       core.sshCommand = "${pkgs.openssh_gssapi}/bin/ssh";
-      url = {
-        "ssh://git@github.com/" = {
-          insteadOf = [
-            "https://github.com/"
-            "github:"
-          ];
-        };
-        "ssh://git@gitlab.com/" = {
-          insteadOf = [
-            "https://gitlab.com/"
-            "gitlab:"
-          ];
-        };
-        "ssh://git@git.sr.ht.com/" = {
-          insteadOf = [
-            "https://git.sr.ht.com/"
-            "srht:" # "sourcehut:"
-          ];
-        };
-        "ssh://git@codeberg.org/" = {
-          insteadOf = [
-            "https://codeberg.org/"
-            "codeberg:"
-          ];
-        };
-        # "ssh://git@ratakor.com/" = {
-        #   insteadOf = "https://git.ratakor.com/";
-        # };
-      };
+      url =
+        concatMapAttrs
+          (name: value: {
+            "ssh://git@${name}/".pushInsteadOf = [
+              "https://${name}/"
+              value
+            ];
+            "https://${name}/".insteadOf = value;
+          })
+          {
+            "github.com" = "github:";
+            "gitlab.com" = "gitlab:";
+            "git.sr.ht.com" = "srht:"; # "sourcehut:"
+            "codeberg.org" = "codeberg:";
+          };
       commit = {
         # verbose = true;
         template = "${./commit}";
