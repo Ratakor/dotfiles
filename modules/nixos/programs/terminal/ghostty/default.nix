@@ -7,6 +7,7 @@
 let
   inherit (lib.modules) mkIf;
 
+  colors = config.self.colors.default;
   prg = config.self.programs;
   isDefault = prg.default.terminal.name == "ghostty";
 in
@@ -22,6 +23,7 @@ in
     hm.programs.ghostty = {
       enable = true;
       systemd.enable = isDefault;
+      enableZshIntegration = true;
       settings = {
         confirm-close-surface = false;
         window-decoration = "none";
@@ -29,7 +31,7 @@ in
         font-family = "monospace";
         font-size = prg.terminal.fontSize;
         background-opacity = 0.8;
-        inherit (config.self.colors.default.ghostty) theme;
+        theme = "self"; # defined below
         shell-integration-features = "no-cursor";
         window-inherit-working-directory = false;
         # this is supposed to fix memory issues but I think it's enblaed by
@@ -41,7 +43,32 @@ in
           "ctrl+equal=reset_font_size"
         ];
       };
-      enableZshIntegration = true;
+      themes.self = {
+        background = colors.background;
+        foreground = colors.foreground;
+        cursor-color = colors.foreground;
+        # cursor-text = colors.background;
+        selection-foreground = colors.foreground;
+        selection-background = colors.selection;
+        palette = [
+          "0=${colors.black}"
+          "1=${colors.red}"
+          "2=${colors.green}"
+          "3=${colors.yellow}"
+          "4=${colors.blue}"
+          "5=${colors.magenta}"
+          "6=${colors.cyan}"
+          "7=${colors.white}"
+          "8=${colors.bright.black}"
+          "9=${colors.bright.red}"
+          "10=${colors.bright.green}"
+          "11=${colors.bright.yellow}"
+          "12=${colors.bright.blue}"
+          "13=${colors.bright.magenta}"
+          "14=${colors.bright.cyan}"
+          "15=${colors.bright.white}"
+        ];
+      };
     };
   };
 }

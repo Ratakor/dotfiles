@@ -1,7 +1,6 @@
 {
   bat.theme = "gruvbox-light";
   helix.theme = "gruvbox_light";
-  ghostty.theme = "Gruvbox Light";
   zellij.theme = "gruvbox-light";
   noctalia.theme = "Gruvbox";
 
@@ -37,6 +36,6 @@
   bright.orange = "af3a03";
 
   comment = "928374"; # gray
-  selection = "d5c4a1"; # bg2
+  selection = "bdae93"; # bg3
   unfocused = "ebdbb2"; # bg1
 }
