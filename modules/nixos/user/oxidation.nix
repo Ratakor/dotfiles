@@ -114,7 +114,7 @@ in
     bat = {
       enable = true;
       config = {
-        inherit (config.self.colors.default.bat) theme;
+        # default theme is fine
         style = "plain";
         tabs = "0";
       };

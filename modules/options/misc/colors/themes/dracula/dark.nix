@@ -1,6 +1,5 @@
 # TODO: use alucard theme as light theme for this one
 {
-  bat.theme = "Dracula";
   helix.theme = "dracula";
   noctalia.theme = "Dracula";
 

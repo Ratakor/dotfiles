@@ -1,5 +1,4 @@
 {
-  bat.theme = "gruvbox-dark";
   helix.theme = "gruvbox";
   noctalia.theme = "Gruvbox";
 

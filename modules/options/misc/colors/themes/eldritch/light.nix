@@ -1,5 +1,4 @@
 {
-  bat.theme = "Dracula"; # TODO: https://github.com/eldritch-theme/bat
   helix.theme = "dracula"; # TODO: https://github.com/A-kly/eldritch-helix
   noctalia.theme = "Eldritch";
 
