@@ -103,6 +103,7 @@ in
             builtins_ids = [
               "gtk3"
               "gtk4"
+              "kcolorscheme" # there is also "qt" but I don't think it's needed
             ];
           };
         };

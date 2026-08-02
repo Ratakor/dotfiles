@@ -6,12 +6,12 @@
 }:
 let
   inherit (lib.modules) mkIf mkForce;
-  inherit (lib.lists) optional singleton;
+  inherit (lib.lists) optional;
 
+  sys = config.self.system;
   prg = config.self.programs;
   dprg = prg.default;
 
-  theme = config.self.colors.default.qt.theme pkgs;
   dolphin = optional prg.fileManager.dolphin.enable pkgs.kdePackages.dolphin;
 in
 {
@@ -28,15 +28,11 @@ in
     services.dbus.packages = dolphin;
     user.packages = dolphin;
 
-    hm.qt = {
-      enable = true;
-      style.name = "kvantum";
-      platformTheme.name = "kde"; # "qtct" doesn't work with dolphin
-      kvantum = {
-        enable = true;
-        settings.General.theme = theme.name;
-        themes = singleton theme.package;
-      };
+    # https://docs.noctalia.dev/v5/templates/official/gtk-qt/?section=qt-applications#qt-applications
+    # idk between kde, qt5ct or manually implem the module for qt6ct but it seems to work
+    qt = {
+      inherit (sys.video) enable; # ig that's a saner default than `true`
+      platformTheme = "kde"; # "qt5ct"
     };
   };
 }

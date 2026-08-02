@@ -4,12 +4,7 @@
   zellij.theme = "gruvbox-light";
   noctalia.theme = "Gruvbox";
 
-  qt.theme = pkgs: rec {
-    name = "Gruvbox_Light_Green";
-    package = pkgs.gruvbox-kvantum.override { variant = name; };
-  };
-
-  cursor.theme = "Simp1e-Gruvbox-Light"; # "Simp1e-Gruvbox-Dark"
+  cursor.theme = "Simp1e-Gruvbox-Light";
 
   foreground = "3c3836";
   background = "fbf1c7";
