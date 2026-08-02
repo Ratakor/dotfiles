@@ -1,6 +1,6 @@
 # Mirror of __module.nix to be used outside of modules.
 {
-  theme ? "gruvbox", # gruvbox dracula
+  theme ? "gruvbox", # gruvbox dracula eldritch
   variant ? "dark", # dark light
 }:
 let

@@ -5,6 +5,37 @@ show_startup_tips false
 // simplified_ui true
 // default_layout "compact"
 
+// we could instead directly use `colors` since all these values are already defined
+// but this is legacy so idk
+themes {
+    eldritch {
+        fg "#ebfafa"
+        bg "#212337"
+        black "#21222c"
+        red "#f9515d"
+        green "#37f499"
+        yellow "#e9f941"
+        blue "#9071f4"
+        magenta "#f265b5"
+        cyan "#04d1f9"
+        white "#ebfafa"
+        orange "#f7c67f"
+    }
+    eldritch-dusk {
+        fg "#1e2029"
+        bg "#f0f3f4"
+        black "#d5d9db"
+        red "#a03040"
+        green "#1a9960"
+        yellow "#b3a010"
+        blue "#2a3590"
+        magenta "#8a2070"
+        cyan "#007a99"
+        white "#1e2029"
+        orange "#ffaf4d"
+    }
+}
+
 keybinds {
     /// Detach instead of of Quit for "Ctrl q"
     shared_except "locked" {
