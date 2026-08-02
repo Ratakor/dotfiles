@@ -104,7 +104,7 @@ in
           mode = colors.variant; # "light" "dark" "auto"
           source = "builtin"; # "builtin" "wallpaper" "community" "custom"
           builtin = colors.default.noctalia.theme;
-          wallpaper_scheme = "faithful";
+          wallpaper_scheme = "vibrant"; # "faithful" is also good
           templates = {
             builtin_ids = [
               "gtk3"
