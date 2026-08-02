@@ -12,9 +12,11 @@ let
   inherit (config.self) colors;
   prg = config.self.programs;
   dprg = prg.default;
+  XDG_CACHE_HOME = config.hm.xdg.cacheHome;
   isDefaultBar = dprg.statusBar.name == defaultName;
   isDefaultLauncher = dprg.launcher.name == defaultName;
   isDefaultWallpaper = dprg.wallpaper.name == defaultName;
+  enableFootZshIntegration = dprg.terminal.name == "foot";
 in
 {
   config = mkIf prg.desktopShell.noctalia.enable {
@@ -82,7 +84,6 @@ in
         calendar.enabled = true;
         hooks = {
           colors_changed = ./hooks/colors_changed.sh;
-          theme_mode_changed = ./hooks/theme_mode_changed.sh;
         };
         location.auto_locate = true;
         lockscreen.blurred_desktop = true;
@@ -113,6 +114,14 @@ in
               "ghostty"
               "helix"
             ];
+            user = {
+              # https://docs.noctalia.dev/v5/templates/community/terminal-templates/
+              terminal-sequences = mkIf enableFootZshIntegration {
+                input_path = ./templates/terminal-sequences;
+                output_path = "${XDG_CACHE_HOME}/noctalia/terminal-sequences";
+                post_hook = "tee /dev/pts/[0-9]* < ${XDG_CACHE_HOME}/noctalia/terminal-sequences";
+              };
+            };
           };
         };
         wallpaper = {
@@ -135,5 +144,9 @@ in
         };
       };
     };
+
+    hm.programs.zsh.initContent = mkIf enableFootZshIntegration /* zsh */ ''
+      [ -f "${XDG_CACHE_HOME}/noctalia/terminal-sequences" ] && cat "${XDG_CACHE_HOME}/noctalia/terminal-sequences"
+    '';
   };
 }
