@@ -63,14 +63,6 @@
     "narHash": "sha256-d0NKOOtI90kk8DAXNDkgYUZD8KK908bczz6zNLTC/zw=",
     "lastModified": 1785452604
   },
-  "mnw": {
-    "type": "github",
-    "owner": "Gerg-L",
-    "repo": "mnw",
-    "rev": "0151d9fa87992cbeb67c86616fb9170dcec830b6",
-    "narHash": "sha256-HRn4O1X2ShYtbq5Egji72/aemyc2cIQicjRZD9hBqM8=",
-    "lastModified": 1784154424
-  },
   "ndg": {
     "type": "github",
     "owner": "feel-co",

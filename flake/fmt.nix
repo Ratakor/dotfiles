@@ -88,9 +88,6 @@ let
         # https://github.com/crate-ci/typos/blob/master/docs/reference.md
         configFile = toTOML "typos-config.toml" {
           files = {
-            extend-exclude = [
-              "flake/pkgs/wrappers/neovim"
-            ];
             ignore-hidden = false; # .github
           };
           default = {

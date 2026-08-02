@@ -67,11 +67,6 @@ follows = { pre-commit = "" }
 # crane
 # rust-overlay
 
-# Minimal Neovim Wrapper
-[inputs.mnw]
-url = "github:Gerg-L/mnw"
-type = "fetch"
-
 # Not a Docs Generator
 [inputs.ndg]
 url = "github:feel-co/ndg"

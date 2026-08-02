@@ -2,7 +2,6 @@
   environment = {
     variables = {
       EDITOR = "hx";
-      # MANPAGER = "nvim -c 'set ft=man bt=nowrite noswapfile nobk shada=\\\"NONE\\\" ro noma' +Man! -o -";
     };
 
     localBinInPath = true;

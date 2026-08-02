@@ -27,7 +27,6 @@ in
         type = enum [
           "helix"
           "micro"
-          "neovim"
         ];
         default = "helix";
         description = ''
