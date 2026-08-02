@@ -80,6 +80,9 @@ in
         };
         battery.warning_threshold = 15;
         calendar.enabled = true;
+        hooks = {
+          theme_mode_changed = ./hooks/theme_mode_changed.sh;
+        };
         location.auto_locate = true;
         lockscreen.blurred_desktop = true;
         notification.enable_daemon = dprg.notification.name == defaultName; # should we use prg?
