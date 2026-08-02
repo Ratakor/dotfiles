@@ -6,9 +6,7 @@
 }:
 let
   inherit (lib.modules) mkIf mkForce;
-  inherit (lib.strings) toSentenceCase;
 
-  inherit (config.self) colors;
   cfg = config.self.programs.xdg.portal.gtk;
 in
 {
@@ -35,7 +33,7 @@ in
     };
 
     iconTheme = {
-      name = "Papirus-${toSentenceCase colors.variant}";
+      name = "Papirus"; # there is also Papirus-{Light,Dark} but ig this does both
       package = pkgs.papirus-icon-theme;
     };
 
