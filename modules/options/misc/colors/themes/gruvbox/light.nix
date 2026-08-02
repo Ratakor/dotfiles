@@ -3,8 +3,6 @@
   helix.theme = "gruvbox_light";
   noctalia.theme = "Gruvbox";
 
-  cursor.theme = "Simp1e-Gruvbox-Light";
-
   foreground = "3c3836";
   background = "fbf1c7";
 

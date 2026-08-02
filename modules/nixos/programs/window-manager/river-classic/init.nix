@@ -19,7 +19,7 @@ let
       mod;
 
   inherit (config.hm.xdg.userDirs.extraConfig) SCREENSHOTS;
-  inherit (config.self.system) keyboard;
+  inherit (config.self.system) keyboard cursor;
   prg = config.self.programs;
   colors = config.self.colors.default;
 
@@ -47,7 +47,7 @@ in
   riverctl keyboard-layout -variant '${keyboard.variant}' -options '${keyboard.options}' '${keyboard.layout}'
   riverctl default-layout rivertile
 
-  riverctl xcursor-theme '${colors.cursor.theme}' 24
+  riverctl xcursor-theme '${cursor.theme}' ${toString cursor.size}
   riverctl background-color '0x${colors.background}'
   riverctl border-color-focused '0x${colors.blue}'
   riverctl border-color-unfocused '0x${colors.unfocused}'

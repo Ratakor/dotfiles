@@ -29,9 +29,7 @@ in
       idle.timeout = 300;
 
       cursor = {
-        inherit (colors.cursor) theme;
-        # 24 looks goofy, let's keep default (which is probably 24 anyway)
-        # size = 24; # same as niri, there should be an option for that
+        inherit (sys.cursor) theme size;
       };
 
       keyboard = {

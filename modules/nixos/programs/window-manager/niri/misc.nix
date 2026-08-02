@@ -10,6 +10,7 @@ let
   inherit (lib.meta) getExe;
 
   inherit (config.hm.xdg.userDirs.extraConfig) SCREENSHOTS;
+  sys = config.self.system;
   colors = config.self.colors.default;
 in
 # kdl
@@ -41,8 +42,8 @@ in
   // screenshot-path null
 
   cursor {
-    xcursor-theme "${colors.cursor.theme}"
-    xcursor-size 24
+    xcursor-theme "${sys.cursor.theme}"
+    xcursor-size ${toString sys.cursor.size}
     // hide-when-typing
     // hide-after-inactive-ms 1000
   }

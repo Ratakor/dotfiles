@@ -4,8 +4,6 @@
   helix.theme = "dracula";
   noctalia.theme = "Dracula";
 
-  cursor.theme = "Simp1e-Dracula";
-
   foreground = "f8f8f2";
   background = "282a36";
 

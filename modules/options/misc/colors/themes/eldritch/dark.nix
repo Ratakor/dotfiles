@@ -3,8 +3,6 @@
   helix.theme = "dracula"; # TODO: https://github.com/A-kly/eldritch-helix
   noctalia.theme = "Eldritch";
 
-  cursor.theme = "Simp1e-Eldritch";
-
   # based on Noctalia dark palette which is based on Cthulhu palette
 
   foreground = "ebfafa";
