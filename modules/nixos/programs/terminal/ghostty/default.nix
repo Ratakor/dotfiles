@@ -53,7 +53,7 @@ in
       themes.nix = {
         background = colors.background;
         foreground = colors.foreground;
-        cursor-color = colors.foreground;
+        cursor-color = colors.cursor or colors.foreground;
         # cursor-text = colors.background;
         selection-foreground = colors.foreground;
         selection-background = colors.selection;

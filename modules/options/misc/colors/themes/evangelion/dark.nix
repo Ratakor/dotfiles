@@ -1,11 +1,12 @@
 # https://github.com/xero/dotfiles/blob/5204a2b74f9af6b979b88f71a696eca872396a33/xorg/evangelion.Xresources
+# https://github.com/xero/evangelion.nvim/blob/08cf52a0931a81bf5b64c93b744e136b5edb6d85/extras/evangelion.ghostty
 {
   helix.theme = "helixgelion";
   noctalia.theme = "Eldritch"; # TODO
 
-  foreground = "8edf5f";
-  background = "242629";
-  # cursor = "5f875f";
+  foreground = "e1d6f8"; # "8edf5f"
+  background = "1e142e"; # "242629";
+  cursor = "5f875f";
 
   black = "201430";
   red = "bf2d2d";
@@ -29,6 +30,6 @@
   bright.orange = "ff846e";
 
   comment = "686858"; # from helixgelion
-  selection = "703871";
+  selection = "703871"; # fg:b968fc bg:87ff5f
   unfocused = "75797a";
 }

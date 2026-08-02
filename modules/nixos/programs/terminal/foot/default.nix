@@ -59,7 +59,7 @@ let
       alpha = "0.85";
       foreground = colors.light.foreground;
       background = colors.light.background;
-      cursor = "${colors.light.background} ${colors.light.foreground}";
+      cursor = "${colors.light.background} ${colors.light.cursor or colors.light.foreground}";
       selection-background = colors.light.selection;
 
       regular0 = colors.light.black;
@@ -85,7 +85,7 @@ let
       alpha = "0.85";
       foreground = colors.dark.foreground;
       background = colors.dark.background;
-      cursor = "${colors.dark.background} ${colors.dark.foreground}";
+      cursor = "${colors.dark.background} ${colors.dark.cursor or colors.dark.foreground}";
       selection-background = colors.dark.selection;
 
       regular0 = colors.dark.black;
