@@ -1,5 +1,5 @@
 # https://yalter.github.io/niri/Configuration:-Outputs
-{ config, lib }:
+{ config, lib, ... }:
 let
   inherit (builtins) concatStringsSep elemAt;
   inherit (lib.lists) imap0;

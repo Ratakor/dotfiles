@@ -1,6 +1,6 @@
 # Input device configuration.
 # https://yalter.github.io/niri/Configuration:-Input
-config:
+{ config, ... }:
 let
   inherit (config.self.system) keyboard;
 in

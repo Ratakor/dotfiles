@@ -1,4 +1,5 @@
 # https://yalter.github.io/niri/Configuration:-Debug-Options
+{ ... }:
 # kdl
 ''
   debug {

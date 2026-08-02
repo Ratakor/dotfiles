@@ -3,6 +3,8 @@
   config,
   lib,
   pkgs,
+  sources,
+  ...
 }:
 let
   inherit (lib.meta) getExe;
@@ -20,7 +22,7 @@ in
   // Add lines like this to spawn processes at startup.
   // Note that running niri as a session supports xdg-desktop-autostart,
   // which may be more convenient to use.
-  spawn-sh-at-startup "sleep 1; python3 ${./niri_tile_to_n.py} -n 2"
+  spawn-sh-at-startup "python3 ${sources.niri_tweaks}/niri_tilemod.py -n 1"
 
   // Uncomment this line to ask the clients to omit their client-side decorations if possible.
   // If the client will specifically ask for CSD, the request will be honored.

@@ -5,7 +5,7 @@
   lib,
   pkgs,
   ...
-}:
+}@args:
 let
   inherit (builtins) concatStringsSep;
   inherit (lib.modules) mkIf mkForce;
@@ -15,19 +15,19 @@ let
   dprg = prg.default;
   cfg = prg.windowManager.niri;
 
-  input = import ./input.nix config;
-  output = import ./output.nix { inherit config lib; };
-  binds = import ./binds.nix { inherit config lib; };
-  switch-events = import ./switch-events.nix;
-  layout = import ./layout.nix config;
-  workspace = import ./workspace.nix;
-  misc = import ./misc.nix { inherit config lib pkgs; };
-  window-rule = import ./window-rule.nix { inherit config lib; };
-  layer-rule = import ./layer-rule.nix;
-  animations = import ./animations.nix;
-  gestures = import ./gestures.nix;
-  recent-windows = import ./recent-windows.nix;
-  debug = import ./debug.nix;
+  input = import ./input.nix args;
+  output = import ./output.nix args;
+  binds = import ./binds.nix args;
+  switch-events = import ./switch-events.nix args;
+  layout = import ./layout.nix args;
+  workspace = import ./workspace.nix args;
+  misc = import ./misc.nix args;
+  window-rule = import ./window-rule.nix args;
+  layer-rule = import ./layer-rule.nix args;
+  animations = import ./animations.nix args;
+  gestures = import ./gestures.nix args;
+  recent-windows = import ./recent-windows.nix args;
+  debug = import ./debug.nix args;
   extraConfig =
     if cfg.extraConfig == "" then
       ""

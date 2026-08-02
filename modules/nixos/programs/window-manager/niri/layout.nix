@@ -1,5 +1,5 @@
 # https://yalter.github.io/niri/Configuration:-Layout
-config:
+{ config, ... }:
 let
   colors = config.self.colors.default;
 in

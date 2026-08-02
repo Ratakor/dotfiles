@@ -81,6 +81,11 @@ type = "fetch"
 [inputs.niri]
 url = "github:niri-wm/niri"
 
+# Scripts for additional functionality when using niri
+[inputs.niri_tweaks]
+url = "github:heyoeyo/niri_tweaks"
+type = "fetch"
+
 # Run unpatched binaries on Nix/NixOS
 [inputs.nix-alien]
 url = "github:thiagokokada/nix-alien"

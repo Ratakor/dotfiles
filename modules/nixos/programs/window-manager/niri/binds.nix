@@ -1,5 +1,5 @@
 # https://yalter.github.io/niri/Configuration:-Key-Bindings
-{ config, lib }:
+{ config, lib, ... }:
 let
   inherit (builtins) isInt isString typeOf;
   inherit (lib.strings)

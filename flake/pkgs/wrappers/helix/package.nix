@@ -7,7 +7,7 @@
   # light: gruvbox_light acme papercolor-light
   theme ? colors.default.helix.theme,
   themeOverride ? {
-    "ui.background" = "none"; # transparent
+    "ui.background" = { }; # transparent
     "function" = {
       fg = if lib.strings.hasPrefix "gruvbox" theme then "green1" else "green";
       modifiers = [ "bold" ];

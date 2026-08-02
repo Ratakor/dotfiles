@@ -87,6 +87,14 @@
     "narHash": "sha256-9EMn69JBcFWFgUM7f0VBAX+jBby5b9H3M59U75+5yI4=",
     "lastModified": 1784570726
   },
+  "niri_tweaks": {
+    "type": "github",
+    "owner": "heyoeyo",
+    "repo": "niri_tweaks",
+    "rev": "dec00a2223abe587bccc23f3b8e5c84de7d33896",
+    "narHash": "sha256-wxusxzWTB3L1k38wN+5uzKez3Lk/i5sKJWVqknoxsqE=",
+    "lastModified": 1785425371
+  },
   "nix-alien": {
     "type": "github",
     "owner": "thiagokokada",

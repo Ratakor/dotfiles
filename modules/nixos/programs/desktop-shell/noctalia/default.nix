@@ -100,7 +100,7 @@ in
           mode = colors.variant; # "light" "dark" "auto"
           source = "builtin";
           templates = {
-            builtins_ids = [
+            builtin_ids = [
               "gtk3"
               "gtk4"
               "kcolorscheme" # there is also "qt" but I don't think it's needed

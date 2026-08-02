@@ -1,6 +1,6 @@
 # Window rules let you adjust behavior for individual windows.
 # https://yalter.github.io/niri/Configuration:-Window-Rules
-{ config, lib }:
+{ config, lib, ... }:
 let
   inherit (builtins) length elemAt;
   inherit (lib.strings) optionalString;
