@@ -81,6 +81,7 @@ in
         battery.warning_threshold = 15;
         calendar.enabled = true;
         hooks = {
+          colors_changed = ./hooks/colors_changed.sh;
           theme_mode_changed = ./hooks/theme_mode_changed.sh;
         };
         location.auto_locate = true;
@@ -99,9 +100,10 @@ in
           panel.transparency_mode = "solid"; # "soft" and "glass" doesn't look that good, maybe need blur
         };
         theme = {
-          builtin = colors.default.noctalia.theme;
           mode = colors.variant; # "light" "dark" "auto"
-          source = "builtin";
+          source = "builtin"; # "builtin" "wallpaper" "community" "custom"
+          builtin = colors.default.noctalia.theme;
+          wallpaper_scheme = "faithful";
           templates = {
             builtin_ids = [
               "gtk3"
@@ -109,6 +111,7 @@ in
               "kcolorscheme" # there is also "qt" but I don't think it's needed
               "niri"
               "ghostty"
+              "helix"
             ];
           };
         };
