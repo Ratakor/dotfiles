@@ -28,6 +28,7 @@ let
   gestures = import ./gestures.nix args;
   recent-windows = import ./recent-windows.nix args;
   debug = import ./debug.nix args;
+  include = import ./include.nix args;
   extraConfig =
     if cfg.extraConfig == "" then
       ""
@@ -82,6 +83,7 @@ in
       gestures
       recent-windows
       debug
+      include
       extraConfig
     ];
   };
