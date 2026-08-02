@@ -16,6 +16,7 @@ let
       font = "monospace:size=${toString prg.terminal.fontSize}";
       pad = "5x5";
       # dpi-aware = "yes";
+      initial-color-theme = colors.variant;
     };
 
     url = {
@@ -56,54 +57,54 @@ let
 
     colors-light = {
       alpha = "0.85";
-      foreground = colors.alternative.foreground;
-      background = colors.alternative.background;
-      cursor = "${colors.alternative.background} ${colors.alternative.foreground}";
-      selection-background = colors.alternative.selection;
+      foreground = colors.light.foreground;
+      background = colors.light.background;
+      cursor = "${colors.light.background} ${colors.light.foreground}";
+      selection-background = colors.light.selection;
 
-      regular0 = colors.alternative.black;
-      regular1 = colors.alternative.red;
-      regular2 = colors.alternative.green;
-      regular3 = colors.alternative.yellow;
-      regular4 = colors.alternative.blue;
-      regular5 = colors.alternative.magenta;
-      regular6 = colors.alternative.cyan;
-      regular7 = colors.alternative.white;
+      regular0 = colors.light.black;
+      regular1 = colors.light.red;
+      regular2 = colors.light.green;
+      regular3 = colors.light.yellow;
+      regular4 = colors.light.blue;
+      regular5 = colors.light.magenta;
+      regular6 = colors.light.cyan;
+      regular7 = colors.light.white;
 
-      bright0 = colors.alternative.bright.black;
-      bright1 = colors.alternative.bright.red;
-      bright2 = colors.alternative.bright.green;
-      bright3 = colors.alternative.bright.yellow;
-      bright4 = colors.alternative.bright.blue;
-      bright5 = colors.alternative.bright.magenta;
-      bright6 = colors.alternative.bright.cyan;
-      bright7 = colors.alternative.bright.white;
+      bright0 = colors.light.bright.black;
+      bright1 = colors.light.bright.red;
+      bright2 = colors.light.bright.green;
+      bright3 = colors.light.bright.yellow;
+      bright4 = colors.light.bright.blue;
+      bright5 = colors.light.bright.magenta;
+      bright6 = colors.light.bright.cyan;
+      bright7 = colors.light.bright.white;
     };
 
     colors-dark = {
       alpha = "0.85";
-      foreground = colors.default.foreground;
-      background = colors.default.background;
-      cursor = "${colors.default.background} ${colors.default.foreground}";
-      selection-background = colors.default.selection;
+      foreground = colors.dark.foreground;
+      background = colors.dark.background;
+      cursor = "${colors.dark.background} ${colors.dark.foreground}";
+      selection-background = colors.dark.selection;
 
-      regular0 = colors.default.black;
-      regular1 = colors.default.red;
-      regular2 = colors.default.green;
-      regular3 = colors.default.yellow;
-      regular4 = colors.default.blue;
-      regular5 = colors.default.magenta;
-      regular6 = colors.default.cyan;
-      regular7 = colors.default.white;
+      regular0 = colors.dark.black;
+      regular1 = colors.dark.red;
+      regular2 = colors.dark.green;
+      regular3 = colors.dark.yellow;
+      regular4 = colors.dark.blue;
+      regular5 = colors.dark.magenta;
+      regular6 = colors.dark.cyan;
+      regular7 = colors.dark.white;
 
-      bright0 = colors.default.bright.black;
-      bright1 = colors.default.bright.red;
-      bright2 = colors.default.bright.green;
-      bright3 = colors.default.bright.yellow;
-      bright4 = colors.default.bright.blue;
-      bright5 = colors.default.bright.magenta;
-      bright6 = colors.default.bright.cyan;
-      bright7 = colors.default.bright.white;
+      bright0 = colors.dark.bright.black;
+      bright1 = colors.dark.bright.red;
+      bright2 = colors.dark.bright.green;
+      bright3 = colors.dark.bright.yellow;
+      bright4 = colors.dark.bright.blue;
+      bright5 = colors.dark.bright.magenta;
+      bright6 = colors.dark.bright.cyan;
+      bright7 = colors.dark.bright.white;
     };
   };
 in
