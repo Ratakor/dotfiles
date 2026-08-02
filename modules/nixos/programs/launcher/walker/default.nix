@@ -55,6 +55,7 @@ in
         ext_background_effect_blur = true;
       };
 
+      # TODO: see noctalia community template for walker
       theme.style = (/* css */ ''
         @define-color window_bg_color ${hexToRgba colors.background opacity.bg};
         @define-color accent_bg_color ${hexToRgba colors.comment opacity.bg};

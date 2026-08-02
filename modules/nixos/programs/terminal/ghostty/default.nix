@@ -9,7 +9,8 @@ let
 
   colors = config.self.colors.default;
   prg = config.self.programs;
-  isDefault = prg.default.terminal.name == "ghostty";
+  dprg = prg.default;
+  isDefault = dprg.terminal.name == "ghostty";
 in
 {
   config = mkIf prg.terminal.ghostty.enable {
@@ -31,7 +32,13 @@ in
         font-family = "monospace";
         font-size = prg.terminal.fontSize;
         background-opacity = 0.8;
-        theme = "nix"; # defined below
+        theme =
+          if dprg.desktopShell.name == "noctalia" then
+            "noctalia"
+          else if dprg.desktopShell.name == "dms" then
+            "dankcolors"
+          else
+            "nix"; # defined below
         shell-integration-features = "no-cursor";
         window-inherit-working-directory = false;
         # this is supposed to fix memory issues but I think it's enblaed by

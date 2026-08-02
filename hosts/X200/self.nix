@@ -42,7 +42,7 @@ in
         desktopShell.name = "noctalia";
 
         # desktopShell.name = null;
-        # xdg.portal = "gtk";
+        # xdg.portal.name = "gtk";
         # windowManager.name = "river-classic";
         # launcher.name = "fuzzel";
         # powerMenu.name = "wlogout";
