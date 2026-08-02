@@ -1,7 +1,6 @@
 {
   bat.theme = "gruvbox-dark";
   helix.theme = "gruvbox";
-  zellij.theme = "gruvbox-dark";
   noctalia.theme = "Gruvbox";
 
   cursor.theme = "Simp1e-Gruvbox-Dark";

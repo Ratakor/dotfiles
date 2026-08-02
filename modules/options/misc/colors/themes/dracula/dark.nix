@@ -2,7 +2,6 @@
 {
   bat.theme = "Dracula";
   helix.theme = "dracula";
-  zellij.theme = "dracula";
   noctalia.theme = "Dracula";
 
   cursor.theme = "Simp1e-Dracula";

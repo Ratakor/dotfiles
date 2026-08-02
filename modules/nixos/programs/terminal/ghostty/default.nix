@@ -31,7 +31,7 @@ in
         font-family = "monospace";
         font-size = prg.terminal.fontSize;
         background-opacity = 0.8;
-        theme = "self"; # defined below
+        theme = "nix"; # defined below
         shell-integration-features = "no-cursor";
         window-inherit-working-directory = false;
         # this is supposed to fix memory issues but I think it's enblaed by
@@ -43,7 +43,7 @@ in
           "ctrl+equal=reset_font_size"
         ];
       };
-      themes.self = {
+      themes.nix = {
         background = colors.background;
         foreground = colors.foreground;
         cursor-color = colors.foreground;

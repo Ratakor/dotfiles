@@ -74,7 +74,7 @@ lib.mkWrapperFor "helix" {
   inherit pkgs;
   runtimePkgs = extraPackages;
   settings = {
-    theme = "self";
+    theme = "nix";
 
     # https://docs.helix-editor.com/editor.html
     editor = {
@@ -211,7 +211,7 @@ lib.mkWrapperFor "helix" {
   # https://docs.helix-editor.com/themes.html
   # https://github.com/helix-editor/helix/tree/master/runtime/themes
   themes = {
-    self = themeOverride // {
+    nix = themeOverride // {
       inherits = theme;
     };
     helixgelion = fromTOML ./helixgelion.toml;
