@@ -9,6 +9,8 @@ let
   inherit (lib.modules) mkIf;
 
   prg = config.self.programs;
+  dprg = prg.default;
+  cfg = prg.editor.helix;
 
   package = pkgs.wrappers.helix.override (
     {
@@ -18,8 +20,8 @@ let
   );
 in
 {
-  config = mkIf prg.editor.helix.enable {
-    self.programs.default.editor = mkIf (prg.default.editor.name == "helix") {
+  config = mkIf cfg.enable {
+    self.programs.default.editor = mkIf (dprg.editor.name == "helix") {
       inherit package; # this should be fine even when not actually using the wrapper
     };
 
@@ -32,7 +34,7 @@ in
       extraPackages = map (x: x.data) package.configuration.runtimePkgs;
       settings =
         package.configuration.settings
-        // (optionalAttrs prg.desktopShell.noctalia.enable { theme = "noctalia"; });
+        // (optionalAttrs cfg.enableNoctaliaIntegration { theme = "noctalia"; });
       inherit (package.configuration) languages themes;
     };
 

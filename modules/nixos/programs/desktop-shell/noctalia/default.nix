@@ -103,7 +103,7 @@ in
         };
         theme = {
           mode = colors.variant; # "light" "dark" "auto"
-          source = "builtin"; # "builtin" "wallpaper" "community" "custom"
+          source = "wallpaper"; # "builtin" "wallpaper" "community" "custom"
           builtin = colors.default.noctalia.theme;
           wallpaper_scheme = "vibrant"; # "faithful" is also good
           templates = {
@@ -140,7 +140,7 @@ in
             album_art_only = true;
             hide_when_no_media = true;
           };
-          wallpaper.enabled = false;
+          wallpaper.enabled = isDefaultWallpaper;
           workspaces.labels_only_when_occupied = true;
         };
       };

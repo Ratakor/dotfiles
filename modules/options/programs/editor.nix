@@ -5,23 +5,34 @@
   ...
 }:
 let
+  inherit (lib.attrsets) recursiveUpdate;
   inherit (lib.options)
     mkOption
     mkPackageOption
+    mkEnableOption
     mkEnableOptions
     mkEnableOptions'
+    literalExpression
     ;
   inherit (lib.types) nullOr enum;
 
   odprg = options.self.programs.default;
-  dprg = config.self.programs.default;
+  prg = config.self.programs;
+  dprg = prg.default;
 in
 {
   options.self.programs = {
-    editor = mkEnableOptions odprg.editor.name // {
+    editor = recursiveUpdate (mkEnableOptions odprg.editor.name) {
       visual = mkEnableOptions' odprg.editor.visual.name;
+      helix = {
+        enableNoctaliaIntegration = mkEnableOption "noctalia integration" // {
+          default = prg.desktopShell.noctalia.enable;
+          defaultText = literalExpression ''
+            config.self.programs.desktopShell.noctalia.enable
+          '';
+        };
+      };
     };
-
     default.editor = {
       name = mkOption {
         type = enum [
