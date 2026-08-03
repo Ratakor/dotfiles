@@ -5,7 +5,7 @@ let
   prg = config.self.programs;
 in
 {
-  config = mkIf prg.editor.visual.zed.enable {
+  config = mkIf prg.editor.zed.enable {
     self.programs.default.editor.visual = mkIf (prg.default.editor.visual.name == "zed") {
       inherit (config.hm.programs.zed-editor) package;
     };

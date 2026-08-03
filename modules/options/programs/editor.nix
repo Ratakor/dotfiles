@@ -22,17 +22,19 @@ let
 in
 {
   options.self.programs = {
-    editor = recursiveUpdate (mkEnableOptions odprg.editor.name) {
-      visual = mkEnableOptions' odprg.editor.visual.name;
-      helix = {
-        enableNoctaliaIntegration = mkEnableOption "noctalia integration" // {
-          default = prg.desktopShell.noctalia.enable;
-          defaultText = literalExpression ''
-            config.self.programs.desktopShell.noctalia.enable
-          '';
+    editor =
+      recursiveUpdate (mkEnableOptions odprg.editor.name // mkEnableOptions' odprg.editor.visual.name)
+        {
+          helix = {
+            enableNoctaliaIntegration = mkEnableOption "noctalia integration" // {
+              default = prg.desktopShell.noctalia.enable;
+              defaultText = literalExpression ''
+                config.self.programs.desktopShell.noctalia.enable
+              '';
+            };
+          };
         };
-      };
-    };
+
     default.editor = {
       name = mkOption {
         type = enum [
@@ -76,6 +78,6 @@ in
 
   config.self.programs = {
     editor.${dprg.editor.name}.enable = true;
-    editor.visual.${dprg.editor.visual.name}.enable = true;
+    editor.${dprg.editor.visual.name}.enable = true;
   };
 }
