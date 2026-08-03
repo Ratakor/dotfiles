@@ -113,8 +113,7 @@ url = "channel:nixos-unstable"
 
 # A sleek and minimal desktop shell thoughtfully crafted for Wayland
 [inputs.noctalia]
-url = "github:noctalia-dev/noctalia?ref=cachix"
-exclude_follow = [ "nixpkgs" ] # needed to avoid cache misses
+url = "github:noctalia-dev/noctalia"
 
 [inputs.noctalia-greeter]
 url = "github:noctalia-dev/noctalia-greeter"

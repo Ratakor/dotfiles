@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   sources,
   ...
 }:
@@ -47,7 +48,7 @@ in
     hm.programs.noctalia = {
       enable = true;
       systemd.enable = isDefaultBar;
-      # package = pkgs.noctalia-shell;
+      package = pkgs.noctalia; # pkgs.noctalia-shell;
 
       # imagine writing toml lmao eval time go brr
       settings = {

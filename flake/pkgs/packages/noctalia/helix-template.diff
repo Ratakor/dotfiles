@@ -1,0 +1,35 @@
+From 2206890b7c4f5b9c3affb20f9b9e7d64cee91458 Mon Sep 17 00:00:00 2001
+From: Ratakor <ratakor@disroot.org>
+Date: Mon, 3 Aug 2026 10:53:04 +0200
+Subject: [PATCH] Make functions bold in helix template
+
+Signed-off-by: Ratakor <ratakor@disroot.org>
+---
+ assets/templates/helix/helix.toml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/assets/templates/helix/helix.toml b/assets/templates/helix/helix.toml
+index f67a6ae12..a471bbf5d 100644
+--- a/assets/templates/helix/helix.toml
++++ b/assets/templates/helix/helix.toml
+@@ -35,7 +35,7 @@
+ 
+ "operator" = { fg = "secondary", modifiers = ["bold"] }
+ 
+-"function" = "tertiary"
++"function" = { fg = "tertiary", modifiers = ["bold"] }
+ "function.macro" = "tertiary"
+ 
+ "tag" = "secondary"
+@@ -59,7 +59,7 @@
+ 
+ # User Interface
+ # --------------
+-"ui.background" = "none"
++"ui.background" = { }
+ 
+ "ui.cursor" = { fg = "onSecondary", bg = "secondary" }
+ "ui.cursor.match" = { fg = "onTertiary", bg = "tertiary", modifiers = ["bold"] }
+-- 
+2.55.0
+
