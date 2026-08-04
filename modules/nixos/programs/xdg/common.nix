@@ -74,7 +74,6 @@ in
         dprg.email.package
         prg.apps.anki.package
         # order below is important
-        dprg.editor.visual.package
         dprg.editor.package
         dprg.imageViewer.package
         dprg.mediaPlayer.package

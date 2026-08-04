@@ -1,7 +1,5 @@
-{ config, lib, ... }:
+{ config, ... }:
 let
-  inherit (lib.modules) mkIf mkMerge;
-
   dprg = config.self.programs.default;
 
   XDG_CONFIG_HOME = config.hm.xdg.configHome;
@@ -31,61 +29,51 @@ in
       # TERMINFO_DIRS = ["${XDG_DATA_HOME}/terminfo" "/usr/share/terminfo"]
     };
 
-    sessionVariables = mkMerge [
-      (
-        # We could instead set VISUAL to EDITOR if there is no visual editor
-        # but editor is not visual, yes.
-        # Also we're using meta.mainProgram instead of getExe for convenience.
-        mkIf (dprg.editor.visual.name != null) {
-          VISUAL = dprg.editor.visual.package.meta.mainProgram;
-        }
-      )
-      {
-        # Default programs
-        EDITOR = dprg.editor.package.meta.mainProgram;
-        BROWSER = dprg.browser.newWindow;
-        TERMINAL = dprg.terminal.cmd;
+    sessionVariables = {
+      # Default programs
+      EDITOR = dprg.editor.package.meta.mainProgram;
+      BROWSER = dprg.browser.newWindow;
+      TERMINAL = dprg.terminal.cmd;
 
-        # ~/ Clean-up
-        inherit GOPATH CARGO_HOME;
-        FFMPEG_DATADIR = "${XDG_CONFIG_HOME}/ffmpeg";
-        GOMODCACHE = "${XDG_CACHE_HOME}/go/mod";
-        RUSTUP_HOME = "${XDG_DATA_HOME}/rustup";
-        OPAMROOT = "${XDG_DATA_HOME}/opam";
-        DOTNET_CLI_HOME = "${XDG_DATA_HOME}/dotnet";
-        NUGET_PACKAGES = "${XDG_CACHE_HOME}/NuGetPackages";
-        NPM_CONFIG_USERCONFIG = "${XDG_CONFIG_HOME}/npm/npmrc";
-        PYTHON_HISTORY = "${XDG_STATE_HOME}/python_history";
-        PASSWORD_STORE_DIR = "${XDG_DATA_HOME}/pass";
-        W3M_DIR = "${XDG_STATE_HOME}/w3m";
-        CUDA_CACHE_PATH = "${XDG_CACHE_HOME}/nv";
-        _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
-        GRADLE_USER_HOME = "${XDG_DATA_HOME}/gradle";
-        WINEPREFIX = "${XDG_DATA_HOME}/wine";
-        # TERMINFO = "${XDG_DATA_HOME}/terminfo";
-        DOOMWADDIR = "${XDG_DATA_HOME}/gzdoom";
-        DOCKER_CONFIG = "${XDG_CONFIG_HOME}/docker";
-        ANDROID_USER_HOME = "${XDG_DATA_HOME}/android"; # need adb alias too?
-        XCOMPOSEFILE = "${XDG_CONFIG_HOME}/X11/xcompose";
-        XCOMPOSECACHE = "${XDG_CACHE_HOME}/X11/xcompose";
-        RENPY_PATH_TO_SAVES = "${XDG_DATA_HOME}/renpy";
-        RENPY_MULTIPERSISTENT = "${XDG_DATA_HOME}/renpy_shared";
-        CODEX_HOME = "${XDG_CONFIG_HOME}/codex";
+      # ~/ Clean-up
+      inherit GOPATH CARGO_HOME;
+      FFMPEG_DATADIR = "${XDG_CONFIG_HOME}/ffmpeg";
+      GOMODCACHE = "${XDG_CACHE_HOME}/go/mod";
+      RUSTUP_HOME = "${XDG_DATA_HOME}/rustup";
+      OPAMROOT = "${XDG_DATA_HOME}/opam";
+      DOTNET_CLI_HOME = "${XDG_DATA_HOME}/dotnet";
+      NUGET_PACKAGES = "${XDG_CACHE_HOME}/NuGetPackages";
+      NPM_CONFIG_USERCONFIG = "${XDG_CONFIG_HOME}/npm/npmrc";
+      PYTHON_HISTORY = "${XDG_STATE_HOME}/python_history";
+      PASSWORD_STORE_DIR = "${XDG_DATA_HOME}/pass";
+      W3M_DIR = "${XDG_STATE_HOME}/w3m";
+      CUDA_CACHE_PATH = "${XDG_CACHE_HOME}/nv";
+      _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
+      GRADLE_USER_HOME = "${XDG_DATA_HOME}/gradle";
+      WINEPREFIX = "${XDG_DATA_HOME}/wine";
+      # TERMINFO = "${XDG_DATA_HOME}/terminfo";
+      DOOMWADDIR = "${XDG_DATA_HOME}/gzdoom";
+      DOCKER_CONFIG = "${XDG_CONFIG_HOME}/docker";
+      ANDROID_USER_HOME = "${XDG_DATA_HOME}/android"; # need adb alias too?
+      XCOMPOSEFILE = "${XDG_CONFIG_HOME}/X11/xcompose";
+      XCOMPOSECACHE = "${XDG_CACHE_HOME}/X11/xcompose";
+      RENPY_PATH_TO_SAVES = "${XDG_DATA_HOME}/renpy";
+      RENPY_MULTIPERSISTENT = "${XDG_DATA_HOME}/renpy_shared";
+      CODEX_HOME = "${XDG_CONFIG_HOME}/codex";
 
-        # Disable telemetry (https://consoledonottrack.com)
-        AZURE_CORE_COLLECT_TELEMETRY = "0";
-        DO_NOT_TRACK = "1";
-        DOTNET_CLI_TELEMETRY_OPTOUT = "1";
-        GATSBY_TELEMETRY_DISABLED = "1";
-        POWERSHELL_TELEMETRY_OPTOUT = "1";
-        SAM_CLI_TELEMETRY = "0";
+      # Disable telemetry (https://consoledonottrack.com)
+      AZURE_CORE_COLLECT_TELEMETRY = "0";
+      DO_NOT_TRACK = "1";
+      DOTNET_CLI_TELEMETRY_OPTOUT = "1";
+      GATSBY_TELEMETRY_DISABLED = "1";
+      POWERSHELL_TELEMETRY_OPTOUT = "1";
+      SAM_CLI_TELEMETRY = "0";
 
-        # Misc
-        WEBKIT_DISABLE_DMABUF_RENDERER = "1";
-        MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-        MANROFFOPT = "-c";
-        MANWIDTH = "80";
-      }
-    ];
+      # Misc
+      WEBKIT_DISABLE_DMABUF_RENDERER = "1";
+      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+      MANROFFOPT = "-c";
+      MANWIDTH = "80";
+    };
   };
 }

@@ -52,7 +52,7 @@
 
     programs = {
       default = {
-        editor.visual.name = "zed";
+        editor.name = "zed"; # micro?
         locker.name = "glitchlock";
         mediaPlayer.name = "vlc";
 
