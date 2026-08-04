@@ -7,6 +7,7 @@
 }:
 let
   inherit (lib.modules) mkIf;
+  inherit (lib.strings) optionalString;
 
   defaultName = "noctalia";
 
@@ -84,7 +85,9 @@ in
         battery.warning_threshold = 15;
         calendar.enabled = true;
         hooks = {
-          colors_changed = ./hooks/colors_changed.sh;
+          colors_changed = pkgs.writeShellScript "noctalia_colors_changed.sh" ''
+            ${optionalString prg.editor.helix.enableNoctaliaIntegration "kill -USR1 $(pidof hx)"}
+          '';
         };
         location.auto_locate = true;
         lockscreen.blurred_desktop = true;
