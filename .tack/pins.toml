@@ -67,6 +67,10 @@ follows = { pre-commit = "" }
 # crane
 # rust-overlay
 
+# Any version of any nixpkgs package, from one flake input
+[inputs.multiverse]
+url = "github:fzakaria/nixpkgs-multiverse"
+
 # Not a Docs Generator
 [inputs.ndg]
 url = "github:feel-co/ndg"

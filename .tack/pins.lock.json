@@ -63,6 +63,14 @@
     "narHash": "sha256-5/wlGe3a4ucxvYq2cuAAsuSFWKcIttQ6En83MLlV2jY=",
     "lastModified": 1785749642
   },
+  "multiverse": {
+    "type": "github",
+    "owner": "fzakaria",
+    "repo": "nixpkgs-multiverse",
+    "rev": "d5598a8e81f7bc9c7292b1e999692f3560fac407",
+    "narHash": "sha256-1Dxdr/wvZYz2hBbDwdTbeGRRuRSGyFNeCbmxvrsMgIo=",
+    "lastModified": 1786424963
+  },
   "ndg": {
     "type": "github",
     "owner": "feel-co",

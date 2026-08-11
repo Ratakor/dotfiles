@@ -104,6 +104,9 @@ import sources.nixpkgs {
       # Helium Browser
       helium = sources.helium.packages.${system}.default;
 
+      # Interface to any nixpkgs revision
+      multiverse = sources.multiverse.multiverse.${system};
+
       # This fixes conflict with our custom scripts at pkgs.scripts
       mpv = prev.mpv.override { scripts = [ ]; };
 
