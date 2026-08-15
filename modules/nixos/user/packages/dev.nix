@@ -54,7 +54,7 @@ let
     hyperfine # benchmarking tool
     poop # Performance Optimizer Observation Platform
     # gdb # gnu debugger
-    cloc # counts lines of code
+    cloc # counts lines of code, see also tokei
     strace # system call monitoring
     ltrace # library call monitoring
     lsof # list open files

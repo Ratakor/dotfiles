@@ -97,7 +97,7 @@ in
       accept-flake-config = false;
 
       # Whether to execute builds inside cgroups.
-      use-cgroups = pkgs.stdenv.isLinux; # This is only supported on Linux.
+      use-cgroups = pkgs.stdenv.hostPlatform.isLinux; # This is only supported on Linux.
 
       # The timeout (in seconds) for establishing connections with a substituter.
       connect-timeout = 5; # default: 15
