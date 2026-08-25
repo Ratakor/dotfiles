@@ -5,10 +5,11 @@ let
   inherit (config.hm.programs.zed-editor) package;
 
   prg = config.self.programs;
+  isDefault = prg.default.editor.name == "zed";
 in
 {
   config = mkIf prg.editor.zed.enable {
-    self.programs.default.editor = mkIf (prg.default.editor.name == "zed") {
+    self.programs.default.editor = mkIf isDefault {
       inherit package;
     };
 
@@ -21,6 +22,8 @@ in
     # We could instead set VISUAL to EDITOR if there is no visual editor
     # but editor is not visual, yes.
     # Also we're using meta.mainProgram instead of getExe for convenience.
-    hm.home.sessionVariables.VISUAL = package.meta.mainProgram;
+    hm.home.sessionVariables = mkIf isDefault {
+      VISUAL = package.meta.mainProgram;
+    };
   };
 }
