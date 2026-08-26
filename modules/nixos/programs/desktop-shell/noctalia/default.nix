@@ -12,6 +12,7 @@ let
   defaultName = "noctalia";
 
   inherit (config.self) colors;
+  sys = config.self.system;
   prg = config.self.programs;
   dprg = prg.default;
   XDG_CACHE_HOME = config.hm.xdg.cacheHome;
@@ -89,7 +90,10 @@ in
             ${optionalString prg.editor.helix.enableNoctaliaIntegration "kill -USR1 $(pidof hx)"}
           '';
         };
-        location.auto_locate = true;
+        location = {
+          auto_locate = sys.location.provider == "geoclue2";
+          inherit (sys.location) latitude longitude;
+        };
         lockscreen.blurred_desktop = true;
         notification.enable_daemon = dprg.notification.name == defaultName; # should we use prg?
         nightlight = {

@@ -34,6 +34,7 @@ in
         };
       };
       fs.zfs.arcMax = 2 * GiB;
+      location.provider = "geoclue2";
     };
 
     programs = {

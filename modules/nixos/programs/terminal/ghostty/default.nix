@@ -50,6 +50,7 @@ in
           "ctrl+equal=reset_font_size"
         ];
       };
+      # idk why but this doesn't look as good as builtin theme for gruvbox
       themes.nix = {
         background = colors.background;
         foreground = colors.foreground;

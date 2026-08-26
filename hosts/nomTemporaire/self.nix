@@ -45,6 +45,7 @@
         variant = "";
         options = "";
       };
+      location.provider = "geoclue2";
       security = {
         fprint.enable = true;
       };

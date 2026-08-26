@@ -13,6 +13,7 @@ in
       settings.general.fade = 0;
       temperature.day = 6000;
       temperature.night = 3000;
+      # config.location == config.self.system.location
       inherit (config.location) provider latitude longitude;
     };
 
