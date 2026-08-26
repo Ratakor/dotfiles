@@ -39,7 +39,6 @@ in
     blender.enable = mkEnableOption "Blender";
     teams.enable = mkEnableOption "Microsoft Teams";
     ledger-live.enable = mkEnableOption "Ledger Live";
-    nixbit.enable = mkEnableOption "Nixbit, NixOS GUI Updater";
   };
 
   # This is better than changing `default` in helper function because

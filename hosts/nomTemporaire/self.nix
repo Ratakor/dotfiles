@@ -74,7 +74,6 @@
         onlyoffice.enable = true;
         obs-studio.enable = true;
         teams.enable = true;
-        nixbit.enable = true;
       };
       mediaPlayer.mpv.enable = true;
       email.thunderbird.dove = false;
