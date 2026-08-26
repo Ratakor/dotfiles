@@ -11,6 +11,10 @@ writeShellApplication {
     libnotify
     yt-dlp
   ];
+  bashOptions = [
+    "errexit"
+    "pipefail"
+  ];
   excludeShellChecks = [
     "SC2015" # Note that A && B || C is not if-then-else. C may run when A is true.
   ];
