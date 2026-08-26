@@ -65,7 +65,9 @@ in
 
           // https://github.com/niri-wm/niri/issues/4043
           layer-rule {
-            match namespace="^launcher$" // this is necessary
+            // match is necessary for launcher to not hide background
+            match namespace="^launcher$"
+            match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd|window-switcher)$"
             background-effect {
               xray true
             }
