@@ -52,9 +52,12 @@
     programs = {
       default = {
         # xdg.portal.name = "kde";
-        launcher.name = "walker";
-        desktopShell.name = "dms";
-        wallpaper.name = "wpaperd";
+
+        desktopShell.name = "noctalia";
+
+        # launcher.name = "walker";
+        # desktopShell.name = "dms";
+        # wallpaper.name = "wpaperd";
       };
       dev.enable = true;
       gaming = {

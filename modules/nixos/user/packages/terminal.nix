@@ -23,6 +23,8 @@ let
     croc # Easily and securely send things from one computer to another
     playerctl # CLI for controlling media players that implement MPRIS
     curd # CLI to browse and play anime, see also ani-cli
+    # dumbpipe # Unix pipes between devices
+    # sendme # A tool to send files and directories
   ];
 
   tui = with pkgs; [
