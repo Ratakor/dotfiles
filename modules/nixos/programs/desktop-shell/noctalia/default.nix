@@ -36,6 +36,7 @@ in
       launcher = mkIf isDefaultLauncher {
         cmd = "noctalia msg panel-toggle launcher";
         emoji = "noctalia msg panel-toggle launcher '/emo '";
+        # there is "noctalia dmenu" omg!!
       };
       wallpaper = mkIf isDefaultWallpaper {
         nextRandom = "noctalia msg wallpaper-random";
@@ -105,7 +106,7 @@ in
         shell = {
           # avatar_path = user.avatar; # probably overkill and better be configured imperatively
           launch_apps_as_systemd_services = true;
-          panel.transparency_mode = "solid"; # "soft" and "glass" doesn't look that good, maybe need blur
+          panel.transparency_mode = "glass"; # "solid" "soft" "glass"
         };
         theme = {
           mode = colors.variant; # "light" "dark" "auto"

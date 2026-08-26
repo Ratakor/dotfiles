@@ -90,6 +90,7 @@ in
             "niri"
             # "river" # TODO
             "river-classic"
+            # "umbriel" # TODO: https://docs.noctalia.dev/umbriel/
           ]
         );
         default = if sys.video.enable then "niri" else null;
