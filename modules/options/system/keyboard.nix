@@ -1,3 +1,7 @@
+# I know this makes things slower as it's exactly like the already existing
+# module from nixos beside default but I believe it looks cleaner in each
+# host's self.nix and it also appear in the docs.
+# Same issue with probably other options.
 { lib, ... }:
 let
   inherit (lib.options) mkOption;

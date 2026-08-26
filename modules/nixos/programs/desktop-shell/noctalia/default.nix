@@ -12,7 +12,6 @@ let
   defaultName = "noctalia";
 
   inherit (config.self) colors;
-  sys = config.self.system;
   prg = config.self.programs;
   dprg = prg.default;
   XDG_CACHE_HOME = config.hm.xdg.cacheHome;
@@ -91,8 +90,8 @@ in
           '';
         };
         location = {
-          auto_locate = sys.location.provider == "geoclue2";
-          inherit (sys.location) latitude longitude;
+          auto_locate = config.location.provider == "geoclue2";
+          inherit (config.location) latitude longitude;
         };
         lockscreen.blurred_desktop = true;
         notification.enable_daemon = dprg.notification.name == defaultName; # should we use prg?
