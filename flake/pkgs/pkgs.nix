@@ -13,15 +13,14 @@ let
   acknowledgedUnfreePackages = [
     # apps
     "discord"
-    "spotify"
-    "ouch" # rar
-    "osu-lazer-bin"
-    "antigravity-cli"
-    "claude-code"
-
-    # steam
+    "discord-unwrapped"
     "steam"
     "steam-unwrapped"
+    "spotify"
+    "osu-lazer-bin"
+    "ouch" # rar
+    "antigravity-cli"
+    "claude-code"
 
     # chromium drm
     "widevine-cdm"
@@ -34,6 +33,7 @@ let
     "cuda_cudart"
     "cuda_compat"
     "cuda_nvcc"
+    "cuda_nvrtc"
     "cuda_cccl"
     "libcublas"
 
