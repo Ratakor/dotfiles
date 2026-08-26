@@ -102,6 +102,7 @@ in
           temperature_day = 6000;
           temperature_night = 3000;
         };
+        osd.kinds.media = false;
         # plugins.enabled = [ ];
         shell = {
           # avatar_path = user.avatar; # probably overkill and better be configured imperatively
