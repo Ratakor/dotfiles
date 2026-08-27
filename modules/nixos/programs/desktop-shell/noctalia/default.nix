@@ -61,7 +61,7 @@ in
             "weather"
           ];
           end = [
-            "tray "
+            "tray"
             "notifications"
             "clipboard"
             "network"
