@@ -1,18 +1,11 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 let
   inherit (lib.modules) mkIf;
 
   cfg = config.self.programs.apps.discord;
-  package = pkgs.discord;
 in
 {
   config = mkIf cfg.enable {
-    self.programs.apps.discord.package = package;
-    user.packages = [ package ];
+    user.packages = [ cfg.package ];
   };
 }

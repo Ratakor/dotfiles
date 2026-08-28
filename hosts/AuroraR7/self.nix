@@ -69,7 +69,7 @@
       apps = {
         enable = true;
         teams.enable = true;
-        discord.enable = false; # crashes the whole computer, using flatpak instead
+        discord.package = pkgs.vesktop;
         # onlyoffice.enable = true;
       };
       browser = {

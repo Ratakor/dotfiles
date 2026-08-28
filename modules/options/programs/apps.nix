@@ -1,8 +1,13 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (builtins) mapAttrs;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.options) mkEnableOption mkPackageOption mkOption;
   inherit (lib.types) nullOr package;
 
   mkEnableOption' = desc: mkEnableOption desc // { default = true; };
@@ -25,9 +30,15 @@ in
     enable = mkEnableOption "graphical apps";
 
     qbittorrent = mkEnablePackageOption "qBittorrent, BitTorrent client" true;
-    discord = mkEnablePackageOption "Discord" true;
     spotify = mkEnablePackageOption "Spotify" true;
     anki = mkEnablePackageOption "Anki" false;
+
+    discord = {
+      enable = mkEnableOption' "Discord";
+      package = mkPackageOption pkgs "discord" {
+        example = [ "vesktop" ];
+      };
+    };
 
     keepassxc.enable = mkEnableOption' "KeePassXC, Password manager";
     gajim.enable = mkEnableOption' "Gajim, XMPP client";
