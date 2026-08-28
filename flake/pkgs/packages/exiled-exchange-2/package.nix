@@ -14,15 +14,15 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "exiled-exchange-2";
-  version = "0.13.10";
+  version = "0.15.8";
 
   src = fetchurl {
     url = "https://github.com/Kvan7/Exiled-Exchange-2/releases/download/v${finalAttrs.version}/Exiled-Exchange-2-${finalAttrs.version}.AppImage";
-    hash = "sha256-mQNUJptaObbEMtBLCgJn7A6nmgVpl4o0JWTg6FH20U0=";
+    hash = "sha256-xmEvKJkRFJokzOa/6qRqT4+QKfnfjIoAfqP+oDqyxH8=";
   };
 
   passthru = {
-    appImageContents = appimageTools.extractType2 {
+    appImageContents = appimageTools.extract {
       inherit (finalAttrs) pname src version;
     };
 
