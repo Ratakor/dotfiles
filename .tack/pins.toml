@@ -135,6 +135,11 @@ type = "fetch"
 url = "codeberg:celenity/Phoenix?ref=pages"
 type = "fetch"
 
+# Nix module to customize spotify client via spicetify
+[inputs.spicetify]
+url = "github:Gerg-L/spicetify-nix"
+type = "fetch"
+
 # flake-like toml nix pins, lazily fetched and transformed
 [inputs.tack]
 url = "github:manic-systems/tack"

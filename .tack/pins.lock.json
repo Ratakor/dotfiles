@@ -173,6 +173,14 @@
     "narHash": "sha256-OvT+NL4Y8PBlZGXV9cNa2L6RWrOpzbplTScBhvd+Jhc=",
     "lastModified": 1786941232
   },
+  "spicetify": {
+    "type": "github",
+    "owner": "Gerg-L",
+    "repo": "spicetify-nix",
+    "rev": "a8adfd6f9f341dd586d5c06dda3bbfa21c6014e7",
+    "narHash": "sha256-r2FJY01jRVhrZIKPdhQ3QFYsAz3wjilWTMSSH7VMOeo=",
+    "lastModified": 1787460061
+  },
   "tack": {
     "type": "github",
     "owner": "manic-systems",
