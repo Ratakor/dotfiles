@@ -15,6 +15,7 @@ let
   prg = config.self.programs;
   dprg = prg.default;
   XDG_CACHE_HOME = config.hm.xdg.cacheHome;
+  wallpapersDir = config.hm.xdg.userDirs.extraConfig.WALLPAPERS;
   isDefaultBar = dprg.statusBar.name == defaultName;
   isDefaultLauncher = dprg.launcher.name == defaultName;
   isDefaultWallpaper = dprg.wallpaper.name == defaultName;
@@ -64,6 +65,7 @@ in
             "tray"
             "notifications"
             "clipboard"
+            "recorder" # requires noctalia/screen_recorder plugin
             "network"
             "bluetooth"
             "volume"
@@ -71,10 +73,12 @@ in
             "battery"
             "control-center"
             "session"
+            # "status" # requires icefish/phone-operate plugin
           ];
           start = [
             "launcher"
             "wallpaper"
+            "wallhaven" # requires noctalia/wallhaven plugin
             "workspaces"
             "active_window"
           ];
@@ -85,6 +89,11 @@ in
         };
         battery.warning_threshold = 15;
         calendar.enabled = true;
+        dock = {
+          # enabled = true;
+          reserve_space = false;
+          smart_auto_hide = true;
+        };
         hooks = {
           colors_changed = pkgs.writeShellScript "noctalia_colors_changed.sh" ''
             ${optionalString prg.editor.helix.enableNoctaliaIntegration "kill -USR1 $(pidof hx)"}
@@ -102,12 +111,33 @@ in
           temperature_day = 6000;
           temperature_night = 3000;
         };
-        osd.kinds.media = false;
-        # plugins.enabled = [ ];
+        osd.kinds = {
+          media = false;
+          privacy = false; # idk this kinda looks bad on recordings
+        };
+        plugin_settings = {
+          "noctalia/wallhaven" = {
+            download_dir = "${wallpapersDir}/wallhaven";
+            browser_placement = "floating";
+          };
+          "noctalia/screen_recorder" = {
+            directory = "${config.hm.xdg.userDirs.videos}/recordings";
+          };
+        };
+        plugins.enabled = [
+          "noctalia/screen_recorder"
+          # "noctalia/timer"
+          # "noctalia/translator" # idk cool but kinda meh
+          "noctalia/wallhaven"
+          # "icefish/phone-operate"
+        ];
         shell = {
           # avatar_path = user.avatar; # probably overkill and better be configured imperatively
           launch_apps_as_systemd_services = true;
-          panel.transparency_mode = "glass"; # "solid" "soft" "glass"
+          panel = {
+            transparency_mode = "glass"; # "solid" "soft" "glass"
+            wallpaper_placement = "floating";
+          };
         };
         theme = {
           mode = colors.variant; # "light" "dark" "auto"
@@ -135,7 +165,7 @@ in
         };
         wallpaper = {
           enabled = isDefaultWallpaper;
-          directory = config.hm.xdg.userDirs.extraConfig.WALLPAPERS;
+          directory = wallpapersDir;
           transition = [ ];
           automation = {
             enabled = true;
@@ -157,5 +187,9 @@ in
     hm.programs.zsh.initContent = mkIf enableFootZshIntegration /* zsh */ ''
       [ -f "${XDG_CACHE_HOME}/noctalia/terminal-sequences" ] && cat "${XDG_CACHE_HOME}/noctalia/terminal-sequences"
     '';
+
+    user.packages = with pkgs; [
+      gpu-screen-recorder # needed for screen recorder plugin
+    ];
   };
 }
