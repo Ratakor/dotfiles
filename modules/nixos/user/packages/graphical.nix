@@ -12,12 +12,14 @@ let
   sys = config.self.system;
   prg = config.self.programs;
 
+  # this is kinda useless and should be removed in favor off per-host packages
+  # and probably something else
   apps = concatLists [
     (optional prg.apps.keepassxc.enable pkgs.keepassxc)
     (optional prg.apps.gajim.enable pkgs.gajim)
     (optional prg.apps.obs-studio.enable pkgs.obs-studio)
     (optional prg.apps.audacity.enable pkgs.audacity)
-    (optional prg.apps.libreoffice.enable pkgs.libreoffice-fresh)
+    (optional prg.apps.libreoffice.enable pkgs.libreoffice)
     (optional prg.apps.blender.enable pkgs.blender)
     (optional prg.apps.teams.enable pkgs.teams-for-linux)
     (optionals prg.apps.ledger-live.enable [
