@@ -79,7 +79,7 @@ let
     # gptfdisk
     sshfs # mount drive over ssh
     # xfsdump # xfs snapshots
-    simple-mtpfs # mount phone easily
+    go-mtpfs # mount phone easily
     zfs-restore # trash-restore but for ZFS snapshots
     smartmontools # Tools for monitoring the health of hard drives
   ];
