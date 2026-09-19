@@ -53,7 +53,7 @@ in
         ls = "ls-files";
         rename = "commit --amend -s -m";
       };
-      init.defaultBranch = "master";
+      init.defaultBranch = "main";
       color.ui = true;
       core.sshCommand = "${pkgs.openssh_gssapi}/bin/ssh";
       url =
