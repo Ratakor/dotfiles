@@ -89,6 +89,9 @@ let
         configFile = toTOML "typos-config.toml" {
           files = {
             ignore-hidden = false; # .github
+            extend-exclude = [
+              "*.lock.json"
+            ];
           };
           default = {
             extend-identifiers = {
@@ -102,6 +105,7 @@ let
             extend-words = {
               ba = "ba"; # yt-dlp
               noice = "noice"; # helixgelion
+              FO = "FO"; # syncthing
             };
           };
         };
