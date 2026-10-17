@@ -1,3 +1,5 @@
+# sudo fprintd-enroll "$(whoami)"
+# https://wiki.archlinux.org/title/Fprint#Setting_up_sudo_to_use_fingerprint
 {
   config,
   lib,
