@@ -8,6 +8,7 @@ let
   computers = [
     "AuroraR7"
     "X200"
+    "Framework13"
   ];
 
   cfg = config.self.services.syncthing;
@@ -38,6 +39,7 @@ in
         devices = {
           AuroraR7.id = "QBGJKJQ-J7C7CRB-UOHDNCB-NR2ON5M-IWXHUVR-KHBIGYN-BKFGBRH-H5FIUAJ";
           X200.id = "M5EV6LF-NLTED3A-4SQTN4H-SBP2NDA-QDQQD3V-O6TIU35-M6OZJZN-7WTHKAW";
+          Framework13.id = "ZLM4HDY-U75HWXZ-E53W7FB-J5JC4FO-JBKWAQ4-4LYRTPF-AKHDVSA-EULQYAS";
           phone.id = "UQAFWER-6DKVSG6-PBM56WC-YVRLYAW-HRJGVKL-557EKQO-J46LK56-NTMPXAE";
           "Pixel 9a".id = "RPP2WSQ-2U2MADV-YF5U3WA-SFXQ7BH-RD2DMB6-E5FPVKK-2VXYWTY-65TA3AG";
         };
