@@ -36,6 +36,7 @@ type = "fetch"
 [inputs.curd]
 url = "github:Wraient/curd"
 type = "fetch"
+frozen = "b859cc34cf0321c9f6e731dbe5b56aa76bf6004b"
 
 # Declarative disk partitioning and formatting using nix
 [inputs.disko]

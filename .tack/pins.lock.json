@@ -38,9 +38,9 @@
     "type": "github",
     "owner": "Wraient",
     "repo": "curd",
-    "rev": "713cab7fb6dec388e5bda376d08474b69b2b9630",
-    "narHash": "sha256-b66gRwgEf6Rf5N84u5Q3FBV0D5WmpeO3sJvwQ3uxR1I=",
-    "lastModified": 1790331412
+    "rev": "b859cc34cf0321c9f6e731dbe5b56aa76bf6004b",
+    "narHash": "sha256-6dupLSwxXt+40HypOe3vb/kSV/WlQuXLHvudsETCMic=",
+    "lastModified": 1786005509
   },
   "disko": {
     "type": "github",
