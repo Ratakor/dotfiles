@@ -2,6 +2,7 @@
 # https://jrs-s.net/2018/08/17/zfs-tuning-cheat-sheet/
 # zpool options:
 #   ashift=12 (depends on the drive & cannot be changed)
+#   autotrim=on (/!\ set this to "off" if NOT using a modern nvme ssd)
 #
 #   compression=on ("on" corresponds to the best algorithm aka lz4)
 #   dedup=off (/!\ "on" means roughly -15% performance and x5 ram usage)
@@ -9,9 +10,10 @@
 #   relatime=on (note that relatime=on requires atime=on (need source))
 #   xattr=sa
 #   acltype=posixacl
-#   normalization=none (use "formD" for compatibility with how macOS handles unicode)
-#   autotrim=off (/!\ set this to "on" if using a modern nvme ssd)
+#   normalization=formD (use "formD" for compatibility with how macOS handles unicode, "none" otherwise)
 #   com.sun:auto-snapshot=true (only on /home and /var)
+#   encryption=on keyformat=passphrase keylocation=prompt (only on /home and /var)
+#   mountpoint=... (legacy, none (for reserved) or /, /home, ...)
 #   recordsize=... currently keeping default, but maybe 1M for HDDs where storing large files
 #
 # https://forums.ghostbsd.org/d/406-is-zfs-reliable-on-ssds
@@ -30,6 +32,11 @@
 # dedup sucks
 # zdb -D for dedup stats
 # zdb -S to simulate dedup
+#
+# how to mount a zpool:
+# `zpool import POOLNAME`
+# `-N` to disable automatic mount (useful for native mount especially for /nix)
+# `-R MOUNTPOINT` to auto-mount datasets on another root
 { config, lib, ... }:
 let
   inherit (lib.modules) mkIf mkDefault mkMerge;
@@ -44,6 +51,10 @@ in
       # (e.g. by manually editing the kernel params via your bootloader).
       # You should only need to do this after unclean shutdowns.
       # Also, this must be set to silence a warning introduced in 26.11.
+      #
+      # Since we disable editor in bootloader we can't set zfs_force=1 option
+      # so make sure to do `zpool export POOLNAME` before rebooting from another
+      # host.
       boot.zfs.forceImportRoot = false;
     }
     (mkIf cfg.enable {
