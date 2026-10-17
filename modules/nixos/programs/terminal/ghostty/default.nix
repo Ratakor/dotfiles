@@ -49,6 +49,7 @@ in
           "ctrl+shift+minus=decrease_font_size:1"
           "ctrl+equal=reset_font_size"
         ];
+        app-notifications = "no-config-reload";
       };
       # idk why but this doesn't look as good as builtin theme for gruvbox
       themes.nix = {
