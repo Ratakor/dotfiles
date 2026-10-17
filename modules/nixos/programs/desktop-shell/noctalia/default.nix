@@ -169,6 +169,7 @@ in
           transition = [ ];
           automation = {
             enabled = true;
+            recursive = true;
             interval_seconds = 30 * 60;
           };
         };
