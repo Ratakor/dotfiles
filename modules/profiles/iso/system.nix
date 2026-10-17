@@ -26,7 +26,9 @@ in
       ]
       ++ jq.all; # for closureInfo
 
-    # isoImage.contents is relative to /iso and read-only so we're doing this instead
+    # isoImage.contents is relative to /iso and read-only so we're doing this instead.
+    # This makes it so that this flake is available in ~/self as root which means
+    # we can do `nixos-install --flake ~/self#HOST` to easily bootstrap NixOS.
     activationScripts.customFiles = {
       deps = [ "users" ];
       text = ''

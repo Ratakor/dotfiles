@@ -50,6 +50,7 @@
       nvme-cli
       lm_sensors # sensors
       lshw
+      acpi # battery
     ];
 
     variables = {
