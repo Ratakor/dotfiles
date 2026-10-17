@@ -83,6 +83,16 @@ mapAttrs mkNixosSystem {
     ];
   };
 
+  Framework13 = {
+    profiles = with profiles; [
+      workstation
+      laptop
+    ];
+    extraModules = [
+      "${nixos-hardware}/framework/13-inch/intel-core-ultra-series3"
+    ];
+  };
+
   nomTemporaire = {
     profiles = with profiles; [
       workstation
