@@ -21,6 +21,7 @@ let
     "ouch" # rar
     "antigravity-cli"
     "claude-code"
+    "wowup-cf"
 
     # chromium drm
     "widevine-cdm"

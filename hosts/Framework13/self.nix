@@ -1,14 +1,21 @@
-{ config, lib, ... }:
+{ lib, ... }:
 let
   inherit (lib.filesystem) GiB;
-
-  dprg = config.self.programs.default;
 in
 {
   self = {
     device = {
       cpu.type = "intel";
-      monitors = [ ]; # TODO
+      monitors = [
+        {
+          name = "China Star Optoelectronics Technology Co., Ltd MND508ZB1-1 Unknown";
+          width = 2880;
+          height = 1920;
+          refreshRate = "60.000"; # "120.000"
+          variableRefreshRate = true;
+          scale = 2.0;
+        }
+      ];
     };
 
     system = {
@@ -44,9 +51,10 @@ in
       dev.enable = true;
       gaming = {
         enable = true;
-        poe.enable = false; # ?
-        wow.enable = false; # ?
-        minecraft.enable = false; # ?
+        lutris.enable = true;
+        wow.enable = true;
+        poe.enable = false;
+        minecraft.enable = false;
       };
       apps = {
         enable = true;
