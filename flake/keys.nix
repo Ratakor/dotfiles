@@ -10,19 +10,26 @@ let
 
   # using /etc/ssh/ssh_host_ed25519_key.pub
   hosts = {
-    X200 = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPdrAk60QJLPaLTb9VPDJQZHi/Hibey1LwoqyM7lvAM" ];
-    AuroraR7 = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILiUgEQi9QFi5sOtfjM3iah3HRt6guSz7mP5UJ0G4JSo" ];
+    X200 = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPdrAk60QJLPaLTb9VPDJQZHi/Hibey1LwoqyM7lvAM"
+    ];
+    AuroraR7 = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILiUgEQi9QFi5sOtfjM3iah3HRt6guSz7mP5UJ0G4JSo"
+    ];
+    Framework13 = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBwMgu+wxyV79L+vmFfrsywIz+OrNweWaKGNICdBV4V6"
+    ];
   };
 
   # servers = concatMap (host: hosts.${host}) [ ];
-  # workstations = concatMap (host: hosts.${host}) ["X200" "AuroraR7"];
+  # workstations = concatMap (host: hosts.${host}) ["X200" "AuroraR7" "Framework13"];
   users' = concatLists (attrValues users);
   hosts' = concatLists (attrValues hosts);
   all = users' ++ hosts';
 in
 {
   inherit (users) ratakor;
-  inherit (hosts) X200 AuroraR7;
+  inherit (hosts) X200 AuroraR7 Framework13;
   inherit
     users
     users'
