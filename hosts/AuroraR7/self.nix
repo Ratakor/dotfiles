@@ -82,6 +82,7 @@
 
     services = {
       arrpc.enable = true;
+      ollama.enable = true;
     };
   };
 }

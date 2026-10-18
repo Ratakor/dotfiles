@@ -63,5 +63,9 @@ in
       browser.tor-browser.enable = true;
       editor.zed.enable = true;
     };
+
+    services = {
+      ollama.enable = true;
+    };
   };
 }

@@ -11,5 +11,6 @@ in
 
     librespot.enable = mkEnableOption "Librespot, Spotify playback daemon";
     arrpc.enable = mkEnableOption "arRPC, Discord RPC server";
+    ollama.enable = mkEnableOption "Ollama";
   };
 }
