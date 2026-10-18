@@ -10,6 +10,7 @@
 #   relatime=on (note that relatime=on requires atime=on (need source))
 #   xattr=sa
 #   acltype=posixacl
+#   dnodesize=auto
 #   normalization=formD (use "formD" for compatibility with how macOS handles unicode, "none" otherwise)
 #   com.sun:auto-snapshot=true (only on /home and /var)
 #   encryption=on keyformat=passphrase keylocation=prompt (only on /home and /var)

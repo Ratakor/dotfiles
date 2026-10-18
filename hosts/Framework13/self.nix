@@ -60,6 +60,7 @@ in
         enable = true;
         teams.enable = true;
       };
+      browser.tor-browser.enable = true;
       editor.zed.enable = true;
     };
   };
