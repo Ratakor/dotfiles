@@ -28,8 +28,8 @@ let
     # jdk17 # java 17
     nodejs # javascript
     pnpm # additional js package manager
-    lua
-    luarocks # lua package manager
+    # lua
+    # luarocks # lua package manager
     # guile # GNU scheme (lisp)
     # janet # embeddable lisp that looks cool
     # android-tools # adb, fastboot
