@@ -52,7 +52,8 @@ let
     # TODO: package wayclicker
     graphviz # graph visualization tool
     dragon-drop # a simple drag-and-drop replacement for graphical stuff
-    pavucontrol # volume control
+    # pavucontrol # volume control
+    pwvucontrol # volume control for pipewire
     (scripts.ocr.override { isWayland = true; }) # OCR, 1GB of dependencies (tesseract)
   ];
 
