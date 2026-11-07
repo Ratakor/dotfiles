@@ -65,7 +65,7 @@ in
     };
 
     services = {
-      ollama.enable = true;
+      ollama.enable = false;
     };
   };
 }
