@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib.modules) mkIf mkDefault mkForce;
+  inherit (lib.modules) mkIf mkForce;
 
   cfg = config.self.system.boot.loader;
 in
@@ -20,8 +20,6 @@ in
     ];
 
     boot = {
-      initrd.systemd.enable = mkDefault true;
-
       # Lanzaboote currently replaces the systemd-boot module.
       # This setting is usually set to true in configuration.nix
       # generated at installation time. So we force it to false
