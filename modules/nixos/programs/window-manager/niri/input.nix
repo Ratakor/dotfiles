@@ -19,8 +19,6 @@ in
       // numlock // Enable numlock on startup
     }
 
-    // Next sections include libinput settings.
-    // Omitting settings disables them, or leaves them at their default values.
     touchpad {
       // off
       tap
@@ -32,7 +30,11 @@ in
       // accel-speed 0.2
       // accel-profile "flat"
       // scroll-method "two-finger"
-      // disabled-on-external-mouse
+      disabled-on-external-mouse
+    }
+
+    touch {
+      // off
     }
 
     mouse {

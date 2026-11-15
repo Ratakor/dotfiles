@@ -45,7 +45,7 @@ in
     xcursor-theme "${sys.cursor.theme}"
     xcursor-size ${toString sys.cursor.size}
     // hide-when-typing
-    // hide-after-inactive-ms 1000
+    hide-after-inactive-ms 3000
   }
 
   overview {
