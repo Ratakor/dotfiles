@@ -180,10 +180,10 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1117658.d4f25a3e5620/nixexprs.tar.zst?rev=d4f25a3e562008648d45bcf2d70bcc7422cad84e&lastModified=1794386569",
-    "rev": "d4f25a3e562008648d45bcf2d70bcc7422cad84e",
-    "narHash": "sha256-W60urNAgQVS8bhNWH0bQsYoiagds8m38oTDUjEOM9FE=",
-    "lastModified": 1794386569
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1093333.fe13242281a6/nixexprs.tar.zst?rev=fe13242281a67641c0102cdb1087f0ebe586c7df&lastModified=1792094642",
+    "rev": "fe13242281a67641c0102cdb1087f0ebe586c7df",
+    "narHash": "sha256-LPFRbrCWWyNsdQLO3SX1B/5UMkFK0hfe7bZR6lENvpc=",
+    "lastModified": 315532800
   },
   "noctalia": {
     "type": "github",
