@@ -21,19 +21,24 @@ in
     default.fileManager = {
       name = mkOption {
         type = enum [
-          "yazi" # terminal file manager
-          "nautilus" # gnome
           "dolphin" # kde
+          "luciole" # noctalia
+          "nautilus" # gnome
+          "yazi" # terminal file manager
         ];
         default =
-          if dprg.xdg.portal.name == "gnome" then
+          if dprg.desktopShell.name == "noctalia" then
+            "luciole"
+          else if dprg.xdg.portal.name == "gnome" then
             "nautilus"
           else if dprg.xdg.portal.name == "kde" then
             "dolphin"
           else
             "yazi";
         defaultText = literalExpression ''
-          if dprg.xdg.portal.name == "gnome" then
+          if dprg.desktopShell.name == "noctalia" then
+            "luciole"
+          else if dprg.xdg.portal.name == "gnome" then
             "nautilus"
           else if dprg.xdg.portal.name == "kde" then
             "dolphin"

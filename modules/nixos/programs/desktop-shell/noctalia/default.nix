@@ -129,6 +129,7 @@ in
           # "noctalia/timer"
           # "noctalia/translator" # idk cool but kinda meh
           "noctalia/wallhaven"
+          # "icefish/phone-connect"
           # "icefish/phone-operate"
         ];
         shell = {
@@ -151,6 +152,7 @@ in
               "gtk3"
               "gtk4"
               "kcolorscheme" # there is also "qt" but I don't think it's needed
+              "luciole"
               "niri"
               "ghostty"
               "helix"

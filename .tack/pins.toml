@@ -66,6 +66,10 @@ follows = { pre-commit = "" }
 # crane
 # rust-overlay
 
+# A smooth, native Wayland file manager.
+[inputs.luciole]
+url = "github:noctalia-dev/luciole"
+
 # Any version of any nixpkgs package, from one flake input
 [inputs.multiverse]
 url = "github:fzakaria/nixpkgs-multiverse"
