@@ -56,7 +56,7 @@ in
       # Since we disable editor in bootloader we can't set zfs_force=1 option
       # so make sure to do `zpool export POOLNAME` before rebooting from another
       # host.
-      boot.zfs.forceImportRoot = false;
+      boot.zfs.forceImportRoot = mkDefault false;
     }
     (mkIf cfg.enable {
       boot = {
