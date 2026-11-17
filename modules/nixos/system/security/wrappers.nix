@@ -8,6 +8,6 @@ in
   security.wrappers = {
     su.enable = mkForce false;
     sg.enable = mkForce false;
-    pkexec.enable = mkForce false;
+    # pkexec.enable = mkForce false; # needed for syncing noctalia greeter
   };
 }

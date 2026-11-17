@@ -14,8 +14,9 @@ in
 {
   imports = [ sources.noctalia-greeter.nixosModules.default ];
 
-  programs.noctalia-greeter = mkIf (sys.login.manager == "noctalia-greeter") {
+  services.displayManager.noctalia-greeter = mkIf (sys.login.manager == "noctalia-greeter") {
     enable = true;
+    passwordless-sync-users = [ config.user.name ];
     settings = {
       # session.default = dprg.windowManager.name;
 

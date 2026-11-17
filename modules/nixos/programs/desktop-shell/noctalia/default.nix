@@ -133,11 +133,13 @@ in
         ];
         shell = {
           # avatar_path = user.avatar; # probably overkill and better be configured imperatively
+          greeter_sync.auto_sync = true;
           launch_apps_as_systemd_services = true;
           panel = {
             transparency_mode = "glass"; # "solid" "soft" "glass"
             wallpaper_placement = "floating";
           };
+          polkit_agent = true;
         };
         theme = {
           mode = colors.variant; # "light" "dark" "auto"
