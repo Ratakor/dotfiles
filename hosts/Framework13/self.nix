@@ -20,8 +20,8 @@ in
 
     system = {
       login = {
-        autoLogin = true;
-        manager = "tuigreet";
+        autoLogin = false;
+        manager = "noctalia-greeter";
       };
       audio = {
         enable = true;
