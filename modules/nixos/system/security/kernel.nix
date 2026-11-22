@@ -53,20 +53,14 @@ in
       # only allows kernel modules that have been signed with a valid key to be loaded
       # makes it harder to load a malicious kernel module
       # virtualbox, nvidia modules may need manual signing
-      #
-      # MODULE_SIG is disabled in the kernel on NixOS
-      # to ensure reproducibility, this does nothing
-      "module.sig_enforce=1"
+      #"module.sig_enforce=1"
 
       # enable the kernel lockdown LSM
       # confidentiality is the strictest mode
       # protects both kernel integrity and prevents unauthorized access to kernel data
       # establishes clear security boundary between userspace and kernel
       # this implies module.sig_enforce=1
-      #
-      # LOCKDOWN_LSM is disabled in the kernel on NixOS
-      # to ensure reproducibility, this does nothing
-      "lockdown=confidentiality"
+      #"lockdown=confidentiality"
 
       # do not panic on uncorrectable memory errors
       # kernel will panic on uncorrectable memory errors, which can be exploited

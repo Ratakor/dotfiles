@@ -111,9 +111,6 @@ import sources.nixpkgs {
       # This fixes conflict with our custom scripts at pkgs.scripts
       mpv = prev.mpv.override { scripts = [ ]; };
 
-      # FIXME: remove this once nixpkgs is unfrozen
-      zig = prev.zig_0_17;
-
       # Replace nix-output-monitor ugly icons.
       nix-output-monitor =
         let

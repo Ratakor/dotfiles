@@ -4,7 +4,7 @@
 {
   imports = [ sources.nixos-core.nixosModules.default ];
 
-  system.nixos-core.enable = true;
+  system.nixos-core.enable = false;
 
   # https://github.com/manic-systems/nixos-core/issues/79
   # system.nixos-core.components = {
