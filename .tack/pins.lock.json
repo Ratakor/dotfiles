@@ -39,9 +39,13 @@
     "type": "github",
     "owner": "Wraient",
     "repo": "curd",
-    "rev": "b859cc34cf0321c9f6e731dbe5b56aa76bf6004b",
-    "narHash": "sha256-6dupLSwxXt+40HypOe3vb/kSV/WlQuXLHvudsETCMic=",
-    "lastModified": 1786005509
+    "rev": "6f852dba0f3a907742921914818b306948163306",
+    "narHash": "sha256-o94ZVaNJQZ4GKHg+aVAB/MW9tR7r+oss5aafbb60Vo4=",
+    "lastModified": 1795196335,
+    "archive": {
+      "hash": "sha256-wHM4ZjTrO3dgUfT8lW01/Ip6uM4hVpZDUrKA75dctL0=",
+      "outHash": "sha256-5duWPuPNZzCQ0rFFk4tZehJHB03Fy0PyAhOdAtnfML4="
+    }
   },
   "disko": {
     "type": "github",
