@@ -9,7 +9,7 @@ stdenvNoCC.mkDerivation {
 
   src = fetchzip {
     url = "https://luciole-vision.com/fonts/Luciole.zip";
-    hash = "sha256-Q58petDKiS08gdVRQD/mquxoMYiwjEbWzcWv5soXXE8=";
+    hash = "sha256-OmKfnUxgHMRxBSRKQEOUxbGlprNeYcH+mQcp7Tgv2qg=";
     stripRoot = false;
   };
 

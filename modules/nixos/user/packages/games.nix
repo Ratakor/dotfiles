@@ -14,7 +14,6 @@ let
   terminal = with pkgs; [
     nbsdgames # 18 text-based modern games from bsd
     pkgs."2048-zig" # 2048 game in terminal, that naming messes with Nix
-    binbreak # a terminal based binary number guessing game
   ];
 
   star-citizen = with pkgs; [
